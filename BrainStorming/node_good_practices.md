@@ -1,4 +1,10 @@
 # Good Practices for NodeJS #
+## Usar siempre npm init ##
+
+	mkdir myProject
+	cd myProject
+	npm init
+
 ## Lectura asíncrona de fichero ##
 
 	fs.readFile('/path/to/file', function (err, data) {
