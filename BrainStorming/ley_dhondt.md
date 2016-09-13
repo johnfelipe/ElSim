@@ -24,13 +24,11 @@ Tendríamos así quince cocientes, y de todos ellos los que obtienen escaño son
 
 * Partido C: 23.000 VOTOS 
 
-PARTIDO VOTOS/1 VOTOS/2 VOTOS/3 VOTOS/4 VOTOS/5 
-
-A 80.000(1) 40.000(3) 26.666(5) 20.000 16.000 
-
-B 65.000(2) 32.500(4) 21.666 16.250 13.000 
-
-C 23.000 11.500 7.666 5.750 4.600 
+| PARTIDO | VOTOS/1   | VOTOS/2   | VOTOS/3   | VOTOS/4 | VOTOS/5 |
+| --------| --------  | -------   | -------   | ------- | ------- |
+| A       | 80.000(1) | 40.000(3) | 26.666(5) | 20.000  | 16.000  |
+| B       | 65.000(2) | 32.500(4) | 21.666    | 16.250  | 13.000  |
+| C       | 23.000    | 11.500    |  7.666    |  5.750  |  4.600  |
 
 Los escaños se asignan por orden, según los cocientes, de mayor a menor, de forma que el 
 primer diputado lo consigue el partido A (80.000), el segundo es para el B (65.000), 
