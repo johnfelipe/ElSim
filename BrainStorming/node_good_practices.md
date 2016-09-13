@@ -83,3 +83,15 @@
 		
 	var exportedObject = require('./mod');
 	console.log(exportedObject); // { someProperty: 'someValue' }
+
+## Usar JsDoc para documentar el código ##
+
+Para más información [http://usejsdoc.org](http://usejsdoc.org)
+
+## Usar un gestor de procesos ##
+
+Puede usarse [upstart](https://en.wikipedia.org/wiki/Upstart) o [forever](https://www.npmjs.org/package/forever)
+
+## Seguir el estándar CommonJS ##
+
+Para más información [http://wiki.commonjs.org/wiki/CommonJS](http://wiki.commonjs.org/wiki/CommonJS)
