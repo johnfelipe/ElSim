@@ -1,4 +1,4 @@
-## Tipos de demcroacia ##
+## Tipos de democracia ##
 * Directa
 
 	Se suele usar en poblaciones muy pequeñas y son los ciudadanos
