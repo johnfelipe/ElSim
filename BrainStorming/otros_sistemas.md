@@ -1,4 +1,4 @@
-## Otros sistemas democrácticos ##
+## Otros sistemas democráticos ##
 ### Reino Unido. Sistema uninominal mayoritario o 'el primero pasa la posta' ###
 
 Se divide el país en tantas circunscripciones como parlamentarios hay (646). 
@@ -119,3 +119,5 @@ dos partidos mayoritarios, por lo que lo hace un sistema estable y que garantiza
 __Inconvenientes__: Tiende al bipartidismo e infrarrepresenta a los partidos minoritarios. No consigue ni una buena 
 proporcionalidad, ni un buen control de los parlamentarios por sus electores. Infrarrepresenta a las 
 circunscripciones muy pobladas.
+
+Información obtenida de [https://sintesisnianalisis.com/2013/01/10/sistemas-electorales-cinc-modelos-comparados/](https://sintesisnianalisis.com/2013/01/10/sistemas-electorales-cinc-modelos-comparados/)
