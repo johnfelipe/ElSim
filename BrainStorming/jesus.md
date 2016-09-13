@@ -1,8 +1,10 @@
-jesusgonzaleznovez@gmail.com
+## Datos de contacto ##
 
-jesusgonzaleznovez@correo.ugr.es
+e-mail 1: jesusgonzaleznovez@gmail.com
 
-670916942
+e-mail 2: jesusgonzaleznovez@correo.ugr.es
 
-@jesusgn90
+tel: 670 91 69 42
+
+twitter: @jesusgn90
 
