@@ -37,4 +37,4 @@ para el A (26.666). Mientras, el partido C se ha quedado fuera por muy poco.
 
 Se puede ver claramente que este sistema beneficia a partidos mayoritarios frente a pequeños.
 
-Información obtenedia [20minutos](http://www.20minutos.es/noticia/2780180/0/que-es-ley-dhondt/)
+Información obtenida [http://www.20minutos.es/noticia/2780180/0/que-es-ley-dhondt/](http://www.20minutos.es/noticia/2780180/0/que-es-ley-dhondt/)

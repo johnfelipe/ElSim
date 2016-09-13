@@ -51,3 +51,5 @@
 	Se da cuando un partido es bastante grande como para gobernar 
 	en solitario, o con alguna pequeña coalición dejando de lado a 
 	otros partidos políticos que podrían hacerle frente.
+
+Información obtenida de [http://10tipos.com/tipos-de-democracia/](http://10tipos.com/tipos-de-democracia/)
