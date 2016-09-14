@@ -2,7 +2,38 @@
 
 Resumen de las elecciones desde 1810 que ha habido en España.
 
+# Sexenio democrático (1868-1874) #
+
+## Elecciones generales de España de 1869 ##
+
+__Derecho a voto__
+
+Fueron convocadas para el 15 de enero de dicho año bajo sufragio universal masculino. 
+
+__Elegibilidad__
+
+Sin información aún.
+
+__Método de elección__
+
+Sin información aún.
+
+__Resultados__
+
+|    Partido                              | Escaños |   Líder                     |
+| --------------------------------------- | ------- | --------------------------- |
+| Coalición Progresista-Liberal           | 236     | Juan Prim                   |
+| Partido Republicano Democrático Federal |	85      | Francisco Pi, Margall       |
+| Comunión Católico-Monárquica            | 20      | Carlos María de Borbón      |
+| Independientes de derechas              |  3      | José Ramón Bugallal y Muñoz |
+| Otros                                   |  8      |           -                 |
+| __Total__                               | 352     |                             |
+
 # Reinado de Isabel II (1833 - 1868) #
+
+## Años 1835-67 ##
+
+__Sin información aún__
 
 ## Elecciones generales de España de 1834 ##
 
