@@ -7,8 +7,6 @@ el desarrollo y depuración del mismo.
 
 Test framework para JavaScript & NodeJS.
 
-[http://unitjs.com/guide/mocha.html](http://unitjs.com/guide/mocha.html)
-
 Instalación global(recomendada por comodidad):
 
 	sudo npm install -g mocha
@@ -34,3 +32,7 @@ para los nostálgicos se deja aquí el código:
 Usar make:
 
 	make test
+
+-------------------
+
+Para más información [http://unitjs.com/guide/mocha.html](http://unitjs.com/guide/mocha.html)
