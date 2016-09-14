@@ -1,4 +1,4 @@
-# Histórico en España #
+# Histórico en España (DOCUMENTO SIN FINALIZAR) #
 
 Resumen de las elecciones desde 1810 que ha habido en España.
 
@@ -113,3 +113,7 @@ __Método de elección__
 
 Para la elección de los diputados se utilizó el sistema de voto mayoritario en 32 circunscripciones 
 con más de un diputado y dos con uno solo. Las colonias españolas en América elegían 29 diputados.
+
+----------------
+
+Más información en [https://es.wikipedia.org/wiki/Anexo:Elecciones_en_Espa%C3%B1a](https://es.wikipedia.org/wiki/Anexo:Elecciones_en_Espa%C3%B1a)
