@@ -14,7 +14,7 @@ Instalación global(recomendada por comodidad):
 	sudo npm install -g mocha
 	mocha test
 
-Editar package.json para usar:
+Editar package.json para usar *npm test*:
 
 	"scripts": {
 		"test": "mocha test"
