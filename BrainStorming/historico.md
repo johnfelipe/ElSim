@@ -2,7 +2,7 @@
 
 Resumen de las elecciones desde 1810 que ha habido en España.
 
-## Elecciones generales de España de 1820 ## 
+## Elecciones generales de España de 1820 ##
 
 __Derecho a voto__
 
