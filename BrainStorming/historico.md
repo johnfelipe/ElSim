@@ -4,6 +4,60 @@ Resumen de las elecciones desde 1810 que ha habido en España.
 
 # Sexenio democrático (1868-1874) #
 
+## Elecciones generales de España de 1872 ##
+
+__Derecho a voto__
+
+Fueron convocadas para el 3 de abril de dicho año bajo sufragio universal masculino. 
+
+__Elegibilidad__
+
+Sin información aún.
+
+__Método de elección__
+
+Sin información aún.
+
+__Resultados__
+
+|    Partido                              | Escaños |   Líder                  |
+| --------------------------------------- | ------- | -------------------------|
+| Coalición Progresista-Liberal           | 236     | Práxedes Mateo Sagasta   |
+| Partido Republicano Democrático Federal |	52      | Francisco Pi, Margall    |
+| Partido Demócrata-Radical               | 42      | Manuel Ruiz Zorrilla     |
+| Comunión Católico-Monárquica            | 38      | Cándido Nocedal     	   |
+| Partido Moderado 					      | 11      | Alejandro Mon y Menéndez |
+| Otros                                   |  3      | - 					   |
+| Sin adscripción                         |  3      | -			               |
+| __Total__                               | 391     |                          |
+
+## Elecciones generales de España de 1871 ##
+
+__Derecho a voto__
+
+Fueron convocadas para el 8 de marzo de dicho año bajo sufragio universal masculino. 
+
+__Elegibilidad__
+
+Sin información aún.
+
+__Método de elección__
+
+Sin información aún.
+
+__Resultados__
+
+|    Partido                              | Escaños |   Líder                      |
+| --------------------------------------- | ------- | ---------------------------- |
+| Coalición Progresista-Liberal           | 235     | Francisco Serrano Domínguez  |
+| Partido Republicano Democrático Federal |	52      | Francisco Pi, Margall        |
+| Comunión Católico-Monárquica            | 51      | Carlos María de Borbón       |
+| Partido Moderado              		  | 18      | Alejandro Mon y Menéndez     |
+| Partido Conservador 					  |  9      | Antonio Cánovas del Castillo |
+| Partidarios del Duque de Montpensier    |  9      | Antonio de Orleans 		   |
+| Otros                                   | 19      |           -                  |
+| __Total__                               | 391     |                              |
+
 ## Elecciones generales de España de 1869 ##
 
 __Derecho a voto__
