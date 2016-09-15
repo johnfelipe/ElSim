@@ -28,7 +28,7 @@ __Resultados__
 | Comunión Católico-Monárquica            | 38      | Cándido Nocedal     	   |
 | Partido Moderado 					      | 11      | Alejandro Mon y Menéndez |
 | Otros                                   |  3      | - 					   |
-| Sin adscripción                         |  3      | -			               |
+| Sin adscripción                         |  9      | -			               |
 | __Total__                               | 391     |                          |
 
 ## Elecciones generales de España de 1871 ##
