@@ -48,12 +48,41 @@ var _ = require('./functions.js');
  	}
  	var r1 = _.dhondtFunction(votos,diputados,undefined,undefined);
  	var r2 = _.dhondtFunction(undefined,diputados,partidos,options);
+
+ 	var votos2 = [15000,12500,11500,9000,5000,80];
+ 	var totalVotos2 = 0;
+ 	var size2 = votos2.length;
+ 	for(var i=0; i < size2; i++){
+ 		totalVotos2 += votos2[i];
+ 	}
+
+ 	//votos = _.rellenaArrayEnteros();
+ 	var diputados2 = 4;
+ 	var partidos2 = [
+ 	{ partido:'A', votos: 15000 },
+ 	{ partido:'B', votos: 12500 },
+ 	{ partido:'C', votos: 11500 },
+ 	{ partido:'D', votos: 9000 },
+ 	{ partido:'E', votos: 5000 },
+ 	{ partido:'F', votos: 80 }
+ 	];
+ 	options2 = {
+ 		voteAccessor: function(object) {return object.votos},
+ 		resultProperty: "diputados",
+ 		base: 1.42
+ 	}
+ 	var r3 = _.dhondtFunction(votos,diputados,undefined,undefined);
+ 	var r4 = _.dhondtFunction(undefined,diputados,partidos,options);
+
+
  	res.render('index', {
  		title: 'DhondtExample',
  		totalDiputados: diputados,
  		totalVotos: totalVotos,
  		result1: r1,
- 		result2: r2
+ 		result2: r2,
+ 		result3: r3,
+ 		result4: r4
  	});
  };
 
