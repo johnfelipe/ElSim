@@ -24,7 +24,7 @@ var _ = require('./functions.js');
  };
 
  exports.dhondtExample = function (req,res,next) {
- 	var votos = [7236965,5545315,3514528,3198584,929880,926783];
+ 	var votos = [150000,125000,115000,90000,50000,800];
  	var totalVotos = 0;
  	var size = votos.length;
  	for(var i=0; i < size; i++){
@@ -32,14 +32,14 @@ var _ = require('./functions.js');
  	}
 
  	//votos = _.rellenaArrayEnteros();
- 	var diputados = 350;
+ 	var diputados = 10;
  	var partidos = [
- 	{ partido:'A', votos: 7236965 },
- 	{ partido:'B', votos: 5545315 },
- 	{ partido:'C', votos: 3514528 },
- 	{ partido:'D', votos: 3198584 },
- 	{ partido:'E', votos: 929880 },
- 	{ partido:'F', votos: 926783 },
+ 	{ partido:'A', votos: 150000 },
+ 	{ partido:'B', votos: 125000 },
+ 	{ partido:'C', votos: 115000 },
+ 	{ partido:'D', votos: 90000 },
+ 	{ partido:'E', votos: 50000 },
+ 	{ partido:'F', votos: 800 }
  	];
  	options = {
  		voteAccessor: function(object) {return object.votos},

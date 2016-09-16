@@ -3,13 +3,15 @@
 <head>
 	<title><%= title %></title>
 	<link rel='stylesheet' href='/stylesheets/style.css' />
+
 </head>
 <body>
 	<h1><%= title %></h1>
 	<p>Welcome to <%= title %></p><br>
 	<b>Total de votos:</b>  <%= totalVotos %> <br>
 	<b>Total de diputados:</b>  <%= totalDiputados %> <br>
-	<b>Result1:</b>  <%- JSON.stringify(result1) %> <br>
-	<b>Result2:</b> <%- JSON.stringify(result2) %> <br>
+	<b>Result1(base = 1.00):</b>  <%- JSON.stringify(result1) %> <br>
+	<b>Result2(base = 1.42):</b> <%- JSON.stringify(result2) %> <br>
+
 </body>
 </html>
