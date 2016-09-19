@@ -35,8 +35,15 @@ exports.dhondtExample = function (req,res) {
     };
     var r1 = _.dhondtFunction(votos,diputados,undefined,undefined);
     var r2 = _.dhondtFunction(undefined,diputados,partidos,options);
-    console.log(r1,r2);
+
+    var salida = r2;
+    var entrada = [diputados, partidos, options];
+
+
     res.render('index', {
-        title: 'DhondtExample',
+        title: 'D\'hondt Example',
+        modo: 'dhondt',
+        entrada: entrada,
+        salida: r2
     });
 };

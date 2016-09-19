@@ -56,5 +56,8 @@ app.use(function(err, req, res, next) {
     });
 });
 
+// for debug
+app.locals.inspect = require('util').inspect;
+
 
 module.exports = app;

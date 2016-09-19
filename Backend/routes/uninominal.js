@@ -29,32 +29,53 @@ exports.ganador = function(distrito){
 exports.uninominalExample = function (req,res) {
     var distrito1 = [
         {
+            distrito: '01',
             candidato: 'Juan',
             votos: 200
         },
         {
-            candidato: 'JuanDeDios',
+            distrito: '01',
+            candidato: 'John',
+            votos: 219
+        },
+        {
+            distrito: '01',
+            candidato: 'Juan de Dios',
             votos: 210
         }
     ];
     var distrito2 = [
         {
+            distrito: '02',
             candidato: 'Juan Carlos',
             votos: 1220
         },
         {
+            distrito: '02',
             candidato: 'Miguel',
             votos: 1200
         }
     ];
     var distrito3 = [
         {
+            distrito: '03',
             candidato: 'Pepe',
             votos: 180
         },
         {
+            distrito: '03',
             candidato: 'Juan Miguel',
             votos: 200
+        },
+        {
+            distrito: '03',
+            candidato: 'Eufrasia',
+            votos: 300
+        },
+        {
+            distrito: '03',
+            candidato: 'María Angustias',
+            votos: 100
         }
     ];
 
@@ -65,9 +86,12 @@ exports.uninominalExample = function (req,res) {
     ];
 
     var ganadores = _.uninominalFunction(distritos);
-    console.log(distritos, ganadores);
+
 
     res.render('index', {
-        title: 'UninominalExample'
+        title: 'First Past The Post Example',
+        modo: 'uninominal',
+        entrada: distritos,
+        salida: ganadores
     });
 };
