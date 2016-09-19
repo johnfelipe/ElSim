@@ -1,93 +1,53 @@
 var _ = require('./functions.js');
-/*
- *
- *	@votos is an array of how many votos each party has received or an array of object
- *	if you specify options.voteAccessor function (see examples)
- *	@diputados is an integer, how many diputados are being allocated
- *	@options object can have following properties:
- *		voteAccessor: function returning the number of votos from an object
- *		resultProperty: if array of objects is passed, specifies which property
- *						of the object should house the result. If not specified,
- *						array of diputados is returned.
- *		base: Specifies the base divider used in first round of mandate allocation.
- *			  Sometimes 1.42 is used to favor large partidos is smaller districts.
- */
- exports.dhondtFunction = function (votos, diputados, partidos,options) {
- 	var dhondt = require ('dhondt');
- 	var resultados = undefined;
- 	if(partidos === undefined){
- 		resultados = dhondt.compute(votos,diputados);
- 	}else if(votos === undefined){
- 		resultados = dhondt.compute(partidos,diputados,options);
- 	}
- 	return resultados;
- };
 
- exports.dhondtExample = function (req,res,next) {
- 	var votos = [150000,125000,115000,90000,50000,800];
- 	var totalVotos = 0;
- 	var size = votos.length;
- 	for(var i=0; i < size; i++){
- 		totalVotos += votos[i];
- 	}
+exports.dhondtFunction = function (votos, diputados, partidos,options) {
+	var dhondt = require('dhondt');
+	var resultados = undefined;
+	if(partidos === undefined){
+		resultados = dhondt.compute(votos,diputados);
+	}else if(votos === undefined){
+		resultados = dhondt.compute(partidos,diputados,options);
+	}
+	return resultados;
+};
 
- 	//votos = _.rellenaArrayEnteros();
- 	var diputados = 10;
- 	var partidos = [
- 	{ partido:'A', votos: 150000 },
- 	{ partido:'B', votos: 125000 },
- 	{ partido:'C', votos: 115000 },
- 	{ partido:'D', votos: 90000 },
- 	{ partido:'E', votos: 50000 },
- 	{ partido:'F', votos: 800 }
- 	];
- 	options = {
- 		voteAccessor: function(object) {return object.votos},
- 		resultProperty: "diputados",
- 		base: 1.42
- 	}
- 	var r1 = _.dhondtFunction(votos,diputados,undefined,undefined);
- 	var r2 = _.dhondtFunction(undefined,diputados,partidos,options);
+exports.dhondtExample = function (req,res) {
+	var votos = [150000,125000,115000,90000,50000,800];
+	var totalVotos = 0;
+	var size = votos.length;
+	var i;
+	for(i=0; i < size; i++) totalVotos += votos[i];
 
- 	var votos2 = [15000,12500,11500,9000,5000,80];
- 	var totalVotos2 = 0;
- 	var size2 = votos2.length;
- 	for(var i=0; i < size2; i++){
- 		totalVotos2 += votos2[i];
- 	}
+	var diputados = 10;
+	var partidos = [
+		{ partido:'A', votos: 150000 },
+		{ partido:'B', votos: 125000 },
+		{ partido:'C', votos: 115000 },
+		{ partido:'D', votos: 90000 },
+		{ partido:'E', votos: 50000 },
+		{ partido:'F', votos: 800 }
+	];
+	var options = {
+		voteAccessor: function (object) {
+			return object.votos
+		},
+		resultProperty: "diputados",
+		base: 1.42
+	};
+	var r1 = _.dhondtFunction(votos,diputados,undefined,undefined);
+	var r2 = _.dhondtFunction(undefined,diputados,partidos,options);
 
- 	//votos = _.rellenaArrayEnteros();
- 	var diputados2 = 4;
- 	var partidos2 = [
- 	{ partido:'A', votos: 15000 },
- 	{ partido:'B', votos: 12500 },
- 	{ partido:'C', votos: 11500 },
- 	{ partido:'D', votos: 9000 },
- 	{ partido:'E', votos: 5000 },
- 	{ partido:'F', votos: 80 }
- 	];
- 	options2 = {
- 		voteAccessor: function(object) {return object.votos},
- 		resultProperty: "diputados",
- 		base: 1.42
- 	}
- 	var r3 = _.dhondtFunction(votos,diputados,undefined,undefined);
- 	var r4 = _.dhondtFunction(undefined,diputados,partidos,options);
+	res.render('index', {
+		title: 'DhondtExample',
+		totalDiputados: diputados,
+		totalVotos: totalVotos,
+		result1: r1,
+		result2: r2
+	});
+};
 
-
- 	res.render('index', {
- 		title: 'DhondtExample',
- 		totalDiputados: diputados,
- 		totalVotos: totalVotos,
- 		result1: r1,
- 		result2: r2,
- 		result3: r3,
- 		result4: r4
- 	});
- };
-
- exports.index = function(req, res, next) {
- 	res.render('index',{
- 		title: 'Express'
- 	});
- };
+exports.index = function(req, res) {
+	res.render('index',{
+		title: 'Express'
+	});
+};

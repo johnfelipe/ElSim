@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var functions = require('./functions.js')
+var functions = require('./functions.js');
 
 router.get('/', functions.index);
 router.get('/dhondtExample',functions.dhondtExample);
