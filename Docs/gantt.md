@@ -52,3 +52,11 @@
 :x: => Tarea no desarrollada a día de hoy, en progreso.
 
 :zzz: => Tarea no desarrollada a día de hoy, no comenzada.
+
+## Diagrama de Gantt ##
+
+![Diagrama 1/3](diagrama1.png)
+
+![Diagrama 2/3](diagrama2.png)
+
+![Diagrama 3/3](diagrama3.png)
