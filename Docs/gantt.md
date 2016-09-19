@@ -47,6 +47,8 @@
 
 ### Leyenda ###
 
-:white_check_mark: = Tarea ya desarrollada a fecha de hoy.
-:x: = Tarea no desarrollada a día de hoy, en progreso.
-:zzz: = Tarea no desarrollada a día de hoy, no comenzada.
+:white_check_mark: => Tarea ya desarrollada a fecha de hoy.
+
+:x: => Tarea no desarrollada a día de hoy, en progreso.
+
+:zzz: => Tarea no desarrollada a día de hoy, no comenzada.
