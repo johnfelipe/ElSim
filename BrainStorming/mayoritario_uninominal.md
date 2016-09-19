@@ -5,3 +5,5 @@ El sistema electoral de sufragio directo, sistema de representación directa o e
 En las elecciones parlamentarias o legislativas, la nación se divide en distritos electorales geográficamente definidos dentro de los cuales se presentan diversos candidatos y el votante elige el candidato para representar este distrito. El candidato que reciba el mayor número de votos, es designado el representante (o diputado) del distrito electoral, y el parlamento se conforma por la asamblea de todos los candidatos ganadores por sufragio directo.
 
 El sistema uninominal mayoritario se utiliza para elegir a los miembros del parlamento en sistemas parlamentarios como el Reino Unido y Canadá. También se emplea en sistemas presidencialistas como Estados Unidos para elegir a los miembros de la Cámara de Representantes y del Senado.
+
+Copiado de [https://es.wikipedia.org/wiki/Escrutinio_mayoritario_uninominal](https://es.wikipedia.org/wiki/Escrutinio_mayoritario_uninominal)
