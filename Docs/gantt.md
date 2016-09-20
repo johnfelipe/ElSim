@@ -11,6 +11,7 @@
 | A.2.4 Sistema uninominal mayoritario a dos vueltas				|  2 	   | 22/09/2016 | 23/09/2016 | :x:	  			  |
 | A.2.5 Sistema de falsa proporcionalidad a la mayoría(y barreras)  |  2	   | 23/09/2016 | 26/09/2016 | :x:	  			  |
 | A.2.6 Sistema mixto												|  2	   | 26/09/2016 | 27/09/2016 | :x:	  			  |
+| A.2.7 Sistema segunda vuelta instantánea 							|  2       | 27/09/2016 | 28/09/2016 | :x:				  |
 | A.3 __Ver alternativas usadas en otros países__					|  6	   | 03/10/2016 | 10/10/2016 | :x:	  			  |
 | A.3.1 Razonar sus ventajas e inconvenientes con respecto a España |  6	   | 03/10/2016 | 10/10/2016 | :x:	  			  |
 | B. __Obtener información sobre el sistema político de España__ 	| 22	   | 26/09/2016 | 25/10/2026 | :x:	  			  |

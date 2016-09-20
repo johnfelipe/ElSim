@@ -1,4 +1,14 @@
 ## Otros sistemas democráticos ##
+
+### Segunda vuelta instantánea ###
+
+La segunda vuelta instantánea (en inglés Instant-runoff voting), también conocida como voto preferencial o voto alternativo (alternative vote),1 2 es un sistema electoral que sirve para elegir a un único ganador por mayoría absoluta de entre más de dos posibles candidatos. Se trata de un sistema de votación preferencial, en el cual el votante no se limita a marcar un solo candidato en la papeleta, sino que puede ordenar a varios candidatos de acuerdo con sus preferencias, de más preferido a menos preferido (numerándolos 1, 2, 3,... tal y como puede verse en la imagen de la derecha).
+
+Al realizarse el escrutinio, inicialmente se cuentan solo las primeras preferencias de los votantes. Si un candidato obtiene entonces más de la mitad de los votos (es decir, mayoría absoluta), ese candidato es proclamado vencedor. Si por el contrario ningún candidato ha obtenido mayoría absoluta, se produce entonces la segunda vuelta instantánea: se elimina al candidato con menos apoyos y se recuentan sus votos, pero asignándose ahora a las segundas preferencias marcadas en esas papeletas. Este proceso se repite hasta que un candidato gane obteniendo la mayoría absoluta de los votos.
+
+El término segunda vuelta instantánea se usa porque este método se asemeja en cierta medida al sistema electoral de doble vuelta (empleado por ejemplo en las elecciones presidenciales de Francia). La diferencia significativa entre ambos sistemas es que en la segunda vuelta instantánea los electores únicamente tienen que votar una vez, mientras que en la doble vuelta los electores son convocados a las urnas en dos fechas sucesivas.
+
+
 ### Reino Unido. Sistema uninominal mayoritario o 'el primero pasa la posta' ###
 
 Se divide el país en tantas circunscripciones como parlamentarios hay (646). 
