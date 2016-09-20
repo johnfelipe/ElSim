@@ -10,4 +10,6 @@ router.get('/dhondtExample',dhondt.dhondtExample);
 router.get('/uninominalExample', uninominal.uninominalExample);
 router.get('/instantRunoffExample', instant_runoff.instantRunoffExample);
 
+router.post('/uninominalPost',uninominal.uninominalRoute);
+
 module.exports = router;

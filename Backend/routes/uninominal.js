@@ -25,6 +25,11 @@ exports.ganador = function(distrito){
     return ganador;
 };
 
+exports.uninominalRoute = function (req, res) {
+    var resultados = _.uninominalFunction(req.body.entrada);
+    console.log(resultados);
+    res.send(resultados);
+};
 
 exports.uninominalExample = function (req,res) {
     var distrito1 = [

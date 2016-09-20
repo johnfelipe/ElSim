@@ -1,0 +1,53 @@
+{
+  "entrada": [
+    [
+        {
+            "distrito": "01",
+            "candidato": "Juan",
+            "votos": 200
+        },
+        {
+            "distrito": "01",
+            "candidato": "John",
+            "votos": 219
+        },
+        {
+            "distrito": "01",
+            "candidato": "Juan de Dios",
+            "votos": 210
+        }
+    ], [
+        {
+            "distrito": "02",
+            "candidato": "Juan Carlos",
+            "votos": 1220
+        },
+        {
+            "distrito": "02",
+            "candidato": "Miguel",
+            "votos": 1200
+        }
+    ],[
+        {
+            "distrito": "03",
+            "candidato": "Pepe",
+            "votos": 180
+        },
+        {
+            "distrito": "03",
+            "candidato": "Juan Miguel",
+            "votos": 200
+        },
+        {
+            "distrito": "03",
+            "candidato": "Eufrasia",
+            "votos": 300
+        },
+        {
+            "distrito": "03",
+            "candidato": "María Angustias",
+            "votos": 100
+        }
+    ]
+  ]
+}
