@@ -10,14 +10,13 @@ exports.uninominalFunction = function (distritos) {
 };
 
 exports.ganador = function(distrito){
-    var ganador = undefined;
-    var i;
-    for(i=0; i < distrito.length; i++){
+    var ganador = undefined, i;
+    var distrito_size = distrito.length;
+    for(i=0; i < distrito_size; i++){
         if(ganador === undefined) {
             ganador = distrito[0];
         } else {
             if(distrito[i].votos > ganador.votos){
-                console.log(distrito[i].votos, ganador.votos);
                 ganador = distrito[i];
             }
         }
@@ -27,68 +26,56 @@ exports.ganador = function(distrito){
 
 exports.uninominalRoute = function (req, res) {
     var resultados = _.uninominalFunction(req.body.entrada);
-    console.log(resultados);
     res.send(resultados);
 };
 
 exports.uninominalExample = function (req,res) {
-    var distrito1 = [
-        {
-            distrito: '01',
-            candidato: 'Juan',
-            votos: 200
-        },
-        {
-            distrito: '01',
-            candidato: 'John',
-            votos: 219
-        },
-        {
-            distrito: '01',
-            candidato: 'Juan de Dios',
-            votos: 210
+    var nombres = [
+        'Maryellen', 'Salvador', 'Kristopher', 'Sherie',
+        'Aileen', 'Missy', 'Margarett','Maribeth',
+        'Celinda','Edna','Karena', 'Charis','Sabine',
+        'Eda','Lien', 'Duane', 'Hoyt', 'Cicely',
+        'Josiah', 'Katharina', 'Vanesa', 'Agripina',
+        'Torie', 'Holly', 'Jarod', 'Roma',
+        'Adina', 'Sherrie', 'Margorie', 'Eleanore',
+        'Herb', 'Lyndia', 'Beatris', 'Kari',
+        'Angle', 'Thelma', 'Constance', 'Benny',
+        'Kacey', 'Lili', 'Stephnie', 'Adolfo',
+        'Tamica', 'Rudolf', 'Jarvis', 'Sage',
+        'Mitsuko', 'Frederica', 'Madison', 'Loren'
+    ];
+    var i, j,nombre,num_votos,object;
+    var distritos = [],distrito1 = [],distrito2 = [],distrito3 = [],distrito4 = [],distrito5 = [];
+    for(i = 0; i < nombres.length; i++) {
+        nombre = nombres[i];
+        num_votos = Math.floor((Math.random() * 10000) + 1);
+        object = {
+            distrito: undefined,
+            candidato: nombre,
+            votos: num_votos
+        };
+        if (i < 10) {
+            object.distrito = '01';
+            distrito1.push(object);
         }
-    ];
-    var distrito2 = [
-        {
-            distrito: '02',
-            candidato: 'Juan Carlos',
-            votos: 1220
-        },
-        {
-            distrito: '02',
-            candidato: 'Miguel',
-            votos: 1200
+        if (i >= 10 && i < 20) {
+            object.distrito = '02';
+            distrito2.push(object);
         }
-    ];
-    var distrito3 = [
-        {
-            distrito: '03',
-            candidato: 'Pepe',
-            votos: 180
-        },
-        {
-            distrito: '03',
-            candidato: 'Juan Miguel',
-            votos: 200
-        },
-        {
-            distrito: '03',
-            candidato: 'Eufrasia',
-            votos: 300
-        },
-        {
-            distrito: '03',
-            candidato: 'María Angustias',
-            votos: 100
+        if (i >= 20 && i < 30){
+            object.distrito = '03';
+            distrito3.push(object);
         }
-    ];
-
-    var distritos = [
-        distrito1,
-        distrito2,
-        distrito3
-    ];
+        if( i>=30 && i<40) {
+            object.distrito = '04';
+            distrito4.push(object);
+        }
+        if(i>=40) {
+            object.distrito = '05';
+            distrito5.push(object);
+        }
+    }
+    distritos = [distrito1,distrito2,distrito3,distrito4,distrito5];
 
     var ganadores = _.uninominalFunction(distritos);
 
