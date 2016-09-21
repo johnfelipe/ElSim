@@ -1,3 +1,36 @@
+
+
+<!-- toc -->
+
+- [Sistema mayoritario uninominal](#sistema-mayoritario-uninominal)
+- [Ley D'Hondt](#ley-dhondt)
+    + [Puntos clave](#puntos-clave)
+    + [Ejemplo de aplicación](#ejemplo-de-aplicación)
+  * [Otros sistemas democráticos](#otros-sistemas-democráticos)
+    + [Segunda vuelta instantánea](#segunda-vuelta-instantánea)
+    + [Reino Unido. Sistema uninominal mayoritario o 'el primero pasa la posta'](#reino-unido-sistema-uninominal-mayoritario-o-el-primero-pasa-la-posta)
+    + [Alemania. Sistema proporcional personalista.](#alemania-sistema-proporcional-personalista)
+    + [Francia. Uninominal mayoritario a dos vueltas.](#francia-uninominal-mayoritario-a-dos-vueltas)
+    + [Italia. Falsa proporcionalidad con premio a la mayoría y barreras.](#italia-falsa-proporcionalidad-con-premio-a-la-mayoría-y-barreras)
+    + [España. Sistema mixto.](#españa-sistema-mixto)
+- [Tipos de democracia](#tipos-de-democracia)
+- [Histórico en España (SIN FINALIZAR)](#histórico-en-españa-sin-finalizar)
+- [Sexenio democrático (1868-1874)](#sexenio-democrático-1868-1874)
+  * [Elecciones generales de España de 1872](#elecciones-generales-de-españa-de-1872)
+  * [Elecciones generales de España de 1871](#elecciones-generales-de-españa-de-1871)
+  * [Elecciones generales de España de 1869](#elecciones-generales-de-españa-de-1869)
+- [Reinado de Isabel II (1833 - 1868)](#reinado-de-isabel-ii-1833---1868)
+  * [Años 1835-67](#años-1835-67)
+  * [Elecciones generales de España de 1834](#elecciones-generales-de-españa-de-1834)
+- [Trienio liberal (1820 - 1823)](#trienio-liberal-1820---1823)
+  * [Elecciones generales de España de 1822](#elecciones-generales-de-españa-de-1822)
+  * [Elecciones generales de España de 1820](#elecciones-generales-de-españa-de-1820)
+- [Cortes de Cádiz (1810 - 1814)](#cortes-de-cádiz-1810---1814)
+  * [Elecciones generales de España de 1813](#elecciones-generales-de-españa-de-1813)
+  * [Elecciones generales de España de 1810](#elecciones-generales-de-españa-de-1810)
+
+<!-- tocstop -->
+
 # Sistema mayoritario uninominal #
 
 El sistema electoral de sufragio directo, sistema de representación directa o escrutinio mayoritario uninominal (también conocido por su nombre inglés, first-past-the-post) es un sistema electoral en el que el votante puede elegir un único candidato de entre los que se presentan, proclamándose ganador aquel que recibe el mayor número de votos, es decir, una mayoría simple o pluralidad.

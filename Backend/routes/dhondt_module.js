@@ -1,5 +1,16 @@
 var dhondt = require('dhondt');
 var _ = require('./dhondt_module.js');
+
+/**
+ * @function dhondtFunction
+ * @description Función que calcula el resultado electoral usando
+ * el método D'Hondt.
+ * @param {(Array|undefined)} votos
+ * @param {number} diputados
+ * @param {Array|undefined} partidos
+ * @param {Array|undefined} options
+ * @returns {Array.<Object>}
+ */
 exports.dhondtFunction = function (votos, diputados, partidos,options) {
     var resultados = undefined;
     if(partidos === undefined){
