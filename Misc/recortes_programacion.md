@@ -1,3 +1,28 @@
+
+
+<!-- toc -->
+
+- [Good Practices for NodeJS](#good-practices-for-nodejs)
+  * [Usar siempre npm init](#usar-siempre-npm-init)
+  * [Lectura asíncrona de fichero](#lectura-asíncrona-de-fichero)
+  * [Require en la parte superior del fichero](#require-en-la-parte-superior-del-fichero)
+  * [Guardar this para referencia](#guardar-this-para-referencia)
+  * [Modo estricto siempre](#modo-estricto-siempre)
+  * [Comprobar que un Callback puede ser llamado](#comprobar-que-un-callback-puede-ser-llamado)
+  * [Pasar el error como primer parámetro de las Callback](#pasar-el-error-como-primer-parámetro-de-las-callback)
+  * [Comprobar siempre si hay error en un Callback](#comprobar-siempre-si-hay-error-en-un-callback)
+  * [Usar module.exports en vez de exports](#usar-moduleexports-en-vez-de-exports)
+  * [Usar JsDoc para documentar el código](#usar-jsdoc-para-documentar-el-código)
+  * [Usar un gestor de procesos](#usar-un-gestor-de-procesos)
+  * [Seguir el estándar CommonJS](#seguir-el-estándar-commonjs)
+- [La programación extrema o eXtreme Programming](#la-programación-extrema-o-extreme-programming)
+  * [Características fundamentales del método](#características-fundamentales-del-método)
+- [Test unitarios](#test-unitarios)
+  * [Mocha](#mocha)
+- [Keyboard Shortcuts for WebStorm](#keyboard-shortcuts-for-webstorm)
+
+<!-- tocstop -->
+
 # Good Practices for NodeJS #
 ## Usar siempre npm init ##
 
