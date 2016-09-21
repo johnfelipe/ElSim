@@ -1,60 +1,72 @@
-var dhondt = require('dhondt');
-var _ = require('./dhondt_module.js');
+var DhondtObject = function(){
+    this.dhondt = require('dhondt');
+    this.votos = [];
+    this.diputados = 0;
+    this.partidos = [];
+    this.options = {};
+    this.resultados = [];
+    this.done = false;
 
-/**
- * @function dhondtFunction
- * @description Función que calcula el resultado electoral usando
- * el método D'Hondt.
- * @param {(Array|undefined)} votos
- * @param {number} diputados
- * @param {Array|undefined} partidos
- * @param {Array|undefined} options
- * @returns {Array.<Object>}
- */
-exports.dhondtFunction = function (votos, diputados, partidos,options) {
-    var resultados = undefined;
-    if(partidos === undefined){
-        resultados = dhondt.compute(votos,diputados);
-    }else if(votos === undefined){
-        resultados = dhondt.compute(partidos,diputados,options);
-    }
-    return resultados;
-};
-
-exports.dhondtExample = function (req,res) {
-    var votos = [150000,125000,115000,90000,50000,800];
-    var totalVotos = 0;
-    var size = votos.length;
-    var i;
-    for(i=0; i < size; i++) totalVotos += votos[i];
-
-    var diputados = 10;
-    var partidos = [
-        { partido:'A', votos: 150000 },
-        { partido:'B', votos: 125000 },
-        { partido:'C', votos: 115000 },
-        { partido:'D', votos: 90000 },
-        { partido:'E', votos: 50000 },
-        { partido:'F', votos: 800 }
-    ];
-    var options = {
-        voteAccessor: function (object) {
-            return object.votos
-        },
-        resultProperty: "diputados",
-        base: 1.42
+    this.setVotos = function(v){
+        this.done = false;
+        this.partidos = [];
+        this.options = {};
+        this.votos = v;
     };
-    var r1 = _.dhondtFunction(votos,diputados,undefined,undefined);
-    var r2 = _.dhondtFunction(undefined,diputados,partidos,options);
 
-    var salida = r2;
-    var entrada = [diputados, partidos, options];
+    this.setDiputados = function(n){
+        this.done = false;
+        this.diputados = n;
+    };
 
+    this.setPartidos = function(p){
+        this.done = false;
+        this.votos = [];
+        this.partidos = p;
+    };
 
-    res.render('index', {
-        title: 'D\'hondt Example',
-        modo: 'dhondt',
-        entrada: entrada,
-        salida: r2
-    });
+    this.setOptions = function(o){
+        this.done = false;
+        this.options = o;
+    };
+
+    this.initExampleOne = function(){
+        this.setVotos([150000,125000,115000,90000,50000,800]);
+        this.setDiputados(10);
+    };
+
+    this.initExampleTwo = function(){
+        this.setDiputados(10);
+        this.setPartidos([
+            { partido:'A', votos: 150000 },
+            { partido:'B', votos: 125000 },
+            { partido:'C', votos: 115000 },
+            { partido:'D', votos: 90000 },
+            { partido:'E', votos: 50000 },
+            { partido:'F', votos: 800 }
+        ]);
+        this.setOptions({
+            voteAccessor: function (object) {
+                return object.votos
+            },
+            resultProperty: "diputados",
+            base: 1.42
+        });
+    };
+
+    this.compute = function(){
+        if(!this.done) {
+            this.done = true;
+            if (this.partidos.length === 0) {
+                this.resultados = this.dhondt.compute(this.votos, this.diputados);
+            } else if (this.votos.length === 0) {
+                this.resultados = this.dhondt.compute(this.partidos, this.diputados, this.options);
+            }
+        } else {
+            console.log('No new calculations...\n');
+        }
+    };
+    return this;
+
 };
+module.exports = DhondtObject;
