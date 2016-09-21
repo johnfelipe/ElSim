@@ -6,7 +6,7 @@
 - [Ley D'Hondt](#ley-dhondt)
     + [Puntos clave](#puntos-clave)
     + [Ejemplo de aplicación](#ejemplo-de-aplicación)
-  * [Otros sistemas democráticos](#otros-sistemas-democráticos)
+- [Otros sistemas democráticos](#otros-sistemas-democráticos)
     + [Segunda vuelta instantánea](#segunda-vuelta-instantánea)
     + [Reino Unido. Sistema uninominal mayoritario o 'el primero pasa la posta'](#reino-unido-sistema-uninominal-mayoritario-o-el-primero-pasa-la-posta)
     + [Alemania. Sistema proporcional personalista.](#alemania-sistema-proporcional-personalista)
@@ -82,7 +82,7 @@ Se puede ver claramente que este sistema beneficia a partidos mayoritarios frent
 
 Información obtenida [http://www.20minutos.es/noticia/2780180/0/que-es-ley-dhondt/](http://www.20minutos.es/noticia/2780180/0/que-es-ley-dhondt/)
 
-## Otros sistemas democráticos ##
+# Otros sistemas democráticos #
 
 ### Segunda vuelta instantánea ###
 
