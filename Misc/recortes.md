@@ -15,19 +15,19 @@
     + [España. Sistema mixto.](#españa-sistema-mixto)
 - [Tipos de democracia](#tipos-de-democracia)
 - [Histórico en España (SIN FINALIZAR)](#histórico-en-españa-sin-finalizar)
-- [Sexenio democrático (1868-1874)](#sexenio-democrático-1868-1874)
-  * [Elecciones generales de España de 1872](#elecciones-generales-de-españa-de-1872)
-  * [Elecciones generales de España de 1871](#elecciones-generales-de-españa-de-1871)
-  * [Elecciones generales de España de 1869](#elecciones-generales-de-españa-de-1869)
-- [Reinado de Isabel II (1833 - 1868)](#reinado-de-isabel-ii-1833---1868)
-  * [Años 1835-67](#años-1835-67)
-  * [Elecciones generales de España de 1834](#elecciones-generales-de-españa-de-1834)
+  * [Sexenio democrático (1868-1874)](#sexenio-democrático-1868-1874)
+    + [Elecciones generales de España de 1872](#elecciones-generales-de-españa-de-1872)
+    + [Elecciones generales de España de 1871](#elecciones-generales-de-españa-de-1871)
+    + [Elecciones generales de España de 1869](#elecciones-generales-de-españa-de-1869)
+  * [Reinado de Isabel II (1833 - 1868)](#reinado-de-isabel-ii-1833---1868)
+    + [Años 1835-67](#años-1835-67)
+    + [Elecciones generales de España de 1834](#elecciones-generales-de-españa-de-1834)
 - [Trienio liberal (1820 - 1823)](#trienio-liberal-1820---1823)
   * [Elecciones generales de España de 1822](#elecciones-generales-de-españa-de-1822)
-  * [Elecciones generales de España de 1820](#elecciones-generales-de-españa-de-1820)
-- [Cortes de Cádiz (1810 - 1814)](#cortes-de-cádiz-1810---1814)
-  * [Elecciones generales de España de 1813](#elecciones-generales-de-españa-de-1813)
-  * [Elecciones generales de España de 1810](#elecciones-generales-de-españa-de-1810)
+    + [Elecciones generales de España de 1820](#elecciones-generales-de-españa-de-1820)
+  * [Cortes de Cádiz (1810 - 1814)](#cortes-de-cádiz-1810---1814)
+    + [Elecciones generales de España de 1813](#elecciones-generales-de-españa-de-1813)
+    + [Elecciones generales de España de 1810](#elecciones-generales-de-españa-de-1810)
 
 <!-- tocstop -->
 
@@ -277,9 +277,9 @@ Información obtenida de [http://10tipos.com/tipos-de-democracia/](http://10tipo
 
 Resumen de las elecciones desde 1810 que ha habido en España.
 
-# Sexenio democrático (1868-1874) #
+## Sexenio democrático (1868-1874) ##
 
-## Elecciones generales de España de 1872 ##
+### Elecciones generales de España de 1872 ###
 
 __Derecho a voto__
 
@@ -306,7 +306,7 @@ __Resultados__
 | Sin adscripción                         |  9      | -			               |
 | __Total__                               | 391     |                          |
 
-## Elecciones generales de España de 1871 ##
+### Elecciones generales de España de 1871 ###
 
 __Derecho a voto__
 
@@ -333,7 +333,7 @@ __Resultados__
 | Otros                                   | 19      |           -                  |
 | __Total__                               | 391     |                              |
 
-## Elecciones generales de España de 1869 ##
+### Elecciones generales de España de 1869 ###
 
 __Derecho a voto__
 
@@ -358,13 +358,13 @@ __Resultados__
 | Otros                                   |  8      |           -                 |
 | __Total__                               | 352     |                             |
 
-# Reinado de Isabel II (1833 - 1868) #
+## Reinado de Isabel II (1833 - 1868) ##
 
-## Años 1835-67 ##
+### Años 1835-67 ###
 
 __Sin información aún__
 
-## Elecciones generales de España de 1834 ##
+### Elecciones generales de España de 1834 ###
 
 __Derecho a voto__
 
@@ -410,7 +410,7 @@ __Resultados__
 | __Total__      |  203    | Sin cambios     |
 
 
-## Elecciones generales de España de 1820 ##
+### Elecciones generales de España de 1820 ###
 
 __Derecho a voto__
 
@@ -431,9 +431,9 @@ __Resultados__
 | Independientes |	203    | Sin cambios     |
 | __Total__      |  203    | Sin cambios     |
 
-# Cortes de Cádiz (1810 - 1814) #
+## Cortes de Cádiz (1810 - 1814) ##
 
-## Elecciones generales de España de 1813 ##
+### Elecciones generales de España de 1813 ###
 
 __Derecho a voto__
 
@@ -458,7 +458,7 @@ __Resultados__
 | Independientes |	203    | -70             |
 | __Total__      |  203    | -70             |
 
-## Elecciones generales de España de 1810 ##
+### Elecciones generales de España de 1810 ###
 
 __Derecho a voto__
 
