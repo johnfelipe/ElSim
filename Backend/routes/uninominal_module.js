@@ -14,7 +14,7 @@ var UninominalObject = function (){
      * @param {Array.<Array.<Object>>} newDistritos
      */
     this.setDistritos = function(newDistritos){
-        if(this.distritos.length !== 0) {
+        if(this.distritos.length) {
             this.distritos = [];
         }
         this.distritos = newDistritos;
@@ -25,9 +25,8 @@ var UninominalObject = function (){
      * Realiza los cálculos para obtener el ganador.
      */
     this.compute = function(){
-        var num_distritos = this.distritos.length;
-        var i;
-        for(i = 0; i < num_distritos; i++){
+        var i, num_distritos;
+        for(i = 0, num_distritos = this.distritos.length; i < num_distritos; i++){
             this.winner(this.distritos[i]);
         }
     };
@@ -39,9 +38,8 @@ var UninominalObject = function (){
     this.winner = function(distrito){
         if(!this.done) {
             this.done = true;
-            var ganador = undefined, i;
-            var distrito_size = distrito.length;
-            for (i = 0; i < distrito_size; i++) {
+            var ganador, i, size;
+            for (i = 0, size = distrito.length; i < size; i++) {
                 if (ganador === undefined) {
                     ganador = distrito[0];
                 } else {

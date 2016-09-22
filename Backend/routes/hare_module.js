@@ -36,9 +36,8 @@ var HareObject = function(){
      * Calcula el cociente a utilizar.
      */
     this.setCociente = function(){
-        if(this.partidos.length > 1 && this.escanios > 0){
-            var total = this.totalVotos();
-            this.cociente = Math.floor(total / this.escanios);
+        if(this.partidos.length > 1 && this.escanios){
+            this.cociente = Math.floor(this.totalVotos() / this.escanios);
         }
     };
 
@@ -47,8 +46,8 @@ var HareObject = function(){
      * @returns {number}
      */
     this.totalVotos = function(){
-        var t = 0;
-        for(var i=0; i<this.partidos.length; i++){
+        var t = 0, i, size;
+        for(i=0, size = this.partidos.length; i < size; i++){
             t += this.partidos[i].votos;
         }
         return t;
@@ -59,7 +58,7 @@ var HareObject = function(){
      * de cada partido.
      */
     this.compute = function(){
-        if(this.partidos.length > 1 && this.escanios > 0 && this.cociente > 0) {
+        if(this.partidos.length > 1 && this.escanios && this.cociente) {
             this.rest();
             this.overRest();
             this.done = true;
@@ -72,7 +71,7 @@ var HareObject = function(){
      * sobran escaños que serán posteriormente repartidos.
      */
     this.rest = function(){
-        for(var i=0; i<this.partidos.length; i++){
+        for(var i=0, size = this.partidos.length; i < size; i++){
             this.partidos[i].withoutRest = Math.floor(this.partidos[i].votos / this.cociente);
             this.partidos[i].rest = this.partidos[i].votos % this.cociente;
         }
@@ -83,45 +82,53 @@ var HareObject = function(){
      * Fija los resultados definitivos de cada partido.
      */
     this.overRest = function(){
-        var totalEscanios = 0;
-        for(var i=0; i<this.partidos.length; i++){
+        var difference, i, size, totalEscanios = 0;
+        for(i=0, size = this.partidos.length; i < size; i++){
             totalEscanios += this.partidos[i].withoutRest;
         }
-        var difference = this.escanios - totalEscanios;
-        var i;
-        for(i=0; i<this.partidos.length; i++){
+        difference = this.escanios - totalEscanios;
+        for(i=0, size = this.partidos.length; i < size; i++){
             this.partidos[i].totalEscanios = this.partidos[i].withoutRest;
         }
-        this.partidos.sort(function(a, b){
-            var keyA = a.withoutRest,
-                keyB = b.withoutRest;
-            if(keyA > keyB) return -1;
-            if(keyA < keyB) return 1;
-            return 0;
-        });
+        this.partidos.sort(this.sortByKey);
         i = 0;
         while(difference){
-            if(i < this.partidos.length){
-                i++;
-            }else{
-                i = 0;
-            }
+            i < this.partidos.length ? i++ : i = 0;
             this.partidos[i].totalEscanios++;
             difference--;
         }
     };
-
+    this.sortByKey = function(a, b){
+        var keyA = a.withoutRest,
+            keyB = b.withoutRest;
+        if(keyA > keyB) return -1;
+        if(keyA < keyB) return 1;
+        return 0;
+    };
     /**
      * Inicializa unos valores de ejemplo.
      */
     this.initExample = function(){
         var array =  [
-            {partido: 'A', votos:32500},
-            {partido: 'B', votos:24000},
-            {partido: 'C', votos:18000},
-            {partido: 'D', votos:12000},
-            {partido: 'E', votos:10000},
-            {partido: 'F', votos:2000}
+            {
+                partido: 'A',
+                votos:32500
+            }, {
+                partido: 'B',
+                votos:24000
+            }, {
+                partido: 'C',
+                votos:18000
+            }, {
+                partido: 'D',
+                votos:12000
+            }, {
+                partido: 'E',
+                votos:10000
+            }, {
+                partido: 'F',
+                votos:2000
+            }
         ];
         this.setPartidos(array);
         this.setEscanios(10);
