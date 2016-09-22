@@ -1,5 +1,5 @@
 /**
- *
+ * Clase para manejar objetos basados en el método Uninominal Mayoritario.
  * @returns {UninominalObject}
  * @constructor
  */
