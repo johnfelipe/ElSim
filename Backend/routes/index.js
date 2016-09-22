@@ -9,5 +9,6 @@ router.get('/', functions.index);
 router.get('/api/hare/example', api.hareExample);
 router.get('/api/', api.alive);
 router.get('/api/add', api.add);
+router.get('/api/graphicExample',api.graphicExample);
 
 module.exports = router;

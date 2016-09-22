@@ -9,7 +9,6 @@ var HareObject = function(){
     this.done = false;
     this.escanios = 0;
     this.cociente = 0;
-
     /**
      * Fija el número de escaños.
      * @param {number} n
@@ -72,7 +71,7 @@ var HareObject = function(){
      */
     this.rest = function(){
         for(var i=0, size = this.partidos.length; i < size; i++){
-            this.partidos[i].withoutRest = Math.floor(this.partidos[i].votos / this.cociente);
+            this.partidos[i].totalEscanios = Math.floor(this.partidos[i].votos / this.cociente);
             this.partidos[i].rest = this.partidos[i].votos % this.cociente;
         }
 
@@ -84,12 +83,10 @@ var HareObject = function(){
     this.overRest = function(){
         var difference, i, size, totalEscanios = 0;
         for(i=0, size = this.partidos.length; i < size; i++){
-            totalEscanios += this.partidos[i].withoutRest;
+            totalEscanios += this.partidos[i].totalEscanios;
         }
         difference = this.escanios - totalEscanios;
-        for(i=0, size = this.partidos.length; i < size; i++){
-            this.partidos[i].totalEscanios = this.partidos[i].withoutRest;
-        }
+
         this.partidos.sort(this.sortByKey);
         i = 0;
         while(difference){
@@ -105,10 +102,10 @@ var HareObject = function(){
      * @returns {number}
      */
     this.sortByKey = function(a, b){
-        var keyA = a.withoutRest,
-            keyB = b.withoutRest;
-        if(keyA > keyB) return -1;
-        if(keyA < keyB) return 1;
+        var keyA = a.rest,
+            keyB = b.rest;
+        if(keyA > keyB) { return -1; }
+        if(keyA < keyB) { return 1; }
         return 0;
     };
 
@@ -119,26 +116,29 @@ var HareObject = function(){
         var array =  [
             {
                 partido: 'A',
-                votos:32500
+                votos:391000
             }, {
                 partido: 'B',
-                votos:24000
+                votos:311000
             }, {
                 partido: 'C',
-                votos:18000
+                votos:184000
             }, {
                 partido: 'D',
-                votos:12000
+                votos:73000
             }, {
                 partido: 'E',
-                votos:10000
+                votos:27000
             }, {
                 partido: 'F',
+                votos:12000
+            }, {
+                partido: 'G',
                 votos:2000
             }
         ];
         this.setPartidos(array);
-        this.setEscanios(10);
+        this.setEscanios(21);
         this.setCociente();
     };
 
