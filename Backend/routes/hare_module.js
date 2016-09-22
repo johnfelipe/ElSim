@@ -5,14 +5,6 @@
  */
 var HareObject = function(){
 
-    /*  Partido A  391.000 votos
-     *  Partido B  311.000 votos
-     *  Partido C  184.000 votos
-     *  Partido D	73.000 votos
-     *  Partido E	27.000 votos
-     *  Partido F	12.000 votos
-     *  Partido G	 2.000 votos
-     */
     this.partidos = [];
     this.done = false;
     this.escanios = 0;
@@ -45,12 +37,21 @@ var HareObject = function(){
      */
     this.setCociente = function(){
         if(this.partidos.length > 1 && this.escanios > 0){
-            var total = 0;
-            for(var i=0; i<this.partidos.length; i++){
-                total += this.partidos[i].votos;
-            }
+            var total = this.totalVotos();
             this.cociente = Math.floor(total / this.escanios);
         }
+    };
+
+    /**
+     * Calcula el total de votos.
+     * @returns {number}
+     */
+    this.totalVotos = function(){
+        var t = 0;
+        for(var i=0; i<this.partidos.length; i++){
+            t += this.partidos[i].votos;
+        }
+        return t;
     };
 
     /**
@@ -87,13 +88,44 @@ var HareObject = function(){
             totalEscanios += this.partidos[i].withoutRest;
         }
         var difference = this.escanios - totalEscanios;
-        if(difference === 0){
-            for(var i=0; i<this.partidos.length; i++){
-                this.partidos[i].totalEscanios = this.partidos[i].withoutRest;
-            }
-        } else {
-
+        var i;
+        for(i=0; i<this.partidos.length; i++){
+            this.partidos[i].totalEscanios = this.partidos[i].withoutRest;
         }
+        this.partidos.sort(function(a, b){
+            var keyA = a.withoutRest,
+                keyB = b.withoutRest;
+            if(keyA > keyB) return -1;
+            if(keyA < keyB) return 1;
+            return 0;
+        });
+        i = 0;
+        while(difference){
+            if(i < this.partidos.length){
+                i++;
+            }else{
+                i = 0;
+            }
+            this.partidos[i].totalEscanios++;
+            difference--;
+        }
+    };
+
+    /**
+     * Inicializa unos valores de ejemplo.
+     */
+    this.initExample = function(){
+        var array =  [
+            {partido: 'A', votos:32500},
+            {partido: 'B', votos:24000},
+            {partido: 'C', votos:18000},
+            {partido: 'D', votos:12000},
+            {partido: 'E', votos:10000},
+            {partido: 'F', votos:2000}
+        ];
+        this.setPartidos(array);
+        this.setEscanios(10);
+        this.setCociente();
     };
 
     return this;
