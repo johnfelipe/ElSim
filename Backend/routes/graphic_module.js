@@ -8,9 +8,11 @@ const topojson = require('topojson');
  * @constructor
  */
 var GraphicObject = function(){
-    this.d3n = undefined;
-    this.svg = undefined;
-    this.styles = undefined;
+    this.d3n = this.svg = this.styles = undefined;
+
+    /**
+     * Genera una gráfica de tipo barras a partir de un fichero tsv
+     */
     this.barChartExample = function(){
         const tsvString = fs.readFileSync('./routes/barchart.tsv').toString();
         this.styles = '.bar{fill: steelblue;} .bar:hover{fill: brown;} .axis{font: 10px sans-serif;} .axis path,.axis line{fill: none;stroke: #000;shape-rendering: crispEdges;} .x.axis path{display: none;}';
@@ -82,6 +84,9 @@ var GraphicObject = function(){
             });
     };
 
+    /**
+     * Genera una gráfica de tipo tarta a partir de un fichero tipo csv
+     */
     this.pieChartExample = function(){
         const csvString = fs.readFileSync('./routes/piechart.csv', 'UTF-8').toString();
         const markup = '<div id="container"><h2>Pie Chart</h2><div id="chart"></div></div>';
@@ -139,6 +144,9 @@ var GraphicObject = function(){
             });
     };
 
+    /**
+     * Genera un mapa/gráfica a partir de un fichero tipo JSON
+     */
     this.jsonExample = function(){
 
         const us = require('./us-states.json'); // source: https://github.com/bradoyler/atlas-make/tree/master/us-states
