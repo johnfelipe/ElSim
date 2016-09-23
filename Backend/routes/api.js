@@ -49,9 +49,7 @@ exports.add = function(req,res,next) {
 exports.graphicExample = function(req,res,next){
     var Graphic = require('./graphic_module.js');
     var object = new Graphic();
-    res.send(
-        {
-            response: 'testing d3'
-        }
-    );
+    object.initInstance();
+    //res.writeHead(200, {'Content-Type': 'image/svg+xml'});
+    res.send(object.d3n.svgString());
 };
