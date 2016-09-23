@@ -6,9 +6,12 @@ var api = require('./api.js');
 router.get('/', functions.index);
 
 
-router.get('/api/hare/example', api.hareExample);
 router.get('/api/', api.alive);
 router.get('/api/add', api.add);
-router.get('/api/graphicExample',api.graphicExample);
+router.get('/api/hareExample', api.hareExample);
+router.get('/api/barChartExample',api.barChartExample);
+router.get('/api/pieChartExample',api.pieChartExample);
+router.get('/api/jsonExample',api.jsonExample);
+
 
 module.exports = router;

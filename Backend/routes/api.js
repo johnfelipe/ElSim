@@ -46,10 +46,26 @@ exports.add = function(req,res,next) {
     }
 };
 
-exports.graphicExample = function(req,res,next){
+exports.barChartExample = function(req,res,next){
     var Graphic = require('./graphic_module.js');
     var object = new Graphic();
-    object.initInstance();
+    object.barChartExample();
+    //res.writeHead(200, {'Content-Type': 'image/svg+xml'});
+    res.send(object.d3n.svgString());
+};
+
+exports.pieChartExample = function(req,res,next){
+    var Graphic = require('./graphic_module.js');
+    var object = new Graphic();
+    object.pieChartExample();
+    //res.writeHead(200, {'Content-Type': 'image/svg+xml'});
+    res.send(object.d3n.svgString());
+};
+
+exports.jsonExample = function(req,res,next){
+    var Graphic = require('./graphic_module.js');
+    var object = new Graphic();
+    object.jsonExample();
     //res.writeHead(200, {'Content-Type': 'image/svg+xml'});
     res.send(object.d3n.svgString());
 };
