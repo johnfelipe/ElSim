@@ -14,7 +14,7 @@ var GraphicObject = function(){
      * Genera una gráfica de tipo barras a partir de un fichero tsv
      */
     this.barChartExample = function(){
-        const tsvString = fs.readFileSync('./routes/barchart.tsv').toString();
+        const tsvString = fs.readFileSync('./routes/graphic_examples/barchart.tsv').toString();
         this.styles = '.bar{fill: steelblue;} .bar:hover{fill: brown;} .axis{font: 10px sans-serif;} .axis path,.axis line{fill: none;stroke: #000;shape-rendering: crispEdges;} .x.axis path{display: none;}';
         const markup = '<div id="container"><h2>Bar Chart</h2><div id="chart"></div></div>';
         var options = {selector:'#chart', svgStyles:this.styles, container:markup};
@@ -88,7 +88,7 @@ var GraphicObject = function(){
      * Genera una gráfica de tipo tarta a partir de un fichero tipo csv
      */
     this.pieChartExample = function(){
-        const csvString = fs.readFileSync('./routes/piechart.csv', 'UTF-8').toString();
+        const csvString = fs.readFileSync('./routes/graphic_examples/piechart.csv', 'UTF-8').toString();
         const markup = '<div id="container"><h2>Pie Chart</h2><div id="chart"></div></div>';
         this.styles = '.arc text {font: 10px sans-serif;text-anchor: middle;} .arc path {stroke: #fff;}';
         var options = {selector:'#chart', svgStyles:this.styles, container:markup};
@@ -149,7 +149,7 @@ var GraphicObject = function(){
      */
     this.jsonExample = function(){
 
-        const us = require('./us-states.json'); // source: https://github.com/bradoyler/atlas-make/tree/master/us-states
+        const us = require('./../graphic_examples/us-states.json'); // source: https://github.com/bradoyler/atlas-make/tree/master/us-states
 
         var options = {svgStyles:'.mesh{fill: none;stroke: #333;stroke-width: .5px;stroke-linejoin: round;}'};
 

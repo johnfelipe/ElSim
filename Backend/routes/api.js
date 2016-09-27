@@ -16,7 +16,7 @@ exports.alive = function(req, res) {
  * @param res
  */
 exports.hareExample = function(req,res){
-    var Hare = require('./hare_module.js');
+    var Hare = require('./modules/hare_module.js');
     var object = new Hare();
     object.initExample();
     object.compute();
@@ -67,7 +67,7 @@ exports.add = function(req,res) {
  * @param res
  */
 exports.barChartExample = function(req,res){
-    var Graphic = require('./graphic_module.js');
+    var Graphic = require('./modules/graphic_module.js');
     var object = new Graphic();
     object.barChartExample();
     //res.writeHead(200, {'Content-Type': 'image/svg+xml'});
@@ -80,7 +80,7 @@ exports.barChartExample = function(req,res){
  * @param res
  */
 exports.rawBarChartExample = function(req,res){
-    var Graphic = require('./graphic_module.js');
+    var Graphic = require('./modules/graphic_module.js');
     var object = new Graphic();
     object.barChartExample();
     //res.writeHead(200, {'Content-Type': 'image/svg+xml'});
@@ -93,7 +93,7 @@ exports.rawBarChartExample = function(req,res){
  * @param res
  */
 exports.pieChartExample = function(req,res){
-    var Graphic = require('./graphic_module.js');
+    var Graphic = require('./modules/graphic_module.js');
     var object = new Graphic();
     object.pieChartExample();
     //res.writeHead(200, {'Content-Type': 'image/svg+xml'});
@@ -106,7 +106,7 @@ exports.pieChartExample = function(req,res){
  * @param res
  */
 exports.jsonExample = function(req,res){
-    var Graphic = require('./graphic_module.js');
+    var Graphic = require('./modules/graphic_module.js');
     var object = new Graphic();
     object.jsonExample();
     //res.writeHead(200, {'Content-Type': 'image/svg+xml'});
