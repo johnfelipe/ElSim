@@ -9,6 +9,19 @@ Repositorio para el desarrollo del TFG del Grado en Ingeniería Informática (UG
 Se usará el sistema [Trello](https://trello.com), para mas información contactar directamente
 en mi correo jesusgonzaleznovez@gmail.com
 
+## Tecnologías usadas ##
+
+Para la parte del servidor se usará NodeJS & MongoDB. Para la parte del cliente web se usará 
+HTML5/Bootstrap y para la app mobile se usará Ionic(Cordova + AngularJS).
+
+[https://nodejs.org/en/](https://nodejs.org/en/)
+
+[https://www.mongodb.com/es](https://www.mongodb.com/es)
+
+[http://ionicframework.com/](http://ionicframework.com/)
+
+[http://getbootstrap.com/](http://getbootstrap.com/)
+
 ## ¿Qué idea desarrolla? ##
 
 El proyecto está centrado en el análisis matemáticamente hablando de todo lo referente
