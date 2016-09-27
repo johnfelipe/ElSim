@@ -25,18 +25,22 @@ router.get('/api/jsonExample',api.jsonExample);
  * Ruta de test, para testear cosas fácilmente.
  */
 router.get('/test', function(req,res){
-    var ss = require('simple-statistics');
-    var a = ['a','a','b','c'];
-    var grupos = ss.ckmeans(a,3);
-    console.log('\nOriginal:');
-    console.log('-------------------------');
-    console.log(a);
-    console.log('\nGrupos:');
-    console.log('-------------------------');
-    for(var i = 0, len = grupos.length; i < len; i++){
-        console.log(grupos[i]);
+    var time = new Date().getTime();
+    var Utils = require('./modules/utils_module.js');
+    var u = new Utils();
+    var partidos = ['PP', 'PSOE', 'PODEMOS', 'CIUDADANOS'];
+    var a = [];
+    var n_votos = 40000000;
+    for(var i = 0; i < n_votos; i++){
+        a.push(partidos[Math.floor((Math.random() * 4))]);
     }
-    res.send('ok');
+    u.escrutinioSimple(a);
+    var finalTime =  new Date().getTime() - time;
+    res.send({
+        input:'array[' + n_votos + ']',
+        output: u.resultado,
+        time: (finalTime / 1000) + ' s'
+    });
 });
 
 
