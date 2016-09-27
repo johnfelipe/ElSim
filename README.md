@@ -4,6 +4,11 @@ Repositorio para el desarrollo del TFG del Grado en Ingeniería Informática (UG
 
 -----------------
 
+## Planificación y progreso ##
+
+Se usará el sistema [Trello](https://trello.com), para mas información contactar directamente
+en mi correo jesusgonzaleznovez@gmail.com
+
 ## ¿Qué idea desarrolla? ##
 
 El proyecto está centrado en el análisis matemáticamente hablando de todo lo referente
