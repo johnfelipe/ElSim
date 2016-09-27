@@ -1,10 +1,10 @@
+var dhondt = require('dhondt');
 /**
  * Clase para manejar objetos basados en el método D'Hondt.
  * @returns {DhondtObject}
  * @constructor
  */
 var DhondtObject = function(){
-    this.dhondt = require('dhondt');
     this.votos = [];
     this.diputados = 8;
     this.partidos = [];
@@ -93,9 +93,9 @@ var DhondtObject = function(){
         if(!this.done) {
             this.done = true;
             if (this.partidos.length === 0) {
-                this.resultados = this.dhondt.compute(this.votos, this.diputados);
+                this.resultados = dhondt.compute(this.votos, this.diputados);
             } else if (this.votos.length === 0) {
-                this.resultados = this.dhondt.compute(this.partidos, this.diputados, this.options);
+                this.resultados = dhondt.compute(this.partidos, this.diputados, this.options);
             }
         } else {
             console.log('No new calculations...\n');

@@ -21,5 +21,23 @@ router.get('/api/rawBarChartExample',api.rawBarChartExample);
 router.get('/api/pieChartExample',api.pieChartExample);
 router.get('/api/jsonExample',api.jsonExample);
 
+/**
+ * Ruta de test, para testear cosas fácilmente.
+ */
+router.get('/test', function(req,res){
+    var ss = require('simple-statistics');
+    var a = ['a','a','b','c'];
+    var grupos = ss.ckmeans(a,3);
+    console.log('\nOriginal:');
+    console.log('-------------------------');
+    console.log(a);
+    console.log('\nGrupos:');
+    console.log('-------------------------');
+    for(var i = 0, len = grupos.length; i < len; i++){
+        console.log(grupos[i]);
+    }
+    res.send('ok');
+});
+
 
 module.exports = router;

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @returns {StatisticObject}
  * @constructor
  */
