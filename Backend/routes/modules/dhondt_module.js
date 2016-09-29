@@ -1,24 +1,20 @@
+'use strict';
 var dhondt = require('dhondt');
-var DbManager = require('./modules/dbmanager_module.js');
+var DbManager = require('./dbmanager_module.js');
 var db = new DbManager();
-/**
- * Clase para manejar objetos basados en el método D'Hondt.
- * @returns {DhondtObject}
- * @constructor
- */
-var DhondtObject = function(){
-    this.votos = [];
-    this.diputados = 8;
-    this.partidos = [];
-    this.options = {};
-    this.resultados = [];
-    this.done = false;
-
+class DhondtObject{
+    constructor(){
+        this.votos = [];
+        this.diputados = 8;
+        this.partidos = [];
+        this.options = {};
+        this.done = false;
+    };
     /**
      * Fija el array de votos, que es un array de enteros.
      * @param {Array} v
      */
-    this.setVotos = function(v){
+    setVotos(v){
         this.done = false;
         this.partidos = [];
         this.options = {};
@@ -29,47 +25,46 @@ var DhondtObject = function(){
      * Fija el número de diputados, que es un entero.
      * @param {number} n
      */
-    this.setDiputados = function(n){
+    setDiputados(n){
         if(n > 0) {
             this.done = false;
             this.diputados = n;
         }
-    };
+    }
 
     /**
      * Fija los partidos, que es un array de objetos tipo par, que incluyen
      * nombre del partido como una cadena y número de votos como un entero.
      * @param {Array.<Object>} p
      */
-    this.setPartidos = function(p){
+    setPartidos(p){
         this.done = false;
         this.votos = [];
         this.partidos = p;
-    };
+    }
 
     /**
      * Fija las opciones de configuración(opcional)
      * @param {Object} o
      */
-    this.setOptions = function(o){
+    setOptions(o){
         this.done = false;
         this.options = o;
-    };
+    }
 
     /**
      * Inicializa this.votos y this.diputados para poder monstrar un ejemplo
      * de tipo I.
      */
-    this.initExampleOne = function(){
+    initExampleOne(){
         this.setVotos([150000,125000,115000,90000,50000,800]);
         this.setDiputados(10);
-    };
-
+    }
     /**
      * Inicializa this.diputados, this.partidos y this.options para poder mostrar un ejemplo
      * de tipo II.
      */
-    this.initExampleTwo = function(){
+    initExampleTwo(){
         this.setDiputados(10);
         this.setPartidos([
             { partido:'A', votos: 150000 },
@@ -86,24 +81,22 @@ var DhondtObject = function(){
             resultProperty: "diputados",
             base: 1.42
         });
-    };
+    }
 
     /**
      * Función encargada de realizar el cálculo de los resultados.
      */
-    this.compute = function(){
+    compute(){
         if(!this.done) {
             this.done = true;
             if (this.partidos.length === 0) {
-                this.resultados = dhondt.compute(this.votos, this.diputados);
+                return dhondt.compute(this.votos, this.diputados);
             } else if (this.votos.length === 0) {
-                this.resultados = dhondt.compute(this.partidos, this.diputados, this.options);
+                return dhondt.compute(this.partidos, this.diputados, this.options);
             }
         } else {
             console.log('No new calculations...\n');
         }
-    };
-    return this;
-
-};
+    }
+}
 module.exports = DhondtObject;

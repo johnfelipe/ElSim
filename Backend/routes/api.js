@@ -24,7 +24,6 @@ exports.hareExample = function(req,res){
     var object = new Hare();
     object.initExample();
     object.compute();
-    db.saveLog('hareExample executed');
     res.send({
         response:'Hare example calculated',
         result: object.partidos,

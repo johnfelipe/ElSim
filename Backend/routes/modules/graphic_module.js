@@ -1,3 +1,4 @@
+'use strict';
 const fs = require('fs');
 const D3Node = require('d3-node');
 const d3 = require('d3');
@@ -7,13 +8,14 @@ const topojson = require('topojson');
  * @returns {GraphicObject}
  * @constructor
  */
-var GraphicObject = function(){
-    this.d3n = this.svg = this.styles = undefined;
-
+class GraphicObject{
+    constructor() {
+        this.d3n = this.svg = this.styles = undefined;
+    }
     /**
      * Genera una gráfica de tipo barras a partir de un fichero tsv
      */
-    this.barChartExample = function(){
+    barChartExample(){
 
         const tsvString = fs.readFileSync('./routes/graphic_examples/barchart.tsv').toString();
         this.styles = '.bar{fill: steelblue;} .bar:hover{fill: brown;} .axis{font: 10px sans-serif;} .axis path,.axis line{fill: none;stroke: #000;shape-rendering: crispEdges;} .x.axis path{display: none;}';
@@ -83,12 +85,12 @@ var GraphicObject = function(){
             .attr("height", function (d) {
                 return height - y(d.total);
             });
-    };
+    }
 
     /**
      * Genera una gráfica de tipo tarta a partir de un fichero tipo csv
      */
-    this.pieChartExample = function(){
+    pieChartExample(){
         const csvString = fs.readFileSync('./routes/graphic_examples/piechart.csv', 'UTF-8').toString();
         const markup = '<div id="container"><h2>Pie Chart</h2><div id="chart"></div></div>';
         this.styles = '.arc text {font: 10px sans-serif;text-anchor: middle;} .arc path {stroke: #fff;}';
@@ -143,12 +145,12 @@ var GraphicObject = function(){
             .text(function (d) {
                 return d.data.age;
             });
-    };
+    }
 
     /**
      * Genera un mapa/gráfica a partir de un fichero tipo JSON
      */
-    this.jsonExample = function(){
+    jsonExample (){
 
         const us = require('./../graphic_examples/us-states.json'); // source: https://github.com/bradoyler/atlas-make/tree/master/us-states
 
@@ -169,8 +171,7 @@ var GraphicObject = function(){
             .datum(topojson.mesh(us))
             .attr("class", "mesh")
             .attr("d", path);
-    };
+    }
 
-    return this;
-};
+}
 module.exports = GraphicObject;

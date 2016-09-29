@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Variables globales del módulo
  */
@@ -14,8 +15,10 @@ var utils = new Utils();
  * @returns {DbManager}
  * @constructor
  */
-var DbManager = function(){
-    var resultados = {};
+class DbManager{
+    constructor(){
+        this.resultados = {};
+    }
 
     /**
      * Inserta el documento 'document' en la base de datos 'db', en la colección 'collection',
@@ -25,7 +28,7 @@ var DbManager = function(){
      * @param document
      * @param callback
      */
-    var insertDocument = function(db, collection,document, callback) {
+    insertDocument(db, collection,document, callback) {
         db.collection(collection).insertOne(
             document,
             function(err, result) {
@@ -34,31 +37,31 @@ var DbManager = function(){
                 callback();
             }
         );
-    };
+    }
     /**
      * Obtiene todos los logs de la colección 'logs'
      * @param db
      * @param callback
      */
-    var findLogs = function(db, callback) {
-        resultados = {};
+    findLogs(db, callback) {
+        this.resultados = {};
         var cursor = db.collection('logs').find();
         cursor.each(function(err, doc) {
             assert.equal(err, null);
             if (doc != null) {
                 utils.prettyPrint(doc);
-                resultados[doc.date] = doc.action;
+                this.resultados[doc.date] = doc.action;
             } else {
                 callback();
             }
         });
-    };
+    }
 
     /**
      * Función auxiliar para guardar un log.
      * @param message
      */
-    this.saveLog = function(message){
+    saveLog(message){
         var document = {
             'date': new Date().toLocaleString(),
             'action': message
@@ -69,21 +72,20 @@ var DbManager = function(){
                 db.close();
             });
         });
-    };
+    }
 
     /**
      * Función auxiliar para obtener los logs.
      * @param res
      */
-    this.getLog = function(res){
+    getLog(res){
         MongoClient.connect(url, function(err, db) {
             assert.equal(null, err);
-            findLogs(db, function() {
+            new DbManager().findLogs(db, function() {
                 db.close();
-                res.send(resultados);
+                res.send(this.resultados);
             });
         });
-    };
-    return this;
-};
+    }
+}
 module.exports = DbManager;
