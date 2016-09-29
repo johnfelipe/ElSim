@@ -26,18 +26,22 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- *
+            <pre class="prettyprint source linenums"><code>var DbManager = require('./modules/dbmanager_module.js');
+var db = new DbManager();
+
+/**
+ * Ruta que comprueba si la api está operativa.
  * @param req
  * @param res
  */
 exports.alive = function(req, res) {
-    res.send(
-        {
-            response:'api is alive, v0.0.1'
-        }
-    );
+   res.send({response:'API is alive!'});
 };
+
+exports.getLogs = function(req, res) {
+    db.getLog(res);
+};
+
 /**
  *
  * @param req
@@ -48,13 +52,13 @@ exports.hareExample = function(req,res){
     var object = new Hare();
     object.initExample();
     object.compute();
-    res.send(
-        {
-            response:'/api/hare/example calculated',
-            result: object.partidos,
-            cociente: object.cociente,
-            total: object.totalVotos()
-        });
+    db.saveLog('hareExample executed');
+    res.send({
+        response:'Hare example calculated',
+        result: object.partidos,
+        cociente: object.cociente,
+        total: object.totalVotos()
+    });
 };
 
 /**
@@ -65,27 +69,21 @@ exports.hareExample = function(req,res){
 exports.add = function(req,res) {
     if(req.method === 'POST') {
         if (req.body.num1 === undefined || req.body.num2 === undefined) {
-            res.send(
-                {
-                    response: 'Operation a + b',
-                    result: 'Error, parameters num1 and/or num2 are not found'
-                }
-            );
+            res.send({
+                response: 'Operation a + b',
+                result: 'Error, parameters num1 and/or num2 are not found'
+            });
         }
         var n1 = req.body.num1;
         var n2 = req.body.num2;
-        res.send(
-            {
-                response: 'Operation a + b',
-                result: n1 + n2
-            }
-        );
+        res.send({
+            response: 'Operation a + b',
+            result: n1 + n2
+        });
     } else {
-        res.send(
-            {
-                response: 'This method must be called with POST'
-            }
-        );
+        res.send({
+            response: 'This method must be called with POST'
+        });
     }
 };
 
@@ -98,8 +96,10 @@ exports.barChartExample = function(req,res){
     var Graphic = require('./modules/graphic_module.js');
     var object = new Graphic();
     object.barChartExample();
-    //res.writeHead(200, {'Content-Type': 'image/svg+xml'});
-    res.send(object.d3n.svgString());
+    db.saveLog('barChartExample executed');
+    res.send({
+        response:object.d3n.svgString()
+    });
 };
 
 /**
@@ -112,7 +112,9 @@ exports.rawBarChartExample = function(req,res){
     var object = new Graphic();
     object.barChartExample();
     //res.writeHead(200, {'Content-Type': 'image/svg+xml'});
-    res.send({raw: object.d3n.svgString()});
+    res.send({
+        response: object.d3n.svgString()
+    });
 };
 
 /**
@@ -125,7 +127,9 @@ exports.pieChartExample = function(req,res){
     var object = new Graphic();
     object.pieChartExample();
     //res.writeHead(200, {'Content-Type': 'image/svg+xml'});
-    res.send(object.d3n.svgString());
+    res.send({
+        response:object.d3n.svgString()
+    });
 };
 
 /**
@@ -138,7 +142,9 @@ exports.jsonExample = function(req,res){
     var object = new Graphic();
     object.jsonExample();
     //res.writeHead(200, {'Content-Type': 'image/svg+xml'});
-    res.send(object.d3n.svgString());
+    res.send({
+        response:object.d3n.svgString()
+    });
 };</code></pre>
         </article>
     </section>
@@ -149,13 +155,13 @@ exports.jsonExample = function(req,res){
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#add">add</a></li><li><a href="global.html#alive">alive</a></li><li><a href="global.html#barChartExample">barChartExample</a></li><li><a href="global.html#hareExample">hareExample</a></li><li><a href="global.html#index">index</a></li><li><a href="global.html#jsonExample">jsonExample</a></li><li><a href="global.html#pieChartExample">pieChartExample</a></li><li><a href="global.html#rawBarChartExample">rawBarChartExample</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DbManager.html">DbManager</a></li><li><a href="DhondtObject.html">DhondtObject</a></li><li><a href="GraphicObject.html">GraphicObject</a></li><li><a href="HareObject.html">HareObject</a></li><li><a href="InstantRunoffObject.html">InstantRunoffObject</a></li><li><a href="StatisticObject.html">StatisticObject</a></li><li><a href="UninominalObject.html">UninominalObject</a></li><li><a href="UtilsObject.html">UtilsObject</a></li></ul><h3>Global</h3><ul><li><a href="global.html#add">add</a></li><li><a href="global.html#alive">alive</a></li><li><a href="global.html#barChartExample">barChartExample</a></li><li><a href="global.html#hareExample">hareExample</a></li><li><a href="global.html#index">index</a></li><li><a href="global.html#jsonExample">jsonExample</a></li><li><a href="global.html#MongoClient">MongoClient</a></li><li><a href="global.html#pieChartExample">pieChartExample</a></li><li><a href="global.html#rawBarChartExample">rawBarChartExample</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Tue Sep 27 2016 10:47:58 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Thu Sep 29 2016 12:28:16 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>

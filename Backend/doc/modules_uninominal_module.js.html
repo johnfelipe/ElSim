@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: functions.js</title>
+    <title>JSDoc: Source: modules/uninominal_module.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: functions.js</h1>
+    <h1 class="page-title">Source: modules/uninominal_module.js</h1>
 
     
 
@@ -27,15 +27,66 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * Ruta para el index de la web.
- * @param req
- * @param res
+ * Clase para manejar objetos basados en el método Uninominal Mayoritario.
+ * @returns {UninominalObject}
+ * @constructor
  */
-exports.index = function(req, res) {
-	res.render('index',{
-		title: 'Ohh!'
-	});
-};</code></pre>
+var UninominalObject = function (){
+    this.distritos = [];
+    this.ganadores = [];
+    this.done = false;
+
+    /**
+     * Fija los distritos que es un array de arrays de objetos
+     * que al menos debería tener la clave Object.votos
+     * @param {Array.&lt;Array.&lt;Object>>} newDistritos
+     */
+    this.setDistritos = function(newDistritos){
+        if(this.distritos.length) {
+            this.distritos = [];
+        }
+        this.distritos = newDistritos;
+        this.done = false;
+    };
+
+    /**
+     * Realiza los cálculos para obtener el ganador.
+     */
+    this.compute = function(){
+        var i, num_distritos;
+        for(i = 0, num_distritos = this.distritos.length; i &lt; num_distritos; i++){
+            this.winner(this.distritos[i]);
+        }
+    };
+
+    /**
+     * Comprueba el ganador de un distrito concreto.
+     * @param {Array.&lt;Object>} distrito
+     */
+    this.winner = function(distrito){
+        if(!this.done) {
+            this.done = true;
+            var ganador, i, size;
+            for (i = 0, size = distrito.length; i &lt; size; i++) {
+                if (ganador === undefined) {
+                    ganador = distrito[0];
+                } else {
+                    if (distrito[i].votos > ganador.votos) {
+                        ganador = distrito[i];
+                    }
+                }
+            }
+            this.ganadores.push(ganador);
+        } else{
+            console.log('No new calculations...');
+        }
+    };
+
+    return this;
+};
+module.exports = UninominalObject;
+
+</code></pre>
         </article>
     </section>
 

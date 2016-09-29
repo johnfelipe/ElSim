@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: InstantRunoffObject</title>
+    <title>JSDoc: Source: modules/utils_module.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,143 +17,51 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: InstantRunoffObject</h1>
-
-    
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>InstantRunoffObject</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-    
-
-    <h4 class="name" id="InstantRunoffObject"><span class="type-signature"></span>new InstantRunoffObject<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="InstantRunoffObject.html">InstantRunoffObject</a>}</span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_instant_runoff_module.js.html">modules/instant_runoff_module.js</a>, <a href="modules_instant_runoff_module.js.html#line7">line 7</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="InstantRunoffObject.html">InstantRunoffObject</a></span>
-
-
-    </dd>
-</dl>
+    <h1 class="page-title">Source: modules/utils_module.js</h1>
 
     
 
 
 
     
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Módulo de utilidades usado por otros módulos.
+ * @returns {UtilsObject}
+ * @constructor
+ */
+var UtilsObject = function(){
+    /**
+     * Salida a consola con colores e indentación.
+     * @param message{String}
+     */
+    this.prettyPrint = function(message){
+        options = {
+            depth: 2,
+            colors: true
+        };
+        console.dir(message,options);
+    };
+    /**
+     * Dado un array con elementos repetidos establece como
+     * claves cada elemento y como valor de cada clave el número
+     * de repeticiones de dicha clave en el array.
+     * [a,a,a,b,c,c] --> {a:3, b:1, c:2}
+     * @param array{Array}
+     */
+    this.groupByKey = function(array){
+        var counts = {};
+        for (var i = 0, len = array.length; i &lt; len; ++i) {
+            counts[array[i]] = 1 + (counts[array[i]] || 0);
+        }
+        return counts;
+    };
+    return this;
+};
+module.exports = UtilsObject;</code></pre>
+        </article>
+    </section>
 
 
 

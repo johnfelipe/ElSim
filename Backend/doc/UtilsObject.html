@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: GraphicObject</title>
+    <title>JSDoc: Class: UtilsObject</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: GraphicObject</h1>
+    <h1 class="page-title">Class: UtilsObject</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2>GraphicObject</h2>
+        <h2>UtilsObject</h2>
         
     
 </header>
@@ -40,14 +40,14 @@
 
     
 
-    <h4 class="name" id="GraphicObject"><span class="type-signature"></span>new GraphicObject<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="GraphicObject.html">GraphicObject</a>}</span></h4>
+    <h4 class="name" id="UtilsObject"><span class="type-signature"></span>new UtilsObject<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="UtilsObject.html">UtilsObject</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Clase para manejar gráficas en el lado servidor apoyándose en la librería D3.
+    Módulo de utilidades usado por otros módulos.
 </div>
 
 
@@ -91,7 +91,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_graphic_module.js.html">modules/graphic_module.js</a>, <a href="modules_graphic_module.js.html#line10">line 10</a>
+        <a href="modules_utils_module.js.html">modules/utils_module.js</a>, <a href="modules_utils_module.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -125,7 +125,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="GraphicObject.html">GraphicObject</a></span>
+<span class="param-type"><a href="UtilsObject.html">UtilsObject</a></span>
 
 
     </dd>
@@ -158,14 +158,17 @@
 
     
 
-    <h4 class="name" id="barChartExample"><span class="type-signature"></span>barChartExample<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="groupByKey"><span class="type-signature"></span>groupByKey<span class="signature">(array)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Genera una gráfica de tipo barras a partir de un fichero tsv
+    Dado un array con elementos repetidos establece como
+claves cada elemento y como valor de cada clave el número
+de repeticiones de dicha clave en el array.
+[a,a,a,b,c,c] --> {a:3, b:1, c:2}
 </div>
 
 
@@ -174,6 +177,55 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>array</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -209,7 +261,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_graphic_module.js.html">modules/graphic_module.js</a>, <a href="modules_graphic_module.js.html#line16">line 16</a>
+        <a href="modules_utils_module.js.html">modules/utils_module.js</a>, <a href="modules_utils_module.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -240,14 +292,14 @@
 
     
 
-    <h4 class="name" id="jsonExample"><span class="type-signature"></span>jsonExample<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="prettyPrint"><span class="type-signature"></span>prettyPrint<span class="signature">(message)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Genera un mapa/gráfica a partir de un fichero tipo JSON
+    Salida a consola con colores e indentación.
 </div>
 
 
@@ -258,86 +310,53 @@
 
 
 
-
-
-
-
-<dl class="details">
-
+    <h5>Parameters:</h5>
     
 
-    
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_graphic_module.js.html">modules/graphic_module.js</a>, <a href="modules_graphic_module.js.html#line151">line 151</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <th>Type</th>
 
         
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
             
 
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
     
-
-    <h4 class="name" id="pieChartExample"><span class="type-signature"></span>pieChartExample<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Genera una gráfica de tipo tarta a partir de un fichero tipo csv
-</div>
-
-
-
-
-
-
-
+    </tbody>
+</table>
 
 
 
@@ -373,7 +392,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_graphic_module.js.html">modules/graphic_module.js</a>, <a href="modules_graphic_module.js.html#line91">line 91</a>
+        <a href="modules_utils_module.js.html">modules/utils_module.js</a>, <a href="modules_utils_module.js.html#line11">line 11</a>
     </li></ul></dd>
     
 
