@@ -1,29 +1,35 @@
 var express = require('express');
 var router = express.Router();
-var functions = require('./functions.js');
 var api = require('./api.js');
+var _ = require('./modules/utils_module.js');
 /**
  * Rutas para la interfaz web
  */
-router.get('/', functions.index);
+
 
 
 /**
- * Rutas de la api
+ * Rutas GET de la api
  */
 router.get('/api/', api.alive);
 router.get('/api/utils/add', api.add);
 router.get('/api/utils/logs', api.getLogs);
-router.get('/api/graphics/examples/hareExample', api.hareExample);
+router.get('/api/utils/logs/delete', api.cleanLogs);
+router.get('/api/examples/hareExample', api.hareExample);
 router.get('/api/graphics/examples/barChartExample',api.barChartExample);
-router.get('/api/graphics/examples/rawBarChartExample',api.rawBarChartExample);
 router.get('/api/graphics/examples/pieChartExample',api.pieChartExample);
 router.get('/api/graphics/examples/jsonExample',api.jsonExample);
+
+/**
+ * Rutas POST de la api
+ */
+
 
 /**
  * Ruta de test, para testear cosas fácilmente.
  */
 router.get('/test', function(req,res){
+    _.prettyPrint('Hola');
     res.send('test');
 });
 

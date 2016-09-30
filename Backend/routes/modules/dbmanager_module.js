@@ -6,9 +6,7 @@ var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://localhost:27017/test';
-var Utils = require('./utils_module.js');
-var utils = new Utils();
-
+var _ = require('./utils_module.js');
 
 /**
  * Módulo para MongoDB con métodos auxiliares.
@@ -17,7 +15,7 @@ var utils = new Utils();
  */
 class DbManager{
     constructor(){
-        this.resultados = {};
+
     }
 
     /**
@@ -28,12 +26,12 @@ class DbManager{
      * @param document
      * @param callback
      */
-    insertDocument(db, collection,document, callback) {
+    static insertDocument(db, collection,document, callback) {
         db.collection(collection).insertOne(
             document,
             function(err, result) {
                 assert.equal(err, null);
-                utils.prettyPrint('Inserted a document into the ' + collection + ' collection.');
+                //_.prettyPrint('Inserted a document into the ' + collection + ' collection.\nResult:\n' + result);
                 callback();
             }
         );
@@ -43,32 +41,32 @@ class DbManager{
      * @param db
      * @param callback
      */
-    findLogs(db, callback) {
-        this.resultados = {};
+    static findLogs(db, callback) {
+        var resultados = [];
         var cursor = db.collection('logs').find();
         cursor.each(function(err, doc) {
             assert.equal(err, null);
             if (doc != null) {
-                utils.prettyPrint(doc);
-                this.resultados[doc.date] = doc.action;
+                //_.prettyPrint(doc);
+                resultados.push(doc);
             } else {
-                callback();
+                callback(resultados);
             }
         });
     }
 
     /**
      * Función auxiliar para guardar un log.
-     * @param message
+     * @param message{String}
      */
-    saveLog(message){
+    static saveLog(message){
         var document = {
             'date': new Date().toLocaleString(),
             'action': message
         };
         MongoClient.connect(url, function(err, db) {
             assert.equal(null, err);
-            insertDocument(db,'logs',document, function() {
+            DbManager.insertDocument(db,'logs',document, function() {
                 db.close();
             });
         });
@@ -78,13 +76,25 @@ class DbManager{
      * Función auxiliar para obtener los logs.
      * @param res
      */
-    getLog(res){
+    static getLog(res){
         MongoClient.connect(url, function(err, db) {
             assert.equal(null, err);
-            new DbManager().findLogs(db, function() {
+            DbManager.findLogs(db, function(resultados) {
                 db.close();
-                res.send(this.resultados);
+                res.send(resultados);
             });
+        });
+    }
+
+    /**
+     * Limpia el log.
+     * @param res
+     */
+    static cleanLog(res){
+        MongoClient.connect(url, function(err, db) {
+            assert.equal(null, err);
+            db.collection('logs').remove({});
+            res.send({response:'OK', data:'Logs cleaned'});
         });
     }
 }

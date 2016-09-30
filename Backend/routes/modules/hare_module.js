@@ -1,10 +1,18 @@
 'use strict';
+var _ = require('./utils_module.js');
+var DbManager = require('./dbmanager_module.js');aa
+/**
+ * Clase para gestionar objetos de tipo Hare
+ * @returns {HareObject}
+ * @constructor
+ */
 class HareObject{
     constructor(){
         this.partidos = [];
         this.done = false;
         this.escanios = 0;
         this.cociente = 0;
+        DbManager.saveLog('HareObject created');
     }
     /**
      * Fija el número de escaños.
@@ -84,7 +92,7 @@ class HareObject{
         }
         difference = this.escanios - totalEscanios;
 
-        this.partidos.sort(this.sortByKey);
+        this.partidos.sort(_.sortByKey);
         i = 0;
         while(difference){
             i < this.partidos.length ? i++ : i = 0;
@@ -92,47 +100,20 @@ class HareObject{
             difference--;
         }
     }
-    /**
-     *
-     * @param a
-     * @param b
-     * @returns {number}
-     */
-    sortByKey(a, b){
-        var keyA = a.rest,
-            keyB = b.rest;
-        if(keyA > keyB) { return -1; }
-        if(keyA < keyB) { return 1; }
-        return 0;
-    }
+
 
     /**
      * Inicializa unos valores de ejemplo.
      */
     initExample (){
         var array =  [
-            {
-                partido: 'A',
-                votos:391000
-            }, {
-                partido: 'B',
-                votos:311000
-            }, {
-                partido: 'C',
-                votos:184000
-            }, {
-                partido: 'D',
-                votos:73000
-            }, {
-                partido: 'E',
-                votos:27000
-            }, {
-                partido: 'F',
-                votos:12000
-            }, {
-                partido: 'G',
-                votos:2000
-            }
+            { partido: 'A', votos:391000 },
+            { partido: 'B', votos:311000 },
+            { partido: 'C', votos:184000 },
+            { partido: 'D', votos: 73000 },
+            { partido: 'E', votos: 27000 },
+            { partido: 'F', votos: 12000 },
+            { partido: 'G', votos:  2000 }
         ];
         this.setPartidos(array);
         this.setEscanios(21);

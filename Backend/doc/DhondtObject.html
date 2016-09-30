@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: DbManager</title>
+    <title>JSDoc: Class: DhondtObject</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: DbManager</h1>
+    <h1 class="page-title">Class: DhondtObject</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2>DbManager</h2>
+        <h2>DhondtObject</h2>
         
-            <div class="class-description">Módulo para MongoDB con métodos auxiliares.</div>
+            <div class="class-description">Clase para gestionar objetos de tipo D'Hondt</div>
         
     
 </header>
@@ -44,7 +44,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="DbManager"><span class="type-signature"></span>new DbManager<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="DbManager.html">DbManager</a>}</span></h4>
+    <h4 class="name" id="DhondtObject"><span class="type-signature"></span>new DhondtObject<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="DhondtObject.html">DhondtObject</a>}</span></h4>
 
     
 
@@ -91,7 +91,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_modules_dbmanager_module.js.html">routes/modules/dbmanager_module.js</a>, <a href="routes_modules_dbmanager_module.js.html#line16">line 16</a>
+        <a href="routes_modules_dhondt_module.js.html">routes/modules/dhondt_module.js</a>, <a href="routes_modules_dhondt_module.js.html#line10">line 10</a>
     </li></ul></dd>
     
 
@@ -125,7 +125,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="DbManager.html">DbManager</a></span>
+<span class="param-type"><a href="DhondtObject.html">DhondtObject</a></span>
 
 
     </dd>
@@ -158,14 +158,14 @@
 
     
 
-    <h4 class="name" id=".cleanLog"><span class="type-signature">(static) </span>cleanLog<span class="signature">(res)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="compute"><span class="type-signature"></span>compute<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Limpia el log.
+    Función encargada de realizar el cálculo de los resultados.
 </div>
 
 
@@ -174,50 +174,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -253,7 +209,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_modules_dbmanager_module.js.html">routes/modules/dbmanager_module.js</a>, <a href="routes_modules_dbmanager_module.js.html#line93">line 93</a>
+        <a href="routes_modules_dhondt_module.js.html">routes/modules/dhondt_module.js</a>, <a href="routes_modules_dhondt_module.js.html#line95">line 95</a>
     </li></ul></dd>
     
 
@@ -284,14 +240,15 @@
 
     
 
-    <h4 class="name" id=".findLogs"><span class="type-signature">(static) </span>findLogs<span class="signature">(db, callback)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="initExampleOne"><span class="type-signature"></span>initExampleOne<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Obtiene todos los logs de la colección 'logs'
+    Inicializa this.votos y this.diputados para poder monstrar un ejemplo
+de tipo I.
 </div>
 
 
@@ -300,68 +257,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>db</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -397,7 +292,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_modules_dbmanager_module.js.html">routes/modules/dbmanager_module.js</a>, <a href="routes_modules_dbmanager_module.js.html#line44">line 44</a>
+        <a href="routes_modules_dhondt_module.js.html">routes/modules/dhondt_module.js</a>, <a href="routes_modules_dhondt_module.js.html#line65">line 65</a>
     </li></ul></dd>
     
 
@@ -428,14 +323,15 @@
 
     
 
-    <h4 class="name" id=".getLog"><span class="type-signature">(static) </span>getLog<span class="signature">(res)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="initExampleTwo"><span class="type-signature"></span>initExampleTwo<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Función auxiliar para obtener los logs.
+    Inicializa this.diputados, this.partidos y this.options para poder mostrar un ejemplo
+de tipo II.
 </div>
 
 
@@ -444,50 +340,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -523,7 +375,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_modules_dbmanager_module.js.html">routes/modules/dbmanager_module.js</a>, <a href="routes_modules_dbmanager_module.js.html#line79">line 79</a>
+        <a href="routes_modules_dhondt_module.js.html">routes/modules/dhondt_module.js</a>, <a href="routes_modules_dhondt_module.js.html#line73">line 73</a>
     </li></ul></dd>
     
 
@@ -554,15 +406,14 @@
 
     
 
-    <h4 class="name" id=".insertDocument"><span class="type-signature">(static) </span>insertDocument<span class="signature">(db, collection, document, callback)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="setDiputados"><span class="type-signature"></span>setDiputados<span class="signature">(n)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Inserta el documento 'document' en la base de datos 'db', en la colección 'collection',
-finaliza llamando a la función callback();
+    Fija el número de diputados, que es un entero.
 </div>
 
 
@@ -598,193 +449,13 @@ finaliza llamando a la función callback();
 
         <tr>
             
-                <td class="name"><code>db</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>collection</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>document</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_modules_dbmanager_module.js.html">routes/modules/dbmanager_module.js</a>, <a href="routes_modules_dbmanager_module.js.html#line29">line 29</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".saveLog"><span class="type-signature">(static) </span>saveLog<span class="signature">(message)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Función auxiliar para guardar un log.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>message</code></td>
+                <td class="name"><code>n</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">number</span>
 
 
             
@@ -835,7 +506,401 @@ finaliza llamando a la función callback();
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_modules_dbmanager_module.js.html">routes/modules/dbmanager_module.js</a>, <a href="routes_modules_dbmanager_module.js.html#line62">line 62</a>
+        <a href="routes_modules_dhondt_module.js.html">routes/modules/dhondt_module.js</a>, <a href="routes_modules_dhondt_module.js.html#line34">line 34</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setOptions"><span class="type-signature"></span>setOptions<span class="signature">(o)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Fija las opciones de configuración(opcional)
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>o</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_modules_dhondt_module.js.html">routes/modules/dhondt_module.js</a>, <a href="routes_modules_dhondt_module.js.html#line56">line 56</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setPartidos"><span class="type-signature"></span>setPartidos<span class="signature">(p)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Fija los partidos, que es un array de objetos tipo par, que incluyen
+nombre del partido como una cadena y número de votos como un entero.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>p</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_modules_dhondt_module.js.html">routes/modules/dhondt_module.js</a>, <a href="routes_modules_dhondt_module.js.html#line46">line 46</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setVotos"><span class="type-signature"></span>setVotos<span class="signature">(v)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Fija el array de votos, que es un array de enteros.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>v</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_modules_dhondt_module.js.html">routes/modules/dhondt_module.js</a>, <a href="routes_modules_dhondt_module.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
