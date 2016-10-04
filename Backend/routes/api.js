@@ -1,3 +1,4 @@
+'use strict';
 var DbManager = require('./modules/dbmanager_module.js');
 
 /**
@@ -6,7 +7,7 @@ var DbManager = require('./modules/dbmanager_module.js');
  * @param res
  */
 exports.alive = function(req, res) {
-   res.send({response:'API is alive!'});
+   res.json({response:'API is alive!'});
 };
 
 /**
@@ -38,7 +39,7 @@ exports.hareExample = function(req,res){
     object.initExample();
     object.compute();
     DbManager.saveLog('Hare example calculated');
-    res.send({
+    res.json({
         response:'Hare example calculated',
         result: object.partidos,
         cociente: object.cociente,
@@ -54,19 +55,19 @@ exports.hareExample = function(req,res){
 exports.add = function(req,res) {
     if(req.method === 'POST') {
         if (req.body.num1 === undefined || req.body.num2 === undefined) {
-            res.send({
+            res.json({
                 response: 'Operation a + b',
                 result: 'Error, parameters num1 and/or num2 are not found'
             });
         }
         var n1 = req.body.num1;
         var n2 = req.body.num2;
-        res.send({
+        res.json({
             response: 'Operation a + b',
             result: n1 + n2
         });
     } else {
-        res.send({
+        res.json({
             response: 'This method must be called with POST'
         });
     }
@@ -82,7 +83,7 @@ exports.barChartExample = function(req,res){
     var object = new Graphic();
     object.barChartExample();
     DbManager.saveLog('barChartExample executed');
-    res.send({
+    res.json({
         response: object.d3n.svgString()
     });
 };
@@ -97,7 +98,7 @@ exports.pieChartExample = function(req,res){
     var Graphic = require('./modules/graphic_module.js');
     var object = new Graphic();
     object.pieChartExample();
-    res.send({
+    res.json({
         response:object.d3n.svgString()
     });
 };
@@ -112,7 +113,7 @@ exports.jsonExample = function(req,res){
     var object = new Graphic();
     object.jsonExample();
     //res.writeHead(200, {'Content-Type': 'image/svg+xml'});
-    res.send({
+    res.json({
         response:object.d3n.svgString()
     });
 };

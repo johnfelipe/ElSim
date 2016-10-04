@@ -1,12 +1,8 @@
+'use strict';
 var express = require('express');
 var router = express.Router();
 var api = require('./api.js');
 var _ = require('./modules/utils_module.js');
-/**
- * Rutas para la interfaz web
- */
-
-
 
 /**
  * Rutas GET de la api
@@ -32,6 +28,10 @@ router.get('/test', function(req,res){
     _.prettyPrint('Hola');
     res.send('test');
 });
+
+/**
+ * Routas usuarios
+ */
 
 
 module.exports = router;

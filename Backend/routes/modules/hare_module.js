@@ -1,6 +1,6 @@
 'use strict';
 var _ = require('./utils_module.js');
-var DbManager = require('./dbmanager_module.js');aa
+var DbManager = require('./dbmanager_module.js');
 /**
  * Clase para gestionar objetos de tipo Hare
  * @returns {HareObject}

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: routes/modules/uninominal_module.js</title>
+    <title>JSDoc: Source: routes/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: routes/modules/uninominal_module.js</h1>
+    <h1 class="page-title">Source: routes/index.js</h1>
 
     
 
@@ -27,65 +27,42 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
+var express = require('express');
+var router = express.Router();
+var api = require('./api.js');
+var _ = require('./modules/utils_module.js');
+
 /**
- * Clase para manejar objetos basados en el método Uninominal Mayoritario.
- * @returns {UninominalObject}
- * @constructor
+ * Rutas GET de la api
  */
-class UninominalObject{
-    constructor (){
-        this.distritos = [];
-        this.ganadores = [];
-        this.done = false;
-    }
-    /**
-     * Fija los distritos que es un array de arrays de objetos
-     * que al menos debería tener la clave Object.votos
-     * @param {Array.&lt;Array.&lt;Object>>} newDistritos
-     */
-    setDistritos (newDistritos){
-        if(this.distritos.length) {
-            this.distritos = [];
-        }
-        this.distritos = newDistritos;
-        this.done = false;
-    }
+router.get('/api/', api.alive);
+router.get('/api/utils/add', api.add);
+router.get('/api/utils/logs', api.getLogs);
+router.get('/api/utils/logs/delete', api.cleanLogs);
+router.get('/api/examples/hareExample', api.hareExample);
+router.get('/api/graphics/examples/barChartExample',api.barChartExample);
+router.get('/api/graphics/examples/pieChartExample',api.pieChartExample);
+router.get('/api/graphics/examples/jsonExample',api.jsonExample);
 
-    /**
-     * Realiza los cálculos para obtener el ganador.
-     */
-    compute (){
-        var i, num_distritos;
-        for(i = 0, num_distritos = this.distritos.length; i &lt; num_distritos; i++){
-            this.winner(this.distritos[i]);
-        }
-    }
+/**
+ * Rutas POST de la api
+ */
 
-    /**
-     * Comprueba el ganador de un distrito concreto.
-     * @param {Array.&lt;Object>} distrito
-     */
-    winner (distrito){
-        if(!this.done) {
-            this.done = true;
-            var ganador, i, size;
-            for (i = 0, size = distrito.length; i &lt; size; i++) {
-                if (ganador === undefined) {
-                    ganador = distrito[0];
-                } else {
-                    if (distrito[i].votos > ganador.votos) {
-                        ganador = distrito[i];
-                    }
-                }
-            }
-            this.ganadores.push(ganador);
-        } else{
-            console.log('No new calculations...');
-        }
-    }
-}
-module.exports = UninominalObject;
 
+/**
+ * Ruta de test, para testear cosas fácilmente.
+ */
+router.get('/test', function(req,res){
+    _.prettyPrint('Hola');
+    res.send('test');
+});
+
+/**
+ * Routas usuarios
+ */
+
+
+module.exports = router;
 </code></pre>
         </article>
     </section>
