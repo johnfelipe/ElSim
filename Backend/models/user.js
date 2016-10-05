@@ -1,7 +1,10 @@
+'use strict';
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// set up a mongoose model
+/**
+ * Modelo mongoose para usuarios
+ */
 module.exports = mongoose.model('User', new Schema({
     name: String,
     email: String,

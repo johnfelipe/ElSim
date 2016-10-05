@@ -1,6 +1,8 @@
 'use strict';
 var DbManager = require('./modules/dbmanager_module.js');
-
+var User   = require('./../models/user');
+var Graphic = require('./modules/graphic_module.js');
+var Hare = require('./modules/hare_module.js');
 /**
  * Ruta que comprueba si la api está operativa.
  * @param req
@@ -34,7 +36,6 @@ exports.cleanLogs = function(req, res) {
  * @param res
  */
 exports.hareExample = function(req,res){
-    var Hare = require('./modules/hare_module.js');
     var object = new Hare();
     object.initExample();
     object.compute();
@@ -79,7 +80,6 @@ exports.add = function(req,res) {
  * @param res
  */
 exports.barChartExample = function(req,res){
-    var Graphic = require('./modules/graphic_module.js');
     var object = new Graphic();
     object.barChartExample();
     DbManager.saveLog('barChartExample executed');
@@ -95,7 +95,6 @@ exports.barChartExample = function(req,res){
  * @param res
  */
 exports.pieChartExample = function(req,res){
-    var Graphic = require('./modules/graphic_module.js');
     var object = new Graphic();
     object.pieChartExample();
     res.json({
@@ -109,11 +108,38 @@ exports.pieChartExample = function(req,res){
  * @param res
  */
 exports.jsonExample = function(req,res){
-    var Graphic = require('./modules/graphic_module.js');
     var object = new Graphic();
     object.jsonExample();
     //res.writeHead(200, {'Content-Type': 'image/svg+xml'});
     res.json({
         response:object.d3n.svgString()
     });
+};
+
+exports.setup = function(req, res) {
+    var nick = new User({
+        name: 'Nick Cerminara',
+        email: 'jesusgonzaleznovez@gmail.com',
+        password: 'password',
+        admin: true
+    });
+    nick.save(function(err) {
+        if (err) throw err;
+        console.log('User saved successfully');
+        res.json({ success: true });
+    });
+};
+
+exports.userList = function(req, res) {
+    User.find({}, function(err, users) {
+        res.json(users);
+    });
+};
+
+exports.check = function(req, res) {
+    res.json(req.decoded);
+};
+
+exports.apiWelcome = function(req, res) {
+    res.json({ message: 'Welcome to the coolest API on earth!' });
 };

@@ -30,40 +30,53 @@ app.use('/', routes);
 app.use('/users', users);
 
 /**
- * EXTRA
+ * Configurando api, autenticación
  */
 var mongoose    = require('mongoose');
-var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
-var config = require('./config'); // get our config file
-var User   = require('./models/user'); // get our mongoose model
-mongoose.connect(config.database); // connect to database
-app.set('superSecret', config.secret); // secret variable
+var jwt         = require('jsonwebtoken');
+var config      = require('./config');
+var api         = require('./routes/api');
+var User        = require('./models/user');
+mongoose.connect(config.database);
+
+app.set('superSecret', config.secret);
 /**
  * Use body parser so we can get info from POST and/or URL parameters
  */
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// use morgan to log requests to the console
+/**
+ * Use morgan to log requests to the console
+ */
 app.use(logger('dev'));
-app.get('/setup', function(req, res) {
-    var nick = new User({
-        name: 'Nick Cerminara',
-        email: 'jesusgonzaleznovez@gmail.com',
-        password: 'password',
-        admin: true
-    });
-    nick.save(function(err) {
-        if (err) throw err;
-        console.log('User saved successfully');
-        res.json({ success: true });
-    });
-});
-app.get('/', function(req, res) {
-    res.send('Hello! The API is at http://localhost:3000/api');
-});
+app.get('/setup', api.setup);
+app.get('/', api.alive);
+
+/**
+ * Rutas que requieren estar autenticado
+ */
 var apiRoutes = express.Router();
-apiRoutes.post('/authenticate', function(req, res) {
+var isAuthenticated = function (req, res, next) {
+    var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+    if (token) {
+        jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+            if (err) {
+                return res.json({ success: false, message: 'Failed to authenticate token.' });
+            } else {
+                req.decoded = decoded;
+                next();
+            }
+        });
+    } else {
+        return res.status(403).send({
+            success: false,
+            message: 'No token provided.'
+        });
+    }
+};
+
+var authenticate = function (req, res) {
     User.findOne({
         email: req.body.email
     }, function(err, user) {
@@ -85,38 +98,23 @@ apiRoutes.post('/authenticate', function(req, res) {
             }
         }
     });
-});
-apiRoutes.use(function(req, res, next) {
-    var token = req.body.token || req.param('token') || req.headers['x-access-token'];
-    if (token) {
-        jwt.verify(token, app.get('superSecret'), function(err, decoded) {
-            if (err) {
-                return res.json({ success: false, message: 'Failed to authenticate token.' });
-            } else {
-                // if everything is good, save to request for use in other routes
-                req.decoded = decoded;
-                next();
-            }
-        });
-    } else {
-        return res.status(403).send({
-            success: false,
-            message: 'No token provided.'
-        });
-    }
-});
-apiRoutes.get('/', function(req, res) {
-    res.json({ message: 'Welcome to the coolest API on earth!' });
-});
-apiRoutes.get('/list', function(req, res) {
-    User.find({}, function(err, users) {
-        res.json(users);
-    });
-});
-apiRoutes.get('/check', function(req, res) {
-    res.json(req.decoded);
-});
+};
+
+
+apiRoutes.post('/authenticate', authenticate);
+apiRoutes.use(isAuthenticated);
+apiRoutes.get('/', api.apiWelcome);
+apiRoutes.get('/list', api.userList);
+apiRoutes.get('/check', api.check);
+apiRoutes.get('/utils/add', api.add);
+apiRoutes.get('/utils/logs', api.getLogs);
+apiRoutes.get('/utils/logs/delete', api.cleanLogs);
+apiRoutes.get('/examples/hareExample', api.hareExample);
+apiRoutes.get('/graphics/examples/barChartExample',api.barChartExample);
+apiRoutes.get('/graphics/examples/pieChartExample',api.pieChartExample);
+apiRoutes.get('/graphics/examples/jsonExample',api.jsonExample);
 app.use('/api', apiRoutes);
+
 
 /**
  * Catch 404 and forward to error handler
