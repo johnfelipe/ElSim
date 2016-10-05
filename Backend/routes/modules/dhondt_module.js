@@ -2,19 +2,17 @@
 var dhondt = require('dhondt');
 var DbManager = require('./dbmanager_module.js');
 var _ = require('./utils_module.js');
+var Sistema = require('./sistema');
 /**
  * Clase para gestionar objetos de tipo D'Hondt
  * @returns {DhondtObject}
  * @constructor
  */
-class DhondtObject{
+class DhondtObject extends Sistema{
     constructor(){
-        this.votos = [];
-        this.diputados = 8;
-        this.partidos = [];
+        super([],8,[]);
         this.options = {};
         this.done = false;
-        DbManager.saveLog('DhondtObject created');
     };
     /**
      * Fija el array de votos, que es un array de enteros.
@@ -95,6 +93,7 @@ class DhondtObject{
     compute(){
         if(!this.done) {
             this.done = true;
+
             if (this.partidos.length === 0) {
                 return dhondt.compute(this.votos, this.diputados);
             } else if (this.votos.length === 0) {

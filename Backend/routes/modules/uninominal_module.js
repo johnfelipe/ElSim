@@ -1,11 +1,13 @@
 'use strict';
+var Sistema = require('./sistema');
 /**
  * Clase para manejar objetos basados en el método Uninominal Mayoritario.
  * @returns {UninominalObject}
  * @constructor
  */
-class UninominalObject{
+class UninominalObject extends Sistema{
     constructor (){
+        super([],0,[]);
         this.distritos = [];
         this.ganadores = [];
         this.done = false;
@@ -31,6 +33,7 @@ class UninominalObject{
         for(i = 0, num_distritos = this.distritos.length; i < num_distritos; i++){
             this.winner(this.distritos[i]);
         }
+        return this.ganadores;
     }
 
     /**

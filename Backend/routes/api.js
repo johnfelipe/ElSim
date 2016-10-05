@@ -1,7 +1,7 @@
 'use strict';
 var DbManager = require('./modules/dbmanager_module.js');
 var User   = require('./../models/user');
-var Graphic = require('./modules/graphic_module.js');
+var Graphic = require('./modules/graphics/graphic_module.js');
 var Hare = require('./modules/hare_module.js');
 /**
  * Ruta que comprueba si la api está operativa.

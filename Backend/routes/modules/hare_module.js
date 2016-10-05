@@ -1,18 +1,17 @@
 'use strict';
 var _ = require('./utils_module.js');
 var DbManager = require('./dbmanager_module.js');
+var Sistema = require('./sistema');
 /**
  * Clase para gestionar objetos de tipo Hare
  * @returns {HareObject}
  * @constructor
  */
-class HareObject{
+class HareObject extends Sistema{
     constructor(){
-        this.partidos = [];
+        super([],0,[]);
         this.done = false;
-        this.escanios = 0;
         this.cociente = 0;
-        DbManager.saveLog('HareObject created');
     }
     /**
      * Fija el número de escaños.
@@ -20,7 +19,7 @@ class HareObject{
      */
     setEscanios(n){
         if(n > 2) {
-            this.escanios = n;
+            this.diputados = n;
             this.done = false;
         }
     }
@@ -40,8 +39,8 @@ class HareObject{
      * Calcula el cociente a utilizar.
      */
     setCociente(){
-        if(this.partidos.length > 1 && this.escanios ){
-            this.cociente = Math.floor(this.totalVotos() / this.escanios);
+        if(this.partidos.length > 1 && this.diputados ){
+            this.cociente = Math.floor(this.totalVotos() / this.diputados);
         }
     }
 
@@ -62,7 +61,7 @@ class HareObject{
      * de cada partido.
      */
     compute(){
-        if(this.partidos.length > 1 && this.escanios > 0 && this.cociente > 0) {
+        if(this.partidos.length > 1 && this.diputados > 0 && this.cociente > 0) {
             this.rest();
             this.overRest();
             this.done = true;
@@ -90,7 +89,7 @@ class HareObject{
         for(i=0, size = this.partidos.length; i < size; i++){
             totalEscanios += this.partidos[i].totalEscanios;
         }
-        difference = this.escanios - totalEscanios;
+        difference = this.diputados - totalEscanios;
 
         this.partidos.sort(_.sortByKey);
         i = 0;
