@@ -15,15 +15,8 @@ router.get('/', function(req,res){
 });
 router.get('/test',function(req,res){
     var Dhondt = require('./modules/dhondt_module');
-    var Uninominal = require('./modules/uninominal_module');
-    var Hare = require('./modules/hare_module');
+
     var object = new Dhondt();
-    _.prettyPrint(object);
-
-    object = new Uninominal();
-    _.prettyPrint(object);
-
-    object = new Hare();
     _.prettyPrint(object);
 
     res.send({result:'test'});

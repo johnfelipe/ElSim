@@ -1,7 +1,6 @@
 'use strict';
 var dhondt = require('dhondt');
-var DbManager = require('./dbmanager_module.js');
-var _ = require('./utils_module.js');
+var _ = require('./utils_module');
 var Sistema = require('./sistema');
 /**
  * Clase para gestionar objetos de tipo D'Hondt

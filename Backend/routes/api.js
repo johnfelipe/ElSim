@@ -2,7 +2,6 @@
 var DbManager = require('./modules/dbmanager_module.js');
 var User   = require('./../models/user');
 var Graphic = require('./modules/graphics/graphic_module.js');
-var Hare = require('./modules/hare_module.js');
 /**
  * Ruta que comprueba si la api está operativa.
  * @param req
@@ -28,24 +27,6 @@ exports.getLogs = function(req, res) {
  */
 exports.cleanLogs = function(req, res) {
     DbManager.cleanLog(res);
-};
-
-/**
- * Calcula un ejemplo de tipo Hare y lo devuelve en JSON.
- * @param req
- * @param res
- */
-exports.hareExample = function(req,res){
-    var object = new Hare();
-    object.initExample();
-    object.compute();
-    DbManager.saveLog('Hare example calculated');
-    res.json({
-        response:'Hare example calculated',
-        result: object.partidos,
-        cociente: object.cociente,
-        total: object.totalVotos()
-    });
 };
 
 /**
