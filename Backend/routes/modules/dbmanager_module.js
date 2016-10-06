@@ -5,7 +5,7 @@
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
-var url = 'mongodb://localhost:27017/test';
+var config      = require('./../../config');
 var _ = require('./utils_module.js');
 
 /**
@@ -64,7 +64,7 @@ class DbManager{
             'date': new Date().toLocaleString(),
             'action': message
         };
-        MongoClient.connect(url, function(err, db) {
+        MongoClient.connect(config.database, function(err, db) {
             assert.equal(null, err);
             DbManager.insertDocument(db,'logs',document, function() {
                 db.close();
@@ -77,7 +77,7 @@ class DbManager{
      * @param res
      */
     static getLog(res){
-        MongoClient.connect(url, function(err, db) {
+        MongoClient.connect(config.database, function(err, db) {
             assert.equal(null, err);
             DbManager.findLogs(db, function(resultados) {
                 db.close();
@@ -91,7 +91,7 @@ class DbManager{
      * @param res
      */
     static cleanLog(res){
-        MongoClient.connect(url, function(err, db) {
+        MongoClient.connect(config.database, function(err, db) {
             assert.equal(null, err);
             db.collection('logs').remove({});
             res.send({response:'OK', data:'Logs cleaned'});
