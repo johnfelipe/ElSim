@@ -25,11 +25,13 @@ HTML5/Bootstrap y para la app mobile se usará Ionic(Cordova + AngularJS).
 ## ¿Qué idea desarrolla? ##
 
 El proyecto está centrado en el análisis matemáticamente hablando de todo lo referente
-a sistemas electorales usados en Europa y más concretamente en España.
+al sistema electoral usado en España.
 
-Muchísimos parámetros afectan a cada uno de los sistemas existentes, partiendo de que cada país
-usa un sistema diferente, estos a su vez dependen de muchos factores y podría ser sorprendente
+Muchísimos parámetros afectan, depende de muchos factores y podría ser sorprendente
 como varía un resultado viéndose afectado uno o varios parámetros de los que intervienen.
+
+Podrá realizar simulaciones totalmente personalizables, generar gráficas de diversos tipos,
+consultar históricos, etc ...
 
 ## ¿A quién va dirigido? ##
 
