@@ -14,11 +14,7 @@ router.get('/', function(req,res){
     });
 });
 router.get('/test',function(req,res){
-    var Dhondt = require('./modules/dhondt_module');
-
-    var object = new Dhondt();
-    _.prettyPrint(object);
-
+    _.readCsv();
     res.send({result:'test'});
 
 });

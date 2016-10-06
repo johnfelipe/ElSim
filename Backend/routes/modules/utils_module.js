@@ -1,4 +1,5 @@
 'use strict';
+var fs = require('fs');
 /**
  * Módulo de utilidades usado por otros módulos.
  * @returns {UtilsObject}
@@ -46,6 +47,31 @@ class UtilsObject{
         if(keyA > keyB) { return -1; }
         if(keyA < keyB) { return 1; }
         return 0;
+    }
+
+    static readCsv(){
+        var csv = require('fast-csv');
+        var stream = fs.createReadStream('./TEST.csv');
+        var resultado = false;
+        csv.fromStream(stream,{
+            headers :
+                [
+                    'comunidad','cod_provincia','provincia','poblacion',
+                    'num_mesas','total_censo_electoral','total_votantes',
+                    'votos_validos','votos_candidaturas','votos_blanco',
+                    'votos_nulos'
+                ]
+        }).on('data', function(data){
+            UtilsObject.prettyPrint(data);
+            fin(data);
+        }).on('end', function(){
+            UtilsObject.prettyPrint('done');
+        });
+        function fin(data){
+            resultado = data;
+        }
+        while(!resultado){UtilsObject.prettyPrint('processing...')}
+        return resultado;
     }
 }
 module.exports = UtilsObject;
