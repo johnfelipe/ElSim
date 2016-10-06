@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: HareObject</title>
+    <title>JSDoc: Class: Graphic</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: HareObject</h1>
+    <h1 class="page-title">Class: Graphic</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2>HareObject</h2>
+        <h2>Graphic</h2>
         
-            <div class="class-description">Clase para gestionar objetos de tipo Hare</div>
+            <div class="class-description">Clase para manejar gráficas en el lado servidor apoyándose en la librería D3.</div>
         
     
 </header>
@@ -44,7 +44,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="HareObject"><span class="type-signature"></span>new HareObject<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="HareObject.html">HareObject</a>}</span></h4>
+    <h4 class="name" id="Graphic"><span class="type-signature"></span>new Graphic<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Graphic.html">Graphic</a>}</span></h4>
 
     
 
@@ -91,7 +91,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_hare_module.js.html">modules/hare_module.js</a>, <a href="modules_hare_module.js.html#line10">line 10</a>
+        <a href="modules_graphics_graphic_module.js.html">modules/graphics/graphic_module.js</a>, <a href="modules_graphics_graphic_module.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -125,7 +125,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="HareObject.html">HareObject</a></span>
+<span class="param-type"><a href="Graphic.html">Graphic</a></span>
 
 
     </dd>
@@ -158,426 +158,14 @@
 
     
 
-    <h4 class="name" id="compute"><span class="type-signature"></span>compute<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="setD3Node"><span class="type-signature"></span>setD3Node<span class="signature">(options)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    LLama a las funciones necesarias para calcular los resultados
-de cada partido.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_hare_module.js.html">modules/hare_module.js</a>, <a href="modules_hare_module.js.html#line63">line 63</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="initExample"><span class="type-signature"></span>initExample<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Inicializa unos valores de ejemplo.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_hare_module.js.html">modules/hare_module.js</a>, <a href="modules_hare_module.js.html#line107">line 107</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="overRest"><span class="type-signature"></span>overRest<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Fija los resultados definitivos de cada partido.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_hare_module.js.html">modules/hare_module.js</a>, <a href="modules_hare_module.js.html#line87">line 87</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="rest"><span class="type-signature"></span>rest<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Fija los resultados de cada partido a falta de comprobar si
-sobran escaños que serán posteriormente repartidos.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_hare_module.js.html">modules/hare_module.js</a>, <a href="modules_hare_module.js.html#line76">line 76</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="setCociente"><span class="type-signature"></span>setCociente<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Calcula el cociente a utilizar.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_hare_module.js.html">modules/hare_module.js</a>, <a href="modules_hare_module.js.html#line41">line 41</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="setEscanios"><span class="type-signature"></span>setEscanios<span class="signature">(n)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Fija el número de escaños.
+    Método para inicializar el objeto interno de tipo D3Node.
 </div>
 
 
@@ -613,7 +201,293 @@ sobran escaños que serán posteriormente repartidos.
 
         <tr>
             
-                <td class="name"><code>n</code></td>
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="modules_graphics_graphic_module.js.html">modules/graphics/graphic_module.js</a>, <a href="modules_graphics_graphic_module.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setMarkup"><span class="type-signature"></span>setMarkup<span class="signature">(title)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Inicializa el título del trozo de código html que se montará
+automáticamente.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>title</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="modules_graphics_graphic_module.js.html">modules/graphics/graphic_module.js</a>, <a href="modules_graphics_graphic_module.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setSizes"><span class="type-signature"></span>setSizes<span class="signature">(w, h)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Método para fijar ancho y alto del objeto.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>w</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>h</code></td>
             
 
             <td class="type">
@@ -670,7 +544,7 @@ sobran escaños que serán posteriormente repartidos.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_hare_module.js.html">modules/hare_module.js</a>, <a href="modules_hare_module.js.html#line20">line 20</a>
+        <a href="modules_graphics_graphic_module.js.html">modules/graphics/graphic_module.js</a>, <a href="modules_graphics_graphic_module.js.html#line43">line 43</a>
     </li></ul></dd>
     
 
@@ -701,14 +575,14 @@ sobran escaños que serán posteriormente repartidos.
 
     
 
-    <h4 class="name" id="setPartidos"><span class="type-signature"></span>setPartidos<span class="signature">(p)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="setStyles"><span class="type-signature"></span>setStyles<span class="signature">(s)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Fija el array de partidos y sus votos.
+    Método para fijar los estilos css.
 </div>
 
 
@@ -744,13 +618,13 @@ sobran escaños que serán posteriormente repartidos.
 
         <tr>
             
-                <td class="name"><code>p</code></td>
+                <td class="name"><code>s</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array</span>
+<span class="param-type">String</span>
 
 
             
@@ -801,7 +675,7 @@ sobran escaños que serán posteriormente repartidos.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_hare_module.js.html">modules/hare_module.js</a>, <a href="modules_hare_module.js.html#line31">line 31</a>
+        <a href="modules_graphics_graphic_module.js.html">modules/graphics/graphic_module.js</a>, <a href="modules_graphics_graphic_module.js.html#line34">line 34</a>
     </li></ul></dd>
     
 
@@ -824,106 +698,6 @@ sobran escaños que serán posteriormente repartidos.
 
 
 
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="totalVotos"><span class="type-signature"></span>totalVotos<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Calcula el total de votos.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_hare_module.js.html">modules/hare_module.js</a>, <a href="modules_hare_module.js.html#line51">line 51</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
