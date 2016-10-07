@@ -14,9 +14,29 @@ router.get('/', function(req,res){
     });
 });
 router.get('/test',function(req,res){
-    _.readCsv();
-    res.send({result:'test'});
-
+    _.readCsv(
+        './TEST.csv','./TEST_PARTIDOS.csv',
+        function(data){
+            res.send({
+                result: data
+            });
+        }
+    );
+});
+router.get('/showdb',function(req,res){
+    var Log = require('./../models/log');
+    var User = require('./../models/user');
+    var Resultado = require('./../models/resultado');
+    Log.find({},function(err,data){
+       _.prettyPrint(data);
+        User.find({},function(err,data){
+            _.prettyPrint(data);
+            Resultado.find({},function (err,data){
+                _.prettyPrint(data);
+                res.send({result: 'showdb'});
+            });
+        });
+    });
 });
 
 

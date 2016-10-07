@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: models/resultado.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,42 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: models/resultado.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+/**
+ * Modelo para un resultado de unas elecciones
+ * @type {any}
+ */
+module.exports = mongoose.model(
+    'Resultado',
+    new Schema({
+        comunidad: String,
+        cod_provincia: Number,
+        provincia: String,
+        poblacion: Number,
+        num_mesas: Number,
+        total_censo_electoral: Number,
+        total_votantes: Number,
+        votos_validos: Number,
+        votos_candidaturas: Number,
+        votos_blanco: Number,
+        votos_nulos: Number,
+        partidos: Array // votos, diputados
+    })
+);
+</code></pre>
+        </article>
+    </section>
 
 
 

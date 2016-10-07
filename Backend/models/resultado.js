@@ -1,7 +1,10 @@
 'use strict';
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+/**
+ * Modelo para un resultado de unas elecciones
+ * @type {any}
+ */
 module.exports = mongoose.model(
     'Resultado',
     new Schema({

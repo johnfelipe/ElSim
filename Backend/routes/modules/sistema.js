@@ -1,8 +1,7 @@
 'use strict';
 class Sistema {
-    constructor(v,d,p){
+    constructor(){
 
     }
-    compute(){};
 }
 module.exports = Sistema;
