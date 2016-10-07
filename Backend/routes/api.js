@@ -1,126 +1,56 @@
 'use strict';
-var DbManager = require('./modules/dbmanager_module.js');
 var User   = require('./../models/user');
-var Graphic = require('./modules/graphics/graphic_module.js');
+var Log = require('./../models/log');
+var _ = require('./modules/utils_module');
 /**
- * Ruta que comprueba si la api está operativa.
+ * Elimina todos los usuarios. Añade el usuario demo. Vacía los logs.
  * @param req
  * @param res
  */
-exports.alive = function(req, res) {
-   res.json({response:'API is alive!'});
-};
+exports.setup = function(req, res) {
+    User.find({}).remove(initialize);
 
-/**
- * Obtiene todos los logs.
- * @param req
- * @param res
- */
-exports.getLogs = function(req, res) {
-    DbManager.getLog(res);
-};
+    function initialize(){
 
-/**
- * Elimina todos los logs.
- * @param req
- * @param res
- */
-exports.cleanLogs = function(req, res) {
-    DbManager.cleanLog(res);
-};
-
-/**
- * Método de ejemplo de POST con parámetros y respuesta en JSON.
- * @param req
- * @param res
- */
-exports.add = function(req,res) {
-    if(req.method === 'POST') {
-        if (req.body.num1 === undefined || req.body.num2 === undefined) {
-            res.json({
-                response: 'Operation a + b',
-                result: 'Error, parameters num1 and/or num2 are not found'
-            });
-        }
-        var n1 = req.body.num1;
-        var n2 = req.body.num2;
-        res.json({
-            response: 'Operation a + b',
-            result: n1 + n2
+        var nick = new User({
+            name: 'demo',
+            email: 'demo@demo.com',
+            password: 'password',
+            admin: true
         });
-    } else {
-        res.json({
-            response: 'This method must be called with POST'
+        nick.save(function(err) {
+            if (err) throw err;
+            _.prettyPrint('Users cleaned, added user demo.');
+            Log.find({}).remove(function(){
+                _.prettyPrint('Logs cleaned.');
+                res.json({ success: true });
+            });
         });
     }
 };
-
 /**
- * Devuelve una gráfica de barras en SVG
+ * Lista los usuarios. Necesita autenticación.
  * @param req
  * @param res
  */
-exports.barChartExample = function(req,res){
-    var object = new Graphic();
-    object.barChartExample();
-    DbManager.saveLog('barChartExample executed');
-    res.json({
-        response: object.d3n.svgString()
-    });
-};
-
-
-/**
- * Devuelve una gráfica de tarta en SVG
- * @param req
- * @param res
- */
-exports.pieChartExample = function(req,res){
-    var object = new Graphic();
-    object.pieChartExample();
-    res.json({
-        response:object.d3n.svgString()
-    });
-};
-
-/**
- * Devuelve un mapa/gráfica de EEUU en SVG
- * @param req
- * @param res
- */
-exports.jsonExample = function(req,res){
-    var object = new Graphic();
-    object.jsonExample();
-    //res.writeHead(200, {'Content-Type': 'image/svg+xml'});
-    res.json({
-        response:object.d3n.svgString()
-    });
-};
-
-exports.setup = function(req, res) {
-    var nick = new User({
-        name: 'Nick Cerminara',
-        email: 'jesusgonzaleznovez@gmail.com',
-        password: 'password',
-        admin: true
-    });
-    nick.save(function(err) {
-        if (err) throw err;
-        console.log('User saved successfully');
-        res.json({ success: true });
-    });
-};
-
 exports.userList = function(req, res) {
     User.find({}, function(err, users) {
         res.json(users);
     });
 };
-
+/**
+ * Check request. Necesita autenticación.
+ * @param req
+ * @param res
+ */
 exports.check = function(req, res) {
     res.json(req.decoded);
 };
-
+/**
+ * Hello from api. Necesita autenticación.
+ * @param req
+ * @param res
+ */
 exports.apiWelcome = function(req, res) {
-    res.json({ message: 'Welcome to the coolest API on earth!' });
+    res.json({ message: 'Hello from the API!' });
 };

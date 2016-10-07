@@ -51,7 +51,7 @@ app.use(bodyParser.json());
  */
 app.use(logger('dev'));
 app.get('/setup', api.setup);
-app.get('/', api.alive);
+app.get('/', api.apiWelcome);
 
 /**
  * Rutas que requieren estar autenticado
@@ -106,12 +106,6 @@ apiRoutes.use(isAuthenticated);
 apiRoutes.get('/', api.apiWelcome);
 apiRoutes.get('/list', api.userList);
 apiRoutes.get('/check', api.check);
-apiRoutes.get('/utils/add', api.add);
-apiRoutes.get('/utils/logs', api.getLogs);
-apiRoutes.get('/utils/logs/delete', api.cleanLogs);
-apiRoutes.get('/graphics/examples/barChartExample',api.barChartExample);
-apiRoutes.get('/graphics/examples/pieChartExample',api.pieChartExample);
-apiRoutes.get('/graphics/examples/jsonExample',api.jsonExample);
 app.use('/api', apiRoutes);
 
 

@@ -19,6 +19,7 @@ module.exports = mongoose.model(
         votos_candidaturas: Number,
         votos_blanco: Number,
         votos_nulos: Number,
-        partidos: Array // votos, diputados
+        anio: Number,
+        partidos: Object // votos, diputados
     })
 );

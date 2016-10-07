@@ -71,8 +71,8 @@ class UtilsObject{
             stream = fs.createReadStream(path2);
             csv.fromStream(stream,{
                 headers: true
-            }).on('data', function(data){
-                resultados[i].votos = data;
+            }).on('data', function(partidos){
+                resultados[i].partidos = partidos;
                 i++;
             }).on('end', function(){
                 done(resultados);
