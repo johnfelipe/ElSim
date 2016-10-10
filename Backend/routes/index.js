@@ -17,7 +17,7 @@ router.get('/', function(req,res){
 
 router.get('/test',function(req,res){
     _.readCsv(
-        './TEST.csv','./TEST_PARTIDOS.csv',
+        './1977.csv','./1977_PARTIDOS.csv',
         function(data){
             var i, len = data.length;
             var r;
@@ -42,11 +42,11 @@ router.get('/showdb',function(req,res){
     var User = require('./../models/user');
     var Resultado = require('./../models/resultado');
     Log.find({},function(err,data){
-        _.prettyPrint(data);
+        //_.prettyPrint(data);
         User.find({},function(err,data){
-            //_.prettyPrint(data);
+            _.prettyPrint(data);
             Resultado.find({},function (err,data){
-                //_.prettyPrint(data);
+                _.prettyPrint(data);
                 res.send({result: 'showdb'});
             });
         });
