@@ -63,7 +63,7 @@ class DbManager{
     }
 
     /**
-     * 
+     *
      * @param anio
      * @param done
      */
@@ -94,7 +94,7 @@ class DbManager{
      * @param done
      */
     static cleanResultado(done){
-        User.find({}).remove(done);
+        Resultado.find({}).remove(done);
     }
 
     /**

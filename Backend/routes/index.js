@@ -15,35 +15,41 @@ router.get('/', function(req,res){
     });
 });
 
-router.get('/test',function(req,res){
-    _.readCsv(
-        './csv/1977.csv','./csv/1977_PARTIDOS.csv',
-        function(data){
-            var i, len = data.length;
-            for(i = 0; i < len; ++i){
-                DB.saveResultado(data[i],function(){});
-            }
-            Resultado.find({},function(err,resultados){
-                res.send({
-                    result: resultados
-                });
-            });
-        });
+router.get('/resultados/cleancsv',function(req,res){
+    DB.cleanResultado(function(){
+        res.send({result:'Resultado cleaned'});
+    });
 });
 
-router.get('/showdb',function(req,res){
-    var Log = require('./../models/log');
-    var User = require('./../models/user');
-    var Resultado = require('./../models/resultado');
-    Log.find({},function(err,data){
-        //_.prettyPrint(data);
-        User.find({},function(err,data){
-            _.prettyPrint(data);
-            Resultado.find({},function (err,data){
-                _.prettyPrint(data);
-                res.send({result: 'showdb'});
-            });
-        });
+router.get('/resultados/:anio',function(req,res){
+    DB.getResultadoByAnio(req.param('anio'),function(data){
+        res.send({result:data});
+    });
+});
+
+router.get('/resultados/loadcsv',function(req,res){
+    var a = ['1977','1979','1982','1986','1989','1993','1996'];
+
+    var i, len = a.length, path1, path2;
+    for(i = 0; i < len; ++i){
+        path1 = './csv/' + a[i] + '.csv';
+        path2 = './csv/' + a[i] + '_PARTIDOS.csv';
+        _.readCsv(path1,path2,
+            function (data){
+                var j, lenData = data.length;
+                for(j = 0; j < lenData; ++j){
+                    DB.saveResultado(data[j],function(){ });
+                }
+            }
+        );
+    }
+
+    res.send({result:'Executed'});
+});
+
+router.get('/resultados',function(req,res){
+    Resultado.find({},function(err,data){
+        res.send({result:data});
     });
 });
 
