@@ -17,17 +17,11 @@ router.get('/', function(req,res){
 
 router.get('/test',function(req,res){
     _.readCsv(
-        './1977.csv','./1977_PARTIDOS.csv',
+        './csv/1977.csv','./csv/1977_PARTIDOS.csv',
         function(data){
             var i, len = data.length;
-            var r;
             for(i = 0; i < len; ++i){
-                r = new Resultado(data[i]);
-                r.save(function(err){
-                    if(err) {
-                        console.log(err);
-                    }
-                });
+                DB.saveResultado(data[i],function(){});
             }
             Resultado.find({},function(err,resultados){
                 res.send({

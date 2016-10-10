@@ -1,5 +1,8 @@
 'use strict';
 var Log = require('./../../models/log');
+var Resultado = require('./../../models/resultado');
+var User = require('./../../models/user');
+
 /**
  * Módulo para MongoDB con métodos auxiliares.
  * @returns {DbManager}
@@ -22,7 +25,7 @@ class DbManager{
         });
         l.save(function(err){
            if(err){
-               console.log(err);
+               throw err;
            }
            done();
         });
@@ -41,6 +44,56 @@ class DbManager{
      * @param done
      */
     static cleanUser(done){
+        User.find({}).remove(done);
+    }
+
+    /**
+     *
+     * @param user
+     * @param done
+     */
+    static saveUser(user, done){
+        var u = new User(user);
+        u.save(function(err){
+            if(err) {
+                throw err;
+            }
+            done();
+        });
+    }
+
+    /**
+     * 
+     * @param anio
+     * @param done
+     */
+    static getResultadoByAnio(anio,done){
+        Resultado.find({anio:anio},function(err,data){
+            if(err) throw err;
+            done(data);
+        });
+    }
+
+    /**
+     *
+     * @param resultado
+     * @param done
+     */
+    static saveResultado(resultado, done){
+        var r = new Resultado(resultado);
+        r.save(function(err){
+            if(err) {
+                throw err;
+            }
+            done();
+        });
+    }
+
+    /**
+     *
+     * @param done
+     */
+    static cleanResultado(done){
         User.find({}).remove(done);
     }
 
