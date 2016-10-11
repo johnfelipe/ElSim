@@ -8,7 +8,7 @@ var Schema = mongoose.Schema;
 module.exports = mongoose.model(
     'Log',
     new Schema({
-        message: String,
-        date: Date
+        message: { type: String, required: true },
+        date: { type: Date, required: true }
     })
 );

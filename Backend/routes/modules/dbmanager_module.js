@@ -2,7 +2,6 @@
 var Log = require('./../../models/log');
 var Resultado = require('./../../models/resultado');
 var User = require('./../../models/user');
-var DB = require('./dbmanager_module');
 var _ = require('./utils_module');
 /**
  * Módulo para MongoDB con métodos auxiliares.
@@ -25,14 +24,14 @@ class DbManager{
         for(i = 0; i < len; ++i){
             path1 = './csv/' + a[i] + '.csv';
             path2 = './csv/' + a[i] + '_PARTIDOS.csv';
-            _.readCsv(path1,path2,saveData);
+            _.readCsv(path1,path2, function (data){
+                var j, lenData = data.length;
+                for(j = 0; j < lenData; ++j){
+                    DbManager.saveResultado(data[j],function(){ });
+                }
+            });
         }
-        function saveData(data){
-            var j, lenData = data.length;
-            for(j = 0; j < lenData; ++j){
-                DB.saveResultado(data[j],function(){ });
-            }
-        }
+
         done();
     }
     /**
@@ -46,10 +45,8 @@ class DbManager{
             date: new Date()
         });
         l.save(function(err){
-           if(err){
-               throw err;
-           }
-           done();
+            if(err) _.prettyPrint(err);
+            done();
         });
     }
 
@@ -77,9 +74,7 @@ class DbManager{
     static saveUser(user, done){
         var u = new User(user);
         u.save(function(err){
-            if(err) {
-                throw err;
-            }
+            if(err) _.prettyPrint(err);
             done();
         });
     }
@@ -91,7 +86,18 @@ class DbManager{
      */
     static getResultadoByAnio(anio,done){
         Resultado.find({anio:anio},function(err,data){
-            if(err) throw err;
+            if(err) _.prettyPrint(err);
+            done(data);
+        });
+    }
+    /**
+     *
+     * @param anio
+     * @param done
+     */
+    static getResultadoByProvincia(cod,done){
+        Resultado.find({cod_provincia:cod},function(err,data){
+            if(err) _.prettyPrint(err);
             done(data);
         });
     }
@@ -104,9 +110,8 @@ class DbManager{
     static saveResultado(resultado, done){
         var r = new Resultado(resultado);
         r.save(function(err){
-            if(err) {
-                throw err;
-            }
+            if(err) _.prettyPrint(err);
+
             done();
         });
     }

@@ -1,37 +1,50 @@
 module.exports = {
-    'ANDALUCIA': {
-        'ALMERIA': '4',
-        'CADIZ': '11',
-        'CORDOBA': '14',
-        'GRANADA': '18',
-        'HUELVA': '21',
-        'JAEN': '23',
-        'MALAGA': '29',
-        'SEVILLA': '41'
+    'ANDALUCIA' : {
+        'ALMERIA' : '4',
+        'CADIZ' : '11',
+        'CORDOBA' : '14',
+        'GRANADA' : '18',
+        'HUELVA' : '21',
+        'JAEN' : '23',
+        'MALAGA' : '29',
+        'SEVILLA' : '41'
+    },
+    'ARAGON' : {
+        'HUESCA' : '22',
+        'TERUEL' : '44',
+        'ZARAGOZA' : '50'
+    },
+    'PRINCIPADO_DE_ASTURIAS' : {
+        'ASTURIAS' : '33'
+    },
+    'CASTILLA_LA_MANCHA' : {
+        'ALBACETE' : '2',
+        'CIUDAD_REAL' : '13',
+        'CUENCA' : '16',
+        'GUADALAJARA' : '19',
+        'TOLEDO' : '45'
+    },
+    'ILLES_BALEARS' : {
+        'ILLES_BALEARS' : '7'
+    },
+    'CASTILLA_LEON' : {
+        'AVILA' : '5',
+        'BURGOS' : '9',
+        'LEON' : '24',
+        'PALENCIA' : '34',
+        'SALAMANCA' : '37',
+        'SEGOVIA' : '40',
+        'SORIA' : '42',
+        'VALLADOLID' : '47',
+        'ZAMORA' : '49'
     }
     /*
-     Aragón ,22,Huesca
-     Aragón ,44,Teruel
-     Aragón ,50,Zaragoza
-     Principado de Asturias ,33,Asturias,1129556,1286,853981,662710,651378,648579,2799,11332,1982
-     Illes Balears,7,Illes Balears ,655909,688,466909,372330,356539,354391,2148,15791,1982
+
      Canarias ,35,Las Palmas,705604,511,451580,346873,335299,333551,1748,11574,1982
      Canarias ,38,Santa Cruz de Tenerife,658827,581,434270,326334,318433,316987,1446,7901,1982
      Cantabria,39,Cantabria,513009,493,376712,311415,302165,300397,1768,9250,1982
-     Castilla - La Mancha,2,Albacete,339373,431,240155,196992,192882,192021,861,4110,1982
-     Castilla - La Mancha,13,Ciudad Real ,475226,481,342009,285326,280174,279112,1062,5152,1982
-     Castilla - La Mancha,16,Cuenca,212363,297,162631,135175,132778,132061,717,2397,1982
-     Castilla - La Mancha,19,Guadalajara ,143290,356,108116,91174,89610,88917,693,1564,1982
-     Castilla - La Mancha,45,Toledo,473948,436,346764,300337,293302,292305,997,7035,1982
-     Castilla y León,5,Ávila ,183188,315,138655,114016,111632,111075,557,2384,1982
-     Castilla y León,9,Burgos,360693,714,273611,216779,211814,210147,1667,4965,1982
-     Castilla y León,24,León,520641,626,397470,306217,297733,295834,1899,8484,1982
-     Castilla y León,34,Palencia,188382,367,140896,118129,115881,115203,678,2248,1982
-     Castilla y León,37,Salamanca,364482,561,277215,224459,218482,216883,1599,5977,1982
-     Castilla y León,40,Segovia ,148347,262,112316,94734,92619,91700,919,2115,1982
-     Castilla y León,42,Soria ,100690,228,78871,63458,61230,60461,769,2228,1982
-     Castilla y León,47,Valladolid,481470,516,343171,289846,281325,279175,2150,8521,1982
-     Castilla y León,49,Zamora,227771,428,180190,139193,132478,131110,1368,6715,1982
+
+
      Cataluña ,8,Barcelona,4599664,4782,3331611,2716289,2682414,2671596,10818,33875,1982
      Cataluña ,17,Girona,456274,616,338724,272099,267112,266150,962,4987,1982
      Cataluña ,25,Lleida,352657,434,268205,203403,200991,200158,833,2412,1982

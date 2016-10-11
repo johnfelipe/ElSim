@@ -21,8 +21,17 @@ router.get('/resultados/cleancsv',function(req,res){
     });
 });
 
-router.get('/resultados/:anio',function(req,res){
+router.get('/resultados/findbyyear/:anio',function(req,res){
     DB.getResultadoByAnio(req.param('anio'),function(data){
+        res.send({result:data});
+    });
+});
+router.get('/resultados/findbyprovincia/:cod_provincia',function(req,res){
+    DB.getResultadoByProvincia(req.param('cod_provincia'),function(data){
+        var i, len = data.length;
+        for(i = 0; i < len; i++){
+            _.prettyPrint(data[i].anio)
+        }
         res.send({result:data});
     });
 });
