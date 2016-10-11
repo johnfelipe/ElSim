@@ -8,6 +8,7 @@ var Sistema = require('./sistema');
  */
 class DhondtObject extends Sistema{
     constructor(){
+
     }
 }
 module.exports = DhondtObject;

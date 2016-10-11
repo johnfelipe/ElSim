@@ -1,6 +1,8 @@
 'use strict';
 var User   = require('./../models/user');
 var Log = require('./../models/log');
+var Resultado = require('./../models/resultado');
+var DB = require('./modules/dbmanager_module');
 var _ = require('./modules/utils_module');
 /**
  * Elimina todos los usuarios. Añade el usuario demo. Vacía los logs.
@@ -52,6 +54,21 @@ exports.check = function(req, res) {
  * @param res
  */
 exports.apiWelcome = function(req, res) {
-    res.json({ message: 'Hello from the API!' });
+    res.json({
+        message: 'Hello from the API!'
+    });
 };
 
+/**
+ *
+ * @param req
+ * @param res
+ */
+exports.resultadosList = function(req,res) {
+    Resultado.find({},function(err,data){
+        if(err) throw err;
+        res.send({
+            result:data
+        });
+    });
+};

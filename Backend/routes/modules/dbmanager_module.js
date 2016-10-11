@@ -2,7 +2,8 @@
 var Log = require('./../../models/log');
 var Resultado = require('./../../models/resultado');
 var User = require('./../../models/user');
-
+var DB = require('./dbmanager_module');
+var _ = require('./utils_module');
 /**
  * Módulo para MongoDB con métodos auxiliares.
  * @returns {DbManager}
@@ -13,6 +14,27 @@ class DbManager{
 
     }
 
+    /**
+     *
+     * @param done
+     */
+    static loadCsv(done){
+        var a = ['1977','1979','1982','1986','1989','1993','1996'];
+
+        var i, len = a.length, path1, path2;
+        for(i = 0; i < len; ++i){
+            path1 = './csv/' + a[i] + '.csv';
+            path2 = './csv/' + a[i] + '_PARTIDOS.csv';
+            _.readCsv(path1,path2,saveData);
+        }
+        function saveData(data){
+            var j, lenData = data.length;
+            for(j = 0; j < lenData; ++j){
+                DB.saveResultado(data[j],function(){ });
+            }
+        }
+        done();
+    }
     /**
      *
      * @param message
