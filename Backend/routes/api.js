@@ -2,7 +2,8 @@
 var User   = require('./../models/user'),
     Log = require('./../models/log'),
     Resultado = require('./../models/resultado'),
-    _ = require('./modules/utils_module');
+    _ = require('./modules/utils_module'),
+    DB = require('./modules/dbmanager_module');
 
 /**
  * Elimina todos los usuarios. Añade el usuario demo. Vacía los logs.
@@ -36,8 +37,11 @@ exports.setup = function(req, res) {
  * @param res
  */
 exports.userList = function(req, res) {
-    User.find({}, function(err, users) {
-        res.json(users);
+    User.find({},function(err,data){
+        if(err) throw err;
+        res.send({
+            result:data
+        });
     });
 };
 /**
@@ -55,7 +59,9 @@ exports.check = function(req, res) {
  */
 exports.apiWelcome = function(req, res) {
     res.json({
-        message: 'Hello from the API!'
+        message: 'Hello from the API!',
+        version: '0.0.1',
+        contact: 'jesusgonzaleznovez@gmail.com'
     });
 };
 
@@ -102,10 +108,6 @@ exports.getResultadoByAnio = function(req,res){
  */
 exports.getResultadoByProvincia = function(req,res){
     DB.getResultadoByProvincia(req.param('cod_provincia'),function(data){
-        var i, len = data.length;
-        for(i = 0; i < len; i++){
-            _.prettyPrint(data[i].anio)
-        }
         res.send({result:data});
     });
 };
@@ -119,5 +121,30 @@ exports.getResultadoByProvincia = function(req,res){
 exports.loadCsv = function(req,res){
     DB.loadCsv(function(){
         res.send({result:'Executed'});
+    });
+};
+
+/**
+ * Lista los logs.
+ * @param req
+ * @param res
+ */
+exports.logsList = function(req,res){
+    Log.find({},function(err,data){
+        if(err) throw err;
+        res.send({
+            result:data
+        });
+    });
+};
+
+/**
+ * Elimina los logs.
+ * @param req
+ * @param res
+ */
+exports.cleanLog = function(req,res){
+    DB.cleanLog(function(){
+        res.send({result:'Log cleaned'});
     });
 };

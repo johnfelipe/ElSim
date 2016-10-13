@@ -37,35 +37,37 @@ module.exports = {
         'SORIA' : '42',
         'VALLADOLID' : '47',
         'ZAMORA' : '49'
+    },
+    'CANARIAS' : {
+        'LAS_PALMAS' : '35',
+        'CANARIAS' : '38'
+    },
+    'CANTABRIA' : {
+        'CANTABRIA' : '39'
     }
+
     /*
-
-     Canarias ,35,Las Palmas,705604,511,451580,346873,335299,333551,1748,11574,1982
-     Canarias ,38,Santa Cruz de Tenerife,658827,581,434270,326334,318433,316987,1446,7901,1982
-     Cantabria,39,Cantabria,513009,493,376712,311415,302165,300397,1768,9250,1982
-
-
-     Cataluña ,8,Barcelona,4599664,4782,3331611,2716289,2682414,2671596,10818,33875,1982
-     Cataluña ,17,Girona,456274,616,338724,272099,267112,266150,962,4987,1982
-     Cataluña ,25,Lleida,352657,434,268205,203403,200991,200158,833,2412,1982
-     Cataluña ,43,Tarragona,513050,581,372329,292736,287189,286074,1115,5547,1982
-     Extremadura,6,Badajoz ,639332,681,460056,371485,365197,363667,1530,6288,1982
-     Extremadura,10,Cáceres ,421453,414,305672,240936,235868,235104,764,5068,1982
-     Galicia,15,A Coruña,1092940,1111,804461,523019,513738,511030,2708,9281,1982
-     Galicia,27,Lugo,400881,453,319960,194640,191583,190387,1196,3057,1982
-     Galicia,32,Ourense ,430030,465,329847,181504,179221,178569,652,2283,1982
-     Galicia,36,Pontevedra,882940,838,619714,421897,414468,412471,1997,7429,1982
-     Comunidad de Madrid ,28,Madrid,4686832,5730,3274966,2815298,2762663,2750837,11826,52635,1982
-     Comunidad Foral de Navarra,31,Navarra ,472880,709,375846,305693,298011,296126,1885,7682,1982
-     País Vasco,1,Araba - Álava ,256982,268,183109,149834,146251,145417,834,3583,1982
-     País Vasco,20,Gipuzkoa,694681,774,500820,391237,384660,383003,1657,6577,1982
-     País Vasco,48,Bizkaia ,1186507,1175,854204,679298,664570,661252,3318,14728,1982
-     Región de Murcia,30,Murcia,948141,858,656052,541158,532961,531107,1854,8197,1982
-     La Rioja ,26,La Rioja,254187,346,190204,159966,155995,154909,1086,3971,1982
-     Comunitat Valenciana,3,Alicante / Alacant ,1149178,956,787709,665188,651383,648463,2920,13805,1982
-     Comunitat Valenciana,12,Castellón / Castelló,429884,427,314300,270118,262382,261293,1089,7736,1982
-     Comunitat Valenciana,46,Valencia / València,2065242,1697,1462208,1219394,1191845,1187293,4552,27549,1982
-     Ciudad de Ceuta,51,Ceuta ,65264,36,36128,26117,25690,25571,119,427,1982
-     Ciudad de Melilla ,52,Melilla ,53593,36,30107,21224,21006,20854,152,218,1982
+     Cataluña ,8,Barcelona
+     Cataluña ,17,Girona
+     Cataluña ,25,Lleida
+     Cataluña ,43,Tarragona
+     Extremadura,6,Badajoz
+     Extremadura,10,Cáceres
+     Galicia,15,A Coruña
+     Galicia,27,Lugo
+     Galicia,32,Ourense
+     Galicia,36,Pontevedra
+     Comunidad de Madrid ,28,Madrid
+     Comunidad Foral de Navarra,31,Navarra
+     País Vasco,1,Araba - Álava
+     País Vasco,20,Gipuzkoa
+     País Vasco,48,Bizkaia
+     Región de Murcia,30,Murcia
+     La Rioja ,26,La Rioja
+     Comunitat Valenciana,3,Alicante / Alacant
+     Comunitat Valenciana,12,Castellón / Castelló
+     Comunitat Valenciana,46,Valencia / València
+     Ciudad de Ceuta,51,Ceuta
+     Ciudad de Melilla ,52,Melilla
      */
 };

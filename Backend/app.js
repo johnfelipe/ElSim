@@ -1,15 +1,21 @@
 'use strict';
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var express = require('express'),
+    path = require('path'),
+    favicon = require('serve-favicon'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    routes = require('./routes/index'),
+    users = require('./routes/users');
 
 var app = express();
+
+var mongoose = require('mongoose'),
+    jwt = require('jsonwebtoken'),
+    config = require('./config'),
+    api = require('./routes/api'),
+    User= require('./models/user');
+
 /**
  * View engine setup
  */
@@ -32,11 +38,6 @@ app.use('/users', users);
 /**
  * Configurando api, autenticación
  */
-var mongoose    = require('mongoose');
-var jwt         = require('jsonwebtoken');
-var config      = require('./config');
-var api         = require('./routes/api');
-var User        = require('./models/user');
 mongoose.connect(config.database);
 
 app.set('superSecret', config.secret);
@@ -80,43 +81,51 @@ var authenticate = function (req, res) {
     User.findOne({
         email: req.body.email
     }, function(err, user) {
+        var object;
         if (err) throw err;
         if (!user) {
-            res.json({ success: false, message: 'Authentication failed. User not found.' });
+            object = {
+                success: false,
+                message: 'Authentication failed. User not found.'
+            };
         } else if (user) {
-            if (user.password != req.body.password) {
-                res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+            if (user.password !== req.body.password) {
+                object = {
+                    success: false,
+                    message: 'Authentication failed. Wrong password.'
+                };
             } else {
                 var token = jwt.sign(user, app.get('superSecret'), {
                     expiresIn: 86400 // expires in 24 hours
                 });
-                res.json({
+                object = {
                     success: true,
                     message: 'Enjoy your token!',
                     token: token
-                });
+                };
             }
         }
+        res.json(object);
     });
 };
 
-
+/**
+ * Rutas de la api
+ */
 apiRoutes.post('/authenticate', authenticate);
 apiRoutes.use(isAuthenticated);
 apiRoutes.get('/', api.apiWelcome);
-apiRoutes.get('/users/list', api.userList);
+apiRoutes.get('/users', api.userList);
 apiRoutes.get('/check', api.check);
+apiRoutes.get('/logs', api.logsList);
+apiRoutes.get('/logs/clean', api.cleanLog);
 apiRoutes.get('/resultados',api.resultadosList);
 apiRoutes.get('/resultados/clean',api.cleanResultado);
 apiRoutes.get('/resultados/year/:anio',api.getResultadoByAnio);
 apiRoutes.get('/resultados/provincia/:cod_provincia',api.getResultadoByProvincia);
 apiRoutes.get('/resultados/load',api.loadCsv);
 
-
-
-
 app.use('/api', apiRoutes);
-
 
 /**
  * Catch 404 and forward to error handler
