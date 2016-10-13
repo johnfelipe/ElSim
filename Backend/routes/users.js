@@ -1,3 +1,8 @@
+/**
+ * Rutas de la interfaz web relativas a usuarios
+ */
+
+'use strict';
 var express = require('express');
 var router = express.Router();
 

@@ -104,8 +104,17 @@ var authenticate = function (req, res) {
 apiRoutes.post('/authenticate', authenticate);
 apiRoutes.use(isAuthenticated);
 apiRoutes.get('/', api.apiWelcome);
-apiRoutes.get('/list', api.userList);
+apiRoutes.get('/users/list', api.userList);
 apiRoutes.get('/check', api.check);
+apiRoutes.get('/resultados',api.resultadosList);
+apiRoutes.get('/resultados/clean',api.cleanResultado);
+apiRoutes.get('/resultados/year/:anio',api.getResultadoByAnio);
+apiRoutes.get('/resultados/provincia/:cod_provincia',api.getResultadoByProvincia);
+apiRoutes.get('/resultados/load',api.loadCsv);
+
+
+
+
 app.use('/api', apiRoutes);
 
 
