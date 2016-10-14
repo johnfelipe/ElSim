@@ -81,8 +81,8 @@ describe('HTTP methods and routes', function() {
 
     it('POST /api/authenticate with demo@demo.com should return a token',function(done){
         request.post('http://localhost:3000/api/authenticate',
-            { form:
-                {
+            {
+                form : {
                     email : 'demo@demo.com',
                     password : 'password'
                 }
