@@ -35,9 +35,12 @@
     "xmldom": "0.1.19"
   },
   "devDependencies": {
+    "expect": "^1.20.2",
+    "http": "0.0.0",
     "jsdoc": "^3.4.1",
     "request": "^2.75.0",
     "should": "^11.1.1",
-    "superagent": "^2.3.0"
+    "superagent": "^2.3.0",
+    "support": "^1.1.4"
   }
 }
