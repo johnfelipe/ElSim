@@ -35,9 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
-/**
- * Configurando api, autenticación
- */
+mongoose.Promise = global.Promise;
 mongoose.connect(config.database);
 
 app.set('superSecret', config.secret);

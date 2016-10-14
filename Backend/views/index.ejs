@@ -74,7 +74,7 @@
                 </a>
                 <a class="list-group-item list-group-item-action">
                     <% for(var i=0; i<logs.length; i++) { %>
-                    <code><%= logs[i].message %>, <%= logs[i].date %></code> <hr>
+                    <code><%= logs[i].message %>, <%= moment(logs[i].date).format('HH:mm, DD/MM/YYYY') %></code> <hr>
                     <% } %>
                 </a>
             </div>

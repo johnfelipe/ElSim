@@ -6,3 +6,7 @@ How to:
     Go http://localhost:3000/
             or
     Make GET,POST requests to the API.
+
+Test:
+
+    $ npm test

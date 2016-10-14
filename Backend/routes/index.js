@@ -17,7 +17,8 @@ router.get('/', function(req,res){
         if(err) throw err;
         res.render('index', {
             title : 'Welcome Page',
-            logs : data
+            logs : data,
+            moment: require('moment')
         });
     });
 });
