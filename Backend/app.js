@@ -118,6 +118,7 @@ apiRoutes.get('/check', api.check);
 apiRoutes.get('/logs', api.logsList);
 apiRoutes.get('/logs/clean', api.cleanLog);
 apiRoutes.get('/resultados',api.resultadosList);
+apiRoutes.get('/resultados/:id', api.getResultadoById);
 apiRoutes.get('/resultados/clean',api.cleanResultado);
 apiRoutes.get('/resultados/year/:anio',api.getResultadoByAnio);
 apiRoutes.get('/resultados/provincia/:cod_provincia',api.getResultadoByProvincia);

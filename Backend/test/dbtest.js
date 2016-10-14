@@ -1,15 +1,13 @@
 'use strict';
-var app = require('./../app');
-var User = require('./../models/user');
-var Resultado = require('./../models/resultado');
-var should = require('chai').should(),
-    expect = require('chai').expect;
-
-var superagent = require('superagent');
-var _ = require('./../routes/modules/utils_module');
-
-var http = require('http');
-var request = require('request');
+var app = require('./../app'),
+    User = require('./../models/user'),
+    Resultado = require('./../models/resultado'),
+    should = require('chai').should(),
+    expect = require('chai').expect,
+    superagent = require('superagent'),
+    _ = require('./../routes/modules/utils_module'),
+    http = require('http'),
+    request = require('request');
 
 /**
  * Test del modelo User
@@ -80,4 +78,20 @@ describe('HTTP methods and routes', function() {
             done();
         });
     });
+
+    it('POST /api/authenticate with demo@demo.com should return a token',function(done){
+        request.post('http://localhost:3000/api/authenticate',
+            { form:
+                {
+                    email : 'demo@demo.com',
+                    password : 'password'
+                }
+            },
+            function (err, res, body){
+                expect(res.body.includes('token')).to.equal(true);
+                done();
+            }
+        );
+    });
+
 });

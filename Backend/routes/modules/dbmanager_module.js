@@ -1,8 +1,9 @@
 'use strict';
-var Log = require('./../../models/log');
-var Resultado = require('./../../models/resultado');
-var User = require('./../../models/user');
-var _ = require('./utils_module');
+var Log = require('./../../models/log'),
+    Resultado = require('./../../models/resultado'),
+    User = require('./../../models/user'),
+    _ = require('./utils_module');
+
 /**
  * Módulo para MongoDB con métodos auxiliares.
  * @returns {DbManager}
@@ -92,11 +93,23 @@ class DbManager{
     }
     /**
      *
-     * @param anio
+     * @param cod
      * @param done
      */
     static getResultadoByProvincia(cod,done){
         Resultado.find({cod_provincia:cod},function(err,data){
+            if(err) _.prettyPrint(err);
+            done(data);
+        });
+    }
+
+    /**
+     *
+     * @param id
+     * @param done
+     */
+    static getResultadoById(id,done){
+        Resultado.find({id:id},function(err,data){
             if(err) _.prettyPrint(err);
             done(data);
         });

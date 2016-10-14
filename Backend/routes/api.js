@@ -111,6 +111,16 @@ exports.getResultadoByProvincia = function(req,res){
         res.send({result:data});
     });
 };
+/**
+ * Filtra resultados por provincia.
+ * @param req
+ * @param res
+ */
+exports.getResultadoById = function(req,res){
+    DB.getResultadoById(req.param('id'),function(data){
+        res.send({result:data});
+    });
+};
 
 /**
  * Parsea los csv del ministerio con los históricos de resultados electorales
