@@ -4,5 +4,3 @@ node_js:
 services: mongodb
 before_install:
   - cd Backend && npm install
-script:
-  - npm test
