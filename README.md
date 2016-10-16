@@ -1,5 +1,7 @@
 # TFG #
 
+![TRAVIS](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)
+
 Repositorio para el desarrollo del TFG del Grado en Ingeniería Informática (UGR)
 
 -----------------
