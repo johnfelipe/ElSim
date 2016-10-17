@@ -51,7 +51,7 @@ describe('Resultado',function() {
                 partidos: { }
             });
             resultado.save(function(error, resultado){
-                should.exist(error);
+                if(error) should.exist(error);
                 done();
             });
         });
