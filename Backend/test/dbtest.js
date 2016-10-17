@@ -22,7 +22,7 @@ describe('User', function() {
                 admin: true
             });
             user.save(function(error, user){
-                should.exist(error);
+                if(error) should.exist(error);
                 done();
             });
         });
