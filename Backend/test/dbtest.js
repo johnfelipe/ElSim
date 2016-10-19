@@ -5,7 +5,6 @@ var app = require('./../app'),
     should = require('chai').should(),
     expect = require('chai').expect,
     superagent = require('superagent'),
-    _ = require('./../routes/modules/utils_module'),
     http = require('http'),
     request = require('request');
 

@@ -155,5 +155,6 @@ class DbManager{
         User.find({name: name}).remove(done);
     }
 
+
 }
 module.exports = DbManager;
