@@ -11,6 +11,7 @@ var resultadoSchema =  new Schema({
         provincia: { type: String, required: true },
         poblacion: { type: Number, required: true },
         num_mesas: { type: Number, required: true },
+        diputados: { type: Number, required: true},
         total_censo_electoral: { type: Number, required: true },
         total_votantes: { type: Number, required: true },
         votos_validos: { type: Number, required: true },
