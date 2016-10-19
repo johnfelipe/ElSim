@@ -1,12 +1,18 @@
-How to:
+Install nodemon:
 
-    # npm i -g nodemon
-	$ npm i
-	$ npm start
+    $ sudo npm i -g nodemon
+    
+Install dependencies:
+
+    $ npm i
+    
+Run project:
+
+    $ npm start
     Go http://localhost:3000/
             or
     Make GET,POST requests to the API.
 
-Test:
+Run tests:
 
     $ npm test
