@@ -77,13 +77,32 @@ class Dhondt {
             'entero' : 2,
             'decimal' : 2.0
         };
-        if(provincia.cod_provincia > 50 ) total.entero = 1;// Por Ceuta y Melilla
-        total.decimal += (provincia.poblacion / cuota);
-        total.entero +=  Math.ceil(total.decimal);
+        if(provincia.cod_provincia > 50 ) {
+            total.entero = 1;
+            total.decimal = 1.0;
+        } else {
+            total.decimal += (provincia.total_votantes / cuota);
+            total.entero += Math.floor(total.decimal);
+        }
         return total;
       // Los Diputados restantes se distribuyen asignando uno a cada una de las
       // provincias cuyo cociente, obtenido conforme al apartado anterior,
       // tenga una fracción decimal mayor.
+   }
+
+   static fixMandates(provincias){
+       var m = 0;
+       var i,len;
+       for(i = 0, len = provincias.length; i < len; i++){
+           m += provincias[i].mandates.entero;
+       }
+       provincias.sort(function(a, b) {
+           return parseFloat(b.mandates.decimal) - parseFloat(a.mandates.decimal);
+       });
+       var restante = 350 - m;
+       for(i = 0; i < restante; i++){
+           provincias[i].mandates.entero += 1;
+       }
    }
 
 }

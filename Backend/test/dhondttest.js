@@ -14,15 +14,22 @@ describe('D´Hondt', function() {
         it('Basic usage', function(done) {
             var d = new dhont();
             var votes = [];
-            DB.getResultadoByAnio(1977,function(data){
+            DB.getResultadoByAnio(1996,function(data){
                 var i, len = data.length;
                 var cuota = dhont.calculateCuota(data);
-                for(i = 0; i < len-2; i++){
+                for(i = 0; i < len; i++){
+                    data[i].mandates = dhont.calculateMandates(data[i],cuota);
+                }
+                dhont.fixMandates(data);
+
+
+                for(i = 0; i < len; i++){
 
                     for (var key in data[i].partidos) {
                         votes.push(data[i].partidos[key]);
                     }
-                    d.setMandates(dhont.calculateMandates(data[i],cuota).entero);
+
+                    d.setMandates(data[i].mandates.entero);
                     d.setVotes(votes);
                     d.compute();
                     var j = 0;
@@ -35,8 +42,10 @@ describe('D´Hondt', function() {
                         j++;
 
                     }
+                    _.prettyPrint(data[i].partidos);
                     votes = [];
                 }
+
 
                 done();
             });
