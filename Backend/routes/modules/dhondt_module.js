@@ -85,11 +85,12 @@ class Dhondt {
             total.entero += Math.floor(total.decimal);
         }
         return total;
-      // Los Diputados restantes se distribuyen asignando uno a cada una de las
-      // provincias cuyo cociente, obtenido conforme al apartado anterior,
-      // tenga una fracción decimal mayor.
    }
 
+    /**
+     *
+     * @param provincias
+     */
    static fixMandates(provincias){
        var m = 0;
        var i,len;

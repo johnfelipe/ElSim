@@ -15,8 +15,9 @@ class DbManager{
     }
 
     /**
-     *
-     * @param done
+     * Función que carga los ficheros csv con resultados históricos.
+     * Parsea y guarda en la base de datos.
+     * @param done{Function} callback
      */
     static loadCsv(done){
         var a = ['1977','1979','1982','1986','1989','1993','1996'];
@@ -25,20 +26,25 @@ class DbManager{
         for(i = 0; i < len; ++i){
             path1 = './csv/' + a[i] + '.csv';
             path2 = './csv/' + a[i] + '_PARTIDOS.csv';
-            _.readCsv(path1,path2, function (data){
-                var j, lenData = data.length;
-                for(j = 0; j < lenData; ++j){
-                    DbManager.saveResultado(data[j],function(){ });
-                }
-            });
+            _.readCsv(path1,path2, csvCallback);
         }
 
+        function csvCallback(data){
+            var j, lenData = data.length;
+            for(j = 0; j < lenData; ++j){
+                DbManager.saveResultado(data[j],saveResultadoCallback);
+            }
+        }
+
+        function saveResultadoCallback(){
+            _.prettyPrint('Resultado guardado.');
+        }
         done();
     }
     /**
-     *
-     * @param message
-     * @param done
+     * Función para guardar logs en la base de datos.
+     * @param message{String} mensaje que queremos guardar de log.
+     * @param done{Function} callback
      */
     static saveLog(message,done){
         var l = new Log({
@@ -52,25 +58,25 @@ class DbManager{
     }
 
     /**
-     *
-     * @param done
+     * Función para vaciar los logs.
+     * @param done{Function} callback
      */
     static cleanLog(done){
         Log.find({}).remove(done);
     }
 
     /**
-     *
-     * @param done
+     * Función para vaciar los usuarios. BE CAREFUL
+     * @param done{Function} callback
      */
     static cleanUser(done){
         User.find({}).remove(done);
     }
 
     /**
-     *
-     * @param user
-     * @param done
+     * Función para guardar un usuario.
+     * @param user{Object} datos del usuario.
+     * @param done{Function} callback
      */
     static saveUser(user, done){
         var u = new User(user);
@@ -81,9 +87,9 @@ class DbManager{
     }
 
     /**
-     *
-     * @param anio
-     * @param done
+     * Función para buscar resultados por anio.
+     * @param anio{Number} anio de búsqueda
+     * @param done{Function} callback
      */
     static getResultadoByAnio(anio,done){
         Resultado.find({anio:anio},function(err,data){
@@ -92,9 +98,9 @@ class DbManager{
         });
     }
     /**
-     *
-     * @param cod
-     * @param done
+     * Función para buscar resultados por código de provincia.
+     * @param cod{Number} código de provincia de búsqueda
+     * @param done{Function} callback
      */
     static getResultadoByProvincia(cod,done){
         Resultado.find({cod_provincia:cod},function(err,data){
@@ -104,9 +110,9 @@ class DbManager{
     }
 
     /**
-     *
-     * @param id
-     * @param done
+     * Función para buscar un resultado por ID
+     * @param id{String} id de la base de datos.
+     * @param done{Function} callback
      */
     static getResultadoById(id,done){
         Resultado.find({id:id},function(err,data){

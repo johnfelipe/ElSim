@@ -1,11 +1,8 @@
 'use strict';
-var app = require('./../app'),
+const app = require('./../app'),
     http = require('http'),
-    request = require('request'),
     dhont = require('./../routes/modules/dhondt_module'),
-    DB = require('./../routes/modules/dbmanager_module'),
-    expect = require('chai').expect,
-    _ = require('./../routes/modules/utils_module');
+    expect = require('chai').expect;
 
 /**
  * Test del modelo User
