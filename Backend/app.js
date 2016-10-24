@@ -117,13 +117,14 @@ apiRoutes.get('/', api.apiWelcome);
 apiRoutes.get('/users', api.userList);
 apiRoutes.get('/check', api.check);
 apiRoutes.get('/logs', api.logsList);
-apiRoutes.get('/logs/clean', api.cleanLog);
+apiRoutes.delete('/logs', api.cleanLog);
 apiRoutes.get('/resultados',api.resultadosList);
-apiRoutes.get('/resultados/find/:id', api.getResultadoById);
-apiRoutes.get('/resultados/clean',api.cleanResultado);
+apiRoutes.get('/resultados/setup',api.loadCsv);
+apiRoutes.get('/resultados/:id', api.getResultadoById);
+apiRoutes.delete('/resultados',api.cleanResultado);
 apiRoutes.get('/resultados/year/:anio',api.getResultadoByAnio);
 apiRoutes.get('/resultados/provincia/:cod_provincia',api.getResultadoByProvincia);
-apiRoutes.get('/resultados/load',api.loadCsv);
+
 
 app.use('/api', apiRoutes);
 
