@@ -45,6 +45,40 @@ exports.userList = function(req, res) {
         });
     });
 };
+
+/**
+ * Crea un usuario
+ * @param req
+ * @param res
+ */
+exports.userAdd = function(req, res) {
+    res.send({
+        result:'Not yet implemented'
+    });
+};
+
+/**
+ * Elimina un usuario
+ * @param req
+ * @param res
+ */
+exports.userDelete = function(req, res) {
+    res.send({
+        result:'Not yet implemented'
+    });
+};
+
+/**
+ * Actualiza un usuario
+ * @param req
+ * @param res
+ */
+exports.userUpdate = function(req, res) {
+    res.send({
+        result:'Not yet implemented'
+    });
+};
+
 /**
  * Check request. Necesita autenticación.
  * @param req
