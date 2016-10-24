@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
  * Modelo para un resultado de unas elecciones
  * @type {any}
  */
-var resultadoSchema =  new Schema({
+var resultSchema =  new Schema({
         comunidad: { type: String, required: true },
         cod_provincia: { type: Number, required: true},
         provincia: { type: String, required: true },
@@ -20,5 +20,5 @@ var resultadoSchema =  new Schema({
         eleccion: { type: Object, required: true},
         partidos: { type: Object, required: true } // votos, diputados
 });
-resultadoSchema.index({ cod_provincia: 1, eleccion: 1 }, { unique: true });
-module.exports = mongoose.model('Resultado',resultadoSchema);
+resultSchema.index({ cod_provincia: 1, eleccion: 1 }, { unique: true });
+module.exports = mongoose.model('Resultado',resultSchema);
