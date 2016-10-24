@@ -12,7 +12,8 @@ module.exports = mongoose.model(
         name: { type: String, required: true },
         email: { type: String, required: true, index: { unique: true } },
         password: { type: String, required: true },
-        admin: { type: Boolean, required: true }
+        admin: { type: Boolean, required: true },
+        resultados: { type: [], required: false }
     })
 );
 

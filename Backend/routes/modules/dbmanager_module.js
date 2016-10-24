@@ -127,7 +127,12 @@ class DbManager{
      * @param done
      */
     static saveResultado(resultado, done){
+
         var r = new Resultado(resultado);
+        r.eleccion = {
+            fecha: resultado.fecha,
+            autor: 'sistema'
+        };
         r.save(function(err){
             if(err) _.prettyPrint(err);
 

@@ -17,8 +17,8 @@ var resultadoSchema =  new Schema({
         votos_candidaturas: { type: Number, required: true },
         votos_blanco: { type: Number, required: true },
         votos_nulos: { type: Number, required: true },
-        anio: { type: Number, required: true},
+        eleccion: { type: Object, required: true},
         partidos: { type: Object, required: true } // votos, diputados
 });
-resultadoSchema.index({ cod_provincia: 1, anio: 1 }, { unique: true });
+resultadoSchema.index({ cod_provincia: 1, eleccion: 1 }, { unique: true });
 module.exports = mongoose.model('Resultado',resultadoSchema);

@@ -19,7 +19,8 @@ exports.setup = function(req, res) {
             name: 'demo',
             email: 'demo@demo.com',
             password: 'password',
-            admin: true
+            admin: true,
+            resultados: []
         });
         nick.save(function(err) {
             if (err) throw err;

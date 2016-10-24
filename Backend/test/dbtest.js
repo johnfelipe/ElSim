@@ -18,7 +18,8 @@ describe('User', function() {
                 name: 'demo',
                 email: 'demo@demo.com',
                 password: 'password',
-                admin: true
+                admin: true,
+                resultados: []
             });
             user.save(function(error, user){
                 if(error) should.exist(error);
@@ -33,7 +34,7 @@ describe('User', function() {
  */
 describe('Resultado',function() {
     describe('#save()', function() {
-        it('Should not save if duplicate key(cod_provincia + anio)', function(done) {
+        it('Should not save if duplicate key(cod_provincia + eleccion)', function(done) {
             var resultado = new Resultado({
                 comunidad: '',
                 cod_provincia: 22,
@@ -46,7 +47,7 @@ describe('Resultado',function() {
                 votos_candidaturas: 0,
                 votos_blanco: 0,
                 votos_nulos: 0,
-                anio: 1977,
+                eleccion: {autor: 'sistema', fecha: new Date(1977,5,1) },
                 partidos: { }
             });
             resultado.save(function(error, resultado){
