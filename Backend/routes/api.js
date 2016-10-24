@@ -101,16 +101,49 @@ exports.apiWelcome = function(req, res) {
 };
 
 /**
- * Da un listado de los resultados almacenados.
+ * Obtiene todos los resultados almacenados.
  * @param req
  * @param res
  */
-exports.resultadosList = function(req,res) {
+exports.getResultados = function(req, res) {
     Resultado.find({},function(err,data){
         if(err) throw err;
         res.send({
             result:data
         });
+    });
+};
+
+/**
+ * Almacena un resultado.
+ * @param req
+ * @param res
+ */
+exports.addResultado = function(req,res) {
+    res.send({
+        result: 'Not yet implemented'
+    });
+};
+
+/**
+ * Actualiza un resultado.
+ * @param req
+ * @param res
+ */
+exports.updateResultadoById = function(req,res) {
+    res.send({
+        result: 'Not yet implemented'
+    });
+};
+
+/**
+ * Elimina un resultado.
+ * @param req
+ * @param res
+ */
+exports.deleteResultadoById = function(req,res) {
+    res.send({
+        result: 'Not yet implemented'
     });
 };
 
