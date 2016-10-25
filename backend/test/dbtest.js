@@ -1,5 +1,5 @@
 'use strict';
-var app = require('./../app'),
+const app = require('./../app'),
     User = require('./../models/user'),
     Resultado = require('./../models/resultado'),
     should = require('chai').should(),
