@@ -9,12 +9,7 @@ class SistemaElectoral{
         this.circunscripciones = [];
         this.autor = 'anonymous';
     }
-    setNumeroDeDiputados(n){
-        if(n < 1) throw 'Negative number in setNumeroDeDiputados(' + n + ')';
-        this.numero_de_diputados = n;
-        console.log('numero_de_diputados set to ' + this.numero_de_diputados);
 
-    }
 
 }
 module.exports = SistemaElectoral;

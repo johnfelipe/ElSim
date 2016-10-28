@@ -1,5 +1,5 @@
 'use strict';
-var fs = require('fs');
+const fs = require('fs');
 /**
  * Módulo de utilidades usado por otros módulos.
  * @returns {UtilsObject}

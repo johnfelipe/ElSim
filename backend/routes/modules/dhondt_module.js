@@ -1,6 +1,5 @@
 'use strict';
-var _ = require('./utils_module'),
-    dhondt = require('dhondt');
+const dhondt = require('dhondt');
 /**
  * Clase D'Hondt
  */
@@ -9,30 +8,6 @@ class Dhondt {
         this.votes = [];
         this.mandates = 0;
         this.results = [];
-    }
-
-    /**
-     *
-     * @param v
-     */
-    setVotes(v){
-        this.votes = v;
-    }
-
-    /**
-     *
-     * @param m
-     */
-    setMandates(m){
-        this.mandates = m;
-    }
-
-    /**
-     *
-     * @returns {*|Array}
-     */
-    getResults(){
-        return this.results;
     }
 
     /**
@@ -49,6 +24,7 @@ class Dhondt {
      */
     static calculateTotalPopulation(provincias){
         var total = 0;
+
         for(var i = 0, len = provincias.length; i < len; i++){
             total += provincias[i].poblacion;
         }
@@ -61,8 +37,8 @@ class Dhondt {
      * @returns {number}
      */
     static calculateCuota(provincias){
-        var poblacion = Dhondt.calculateTotalPopulation(provincias);
-        var cuota = poblacion / 248.00;
+        var poblacion = Dhondt.calculateTotalPopulation(provincias),
+            cuota = poblacion / 248.00;
         return cuota;
     }
 
@@ -85,26 +61,31 @@ class Dhondt {
             total.entero += Math.floor(total.decimal);
         }
         return total;
-   }
+    }
 
     /**
      *
      * @param provincias
      */
-   static fixMandates(provincias){
-       var m = 0;
-       var i,len;
-       for(i = 0, len = provincias.length; i < len; i++){
-           m += provincias[i].mandates.entero;
-       }
-       provincias.sort(function(a, b) {
-           return parseFloat(b.mandates.decimal) - parseFloat(a.mandates.decimal);
-       });
-       var restante = 350 - m;
-       for(i = 0; i < restante; i++){
-           provincias[i].mandates.entero += 1;
-       }
-   }
+    static fixMandates(provincias){
+        var m = 0,
+            i,
+            len;
+
+        for(i = 0, len = provincias.length; i < len; i++){
+            m += provincias[i].mandates.entero;
+        }
+
+        provincias.sort(function(a, b) {
+            return parseFloat(b.mandates.decimal) - parseFloat(a.mandates.decimal);
+        });
+
+        var restante = 350 - m;
+
+        for(i = 0; i < restante; i++){
+            provincias[i].mandates.entero += 1;
+        }
+    }
 
 }
 module.exports = Dhondt;

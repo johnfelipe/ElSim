@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: routes/modules/dhondt_module.js</title>
+    <title>JSDoc: Class: SistemaElectoral</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,109 +17,129 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: routes/modules/dhondt_module.js</h1>
+    <h1 class="page-title">Class: SistemaElectoral</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>'use strict';
-const dhondt = require('dhondt');
-/**
- * Clase D'Hondt
- */
-class Dhondt {
-    constructor(){
-        this.votes = [];
-        this.mandates = 0;
-        this.results = [];
-    }
+        <h2>SistemaElectoral</h2>
+        
+            <div class="class-description">Clase general para gestionar simulaciones electorales al congreso.</div>
+        
+    
+</header>
 
-    /**
-     *
-     */
-    compute(){
-        this.results = dhondt.compute(this.votes, this.mandates);
-    }
+<article>
+    <div class="container-overview">
+    
+        
 
-    /**
-     *
-     * @param provincias
-     * @returns {number}
-     */
-    static calculateTotalPopulation(provincias){
-        var total = 0;
+    
+    <h2>Constructor</h2>
+    
 
-        for(var i = 0, len = provincias.length; i &lt; len; i++){
-            total += provincias[i].poblacion;
-        }
-        return total;
-    }
+    <h4 class="name" id="SistemaElectoral"><span class="type-signature"></span>new SistemaElectoral<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    /**
-     *
-     * @param provincias
-     * @returns {number}
-     */
-    static calculateCuota(provincias){
-        var poblacion = Dhondt.calculateTotalPopulation(provincias),
-            cuota = poblacion / 248.00;
-        return cuota;
-    }
+    
 
-    /**
-     *
-     * @param provincia
-     * @param cuota
-     * @returns {{entero: number, decimal: number}}
-     */
-    static calculateMandates(provincia,cuota){
-        var total = {
-            'entero' : 2,
-            'decimal' : 2.0
-        };
-        if(provincia.cod_provincia > 50 ) {
-            total.entero = 1;
-            total.decimal = 1.0;
-        } else {
-            total.decimal += (provincia.total_votantes / cuota);
-            total.entero += Math.floor(total.decimal);
-        }
-        return total;
-    }
 
-    /**
-     *
-     * @param provincias
-     */
-    static fixMandates(provincias){
-        var m = 0,
-            i,
-            len;
 
-        for(i = 0, len = provincias.length; i &lt; len; i++){
-            m += provincias[i].mandates.entero;
-        }
 
-        provincias.sort(function(a, b) {
-            return parseFloat(b.mandates.decimal) - parseFloat(a.mandates.decimal);
-        });
 
-        var restante = 350 - m;
 
-        for(i = 0; i &lt; restante; i++){
-            provincias[i].mandates.entero += 1;
-        }
-    }
 
-}
-module.exports = Dhondt;
-</code></pre>
-        </article>
-    </section>
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_modules_system_module.js.html">routes/modules/system_module.js</a>, <a href="routes_modules_system_module.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

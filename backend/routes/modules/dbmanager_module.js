@@ -1,5 +1,5 @@
 'use strict';
-var Log = require('./../../models/log'),
+const Log = require('./../../models/log'),
     Resultado = require('./../../models/resultado'),
     User = require('./../../models/user'),
     _ = require('./utils_module');

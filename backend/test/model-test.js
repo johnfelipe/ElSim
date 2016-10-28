@@ -66,13 +66,13 @@ describe('HTTP methods and routes', function() {
     before(function () {
         app.listen(3000);
     });
-    it('GET / should return 200',function(done){
+    it('GET / route should return 200',function(done){
         request.get('http://localhost:3000/', function (err, res, body){
             expect(res.statusCode).to.equal(200);
             done();
         });
     });
-    it('GET /jiejio should return 404',function(done){
+    it('GET strange routes should return 404',function(done){
         request.get('http://localhost:3000/jiejio', function (err, res, body){
             expect(res.statusCode).to.equal(404);
             done();
