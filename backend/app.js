@@ -109,27 +109,44 @@ var authenticate = function (req, res) {
 };
 
 /**
- * Rutas de la api
+ * AUTH routes
  */
 apiRoutes.post('/authenticate', authenticate);
 apiRoutes.use(isAuthenticated);
+
+/**
+ * GET routes
+ */
 apiRoutes.get('/', api.apiWelcome);
-apiRoutes.get('/users', api.userList);
-apiRoutes.post('/users', api.userAdd);
-apiRoutes.delete('/users/:id', api.userDelete);
-apiRoutes.put('/users/:id', api.userUpdate);
+apiRoutes.get('/users', api.findAllUsers);
 apiRoutes.get('/check', api.check);
-apiRoutes.get('/logs', api.logsList);
-apiRoutes.delete('/logs', api.cleanLog);
+apiRoutes.get('/logs', api.findLogs);
 apiRoutes.get('/resultados/setup',api.loadCsv);
-apiRoutes.get('/resultados',api.getResultados);
-apiRoutes.post('/resultados',api.addResultado);
-apiRoutes.get('/resultados/:id', api.getResultadoById);
-apiRoutes.put('/resultados/:id',api.updateResultadoById);
-apiRoutes.delete('/resultados/:id',api.deleteResultadoById);
-apiRoutes.delete('/resultados',api.cleanResultado);
-apiRoutes.get('/resultados/year/:anio',api.getResultadoByAnio);
-apiRoutes.get('/resultados/provincia/:cod_provincia',api.getResultadoByProvincia);
+apiRoutes.get('/resultados',api.findAllResultados);
+apiRoutes.get('/resultados/:id', api.findOneResultado);
+apiRoutes.get('/resultados/year/:anio',api.findManyResultadosByAnio);
+apiRoutes.get('/resultados/provincia/:cod_provincia',api.findManyResultadosByProvincia);
+
+/**
+ * POST routes
+ */
+apiRoutes.post('/users', api.saveOneUser);
+apiRoutes.post('/resultados',api.saveOneResultado);
+
+/**
+ * PUT routes
+ */
+apiRoutes.put('/users/:id', api.updateOneUser);
+apiRoutes.put('/resultados/:id',api.updateOneResultado);
+
+/**
+ * DELETE routes
+ */
+apiRoutes.delete('/users/:id', api.deleteOneUser);
+apiRoutes.delete('/logs', api.deleteAllLogs);
+apiRoutes.delete('/resultados/:id',api.deleteOneResultado);
+apiRoutes.delete('/resultados',api.deleteAllResultados);
+
 
 
 app.use('/api', apiRoutes);

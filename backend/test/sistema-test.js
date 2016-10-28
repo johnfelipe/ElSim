@@ -2,7 +2,7 @@
 const app = require('./../app'),
     expect = require('chai').expect,
     http = require('http'),
-    Sistema = require('./../routes/modules/sistema-module');
+    Sistema = require('./../routes/modules/electoral-system-module');
 
 /**
  * Test de la clase Sistema

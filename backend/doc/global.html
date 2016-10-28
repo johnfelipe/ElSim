@@ -212,7 +212,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_resultado.js.html">models/resultado.js</a>, <a href="models_resultado.js.html#line8">line 8</a>
+        <a href="models_result.js.html">models/result.js</a>, <a href="models_result.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -233,150 +233,6 @@
 
     
         <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id="addResultado"><span class="type-signature"></span>addResultado<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Almacena un resultado.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>req</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_api.js.html">routes/api.js</a>, <a href="routes_api.js.html#line122">line 122</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         
             
@@ -671,7 +527,7 @@
 
     
 
-    <h4 class="name" id="cleanLog"><span class="type-signature"></span>cleanLog<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="deleteAllLogs"><span class="type-signature"></span>deleteAllLogs<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
 
     
 
@@ -815,7 +671,7 @@
 
     
 
-    <h4 class="name" id="cleanResultado"><span class="type-signature"></span>cleanResultado<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="deleteAllResultados"><span class="type-signature"></span>deleteAllResultados<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
 
     
 
@@ -959,7 +815,7 @@
 
     
 
-    <h4 class="name" id="deleteResultadoById"><span class="type-signature"></span>deleteResultadoById<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="deleteOneResultado"><span class="type-signature"></span>deleteOneResultado<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
 
     
 
@@ -1103,7 +959,583 @@
 
     
 
-    <h4 class="name" id="getResultadoByAnio"><span class="type-signature"></span>getResultadoByAnio<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="deleteOneUser"><span class="type-signature"></span>deleteOneUser<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Elimina un usuario
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_api.js.html">routes/api.js</a>, <a href="routes_api.js.html#line65">line 65</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="findAllResultados"><span class="type-signature"></span>findAllResultados<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Obtiene todos los resultados almacenados.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_api.js.html">routes/api.js</a>, <a href="routes_api.js.html#line108">line 108</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="findAllUsers"><span class="type-signature"></span>findAllUsers<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Lista los usuarios. Necesita autenticación.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_api.js.html">routes/api.js</a>, <a href="routes_api.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="findLogs"><span class="type-signature"></span>findLogs<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Lista los logs.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_api.js.html">routes/api.js</a>, <a href="routes_api.js.html#line210">line 210</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="findManyResultadosByAnio"><span class="type-signature"></span>findManyResultadosByAnio<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
 
     
 
@@ -1247,151 +1679,7 @@
 
     
 
-    <h4 class="name" id="getResultadoById"><span class="type-signature"></span>getResultadoById<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Filtra resultados por provincia.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>req</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_api.js.html">routes/api.js</a>, <a href="routes_api.js.html#line187">line 187</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="getResultadoByProvincia"><span class="type-signature"></span>getResultadoByProvincia<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="findManyResultadosByProvincia"><span class="type-signature"></span>findManyResultadosByProvincia<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
 
     
 
@@ -1535,14 +1823,14 @@
 
     
 
-    <h4 class="name" id="getResultados"><span class="type-signature"></span>getResultados<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="findOneResultado"><span class="type-signature"></span>findOneResultado<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Obtiene todos los resultados almacenados.
+    Filtra resultados por provincia.
 </div>
 
 
@@ -1648,7 +1936,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_api.js.html">routes/api.js</a>, <a href="routes_api.js.html#line108">line 108</a>
+        <a href="routes_api.js.html">routes/api.js</a>, <a href="routes_api.js.html#line187">line 187</a>
     </li></ul></dd>
     
 
@@ -1824,14 +2112,14 @@ al congreso.
 
     
 
-    <h4 class="name" id="logsList"><span class="type-signature"></span>logsList<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="saveOneResultado"><span class="type-signature"></span>saveOneResultado<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Lista los logs.
+    Almacena un resultado.
 </div>
 
 
@@ -1937,7 +2225,151 @@ al congreso.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_api.js.html">routes/api.js</a>, <a href="routes_api.js.html#line210">line 210</a>
+        <a href="routes_api.js.html">routes/api.js</a>, <a href="routes_api.js.html#line122">line 122</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="saveOneUser"><span class="type-signature"></span>saveOneUser<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Crea un usuario
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_api.js.html">routes/api.js</a>, <a href="routes_api.js.html#line54">line 54</a>
     </li></ul></dd>
     
 
@@ -2112,7 +2544,7 @@ al congreso.
 
     
 
-    <h4 class="name" id="updateResultadoById"><span class="type-signature"></span>updateResultadoById<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="updateOneResultado"><span class="type-signature"></span>updateOneResultado<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
 
     
 
@@ -2256,439 +2688,7 @@ al congreso.
 
     
 
-    <h4 class="name" id="userAdd"><span class="type-signature"></span>userAdd<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Crea un usuario
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>req</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_api.js.html">routes/api.js</a>, <a href="routes_api.js.html#line54">line 54</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="userDelete"><span class="type-signature"></span>userDelete<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Elimina un usuario
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>req</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_api.js.html">routes/api.js</a>, <a href="routes_api.js.html#line65">line 65</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="userList"><span class="type-signature"></span>userList<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Lista los usuarios. Necesita autenticación.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>req</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_api.js.html">routes/api.js</a>, <a href="routes_api.js.html#line40">line 40</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="userUpdate"><span class="type-signature"></span>userUpdate<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="updateOneUser"><span class="type-signature"></span>updateOneUser<span class="signature">(req, res)</span><span class="type-signature"></span></h4>
 
     
 
@@ -2843,13 +2843,13 @@ al congreso.
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DbManager.html">DbManager</a></li><li><a href="Dhondt.html">Dhondt</a></li><li><a href="SistemaElectoral.html">SistemaElectoral</a></li><li><a href="UtilsObject.html">UtilsObject</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addResultado">addResultado</a></li><li><a href="global.html#apiRoutes">apiRoutes</a></li><li><a href="global.html#apiWelcome">apiWelcome</a></li><li><a href="global.html#check">check</a></li><li><a href="global.html#cleanLog">cleanLog</a></li><li><a href="global.html#cleanResultado">cleanResultado</a></li><li><a href="global.html#deleteResultadoById">deleteResultadoById</a></li><li><a href="global.html#getResultadoByAnio">getResultadoByAnio</a></li><li><a href="global.html#getResultadoById">getResultadoById</a></li><li><a href="global.html#getResultadoByProvincia">getResultadoByProvincia</a></li><li><a href="global.html#getResultados">getResultados</a></li><li><a href="global.html#loadCsv">loadCsv</a></li><li><a href="global.html#logsList">logsList</a></li><li><a href="global.html#resultSchema">resultSchema</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#updateResultadoById">updateResultadoById</a></li><li><a href="global.html#userAdd">userAdd</a></li><li><a href="global.html#userDelete">userDelete</a></li><li><a href="global.html#userList">userList</a></li><li><a href="global.html#userUpdate">userUpdate</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DbManager.html">DbManager</a></li><li><a href="District.html">District</a></li><li><a href="ElectoralSystem.html">ElectoralSystem</a></li><li><a href="Util.html">Util</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apiRoutes">apiRoutes</a></li><li><a href="global.html#apiWelcome">apiWelcome</a></li><li><a href="global.html#check">check</a></li><li><a href="global.html#deleteAllLogs">deleteAllLogs</a></li><li><a href="global.html#deleteAllResultados">deleteAllResultados</a></li><li><a href="global.html#deleteOneResultado">deleteOneResultado</a></li><li><a href="global.html#deleteOneUser">deleteOneUser</a></li><li><a href="global.html#findAllResultados">findAllResultados</a></li><li><a href="global.html#findAllUsers">findAllUsers</a></li><li><a href="global.html#findLogs">findLogs</a></li><li><a href="global.html#findManyResultadosByAnio">findManyResultadosByAnio</a></li><li><a href="global.html#findManyResultadosByProvincia">findManyResultadosByProvincia</a></li><li><a href="global.html#findOneResultado">findOneResultado</a></li><li><a href="global.html#loadCsv">loadCsv</a></li><li><a href="global.html#resultSchema">resultSchema</a></li><li><a href="global.html#saveOneResultado">saveOneResultado</a></li><li><a href="global.html#saveOneUser">saveOneUser</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#updateOneResultado">updateOneResultado</a></li><li><a href="global.html#updateOneUser">updateOneUser</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Fri Oct 28 2016 11:14:22 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Fri Oct 28 2016 11:36:44 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>

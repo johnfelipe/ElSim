@@ -1,9 +1,9 @@
 'use strict';
 const dhondt = require('dhondt');
 /**
- * Clase D'Hondt
+ * District
  */
-class Dhondt {
+class District {
     constructor(){
         this.votes = [];
         this.mandates = 0;
@@ -33,59 +33,59 @@ class Dhondt {
 
     /**
      *
-     * @param provincias
+     * @param districts
      * @returns {number}
      */
-    static calculateCuota(provincias){
-        var poblacion = Dhondt.calculateTotalPopulation(provincias),
-            cuota = poblacion / 248.00;
-        return cuota;
+    static calculateQuote(districts){
+        var population = District.calculateTotalPopulation(districts),
+            quote = population / 248.00;
+        return quote;
     }
 
     /**
      *
-     * @param provincia
-     * @param cuota
+     * @param district
+     * @param quote
      * @returns {{entero: number, decimal: number}}
      */
-    static calculateMandates(provincia,cuota){
+    static calculateMandates(district,quote){
         var total = {
-            'entero' : 2,
-            'decimal' : 2.0
+            'integer' : 2,
+            'float' : 2.0
         };
-        if(provincia.cod_provincia > 50 ) {
-            total.entero = 1;
-            total.decimal = 1.0;
+        if(district.cod_provincia > 50 ) {
+            total.integer = 1;
+            total.float = 1.0;
         } else {
-            total.decimal += (provincia.total_votantes / cuota);
-            total.entero += Math.floor(total.decimal);
+            total.float += (provincia.total_votantes / quote);
+            total.integer += Math.floor(total.float);
         }
         return total;
     }
 
     /**
      *
-     * @param provincias
+     * @param districts
      */
-    static fixMandates(provincias){
+    static fixMandates(districts){
         var m = 0,
             i,
             len;
 
-        for(i = 0, len = provincias.length; i < len; i++){
-            m += provincias[i].mandates.entero;
+        for(i = 0, len = districts.length; i < len; i++){
+            m += districts[i].mandates.integer;
         }
 
-        provincias.sort(function(a, b) {
-            return parseFloat(b.mandates.decimal) - parseFloat(a.mandates.decimal);
+        districts.sort(function(a, b) {
+            return parseFloat(b.mandates.float) - parseFloat(a.mandates.float);
         });
 
         var restante = 350 - m;
 
         for(i = 0; i < restante; i++){
-            provincias[i].mandates.entero += 1;
+            districts[i].mandates.integer += 1;
         }
     }
 
 }
-module.exports = Dhondt;
+module.exports = District;

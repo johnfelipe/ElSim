@@ -29,7 +29,7 @@
             <pre class="prettyprint source linenums"><code>'use strict';
 const User   = require('./../models/user'),
     Log = require('./../models/log'),
-    Resultado = require('./../models/resultado'),
+    Resultado = require('./../models/result'),
     _ = require('./modules/util-module'),
     DB = require('./modules/db-manager-module');
 
@@ -65,7 +65,7 @@ exports.setup = function(req, res) {
  * @param req
  * @param res
  */
-exports.userList = function(req, res) {
+exports.findAllUsers = function(req, res) {
     User.find({},function(err,data){
         if(err) throw err;
         res.send({
@@ -79,7 +79,7 @@ exports.userList = function(req, res) {
  * @param req
  * @param res
  */
-exports.userAdd = function(req, res) {
+exports.saveOneUser = function(req, res) {
     res.send({
         result:'Not yet implemented'
     });
@@ -90,7 +90,7 @@ exports.userAdd = function(req, res) {
  * @param req
  * @param res
  */
-exports.userDelete = function(req, res) {
+exports.deleteOneUser = function(req, res) {
     res.send({
         result:'Not yet implemented'
     });
@@ -101,7 +101,7 @@ exports.userDelete = function(req, res) {
  * @param req
  * @param res
  */
-exports.userUpdate = function(req, res) {
+exports.updateOneUser = function(req, res) {
     res.send({
         result:'Not yet implemented'
     });
@@ -133,7 +133,7 @@ exports.apiWelcome = function(req, res) {
  * @param req
  * @param res
  */
-exports.getResultados = function(req, res) {
+exports.findAllResultados = function(req, res) {
     Resultado.find({},function(err,data){
         if(err) throw err;
         res.send({
@@ -147,7 +147,7 @@ exports.getResultados = function(req, res) {
  * @param req
  * @param res
  */
-exports.addResultado = function(req,res) {
+exports.saveOneResultado = function(req, res) {
     res.send({
         result: 'Not yet implemented'
     });
@@ -158,7 +158,7 @@ exports.addResultado = function(req,res) {
  * @param req
  * @param res
  */
-exports.updateResultadoById = function(req,res) {
+exports.updateOneResultado = function(req, res) {
     res.send({
         result: 'Not yet implemented'
     });
@@ -169,7 +169,7 @@ exports.updateResultadoById = function(req,res) {
  * @param req
  * @param res
  */
-exports.deleteResultadoById = function(req,res) {
+exports.deleteOneResultado = function(req, res) {
     res.send({
         result: 'Not yet implemented'
     });
@@ -180,8 +180,8 @@ exports.deleteResultadoById = function(req,res) {
  * @param req
  * @param res
  */
-exports.cleanResultado = function(req,res){
-    DB.cleanResultado(function(){
+exports.deleteAllResultados = function(req, res){
+    DB.deleteAllResultados(function(){
         res.send({result:'Resultado cleaned'});
     });
 };
@@ -191,8 +191,8 @@ exports.cleanResultado = function(req,res){
  * @param req
  * @param res
  */
-exports.getResultadoByAnio = function(req,res){
-    DB.getResultadoByAnio(req.param('anio'),function(data){
+exports.findManyResultadosByAnio = function(req, res){
+    DB.findManyResultadosByAnio(req.param('anio'),function(data){
         res.send({result:data});
     });
 };
@@ -202,8 +202,8 @@ exports.getResultadoByAnio = function(req,res){
  * @param req
  * @param res
  */
-exports.getResultadoByProvincia = function(req,res){
-    DB.getResultadoByProvincia(req.param('cod_provincia'),function(data){
+exports.findManyResultadosByProvincia = function(req, res){
+    DB.findManyResultadosByProvincia(req.param('cod_provincia'),function(data){
         res.send({result:data});
     });
 };
@@ -212,8 +212,8 @@ exports.getResultadoByProvincia = function(req,res){
  * @param req
  * @param res
  */
-exports.getResultadoById = function(req,res){
-    DB.getResultadoById(req.param('id'),function(data){
+exports.findOneResultado = function(req, res){
+    DB.findOneResultado(req.param('id'),function(data){
         res.send({result:data});
     });
 };
@@ -235,7 +235,7 @@ exports.loadCsv = function(req,res){
  * @param req
  * @param res
  */
-exports.logsList = function(req,res){
+exports.findLogs = function(req, res){
     Log.find({},function(err,data){
         if(err) throw err;
         res.send({
@@ -249,8 +249,8 @@ exports.logsList = function(req,res){
  * @param req
  * @param res
  */
-exports.cleanLog = function(req,res){
-    DB.cleanLog(function(){
+exports.deleteAllLogs = function(req, res){
+    DB.deleteAllLogs(function(){
         res.send({result:'Log cleaned'});
     });
 };</code></pre>
@@ -263,13 +263,13 @@ exports.cleanLog = function(req,res){
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DbManager.html">DbManager</a></li><li><a href="Dhondt.html">Dhondt</a></li><li><a href="SistemaElectoral.html">SistemaElectoral</a></li><li><a href="UtilsObject.html">UtilsObject</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addResultado">addResultado</a></li><li><a href="global.html#apiRoutes">apiRoutes</a></li><li><a href="global.html#apiWelcome">apiWelcome</a></li><li><a href="global.html#check">check</a></li><li><a href="global.html#cleanLog">cleanLog</a></li><li><a href="global.html#cleanResultado">cleanResultado</a></li><li><a href="global.html#deleteResultadoById">deleteResultadoById</a></li><li><a href="global.html#getResultadoByAnio">getResultadoByAnio</a></li><li><a href="global.html#getResultadoById">getResultadoById</a></li><li><a href="global.html#getResultadoByProvincia">getResultadoByProvincia</a></li><li><a href="global.html#getResultados">getResultados</a></li><li><a href="global.html#loadCsv">loadCsv</a></li><li><a href="global.html#logsList">logsList</a></li><li><a href="global.html#resultSchema">resultSchema</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#updateResultadoById">updateResultadoById</a></li><li><a href="global.html#userAdd">userAdd</a></li><li><a href="global.html#userDelete">userDelete</a></li><li><a href="global.html#userList">userList</a></li><li><a href="global.html#userUpdate">userUpdate</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DbManager.html">DbManager</a></li><li><a href="District.html">District</a></li><li><a href="ElectoralSystem.html">ElectoralSystem</a></li><li><a href="Util.html">Util</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apiRoutes">apiRoutes</a></li><li><a href="global.html#apiWelcome">apiWelcome</a></li><li><a href="global.html#check">check</a></li><li><a href="global.html#deleteAllLogs">deleteAllLogs</a></li><li><a href="global.html#deleteAllResultados">deleteAllResultados</a></li><li><a href="global.html#deleteOneResultado">deleteOneResultado</a></li><li><a href="global.html#deleteOneUser">deleteOneUser</a></li><li><a href="global.html#findAllResultados">findAllResultados</a></li><li><a href="global.html#findAllUsers">findAllUsers</a></li><li><a href="global.html#findLogs">findLogs</a></li><li><a href="global.html#findManyResultadosByAnio">findManyResultadosByAnio</a></li><li><a href="global.html#findManyResultadosByProvincia">findManyResultadosByProvincia</a></li><li><a href="global.html#findOneResultado">findOneResultado</a></li><li><a href="global.html#loadCsv">loadCsv</a></li><li><a href="global.html#resultSchema">resultSchema</a></li><li><a href="global.html#saveOneResultado">saveOneResultado</a></li><li><a href="global.html#saveOneUser">saveOneUser</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#updateOneResultado">updateOneResultado</a></li><li><a href="global.html#updateOneUser">updateOneUser</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Fri Oct 28 2016 11:14:22 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Fri Oct 28 2016 11:36:44 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>

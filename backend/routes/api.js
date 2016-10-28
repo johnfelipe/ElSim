@@ -1,7 +1,7 @@
 'use strict';
 const User   = require('./../models/user'),
     Log = require('./../models/log'),
-    Resultado = require('./../models/resultado'),
+    Resultado = require('./../models/result'),
     _ = require('./modules/util-module'),
     DB = require('./modules/db-manager-module');
 
@@ -37,7 +37,7 @@ exports.setup = function(req, res) {
  * @param req
  * @param res
  */
-exports.userList = function(req, res) {
+exports.findAllUsers = function(req, res) {
     User.find({},function(err,data){
         if(err) throw err;
         res.send({
@@ -51,7 +51,7 @@ exports.userList = function(req, res) {
  * @param req
  * @param res
  */
-exports.userAdd = function(req, res) {
+exports.saveOneUser = function(req, res) {
     res.send({
         result:'Not yet implemented'
     });
@@ -62,7 +62,7 @@ exports.userAdd = function(req, res) {
  * @param req
  * @param res
  */
-exports.userDelete = function(req, res) {
+exports.deleteOneUser = function(req, res) {
     res.send({
         result:'Not yet implemented'
     });
@@ -73,7 +73,7 @@ exports.userDelete = function(req, res) {
  * @param req
  * @param res
  */
-exports.userUpdate = function(req, res) {
+exports.updateOneUser = function(req, res) {
     res.send({
         result:'Not yet implemented'
     });
@@ -105,7 +105,7 @@ exports.apiWelcome = function(req, res) {
  * @param req
  * @param res
  */
-exports.getResultados = function(req, res) {
+exports.findAllResultados = function(req, res) {
     Resultado.find({},function(err,data){
         if(err) throw err;
         res.send({
@@ -119,7 +119,7 @@ exports.getResultados = function(req, res) {
  * @param req
  * @param res
  */
-exports.addResultado = function(req,res) {
+exports.saveOneResultado = function(req, res) {
     res.send({
         result: 'Not yet implemented'
     });
@@ -130,7 +130,7 @@ exports.addResultado = function(req,res) {
  * @param req
  * @param res
  */
-exports.updateResultadoById = function(req,res) {
+exports.updateOneResultado = function(req, res) {
     res.send({
         result: 'Not yet implemented'
     });
@@ -141,7 +141,7 @@ exports.updateResultadoById = function(req,res) {
  * @param req
  * @param res
  */
-exports.deleteResultadoById = function(req,res) {
+exports.deleteOneResultado = function(req, res) {
     res.send({
         result: 'Not yet implemented'
     });
@@ -152,8 +152,8 @@ exports.deleteResultadoById = function(req,res) {
  * @param req
  * @param res
  */
-exports.cleanResultado = function(req,res){
-    DB.cleanResultado(function(){
+exports.deleteAllResultados = function(req, res){
+    DB.deleteAllResultados(function(){
         res.send({result:'Resultado cleaned'});
     });
 };
@@ -163,8 +163,8 @@ exports.cleanResultado = function(req,res){
  * @param req
  * @param res
  */
-exports.getResultadoByAnio = function(req,res){
-    DB.getResultadoByAnio(req.param('anio'),function(data){
+exports.findManyResultadosByAnio = function(req, res){
+    DB.findManyResultadosByAnio(req.param('anio'),function(data){
         res.send({result:data});
     });
 };
@@ -174,8 +174,8 @@ exports.getResultadoByAnio = function(req,res){
  * @param req
  * @param res
  */
-exports.getResultadoByProvincia = function(req,res){
-    DB.getResultadoByProvincia(req.param('cod_provincia'),function(data){
+exports.findManyResultadosByProvincia = function(req, res){
+    DB.findManyResultadosByProvincia(req.param('cod_provincia'),function(data){
         res.send({result:data});
     });
 };
@@ -184,8 +184,8 @@ exports.getResultadoByProvincia = function(req,res){
  * @param req
  * @param res
  */
-exports.getResultadoById = function(req,res){
-    DB.getResultadoById(req.param('id'),function(data){
+exports.findOneResultado = function(req, res){
+    DB.findOneResultado(req.param('id'),function(data){
         res.send({result:data});
     });
 };
@@ -207,7 +207,7 @@ exports.loadCsv = function(req,res){
  * @param req
  * @param res
  */
-exports.logsList = function(req,res){
+exports.findLogs = function(req, res){
     Log.find({},function(err,data){
         if(err) throw err;
         res.send({
@@ -221,8 +221,8 @@ exports.logsList = function(req,res){
  * @param req
  * @param res
  */
-exports.cleanLog = function(req,res){
-    DB.cleanLog(function(){
+exports.deleteAllLogs = function(req, res){
+    DB.deleteAllLogs(function(){
         res.send({result:'Log cleaned'});
     });
 };

@@ -3,7 +3,7 @@
 /**
  * Clase general para gestionar simulaciones electorales al congreso.
  */
-class SistemaElectoral{
+class ElectoralSystem{
     constructor(){
         this.numero_de_diputados = 350;
         this.circunscripciones = [];
@@ -12,4 +12,4 @@ class SistemaElectoral{
 
 
 }
-module.exports = SistemaElectoral;
+module.exports = ElectoralSystem;

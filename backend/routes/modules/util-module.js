@@ -2,10 +2,10 @@
 const fs = require('fs');
 /**
  * Módulo de utilidades usado por otros módulos.
- * @returns {UtilsObject}
+ * @returns {Util}
  * @constructor
  */
-class UtilsObject{
+class Util{
     constructor(){
 
     }
@@ -80,4 +80,4 @@ class UtilsObject{
         }
     }
 }
-module.exports = UtilsObject;
+module.exports = Util;
