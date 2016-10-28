@@ -7,7 +7,7 @@ const app = require('./../app'),
 /**
  * Test del modelo User
  */
-describe('D´Hondt', function() {
+describe('District', function() {
     describe('#compute()', function() {
         it('Basic usage', function(done) {
             var d = new dhont();

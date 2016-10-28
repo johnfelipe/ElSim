@@ -11,7 +11,7 @@ const Graphic = require('./graphic-module'),
 class BarChart extends Graphic{
 
     constructor(){
-
+        super();
     }
 
     setSizes(w,h,m){

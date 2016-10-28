@@ -10,7 +10,7 @@ const Graphic = require('./graphic-module'),
  */
 class JsonGraph extends Graphic{
     constructor(){
-
+super();
     }
     /**
      * Genera un mapa/gráfica a partir de un fichero tipo JSON

@@ -49,8 +49,6 @@ app.use(bodyParser.json());
  * Use morgan to log requests to the console
  */
 app.use(logger('dev'));
-app.get('/setup', api.setup);
-app.get('/', api.apiWelcome);
 
 /**
  * Rutas que requieren estar autenticado
@@ -95,7 +93,7 @@ var authenticate = function (req, res) {
                 };
             } else {
                 var token = jwt.sign(user, app.get('superSecret'), {
-                    expiresIn: 86400 // expires in 24 hours
+                    expiresIn: 3600 // expires in 1 hours
                 });
                 object = {
                     success: true,
@@ -117,6 +115,7 @@ apiRoutes.use(isAuthenticated);
 /**
  * GET routes
  */
+app.get('/setup', api.setup);
 apiRoutes.get('/', api.apiWelcome);
 apiRoutes.get('/users', api.findAllUsers);
 apiRoutes.get('/check', api.check);

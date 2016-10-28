@@ -10,7 +10,7 @@ const Graphic = require('./graphic-module'),
  */
 class Pie extends Graphic{
     constructor(){
-
+        super();
     }
 
     setSizes(w,h,r){
@@ -21,11 +21,10 @@ class Pie extends Graphic{
     /**
      * Genera una gráfica de tipo tarta a partir de un fichero tipo csv
      */
-    pieChartExample(){
-        const csvString = fs.readFileSync('./routes/graphics/graphic_examples/piechart.csv', 'UTF-8').toString();
-
+    pieChartExample(path){
+        if(!path) path = './routes/graphics/graphic_examples/piechart.csv';
+        const csvString = fs.readFileSync(path ,'UTF-8').toString();
         this.setMarkup('Pie Chart');
-
         this.setStyles(
             '.arc text {font: 10px sans-serif;text-anchor: middle;}' +
             ' .arc path {stroke: #fff;}'
