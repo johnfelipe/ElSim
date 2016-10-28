@@ -2,10 +2,10 @@
 const app = require('./../app'),
     expect = require('chai').expect,
     http = require('http'),
-    Sistema = require('./../routes/modules/system_module');
+    Sistema = require('./../routes/modules/sistema-module');
 
 /**
- * Test del modelo Resultado
+ * Test de la clase Sistema
  */
 describe('Sistema',function() {
     describe('#constructor()', function() {

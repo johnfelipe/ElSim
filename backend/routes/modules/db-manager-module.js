@@ -2,7 +2,7 @@
 const Log = require('./../../models/log'),
     Resultado = require('./../../models/resultado'),
     User = require('./../../models/user'),
-    _ = require('./utils_module');
+    _ = require('./util-module');
 
 /**
  * Módulo para MongoDB con métodos auxiliares.

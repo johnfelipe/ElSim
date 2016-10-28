@@ -5,9 +5,9 @@
 'use strict';
 var express = require('express');
 var router = express.Router();
-var _ = require('./modules/utils_module');
+var _ = require('./modules/util-module');
 var Log = require('./../models/log');
-var DB = require('./modules/dbmanager_module');
+var DB = require('./modules/db-manager-module');
 /**
  * Welcome route.
  */

@@ -2,7 +2,7 @@
 var User   = require('./../models/user'),
     Log = require('./../models/log'),
     Resultado = require('./../models/resultado'),
-    _ = require('./modules/utils_module'),
+    _ = require('./modules/util-module'),
     DB = require('./modules/dbmanager_module');
 
 /**

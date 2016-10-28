@@ -1,4 +1,4 @@
-var Graphic = require('./graphic_module');
+var Graphic = require('./graphic-module');
 const fs = require('fs');
 const d3 = require('d3');
 

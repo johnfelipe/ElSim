@@ -1,7 +1,7 @@
 'use strict';
 const app = require('./../app'),
       http = require('http'),
-      dhont = require('./../routes/modules/dhondt_module'),
+      dhont = require('./../routes/modules/dhondt-module'),
       expect = require('chai').expect;
 
 /**
