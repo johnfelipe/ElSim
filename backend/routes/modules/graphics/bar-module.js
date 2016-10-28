@@ -1,6 +1,6 @@
-var Graphic = require('./graphic-module');
-const fs = require('fs');
-const d3 = require('d3');
+const Graphic = require('./graphic-module'),
+    fs = require('fs'),
+    d3 = require('d3');
 
 /**
  * Clase que hereda de Graphic, usada para trabajar con gráficas
@@ -22,7 +22,7 @@ class BarChart extends Graphic{
      * Genera una gráfica de tipo barras a partir de un fichero tsv
      */
     barChartExample(){
-        const tsvString = fs.readFileSync('./routes/graphics/graphic_examples/barchart.tsv').toString();
+        var tsvString = fs.readFileSync('./routes/graphics/graphic_examples/barchart.tsv').toString();
 
         this.setStyles(
             '.bar{fill: steelblue;} .bar:hover{fill: brown;} ' +

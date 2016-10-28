@@ -1,6 +1,6 @@
-var Graphic = require('./graphic-module');
-const topojson = require('topojson');
-const d3 = require('d3');
+const Graphic = require('./graphic-module'),
+    topojson = require('topojson'),
+    d3 = require('d3');
 
 /**
  * Clase que hereda de Graphic, usada para trabajar con gráficas
@@ -16,8 +16,7 @@ class JsonGraph extends Graphic{
      * Genera un mapa/gráfica a partir de un fichero tipo JSON
      */
     jsonExample (){
-
-        const us = require('./graphic_examples/us-states.json'); // source: https://github.com/bradoyler/atlas-make/tree/master/us-states
+        var us = require('./graphic_examples/us-states.json');
         this.setD3Node({
             svgStyles:'.mesh{fill: none;stroke: #333;stroke-width: .5px;stroke-linejoin: round;}'
         });

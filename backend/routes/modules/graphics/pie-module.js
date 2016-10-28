@@ -1,6 +1,6 @@
-var Graphic = require('./graphic-module');
-const fs = require('fs');
-const d3 = require('d3');
+const Graphic = require('./graphic-module'),
+    fs = require('fs'),
+    d3 = require('d3');
 
 /**
  * Clase que hereda de Graphic, usada para trabajar con gráficas
