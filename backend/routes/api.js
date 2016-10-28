@@ -1,9 +1,9 @@
 'use strict';
-var User   = require('./../models/user'),
+const User   = require('./../models/user'),
     Log = require('./../models/log'),
     Resultado = require('./../models/resultado'),
     _ = require('./modules/util-module'),
-    DB = require('./modules/dbmanager_module');
+    DB = require('./modules/db-manager-module');
 
 /**
  * Elimina todos los usuarios. Añade el usuario demo. Vacía los logs.
