@@ -19,14 +19,14 @@ class District {
 
     /**
      *
-     * @param provincias
+     * @param districts
      * @returns {number}
      */
-    static calculateTotalPopulation(provincias){
+    static calculateTotalPopulation(districts){
+        if(!Array.isArray(districts)) throw new Error('Use an array instead.');
         var total = 0;
-
-        for(var i = 0, len = provincias.length; i < len; i++){
-            total += provincias[i].poblacion;
+        for(var i = 0, len = districts.length; i < len; i++){
+            total += districts[i].poblacion;
         }
         return total;
     }
@@ -37,6 +37,7 @@ class District {
      * @returns {number}
      */
     static calculateQuote(districts){
+        if(!Array.isArray(districts)) throw new Error('Use an array instead.');
         var population = District.calculateTotalPopulation(districts),
             quote = population / 248.00;
         return quote;
@@ -46,18 +47,19 @@ class District {
      *
      * @param district
      * @param quote
-     * @returns {{entero: number, decimal: number}}
+     * @returns {{integer: number, float: number}}
      */
     static calculateMandates(district,quote){
         var total = {
             'integer' : 2,
             'float' : 2.0
         };
+
         if(district.cod_provincia > 50 ) {
             total.integer = 1;
             total.float = 1.0;
         } else {
-            total.float += (provincia.total_votantes / quote);
+            total.float += (district.total_votantes / quote);
             total.integer += Math.floor(total.float);
         }
         return total;
@@ -68,9 +70,8 @@ class District {
      * @param districts
      */
     static fixMandates(districts){
-        var m = 0,
-            i,
-            len;
+        if(!Array.isArray(districts)) throw new Error('Use an array instead.');
+        var m = 0, i, len, restante;
 
         for(i = 0, len = districts.length; i < len; i++){
             m += districts[i].mandates.integer;
@@ -80,10 +81,10 @@ class District {
             return parseFloat(b.mandates.float) - parseFloat(a.mandates.float);
         });
 
-        var restante = 350 - m;
+        restante = 350 - m;
 
         for(i = 0; i < restante; i++){
-            districts[i].mandates.integer += 1;
+            districts[i].mandates.integer++;
         }
     }
 

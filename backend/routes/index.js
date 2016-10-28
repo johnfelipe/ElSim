@@ -3,11 +3,10 @@
  */
 
 'use strict';
-var express = require('express');
-var router = express.Router();
-var _ = require('./modules/util-module');
-var Log = require('./../models/log');
-var DB = require('./modules/db-manager-module');
+const express = require('express'),
+    router = express.Router(),
+    Log = require('./../models/log'),
+    DB = require('./modules/db-manager-module');
 /**
  * Welcome route.
  */

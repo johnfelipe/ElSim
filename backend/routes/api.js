@@ -2,7 +2,6 @@
 const User   = require('./../models/user'),
     Log = require('./../models/log'),
     Resultado = require('./../models/result'),
-    _ = require('./modules/util-module'),
     DB = require('./modules/db-manager-module');
 
 /**
@@ -24,10 +23,11 @@ exports.setup = function(req, res) {
         });
         nick.save(function(err) {
             if (err) throw err;
-            _.prettyPrint('Users cleaned, added user demo.');
             Log.find({}).remove(function(){
-                _.prettyPrint('Logs cleaned.');
-                res.json({ success: true });
+                res.json({
+                    result: 'OK',
+                    success: true
+                });
             });
         });
     }
@@ -52,9 +52,7 @@ exports.findAllUsers = function(req, res) {
  * @param res
  */
 exports.saveOneUser = function(req, res) {
-    res.send({
-        result:'Not yet implemented'
-    });
+    throw new Error('Not yet implemented');
 };
 
 /**
@@ -63,9 +61,7 @@ exports.saveOneUser = function(req, res) {
  * @param res
  */
 exports.deleteOneUser = function(req, res) {
-    res.send({
-        result:'Not yet implemented'
-    });
+    throw new Error('Not yet implemented');
 };
 
 /**
@@ -74,9 +70,7 @@ exports.deleteOneUser = function(req, res) {
  * @param res
  */
 exports.updateOneUser = function(req, res) {
-    res.send({
-        result:'Not yet implemented'
-    });
+    throw new Error('Not yet implemented');
 };
 
 /**
@@ -120,9 +114,7 @@ exports.findAllResultados = function(req, res) {
  * @param res
  */
 exports.saveOneResultado = function(req, res) {
-    res.send({
-        result: 'Not yet implemented'
-    });
+    throw new Error('Not yet implemented');
 };
 
 /**
@@ -131,9 +123,7 @@ exports.saveOneResultado = function(req, res) {
  * @param res
  */
 exports.updateOneResultado = function(req, res) {
-    res.send({
-        result: 'Not yet implemented'
-    });
+    throw new Error('Not yet implemented');
 };
 
 /**
@@ -142,9 +132,7 @@ exports.updateOneResultado = function(req, res) {
  * @param res
  */
 exports.deleteOneResultado = function(req, res) {
-    res.send({
-        result: 'Not yet implemented'
-    });
+    throw new Error('Not yet implemented');
 };
 
 /**
@@ -154,7 +142,7 @@ exports.deleteOneResultado = function(req, res) {
  */
 exports.deleteAllResultados = function(req, res){
     DB.deleteAllResultados(function(){
-        res.send({result:'Resultado cleaned'});
+        res.send({result:'OK'});
     });
 };
 
@@ -198,7 +186,7 @@ exports.findOneResultado = function(req, res){
  */
 exports.loadCsv = function(req,res){
     DB.loadCsv(function(){
-        res.send({result:'Executed'});
+        res.send({result:'OK'});
     });
 };
 
@@ -223,6 +211,6 @@ exports.findLogs = function(req, res){
  */
 exports.deleteAllLogs = function(req, res){
     DB.deleteAllLogs(function(){
-        res.send({result:'Log cleaned'});
+        res.send({result:'OK'});
     });
 };

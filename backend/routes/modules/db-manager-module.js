@@ -37,7 +37,7 @@ class DbManager{
         }
 
         function saveResultadoCallback(){
-            _.prettyPrint('Resultado guardado.');
+            // do something
         }
         done();
     }
@@ -52,7 +52,7 @@ class DbManager{
             date: new Date()
         });
         l.save(function(err){
-            if(err) _.prettyPrint(err);
+            if(err) throw err;
             done();
         });
     }
@@ -81,7 +81,7 @@ class DbManager{
     static saveUser(user, done){
         var u = new User(user);
         u.save(function(err){
-            if(err) _.prettyPrint(err);
+            if(err) throw err;
             done();
         });
     }
@@ -93,7 +93,7 @@ class DbManager{
      */
     static getResultadoByAnio(anio,done){
         Resultado.find({anio:anio},function(err,data){
-            if(err) _.prettyPrint(err);
+            if(err) throw err;
             done(data);
         });
     }
@@ -104,7 +104,7 @@ class DbManager{
      */
     static getResultadoByProvincia(cod,done){
         Resultado.find({cod_provincia:cod},function(err,data){
-            if(err) _.prettyPrint(err);
+            if(err) throw err;
             done(data);
         });
     }
@@ -116,7 +116,7 @@ class DbManager{
      */
     static getResultadoById(id,done){
         Resultado.find({id:id},function(err,data){
-            if(err) _.prettyPrint(err);
+            if(err) throw err;
             done(data);
         });
     }
@@ -134,8 +134,7 @@ class DbManager{
             autor: 'sistema'
         };
         r.save(function(err){
-            if(err) _.prettyPrint(err);
-
+            if(err) throw err;
             done();
         });
     }
