@@ -20,5 +20,11 @@ var resultSchema =  new Schema({
     eleccion: { type: Object, required: true},
     partidos: { type: Object, required: true }
 });
-resultSchema.index({ cod_provincia: 1, eleccion: 1 }, { unique: true });
+resultSchema.index({
+        cod_provincia: 1,
+        eleccion: 1
+    },{
+        unique: true
+    }
+);
 module.exports = mongoose.model('Resultado',resultSchema);

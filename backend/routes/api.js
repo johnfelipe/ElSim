@@ -2,7 +2,7 @@
 const User   = require('./../models/user'),
     Log = require('./../models/log'),
     Resultado = require('./../models/result'),
-    DB = require('./modules/db-manager-module');
+    DB = require('./../modules/db-manager-module');
 
 /**
  * Elimina todos los usuarios. Añade el usuario demo. Vacía los logs.
