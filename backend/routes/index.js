@@ -6,7 +6,7 @@
 const express = require('express'),
     router = express.Router(),
     Log = require('./../models/log'),
-    BarChart = require('./../modules/graphics/bar-module');
+    Graphic = require('./../modules/graphics/graphic-module');
 /**
  * Welcome route.
  */
@@ -25,11 +25,13 @@ router.get('/leaflet-example', function(req,res){
         title : 'LeafletJS example'
     });
 });
-router.get('/bar-chart-example', function(req,res){
-    var bc = new BarChart();
-    bc.barChartExample();
-    console.dir(bc);
-    res.send(bc.svg.svg.parentNode);
+router.get('/chart-example', function(req,res){
+    var c = new Graphic();
+    c.generateExample(function (data) {
+        console.log(data);
+        res.send(data);
+    });
+
 });
 
 module.exports = router;
