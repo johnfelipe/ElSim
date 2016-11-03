@@ -22,18 +22,47 @@ class Graphic{
     generateExample(callback){
         this.options = {
             chart: {
-                width: 300,
-                height: 300,
-                defaultSeriesType: 'bar'
-            },
-            legend: {
-                enabled: false
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,
+                plotShadow: false,
+                height: 1024,
+                width: 1024
             },
             title: {
-                text: 'Highcharts rendered by Node!'
+                text: 'Resultados<br>Electorales<br>2015',
+                align: 'center',
+                verticalAlign: 'middle',
+                y: 40
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: true,
+                        distance: -50,
+                        style: {
+                            fontWeight: 'bold',
+                            color: 'white'
+                        }
+                    },
+                    startAngle: -90,
+                    endAngle: 90,
+                    center: ['50%', '75%']
+                }
             },
             series: [{
-                data: [ 1, 2, 3, 4, 5, 6 ]
+                type: 'pie',
+                name: 'Resultados electorales',
+                innerSize: '50%',
+                data: [
+                    ['PP',   45.00],
+                    ['PODEMOS',       30.00],
+                    ['PSOE', 15.00],
+                    ['CIUDADANOS',    5.00],
+                    ['OTROS',     5.00]
+                ]
             }]
         };
         this.rendChart(function(data){

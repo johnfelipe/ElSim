@@ -25,11 +25,17 @@ router.get('/leaflet-example', function(req,res){
         title : 'LeafletJS example'
     });
 });
-router.get('/chart-example', function(req,res){
+router.get('/chart-example/:html', function(req,res){
     var c = new Graphic();
     c.generateExample(function (data) {
-        console.log(data);
-        res.send(data);
+        if(req.param('html') === '1'){
+            res.render('graphic',{
+                title: 'HTML Rendering',
+                options: c.options
+            });
+        }else {
+            throw new Error('Not yet implemented!');
+        }
     });
 
 });
