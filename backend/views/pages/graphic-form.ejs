@@ -4,7 +4,7 @@
 <% include ../partials/menu %>
 <body background="images/construction.jpg">
 
-<div class="container-fluid">
+<div class="container">
 
     <div class="row">
 
@@ -22,7 +22,11 @@
                             </label>
                             <select name="resultSelected">
                                 <% for(var i = 0, len = results.length; i < len; i++){ %>
-                                <option value="<%= results[i]._id %>"><%= results[i].eleccion.fecha %>, <%= results[i].eleccion.autor %></option>
+                                <option value="<%= results[i]._id %>">
+                                    date: <%= results[i].eleccion.fecha.slice(4,6) %>/<%= results[i].eleccion.fecha.slice(0,4) %>,
+                                    author: <%= results[i].eleccion.autor %>,
+                                    district: <%= results[i].provincia %>
+                                </option>
                                 <% } %>
                             </select>
                         </div>

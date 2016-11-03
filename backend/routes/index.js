@@ -52,6 +52,7 @@ router.post('/graphic-form', function(req,res){
                 mandates: 0
             })
         });
+
         d.mandates = 350;
         d.votes = votes;
         d.compute();
@@ -61,7 +62,11 @@ router.post('/graphic-form', function(req,res){
         c.setOptions(resultados,function(){
             res.render('pages/graphic',{
                 title: 'Graphic Example',
-                options: c.options
+                autor: data[0].eleccion.autor,
+                fecha: data[0].eleccion.fecha,
+                provincia: data[0].cod_provincia,
+                options: c.options,
+                options2: c.options2
             });
         })
     });

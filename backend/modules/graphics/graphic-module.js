@@ -9,6 +9,7 @@ const highcharts = require('node-highcharts');
 class Graphic{
     constructor(){
         this.options = {};
+        this.options2 = {};
     }
     rendChart(callback){
         highcharts.render(this.options, function(err, data) {
@@ -22,24 +23,29 @@ class Graphic{
     setOptions(result,callback){
         var resultsArray = [];
         var temp = [];
+        var categories = [];
+        var mandates = [];
         for(var i = 0, len = result.length; i < len; i++){
-            temp = [result[i].partido, result[i].mandates];
-            resultsArray.push(temp);
+            if(result[i].mandates > 0) {
+                temp = [result[i].partido, result[i].mandates];
+                resultsArray.push(temp);
+                categories.push(result[i].partido);
+                mandates.push(result[i].mandates);
+            }
         }
         this.options = {
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: 0,
-                plotShadow: false,
-                backgroundColor:'rgba(255, 255, 255, 0.1)',
-                height: 1024,
-                width: 1024
+                plotShadow: true,
+                height: 420,
+                width: 420
             },
             title: {
                 text: 'Resultados<br>Electorales<br>2015',
                 align: 'center',
                 verticalAlign: 'middle',
-                y: 40
+                y: 10
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -64,6 +70,65 @@ class Graphic{
                 name: 'Resultados electorales',
                 innerSize: '50%',
                 data: resultsArray
+            }]
+        };
+        this.options2 = {
+            chart: {
+                type: 'bar',
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,
+                plotShadow: true,
+                height: 420,
+                width: 420
+            },
+            title: {
+                text: 'Mandates by parties'
+            },
+            subtitle: {
+                text: 'Source: <a href="http://www.infoelectoral.mir.es/min/">http://www.infoelectoral.mir.es/min/</a>'
+            },
+            xAxis: {
+                categories: categories,
+                    title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                    title: {
+                    text: 'Mandates',
+                        align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: ' millions'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: -40,
+                    y: 80,
+                    floating: true,
+                    borderWidth: 1,
+                    shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Resultado electoral',
+                data: mandates
             }]
         };
         callback();
