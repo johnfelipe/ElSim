@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" />
-</head>
+<% include ../partials/head %>
+<% include ../partials/menu %>
 <body background="images/construction.jpg">
 <div class="container-fluid">
     <div class="row">
@@ -63,29 +60,17 @@
                     Status
                 </a>
                 <a class="list-group-item list-group-item-action">
-                    <code>Under construction&hellip; </code> 15%<br>
-                    <progress class="progress" value="8" max="100" aria-describedby="example-caption-5">8%</progress>
+                    <code>Under construction&hellip; </code> 25%<br>
+                    <progress class="progress" value="25" max="100" aria-describedby="example-caption-5">25%</progress>
                 </a>
             </div>
             <hr>
-            <div class="list-group">
-                <a class="list-group-item active">
-                    Logs
-                </a>
-                <a class="list-group-item list-group-item-action">
-                    <% for(var i=0; i<logs.length; i++) { %>
-                    <code><%= logs[i].message %>, <%= moment(logs[i].date).format('HH:mm, DD/MM/YYYY') %></code> <hr>
-                    <% } %>
-                </a>
-            </div>
 
         </div>
     </div>
 
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" ></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>

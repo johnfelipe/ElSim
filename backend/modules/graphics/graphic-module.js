@@ -31,6 +31,7 @@ class Graphic{
                 plotBackgroundColor: null,
                 plotBorderWidth: 0,
                 plotShadow: false,
+                backgroundColor:'rgba(255, 255, 255, 0.1)',
                 height: 1024,
                 width: 1024
             },

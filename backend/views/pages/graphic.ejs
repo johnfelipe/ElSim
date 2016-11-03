@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<% include ../partials/head %>
+<% include ../partials/menu %>
+
+<body background="images/construction.jpg">
+<div class="container-fluid">
+    <div class="row">
+
+        <div id="container"> </div>
+    </div>
+</div>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script type="text/javascript">
+    jQuery.noConflict();
+    var options = <%- JSON.stringify(options) %>;
+    (function($){ // encapsulate jQuery
+        $(function () {
+            $('#container').highcharts(options);
+        });
+    })(jQuery);
+</script>
+</body>
+</html>
