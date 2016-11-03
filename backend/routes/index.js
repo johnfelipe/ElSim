@@ -5,7 +5,8 @@
 'use strict';
 const express = require('express'),
     router = express.Router(),
-    Log = require('./../models/log');
+    Log = require('./../models/log'),
+    BarChart = require('./../modules/graphics/bar-module');
 /**
  * Welcome route.
  */
@@ -19,6 +20,16 @@ router.get('/', function(req,res){
         });
     });
 });
-
+router.get('/leaflet-example', function(req,res){
+    res.render('leaflet-example', {
+        title : 'LeafletJS example'
+    });
+});
+router.get('/bar-chart-example', function(req,res){
+    var bc = new BarChart();
+    bc.barChartExample();
+    console.dir(bc);
+    res.send(bc.svg.svg.parentNode);
+});
 
 module.exports = router;
