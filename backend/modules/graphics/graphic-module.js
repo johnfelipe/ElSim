@@ -19,6 +19,54 @@ class Graphic{
             }
         });
     }
+    setOptions(result,callback){
+        var resultsArray = [];
+        var temp = [];
+        for(var i = 0, len = result.length; i < len; i++){
+            temp = [result[i].partido, result[i].mandates];
+            resultsArray.push(temp);
+        }
+        this.options = {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,
+                plotShadow: false,
+                height: 1024,
+                width: 1024
+            },
+            title: {
+                text: 'Resultados<br>Electorales<br>2015',
+                align: 'center',
+                verticalAlign: 'middle',
+                y: 40
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: true,
+                        distance: -50,
+                        style: {
+                            fontWeight: 'bold',
+                            color: 'white'
+                        }
+                    },
+                    startAngle: -90,
+                    endAngle: 90,
+                    center: ['50%', '75%']
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Resultados electorales',
+                innerSize: '50%',
+                data: resultsArray
+            }]
+        };
+        callback();
+    }
     generateExample(callback){
         this.options = {
             chart: {

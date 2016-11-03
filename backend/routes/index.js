@@ -25,17 +25,43 @@ router.get('/leaflet-example', function(req,res){
         title : 'LeafletJS example'
     });
 });
+
+router.get('/graphic-form', function(req,res){
+    res.render('graphic-form', {
+        title : 'Create a graphic!'
+    });
+});
+
+
 router.get('/chart-example/:html', function(req,res){
     var c = new Graphic();
-    c.generateExample(function (data) {
-        if(req.param('html') === '1'){
+    var District = require('./../modules/district-module');
+    var Result = require('./../models/result');
+    Result.find({},function(err,data){
+        var d = new District(),
+            votes = [],
+            resultados = [];
+
+        Object.keys(data[0].partidos).forEach(function (key) {
+            votes.push(data[0].partidos[key]);
+            resultados.push({
+                partido: key,
+                votes: data[0].partidos[key],
+                mandates: 0
+            })
+        });
+        d.mandates = 350;
+        d.votes = votes;
+        d.compute();
+        for(var i = 0, len = d.results.length; i < len; i++){
+            resultados[i].mandates = d.results[i];
+        }
+        c.setOptions(resultados,function(){
             res.render('graphic',{
-                title: 'HTML Rendering',
+                title: 'Graphic Example',
                 options: c.options
             });
-        }else {
-            throw new Error('Not yet implemented!');
-        }
+        })
     });
 
 });
