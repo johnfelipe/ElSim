@@ -27,6 +27,16 @@ router.get('/', function (req, res) {
 });
 
 /**
+ * Help route.
+ */
+router.get('/help', function (req, res) {
+    var options = {
+        title: 'Help Page'
+    };
+    res.render('pages/help', options);
+});
+
+/**
  * Leaflet Example Route
  */
 router.get('/leaflet-example', function (req, res) {

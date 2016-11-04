@@ -3,74 +3,68 @@
 <% include ../partials/head %>
 <% include ../partials/menu %>
 <body background="images/construction.jpg">
-<div class="container">
+<div class="container" style="margin-top: 20px;">
     <div class="row">
         <div class="col-md-6">
-            <div class="list-group">
-                <a class="list-group-item active">
-                    Register
-                </a>
-                <a class="list-group-item list-group-item-action">
-                    <form class="form">
-                        <div class="form-group">
-                            <label class="sr-only" for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="message">Message</label>
-                            <input type="text" class="form-control" id="message" placeholder="Your message...">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send</button>
-                    </form>
-                </a>
+            <div class="well">
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="images/index-chart.jpg" width="150" height="150"/>
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Make charts</h4>
+                        You are able to make different kind of charts. Use the pre-stored electoral results or use
+                        from other users or make your own results with the simulator!
+                    </div>
+                </div>
             </div>
-            <hr>
-            <div class="list-group">
-                <a class="list-group-item active">
-                    How to
-                </a>
-                <a class="list-group-item list-group-item-action">
-                    Api is at:<br>
-                    <code>http://localhost:3000/api/</code><br>
-                    Send a post request to: <br>
-                    <code>http://localhost:3000/api/authenticate</code><br>
-                    with the same structure as this:<br>
-                    <code>{<br>
-                        &nbsp;&nbsp; email:&nbsp;&nbsp;&nbsp;&nbsp;'example@example.com',<br>
-                        &nbsp;&nbsp; password:&nbsp;'password'<br>
-                        }
-                    </code><br>
-                    Use your token in every route under /api/ path.<br><br>
-                    Enjoy it!
-                </a>
+            <div class="well">
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="images/index-learn.png" width="150" height="150"/>
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Learn</h4>
+                        Read the docs about politics sciences, statistics, math uses...
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="col-md-6">
-            <div class="list-group">
-                <a class="list-group-item active">
-                    Description
-                </a>
-                <a class="list-group-item list-group-item-action">
-                    Project is at:<br><code> https://github.com/jesusgn90/TFG</code><br>
-                </a>
+            <div class="well">
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="images/index-simulate.png" width="150" height="150"/>
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Simulate</h4>
+                        You are able to change a lot of params to simulate an electoral result.
+                    </div>
+                </div>
             </div>
-            <hr>
-            <div class="list-group">
-                <a class="list-group-item active">
-                    Status
-                </a>
-                <a class="list-group-item list-group-item-action">
-                    <code>Under construction&hellip; </code> 25%<br>
-                    <progress class="progress" value="25" max="100" aria-describedby="example-caption-5">25%</progress>
-                </a>
-            </div>
-            <hr>
+            <div class="well">
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="images/index-git.png" width="150" height="150"/>
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Collaborate</h4>
+                        Github
+                    </div>
+                </div>
 
+            </div>
         </div>
     </div>
-
 </div>
-
-
 </body>
 </html>
