@@ -62,13 +62,41 @@ router.get('/graphic-form', function (req, res) {
 });
 
 /**
- * GET Form to create graphs with stored results
+ * GET Learn
  */
 router.get('/learn', function (req, res) {
         var options = {
             title: 'Learn'
         };
         res.render('pages/learn', options);
+});
+
+/**
+ * GET Add data
+ */
+router.get('/add-data', function (req, res) {
+    Result.count({},function(err,data){
+        var options = {
+            title: 'Add data',
+            total: data,
+            codigos: require('./../codigos')
+        };
+        res.render('pages/add-data', options);
+    });
+});
+/**
+ * POST Add data
+ */
+router.post('/add-data', function (req, res) {
+    Result.count({},function(err,data){
+        var options = {
+            title: 'Add data',
+            total: data,
+            codigos: require('./../codigos')
+        };
+        res.render('pages/add-data', options);
+    });
+
 });
 
 /**

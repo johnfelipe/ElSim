@@ -24,13 +24,14 @@ class Graphic {
     }
 
     rendChart(callback) {
-        highcharts.render(this.options, function (err, data) {
+        highcharts.render(this.options, callbackRender);
+        function callbackRender(err, data) {
             if (err) {
                 console.log('Error: ' + err);
             } else {
                 callback(data);
             }
-        });
+        }
     }
 
     createBar(result, callback) {
@@ -48,9 +49,7 @@ class Graphic {
             type: 'bar',
             plotBackgroundColor: null,
             plotBorderWidth: 0,
-            plotShadow: true,
-            height: 420,
-            width: 420
+            plotShadow: true
         };
         this.options.title = {
             text: 'Mandates by parties'
@@ -118,9 +117,7 @@ class Graphic {
         this.options.chart = {
             plotBackgroundColor: null,
             plotBorderWidth: 0,
-            plotShadow: true,
-            height: 420,
-            width: 420
+            plotShadow: true
         };
         this.options.title = {
             text: 'Resultados<br>Electorales<br>2015',

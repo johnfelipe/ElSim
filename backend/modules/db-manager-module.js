@@ -51,10 +51,11 @@ class DbManager{
             message: message,
             date: new Date()
         });
-        l.save(function(err){
+        l.save(callbackLogSave);
+        function callbackLogSave(err){
             if(err) throw err;
             done();
-        });
+        }
     }
 
     /**
@@ -80,10 +81,13 @@ class DbManager{
      */
     static saveUser(user, done){
         var u = new User(user);
-        u.save(function(err){
+
+        u.save(callbackUserSave);
+
+        function callbackUserSave(err){
             if(err) throw err;
             done();
-        });
+        }
     }
 
     /**
@@ -92,10 +96,12 @@ class DbManager{
      * @param done{Function} callback
      */
     static getResultadoByAnio(anio,done){
-        Resultado.find({anio:anio},function(err,data){
+        Resultado.find({anio:anio},callbackFind);
+
+        function callbackFind(err,data){
             if(err) throw err;
             done(data);
-        });
+        }
     }
     /**
      * Función para buscar resultados por código de provincia.
@@ -103,10 +109,12 @@ class DbManager{
      * @param done{Function} callback
      */
     static getResultadoByProvincia(cod,done){
-        Resultado.find({cod_provincia:cod},function(err,data){
+        Resultado.find({cod_provincia:cod},callbackFind);
+
+        function callbackFind(err,data){
             if(err) throw err;
             done(data);
-        });
+        }
     }
 
     /**
@@ -115,10 +123,12 @@ class DbManager{
      * @param done{Function} callback
      */
     static getResultadoById(id,done){
-        Resultado.find({id:id},function(err,data){
+        Resultado.find({id:id},callbackFind);
+
+        function callbackFind(err,data,done){
             if(err) throw err;
             done(data);
-        });
+        }
     }
 
     /**
