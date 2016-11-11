@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: modules/util-module.js</title>
+    <title>JSDoc: Source: modules/graphics/json-module.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: modules/util-module.js</h1>
+    <h1 class="page-title">Source: modules/graphics/json-module.js</h1>
 
     
 
@@ -26,98 +26,24 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>'use strict';
-const fs = require('fs'),
-    csv = require('fast-csv');
+            <pre class="prettyprint source linenums"><code>const Graphic = require('./graphic-module'),
+    topojson = require('topojson'),
+    d3 = require('d3');
+
 /**
- * Módulo de utilidades usado por otros módulos.
- * @returns {Util}
+ * Clase que hereda de Graphic, usada para trabajar con gráficas
+ * generadas con JSON.
+ * @returns {JsonGraph}
  * @constructor
  */
-class Util{
+class JsonGraph extends Graphic{
     constructor(){
-
-    }
-    /**
-     * Salida a consola con colores e indentación.
-     * @param message{String}
-     */
-    static prettyPrint (message){
-        var options = {
-            depth: 2,
-            colors: true
-        };
-        try {
-            console.dir(message, options);
-        } catch (err){
-            throw err;
-        }
-    }
-    /**
-     * Dado un array con elementos repetidos establece como
-     * claves cada elemento y como valor de cada clave el número
-     * de repeticiones de dicha clave en el array.
-     * [a,a,a,b,c,c] --> {a:3, b:1, c:2}
-     * @param array{Array}
-     */
-    static groupByKey (array){
-        if(!Array.isArray(array)) throw new Error('Use an array to call this method');
-        var counts = {};
-        for (var i = 0, len = array.length; i &lt; len; ++i) {
-            counts[array[i]] = 1 + (counts[array[i]] || 0);
-        }
-        return counts;
+        super();
     }
 
-
-    /**
-     *
-     * @param a
-     * @param b
-     * @returns {number}
-     */
-    static sortByRest(a, b){
-        var keyA = a.rest,
-            keyB = b.rest;
-        if(keyA > keyB) { return -1; }
-        if(keyA &lt; keyB) { return 1; }
-        return 0;
-    }
-
-    /**
-     *
-     * @param path1{String} Ruta del fichero csv con la provincia, votos, etc ...
-     * @param path2{String} Ruta del fichero csv con los partidos agrupados
-     * @param done{Function} Función callback
-     */
-    static readCsv(path1,path2,done){
-        var stream = fs.createReadStream(path1);
-        var resultados = [];
-        csv.fromStream(stream,{
-            headers : true
-        }).on('data-invalid',invalidRowException).on('data', function(data){
-            resultados.push(data);
-        }).on('end', function(){
-            readParties();
-        });
-        function readParties(){
-            var i = 0;
-            stream = fs.createReadStream(path2);
-            csv.fromStream(stream,{
-                headers: true
-            }).on('data-invalid',invalidRowException).on('data', function(data){
-                resultados[i].partidos = data;
-                i++;
-            }).on('end', function(){
-                done(resultados);
-            });
-        }
-        function invalidRowException(data){
-            throw new Error('Data invalid exception, one or more rows are invalid' + data);
-        }
-    }
 }
-module.exports = Util;</code></pre>
+module.exports = JsonGraph;
+</code></pre>
         </article>
     </section>
 
