@@ -7,13 +7,13 @@
 <div class="container" style="margin-top: 20px;">
 
     <div class="row">
-        <div class="col-md-8 well">
+        <div class="col-md-12 well">
             <form class="form" role="form" method="POST" action="/add-data">
                 <div class="row">
                     <div class="col-sm-4 form-group">
 
                         <label for="province">
-                            Select a province
+                            <span class="glyphicon glyphicon-map-marker"></span> Select a province
                         </label>
                         <select class="form-control" name="province" id="province" required onchange="parseFields(processTextarea)">
                             <% Object.keys(codigos).forEach(function(key1) { %>
@@ -25,16 +25,16 @@
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="population">
-                            Population
+                            <span class="glyphicon glyphicon-home"></span> Population
                         </label>
                         <input class="form-control" min="1" value="1000" type="number" name="population"
                                id="population" onchange="parseFields(processTextarea)" required/>
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="tables">
-                            Tables
+                            <span class="glyphicon glyphicon-folder-close"></span> Tables
                         </label>
-                        <input class="form-control" min="1" value="2" type="number" name="tables" id="tables"
+                        <input class="form-control" min="1" value="0" type="number" name="tables" id="tables"
                                onchange="parseFields(processTextarea)" required/>
                     </div>
                 </div>
@@ -47,16 +47,16 @@
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="voters">
-                            Voters
+                            <span class="glyphicon glyphicon-envelope"></span> Voters
                         </label>
-                        <input class="form-control" min="1" value="2" type="number" name="voters" id="voters"
+                        <input class="form-control" min="1" value="0" type="number" name="voters" id="voters"
                                onchange="parseFields(processTextarea)" required/>
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="census">
-                            Electoral census
+                            <span class="glyphicon glyphicon-list-alt"></span> Electoral census
                         </label>
-                        <input class="form-control" min="1" value="2" type="number" name="census" id="census"
+                        <input class="form-control" min="0" value="0" type="number" name="census" id="census"
                                onchange="parseFields(processTextarea)" required/>
                     </div>
 
@@ -65,16 +65,16 @@
                 <div class="row">
                     <div class="col-sm-4 form-group">
                         <label for="blancos">
-                            Blank votes
+                            <span class="glyphicon glyphicon-star-empty"></span> Blank votes
                         </label>
-                        <input class="form-control" type="number" min="0" value="2" name="blancos" id="blancos"
+                        <input class="form-control" type="number" min="0" value="0" name="blancos" id="blancos"
                                onchange="parseFields(processTextarea)" required/>
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="nulos">
-                            Null votes
+                            <span class="glyphicon glyphicon-thumbs-down"></span> Null votes
                         </label>
-                        <input class="form-control" min="0" value="2" type="number" name="nulos" id="nulos"
+                        <input class="form-control" min="0" value="0" type="number" name="nulos" id="nulos"
                                onchange="parseFields(processTextarea)" required/>
                     </div>
                     <div class="col-sm-4 form-group">
@@ -90,11 +90,14 @@
                 <div class="row">
                     <div class="col-sm-12 form-group">
                         <label for="votes">
-                            <span class="glyphicon glyphicon-user"></span> Votes<br>
+                            <span class="glyphicon glyphicon-list"></span> Votes<br>
                             <small>Write each party with the number of votes then linebreak.</small>
                         </label>
                         <textarea class="form-control" id="votes" name="votes" rows="8" onchange="parseFields(processTextarea)">PP - 123
-PSOE - 123</textarea>
+PSOE - 123</textarea><br>
+                        <input type="checkbox" required/>
+                        <small>I understand that clicking this button i will add some data and
+                            anybody will can access them.</small>
                     </div>
                 </div>
                 <div class="row">
@@ -111,31 +114,6 @@ PSOE - 123</textarea>
                     </div>
                 </div>
             </form>
-
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-3 well">
-            <p>
-                <b>Data</b><br>
-                {<br>
-                &nbsp;&nbsp;&nbsp;cod_provincia : <span id="cod_provinciaSpan"></span>,<br>
-                &nbsp;&nbsp;&nbsp;poblacion : <span id="poblacionSpan"></span>,<br>
-                &nbsp;&nbsp;&nbsp;num_mesas : <span id="num_mesasSpan"></span>,<br>
-                &nbsp;&nbsp;&nbsp;total_censo_electoral : <span id="total_censo_electoralSpan"></span>,<br>
-                &nbsp;&nbsp;&nbsp;total_votantes : <span id="total_votantesSpan"></span>,<br>
-                &nbsp;&nbsp;&nbsp;votos_validos : <span id="votos_validosSpan"></span>,<br>
-                &nbsp;&nbsp;&nbsp;votos_blanco : <span id="votos_blancoSpan"></span>,<br>
-                &nbsp;&nbsp;&nbsp;votos_candidaturas : <span id="votos_candidaturasSpan"></span>,<br>
-                &nbsp;&nbsp;&nbsp;votos_nulo : <span id="votos_nuloSpan"></span>,<br>
-                &nbsp;&nbsp;&nbsp;eleccion : {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="eleccionSpan1"></span>,<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="eleccionSpan2"></span><br>
-                &nbsp;&nbsp;&nbsp;},<br>
-                &nbsp;&nbsp;&nbsp;partidos : {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="partidosSpan"></span><br>
-                &nbsp;&nbsp;&nbsp;}<br>
-                }
-            </p>
 
         </div>
     </div>

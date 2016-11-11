@@ -74,7 +74,7 @@ class Graphic {
             }
         };
         this.options.tooltip = {
-            valueSuffix: ' millions'
+            valueSuffix: ' mandates'
         };
         this.options.plotOptions = {
             bar: {
@@ -132,7 +132,7 @@ class Graphic {
             pie: {
                 dataLabels: {
                     enabled: true,
-                    distance: -50,
+                    distance: -30,
                     style: {
                         fontWeight: 'bold',
                         color: 'white'
@@ -146,7 +146,7 @@ class Graphic {
         this.options.series = [{
             type: 'pie',
             name: 'Resultados electorales',
-            innerSize: '50%',
+            innerSize: '90%',
             data: resultsArray
         }];
         callback();

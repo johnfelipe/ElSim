@@ -2,18 +2,294 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd03d9dc-bbac-4ed5-a69d-e4ddc8716d37" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/add-data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/pages/add-data.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LaTex/portada/portada.tex" afterPath="$PROJECT_DIR$/../LaTex/portada/portada.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LaTex/prefacios/prefacio.tex" afterPath="$PROJECT_DIR$/../LaTex/prefacios/prefacio.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LaTex/proyecto.tex" afterPath="$PROJECT_DIR$/../LaTex/proyecto.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/bin/node" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/bin/nodejs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/bin/node" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/bin/activate" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/bin/npm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/bin/shim" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/android-ifaddrs.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/ares.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/ares_build.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/ares_rules.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/ares_version.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/common.gypi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/config.gypi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/libplatform/libplatform.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/libplatform/v8-tracing.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/nameser.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/node.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/node_buffer.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/node_object_wrap.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/node_version.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/aes.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/BSD-x86/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/BSD-x86_64/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/VC-WIN32/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/VC-WIN64A/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/aix-gcc/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/aix64-gcc/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/darwin-i386-cc/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/darwin64-x86_64-cc/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/linux-aarch64/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/linux-armv4/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/linux-elf/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/linux-ppc/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/linux-ppc64/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/linux-x32/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/linux-x86_64/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/linux32-s390x/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/linux64-s390x/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/solaris-x86-gcc/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/archs/solaris64-x86_64-gcc/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/asn1.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/asn1_mac.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/asn1t.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/bio.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/blowfish.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/bn.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/buffer.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/camellia.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/cast.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/cmac.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/cms.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/comp.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/conf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/conf_api.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/crypto.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/des.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/des_old.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/dh.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/dsa.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/dso.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/dtls1.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/e_os2.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/ebcdic.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/ec.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/ecdh.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/ecdsa.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/engine.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/err.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/evp.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/hmac.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/idea.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/krb5_asn.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/kssl.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/lhash.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/md4.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/md5.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/mdc2.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/modes.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/obj_mac.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/objects.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/ocsp.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/opensslv.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/ossl_typ.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/pem.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/pem2.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/pkcs12.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/pkcs7.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/pqueue.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/rand.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/rc2.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/rc4.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/ripemd.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/rsa.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/safestack.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/seed.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/sha.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/srp.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/srtp.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/ssl.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/ssl2.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/ssl23.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/ssl3.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/stack.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/symhacks.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/tls1.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/ts.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/txt_db.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/ui.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/ui_compat.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/whrlpool.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/x509.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/x509_vfy.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/openssl/x509v3.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/pthread-barrier.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/stdint-msvc2008.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/tree.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/uv-aix.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/uv-bsd.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/uv-darwin.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/uv-errno.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/uv-linux.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/uv-os390.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/uv-sunos.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/uv-threadpool.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/uv-unix.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/uv-version.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/uv-win.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/uv.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/v8-debug.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/v8-experimental.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/v8-platform.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/v8-profiler.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/v8-testing.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/v8-util.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/v8-version.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/v8.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/v8config.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/zconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/include/node/zlib.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/share/doc/node/gdbinit" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/share/man/man1/node.1" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/share/systemtap/tapset/node.stp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/bin/npm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/android-ifaddrs.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/ares.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/ares_build.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/ares_rules.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/ares_version.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/common.gypi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/config.gypi" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/libplatform/libplatform.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/libplatform/v8-tracing.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/nameser.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/node.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/node_buffer.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/node_object_wrap.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/node_version.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/aes.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/BSD-x86/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/BSD-x86_64/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/VC-WIN32/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/VC-WIN64A/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/aix-gcc/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/aix64-gcc/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/darwin-i386-cc/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/darwin64-x86_64-cc/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/linux-aarch64/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/linux-armv4/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/linux-elf/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/linux-ppc/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/linux-ppc64/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/linux-x32/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/linux-x86_64/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/linux32-s390x/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/linux64-s390x/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/solaris-x86-gcc/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/archs/solaris64-x86_64-gcc/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/asn1.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/asn1_mac.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/asn1t.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/bio.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/blowfish.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/bn.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/buffer.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/camellia.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/cast.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/cmac.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/cms.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/comp.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/conf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/conf_api.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/crypto.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/des.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/des_old.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/dh.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/dsa.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/dso.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/dtls1.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/e_os2.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/ebcdic.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/ec.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/ecdh.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/ecdsa.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/engine.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/err.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/evp.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/hmac.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/idea.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/krb5_asn.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/kssl.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/lhash.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/md4.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/md5.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/mdc2.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/modes.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/obj_mac.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/objects.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/ocsp.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/opensslconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/opensslv.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/ossl_typ.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/pem.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/pem2.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/pkcs12.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/pkcs7.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/pqueue.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/rand.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/rc2.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/rc4.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/ripemd.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/rsa.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/safestack.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/seed.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/sha.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/srp.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/srtp.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/ssl.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/ssl2.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/ssl23.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/ssl3.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/stack.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/symhacks.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/tls1.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/ts.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/txt_db.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/ui.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/ui_compat.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/whrlpool.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/x509.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/x509_vfy.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/openssl/x509v3.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/pthread-barrier.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/stdint-msvc2008.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/tree.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/uv-aix.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/uv-bsd.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/uv-darwin.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/uv-errno.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/uv-linux.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/uv-os390.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/uv-sunos.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/uv-threadpool.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/uv-unix.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/uv-version.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/uv-win.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/uv.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/v8-debug.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/v8-experimental.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/v8-platform.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/v8-profiler.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/v8-testing.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/v8-util.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/v8-version.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/v8.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/v8config.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/zconf.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/include/node/zlib.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/share/doc/node/gdbinit" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/share/man/man1/node.1" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/share/systemtap/tapset/node.stp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/pages/delete-data.ejs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/partials/footer.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/codigos.js" afterPath="$PROJECT_DIR$/codigos.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/db-manager-module.js" afterPath="$PROJECT_DIR$/modules/db-manager-module.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/graphics/graphic-module.js" afterPath="$PROJECT_DIR$/modules/graphics/graphic-module.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/pages/graphic.ejs" afterPath="$PROJECT_DIR$/views/pages/graphic.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/pages/learn.ejs" afterPath="$PROJECT_DIR$/views/pages/learn.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/pages/add-data.ejs" afterPath="$PROJECT_DIR$/views/pages/add-data.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/pages/index.ejs" afterPath="$PROJECT_DIR$/views/pages/index.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partials/menu.ejs" afterPath="$PROJECT_DIR$/views/partials/menu.ejs" />
     </list>
     <ignored path="Backend.iws" />
@@ -37,11 +313,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="74" column="15" selection-start-line="74" selection-start-column="15" selection-end-line="74" selection-end-column="15" />
+            <state relative-caret-position="420">
+              <caret line="148" column="42" selection-start-line="148" selection-start-column="42" selection-end-line="148" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -50,8 +326,68 @@
       <file leaf-file-name="menu.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/partials/menu.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="11" column="91" selection-start-line="11" selection-start-column="91" selection-end-line="11" selection-end-column="91" />
+            <state relative-caret-position="360">
+              <caret line="20" column="81" selection-start-line="20" selection-start-column="81" selection-end-line="20" selection-end-column="81" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/pages/index.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="433">
+              <caret line="90" column="29" selection-start-line="90" selection-start-column="29" selection-end-line="90" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="head.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/partials/head.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="footer.ejs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/partials/footer.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="delete-data.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/pages/delete-data.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="26" column="55" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="graphic-form.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/pages/graphic-form.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="28" column="73" selection-start-line="25" selection-start-column="36" selection-end-line="28" selection-end-column="73" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="graphic-module.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/graphics/graphic-module.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="134" column="32" selection-start-line="134" selection-start-column="32" selection-end-line="134" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -60,77 +396,8 @@
       <file leaf-file-name="add-data.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/pages/add-data.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="10" column="74" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#5664#5670#0#HTML" expanded="true" />
-                <element signature="e#5670#5676#0#HTML" expanded="true" />
-                <element signature="e#5676#5682#0#HTML" expanded="true" />
-                <element signature="e#5756#5762#0#HTML" expanded="true" />
-                <element signature="e#5762#5768#0#HTML" expanded="true" />
-                <element signature="e#5768#5774#0#HTML" expanded="true" />
-                <element signature="e#5840#5846#0#HTML" expanded="true" />
-                <element signature="e#5846#5852#0#HTML" expanded="true" />
-                <element signature="e#5852#5858#0#HTML" expanded="true" />
-                <element signature="e#5924#5930#0#HTML" expanded="true" />
-                <element signature="e#5930#5936#0#HTML" expanded="true" />
-                <element signature="e#5936#5942#0#HTML" expanded="true" />
-                <element signature="e#6032#6038#0#HTML" expanded="true" />
-                <element signature="e#6038#6044#0#HTML" expanded="true" />
-                <element signature="e#6044#6050#0#HTML" expanded="true" />
-                <element signature="e#6126#6132#0#HTML" expanded="true" />
-                <element signature="e#6132#6138#0#HTML" expanded="true" />
-                <element signature="e#6138#6144#0#HTML" expanded="true" />
-                <element signature="e#6218#6224#0#HTML" expanded="true" />
-                <element signature="e#6224#6230#0#HTML" expanded="true" />
-                <element signature="e#6230#6236#0#HTML" expanded="true" />
-                <element signature="e#6308#6314#0#HTML" expanded="true" />
-                <element signature="e#6314#6320#0#HTML" expanded="true" />
-                <element signature="e#6320#6326#0#HTML" expanded="true" />
-                <element signature="e#6410#6416#0#HTML" expanded="true" />
-                <element signature="e#6416#6422#0#HTML" expanded="true" />
-                <element signature="e#6422#6428#0#HTML" expanded="true" />
-                <element signature="e#6496#6502#0#HTML" expanded="true" />
-                <element signature="e#6502#6508#0#HTML" expanded="true" />
-                <element signature="e#6508#6514#0#HTML" expanded="true" />
-                <element signature="e#6547#6553#0#HTML" expanded="true" />
-                <element signature="e#6553#6559#0#HTML" expanded="true" />
-                <element signature="e#6559#6565#0#HTML" expanded="true" />
-                <element signature="e#6565#6571#0#HTML" expanded="true" />
-                <element signature="e#6571#6577#0#HTML" expanded="true" />
-                <element signature="e#6577#6583#0#HTML" expanded="true" />
-                <element signature="e#6637#6643#0#HTML" expanded="true" />
-                <element signature="e#6643#6649#0#HTML" expanded="true" />
-                <element signature="e#6649#6655#0#HTML" expanded="true" />
-                <element signature="e#6655#6661#0#HTML" expanded="true" />
-                <element signature="e#6661#6667#0#HTML" expanded="true" />
-                <element signature="e#6667#6673#0#HTML" expanded="true" />
-                <element signature="e#6726#6732#0#HTML" expanded="true" />
-                <element signature="e#6732#6738#0#HTML" expanded="true" />
-                <element signature="e#6738#6744#0#HTML" expanded="true" />
-                <element signature="e#6767#6773#0#HTML" expanded="true" />
-                <element signature="e#6773#6779#0#HTML" expanded="true" />
-                <element signature="e#6779#6785#0#HTML" expanded="true" />
-                <element signature="e#6818#6824#0#HTML" expanded="true" />
-                <element signature="e#6824#6830#0#HTML" expanded="true" />
-                <element signature="e#6830#6836#0#HTML" expanded="true" />
-                <element signature="e#6836#6842#0#HTML" expanded="true" />
-                <element signature="e#6842#6848#0#HTML" expanded="true" />
-                <element signature="e#6848#6854#0#HTML" expanded="true" />
-                <element signature="e#6906#6912#0#HTML" expanded="true" />
-                <element signature="e#6912#6918#0#HTML" expanded="true" />
-                <element signature="e#6918#6924#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="head.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/partials/head.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="95" />
+            <state relative-caret-position="72">
+              <caret line="34" column="73" selection-start-line="34" selection-start-column="73" selection-end-line="34" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -139,58 +406,8 @@
       <file leaf-file-name="add-data.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/add-data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="25" column="74" selection-start-line="25" selection-start-column="74" selection-end-line="25" selection-end-column="74" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="district-module.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/district-module.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1440">
-              <caret line="80" column="34" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db-manager-module.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/db-manager-module.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2358">
-              <caret line="131" column="5" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="electoral-system-module.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/electoral-system-module.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="result.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/result.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="1977.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/csv/1977.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="150">
+              <caret line="17" column="68" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -211,8 +428,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test/model-test.js" />
-        <option value="$PROJECT_DIR$/routes/modules/system_module.js" />
         <option value="$PROJECT_DIR$/test/dhondt-test.js" />
         <option value="$PROJECT_DIR$/routes/modules/dbmanager_module.js" />
         <option value="$PROJECT_DIR$/routes/modules/dhondt_module.js" />
@@ -247,21 +462,23 @@
         <option value="$PROJECT_DIR$/views/menu.ejs" />
         <option value="$PROJECT_DIR$/views/graphic-form.ejs" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/views/partials/head.ejs" />
         <option value="$PROJECT_DIR$/views/pages/graphic-form.ejs" />
         <option value="$PROJECT_DIR$/views/pages/help.ejs" />
-        <option value="$PROJECT_DIR$/views/pages/index.ejs" />
         <option value="$PROJECT_DIR$/views/pages/learn.ejs" />
         <option value="$PROJECT_DIR$/modules/db-manager-module.js" />
-        <option value="$PROJECT_DIR$/modules/graphics/graphic-module.js" />
         <option value="$PROJECT_DIR$/views/pages/graphic.ejs" />
         <option value="$PROJECT_DIR$/codigos.js" />
         <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/views/pages/simulator.ejs" />
-        <option value="$PROJECT_DIR$/views/partials/menu.ejs" />
         <option value="$PROJECT_DIR$/public/add-data.js" />
-        <option value="$PROJECT_DIR$/views/pages/add-data.ejs" />
         <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/views/pages/delete-data.ejs" />
+        <option value="$PROJECT_DIR$/views/pages/add-data.ejs" />
+        <option value="$PROJECT_DIR$/modules/graphics/graphic-module.js" />
+        <option value="$PROJECT_DIR$/views/partials/menu.ejs" />
+        <option value="$PROJECT_DIR$/views/pages/index.ejs" />
+        <option value="$PROJECT_DIR$/views/partials/head.ejs" />
+        <option value="$PROJECT_DIR$/views/partials/footer.ejs" />
       </list>
     </option>
   </component>
@@ -274,6 +491,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/env/lib/node_modules" />
+    <handled-path value="$PROJECT_DIR$/env/src/node-v7.1.0-linux-x64/lib/node_modules" />
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
@@ -306,8 +525,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -452,6 +669,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -466,17 +685,17 @@
     <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/node_modules/mocha" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/views/pages" />
+      <recent name="$PROJECT_DIR$/views/partials" />
+      <recent name="$PROJECT_DIR$/views" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/views/pages" />
       <recent name="$PROJECT_DIR$/views/partials" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/" />
       <recent name="$PROJECT_DIR$/csv" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/views/pages" />
-      <recent name="$PROJECT_DIR$/views/partials" />
-      <recent name="$PROJECT_DIR$/views" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.hare_module.js">
@@ -600,7 +819,9 @@
       <workItem from="1478455221375" duration="47000" />
       <workItem from="1478457281587" duration="1154000" />
       <workItem from="1478535250960" duration="27000" />
-      <workItem from="1478765825217" duration="11364000" />
+      <workItem from="1478765825217" duration="11540000" />
+      <workItem from="1478852178465" duration="802000" />
+      <workItem from="1478854998004" duration="6384000" />
     </task>
     <task id="LOCAL-00001" summary="Integrando git con WebStorm&#10;">
       <created>1476441402056</created>
@@ -627,16 +848,16 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="224518000" />
+    <option name="totallyTimeSpent" value="231880000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1280" height="752" extended-state="4" />
+    <frame x="0" y="24" width="1280" height="752" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19640063" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19640063" sideWeight="0.48765433" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819724" sideWeight="0.50278443" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19640063" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19640063" sideWeight="0.5123457" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32943144" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33444816" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1893397" sideWeight="0.5250836" order="1" side_tool="true" content_ui="tabs" />
@@ -677,20 +898,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/csv/1982_PARTIDOS.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/csv/1982.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/csv/1986.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -837,19 +1044,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/pages/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="21" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/pages/learn.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1116">
           <caret line="62" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -857,7 +1055,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -865,7 +1062,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1176">
           <caret line="117" column="24" selection-start-line="117" selection-start-column="24" selection-end-line="117" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -873,15 +1069,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/graphics/graphic-module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2142">
-          <caret line="119" column="28" selection-start-line="119" selection-start-column="28" selection-end-line="119" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -889,15 +1076,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3150">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/codigos.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -905,15 +1083,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/pages/graphic-form.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="15" column="66" selection-start-line="11" selection-start-column="12" selection-end-line="15" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -921,7 +1090,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -929,7 +1097,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -937,6 +1104,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-174">
           <caret line="53" column="38" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/district-module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1440">
+          <caret line="80" column="34" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -949,46 +1123,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/district-module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1440">
-          <caret line="80" column="34" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/db-manager-module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2358">
-          <caret line="131" column="5" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/menu.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="91" selection-start-line="11" selection-start-column="91" selection-end-line="11" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/head.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="95" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/result.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/csv/1977.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -997,85 +1131,106 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/result.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="20" column="46" selection-start-line="8" selection-start-column="4" selection-end-line="20" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/codigos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/db-manager-module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="131" column="5" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/add-data.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" column="74" selection-start-line="25" selection-start-column="74" selection-end-line="25" selection-end-column="74" />
+        <state relative-caret-position="150">
+          <caret line="17" column="68" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/pages/graphic-form.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="28" column="73" selection-start-line="25" selection-start-column="36" selection-end-line="28" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="148" column="42" selection-start-line="148" selection-start-column="42" selection-end-line="148" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/pages/delete-data.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="55" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/pages/add-data.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="10" column="74" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#5664#5670#0#HTML" expanded="true" />
-            <element signature="e#5670#5676#0#HTML" expanded="true" />
-            <element signature="e#5676#5682#0#HTML" expanded="true" />
-            <element signature="e#5756#5762#0#HTML" expanded="true" />
-            <element signature="e#5762#5768#0#HTML" expanded="true" />
-            <element signature="e#5768#5774#0#HTML" expanded="true" />
-            <element signature="e#5840#5846#0#HTML" expanded="true" />
-            <element signature="e#5846#5852#0#HTML" expanded="true" />
-            <element signature="e#5852#5858#0#HTML" expanded="true" />
-            <element signature="e#5924#5930#0#HTML" expanded="true" />
-            <element signature="e#5930#5936#0#HTML" expanded="true" />
-            <element signature="e#5936#5942#0#HTML" expanded="true" />
-            <element signature="e#6032#6038#0#HTML" expanded="true" />
-            <element signature="e#6038#6044#0#HTML" expanded="true" />
-            <element signature="e#6044#6050#0#HTML" expanded="true" />
-            <element signature="e#6126#6132#0#HTML" expanded="true" />
-            <element signature="e#6132#6138#0#HTML" expanded="true" />
-            <element signature="e#6138#6144#0#HTML" expanded="true" />
-            <element signature="e#6218#6224#0#HTML" expanded="true" />
-            <element signature="e#6224#6230#0#HTML" expanded="true" />
-            <element signature="e#6230#6236#0#HTML" expanded="true" />
-            <element signature="e#6308#6314#0#HTML" expanded="true" />
-            <element signature="e#6314#6320#0#HTML" expanded="true" />
-            <element signature="e#6320#6326#0#HTML" expanded="true" />
-            <element signature="e#6410#6416#0#HTML" expanded="true" />
-            <element signature="e#6416#6422#0#HTML" expanded="true" />
-            <element signature="e#6422#6428#0#HTML" expanded="true" />
-            <element signature="e#6496#6502#0#HTML" expanded="true" />
-            <element signature="e#6502#6508#0#HTML" expanded="true" />
-            <element signature="e#6508#6514#0#HTML" expanded="true" />
-            <element signature="e#6547#6553#0#HTML" expanded="true" />
-            <element signature="e#6553#6559#0#HTML" expanded="true" />
-            <element signature="e#6559#6565#0#HTML" expanded="true" />
-            <element signature="e#6565#6571#0#HTML" expanded="true" />
-            <element signature="e#6571#6577#0#HTML" expanded="true" />
-            <element signature="e#6577#6583#0#HTML" expanded="true" />
-            <element signature="e#6637#6643#0#HTML" expanded="true" />
-            <element signature="e#6643#6649#0#HTML" expanded="true" />
-            <element signature="e#6649#6655#0#HTML" expanded="true" />
-            <element signature="e#6655#6661#0#HTML" expanded="true" />
-            <element signature="e#6661#6667#0#HTML" expanded="true" />
-            <element signature="e#6667#6673#0#HTML" expanded="true" />
-            <element signature="e#6726#6732#0#HTML" expanded="true" />
-            <element signature="e#6732#6738#0#HTML" expanded="true" />
-            <element signature="e#6738#6744#0#HTML" expanded="true" />
-            <element signature="e#6767#6773#0#HTML" expanded="true" />
-            <element signature="e#6773#6779#0#HTML" expanded="true" />
-            <element signature="e#6779#6785#0#HTML" expanded="true" />
-            <element signature="e#6818#6824#0#HTML" expanded="true" />
-            <element signature="e#6824#6830#0#HTML" expanded="true" />
-            <element signature="e#6830#6836#0#HTML" expanded="true" />
-            <element signature="e#6836#6842#0#HTML" expanded="true" />
-            <element signature="e#6842#6848#0#HTML" expanded="true" />
-            <element signature="e#6848#6854#0#HTML" expanded="true" />
-            <element signature="e#6906#6912#0#HTML" expanded="true" />
-            <element signature="e#6912#6918#0#HTML" expanded="true" />
-            <element signature="e#6918#6924#0#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="72">
+          <caret line="34" column="73" selection-start-line="34" selection-start-column="73" selection-end-line="34" selection-end-column="73" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
+    <entry file="file://$PROJECT_DIR$/modules/graphics/graphic-module.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="74" column="15" selection-start-line="74" selection-start-column="15" selection-end-line="74" selection-end-column="15" />
+        <state relative-caret-position="190">
+          <caret line="134" column="32" selection-start-line="134" selection-start-column="32" selection-end-line="134" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/menu.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="81" selection-start-line="20" selection-start-column="81" selection-end-line="20" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/pages/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="90" column="29" selection-start-line="90" selection-start-column="29" selection-end-line="90" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/head.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/footer.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
