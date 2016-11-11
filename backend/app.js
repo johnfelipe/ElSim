@@ -13,8 +13,8 @@ var app = express();
 var mongoose = require('mongoose'),
     jwt = require('jsonwebtoken'),
     config = require('./config'),
-    api = require('./routes/api'),
-    User= require('./models/user');
+    api = require('./modules/functions/api-functions'),
+    User = require('./models/user');
 
 /**
  * View engine setup
@@ -28,7 +28,7 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -42,7 +42,7 @@ app.set('superSecret', config.secret);
 /**
  * Use body parser so we can get info from POST and/or URL parameters
  */
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 /**
@@ -57,9 +57,9 @@ var apiRoutes = express.Router();
 var isAuthenticated = function (req, res, next) {
     var token = req.body.token || req.param('token') || req.headers['x-access-token'];
     if (token) {
-        jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+        jwt.verify(token, app.get('superSecret'), function (err, decoded) {
             if (err) {
-                return res.json({ success: false, message: 'Failed to authenticate token.' });
+                return res.json({success: false, message: 'Failed to authenticate token.'});
             } else {
                 req.decoded = decoded;
                 next();
@@ -75,35 +75,26 @@ var isAuthenticated = function (req, res, next) {
 
 var authenticate = function (req, res) {
     console.log('user ' + req.body.email + ' is trying to authenticate.');
-    User.findOne({
-        email: req.body.email
-    }, function(err, user) {
-        var object;
+    User.findOne({email: req.body.email}, done);
+    function done(err, user) {
+        var object = {
+            success: false,
+            message: 'Authentication failed',
+            token: null
+        };
         if (err) throw err;
-        if (!user) {
-            object = {
-                success: false,
-                message: 'Authentication failed. User not found.'
-            };
-        } else if (user) {
-            if (user.password !== req.body.password) {
-                object = {
-                    success: false,
-                    message: 'Authentication failed. Wrong password.'
-                };
-            } else {
+        if (user) {
+            if (user.password === req.body.password) {
                 var token = jwt.sign(user, app.get('superSecret'), {
                     expiresIn: 3600 // expires in 1 hours
                 });
-                object = {
-                    success: true,
-                    message: 'Enjoy your token!',
-                    token: token
-                };
+                object.success = true;
+                object.message = 'Enjoy your token!';
+                object.token = token;
             }
         }
         res.json(object);
-    });
+    }
 };
 
 /**
@@ -120,32 +111,31 @@ apiRoutes.get('/', api.apiWelcome);
 apiRoutes.get('/users', api.findAllUsers);
 apiRoutes.get('/check', api.check);
 apiRoutes.get('/logs', api.findLogs);
-apiRoutes.get('/resultados/setup',api.loadCsv);
-apiRoutes.get('/resultados',api.findAllResultados);
+apiRoutes.get('/resultados/setup', api.loadCsv);
+apiRoutes.get('/resultados', api.findAllResultados);
 apiRoutes.get('/resultados/:id', api.findOneResultado);
-apiRoutes.get('/resultados/year/:anio',api.findManyResultadosByAnio);
-apiRoutes.get('/resultados/provincia/:cod_provincia',api.findManyResultadosByProvincia);
+apiRoutes.get('/resultados/year/:anio', api.findManyResultadosByAnio);
+apiRoutes.get('/resultados/provincia/:cod_provincia', api.findManyResultadosByProvincia);
 
 /**
  * POST routes
  */
 apiRoutes.post('/users', api.saveOneUser);
-apiRoutes.post('/resultados',api.saveOneResultado);
+apiRoutes.post('/resultados', api.saveOneResultado);
 
 /**
  * PUT routes
  */
 apiRoutes.put('/users/:id', api.updateOneUser);
-apiRoutes.put('/resultados/:id',api.updateOneResultado);
+apiRoutes.put('/resultados/:id', api.updateOneResultado);
 
 /**
  * DELETE routes
  */
 apiRoutes.delete('/users/:id', api.deleteOneUser);
 apiRoutes.delete('/logs', api.deleteAllLogs);
-apiRoutes.delete('/resultados/:id',api.deleteOneResultado);
-apiRoutes.delete('/resultados',api.deleteAllResultados);
-
+apiRoutes.delete('/resultados/:id', api.deleteOneResultado);
+apiRoutes.delete('/resultados', api.deleteAllResultados);
 
 
 app.use('/api', apiRoutes);
@@ -153,7 +143,7 @@ app.use('/api', apiRoutes);
 /**
  * Catch 404 and forward to error handler
  */
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
@@ -163,7 +153,7 @@ app.use(function(req, res, next) {
  * Development error handler will print stacktrace
  */
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
+    app.use(function (err, req, res, next) {
         res.status(err.status || 500);
         res.render('pages/error', {
             message: err.message,
@@ -175,7 +165,7 @@ if (app.get('env') === 'development') {
 /**
  * Production error handler, no stacktraces leaked to user
  */
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('pages/error', {
         message: err.message,
