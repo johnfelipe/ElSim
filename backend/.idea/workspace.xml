@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd03d9dc-bbac-4ed5-a69d-e4ddc8716d37" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/app.js.html" afterPath="$PROJECT_DIR$/doc/app.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/global.html" afterPath="$PROJECT_DIR$/doc/global.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/index.html" afterPath="$PROJECT_DIR$/doc/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/models_log.js.html" afterPath="$PROJECT_DIR$/doc/models_log.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/models_result.js.html" afterPath="$PROJECT_DIR$/doc/models_result.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/models_user.js.html" afterPath="$PROJECT_DIR$/doc/models_user.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_db-manager-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_db-manager-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_district-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_district-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_functions_api-functions.js.html" afterPath="$PROJECT_DIR$/doc/modules_functions_api-functions.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_functions_index-functions.js.html" afterPath="$PROJECT_DIR$/doc/modules_functions_index-functions.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_bar-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_bar-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_graphic-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_graphic-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_json-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_json-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_util-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_util-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/users.js" afterPath="$PROJECT_DIR$/routes/users.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="Backend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -82,11 +65,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="36">
               <caret line="2" column="38" lean-forward="false" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="533">
+              <caret line="65" column="0" lean-forward="true" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -122,16 +115,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="log.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/log.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="add-data.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/add-data.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -157,7 +140,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/routes/modules/util-module.js" />
         <option value="$PROJECT_DIR$/routes/modules/electoral-system-module.js" />
         <option value="$PROJECT_DIR$/routes/modules/db-manager-module.js" />
         <option value="$PROJECT_DIR$/routes/modules/district-module.js" />
@@ -208,6 +190,7 @@
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/routes/users.js" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -498,7 +481,7 @@
       <workItem from="1479400268704" duration="790000" />
       <workItem from="1479651602668" duration="3248000" />
       <workItem from="1479654992856" duration="2331000" />
-      <workItem from="1479659820859" duration="1856000" />
+      <workItem from="1479659820859" duration="2204000" />
     </task>
     <task id="LOCAL-00001" summary="Integrando git con WebStorm&#10;">
       <created>1476441402056</created>
@@ -525,7 +508,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244342000" />
+    <option name="totallyTimeSpent" value="244690000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="12" y="25" width="1267" height="751" extended-state="0" />
@@ -597,13 +580,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="1" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="149" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -913,6 +889,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="38" lean-forward="false" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="65" column="0" lean-forward="true" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding />
         </state>
       </provider>
