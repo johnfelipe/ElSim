@@ -1,15 +1,20 @@
 'use strict';
 const highcharts = require('node-highcharts');
 
-/**
- * Clase para manejar gráficas en el lado servidor apoyándose en la librería HighCharts.
- * @returns {Graphic}
- * @constructor
- */
-class Graphic {
+module.exports = {
+    rendChart: function(options,callback) {
+        highcharts.render(options, callbackRender);
+        function callbackRender(err, data) {
+            if (err) {
+                console.log('Error: ' + err);
+            } else {
+                callback(data);
+            }
+        }
+    },
 
-    constructor() {
-        this.options = {
+    createBar: function(result, callback) {
+        var options = {
             chart: {},
             title: {},
             subtitle: {},
@@ -21,20 +26,6 @@ class Graphic {
             credits: {},
             series: []
         };
-    }
-
-    rendChart(callback) {
-        highcharts.render(this.options, callbackRender);
-        function callbackRender(err, data) {
-            if (err) {
-                console.log('Error: ' + err);
-            } else {
-                callback(data);
-            }
-        }
-    }
-
-    createBar(result, callback) {
         var categories = [],
             mandates = [];
 
@@ -45,25 +36,25 @@ class Graphic {
             }
         }
 
-        this.options.chart = {
+        options.chart = {
             type: 'bar',
             plotBackgroundColor: null,
             plotBorderWidth: 0,
             plotShadow: true
         };
-        this.options.title = {
+        options.title = {
             text: 'Mandates by parties'
         };
-        this.options.subtitle = {
+        options.subtitle = {
             text: 'Source: <a href="http://www.infoelectoral.mir.es/min/">http://www.infoelectoral.mir.es/min/</a>'
         };
-        this.options.xAxis = {
+        options.xAxis = {
             categories: categories,
             title: {
                 text: null
             }
         };
-        this.options.yAxis = {
+        options.yAxis = {
             min: 0,
             title: {
                 text: 'Mandates',
@@ -73,17 +64,17 @@ class Graphic {
                 overflow: 'justify'
             }
         };
-        this.options.tooltip = {
+        options.tooltip = {
             valueSuffix: ' mandates'
         };
-        this.options.plotOptions = {
+        options.plotOptions = {
             bar: {
                 dataLabels: {
                     enabled: true
                 }
             }
         };
-        this.options.legend = {
+        options.legend = {
             layout: 'vertical',
             align: 'right',
             verticalAlign: 'top',
@@ -93,18 +84,30 @@ class Graphic {
             borderWidth: 1,
             shadow: true
         };
-        this.options.credits = {
+        options.credits = {
             enabled: false
         };
-        this.options.series = [{
+        options.series = [{
             name: 'Resultado electoral',
             data: mandates
         }];
 
         callback();
-    }
+    },
 
-    createPie(result, callback) {
+    createPie: function(result, callback) {
+        var options = {
+            chart: {},
+            title: {},
+            subtitle: {},
+            xAxis: {},
+            yAxis: {},
+            tooltip: {},
+            plotOptions: {},
+            legend: {},
+            credits: {},
+            series: []
+        };
         var resultsArray = [],
             temp = [];
         for (var i = 0, len = result.length; i < len; i++) {
@@ -114,21 +117,21 @@ class Graphic {
             }
         }
 
-        this.options.chart = {
+        options.chart = {
             plotBackgroundColor: null,
             plotBorderWidth: 0,
             plotShadow: true
         };
-        this.options.title = {
+        options.title = {
             text: 'Resultados<br>Electorales<br>2015',
             align: 'center',
             verticalAlign: 'middle',
             y: 10
         };
-        this.options.tooltip = {
+        options.tooltip = {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
         };
-        this.options.plotOptions = {
+        options.plotOptions = {
             pie: {
                 dataLabels: {
                     enabled: true,
@@ -143,7 +146,7 @@ class Graphic {
                 center: ['50%', '75%']
             }
         };
-        this.options.series = [{
+        options.series = [{
             type: 'pie',
             name: 'Resultados electorales',
             innerSize: '90%',
@@ -153,5 +156,4 @@ class Graphic {
     }
 
 
-}
-module.exports = Graphic;
+};

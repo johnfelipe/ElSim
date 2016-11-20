@@ -7,13 +7,10 @@ const app = require('./../app'),
 /**
  * Test de la clase Sistema
  */
-describe('Sistema',function() {
-    describe('#constructor()', function() {
-        var s;
-        it('Should not throw an error if create object', function(done) {
-            expect(function(){
-                s = new Sistema();
-            }).to.not.throw(Error);
+describe('Sistema', function () {
+    describe('#constructor()', function () {
+
+        it('foo test', function (done) {
             done();
         });
     });
