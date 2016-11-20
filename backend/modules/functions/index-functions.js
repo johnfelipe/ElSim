@@ -2,17 +2,15 @@
 const Log = require('./../../models/log'),
     Graphic = require('./../graphics/graphic-module'),
     Result = require('./../../models/result'),
-    District = require('./../district-module');
-/**
- *
- * @type {{indexGetFunction: module.exports.indexGetFunction, helpGetFunction: module.exports.helpGetFunction, leafletExampleGetFunction: module.exports.leafletExampleGetFunction, graphicFormGetFunction: module.exports.graphicFormGetFunction, learnGetFunction: module.exports.learnGetFunction, addDataGetFunction: module.exports.addDataGetFunction, addDataPostFunction: module.exports.addDataPostFunction, deleteDataGetFunction: module.exports.deleteDataGetFunction, deleteDataPostFunction: module.exports.deleteDataPostFunction, graphicFormPostFunction: module.exports.graphicFormPostFunction}}
- */
+    District = require('./../district-module'),
+    Promise = require('bluebird');
+
 module.exports = {
     indexGetFunction: function (req, res) {
         Log.find({}, haveLog);
         function haveLog(err, data) {
             if (err) throw err;
-            var options = {
+            let options = {
                 title: 'Welcome Page',
                 logs: data,
                 moment: require('moment')
@@ -21,35 +19,25 @@ module.exports = {
         }
     },
 
-
-    /**
-     * Help route.
-     */
     helpGetFunction: function (req, res) {
-        var options = {
+        let options = {
             title: 'Help Page'
         };
         res.render('pages/help', options);
     },
 
-    /**
-     * Leaflet Example Route
-     */
     leafletExampleGetFunction: function (req, res) {
-        var options = {
+        let options = {
             title: 'LeafletJS example'
         };
         res.render('pages/leaflet-example', options);
     },
 
-    /**
-     * GET Form to create graphs with stored results
-     */
     graphicFormGetFunction: function (req, res) {
         Result.find({}, haveResult);
         function haveResult(err, data) {
             if (err) throw err;
-            var options = {
+            let options = {
                 title: 'Create a graphic!',
                 results: data
             };
@@ -57,21 +45,15 @@ module.exports = {
         }
     },
 
-    /**
-     * GET Learn
-     */
     learnGetFunction: function (req, res) {
-        var options = {
+        let options = {
             title: 'Learn'
         };
         res.render('pages/learn', options);
     },
 
-    /**
-     * GET Add data
-     */
     addDataGetFunction: function (req, res) {
-        var options = {
+        let options = {
             title: 'Add data',
             error: 'NO',
             codigos: require('./../../codigos')
@@ -79,17 +61,14 @@ module.exports = {
         res.render('pages/add-data', options);
     },
 
-    /**
-     * POST Add data
-     */
     addDataPostFunction: function (req, res) {
-        var lines = req.param('votes').split('\n');
-        var partidos = {}, aux;
-        for (var i = 0, len = lines.length; i < len; i++) {
+        let lines = req.param('votes').split('\n'),
+            partidos = {}, aux;
+        for (let i = 0, len = lines.length; i < len; i++) {
             aux = lines[i].split(' ');
             partidos[aux[0].replace(/(\r\n|\n|\r)/gm, "")] = aux[2].replace(/(\r\n|\n|\r)/gm, "");
         }
-        var result = new Result({
+        let result = new Result({
             comunidad: 'desconocida',
             cod_provincia: req.param('province'),
             provincia: 'desconocida',
@@ -109,7 +88,7 @@ module.exports = {
         });
         result.save(function (err) {
             if (err) throw err;
-            var options = {
+            let options = {
                 title: 'Add data',
                 error: 'NO',
                 codigos: require('./../../codigos')
@@ -119,12 +98,9 @@ module.exports = {
 
     },
 
-    /**
-     * GET Delete data
-     */
     deleteDataGetFunction: function (req, res) {
         Result.find({}, function (err, data) {
-            var options = {
+            let options = {
                 title: 'Delete data',
                 error: 'NO',
                 data: data
@@ -133,32 +109,33 @@ module.exports = {
         });
 
     },
-    /**
-     * POST Delete data
-     */
+
     deleteDataPostFunction: function (req, res) {
+        let promises = [], options;
 
-        for (var i = 0, len = req.param('results').length; i < len; i++) {
-            Result.remove({_id: req.param('results')[i]}, function (err) {
-                if (err) throw err;
-            });
+        for (let i = 0, len = req.param('results').length; i < len; i++) {
+            options = {_id: req.param('results')[i]};
+            promises.push(Result.remove(options, removed));
         }
-        Result.find({}, function (err, data) {
-            var options = {
-                title: 'Delete data',
-                error: 'NO',
-                data: data
-            };
-            res.render('pages/delete-data', options);
+        function removed(err) {
+            if (err) throw err;
+        }
+        Promise.all(files).then(function() {
+            console.log('all the results were deleted');
+            Result.find({}, function (err, data) {
+                let options = {
+                    title: 'Delete data',
+                    error: 'NO',
+                    data: data
+                };
+                res.render('pages/delete-data', options);
+            });
         });
+
     },
 
-
-    /**
-     * POST show the graph generated by the form
-     */
     graphicFormPostFunction: function (req, res) {
-        var votes = [],
+        let votes = [],
             resultados = [],
             aux = {},
             mode = req.body.mode,
@@ -181,15 +158,19 @@ module.exports = {
                 resultados.push(aux);
             }
 
-            var results = District.compute(votes,mandates);
+            let results = District.compute(votes,mandates);
 
-            for (var i = 0, len = results.length; i < len; i++) resultados[i].mandates = results[i];
+            for (let i = 0, len = results.length; i < len; i++) resultados[i].mandates = results[i];
 
-            if (mode === 'bar') Graphic.createBar(resultados, done);
-            if (mode === 'pie') Graphic.createPie(resultados, done);
+            if (mode === 'bar') {
+                Graphic.createBar(resultados, done);
+            }
+            if (mode === 'pie') {
+                Graphic.createPie(resultados, done);
+            }
 
             function done(graph_options) {
-                var options = {
+                let options = {
                     title: 'Graphic Example',
                     autor: data[0].eleccion.autor,
                     fecha: data[0].eleccion.fecha,
