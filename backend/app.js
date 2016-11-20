@@ -16,11 +16,10 @@ var mongoose = require('mongoose'),
     api = require('./modules/functions/api-functions'),
     User = require('./models/user');
 
-/**
- * View engine setup
- */
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 
 /**
  * Uncomment after placing your favicon in /public
@@ -49,6 +48,7 @@ app.use(bodyParser.json());
  * Use morgan to log requests to the console
  */
 app.use(logger('dev'));
+
 
 /**
  * Rutas que requieren estar autenticado
@@ -111,11 +111,11 @@ apiRoutes.get('/', api.apiWelcome);
 apiRoutes.get('/users', api.findAllUsers);
 apiRoutes.get('/check', api.check);
 apiRoutes.get('/logs', api.findLogs);
-apiRoutes.get('/resultados/setup', api.loadCsv);
-apiRoutes.get('/resultados', api.findAllResultados);
-apiRoutes.get('/resultados/:id', api.findOneResultado);
 apiRoutes.get('/resultados/year/:anio', api.findManyResultadosByAnio);
-apiRoutes.get('/resultados/provincia/:cod_provincia', api.findManyResultadosByProvincia);
+apiRoutes.get('/resultados/district/:cod_provincia', api.findManyResultadosByProvincia);
+apiRoutes.get('/resultados/setup', api.loadCsv);
+apiRoutes.get('/resultados/:id', api.findOneResultado);
+apiRoutes.get('/resultados', api.findAllResultados);
 
 /**
  * POST routes

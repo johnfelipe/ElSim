@@ -13,7 +13,6 @@ exports.setup = function(req, res) {
     User.find({}).remove(initialize);
 
     function initialize(){
-
         var nick = new User({
             name: 'demo',
             email: 'demo@demo.com',
@@ -21,15 +20,20 @@ exports.setup = function(req, res) {
             admin: true,
             resultados: []
         });
-        nick.save(function(err) {
-            if (err) throw err;
-            Log.find({}).remove(function(){
-                res.json({
-                    result: 'OK',
-                    success: true
-                });
-            });
-        });
+        nick.save(userSaved);
+    }
+
+    function userSaved(err) {
+        if (err) throw err;
+        Log.find({}).remove(logRemoved);
+    }
+
+    function logRemoved(){
+        var result = {
+            result: 'OK',
+            success: true
+        };
+        res.json(result);
     }
 };
 /**
@@ -38,12 +42,16 @@ exports.setup = function(req, res) {
  * @param res
  */
 exports.findAllUsers = function(req, res) {
-    User.find({},function(err,data){
+    User.find({},userFinded);
+
+    function userFinded(err,data){
         if(err) throw err;
-        res.send({
-            result:data
-        });
-    });
+        var result = {
+            result: 'OK',
+            data:data
+        };
+        res.send(result);
+    }
 };
 
 /**
