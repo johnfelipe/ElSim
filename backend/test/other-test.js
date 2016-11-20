@@ -8,7 +8,7 @@ const app = require('./../app'),
 describe('Miscellaneous',function() {
     describe('NodeJS Clustering', function() {
         it('Workers', function(done) {
-            var numCPUs = require('os').cpus().length;
+            let numCPUs = require('os').cpus().length;
             expect(numCPUs).to.be.greaterThan(0);
             done();
 

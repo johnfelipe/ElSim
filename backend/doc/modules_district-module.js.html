@@ -31,45 +31,40 @@ const dhondt = require('dhondt');
 /**
  * District
  */
-class District {
-    constructor(){
-        this.votes = [];
-        this.mandates = 0;
-        this.results = [];
-    }
+module.exports = {
 
     /**
      *
      */
-    compute(){
-        this.results = dhondt.compute(this.votes, this.mandates);
-    }
+    compute: function (votes, mandates) {
+        return dhondt.compute(votes, mandates);
+    },
 
     /**
      *
      * @param districts
      * @returns {number}
      */
-    static calculateTotalPopulation(districts){
-        if(!Array.isArray(districts)) throw new Error('Use an array instead.');
+    calculateTotalPopulation: function (districts) {
+        if (!Array.isArray(districts)) throw new Error('Use an array instead.');
         var total = 0;
-        for(var i = 0, len = districts.length; i &lt; len; i++){
+        for (var i = 0, len = districts.length; i &lt; len; i++) {
             total += districts[i].poblacion;
         }
         return total;
-    }
+    },
 
     /**
      *
      * @param districts
      * @returns {number}
      */
-    static calculateQuote(districts){
-        if(!Array.isArray(districts)) throw new Error('Use an array instead.');
+    calculateQuote: function (districts) {
+        if (!Array.isArray(districts)) throw new Error('Use an array instead.');
         var population = District.calculateTotalPopulation(districts),
             quote = population / 248.00;
         return quote;
-    }
+    },
 
     /**
      *
@@ -77,13 +72,13 @@ class District {
      * @param quote
      * @returns {{integer: number, float: number}}
      */
-    static calculateMandates(district,quote){
+    calculateMandates: function (district, quote) {
         var total = {
-            'integer' : 2,
-            'float' : 2.0
+            'integer': 2,
+            'float': 2.0
         };
 
-        if(district.cod_provincia > 50 ) {
+        if (district.cod_provincia > 50) {
             total.integer = 1;
             total.float = 1.0;
         } else {
@@ -91,33 +86,32 @@ class District {
             total.integer += Math.floor(total.float);
         }
         return total;
-    }
+    },
 
     /**
      *
      * @param districts
      */
-    static fixMandates(districts){
-        if(!Array.isArray(districts)) throw new Error('Use an array instead.');
+    fixMandates: function (districts) {
+        if (!Array.isArray(districts)) throw new Error('Use an array instead.');
         var m = 0, i, len, restante;
 
-        for(i = 0, len = districts.length; i &lt; len; i++){
+        for (i = 0, len = districts.length; i &lt; len; i++) {
             m += districts[i].mandates.integer;
         }
 
-        districts.sort(function(a, b) {
+        districts.sort(function (a, b) {
             return parseFloat(b.mandates.float) - parseFloat(a.mandates.float);
         });
 
         restante = 350 - m;
 
-        for(i = 0; i &lt; restante; i++){
+        for (i = 0; i &lt; restante; i++) {
             districts[i].mandates.integer++;
         }
     }
 
-}
-module.exports = District;
+};
 </code></pre>
         </article>
     </section>
@@ -128,13 +122,13 @@ module.exports = District;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BarChart.html">BarChart</a></li><li><a href="DbManager.html">DbManager</a></li><li><a href="District.html">District</a></li><li><a href="ElectoralSystem.html">ElectoralSystem</a></li><li><a href="Graphic.html">Graphic</a></li><li><a href="JsonGraph.html">JsonGraph</a></li><li><a href="Pie.html">Pie</a></li><li><a href="Util.html">Util</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addDataGetFunction">addDataGetFunction</a></li><li><a href="global.html#addDataPostFunction">addDataPostFunction</a></li><li><a href="global.html#apiRoutes">apiRoutes</a></li><li><a href="global.html#apiWelcome">apiWelcome</a></li><li><a href="global.html#check">check</a></li><li><a href="global.html#deleteAllLogs">deleteAllLogs</a></li><li><a href="global.html#deleteAllResultados">deleteAllResultados</a></li><li><a href="global.html#deleteDataGetFunction">deleteDataGetFunction</a></li><li><a href="global.html#deleteDataPostFunction">deleteDataPostFunction</a></li><li><a href="global.html#deleteOneResultado">deleteOneResultado</a></li><li><a href="global.html#deleteOneUser">deleteOneUser</a></li><li><a href="global.html#findAllResultados">findAllResultados</a></li><li><a href="global.html#findAllUsers">findAllUsers</a></li><li><a href="global.html#findLogs">findLogs</a></li><li><a href="global.html#findManyResultadosByAnio">findManyResultadosByAnio</a></li><li><a href="global.html#findManyResultadosByProvincia">findManyResultadosByProvincia</a></li><li><a href="global.html#findOneResultado">findOneResultado</a></li><li><a href="global.html#graphicFormGetFunction">graphicFormGetFunction</a></li><li><a href="global.html#graphicFormPostFunction">graphicFormPostFunction</a></li><li><a href="global.html#helpGetFunction">helpGetFunction</a></li><li><a href="global.html#leafletExampleGetFunction">leafletExampleGetFunction</a></li><li><a href="global.html#learnGetFunction">learnGetFunction</a></li><li><a href="global.html#loadCsv">loadCsv</a></li><li><a href="global.html#resultSchema">resultSchema</a></li><li><a href="global.html#saveOneResultado">saveOneResultado</a></li><li><a href="global.html#saveOneUser">saveOneUser</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#updateOneResultado">updateOneResultado</a></li><li><a href="global.html#updateOneUser">updateOneUser</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.html#.exports">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apiRoutes">apiRoutes</a></li><li><a href="global.html#resultSchema">resultSchema</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Fri Nov 11 2016 12:54:38 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sun Nov 20 2016 16:35:08 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>

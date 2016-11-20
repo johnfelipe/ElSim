@@ -27,221 +27,235 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
-const User   = require('./../../models/user'),
+const User = require('./../../models/user'),
     Log = require('./../../models/log'),
     Resultado = require('./../../models/result'),
     DB = require('./../db-manager-module');
-
 /**
- * Elimina todos los usuarios. Añade el usuario demo. Vacía los logs.
- * @param req
- * @param res
+ *
+ * @type {{setup: module.exports.setup, findAllUsers: module.exports.findAllUsers, saveOneUser: module.exports.saveOneUser, deleteOneUser: module.exports.deleteOneUser, updateOneUser: module.exports.updateOneUser, check: module.exports.check, apiWelcome: module.exports.apiWelcome, findAllResultados: module.exports.findAllResultados, saveOneResultado: module.exports.saveOneResultado, updateOneResultado: module.exports.updateOneResultado, deleteOneResultado: module.exports.deleteOneResultado, deleteAllResultados: module.exports.deleteAllResultados, findManyResultadosByAnio: module.exports.findManyResultadosByAnio, findManyResultadosByProvincia: module.exports.findManyResultadosByProvincia, findOneResultado: module.exports.findOneResultado, loadCsv: module.exports.loadCsv, findLogs: module.exports.findLogs, deleteAllLogs: module.exports.deleteAllLogs}}
  */
-exports.setup = function(req, res) {
-    User.find({}).remove(initialize);
+module.exports = {
+    /**
+     * Elimina todos los usuarios. Añade el usuario demo. Vacía los logs.
+     * @param req
+     * @param res
+     */
+    setup: function (req, res) {
+        User.find({}).remove(initialize);
 
-    function initialize(){
-
-        var nick = new User({
-            name: 'demo',
-            email: 'demo@demo.com',
-            password: 'password',
-            admin: true,
-            resultados: []
-        });
-        nick.save(function(err) {
-            if (err) throw err;
-            Log.find({}).remove(function(){
-                res.json({
-                    result: 'OK',
-                    success: true
-                });
+        function initialize() {
+            var nick = new User({
+                name: 'demo',
+                email: 'demo@demo.com',
+                password: 'password',
+                admin: true,
+                resultados: []
             });
+            nick.save(userSaved);
+        }
+
+        function userSaved(err) {
+            if (err) throw err;
+            Log.find({}).remove(logRemoved);
+        }
+
+        function logRemoved() {
+            var result = {
+                result: 'OK',
+                success: true
+            };
+            res.json(result);
+        }
+    },
+    /**
+     * Lista los usuarios. Necesita autenticación.
+     * @param req
+     * @param res
+     */
+    findAllUsers: function (req, res) {
+        User.find({}, userFinded);
+
+        function userFinded(err, data) {
+            if (err) throw err;
+            var result = {
+                result: 'OK',
+                data: data
+            };
+            res.send(result);
+        }
+    },
+
+    /**
+     * Crea un usuario
+     * @param req
+     * @param res
+     */
+    saveOneUser: function (req, res) {
+        throw new Error('Not yet implemented');
+    },
+
+    /**
+     * Elimina un usuario
+     * @param req
+     * @param res
+     */
+    deleteOneUser: function (req, res) {
+        throw new Error('Not yet implemented');
+    },
+
+    /**
+     * Actualiza un usuario
+     * @param req
+     * @param res
+     */
+    updateOneUser: function (req, res) {
+        throw new Error('Not yet implemented');
+    },
+
+    /**
+     * Check request. Necesita autenticación.
+     * @param req
+     * @param res
+     */
+    check: function (req, res) {
+        res.json(req.decoded);
+    },
+    /**
+     * Hello from api. Necesita autenticación.
+     * @param req
+     * @param res
+     */
+    apiWelcome: function (req, res) {
+        res.json({
+            message: 'Hello from the API!',
+            version: '0.0.1',
+            contact: 'jesusgonzaleznovez@gmail.com'
+        });
+    },
+
+    /**
+     * Obtiene todos los resultados almacenados.
+     * @param req
+     * @param res
+     */
+    findAllResultados: function (req, res) {
+        Resultado.find({}, function (err, data) {
+            if (err) throw err;
+            res.send({
+                result: data
+            });
+        });
+    },
+
+    /**
+     * Almacena un resultado.
+     * @param req
+     * @param res
+     */
+    saveOneResultado: function (req, res) {
+        throw new Error('Not yet implemented');
+    },
+
+    /**
+     * Actualiza un resultado.
+     * @param req
+     * @param res
+     */
+    updateOneResultado: function (req, res) {
+        throw new Error('Not yet implemented');
+    },
+
+    /**
+     * Elimina un resultado.
+     * @param req
+     * @param res
+     */
+    deleteOneResultado: function (req, res) {
+        throw new Error('Not yet implemented');
+    },
+
+    /**
+     * Vacía todos los resultados(be careful with this!)
+     * @param req
+     * @param res
+     */
+    deleteAllResultados: function (req, res) {
+        DB.deleteAllResultados(function () {
+            res.send({result: 'OK'});
+        });
+    },
+
+    /**
+     * Filtra resultados por anio.
+     * @param req
+     * @param res
+     */
+    findManyResultadosByAnio: function (req, res) {
+        DB.findManyResultadosByAnio(req.param('anio'), function (data) {
+            res.send({result: data});
+        });
+    },
+
+    /**
+     * Filtra resultados por provincia.
+     * @param req
+     * @param res
+     */
+    findManyResultadosByProvincia: function (req, res) {
+        DB.findManyResultadosByProvincia(req.param('cod_provincia'), function (data) {
+            res.send({result: data});
+        });
+    },
+    /**
+     * Filtra resultados por provincia.
+     * @param req
+     * @param res
+     */
+    findOneResultado: function (req, res) {
+        DB.findOneResultado(req.param('id'), function (data) {
+            res.send({result: data});
+        });
+    },
+
+    /**
+     * Parsea los csv del ministerio con los históricos de resultados electorales
+     * al congreso.
+     * @param req
+     * @param res
+     */
+    loadCsv: function (req, res) {
+        DB.loadCsv(function () {
+            res.send({result: 'OK'});
+        });
+    },
+
+    /**
+     * Lista los logs.
+     * @param req
+     * @param res
+     */
+    findLogs: function (req, res) {
+        Log.find({}, function (err, data) {
+            if (err) throw err;
+            res.send({
+                result: data
+            });
+        });
+    },
+
+    /**
+     * Elimina los logs.
+     * @param req
+     * @param res
+     */
+    deleteAllLogs: function (req, res) {
+        DB.deleteAllLogs(function () {
+            res.send({result: 'OK'});
         });
     }
 };
-/**
- * Lista los usuarios. Necesita autenticación.
- * @param req
- * @param res
- */
-exports.findAllUsers = function(req, res) {
-    User.find({},function(err,data){
-        if(err) throw err;
-        res.send({
-            result:data
-        });
-    });
-};
-
-/**
- * Crea un usuario
- * @param req
- * @param res
- */
-exports.saveOneUser = function(req, res) {
-    throw new Error('Not yet implemented');
-};
-
-/**
- * Elimina un usuario
- * @param req
- * @param res
- */
-exports.deleteOneUser = function(req, res) {
-    throw new Error('Not yet implemented');
-};
-
-/**
- * Actualiza un usuario
- * @param req
- * @param res
- */
-exports.updateOneUser = function(req, res) {
-    throw new Error('Not yet implemented');
-};
-
-/**
- * Check request. Necesita autenticación.
- * @param req
- * @param res
- */
-exports.check = function(req, res) {
-    res.json(req.decoded);
-};
-/**
- * Hello from api. Necesita autenticación.
- * @param req
- * @param res
- */
-exports.apiWelcome = function(req, res) {
-    res.json({
-        message: 'Hello from the API!',
-        version: '0.0.1',
-        contact: 'jesusgonzaleznovez@gmail.com'
-    });
-};
-
-/**
- * Obtiene todos los resultados almacenados.
- * @param req
- * @param res
- */
-exports.findAllResultados = function(req, res) {
-    Resultado.find({},function(err,data){
-        if(err) throw err;
-        res.send({
-            result:data
-        });
-    });
-};
-
-/**
- * Almacena un resultado.
- * @param req
- * @param res
- */
-exports.saveOneResultado = function(req, res) {
-    throw new Error('Not yet implemented');
-};
-
-/**
- * Actualiza un resultado.
- * @param req
- * @param res
- */
-exports.updateOneResultado = function(req, res) {
-    throw new Error('Not yet implemented');
-};
-
-/**
- * Elimina un resultado.
- * @param req
- * @param res
- */
-exports.deleteOneResultado = function(req, res) {
-    throw new Error('Not yet implemented');
-};
-
-/**
- * Vacía todos los resultados(be careful with this!)
- * @param req
- * @param res
- */
-exports.deleteAllResultados = function(req, res){
-    DB.deleteAllResultados(function(){
-        res.send({result:'OK'});
-    });
-};
-
-/**
- * Filtra resultados por anio.
- * @param req
- * @param res
- */
-exports.findManyResultadosByAnio = function(req, res){
-    DB.findManyResultadosByAnio(req.param('anio'),function(data){
-        res.send({result:data});
-    });
-};
-
-/**
- * Filtra resultados por provincia.
- * @param req
- * @param res
- */
-exports.findManyResultadosByProvincia = function(req, res){
-    DB.findManyResultadosByProvincia(req.param('cod_provincia'),function(data){
-        res.send({result:data});
-    });
-};
-/**
- * Filtra resultados por provincia.
- * @param req
- * @param res
- */
-exports.findOneResultado = function(req, res){
-    DB.findOneResultado(req.param('id'),function(data){
-        res.send({result:data});
-    });
-};
-
-/**
- * Parsea los csv del ministerio con los históricos de resultados electorales
- * al congreso.
- * @param req
- * @param res
- */
-exports.loadCsv = function(req,res){
-    DB.loadCsv(function(){
-        res.send({result:'OK'});
-    });
-};
-
-/**
- * Lista los logs.
- * @param req
- * @param res
- */
-exports.findLogs = function(req, res){
-    Log.find({},function(err,data){
-        if(err) throw err;
-        res.send({
-            result:data
-        });
-    });
-};
-
-/**
- * Elimina los logs.
- * @param req
- * @param res
- */
-exports.deleteAllLogs = function(req, res){
-    DB.deleteAllLogs(function(){
-        res.send({result:'OK'});
-    });
-};</code></pre>
+</code></pre>
         </article>
     </section>
 
@@ -251,13 +265,13 @@ exports.deleteAllLogs = function(req, res){
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BarChart.html">BarChart</a></li><li><a href="DbManager.html">DbManager</a></li><li><a href="District.html">District</a></li><li><a href="ElectoralSystem.html">ElectoralSystem</a></li><li><a href="Graphic.html">Graphic</a></li><li><a href="JsonGraph.html">JsonGraph</a></li><li><a href="Pie.html">Pie</a></li><li><a href="Util.html">Util</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addDataGetFunction">addDataGetFunction</a></li><li><a href="global.html#addDataPostFunction">addDataPostFunction</a></li><li><a href="global.html#apiRoutes">apiRoutes</a></li><li><a href="global.html#apiWelcome">apiWelcome</a></li><li><a href="global.html#check">check</a></li><li><a href="global.html#deleteAllLogs">deleteAllLogs</a></li><li><a href="global.html#deleteAllResultados">deleteAllResultados</a></li><li><a href="global.html#deleteDataGetFunction">deleteDataGetFunction</a></li><li><a href="global.html#deleteDataPostFunction">deleteDataPostFunction</a></li><li><a href="global.html#deleteOneResultado">deleteOneResultado</a></li><li><a href="global.html#deleteOneUser">deleteOneUser</a></li><li><a href="global.html#findAllResultados">findAllResultados</a></li><li><a href="global.html#findAllUsers">findAllUsers</a></li><li><a href="global.html#findLogs">findLogs</a></li><li><a href="global.html#findManyResultadosByAnio">findManyResultadosByAnio</a></li><li><a href="global.html#findManyResultadosByProvincia">findManyResultadosByProvincia</a></li><li><a href="global.html#findOneResultado">findOneResultado</a></li><li><a href="global.html#graphicFormGetFunction">graphicFormGetFunction</a></li><li><a href="global.html#graphicFormPostFunction">graphicFormPostFunction</a></li><li><a href="global.html#helpGetFunction">helpGetFunction</a></li><li><a href="global.html#leafletExampleGetFunction">leafletExampleGetFunction</a></li><li><a href="global.html#learnGetFunction">learnGetFunction</a></li><li><a href="global.html#loadCsv">loadCsv</a></li><li><a href="global.html#resultSchema">resultSchema</a></li><li><a href="global.html#saveOneResultado">saveOneResultado</a></li><li><a href="global.html#saveOneUser">saveOneUser</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#updateOneResultado">updateOneResultado</a></li><li><a href="global.html#updateOneUser">updateOneUser</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.html#.exports">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apiRoutes">apiRoutes</a></li><li><a href="global.html#resultSchema">resultSchema</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Fri Nov 11 2016 12:54:38 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sun Nov 20 2016 16:35:08 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>

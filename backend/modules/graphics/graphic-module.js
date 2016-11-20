@@ -1,7 +1,15 @@
 'use strict';
 const highcharts = require('node-highcharts');
-
+/**
+ *
+ * @type {{rendChart: module.exports.rendChart, createBar: module.exports.createBar, createPie: module.exports.createPie}}
+ */
 module.exports = {
+    /**
+     *
+     * @param options
+     * @param callback
+     */
     rendChart: function(options,callback) {
         highcharts.render(options, callbackRender);
         function callbackRender(err, data) {
@@ -13,8 +21,13 @@ module.exports = {
         }
     },
 
+    /**
+     *
+     * @param result
+     * @param callback
+     */
     createBar: function(result, callback) {
-        var options = {
+        let options = {
             chart: {},
             title: {},
             subtitle: {},
@@ -26,10 +39,10 @@ module.exports = {
             credits: {},
             series: []
         };
-        var categories = [],
+        let categories = [],
             mandates = [];
 
-        for (var i = 0, len = result.length; i < len; i++) {
+        for (let i = 0, len = result.length; i < len; i++) {
             if (result[i].mandates > 0) {
                 categories.push(result[i].partido);
                 mandates.push(result[i].mandates);
@@ -92,11 +105,11 @@ module.exports = {
             data: mandates
         }];
 
-        callback();
+        callback(options);
     },
 
     createPie: function(result, callback) {
-        var options = {
+        let options = {
             chart: {},
             title: {},
             subtitle: {},
@@ -108,9 +121,9 @@ module.exports = {
             credits: {},
             series: []
         };
-        var resultsArray = [],
+        let resultsArray = [],
             temp = [];
-        for (var i = 0, len = result.length; i < len; i++) {
+        for (let i = 0, len = result.length; i < len; i++) {
             if (result[i].mandates > 0) {
                 temp = [result[i].partido, result[i].mandates];
                 resultsArray.push(temp);
@@ -152,7 +165,7 @@ module.exports = {
             innerSize: '90%',
             data: resultsArray
         }];
-        callback();
+        callback(options);
     }
 
 

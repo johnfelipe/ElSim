@@ -3,7 +3,10 @@ const User = require('./../../models/user'),
     Log = require('./../../models/log'),
     Resultado = require('./../../models/result'),
     DB = require('./../db-manager-module');
-
+/**
+ *
+ * @type {{setup: module.exports.setup, findAllUsers: module.exports.findAllUsers, saveOneUser: module.exports.saveOneUser, deleteOneUser: module.exports.deleteOneUser, updateOneUser: module.exports.updateOneUser, check: module.exports.check, apiWelcome: module.exports.apiWelcome, findAllResultados: module.exports.findAllResultados, saveOneResultado: module.exports.saveOneResultado, updateOneResultado: module.exports.updateOneResultado, deleteOneResultado: module.exports.deleteOneResultado, deleteAllResultados: module.exports.deleteAllResultados, findManyResultadosByAnio: module.exports.findManyResultadosByAnio, findManyResultadosByProvincia: module.exports.findManyResultadosByProvincia, findOneResultado: module.exports.findOneResultado, loadCsv: module.exports.loadCsv, findLogs: module.exports.findLogs, deleteAllLogs: module.exports.deleteAllLogs}}
+ */
 module.exports = {
     /**
      * Elimina todos los usuarios. Añade el usuario demo. Vacía los logs.
