@@ -27,63 +27,54 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
-var express = require('express'),
+/**
+ * Principal module of the server side
+ * @module app
+ */
+let express = require('express'),
     path = require('path'),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     routes = require('./routes/index'),
-    users = require('./routes/users');
-
-var app = express();
-
-var mongoose = require('mongoose'),
+    users = require('./routes/users'),
+    app = express(),
+    mongoose = require('mongoose'),
     jwt = require('jsonwebtoken'),
     config = require('./config'),
     api = require('./modules/functions/api-functions'),
     User = require('./models/user');
 
-
+/**
+ * @description Common configuration for the server side.
+ */
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-
-/**
- * Uncomment after placing your favicon in /public
- */
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', routes);
 app.use('/users', users);
-
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database);
-
 app.set('superSecret', config.secret);
-/**
- * Use body parser so we can get info from POST and/or URL parameters
- */
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
-/**
- * Use morgan to log requests to the console
- */
 app.use(logger('dev'));
 
+/** Routes under authentication */
+let apiRoutes = express.Router();
 
 /**
- * Rutas que requieren estar autenticado
+ * To check if is authenticated
+ * @function app/isAuthenticated
  */
-var apiRoutes = express.Router();
-var isAuthenticated = function (req, res, next) {
-    var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+let isAuthenticated = function (req, res, next) {
+    let token = req.body.token || req.param('token') || req.headers['x-access-token'];
     if (token) {
         jwt.verify(token, app.get('superSecret'), function (err, decoded) {
             if (err) {
@@ -101,11 +92,15 @@ var isAuthenticated = function (req, res, next) {
     }
 };
 
-var authenticate = function (req, res) {
+/**
+ * Function to authenticate
+ * @function app/authenticate
+ */
+let authenticate = function (req, res) {
     console.log('user ' + req.body.email + ' is trying to authenticate.');
     User.findOne({email: req.body.email}, done);
     function done(err, user) {
-        var object = {
+        let object = {
             success: false,
             message: 'Authentication failed',
             token: null
@@ -113,7 +108,7 @@ var authenticate = function (req, res) {
         if (err) throw err;
         if (user) {
             if (user.password === req.body.password) {
-                var token = jwt.sign(user, app.get('superSecret'), {
+                let token = jwt.sign(user, app.get('superSecret'), {
                     expiresIn: 3600 // expires in 1 hours
                 });
                 object.success = true;
@@ -133,6 +128,7 @@ apiRoutes.use(isAuthenticated);
 
 /**
  * GET routes
+ * @see modules/functions/api-functions
  */
 app.get('/setup', api.setup);
 apiRoutes.get('/', api.apiWelcome);
@@ -147,18 +143,21 @@ apiRoutes.get('/resultados', api.findAllResultados);
 
 /**
  * POST routes
+ * @see modules/functions/api-functions
  */
 apiRoutes.post('/users', api.saveOneUser);
 apiRoutes.post('/resultados', api.saveOneResultado);
 
 /**
  * PUT routes
+ * @see modules/functions/api-functions
  */
 apiRoutes.put('/users/:id', api.updateOneUser);
 apiRoutes.put('/resultados/:id', api.updateOneResultado);
 
 /**
  * DELETE routes
+ * @see modules/functions/api-functions
  */
 apiRoutes.delete('/users/:id', api.deleteOneUser);
 apiRoutes.delete('/logs', api.deleteAllLogs);
@@ -218,13 +217,13 @@ module.exports = app;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-modules_db-manager-module.html">modules/db-manager-module</a></li><li><a href="module-modules_district-module.html">modules/district-module</a></li><li><a href="module-modules_electoral-system-module.html">modules/electoral-system-module</a></li><li><a href="module-modules_functions_api-functions.html">modules/functions/api-functions</a></li><li><a href="module-modules_functions_index-functions.html">modules/functions/index-functions</a></li><li><a href="module-modules_graphics_bar-module.html">modules/graphics/bar-module</a></li><li><a href="module-modules_graphics_graphic-module.html">modules/graphics/graphic-module</a></li><li><a href="module-modules_graphics_json-module.html">modules/graphics/json-module</a></li><li><a href="module-modules_graphics_pie-module.html">modules/graphics/pie-module</a></li><li><a href="module-modules_util-module.html">modules/util-module</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apiRoutes">apiRoutes</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-modules_db-manager-module.html">modules/db-manager-module</a></li><li><a href="module-modules_district-module.html">modules/district-module</a></li><li><a href="module-modules_electoral-system-module.html">modules/electoral-system-module</a></li><li><a href="module-modules_functions_api-functions.html">modules/functions/api-functions</a></li><li><a href="module-modules_functions_index-functions.html">modules/functions/index-functions</a></li><li><a href="module-modules_graphics_bar-module.html">modules/graphics/bar-module</a></li><li><a href="module-modules_graphics_graphic-module.html">modules/graphics/graphic-module</a></li><li><a href="module-modules_graphics_json-module.html">modules/graphics/json-module</a></li><li><a href="module-modules_graphics_pie-module.html">modules/graphics/pie-module</a></li><li><a href="module-modules_util-module.html">modules/util-module</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sun Nov 20 2016 17:57:21 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sun Nov 20 2016 18:08:00 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>

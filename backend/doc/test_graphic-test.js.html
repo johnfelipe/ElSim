@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: modules/graphics/bar-module.js</title>
+    <title>JSDoc: Source: test/graphic-test.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: modules/graphics/bar-module.js</h1>
+    <h1 class="page-title">Source: test/graphic-test.js</h1>
 
     
 
@@ -26,15 +26,37 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Graphic = require('./graphic-module');
-/**
- * To handle bar charts
- * @module modules/graphics/bar-module
- */
-module.exports = {
+            <pre class="prettyprint source linenums"><code>'use strict';
+const app = require('./../app'),
+    http = require('http');
 
-};
-</code></pre>
+/**
+ * Test Graphic
+ * @module test/graphic-test
+ */
+describe('Graphic', function() {
+    describe('#Pie Chart', function() {
+        it('Basic test', function(done) {
+            console.log('Not yet implemented');
+            done();
+
+        });
+    });
+    describe('#JSON Chart', function() {
+        it('Basic test', function(done) {
+            console.log('Not yet implemented');
+            done();
+
+        });
+    });
+    describe('#Bar Chart', function() {
+        it('Basic test', function(done) {
+            console.log('Not yet implemented');
+            done();
+
+        });
+    });
+});</code></pre>
         </article>
     </section>
 

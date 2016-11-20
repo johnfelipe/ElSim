@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fd03d9dc-bbac-4ed5-a69d-e4ddc8716d37" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/app.js.html" afterPath="$PROJECT_DIR$/doc/app.js.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/global.html" afterPath="$PROJECT_DIR$/doc/global.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/index.html" afterPath="$PROJECT_DIR$/doc/index.html" />
@@ -17,24 +18,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_graphic-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_graphic-module.js.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_json-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_json-module.js.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_util-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_util-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/log.js" afterPath="$PROJECT_DIR$/models/log.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/result.js" afterPath="$PROJECT_DIR$/models/result.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/user.js" afterPath="$PROJECT_DIR$/models/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/db-manager-module.js" afterPath="$PROJECT_DIR$/modules/db-manager-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/district-module.js" afterPath="$PROJECT_DIR$/modules/district-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/electoral-system-module.js" afterPath="$PROJECT_DIR$/modules/electoral-system-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/functions/api-functions.js" afterPath="$PROJECT_DIR$/modules/functions/api-functions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/functions/index-functions.js" afterPath="$PROJECT_DIR$/modules/functions/index-functions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/graphics/bar-module.js" afterPath="$PROJECT_DIR$/modules/graphics/bar-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/graphics/graphic-module.js" afterPath="$PROJECT_DIR$/modules/graphics/graphic-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/graphics/json-module.js" afterPath="$PROJECT_DIR$/modules/graphics/json-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/graphics/pie-module.js" afterPath="$PROJECT_DIR$/modules/graphics/pie-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/util-module.js" afterPath="$PROJECT_DIR$/modules/util-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/district-test.js" afterPath="$PROJECT_DIR$/test/district-test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/electoral-system-test.js" afterPath="$PROJECT_DIR$/test/electoral-system-test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/graphic-test.js" afterPath="$PROJECT_DIR$/test/graphic-test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/model-test.js" afterPath="$PROJECT_DIR$/test/model-test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/other-test.js" afterPath="$PROJECT_DIR$/test/other-test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/users.js" afterPath="$PROJECT_DIR$/routes/users.js" />
     </list>
     <ignored path="Backend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,18 +65,38 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-445">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="126">
+              <caret line="7" column="44" lean-forward="false" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="other-test.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="other-test.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/other-test.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
               <caret line="5" column="20" lean-forward="false" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="38" lean-forward="false" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/users.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -112,26 +117,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
               <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="result.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/result.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/user.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -174,7 +159,6 @@
       <list>
         <option value="$PROJECT_DIR$/routes/modules/util-module.js" />
         <option value="$PROJECT_DIR$/routes/modules/electoral-system-module.js" />
-        <option value="$PROJECT_DIR$/routes/users.js" />
         <option value="$PROJECT_DIR$/routes/modules/db-manager-module.js" />
         <option value="$PROJECT_DIR$/routes/modules/district-module.js" />
         <option value="$PROJECT_DIR$/routes/modules/graphics/pie-module.js" />
@@ -202,9 +186,7 @@
         <option value="$PROJECT_DIR$/views/partials/head.ejs" />
         <option value="$PROJECT_DIR$/views/partials/footer.ejs" />
         <option value="$PROJECT_DIR$/modules/index-functions.js" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/gen_doc.sh" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/modules/util-module.js" />
         <option value="$PROJECT_DIR$/modules/district-module.js" />
         <option value="$PROJECT_DIR$/modules/electoral-system-module.js" />
@@ -223,6 +205,9 @@
         <option value="$PROJECT_DIR$/test/graphic-test.js" />
         <option value="$PROJECT_DIR$/test/model-test.js" />
         <option value="$PROJECT_DIR$/test/other-test.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/routes/users.js" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -317,20 +302,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="routes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -527,7 +498,7 @@
       <workItem from="1479400268704" duration="790000" />
       <workItem from="1479651602668" duration="3248000" />
       <workItem from="1479654992856" duration="2331000" />
-      <workItem from="1479659820859" duration="1186000" />
+      <workItem from="1479659820859" duration="1856000" />
     </task>
     <task id="LOCAL-00001" summary="Integrando git con WebStorm&#10;">
       <created>1476441402056</created>
@@ -554,7 +525,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="243672000" />
+    <option name="totallyTimeSpent" value="244342000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="12" y="25" width="1267" height="751" extended-state="0" />
@@ -669,13 +640,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="43" lean-forward="false" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/pages/help.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1368">
@@ -775,14 +739,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/admin/index.jade" />
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="108" column="20" lean-forward="false" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/util-module.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -897,14 +853,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-445">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/district-test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -941,6 +889,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="5" column="20" lean-forward="false" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="44" lean-forward="false" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="38" lean-forward="false" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
           <folding />
         </state>
       </provider>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: modules/graphics/bar-module.js</title>
+    <title>JSDoc: Source: routes/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: modules/graphics/bar-module.js</h1>
+    <h1 class="page-title">Source: routes/index.js</h1>
 
     
 
@@ -26,14 +26,28 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Graphic = require('./graphic-module');
-/**
- * To handle bar charts
- * @module modules/graphics/bar-module
- */
-module.exports = {
+            <pre class="prettyprint source linenums"><code>'use strict';
+const express = require('express'),
+    router = express.Router(),
+    IndexFunctions = require('./../modules/functions/index-functions');
 
-};
+/**
+ * All the index routes
+ * @see modules/functions/index-functions.js
+ * @module routes/index
+ */
+router.get('/', IndexFunctions.indexGetFunction);
+router.get('/help', IndexFunctions.helpGetFunction);
+router.get('/leaflet-example', IndexFunctions.leafletExampleGetFunction);
+router.get('/graphic-form', IndexFunctions.graphicFormGetFunction);
+router.get('/learn', IndexFunctions.learnGetFunction);
+router.get('/add-data', IndexFunctions.addDataGetFunction);
+router.post('/add-data', IndexFunctions.addDataPostFunction);
+router.get('/delete-data', IndexFunctions.deleteDataGetFunction);
+router.post('/delete-data', IndexFunctions.deleteDataPostFunction);
+router.post('/graphic-form', IndexFunctions.graphicFormPostFunction);
+
+module.exports = router;
 </code></pre>
         </article>
     </section>

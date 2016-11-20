@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: modules/graphics/bar-module.js</title>
+    <title>JSDoc: Source: test/other-test.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: modules/graphics/bar-module.js</h1>
+    <h1 class="page-title">Source: test/other-test.js</h1>
 
     
 
@@ -26,14 +26,25 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Graphic = require('./graphic-module');
+            <pre class="prettyprint source linenums"><code>'use strict';
+const app = require('./../app'),
+    http = require('http'),
+    expect = require('chai').expect;
 /**
- * To handle bar charts
- * @module modules/graphics/bar-module
+ * Test Miscellaneus
+ * @module test/other-test
  */
-module.exports = {
+describe('Miscellaneous',function() {
+    describe('NodeJS Clustering', function() {
+        it('Workers', function(done) {
+            let numCPUs = require('os').cpus().length;
+            expect(numCPUs).to.be.greaterThan(0);
+            done();
 
-};
+        });
+    });
+});
+
 </code></pre>
         </article>
     </section>

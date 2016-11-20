@@ -1,61 +1,52 @@
 'use strict';
-var express = require('express'),
+/**
+ * Principal module of the server side
+ * @module app
+ */
+let express = require('express'),
     path = require('path'),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     routes = require('./routes/index'),
-    users = require('./routes/users');
-
-var app = express();
-
-var mongoose = require('mongoose'),
+    users = require('./routes/users'),
+    app = express(),
+    mongoose = require('mongoose'),
     jwt = require('jsonwebtoken'),
     config = require('./config'),
     api = require('./modules/functions/api-functions'),
     User = require('./models/user');
 
-
+/**
+ * @description Common configuration for the server side.
+ */
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-
-/**
- * Uncomment after placing your favicon in /public
- */
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', routes);
 app.use('/users', users);
-
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database);
-
 app.set('superSecret', config.secret);
-/**
- * Use body parser so we can get info from POST and/or URL parameters
- */
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
-/**
- * Use morgan to log requests to the console
- */
 app.use(logger('dev'));
 
+/** Routes under authentication */
+let apiRoutes = express.Router();
 
 /**
- * Rutas que requieren estar autenticado
+ * To check if is authenticated
+ * @function app/isAuthenticated
  */
-var apiRoutes = express.Router();
-var isAuthenticated = function (req, res, next) {
-    var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+let isAuthenticated = function (req, res, next) {
+    let token = req.body.token || req.param('token') || req.headers['x-access-token'];
     if (token) {
         jwt.verify(token, app.get('superSecret'), function (err, decoded) {
             if (err) {
@@ -73,11 +64,15 @@ var isAuthenticated = function (req, res, next) {
     }
 };
 
-var authenticate = function (req, res) {
+/**
+ * Function to authenticate
+ * @function app/authenticate
+ */
+let authenticate = function (req, res) {
     console.log('user ' + req.body.email + ' is trying to authenticate.');
     User.findOne({email: req.body.email}, done);
     function done(err, user) {
-        var object = {
+        let object = {
             success: false,
             message: 'Authentication failed',
             token: null
@@ -85,7 +80,7 @@ var authenticate = function (req, res) {
         if (err) throw err;
         if (user) {
             if (user.password === req.body.password) {
-                var token = jwt.sign(user, app.get('superSecret'), {
+                let token = jwt.sign(user, app.get('superSecret'), {
                     expiresIn: 3600 // expires in 1 hours
                 });
                 object.success = true;
@@ -105,6 +100,7 @@ apiRoutes.use(isAuthenticated);
 
 /**
  * GET routes
+ * @see modules/functions/api-functions
  */
 app.get('/setup', api.setup);
 apiRoutes.get('/', api.apiWelcome);
@@ -119,18 +115,21 @@ apiRoutes.get('/resultados', api.findAllResultados);
 
 /**
  * POST routes
+ * @see modules/functions/api-functions
  */
 apiRoutes.post('/users', api.saveOneUser);
 apiRoutes.post('/resultados', api.saveOneResultado);
 
 /**
  * PUT routes
+ * @see modules/functions/api-functions
  */
 apiRoutes.put('/users/:id', api.updateOneUser);
 apiRoutes.put('/resultados/:id', api.updateOneResultado);
 
 /**
  * DELETE routes
+ * @see modules/functions/api-functions
  */
 apiRoutes.delete('/users/:id', api.deleteOneUser);
 apiRoutes.delete('/logs', api.deleteAllLogs);
