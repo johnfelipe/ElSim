@@ -3,8 +3,8 @@ const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 /**
- * Modelo para un usuario del sistema
- * @type {any}
+ * User mongoose model
+ * @module models/user
  */
 module.exports = mongoose.model(
     'User',

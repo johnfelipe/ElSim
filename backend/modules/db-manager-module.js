@@ -5,17 +5,11 @@ const Log = require('./../models/log'),
     _ = require('./util-module');
 
 /**
- * Módulo para MongoDB con métodos auxiliares.
- * @returns {DbManager}
- * @constructor
+ * Module to handle the database.
+ * @module modules/db-manager-module
  */
 module.exports = {
 
-    /**
-     * Función que carga los ficheros csv con resultados históricos.
-     * Parsea y guarda en la base de datos.
-     * @param done{Function} callback
-     */
     loadCsv: function (done) {
         var a = ['1977', '1979', '1982', '1986', '1989', '1993', '1996'];
 
@@ -39,11 +33,7 @@ module.exports = {
 
         done();
     },
-    /**
-     * Función para guardar logs en la base de datos.
-     * @param message{String} mensaje que queremos guardar de log.
-     * @param done{Function} callback
-     */
+
     saveLog: function (message, done) {
         var l = new Log({
             message: message,
@@ -56,27 +46,14 @@ module.exports = {
         }
     },
 
-    /**
-     * Función para vaciar los logs.
-     * @param done{Function} callback
-     */
     cleanLog: function (done) {
         Log.find({}).remove(done);
     },
 
-    /**
-     * Función para vaciar los usuarios. BE CAREFUL
-     * @param done{Function} callback
-     */
     cleanUser: function (done) {
         User.find({}).remove(done);
     },
 
-    /**
-     * Función para guardar un usuario.
-     * @param user{Object} datos del usuario.
-     * @param done{Function} callback
-     */
     saveUser: function (user, done) {
         var u = new User(user);
 
@@ -88,11 +65,6 @@ module.exports = {
         }
     },
 
-    /**
-     * Función para buscar resultados por anio.
-     * @param anio{Number} anio de búsqueda
-     * @param done{Function} callback
-     */
     getResultadoByAnio: function (anio, done) {
         Resultado.find({anio: anio}, callbackFind);
 
@@ -101,11 +73,7 @@ module.exports = {
             done(data);
         }
     },
-    /**
-     * Función para buscar resultados por código de provincia.
-     * @param cod{Number} código de provincia de búsqueda
-     * @param done{Function} callback
-     */
+
     getResultadoByProvincia: function (cod, done) {
         Resultado.find({cod_provincia: cod}, callbackFind);
 
@@ -115,11 +83,6 @@ module.exports = {
         }
     },
 
-    /**
-     * Función para buscar un resultado por ID
-     * @param id{String} id de la base de datos.
-     * @param done{Function} callback
-     */
     getResultadoById: function (id, done) {
         Resultado.find({id: id}, callbackFind);
 
@@ -129,11 +92,6 @@ module.exports = {
         }
     },
 
-    /**
-     *
-     * @param resultado
-     * @param done
-     */
     saveResultado: function (resultado, done) {
 
         var r = new Resultado(resultado);
@@ -146,28 +104,15 @@ module.exports = {
             done();
         });
     },
-    /**
-     *
-     * @param done
-     */
+
     cleanResultado: function (done) {
         Resultado.find({}).remove(done);
     },
 
-    /**
-     *
-     * @param email
-     * @param done
-     */
     deleteUserByEmail: function (email, done) {
         User.find({email: email}).remove(done);
     },
 
-    /**
-     *
-     * @param name
-     * @param done
-     */
     deleteUserByName: function (name, done) {
         User.find({name: name}).remove(done);
     }

@@ -9,8 +9,10 @@ const app = require('./../app'),
     request = require('request');
 
 /**
- * Test del modelo User
+ * Test models
+ * @module test/model-test
  */
+
 describe('User', function() {
     describe('#save()', function() {
         it('Should not save if duplicate key(email)', function(done) {
@@ -29,9 +31,6 @@ describe('User', function() {
     });
 });
 
-/**
- * Test del modelo Resultado
- */
 describe('Resultado',function() {
     describe('#save()', function() {
         it('Should not save if duplicate key(cod_provincia + eleccion)', function(done) {
@@ -59,9 +58,6 @@ describe('Resultado',function() {
 });
 
 
-/**
- * Test de servidor, rutas, ...
- */
 describe('HTTP methods and routes', function() {
     before(function () {
         app.listen(3000);

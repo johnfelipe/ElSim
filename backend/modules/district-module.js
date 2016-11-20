@@ -1,22 +1,16 @@
 'use strict';
 const dhondt = require('dhondt');
+
 /**
- * District
+ * Utilities for a district
+ * @module modules/district-module
  */
 module.exports = {
 
-    /**
-     *
-     */
     compute: function (votes, mandates) {
         return dhondt.compute(votes, mandates);
     },
 
-    /**
-     *
-     * @param districts
-     * @returns {number}
-     */
     calculateTotalPopulation: function (districts) {
         if (!Array.isArray(districts)) throw new Error('Use an array instead.');
         var total = 0;
@@ -26,11 +20,6 @@ module.exports = {
         return total;
     },
 
-    /**
-     *
-     * @param districts
-     * @returns {number}
-     */
     calculateQuote: function (districts) {
         if (!Array.isArray(districts)) throw new Error('Use an array instead.');
         var population = District.calculateTotalPopulation(districts),
@@ -38,12 +27,6 @@ module.exports = {
         return quote;
     },
 
-    /**
-     *
-     * @param district
-     * @param quote
-     * @returns {{integer: number, float: number}}
-     */
     calculateMandates: function (district, quote) {
         var total = {
             'integer': 2,
@@ -60,10 +43,6 @@ module.exports = {
         return total;
     },
 
-    /**
-     *
-     * @param districts
-     */
     fixMandates: function (districts) {
         if (!Array.isArray(districts)) throw new Error('Use an array instead.');
         var m = 0, i, len, restante;

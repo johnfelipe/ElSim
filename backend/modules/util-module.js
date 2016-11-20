@@ -2,15 +2,12 @@
 const fs = require('fs'),
     csv = require('fast-csv');
 /**
- * Módulo de utilidades usado por otros módulos.
- * @returns {Util}
- * @constructor
+ * Useful module to some utilities
+ * @module modules/util-module
  */
 module.exports = {
-    /**
-     * Salida a consola con colores e indentación.
-     * @param message{String}
-     */
+
+    /** For pretty print any message */
     prettyPrint: function (message) {
         var options = {
             depth: 2,
@@ -22,13 +19,7 @@ module.exports = {
             throw err;
         }
     },
-    /**
-     * Dado un array con elementos repetidos establece como
-     * claves cada elemento y como valor de cada clave el número
-     * de repeticiones de dicha clave en el array.
-     * [a,a,a,b,c,c] --> {a:3, b:1, c:2}
-     * @param array{Array}
-     */
+
     groupByKey: function (array) {
         if (!Array.isArray(array)) throw new Error('Use an array to call this method');
         var counts = {};
@@ -38,13 +29,6 @@ module.exports = {
         return counts;
     },
 
-
-    /**
-     *
-     * @param a
-     * @param b
-     * @returns {number}
-     */
     sortByRest: function (a, b) {
         var keyA = a.rest,
             keyB = b.rest;
@@ -57,12 +41,6 @@ module.exports = {
         return 0;
     },
 
-    /**
-     *
-     * @param path1{String} Ruta del fichero csv con la provincia, votos, etc ...
-     * @param path2{String} Ruta del fichero csv con los partidos agrupados
-     * @param done{Function} Función callback
-     */
     readCsv: function (path1, path2, done) {
         var stream = fs.createReadStream(path1);
         var resultados = [];

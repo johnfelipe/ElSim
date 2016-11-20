@@ -3,7 +3,8 @@ const app = require('./../app'),
     http = require('http'),
     expect = require('chai').expect;
 /**
- * Test Miscellaneous
+ * Test Miscellaneus
+ * @module test/other-test
  */
 describe('Miscellaneous',function() {
     describe('NodeJS Clustering', function() {

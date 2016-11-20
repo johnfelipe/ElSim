@@ -1,15 +1,13 @@
 'use strict';
 const highcharts = require('node-highcharts');
+
 /**
- *
- * @type {{rendChart: module.exports.rendChart, createBar: module.exports.createBar, createPie: module.exports.createPie}}
+ * To handle charts
+ * @module modules/graphics/graphic-module
  */
 module.exports = {
-    /**
-     *
-     * @param options
-     * @param callback
-     */
+
+    /** Rends a chart in the server-side */
     rendChart: function(options,callback) {
         highcharts.render(options, callbackRender);
         function callbackRender(err, data) {
@@ -21,11 +19,7 @@ module.exports = {
         }
     },
 
-    /**
-     *
-     * @param result
-     * @param callback
-     */
+    /** Create a bar chart */
     createBar: function(result, callback) {
         let options = {
             chart: {},
@@ -108,6 +102,7 @@ module.exports = {
         callback(options);
     },
 
+    /** Create a pie chart */
     createPie: function(result, callback) {
         let options = {
             chart: {},

@@ -4,7 +4,10 @@ const Log = require('./../../models/log'),
     Result = require('./../../models/result'),
     District = require('./../district-module'),
     Promise = require('bluebird');
-
+/**
+ * All the callback functions of index routes
+ * @module modules/functions/index-functions
+ */
 module.exports = {
     indexGetFunction: function (req, res) {
         Log.find({}, haveLog);

@@ -2,8 +2,8 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 /**
- * Modelo para los logs
- * @type {any}
+ * Log mongoose model
+ * @module models/log
  */
 module.exports = mongoose.model(
     'Log',

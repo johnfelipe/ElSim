@@ -32,15 +32,10 @@ const User = require('./../../models/user'),
     Resultado = require('./../../models/result'),
     DB = require('./../db-manager-module');
 /**
- *
- * @type {{setup: module.exports.setup, findAllUsers: module.exports.findAllUsers, saveOneUser: module.exports.saveOneUser, deleteOneUser: module.exports.deleteOneUser, updateOneUser: module.exports.updateOneUser, check: module.exports.check, apiWelcome: module.exports.apiWelcome, findAllResultados: module.exports.findAllResultados, saveOneResultado: module.exports.saveOneResultado, updateOneResultado: module.exports.updateOneResultado, deleteOneResultado: module.exports.deleteOneResultado, deleteAllResultados: module.exports.deleteAllResultados, findManyResultadosByAnio: module.exports.findManyResultadosByAnio, findManyResultadosByProvincia: module.exports.findManyResultadosByProvincia, findOneResultado: module.exports.findOneResultado, loadCsv: module.exports.loadCsv, findLogs: module.exports.findLogs, deleteAllLogs: module.exports.deleteAllLogs}}
+ * All the callback functions of api routes
+ * @module modules/functions/api-functions
  */
 module.exports = {
-    /**
-     * Elimina todos los usuarios. Añade el usuario demo. Vacía los logs.
-     * @param req
-     * @param res
-     */
     setup: function (req, res) {
         User.find({}).remove(initialize);
 
@@ -86,46 +81,23 @@ module.exports = {
         }
     },
 
-    /**
-     * Crea un usuario
-     * @param req
-     * @param res
-     */
     saveOneUser: function (req, res) {
         throw new Error('Not yet implemented');
     },
 
-    /**
-     * Elimina un usuario
-     * @param req
-     * @param res
-     */
     deleteOneUser: function (req, res) {
         throw new Error('Not yet implemented');
     },
 
-    /**
-     * Actualiza un usuario
-     * @param req
-     * @param res
-     */
     updateOneUser: function (req, res) {
         throw new Error('Not yet implemented');
     },
 
-    /**
-     * Check request. Necesita autenticación.
-     * @param req
-     * @param res
-     */
+
     check: function (req, res) {
         res.json(req.decoded);
     },
-    /**
-     * Hello from api. Necesita autenticación.
-     * @param req
-     * @param res
-     */
+
     apiWelcome: function (req, res) {
         res.json({
             message: 'Hello from the API!',
@@ -134,11 +106,6 @@ module.exports = {
         });
     },
 
-    /**
-     * Obtiene todos los resultados almacenados.
-     * @param req
-     * @param res
-     */
     findAllResultados: function (req, res) {
         Resultado.find({}, function (err, data) {
             if (err) throw err;
@@ -148,93 +115,49 @@ module.exports = {
         });
     },
 
-    /**
-     * Almacena un resultado.
-     * @param req
-     * @param res
-     */
     saveOneResultado: function (req, res) {
         throw new Error('Not yet implemented');
     },
 
-    /**
-     * Actualiza un resultado.
-     * @param req
-     * @param res
-     */
     updateOneResultado: function (req, res) {
         throw new Error('Not yet implemented');
     },
 
-    /**
-     * Elimina un resultado.
-     * @param req
-     * @param res
-     */
     deleteOneResultado: function (req, res) {
         throw new Error('Not yet implemented');
     },
 
-    /**
-     * Vacía todos los resultados(be careful with this!)
-     * @param req
-     * @param res
-     */
     deleteAllResultados: function (req, res) {
         DB.deleteAllResultados(function () {
             res.send({result: 'OK'});
         });
     },
 
-    /**
-     * Filtra resultados por anio.
-     * @param req
-     * @param res
-     */
+
     findManyResultadosByAnio: function (req, res) {
         DB.findManyResultadosByAnio(req.param('anio'), function (data) {
             res.send({result: data});
         });
     },
 
-    /**
-     * Filtra resultados por provincia.
-     * @param req
-     * @param res
-     */
     findManyResultadosByProvincia: function (req, res) {
         DB.findManyResultadosByProvincia(req.param('cod_provincia'), function (data) {
             res.send({result: data});
         });
     },
-    /**
-     * Filtra resultados por provincia.
-     * @param req
-     * @param res
-     */
+
     findOneResultado: function (req, res) {
         DB.findOneResultado(req.param('id'), function (data) {
             res.send({result: data});
         });
     },
 
-    /**
-     * Parsea los csv del ministerio con los históricos de resultados electorales
-     * al congreso.
-     * @param req
-     * @param res
-     */
     loadCsv: function (req, res) {
         DB.loadCsv(function () {
             res.send({result: 'OK'});
         });
     },
 
-    /**
-     * Lista los logs.
-     * @param req
-     * @param res
-     */
     findLogs: function (req, res) {
         Log.find({}, function (err, data) {
             if (err) throw err;
@@ -244,11 +167,6 @@ module.exports = {
         });
     },
 
-    /**
-     * Elimina los logs.
-     * @param req
-     * @param res
-     */
     deleteAllLogs: function (req, res) {
         DB.deleteAllLogs(function () {
             res.send({result: 'OK'});
@@ -265,13 +183,13 @@ module.exports = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.html#.exports">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apiRoutes">apiRoutes</a></li><li><a href="global.html#resultSchema">resultSchema</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-modules_db-manager-module.html">modules/db-manager-module</a></li><li><a href="module-modules_district-module.html">modules/district-module</a></li><li><a href="module-modules_electoral-system-module.html">modules/electoral-system-module</a></li><li><a href="module-modules_functions_api-functions.html">modules/functions/api-functions</a></li><li><a href="module-modules_functions_index-functions.html">modules/functions/index-functions</a></li><li><a href="module-modules_graphics_bar-module.html">modules/graphics/bar-module</a></li><li><a href="module-modules_graphics_graphic-module.html">modules/graphics/graphic-module</a></li><li><a href="module-modules_graphics_json-module.html">modules/graphics/json-module</a></li><li><a href="module-modules_graphics_pie-module.html">modules/graphics/pie-module</a></li><li><a href="module-modules_util-module.html">modules/util-module</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apiRoutes">apiRoutes</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sun Nov 20 2016 16:35:08 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sun Nov 20 2016 17:57:21 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>

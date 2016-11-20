@@ -3,7 +3,8 @@ const app = require('./../app'),
     http = require('http');
 
 /**
- * Test del módulo Graphic
+ * Test Graphic
+ * @module test/graphic-test
  */
 describe('Graphic', function() {
     describe('#Pie Chart', function() {

@@ -1,7 +1,7 @@
 const Graphic = require('./graphic-module');
 /**
- *
- * @type {{}}
+ * To handle bar charts
+ * @module modules/graphics/bar-module
  */
 module.exports = {
 

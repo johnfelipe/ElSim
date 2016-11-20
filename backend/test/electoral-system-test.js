@@ -5,7 +5,8 @@ const app = require('./../app'),
     Sistema = require('./../modules/electoral-system-module');
 
 /**
- * Test de la clase Sistema
+ * Test EllectoralSystem
+ * @module test/electoral-system-test
  */
 describe('Sistema', function () {
     describe('#constructor()', function () {

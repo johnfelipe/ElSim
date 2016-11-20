@@ -3,7 +3,10 @@ const User = require('./../../models/user'),
     Log = require('./../../models/log'),
     Resultado = require('./../../models/result'),
     DB = require('./../db-manager-module');
-
+/**
+ * All the callback functions of api routes
+ * @module modules/functions/api-functions
+ */
 module.exports = {
     setup: function (req, res) {
         User.find({}).remove(initialize);

@@ -2,8 +2,8 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 /**
- * Modelo para un resultado de unas elecciones
- * @type {any}
+ * Ellectoral result mongoose model
+ * @module models/result
  */
 var resultSchema =  new Schema({
     comunidad: { type: String, required: true },

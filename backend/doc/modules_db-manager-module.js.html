@@ -33,17 +33,11 @@ const Log = require('./../models/log'),
     _ = require('./util-module');
 
 /**
- * Módulo para MongoDB con métodos auxiliares.
- * @returns {DbManager}
- * @constructor
+ * Module to handle the database.
+ * @module modules/db-manager-module
  */
 module.exports = {
 
-    /**
-     * Función que carga los ficheros csv con resultados históricos.
-     * Parsea y guarda en la base de datos.
-     * @param done{Function} callback
-     */
     loadCsv: function (done) {
         var a = ['1977', '1979', '1982', '1986', '1989', '1993', '1996'];
 
@@ -67,11 +61,7 @@ module.exports = {
 
         done();
     },
-    /**
-     * Función para guardar logs en la base de datos.
-     * @param message{String} mensaje que queremos guardar de log.
-     * @param done{Function} callback
-     */
+
     saveLog: function (message, done) {
         var l = new Log({
             message: message,
@@ -84,27 +74,14 @@ module.exports = {
         }
     },
 
-    /**
-     * Función para vaciar los logs.
-     * @param done{Function} callback
-     */
     cleanLog: function (done) {
         Log.find({}).remove(done);
     },
 
-    /**
-     * Función para vaciar los usuarios. BE CAREFUL
-     * @param done{Function} callback
-     */
     cleanUser: function (done) {
         User.find({}).remove(done);
     },
 
-    /**
-     * Función para guardar un usuario.
-     * @param user{Object} datos del usuario.
-     * @param done{Function} callback
-     */
     saveUser: function (user, done) {
         var u = new User(user);
 
@@ -116,11 +93,6 @@ module.exports = {
         }
     },
 
-    /**
-     * Función para buscar resultados por anio.
-     * @param anio{Number} anio de búsqueda
-     * @param done{Function} callback
-     */
     getResultadoByAnio: function (anio, done) {
         Resultado.find({anio: anio}, callbackFind);
 
@@ -129,11 +101,7 @@ module.exports = {
             done(data);
         }
     },
-    /**
-     * Función para buscar resultados por código de provincia.
-     * @param cod{Number} código de provincia de búsqueda
-     * @param done{Function} callback
-     */
+
     getResultadoByProvincia: function (cod, done) {
         Resultado.find({cod_provincia: cod}, callbackFind);
 
@@ -143,11 +111,6 @@ module.exports = {
         }
     },
 
-    /**
-     * Función para buscar un resultado por ID
-     * @param id{String} id de la base de datos.
-     * @param done{Function} callback
-     */
     getResultadoById: function (id, done) {
         Resultado.find({id: id}, callbackFind);
 
@@ -157,11 +120,6 @@ module.exports = {
         }
     },
 
-    /**
-     *
-     * @param resultado
-     * @param done
-     */
     saveResultado: function (resultado, done) {
 
         var r = new Resultado(resultado);
@@ -174,28 +132,15 @@ module.exports = {
             done();
         });
     },
-    /**
-     *
-     * @param done
-     */
+
     cleanResultado: function (done) {
         Resultado.find({}).remove(done);
     },
 
-    /**
-     *
-     * @param email
-     * @param done
-     */
     deleteUserByEmail: function (email, done) {
         User.find({email: email}).remove(done);
     },
 
-    /**
-     *
-     * @param name
-     * @param done
-     */
     deleteUserByName: function (name, done) {
         User.find({name: name}).remove(done);
     }
@@ -210,13 +155,13 @@ module.exports = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.html#.exports">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apiRoutes">apiRoutes</a></li><li><a href="global.html#resultSchema">resultSchema</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-modules_db-manager-module.html">modules/db-manager-module</a></li><li><a href="module-modules_district-module.html">modules/district-module</a></li><li><a href="module-modules_electoral-system-module.html">modules/electoral-system-module</a></li><li><a href="module-modules_functions_api-functions.html">modules/functions/api-functions</a></li><li><a href="module-modules_functions_index-functions.html">modules/functions/index-functions</a></li><li><a href="module-modules_graphics_bar-module.html">modules/graphics/bar-module</a></li><li><a href="module-modules_graphics_graphic-module.html">modules/graphics/graphic-module</a></li><li><a href="module-modules_graphics_json-module.html">modules/graphics/json-module</a></li><li><a href="module-modules_graphics_pie-module.html">modules/graphics/pie-module</a></li><li><a href="module-modules_util-module.html">modules/util-module</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apiRoutes">apiRoutes</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sun Nov 20 2016 16:35:08 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sun Nov 20 2016 17:57:21 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>
