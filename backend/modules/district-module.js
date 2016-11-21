@@ -10,6 +10,7 @@ module.exports = {
     /** Calculate the result of a district */
     compute: function (votes, mandates) {
         return dhondt.compute(votes, mandates);
+
     },
 
     /** Calculate the total population of a set of districts */

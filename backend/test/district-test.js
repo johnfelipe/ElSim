@@ -2,7 +2,8 @@
 const app = require('./../app'),
       http = require('http'),
       dhont = require('./../modules/district-module'),
-      expect = require('chai').expect;
+      expect = require('chai').expect,
+    Resultado = require('./../models/result');
 
 /**
  * Test de District
