@@ -12,7 +12,7 @@ module.exports = {
         return dhondt.compute(votes, mandates);
     },
 
-    /**  */
+    /** Calculate the total population of a set of districts */
     calculateTotalPopulation: function (districts) {
         if (!Array.isArray(districts)) throw new Error('Use an array instead.');
         let total = 0;
@@ -22,6 +22,7 @@ module.exports = {
         return total;
     },
 
+    /** */
     calculateQuote: function (districts) {
         if (!Array.isArray(districts)) throw new Error('Use an array instead.');
         let population = District.calculateTotalPopulation(districts),
