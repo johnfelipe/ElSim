@@ -7,6 +7,7 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+/** The schema for the model */
 let s = new Schema({
     message: {
         type: String,
