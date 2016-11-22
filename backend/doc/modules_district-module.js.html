@@ -27,7 +27,6 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
-const dhondt = require('dhondt');
 
 /**
  * Utilities for a district
@@ -37,62 +36,88 @@ module.exports = {
 
     /** Calculate the result of a district */
     compute: function (votes, mandates) {
-        return dhondt.compute(votes, mandates);
+        return 0;
     },
 
-    /** Calculate the total population of a set of districts */
-    calculateTotalPopulation: function (districts) {
-        if (!Array.isArray(districts)) throw new Error('Use an array instead.');
-        let total = 0;
-        for (let i = 0, len = districts.length; i &lt; len; i++) {
-            total += districts[i].poblacion;
+    /** Calculate the total number of votes including blank votes */
+    calculateTotalVotes: function (votes, blankVotes) {
+        let total = Number(blankVotes);
+        for (let i = 0, len = votes.length; i &lt; len; ++i) {
+            total = votes[i] + total;
         }
         return total;
     },
 
     /** */
-    calculateQuote: function (districts) {
-        if (!Array.isArray(districts)) throw new Error('Use an array instead.');
-        let population = District.calculateTotalPopulation(districts),
-            quote = population / 248.00;
-        return quote;
+    validateParties: function (numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames) {
+        let numberOfPartiesValidated = 0;
+        for (let i = 0; i &lt; numberOfParties; i++) {
+            if (votes[i] >= minNumberOfVotes) {
+                validatedVotes[numberOfPartiesValidated] = votes[i];
+                validatedNames[numberOfPartiesValidated] = names[i];
+                numberOfPartiesValidated++;
+            }
+        }
+        return numberOfPartiesValidated;
     },
 
-    calculateMandates: function (district, quote) {
-        let total = {
-            'integer': 2,
-            'float': 2.0
-        };
-
-        if (district.cod_provincia > 50) {
-            total.integer = 1;
-            total.float = 1.0;
-        } else {
-            total.float += (district.total_votantes / quote);
-            total.integer += Math.floor(total.float);
+    /** */
+    newSeat: function (votos, esc, num_par) {
+        let imax = 0, ct, max = 0;
+        for (ct = 0; ct &lt; num_par; ++ct) {
+            if (max &lt; (votos[ct] / (esc[ct] + 1))) {
+                max = votos[ct] / (esc[ct] + 1);
+                imax = ct;
+            }
         }
-        return total;
+        return imax;
     },
 
-    fixMandates: function (districts) {
-        if (!Array.isArray(districts)) throw new Error('Use an array instead.');
-        let m = 0, i, len, restante;
-
-        for (i = 0, len = districts.length; i &lt; len; i++) {
-            m += districts[i].mandates.integer;
+    /** */
+    fillSeats: function (mandates, seats, validatedVotes, numberOfPartiesValidated) {
+        for (let i = 0; i &lt; mandates; i++) {
+            seats[this.newSeat(validatedVotes, seats, numberOfPartiesValidated)]++;
         }
+    },
 
-        districts.sort(function (a, b) {
-            return parseFloat(b.mandates.float) - parseFloat(a.mandates.float);
-        });
-
-        restante = 350 - m;
-
-        for (i = 0; i &lt; restante; i++) {
-            districts[i].mandates.integer++;
+    /** */
+    fillPartiesResult: function (numberOfPartiesValidated, result, validatedNames, seats) {
+        for (let i = 0; i &lt; numberOfPartiesValidated; i++) {
+            result.parties[validatedNames[i]] = seats[i];
         }
+    },
+
+    /**
+     * Main function of the module.
+     * @param votes
+     * @param names
+     * @param mandates
+     * @param blankVotes
+     * @param percentage
+     * @return {{numberOfVotes: *, minNumberOfVotes: number, parties: {}}}
+     */
+    calculateSeats: function (votes, names, mandates, blankVotes, percentage) {
+        let numberOfParties = votes.length,
+            numberOfVotes = this.calculateTotalVotes(votes, blankVotes),
+            seats,
+            minNumberOfVotes = Math.ceil(numberOfVotes * percentage / 100),
+            result = {
+                numberOfVotes: numberOfVotes,
+                minNumberOfVotes: minNumberOfVotes,
+                parties: {}
+            },
+            numberOfPartiesValidated,
+            validatedVotes = [],
+            validatedNames = [];
+
+        numberOfPartiesValidated = this.validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
+        seats = new Array(numberOfPartiesValidated).fill(0);
+        this.fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
+        this.fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
+
+        console.log(result);
+        return result;
     }
-
 };
 </code></pre>
         </article>
@@ -110,7 +135,7 @@ module.exports = {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Mon Nov 21 2016 11:41:02 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Tue Nov 22 2016 14:46:02 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>

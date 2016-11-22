@@ -11,9 +11,31 @@ module.exports = {
         return 0;
     },
 
-    new_seat: function (votos, esc, num_par) {
-        let imax = 0, ct, max = 0;
+    /** Calculate the total number of votes including blank votes */
+    calculateTotalVotes: function (votes, blankVotes) {
+        let total = Number(blankVotes);
+        for (let i = 0, len = votes.length; i < len; ++i) {
+            total = votes[i] + total;
+        }
+        return total;
+    },
 
+    /** */
+    validateParties: function (numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames) {
+        let numberOfPartiesValidated = 0;
+        for (let i = 0; i < numberOfParties; i++) {
+            if (votes[i] >= minNumberOfVotes) {
+                validatedVotes[numberOfPartiesValidated] = votes[i];
+                validatedNames[numberOfPartiesValidated] = names[i];
+                numberOfPartiesValidated++;
+            }
+        }
+        return numberOfPartiesValidated;
+    },
+
+    /** */
+    newSeat: function (votos, esc, num_par) {
+        let imax = 0, ct, max = 0;
         for (ct = 0; ct < num_par; ++ct) {
             if (max < (votos[ct] / (esc[ct] + 1))) {
                 max = votos[ct] / (esc[ct] + 1);
@@ -23,48 +45,49 @@ module.exports = {
         return imax;
     },
 
-    calculate_seats: function (votes, names, mandates, blankVotes, percentage) {
+    /** */
+    fillSeats: function (mandates, seats, validatedVotes, numberOfPartiesValidated) {
+        for (let i = 0; i < mandates; i++) {
+            seats[this.newSeat(validatedVotes, seats, numberOfPartiesValidated)]++;
+        }
+    },
+
+    /** */
+    fillPartiesResult: function (numberOfPartiesValidated, result, validatedNames, seats) {
+        for (let i = 0; i < numberOfPartiesValidated; i++) {
+            result.parties[validatedNames[i]] = seats[i];
+        }
+    },
+
+    /**
+     * Main function of the module.
+     * @param votes
+     * @param names
+     * @param mandates
+     * @param blankVotes
+     * @param percentage
+     * @return {{numberOfVotes: *, minNumberOfVotes: number, parties: {}}}
+     */
+    calculateSeats: function (votes, names, mandates, blankVotes, percentage) {
         let numberOfParties = votes.length,
-            i,
-            numberOfVotes = Number(blankVotes),
-            seats = [],
-            minNumberOfVotes,
+            numberOfVotes = this.calculateTotalVotes(votes, blankVotes),
+            seats,
+            minNumberOfVotes = Math.ceil(numberOfVotes * percentage / 100),
             result = {
-                numberOfVotes: 0,
-                minNumberOfVotes: 0,
+                numberOfVotes: numberOfVotes,
+                minNumberOfVotes: minNumberOfVotes,
                 parties: {}
             },
-            numberOfPartiesValidated = 0,
+            numberOfPartiesValidated,
             validatedVotes = [],
             validatedNames = [];
 
-        for (i = 0; i < numberOfParties; i++) {
-            numberOfVotes = votes[i] + numberOfVotes;
-        }
+        numberOfPartiesValidated = this.validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
+        seats = new Array(numberOfPartiesValidated).fill(0);
+        this.fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
+        this.fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
 
-        result.numberOfVotes = numberOfVotes;
-        minNumberOfVotes = Math.ceil(numberOfVotes * percentage / 100);
-        result.minNumberOfVotes = minNumberOfVotes;
-
-        for (i = 0; i < numberOfParties; i++) {
-            if (votes[i] >= minNumberOfVotes) {
-                validatedVotes[numberOfPartiesValidated] = votes[i];
-                validatedNames[numberOfPartiesValidated] = names[i];
-                numberOfPartiesValidated++;
-            }
-        }
-
-        for (i = 0; i < numberOfPartiesValidated; i++) {
-            seats[i] = 0;
-        }
-        for (i = 0; i < mandates; i++) {
-            seats[this.new_seat(validatedVotes, seats, numberOfPartiesValidated)]++;
-        }
-
-        for (i = 0; i < numberOfPartiesValidated; i++) {
-            result.parties[validatedNames[i]] = seats[i];
-        }
         console.log(result);
-
+        return result;
     }
 };
