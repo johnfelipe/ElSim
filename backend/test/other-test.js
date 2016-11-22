@@ -15,5 +15,20 @@ describe('Miscellaneous',function() {
 
         });
     });
+    describe('NodeJS Performance', function() {
+        it('Loop', function(done) {
+            console.time('someFunction');
+            someFunction();
+            console.timeEnd('someFunction');
+            function someFunction(){
+                let a = 0.2;
+                
+
+            }
+
+            done();
+
+        });
+    });
 });
 
