@@ -7,8 +7,31 @@
 module.exports = {
 
     /** Calculate the result of a district */
-    compute: function (votes, mandates) {
+    compute: function (votes, options) {
+        if(!this.checkParameters(votes,options)){
+            throw new Error('Not valid parameters');
+        }
         return 0;
+    },
+
+    /** Check the type of each parameter */
+    checkParameters: function(votes,options){
+        if (typeof votes !== 'object' || typeof options !== 'object') {
+            return false;
+        } else if (options.mandates === undefined ||
+            options.blank === undefined ||
+            options.percentage === undefined) {
+            return false;
+        } else if (!this.isInt(options.mandates) || !this.isInt(options.blank)) {
+            return false;
+        }
+        return true;
+    },
+
+    /** Checks if a value is integer */
+    isInt: function (value) {
+        let x;
+        return isNaN(value) ? !1 : (x = parseFloat(value), (0 | x) === x);
     },
 
     /** Calculate the total number of votes including blank votes */
@@ -33,7 +56,7 @@ module.exports = {
         return numberOfPartiesValidated;
     },
 
-    /** */
+    /** Calculate new winner for the seat */
     newSeat: function (votos, esc, num_par) {
         let imax = 0, ct, max = 0;
         for (ct = 0; ct < num_par; ++ct) {
@@ -45,14 +68,14 @@ module.exports = {
         return imax;
     },
 
-    /** */
+    /** Fills the seats */
     fillSeats: function (mandates, seats, validatedVotes, numberOfPartiesValidated) {
         for (let i = 0; i < mandates; i++) {
             seats[this.newSeat(validatedVotes, seats, numberOfPartiesValidated)]++;
         }
     },
 
-    /** */
+    /** Fills the result of each party */
     fillPartiesResult: function (numberOfPartiesValidated, result, validatedNames, seats) {
         for (let i = 0; i < numberOfPartiesValidated; i++) {
             result.parties[validatedNames[i]] = seats[i];
