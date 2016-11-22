@@ -14,7 +14,7 @@ module.exports = {
         User.find({}).remove(initialize);
 
         function initialize() {
-            var nick = new User({
+            let nick = new User({
                 name: 'demo',
                 email: 'demo@demo.com',
                 password: 'password',
@@ -30,7 +30,7 @@ module.exports = {
         }
 
         function logRemoved() {
-            var result = {
+            let result = {
                 result: 'OK',
                 success: true
             };
@@ -44,7 +44,7 @@ module.exports = {
 
         function userFinded(err, data) {
             if (err) throw err;
-            var result = {
+            let result = {
                 result: 'OK',
                 data: data
             };

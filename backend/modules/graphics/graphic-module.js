@@ -8,7 +8,7 @@ const highcharts = require('node-highcharts');
 module.exports = {
 
     /** Rends a chart in the server-side */
-    rendChart: function(options,callback) {
+    rendChart: function (options, callback) {
         highcharts.render(options, callbackRender);
         function callbackRender(err, data) {
             if (err) {
@@ -20,7 +20,7 @@ module.exports = {
     },
 
     /** Create a bar chart */
-    createBar: function(result, callback) {
+    createBar: function (result, callback) {
         let options = {
             chart: {},
             title: {},
@@ -36,10 +36,12 @@ module.exports = {
         let categories = [],
             mandates = [];
 
-        for (let i = 0, len = result.length; i < len; i++) {
-            if (result[i].mandates > 0) {
-                categories.push(result[i].partido);
-                mandates.push(result[i].mandates);
+        Object.keys(result).forEach(iteration);
+
+        function iteration(key) {
+            if (result[key] > 0){
+                categories.push(key);
+                mandates.push(result[key]);
             }
         }
 
@@ -103,7 +105,8 @@ module.exports = {
     },
 
     /** Create a pie chart */
-    createPie: function(result, callback) {
+    createPie: function (result, callback) {
+        console.log(result);
         let options = {
             chart: {},
             title: {},
@@ -118,12 +121,14 @@ module.exports = {
         };
         let resultsArray = [],
             temp = [];
-        for (let i = 0, len = result.length; i < len; i++) {
-            if (result[i].mandates > 0) {
-                temp = [result[i].partido, result[i].mandates];
-                resultsArray.push(temp);
-            }
+
+        Object.keys(result).forEach(iteration);
+
+        function iteration(key) {
+            if (result[key] > 0)
+                resultsArray.push([key, result[key]]);
         }
+
 
         options.chart = {
             plotBackgroundColor: null,

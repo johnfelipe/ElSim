@@ -7,25 +7,15 @@
 module.exports = {
 
     /** Calculate the result of a district */
-    compute: function (votes, options) {
-        if(!this.checkParameters(votes,options)){
-            throw new Error('Not valid parameters');
-        }
-        return 0;
-    },
-
-    /** Check the type of each parameter */
-    checkParameters: function(votes,options){
-        if (typeof votes !== 'object' || typeof options !== 'object') {
-            return false;
-        } else if (options.mandates === undefined ||
-            options.blank === undefined ||
-            options.percentage === undefined) {
-            return false;
-        } else if (!this.isInt(options.mandates) || !this.isInt(options.blank)) {
-            return false;
-        }
-        return true;
+    compute: function (votes, names, options) {
+        console.log('VOTES');
+        console.log(votes);
+        console.log('NAMES');
+        console.log(names);
+        console.log('OPTIONS');
+        console.log(options);
+        console.log('---------------------------------\n');
+        return this.calculateSeats(votes,names,options.mandates,options.blankVotes,options.percentage);
     },
 
     /** Checks if a value is integer */
@@ -36,9 +26,9 @@ module.exports = {
 
     /** Calculate the total number of votes including blank votes */
     calculateTotalVotes: function (votes, blankVotes) {
-        let total = Number(blankVotes);
+        let total = parseInt(blankVotes);
         for (let i = 0, len = votes.length; i < len; ++i) {
-            total = votes[i] + total;
+            total = parseInt(votes[i]) + total;
         }
         return total;
     },

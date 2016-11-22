@@ -124,7 +124,8 @@ module.exports = {
         function removed(err) {
             if (err) throw err;
         }
-        Promise.all(files).then(function() {
+
+        Promise.all(files).then(function () {
             console.log('all the results were deleted');
             Result.find({}, function (err, data) {
                 let options = {
@@ -140,37 +141,34 @@ module.exports = {
 
     graphicFormPostFunction: function (req, res) {
         let votes = [],
-            resultados = [],
-            aux = {},
+            names = [],
             mode = req.body.mode,
-            mandates = req.body.mandates,
+            options = {
+                mandates: req.body.mandates,
+                percentage: 3,
+                blankVotes: 0
+            },
             id = req.body.resultSelected;
 
         Result.find({_id: id}, haveResult);
 
         function haveResult(err, data) {
             if (err) throw err;
+
+            options.blankVotes = data[0].votos_blanco;
+
             Object.keys(data[0].partidos).forEach(iteration);
 
             function iteration(key) {
                 votes.push(data[0].partidos[key]);
-                aux = {
-                    partido: key,
-                    votes: data[0].partidos[key],
-                    mandates: 0
-                };
-                resultados.push(aux);
+                names.push(key);
             }
 
-            let results = District.compute(votes,mandates);
-
-            for (let i = 0, len = results.length; i < len; i++) resultados[i].mandates = results[i];
-
+            let result = District.compute(votes, names, options);
             if (mode === 'bar') {
-                Graphic.createBar(resultados, done);
-            }
-            if (mode === 'pie') {
-                Graphic.createPie(resultados, done);
+                Graphic.createBar(result.parties, done);
+            } else if (mode === 'pie') {
+                Graphic.createPie(result.parties, done);
             }
 
             function done(graph_options) {
