@@ -19,6 +19,18 @@ module.exports = {
         }
     },
 
+    chooseColor: function(party){
+        let colors = {
+            'PP': 'blue',
+            'PSOE': 'red'
+        };
+        if(colors[party] === undefined){
+            return 'blue';
+        }
+        return colors[party];
+
+    },
+
     /** Create a bar chart */
     createBar: function (result, callback) {
         let options = {
@@ -41,7 +53,7 @@ module.exports = {
         function iteration(key) {
             if (result[key] > 0){
                 categories.push(key);
-                mandates.push(result[key]);
+                mandates.push({y:result[key],color: require('./graphic-module').chooseColor(key)});
             }
         }
 
@@ -61,7 +73,8 @@ module.exports = {
             categories: categories,
             title: {
                 text: null
-            }
+            },
+            allowDecimals: false
         };
         options.yAxis = {
             min: 0,
@@ -81,6 +94,9 @@ module.exports = {
                 dataLabels: {
                     enabled: true
                 }
+            },
+            column: {
+                colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9','#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1']
             }
         };
         options.legend = {
@@ -119,8 +135,7 @@ module.exports = {
             credits: {},
             series: []
         };
-        let resultsArray = [],
-            temp = [];
+        let resultsArray = [];
 
         Object.keys(result).forEach(iteration);
 
@@ -136,13 +151,13 @@ module.exports = {
             plotShadow: true
         };
         options.title = {
-            text: 'Resultados<br>Electorales<br>2015',
+            text: 'Results',
             align: 'center',
-            verticalAlign: 'middle',
-            y: 10
+            verticalAlign: 'top',
+            y: 20
         };
         options.tooltip = {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            pointFormat: '{series.name}: <b>{point.y}</b>'
         };
         options.plotOptions = {
             pie: {
@@ -162,9 +177,10 @@ module.exports = {
         options.series = [{
             type: 'pie',
             name: 'Resultados electorales',
-            innerSize: '90%',
+            innerSize: '0%',
             data: resultsArray
         }];
+
         callback(options);
     }
 
