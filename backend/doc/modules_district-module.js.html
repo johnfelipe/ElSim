@@ -35,15 +35,28 @@
 module.exports = {
 
     /** Calculate the result of a district */
-    compute: function (votes, mandates) {
-        return 0;
+    compute: function (votes, names, options) {
+        console.log('VOTES');
+        console.log(votes);
+        console.log('NAMES');
+        console.log(names);
+        console.log('OPTIONS');
+        console.log(options);
+        console.log('---------------------------------\n');
+        return this.calculateSeats(votes,names,options.mandates,options.blankVotes,options.percentage);
+    },
+
+    /** Checks if a value is integer */
+    isInt: function (value) {
+        let x;
+        return isNaN(value) ? !1 : (x = parseFloat(value), (0 | x) === x);
     },
 
     /** Calculate the total number of votes including blank votes */
     calculateTotalVotes: function (votes, blankVotes) {
-        let total = Number(blankVotes);
+        let total = parseInt(blankVotes);
         for (let i = 0, len = votes.length; i &lt; len; ++i) {
-            total = votes[i] + total;
+            total = parseInt(votes[i]) + total;
         }
         return total;
     },
@@ -61,7 +74,7 @@ module.exports = {
         return numberOfPartiesValidated;
     },
 
-    /** */
+    /** Calculate new winner for the seat */
     newSeat: function (votos, esc, num_par) {
         let imax = 0, ct, max = 0;
         for (ct = 0; ct &lt; num_par; ++ct) {
@@ -73,14 +86,14 @@ module.exports = {
         return imax;
     },
 
-    /** */
+    /** Fills the seats */
     fillSeats: function (mandates, seats, validatedVotes, numberOfPartiesValidated) {
         for (let i = 0; i &lt; mandates; i++) {
             seats[this.newSeat(validatedVotes, seats, numberOfPartiesValidated)]++;
         }
     },
 
-    /** */
+    /** Fills the result of each party */
     fillPartiesResult: function (numberOfPartiesValidated, result, validatedNames, seats) {
         for (let i = 0; i &lt; numberOfPartiesValidated; i++) {
             result.parties[validatedNames[i]] = seats[i];
@@ -129,13 +142,13 @@ module.exports = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-modules_db-manager-module.html">modules/db-manager-module</a></li><li><a href="module-modules_district-module.html">modules/district-module</a></li><li><a href="module-modules_electoral-system-module.html">modules/electoral-system-module</a></li><li><a href="module-modules_functions_api-functions.html">modules/functions/api-functions</a></li><li><a href="module-modules_functions_index-functions.html">modules/functions/index-functions</a></li><li><a href="module-modules_graphics_bar-module.html">modules/graphics/bar-module</a></li><li><a href="module-modules_graphics_graphic-module.html">modules/graphics/graphic-module</a></li><li><a href="module-modules_graphics_json-module.html">modules/graphics/json-module</a></li><li><a href="module-modules_graphics_pie-module.html">modules/graphics/pie-module</a></li><li><a href="module-modules_util-module.html">modules/util-module</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-modules_db-manager-module.html">modules/db-manager-module</a></li><li><a href="module-modules_district-module.html">modules/district-module</a></li><li><a href="module-modules_electoral-system-module.html">modules/electoral-system-module</a></li><li><a href="module-modules_functions_api-functions.html">modules/functions/api-functions</a></li><li><a href="module-modules_functions_colors.html">modules/functions/colors</a></li><li><a href="module-modules_functions_index-functions.html">modules/functions/index-functions</a></li><li><a href="module-modules_graphics_bar-module.html">modules/graphics/bar-module</a></li><li><a href="module-modules_graphics_graphic-module.html">modules/graphics/graphic-module</a></li><li><a href="module-modules_graphics_json-module.html">modules/graphics/json-module</a></li><li><a href="module-modules_graphics_pie-module.html">modules/graphics/pie-module</a></li><li><a href="module-modules_util-module.html">modules/util-module</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Tue Nov 22 2016 14:46:02 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Tue Nov 22 2016 19:17:11 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>

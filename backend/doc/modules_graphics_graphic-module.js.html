@@ -27,7 +27,8 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
-const highcharts = require('node-highcharts');
+const highcharts = require('node-highcharts'),
+    Color = require('./colors');
 
 /**
  * To handle charts
@@ -36,7 +37,7 @@ const highcharts = require('node-highcharts');
 module.exports = {
 
     /** Rends a chart in the server-side */
-    rendChart: function(options,callback) {
+    rendChart: function (options, callback) {
         highcharts.render(options, callbackRender);
         function callbackRender(err, data) {
             if (err) {
@@ -47,8 +48,16 @@ module.exports = {
         }
     },
 
+    /** Returns the color for a party or blue if not found */
+    chooseColor: function(party){
+        if(Color[party] === undefined){
+            return 'blue';
+        }
+        return Color[party];
+    },
+
     /** Create a bar chart */
-    createBar: function(result, callback) {
+    createBar: function (result, callback) {
         let options = {
             chart: {},
             title: {},
@@ -64,10 +73,12 @@ module.exports = {
         let categories = [],
             mandates = [];
 
-        for (let i = 0, len = result.length; i &lt; len; i++) {
-            if (result[i].mandates > 0) {
-                categories.push(result[i].partido);
-                mandates.push(result[i].mandates);
+        Object.keys(result).forEach(iteration);
+
+        function iteration(key) {
+            if (result[key] > 0){
+                categories.push(key);
+                mandates.push({y:result[key],color: require('./graphic-module').chooseColor(key)});
             }
         }
 
@@ -87,7 +98,8 @@ module.exports = {
             categories: categories,
             title: {
                 text: null
-            }
+            },
+            allowDecimals: false
         };
         options.yAxis = {
             min: 0,
@@ -97,7 +109,8 @@ module.exports = {
             },
             labels: {
                 overflow: 'justify'
-            }
+            },
+            allowDecimals:false
         };
         options.tooltip = {
             valueSuffix: ' mandates'
@@ -107,6 +120,9 @@ module.exports = {
                 dataLabels: {
                     enabled: true
                 }
+            },
+            column: {
+                colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9','#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1']
             }
         };
         options.legend = {
@@ -131,7 +147,8 @@ module.exports = {
     },
 
     /** Create a pie chart */
-    createPie: function(result, callback) {
+    createPie: function (result, callback) {
+        console.log(result);
         let options = {
             chart: {},
             title: {},
@@ -144,14 +161,15 @@ module.exports = {
             credits: {},
             series: []
         };
-        let resultsArray = [],
-            temp = [];
-        for (let i = 0, len = result.length; i &lt; len; i++) {
-            if (result[i].mandates > 0) {
-                temp = [result[i].partido, result[i].mandates];
-                resultsArray.push(temp);
-            }
+        let resultsArray = [];
+
+        Object.keys(result).forEach(iteration);
+
+        function iteration(key) {
+            if (result[key] > 0)
+                resultsArray.push({name:key, y:result[key],color: require('./graphic-module').chooseColor(key)});
         }
+
 
         options.chart = {
             plotBackgroundColor: null,
@@ -159,13 +177,13 @@ module.exports = {
             plotShadow: true
         };
         options.title = {
-            text: 'Resultados&lt;br>Electorales&lt;br>2015',
+            text: 'Results',
             align: 'center',
-            verticalAlign: 'middle',
-            y: 10
+            verticalAlign: 'top',
+            y: 20
         };
         options.tooltip = {
-            pointFormat: '{series.name}: &lt;b>{point.percentage:.1f}%&lt;/b>'
+            pointFormat: '{series.name}: &lt;b>{point.y}&lt;/b>'
         };
         options.plotOptions = {
             pie: {
@@ -185,9 +203,10 @@ module.exports = {
         options.series = [{
             type: 'pie',
             name: 'Resultados electorales',
-            innerSize: '90%',
+            innerSize: '0%',
             data: resultsArray
         }];
+
         callback(options);
     }
 
@@ -202,13 +221,13 @@ module.exports = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-modules_db-manager-module.html">modules/db-manager-module</a></li><li><a href="module-modules_district-module.html">modules/district-module</a></li><li><a href="module-modules_electoral-system-module.html">modules/electoral-system-module</a></li><li><a href="module-modules_functions_api-functions.html">modules/functions/api-functions</a></li><li><a href="module-modules_functions_index-functions.html">modules/functions/index-functions</a></li><li><a href="module-modules_graphics_bar-module.html">modules/graphics/bar-module</a></li><li><a href="module-modules_graphics_graphic-module.html">modules/graphics/graphic-module</a></li><li><a href="module-modules_graphics_json-module.html">modules/graphics/json-module</a></li><li><a href="module-modules_graphics_pie-module.html">modules/graphics/pie-module</a></li><li><a href="module-modules_util-module.html">modules/util-module</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-modules_db-manager-module.html">modules/db-manager-module</a></li><li><a href="module-modules_district-module.html">modules/district-module</a></li><li><a href="module-modules_electoral-system-module.html">modules/electoral-system-module</a></li><li><a href="module-modules_functions_api-functions.html">modules/functions/api-functions</a></li><li><a href="module-modules_functions_colors.html">modules/functions/colors</a></li><li><a href="module-modules_functions_index-functions.html">modules/functions/index-functions</a></li><li><a href="module-modules_graphics_bar-module.html">modules/graphics/bar-module</a></li><li><a href="module-modules_graphics_graphic-module.html">modules/graphics/graphic-module</a></li><li><a href="module-modules_graphics_json-module.html">modules/graphics/json-module</a></li><li><a href="module-modules_graphics_pie-module.html">modules/graphics/pie-module</a></li><li><a href="module-modules_util-module.html">modules/util-module</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Tue Nov 22 2016 14:46:02 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Tue Nov 22 2016 19:17:11 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>

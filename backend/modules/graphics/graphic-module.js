@@ -1,5 +1,6 @@
 'use strict';
-const highcharts = require('node-highcharts');
+const highcharts = require('node-highcharts'),
+    Color = require('./colors');
 
 /**
  * To handle charts
@@ -19,16 +20,12 @@ module.exports = {
         }
     },
 
+    /** Returns the color for a party or blue if not found */
     chooseColor: function(party){
-        let colors = {
-            'PP': 'blue',
-            'PSOE': 'red'
-        };
-        if(colors[party] === undefined){
+        if(Color[party] === undefined){
             return 'blue';
         }
-        return colors[party];
-
+        return Color[party];
     },
 
     /** Create a bar chart */
@@ -84,7 +81,8 @@ module.exports = {
             },
             labels: {
                 overflow: 'justify'
-            }
+            },
+            allowDecimals:false
         };
         options.tooltip = {
             valueSuffix: ' mandates'
@@ -141,7 +139,7 @@ module.exports = {
 
         function iteration(key) {
             if (result[key] > 0)
-                resultsArray.push([key, result[key]]);
+                resultsArray.push({name:key, y:result[key],color: require('./graphic-module').chooseColor(key)});
         }
 
 

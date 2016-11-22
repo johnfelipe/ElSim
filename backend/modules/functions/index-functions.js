@@ -145,7 +145,7 @@ module.exports = {
             mode = req.body.mode,
             options = {
                 mandates: req.body.mandates,
-                percentage: 3,
+                percentage: req.body.percentage,
                 blankVotes: 0
             },
             id = req.body.resultSelected;

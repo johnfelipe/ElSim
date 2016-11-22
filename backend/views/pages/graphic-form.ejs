@@ -23,10 +23,10 @@
                             <select class="form-control" name="resultSelected" id="resultSelected">
                                 <% for(var i = 0, len = results.length; i < len; i++){ %>
                                 <option value="<%= results[i]._id %>">
-                                    date: <%= results[i].eleccion.fecha.slice(4, 6) %>
+                                    Elección del <%= results[i].eleccion.fecha.slice(4, 6) %>
                                     /<%= results[i].eleccion.fecha.slice(0, 4) %>,
-                                    author: <%= results[i].eleccion.autor %>,
-                                    district: <%= results[i].provincia %>
+                                     para la ciudad de <%= results[i].provincia %>,
+                                    creada por: <%= results[i].eleccion.autor %>
                                 </option>
                                 <% } %>
                             </select>
@@ -47,6 +47,17 @@
                             <select class="form-control" name="mandates" id="mandates">
                                 <% for(var i = 1; i <= 1000; i++){ %>
                                 <option value="<%= i %>"><%= i %></option>
+                                <% } %>
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="percentage">
+                                Select minimum percentage
+                            </label>
+                            <select class="form-control" name="percentage" id="percentage">
+                                <% for(var i = 0; i <= 100; i++){ %>
+                                <option value="<%= i %>"><%= i %>%</option>
                                 <% } %>
                             </select>
 
