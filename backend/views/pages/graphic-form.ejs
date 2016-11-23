@@ -11,14 +11,14 @@
         <div class="col-md-6">
             <div class="list-group">
                 <a class="list-group-item active">
-                    <b>Consultar resultados</b>
+                    <b>Configure your chart</b>
                 </a>
                 <a class="list-group-item list-group-item-action">
                     <form class="form" role="form" method="POST" action="/graphic-form">
                         <div class="form-group">
 
                             <label for="resultSelected">
-                                Select a result to create a graph
+                                <span class="glyphicon glyphicon-list"></span> Select a result to create a graph
                             </label>
                             <select class="form-control" name="resultSelected" id="resultSelected">
                                 <% for(var i = 0, len = results.length; i < len; i++){ %>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group">
                             <label for="mode">
-                                Select chart mode
+                                <span class="glyphicon glyphicon-signal"></span> Select chart mode
                             </label>
                             <select class="form-control" name="mode" id="mode">
                                 <option value="bar">Bar chart</option>
@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             <label for="mandates">
-                                Select number of mandates
+                                <span class="glyphicon glyphicon-user"></span> Select number of mandates
                             </label>
                             <select class="form-control" name="mandates" id="mandates">
                                 <% for(var i = 1; i <= 1000; i++){ %>
@@ -53,7 +53,7 @@
                         </div>
                         <div class="form-group">
                             <label for="percentage">
-                                Select minimum percentage
+                                <span class="glyphicon glyphicon-screenshot"></span> Select minimum percentage
                             </label>
                             <select class="form-control" name="percentage" id="percentage">
                                 <% for(var i = 0; i <= 100; i++){ %>
@@ -63,8 +63,8 @@
 
                         </div>
 
-                        <button type="submit" class="btn btn-default">
-                            Submit
+                        <button type="submit" class="btn btn-block btn-info">
+                            <span class="glyphicon glyphicon-send"></span> Let's do it!
                         </button>
                     </form>
                 </a>

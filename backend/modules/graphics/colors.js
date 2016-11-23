@@ -49,15 +49,15 @@ module.exports = {
         'PSOE-H': 'blue',
         'HB': 'blue',
         'PTE': 'blue',
-        'PNV': 'blue',
+        'PNV': '#008140',
         'PSA-PA': 'blue',
         'UN': 'blue',
         'CIU': 'blue',
         'CD': 'blue',
         'PCE': 'blue',
-        'PSOE': 'red',
-        'UCD': 'blue',
-        'PP': 'blue',
-        'PODEMOS': 'blue',
-        'CIUDADANOS': 'blue'
+        'PSOE': '#E3001B',
+        'UCD': '#177D34',
+        'PP': '#0067C3',
+        'PODEMOS': '#6B1F5F',
+        'CIUDADANOS': '#F58424'
 };

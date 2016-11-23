@@ -21,8 +21,8 @@ module.exports = {
     },
 
     /** Returns the color for a party or blue if not found */
-    chooseColor: function(party){
-        if(Color[party] === undefined){
+    chooseColor: function (party) {
+        if (Color[party] === undefined) {
             return 'blue';
         }
         return Color[party];
@@ -48,9 +48,12 @@ module.exports = {
         Object.keys(result).forEach(iteration);
 
         function iteration(key) {
-            if (result[key] > 0){
+            if (result[key] > 0) {
                 categories.push(key);
-                mandates.push({y:result[key],color: require('./graphic-module').chooseColor(key)});
+                mandates.push({
+                    y: result[key],
+                    color: require('./graphic-module').chooseColor(key)
+                });
             }
         }
 
@@ -82,7 +85,7 @@ module.exports = {
             labels: {
                 overflow: 'justify'
             },
-            allowDecimals:false
+            allowDecimals: false,
         };
         options.tooltip = {
             valueSuffix: ' mandates'
@@ -94,7 +97,7 @@ module.exports = {
                 }
             },
             column: {
-                colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9','#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1']
+                colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1']
             }
         };
         options.legend = {
@@ -124,13 +127,8 @@ module.exports = {
         let options = {
             chart: {},
             title: {},
-            subtitle: {},
-            xAxis: {},
-            yAxis: {},
             tooltip: {},
             plotOptions: {},
-            legend: {},
-            credits: {},
             series: []
         };
         let resultsArray = [];
@@ -139,14 +137,19 @@ module.exports = {
 
         function iteration(key) {
             if (result[key] > 0)
-                resultsArray.push({name:key, y:result[key],color: require('./graphic-module').chooseColor(key)});
+                resultsArray.push({
+                    name: key,
+                    y: result[key],
+                    color: require('./graphic-module').chooseColor(key)
+                });
         }
 
 
         options.chart = {
             plotBackgroundColor: null,
-            plotBorderWidth: 0,
-            plotShadow: true
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
         };
         options.title = {
             text: 'Results',
@@ -159,13 +162,11 @@ module.exports = {
         };
         options.plotOptions = {
             pie: {
+                allowPointSelect: true,
+                depth: 35,
                 dataLabels: {
                     enabled: true,
-                    distance: -30,
-                    style: {
-                        fontWeight: 'bold',
-                        color: 'white'
-                    }
+                    connectorColor: 'silver'
                 },
                 startAngle: -90,
                 endAngle: 90,
@@ -173,8 +174,7 @@ module.exports = {
             }
         };
         options.series = [{
-            type: 'pie',
-            name: 'Resultados electorales',
+            name: 'Mandates ',
             innerSize: '0%',
             data: resultsArray
         }];
