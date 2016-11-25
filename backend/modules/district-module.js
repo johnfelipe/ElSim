@@ -8,13 +8,6 @@ module.exports = {
 
     /** Calculate the result of a district */
     compute: function (votes, names, options) {
-        console.log('VOTES');
-        console.log(votes);
-        console.log('NAMES');
-        console.log(names);
-        console.log('OPTIONS');
-        console.log(options);
-        console.log('---------------------------------\n');
         return this.calculateSeats(votes,names,options.mandates,options.blankVotes,options.percentage);
     },
 
@@ -99,8 +92,6 @@ module.exports = {
         seats = new Array(numberOfPartiesValidated).fill(0);
         this.fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
         this.fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
-
-        console.log(result);
         return result;
     }
 };

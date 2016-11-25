@@ -1,7 +1,7 @@
 'use strict';
 /**
  * Object to find the party color
- * @module modules/functions/colors
+ * @module modules/graphics/colors
  */
 module.exports = {
         'FE-UF': 'blue',

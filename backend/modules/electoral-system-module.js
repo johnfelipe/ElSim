@@ -5,7 +5,9 @@
  * @module modules/electoral-system-module
  */
 module.exports = {
-    calculate: function(){
-       throw new Error('Not yet implemented');
+    calculate: function(districts){
+        for(let i = 0, len = districts.length; i < len; ++i){
+
+        }
     }
 };

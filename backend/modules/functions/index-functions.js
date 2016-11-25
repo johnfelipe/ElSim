@@ -3,7 +3,8 @@ const Log = require('./../../models/log'),
     Graphic = require('./../graphics/graphic-module'),
     Result = require('./../../models/result'),
     District = require('./../district-module'),
-    Promise = require('bluebird');
+    Promise = require('bluebird'),
+    Icons = require('./../graphics/icons');
 
 /**
  * All the callback functions of index routes
@@ -150,17 +151,17 @@ module.exports = {
             },
             id = req.body.resultSelected;
 
-        Result.find({_id: id}, haveResult);
+        Result.findOne({_id: id}, haveResult);
 
         function haveResult(err, data) {
             if (err) throw err;
 
-            options.blankVotes = data[0].votos_blanco;
+            options.blankVotes = data.votos_blanco;
 
-            Object.keys(data[0].partidos).forEach(iteration);
+            Object.keys(data.partidos).forEach(iteration);
 
             function iteration(key) {
-                votes.push(data[0].partidos[key]);
+                votes.push(data.partidos[key]);
                 names.push(key);
             }
 
@@ -174,10 +175,12 @@ module.exports = {
             function done(graph_options) {
                 let options = {
                     title: 'Graphic Example',
-                    autor: data[0].eleccion.autor,
-                    fecha: data[0].eleccion.fecha,
-                    provincia: data[0].cod_provincia,
-                    options: graph_options
+                    autor: data.eleccion.autor,
+                    fecha: data.eleccion.fecha,
+                    provincia: data.cod_provincia,
+                    options: graph_options,
+                    result: result,
+                    icons: Icons
                 };
                 res.render('pages/graphic', options);
             }
