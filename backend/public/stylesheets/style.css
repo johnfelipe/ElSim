@@ -7,11 +7,18 @@ button, select, input {
   border-radius: 0px !important;
 }
 .card-deck .card{
+  border-radius: 0px;
+  padding-top: 10px;
   padding-bottom: 50px;
+}
+.card-img-top {
+  padding: 3px;
+
 }
 .card-footer{
   width: 100%;
   position: absolute;
+  padding-right: 4px !important;
   bottom:0;
 }
 a {
