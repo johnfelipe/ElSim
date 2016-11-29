@@ -41,6 +41,16 @@ module.exports = {
         return 0;
     },
 
+    ellectionIsInArray: function(obj,array){
+        for(let i = 0, len = array.length; i < len; i++){
+            if(array[i].autor === obj.autor &&
+                array[i].fecha === obj.fecha){
+                return true;
+            }
+        }
+        return false;
+    },
+
     readCsv: function (path1, path2, done) {
         var stream = fs.createReadStream(path1);
         var resultados = [];

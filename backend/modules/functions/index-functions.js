@@ -4,7 +4,8 @@ const Log = require('./../../models/log'),
     Result = require('./../../models/result'),
     District = require('./../district-module'),
     Promise = require('bluebird'),
-    Icons = require('./../graphics/icons');
+    Icons = require('./../graphics/icons'),
+    Util = require('./../util-module');
 
 /**
  * All the callback functions of index routes
@@ -42,9 +43,17 @@ module.exports = {
         Result.find({}, haveResult);
         function haveResult(err, data) {
             if (err) throw err;
+            let ellections = [];
+            for(let i = 0, len = data.length; i < len; i++){
+                if(!Util.ellectionIsInArray(data[i].eleccion,ellections)){
+                    ellections.push(data[i].eleccion);
+                }
+            }
+            console.dir(ellections);
             let options = {
                 title: 'Create a graphic!',
-                results: data
+                results: data,
+                ellections: ellections
             };
             res.render('pages/graphic-form', options);
         }

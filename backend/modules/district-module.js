@@ -8,7 +8,9 @@ module.exports = {
 
     /** Calculate the result of a district */
     compute: function (votes, names, options) {
-        return this.calculateSeats(votes,names,options.mandates,options.blankVotes,options.percentage);
+        let result = this.calculateSeats(votes,names,options.mandates,options.blankVotes,options.percentage);
+        console.dir(result);
+        return result;
     },
 
     /** Checks if a value is integer */

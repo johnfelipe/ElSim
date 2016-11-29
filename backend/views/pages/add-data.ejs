@@ -7,113 +7,132 @@
 <div class="container" style="margin-top: 20px;">
 
     <div class="row">
-        <div class="col-md-12 well">
-            <form class="form" role="form" method="POST" action="/add-data">
-                <div class="row">
-                    <div class="col-sm-4 form-group">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">
+                        <span class="fa fa-database"></span> Add data to the database
+                    </h4>
+                    <form method="POST" action="/add-data">
+                        <div class="row">
+                            <div class="col-xs-4 form-group">
 
-                        <label for="province">
-                            <span class="glyphicon glyphicon-map-marker"></span> Select a province
-                        </label>
-                        <select class="form-control" name="province" id="province" required onchange="parseFields(processTextarea)">
-                            <% Object.keys(codigos).forEach(function(key1) { %>
-                            <% Object.keys(codigos[key1]).forEach(function(key2) { %>
-                            <option value="<%- codigos[key1][key2] %> "><%= key1 %> - <%= key2 %> </option>
-                            <% }); %>
-                            <% }); %>
-                        </select>
-                    </div>
-                    <div class="col-sm-4 form-group">
-                        <label for="population">
-                            <span class="glyphicon glyphicon-home"></span> Population
-                        </label>
-                        <input class="form-control" min="1" value="1000" type="number" name="population"
-                               id="population" onchange="parseFields(processTextarea)" required/>
-                    </div>
-                    <div class="col-sm-4 form-group">
-                        <label for="tables">
-                            <span class="glyphicon glyphicon-folder-close"></span> Tables
-                        </label>
-                        <input class="form-control" min="1" value="0" type="number" name="tables" id="tables"
-                               onchange="parseFields(processTextarea)" required/>
-                    </div>
+                                <label for="province">
+                                    <span class="fa fa-map-o"></span> Select a district
+                                </label>
+                                <select class="form-control" name="province" id="province" required
+                                        onchange="parseFields(processTextarea)">
+                                    <% Object.keys(codigos).forEach(function(key1) { %>
+                                    <% Object.keys(codigos[key1]).forEach(function(key2) { %>
+                                    <option value="<%- codigos[key1][key2] %> "><%= key1 %> - <%= key2 %> </option>
+                                    <% }); %>
+                                    <% }); %>
+                                </select>
+                            </div>
+                            <div class="col-xs-4 form-group">
+                                <label for="population">
+                                    <span class="fa fa-users"></span> Population
+                                </label>
+                                <input class="form-control" min="1" value="1000" type="number" name="population"
+                                       id="population" onchange="parseFields(processTextarea)" required/>
+                            </div>
+                            <!--<div class="form-group">
+                                <label for="tables">
+                                    <span class="fa fa-folder-close"></span> Ellectoral Boards
+                                </label>
+                                <input class="form-control" min="1" value="0" type="number" name="tables" id="tables"
+                                       onchange="parseFields(processTextarea)" required/>
+                            </div>-->
+
+                            <div class="col-xs-4 form-group">
+                                <label for="date">
+                                    <span class="fa fa-calendar"></span> Select a date
+                                </label>
+                                <input class="form-control" type="date" name="date" id="date" onchange="parseFields()"
+                                       required/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 form-group">
+                                <label for="voters">
+                                    <span class="fa fa-envelope-o"></span> Voters
+                                </label>
+                                <input class="form-control" min="1" value="0" type="number" name="voters" id="voters"
+                                       onchange="parseFields(processTextarea)" required/>
+                            </div>
+                            <div class="col-xs-4 form-group">
+                                <label for="census">
+                                    <span class="fa fa-list-alt"></span> Electoral census
+                                </label>
+                                <input class="form-control" min="0" value="0" type="number" name="census" id="census"
+                                       onchange="parseFields(processTextarea)" required/>
+                            </div>
+
+
+                            <div class="col-xs-4 form-group">
+                                <label for="blancos">
+                                    <span class="fa fa-circle-o"></span> Blank votes
+                                </label>
+                                <input class="form-control" type="number" min="0" value="0" name="blancos" id="blancos"
+                                       onchange="parseFields(processTextarea)" required/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 form-group">
+                                <label for="nulos">
+                                    <span class="fa fa-thumbs-o-down"></span> Null votes
+                                </label>
+                                <input class="form-control" min="0" value="0" type="number" name="nulos" id="nulos"
+                                       onchange="parseFields(processTextarea)" required/>
+                            </div>
+                            <div class="col-xs-4 form-group">
+                                <label for="author">
+                                    <span class="fa fa-user-circle-o"></span> Your name
+                                </label>
+                                <input class="form-control" value="Anonymous" type="text" name="author" id="author"
+                                       onchange="parseFields(processTextarea)" required/>
+
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-xs-12 form-group">
+                                <label for="votes">
+                                    <span class="fa fa-list"></span> Votes<br>
+                                    <small>Write each party with the number of votes then linebreak.</small>
+                                </label>
+                                <textarea class="form-control" id="votes" name="votes" rows="8"
+                                          onchange="parseFields(processTextarea)">
+PP - 123
+PSOE - 123
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <input type="checkbox" required/>
+                                    <small>I understand that clicking this button i will add some data and
+                                        anybody will can access them.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-block btn-primary">
+                                        <span class="fa fa-send-o"></span> Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </form>
                 </div>
-                <div class="row">
-                    <div class="col-sm-4 form-group">
-                        <label for="date">
-                            <span class="glyphicon glyphicon-calendar"></span> Select a date
-                        </label>
-                        <input class="form-control" type="date" name="date" id="date" onchange="parseFields()" required/>
-                    </div>
-                    <div class="col-sm-4 form-group">
-                        <label for="voters">
-                            <span class="glyphicon glyphicon-envelope"></span> Voters
-                        </label>
-                        <input class="form-control" min="1" value="0" type="number" name="voters" id="voters"
-                               onchange="parseFields(processTextarea)" required/>
-                    </div>
-                    <div class="col-sm-4 form-group">
-                        <label for="census">
-                            <span class="glyphicon glyphicon-list-alt"></span> Electoral census
-                        </label>
-                        <input class="form-control" min="0" value="0" type="number" name="census" id="census"
-                               onchange="parseFields(processTextarea)" required/>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-4 form-group">
-                        <label for="blancos">
-                            <span class="glyphicon glyphicon-star-empty"></span> Blank votes
-                        </label>
-                        <input class="form-control" type="number" min="0" value="0" name="blancos" id="blancos"
-                               onchange="parseFields(processTextarea)" required/>
-                    </div>
-                    <div class="col-sm-4 form-group">
-                        <label for="nulos">
-                            <span class="glyphicon glyphicon-thumbs-down"></span> Null votes
-                        </label>
-                        <input class="form-control" min="0" value="0" type="number" name="nulos" id="nulos"
-                               onchange="parseFields(processTextarea)" required/>
-                    </div>
-                    <div class="col-sm-4 form-group">
-                        <label for="author">
-                            <span class="glyphicon glyphicon-user"></span> Your name
-                        </label>
-                        <input class="form-control" value="Anonymous" type="text" name="author" id="author"
-                               onchange="parseFields(processTextarea)" required/>
-
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 form-group">
-                        <label for="votes">
-                            <span class="glyphicon glyphicon-list"></span> Votes<br>
-                            <small>Write each party with the number of votes then linebreak.</small>
-                        </label>
-                        <textarea class="form-control" id="votes" name="votes" rows="8" onchange="parseFields(processTextarea)">PP - 123
-PSOE - 123</textarea><br>
-                        <input type="checkbox" required/>
-                        <small>I understand that clicking this button i will add some data and
-                            anybody will can access them.</small>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4 form-group">
-
-                    </div>
-                    <div class="col-sm-4 form-group">
-                        <button type="submit" class="btn btn-block btn-info">
-                            <span class="glyphicon glyphicon-send"></span> Submit
-                        </button>
-                    </div>
-                    <div class="col-sm-4 form-group">
-
-                    </div>
-                </div>
-            </form>
+            </div>
 
         </div>
     </div>
