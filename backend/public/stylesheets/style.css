@@ -6,11 +6,15 @@ body {
 button, select, input {
   border-radius: 0px !important;
 }
+.card, .card-block {
+  border-radius: 0px !important;
+}
 .card-deck .card{
-  border-radius: 0px;
+  border-radius: 0px !important;
   padding-top: 10px;
   padding-bottom: 50px;
 }
+
 .card-img-top {
   padding: 3px;
 
