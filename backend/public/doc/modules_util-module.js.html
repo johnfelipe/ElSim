@@ -37,7 +37,7 @@ module.exports = {
 
     /** For pretty print any message */
     prettyPrint: function (message) {
-        var options = {
+        let options = {
             depth: 2,
             colors: true
         };
@@ -50,15 +50,15 @@ module.exports = {
 
     groupByKey: function (array) {
         if (!Array.isArray(array)) throw new Error('Use an array to call this method');
-        var counts = {};
-        for (var i = 0, len = array.length; i &lt; len; ++i) {
+        let counts = {};
+        for (let i = 0, len = array.length; i &lt; len; ++i) {
             counts[array[i]] = 1 + (counts[array[i]] || 0);
         }
         return counts;
     },
 
     sortByRest: function (a, b) {
-        var keyA = a.rest,
+        let keyA = a.rest,
             keyB = b.rest;
         if (keyA > keyB) {
             return -1;
@@ -69,42 +69,49 @@ module.exports = {
         return 0;
     },
 
-    ellectionIsInArray: function(obj,array){
-        for(let i = 0, len = array.length; i &lt; len; i++){
-            if(array[i].autor === obj.autor &amp;&amp;
-                array[i].fecha === obj.fecha){
+    ellectionIsInArray: function (obj, array) {
+        for (let i = 0, len = array.length; i &lt; len; i++) {
+            if (array[i].autor === obj.autor &amp;&amp;
+                array[i].fecha === obj.fecha) {
                 return true;
             }
         }
         return false;
     },
 
-    readCsv: function (path1, path2, done) {
-        var stream = fs.createReadStream(path1);
-        var resultados = [];
+    readResultados: function (path, done) {
+        let stream = fs.createReadStream(path),
+            resultados = [];
         csv.fromStream(stream, {
             headers: true
-        }).on('data-invalid', invalidRowException).on('data', function (data) {
+        }).on('data-invalid', this.invalidRowException).on('data', function (data) {
             resultados.push(data);
         }).on('end', function () {
-            readParties();
+            done(resultados);
         });
-        function readParties() {
-            var i = 0;
-            stream = fs.createReadStream(path2);
-            csv.fromStream(stream, {
-                headers: true
-            }).on('data-invalid', invalidRowException).on('data', function (data) {
-                resultados[i].partidos = data;
-                i++;
-            }).on('end', function () {
-                done(resultados);
-            });
-        }
+    },
+    readParties: function (path, resultados, done) {
+        let i = 0, stream = fs.createReadStream(path);
+        csv.fromStream(stream, {
+            headers: true
+        }).on('data-invalid', this.invalidRowException).on('data', function (data) {
+            resultados[i].partidos = data;
+            i++;
+        }).on('end', function () {
+            done(resultados);
+        });
+    },
 
-        function invalidRowException(data) {
-            throw new Error('Data invalid exception, one or more rows are invalid' + data);
-        }
+    invalidRowException: function(data){
+        throw new Error('Data invalid exception, one or more rows are invalid' + data);
+    },
+
+    readCsv: function (path1, path2, done) {
+        this.readResultados(path1, function (data) {
+            this.readParties(path2,data,function(data){
+                done(data);
+            });
+        });
     }
 };</code></pre>
         </article>
@@ -116,13 +123,13 @@ module.exports = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-modules_db-manager-module.html">modules/db-manager-module</a></li><li><a href="module-modules_district-module.html">modules/district-module</a></li><li><a href="module-modules_electoral-system-module.html">modules/electoral-system-module</a></li><li><a href="module-modules_functions_api-functions.html">modules/functions/api-functions</a></li><li><a href="module-modules_functions_index-functions.html">modules/functions/index-functions</a></li><li><a href="module-modules_graphics_bar-module.html">modules/graphics/bar-module</a></li><li><a href="module-modules_graphics_colors.html">modules/graphics/colors</a></li><li><a href="module-modules_graphics_graphic-module.html">modules/graphics/graphic-module</a></li><li><a href="module-modules_graphics_icons.html">modules/graphics/icons</a></li><li><a href="module-modules_graphics_json-module.html">modules/graphics/json-module</a></li><li><a href="module-modules_graphics_pie-module.html">modules/graphics/pie-module</a></li><li><a href="module-modules_util-module.html">modules/util-module</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_subscriber.html">models/subscriber</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-modules_db-manager-module.html">modules/db-manager-module</a></li><li><a href="module-modules_district-module.html">modules/district-module</a></li><li><a href="module-modules_electoral-system-module.html">modules/electoral-system-module</a></li><li><a href="module-modules_functions_api-functions.html">modules/functions/api-functions</a></li><li><a href="module-modules_functions_index-functions.html">modules/functions/index-functions</a></li><li><a href="module-modules_graphics_bar-module.html">modules/graphics/bar-module</a></li><li><a href="module-modules_graphics_colors.html">modules/graphics/colors</a></li><li><a href="module-modules_graphics_graphic-module.html">modules/graphics/graphic-module</a></li><li><a href="module-modules_graphics_icons.html">modules/graphics/icons</a></li><li><a href="module-modules_graphics_json-module.html">modules/graphics/json-module</a></li><li><a href="module-modules_graphics_pie-module.html">modules/graphics/pie-module</a></li><li><a href="module-modules_util-module.html">modules/util-module</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Thu Dec 01 2016 11:23:51 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Thu Dec 01 2016 20:12:50 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -65,7 +65,7 @@ module.exports = {
         };
         res.render('pages/learn', options);
     },
-    
+
     storedDataFunction: function (req, res) {
         let options = {
             title: 'Stored Data'
