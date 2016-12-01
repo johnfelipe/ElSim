@@ -6,52 +6,47 @@
 <div class="container" style="margin-top: 20px;">
 
     <div class="row">
-        <div class="col-md-8 well">
-            <form class="form" role="form" method="POST" action="/delete-data">
-                <div class="row">
-                    <div class="col-sm-12 form-group">
-
-                        <label for="results">
-                            <span class="glyphicon glyphicon-remove"></span> Select one or more results to delete
-                        </label>
-                        <select class="form-control" name="results" id="results" multiple size="12">
-                            <% for(var i = 0, len = data.length; i < len; i++){ %>
-                            <option value="<%= data[i]._id %>">
-                                date: <%= data[i].eleccion.fecha.slice(4, 6) %>
-                                /<%= data[i].eleccion.fecha.slice(0, 4) %>,
-                                author: <%= data[i].eleccion.autor %>,
-                                district: <%= data[i].provincia %>
-                            </option>
-                            <% } %>
-                        </select><br>
-                        <input type="checkbox" required/>
-                        <small>I understand that clicking this button i will delete the selected items and
-                            nobody will can access them anymore.</small>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-block">
+                    <div class="card-text">
+                        <form role="form" method="POST" action="/delete-data">
+                            <div class="form-group">
+                                <label for="results">
+                                    <h4 class="card-title"><span class="fa fa-remove"></span> Select one
+                                        or more results to
+                                        delete</h4>
+                                </label>
+                                <select class="form-control" name="results" id="results" multiple size="12">
+                                    <% for(var i = 0, len = data.length; i < len; i++){ %>
+                                    <option value="<%= data[i]._id %>">
+                                        date: <%= data[i].eleccion.fecha.slice(4, 6) %>
+                                        /<%= data[i].eleccion.fecha.slice(0, 4) %>,
+                                        author: <%= data[i].eleccion.autor %>,
+                                        district: <%= data[i].provincia %>
+                                    </option>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-sm-4 form-group">
-
-                    </div>
-                    <div class="col-sm-4 form-group">
-                        <button type="submit" class="btn btn-block btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> DELETE SELECTED
-                        </button>
-                    </div>
-                    <div class="col-sm-4 form-group">
-
-                    </div>
+                <div class="card-footer text-xs-right">
+                    <button type="submit" class="btn btn-danger">
+                        <span class="fa fa-remove"></span> DELETE SELECTED
+                    </button>
                 </div>
-            </form>
 
+
+            </div>
         </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-3 well">
-            <p>
-                <span class="glyphicon glyphicon-info-sign"></span> Pick with ctrl + click or shift + click.
-            </p>
-
+        <div class="col-md-4 card">
+            <div class="card-block">
+                <h4 class="card-title"><span class="fa fa-info-circle"></span> Help</h4>
+                <p class="card-text">
+                    Pick with ctrl + click or shift + click.
+                </p>
+            </div>
         </div>
     </div>
 </div>
