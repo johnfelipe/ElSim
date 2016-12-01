@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: modules/graphics/icons</title>
+    <title>JSDoc: Source: modules/passport.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,126 +17,39 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: modules/graphics/icons</h1>
+    <h1 class="page-title">Source: modules/passport.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+let LocalStrategy = require('passport-local').Strategy,
+    _ = require('./functions/passport-functions');
 
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">Object to find the party logo</div>
-        
+/**
+ * Module to handle web user authentication(not api authentication!)
+ * @module modules/passport
+ */
+module.exports = function (passport) {
+    /** Serialize the user for the session */
+    passport.serializeUser(_.serialize);
 
-        
-            
+    /** Deserialize the user */
+    passport.deserializeUser(_.deserialize);
 
+    /** Local signup */
+    passport.use('local-signup', new LocalStrategy(_.getLocalStrategyOptions, _.signUp));
 
+    /** Local login */
+    passport.use('local-login', new LocalStrategy(_.getLocalStrategyOptions, _.login));
 
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_graphics_icons.js.html">modules/graphics/icons.js</a>, <a href="modules_graphics_icons.js.html#line2">line 2</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+};</code></pre>
+        </article>
+    </section>
 
 
 

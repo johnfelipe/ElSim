@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: modules/graphics/icons</title>
+    <title>JSDoc: Source: modules/functions/passport-functions.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,126 +17,86 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: modules/graphics/icons</h1>
+    <h1 class="page-title">Source: modules/functions/passport-functions.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+const User = require('./../../models/user');
 
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">Object to find the party logo</div>
-        
+/**
+ * Functions used by passport module
+ * @see modules/passport
+ * @module modules/functions/passport-functions
+ */
+module.exports = {
+    /** Serialize the user */
+    serialize: function (user, done) {
+        done(null, user.id);
+    },
 
-        
-            
+    /** Deserialize the user */
+    deserialize: function (id, done) {
+        User.findById(id, function (err, user) {
+            done(err, user);
+        });
+    },
 
+    /** Returns the options for a local passport strategy */
+    getLocalStrategyOptions: function(){
+        return {
+            usernameField: 'email',
+            passwordField: 'password',
+            passReqToCallback: true
+        };
+    },
 
+    /** Sign up function */
+    signUp: function (req, email, password, done) {
+        User.findOne({'local.email': email}, function (err, user) {
+            if (err) {
+                return done(err);
+            }
+            if (user) {
+                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+            } else {
+                let newUser = new User();
+                newUser.local.email = email;
+                newUser.local.password = newUser.generateHash(password); // use the generateHash function in our user model
+                newUser.save(function (err) {
+                    if (err) {
+                        throw err;
+                    }
+                    return done(null, newUser);
+                });
+            }
+        });
+    },
 
+    /** Login function */
+    login: function (req, email, password, done) {
+        User.findOne({'local.email': email}, function (err, user) {
+            if (err) {
+                return done(err);
+            }
+            if (!user) {
+                return done(null, false, req.flash('loginMessage', 'No user found.'));
+            }
+            if (!user.validPassword(password)) {
+                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+            }
+            return done(null, user);
+        });
 
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_graphics_icons.js.html">modules/graphics/icons.js</a>, <a href="modules_graphics_icons.js.html#line2">line 2</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    }
+};</code></pre>
+        </article>
+    </section>
 
 
 
