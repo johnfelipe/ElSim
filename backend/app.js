@@ -1,6 +1,6 @@
 'use strict';
 /**
- * Principal module of the server side
+ * Main module of the server side
  * @module app
  */
 let express = require('express'),

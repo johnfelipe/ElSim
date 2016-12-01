@@ -5,7 +5,8 @@
  * @module models/user
  */
 const mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    bcrypt = require('bcrypt-nodejs');
 
 let s = new Schema({
     name: {type: String, required: true},
@@ -14,6 +15,16 @@ let s = new Schema({
     admin: {type: Boolean, required: true},
     resultados: {type: [], required: false}
 });
+
+/** Generates the hash for bcrypt */
+s.methods.generateHash = function (password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+/** Checks password */
+s.methods.validPassword = function (password) {
+    return bcrypt.compareSync(password, this.password);
+};
 
 module.exports = mongoose.model('User', s);
 
