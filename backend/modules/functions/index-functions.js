@@ -65,6 +65,13 @@ module.exports = {
         };
         res.render('pages/learn', options);
     },
+    
+    storedDataFunction: function (req, res) {
+        let options = {
+            title: 'Stored Data'
+        };
+        res.render('pages/stored-data', options);
+    },
 
     addDataGetFunction: function (req, res) {
         let options = {

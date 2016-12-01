@@ -1,7 +1,7 @@
 'use strict';
 /**
- * Subscriptor mongoose model
- * @module models/subscriptor
+ * Subscriber mongoose model
+ * @module models/subscriber
  */
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
@@ -18,4 +18,4 @@ let s = new Schema({
     }
 });
 
-module.exports = mongoose.model('Log',s);
+module.exports = mongoose.model('Subscriber',s);
