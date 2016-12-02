@@ -15,16 +15,15 @@ module.exports = {
     loadCsv: function (done) {
         const a = ['1977', '1979', '1982', '1986', '1989', '1993', '1996'];
 
-        let i, len = a.length, path1, path2, promises = [];
-        for (i = 0; i < len; ++i) {
+        let path1, path2, promises = [];
+        for (let i = 0, len = a.length; i < len; ++i) {
             path1 = './csv/' + a[i] + '.csv';
             path2 = './csv/' + a[i] + '_PARTIDOS.csv';
             _.readCsv(path1, path2, csvCallback);
         }
 
         function csvCallback(data) {
-            let j, lenData = data.length;
-            for (j = 0; j < lenData; ++j) {
+            for (let j = 0, lenData = data.length; j < lenData; ++j) {
                 promises.push(DbManager.saveResultado(data[j], saveResultadoCallback));
             }
         }

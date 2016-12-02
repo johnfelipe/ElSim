@@ -31,7 +31,7 @@ module.exports = {
     /** */
     validateParties: function (numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames) {
         let numberOfPartiesValidated = 0;
-        for (let i = 0; i < numberOfParties; i++) {
+        for (let i = 0; i < numberOfParties; ++i) {
             if (votes[i] >= minNumberOfVotes) {
                 validatedVotes[numberOfPartiesValidated] = votes[i];
                 validatedNames[numberOfPartiesValidated] = names[i];
@@ -55,14 +55,14 @@ module.exports = {
 
     /** Fills the seats */
     fillSeats: function (mandates, seats, validatedVotes, numberOfPartiesValidated) {
-        for (let i = 0; i < mandates; i++) {
+        for (let i = 0; i < mandates; ++i) {
             seats[this.newSeat(validatedVotes, seats, numberOfPartiesValidated)]++;
         }
     },
 
     /** Fills the result of each party */
     fillPartiesResult: function (numberOfPartiesValidated, result, validatedNames, seats) {
-        for (let i = 0; i < numberOfPartiesValidated; i++) {
+        for (let i = 0; i < numberOfPartiesValidated; ++i) {
             result.parties[validatedNames[i]] = seats[i];
         }
     },

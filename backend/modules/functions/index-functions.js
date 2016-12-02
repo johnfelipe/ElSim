@@ -118,17 +118,32 @@ module.exports = {
         });
 
     },
-
+    rendDeleteDataView: function(req,res,data){
+        let options = {
+            title: 'Delete data',
+            error: 'NO',
+            data: data
+        };
+        res.render('pages/delete-data', options);
+    },
     deleteDataGetFunction: function (req, res) {
         Result.find({}, function (err, data) {
-            let options = {
-                title: 'Delete data',
-                error: 'NO',
-                data: data
-            };
-            res.render('pages/delete-data', options);
+            if(err) throw err;
+             done();
         });
+        function done(){
+            require('./index-functions').rendDeleteDataView(req,res,data);
+        }
+    },
 
+
+
+    promisesDeleteDataSolved: function(req,res){
+        console.log('all the results were deleted');
+        Result.find({}, function (err, data) {
+            if(err) throw err;
+            this.rendDeleteDataView(req,res,data);
+        });
     },
 
     deleteDataPostFunction: function (req, res) {
@@ -142,18 +157,7 @@ module.exports = {
             if (err) throw err;
         }
 
-        Promise.all(files).then(function () {
-            console.log('all the results were deleted');
-            Result.find({}, function (err, data) {
-                let options = {
-                    title: 'Delete data',
-                    error: 'NO',
-                    data: data
-                };
-                res.render('pages/delete-data', options);
-            });
-        });
-
+        Promise.all(files).then(this.promisesDeleteDataSolved(req,res));
     },
 
     graphicFormPostFunction: function (req, res) {
