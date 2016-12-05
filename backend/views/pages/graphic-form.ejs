@@ -23,10 +23,9 @@
                             <select class="form-control" name="resultSelected" id="resultSelected">
                                 <% for(let i = 0, len = results.length; i < len; i++){ %>
                                 <option value="<%= results[i]._id %>">
-                                    Elección del <%= results[i].eleccion.fecha.slice(4, 6) %>
-                                    /<%= results[i].eleccion.fecha.slice(0, 4) %>,
-                                    para la ciudad de <%= results[i].provincia %>,
-                                    creada por: <%= results[i].eleccion.autor %>
+                                    <%= results[i].eleccion.fecha.slice(4, 6) %>/<%= results[i].eleccion.fecha.slice(0, 4) %>,
+                                    <%= results[i].provincia %>,
+                                    by <%= results[i].eleccion.autor %>
                                 </option>
                                 <% } %>
                             </select>
@@ -81,14 +80,13 @@
                         <div class="form-group">
 
                             <label for="resultSelected">
-                                <span class="fa fa-list"></span> Select a stored district
+                                <span class="fa fa-list"></span> Select a stored ellection
                             </label>
                             <select class="form-control" name="resultSelected" id="resultSelected">
                                 <% for(i = 0, len = ellections.length; i < len; i++){ %>
                                 <option value="<%= ellections[i].fecha %>">
-                                    Elección del <%= ellections[i].fecha.slice(4, 6) %>
-                                    /<%= ellections[i].fecha.slice(0, 4) %>,
-                                    creada por: <%= ellections[i].autor %>
+                                    <%= ellections[i].fecha.slice(4, 6) %>/<%= ellections[i].fecha.slice(0, 4) %>,
+                                    by <%= ellections[i].autor %>
                                 </option>
                                 <% } %>
                             </select>

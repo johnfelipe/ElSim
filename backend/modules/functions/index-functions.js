@@ -165,7 +165,12 @@ module.exports = {
         });
 
     },
-
+    partiesFunction: function(req,res){
+        let options = {
+            title: 'Parties'
+        };
+        res.render('pages/parties', options);
+    },
     graphicFormPostFunction: function (req, res) {
         let votes = [],
             names = [],
