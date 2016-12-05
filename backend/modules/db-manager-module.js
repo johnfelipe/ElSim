@@ -94,12 +94,10 @@ module.exports = {
 
     /** Get a result by id */
     getResultadoById: function (id, done) {
-        Resultado.find({id: id}, callbackFind);
-
-        function callbackFind(err, data, done) {
-            if (err) throw err;
+        Resultado.findOne({_id: id}, function(err,data){
+            if(err) throw err;
             done(data);
-        }
+        });
     },
 
     /** Save a result into the database */

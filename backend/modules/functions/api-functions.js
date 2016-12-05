@@ -129,7 +129,7 @@ module.exports = {
 
     /** Function to find a result by id */
     findOneResultado: function (req, res) {
-        DB.findOneResultado(req.param('id'), function (data) {
+        DB.getResultadoById(req.param('id'), function (data) {
             res.send({result: data});
         });
     },

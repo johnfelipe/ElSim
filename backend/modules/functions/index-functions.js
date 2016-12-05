@@ -60,17 +60,27 @@ module.exports = {
     },
 
     learnGetFunction: function (req, res) {
-        let options = {
-            title: 'Learn'
-        };
-        res.render('pages/learn', options);
+        Result.find({}, haveResult);
+        function haveResult(err,data) {
+            if(err) throw err;
+            let options = {
+                title: 'Learn',
+                data: data
+            };
+            res.render('pages/learn', options);
+        }
     },
 
     storedDataFunction: function (req, res) {
-        let options = {
-            title: 'Stored Data'
-        };
-        res.render('pages/stored-data', options);
+        Result.find({}, haveResult);
+        function haveResult(err,data) {
+            if(err) throw err;
+            let options = {
+                title: 'Learn',
+                data: data
+            };
+            res.render('pages/stored-data', options);
+        }
     },
 
     addDataGetFunction: function (req, res) {
@@ -118,32 +128,17 @@ module.exports = {
         });
 
     },
-    rendDeleteDataView: function(req,res,data){
-        let options = {
-            title: 'Delete data',
-            error: 'NO',
-            data: data
-        };
-        res.render('pages/delete-data', options);
-    },
+
     deleteDataGetFunction: function (req, res) {
         Result.find({}, function (err, data) {
-            if(err) throw err;
-             done();
+            let options = {
+                title: 'Delete data',
+                error: 'NO',
+                data: data
+            };
+            res.render('pages/delete-data', options);
         });
-        function done(){
-            require('./index-functions').rendDeleteDataView(req,res,data);
-        }
-    },
 
-
-
-    promisesDeleteDataSolved: function(req,res){
-        console.log('all the results were deleted');
-        Result.find({}, function (err, data) {
-            if(err) throw err;
-            this.rendDeleteDataView(req,res,data);
-        });
     },
 
     deleteDataPostFunction: function (req, res) {
@@ -157,7 +152,18 @@ module.exports = {
             if (err) throw err;
         }
 
-        Promise.all(files).then(this.promisesDeleteDataSolved(req,res));
+        Promise.all(files).then(function () {
+            console.log('all the results were deleted');
+            Result.find({}, function (err, data) {
+                let options = {
+                    title: 'Delete data',
+                    error: 'NO',
+                    data: data
+                };
+                res.render('pages/delete-data', options);
+            });
+        });
+
     },
 
     graphicFormPostFunction: function (req, res) {
