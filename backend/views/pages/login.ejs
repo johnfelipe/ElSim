@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<% include ../partials/head %>
+<% include ../partials/menu %>
+<script src="/add-data.js"></script>
+<body background="images/construction.jpg">
+<div class="container" style="margin-top: 20px;">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">
+                        <span class="fa fa-user"></span> Login
+                    </h4>
+                    <hr>
+                    <form method="POST" action="/login">
+
+                        <div class="form-group">
+
+                            <label for="username">
+                                <span class="fa fa-map-o"></span> Username(e-mail)
+                            </label>
+                            <input class="form-control" type="text" name="username"
+                                   id="username" required/>
+                        </div>
+                        <div class="form-group">
+
+                            <label for="password">
+                                <span class="fa fa-map-o"></span> Password
+                            </label>
+                            <input class="form-control" type="password" name="password"
+                                   id="password" required/>
+                        </div>
+
+                        <div class="form-group float-lg-right">
+                            <button type="submit" class="btn btn-primary">
+                                <span class="fa fa-send-o"></span> Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
+</body>
+</html>

@@ -13,28 +13,26 @@ const Log = require('./../../models/log'),
  */
 module.exports = {
     indexGetFunction: function (req, res) {
-        Log.find({}, haveLog);
-        function haveLog(err, data) {
-            if (err) throw err;
-            let options = {
-                title: 'Welcome Page',
-                logs: data,
-                moment: require('moment')
-            };
-            res.render('pages/index', options);
-        }
+        let options = {
+            title: 'Welcome Page',
+            moment: require('moment'),
+            user: req.user
+        };
+        res.render('pages/index', options);
     },
 
     helpGetFunction: function (req, res) {
         let options = {
-            title: 'Help Page'
+            title: 'Help Page',
+            user: req.user
         };
         res.render('pages/help', options);
     },
 
     leafletExampleGetFunction: function (req, res) {
         let options = {
-            title: 'LeafletJS example'
+            title: 'LeafletJS example',
+            user: req.user
         };
         res.render('pages/leaflet-example', options);
     },
@@ -44,8 +42,8 @@ module.exports = {
         function haveResult(err, data) {
             if (err) throw err;
             let ellections = [];
-            for(let i = 0, len = data.length; i < len; i++){
-                if(!Util.ellectionIsInArray(data[i].eleccion,ellections)){
+            for (let i = 0, len = data.length; i < len; i++) {
+                if (!Util.ellectionIsInArray(data[i].eleccion, ellections)) {
                     ellections.push(data[i].eleccion);
                 }
             }
@@ -53,7 +51,8 @@ module.exports = {
             let options = {
                 title: 'Create a graphic!',
                 results: data,
-                ellections: ellections
+                ellections: ellections,
+                user: req.user
             };
             res.render('pages/graphic-form', options);
         }
@@ -61,11 +60,12 @@ module.exports = {
 
     learnGetFunction: function (req, res) {
         Result.find({}, haveResult);
-        function haveResult(err,data) {
-            if(err) throw err;
+        function haveResult(err, data) {
+            if (err) throw err;
             let options = {
                 title: 'Learn',
-                data: data
+                data: data,
+                user: req.user
             };
             res.render('pages/learn', options);
         }
@@ -73,11 +73,12 @@ module.exports = {
 
     storedDataFunction: function (req, res) {
         Result.find({}, haveResult);
-        function haveResult(err,data) {
-            if(err) throw err;
+        function haveResult(err, data) {
+            if (err) throw err;
             let options = {
                 title: 'Learn',
-                data: data
+                data: data,
+                user: req.user
             };
             res.render('pages/stored-data', options);
         }
@@ -87,7 +88,8 @@ module.exports = {
         let options = {
             title: 'Add data',
             error: 'NO',
-            codigos: require('./../../codigos')
+            codigos: require('./../../codigos'),
+            user: req.user
         };
         res.render('pages/add-data', options);
     },
@@ -122,7 +124,8 @@ module.exports = {
             let options = {
                 title: 'Add data',
                 error: 'NO',
-                codigos: require('./../../codigos')
+                codigos: require('./../../codigos'),
+                user: req.user
             };
             res.render('pages/add-data', options);
         });
@@ -134,7 +137,8 @@ module.exports = {
             let options = {
                 title: 'Delete data',
                 error: 'NO',
-                data: data
+                data: data,
+                user: req.user
             };
             res.render('pages/delete-data', options);
         });
@@ -158,16 +162,18 @@ module.exports = {
                 let options = {
                     title: 'Delete data',
                     error: 'NO',
-                    data: data
+                    data: data,
+                    user: req.user
                 };
                 res.render('pages/delete-data', options);
             });
         });
 
     },
-    partiesFunction: function(req,res){
+    partiesFunction: function (req, res) {
         let options = {
-            title: 'Parties'
+            title: 'Parties',
+            user: req.user
         };
         res.render('pages/parties', options);
     },
@@ -211,7 +217,8 @@ module.exports = {
                     provincia: data.cod_provincia,
                     options: graph_options,
                     result: result,
-                    icons: Icons
+                    icons: Icons,
+                    user: req.user
                 };
                 res.render('pages/graphic', options);
             }

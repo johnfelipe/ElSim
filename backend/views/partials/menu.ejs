@@ -58,11 +58,19 @@
             <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="supportedContentDropdown" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    <span class="fa fa-user-circle-o"></span> Your account
+                    <% if(user) { %>
+                    <span class="fa fa-user-circle-o"></span> Hi, <%= user.name %>
+                    <% } else { %>
+                    <span class="fa fa-user-circle-o"></span> Account
+                    <% } %>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="supportedContentDropdown">
-                    <a class="dropdown-item" href="#"><span class="fa fa-sign-in"></span> Login</a>
-                    <a class="dropdown-item" href="#"><span class="fa fa-sign-out"></span> Logout</a>
+                    <% if(user) { %>
+                    <a class="dropdown-item" href="/signout"><span class="fa fa-sign-out"></span> Logout</a>
+                    <% } else { %>
+                    <a class="dropdown-item" href="/signup"><span class="fa fa-pencil-square-o"></span> Register</a>
+                    <a class="dropdown-item" href="/login"><span class="fa fa-sign-in"></span> Login</a>
+                    <% } %>
                 </div>
             </li>
 
