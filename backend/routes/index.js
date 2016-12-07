@@ -49,7 +49,11 @@ module.exports = function(passport){
 
     /* GET Registration Page */
     router.get('/signup', function(req, res){
-        res.render('pages/register',{message: req.flash('message'),title: 'Register Page'});
+        res.render('pages/register',{
+            message: req.flash('message'),
+            title: 'Register Page',
+            user: req.user
+        });
     });
 
     /* Handle Registration POST */
