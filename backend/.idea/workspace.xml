@@ -3,11 +3,108 @@
   <component name="ChangeListManager">
     <list default="true" id="fd03d9dc-bbac-4ed5-a69d-e4ddc8716d37" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/passport/init.js" afterPath="$PROJECT_DIR$/passport/init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/passport/login.js" afterPath="$PROJECT_DIR$/passport/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/passport/signup.js" afterPath="$PROJECT_DIR$/passport/signup.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Gruntfile.js.html" afterPath="$PROJECT_DIR$/doc/Gruntfile.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/app.js.html" afterPath="$PROJECT_DIR$/doc/app.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/index.html" afterPath="$PROJECT_DIR$/doc/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/models_log.js.html" afterPath="$PROJECT_DIR$/doc/models_log.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/models_result.js.html" afterPath="$PROJECT_DIR$/doc/models_result.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/models_subscriber.js.html" afterPath="$PROJECT_DIR$/doc/models_subscriber.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/models_user.js.html" afterPath="$PROJECT_DIR$/doc/models_user.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-Gruntfile.html" afterPath="$PROJECT_DIR$/doc/module-Gruntfile.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-app.html" afterPath="$PROJECT_DIR$/doc/module-app.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-models_log.html" afterPath="$PROJECT_DIR$/doc/module-models_log.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-models_result.html" afterPath="$PROJECT_DIR$/doc/module-models_result.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-models_subscriber.html" afterPath="$PROJECT_DIR$/doc/module-models_subscriber.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-models_user.html" afterPath="$PROJECT_DIR$/doc/module-models_user.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_db-manager-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_db-manager-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_district-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_district-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_electoral-system-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_electoral-system-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_functions_api-functions.html" afterPath="$PROJECT_DIR$/doc/module-modules_functions_api-functions.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_functions_index-functions.html" afterPath="$PROJECT_DIR$/doc/module-modules_functions_index-functions.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_bar-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_graphics_bar-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_colors.html" afterPath="$PROJECT_DIR$/doc/module-modules_graphics_colors.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_graphic-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_graphics_graphic-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_icons.html" afterPath="$PROJECT_DIR$/doc/module-modules_graphics_icons.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_json-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_graphics_json-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_pie-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_graphics_pie-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_util-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_util-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-routes_index.html" afterPath="$PROJECT_DIR$/doc/module-routes_index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-test_district-test.html" afterPath="$PROJECT_DIR$/doc/module-test_district-test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-test_electoral-system-test.html" afterPath="$PROJECT_DIR$/doc/module-test_electoral-system-test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-test_graphic-test.html" afterPath="$PROJECT_DIR$/doc/module-test_graphic-test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-test_model-test.html" afterPath="$PROJECT_DIR$/doc/module-test_model-test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-test_other-test.html" afterPath="$PROJECT_DIR$/doc/module-test_other-test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_db-manager-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_db-manager-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_district-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_district-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_electoral-system-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_electoral-system-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_functions_api-functions.js.html" afterPath="$PROJECT_DIR$/doc/modules_functions_api-functions.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_functions_index-functions.js.html" afterPath="$PROJECT_DIR$/doc/modules_functions_index-functions.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_bar-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_bar-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_colors.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_colors.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_graphic-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_graphic-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_icons.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_icons.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_json-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_json-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_pie-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_pie-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_util-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_util-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/routes_index.js.html" afterPath="$PROJECT_DIR$/doc/routes_index.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/test_district-test.js.html" afterPath="$PROJECT_DIR$/doc/test_district-test.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/test_electoral-system-test.js.html" afterPath="$PROJECT_DIR$/doc/test_electoral-system-test.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/test_graphic-test.js.html" afterPath="$PROJECT_DIR$/doc/test_graphic-test.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/test_model-test.js.html" afterPath="$PROJECT_DIR$/doc/test_model-test.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/test_other-test.js.html" afterPath="$PROJECT_DIR$/doc/test_other-test.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/functions/index-functions.js" afterPath="$PROJECT_DIR$/modules/functions/index-functions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/Gruntfile.js.html" afterPath="$PROJECT_DIR$/public/doc/Gruntfile.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/app.js.html" afterPath="$PROJECT_DIR$/public/doc/app.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/index.html" afterPath="$PROJECT_DIR$/public/doc/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/models_log.js.html" afterPath="$PROJECT_DIR$/public/doc/models_log.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/models_result.js.html" afterPath="$PROJECT_DIR$/public/doc/models_result.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/models_subscriber.js.html" afterPath="$PROJECT_DIR$/public/doc/models_subscriber.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/models_user.js.html" afterPath="$PROJECT_DIR$/public/doc/models_user.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-Gruntfile.html" afterPath="$PROJECT_DIR$/public/doc/module-Gruntfile.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-app.html" afterPath="$PROJECT_DIR$/public/doc/module-app.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-models_log.html" afterPath="$PROJECT_DIR$/public/doc/module-models_log.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-models_result.html" afterPath="$PROJECT_DIR$/public/doc/module-models_result.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-models_subscriber.html" afterPath="$PROJECT_DIR$/public/doc/module-models_subscriber.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-models_user.html" afterPath="$PROJECT_DIR$/public/doc/module-models_user.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_db-manager-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_db-manager-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_district-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_district-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_electoral-system-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_electoral-system-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_functions_api-functions.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_functions_api-functions.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_functions_index-functions.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_functions_index-functions.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_bar-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_bar-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_colors.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_colors.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_graphic-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_graphic-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_icons.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_icons.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_json-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_json-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_pie-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_pie-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_util-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_util-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-routes_index.html" afterPath="$PROJECT_DIR$/public/doc/module-routes_index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-test_district-test.html" afterPath="$PROJECT_DIR$/public/doc/module-test_district-test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-test_electoral-system-test.html" afterPath="$PROJECT_DIR$/public/doc/module-test_electoral-system-test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-test_graphic-test.html" afterPath="$PROJECT_DIR$/public/doc/module-test_graphic-test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-test_model-test.html" afterPath="$PROJECT_DIR$/public/doc/module-test_model-test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-test_other-test.html" afterPath="$PROJECT_DIR$/public/doc/module-test_other-test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_db-manager-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_db-manager-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_district-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_district-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_electoral-system-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_electoral-system-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_functions_api-functions.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_functions_api-functions.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_functions_index-functions.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_functions_index-functions.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_bar-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_bar-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_colors.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_colors.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_graphic-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_graphic-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_icons.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_icons.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_json-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_json-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_pie-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_pie-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_util-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_util-module.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/routes_index.js.html" afterPath="$PROJECT_DIR$/public/doc/routes_index.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/test_district-test.js.html" afterPath="$PROJECT_DIR$/public/doc/test_district-test.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/test_electoral-system-test.js.html" afterPath="$PROJECT_DIR$/public/doc/test_electoral-system-test.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/test_graphic-test.js.html" afterPath="$PROJECT_DIR$/public/doc/test_graphic-test.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/test_model-test.js.html" afterPath="$PROJECT_DIR$/public/doc/test_model-test.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/test_other-test.js.html" afterPath="$PROJECT_DIR$/public/doc/test_other-test.js.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partials/menu.ejs" afterPath="$PROJECT_DIR$/views/partials/menu.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/pages/index.ejs" afterPath="$PROJECT_DIR$/views/pages/index.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partials/head.ejs" afterPath="$PROJECT_DIR$/views/partials/head.ejs" />
     </list>
     <ignored path="Backend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,21 +127,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="990">
-              <caret line="55" column="8" lean-forward="false" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+            <state relative-caret-position="324">
+              <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menu.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/partials/menu.ejs">
+      <file leaf-file-name="head.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/partials/head.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="68" column="59" lean-forward="false" selection-start-line="68" selection-start-column="59" selection-end-line="68" selection-end-column="59" />
+            <state relative-caret-position="234">
+              <caret line="13" column="39" lean-forward="false" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/pages/index.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="graphic.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/pages/graphic.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="684">
+              <caret line="38" column="57" lean-forward="false" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add-data.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/pages/add-data.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1728">
+              <caret line="12" column="43" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="12" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="delete-data.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/pages/delete-data.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="12" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -60,57 +197,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="connect.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/passport/lib/framework/connect.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="24" column="4" lean-forward="false" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="register.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/pages/register.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="738">
-              <caret line="41" column="102" lean-forward="false" selection-start-line="41" selection-start-column="102" selection-end-line="41" selection-end-column="102" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/user.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index-functions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/functions/index-functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="19" column="10" lean-forward="false" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
-              <folding />
+            <state relative-caret-position="493">
+              <caret line="40" column="24" lean-forward="false" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+              <folding>
+                <marker date="1481115485381" expanded="true" signature="443:7504" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="signup.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="signup.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/passport/signup.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
@@ -198,8 +297,6 @@
         <option value="$PROJECT_DIR$/models/user.js" />
         <option value="$PROJECT_DIR$/models/subscriptor.js" />
         <option value="$PROJECT_DIR$/modules/util-module.js" />
-        <option value="$PROJECT_DIR$/views/pages/index.ejs" />
-        <option value="$PROJECT_DIR$/views/partials/head.ejs" />
         <option value="$PROJECT_DIR$/modules/district-module.js" />
         <option value="$PROJECT_DIR$/config.js" />
         <option value="$PROJECT_DIR$/codigos.js" />
@@ -213,12 +310,14 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/views/pages/login.ejs" />
         <option value="$PROJECT_DIR$/views/pages/register.ejs" />
-        <option value="$PROJECT_DIR$/modules/functions/index-functions.js" />
         <option value="$PROJECT_DIR$/views/partials/menu.ejs" />
         <option value="$PROJECT_DIR$/passport/login.js" />
         <option value="$PROJECT_DIR$/passport/init.js" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/passport/signup.js" />
+        <option value="$PROJECT_DIR$/views/pages/index.ejs" />
+        <option value="$PROJECT_DIR$/views/partials/head.ejs" />
+        <option value="$PROJECT_DIR$/modules/functions/index-functions.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
       </list>
     </option>
   </component>
@@ -285,57 +384,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="partials" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="routes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="passport" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -597,7 +646,7 @@
       <workItem from="1480679541308" duration="2373000" />
       <workItem from="1480934646532" duration="7297000" />
       <workItem from="1481104127403" duration="3667000" />
-      <workItem from="1481113902638" duration="620000" />
+      <workItem from="1481113902638" duration="1714000" />
     </task>
     <task id="LOCAL-00001" summary="Integrando git con WebStorm&#10;">
       <created>1476441402056</created>
@@ -624,7 +673,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="324081000" />
+    <option name="totallyTimeSpent" value="325175000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="24" width="1282" height="753" extended-state="6" />
@@ -635,20 +684,20 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3266564" sideWeight="0.50278443" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32943144" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21875" sideWeight="0.42989215" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33444816" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1893397" sideWeight="0.5250836" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30508474" sideWeight="0.4972156" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980111" sideWeight="0.5133333" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32943144" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33444816" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819724" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -747,24 +796,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/pages/graphic.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="38" column="57" lean-forward="false" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/pages/learn.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
           <caret line="70" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/pages/add-data.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="43" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="12" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -817,13 +852,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/head.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="21" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -904,13 +932,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/pages/delete-data.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="40" column="24" lean-forward="false" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/graphics/colors.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -958,14 +979,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="16" column="54" lean-forward="false" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/pages/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1025,26 +1038,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/passport/signup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/pages/graphic.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="38" column="57" lean-forward="false" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/pages/add-data.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1728">
+          <caret line="12" column="43" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="12" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/pages/delete-data.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="12" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/pages/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/head.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="39" lean-forward="false" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/functions/index-functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="19" column="10" lean-forward="false" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
-          <folding />
+        <state relative-caret-position="493">
+          <caret line="40" column="24" lean-forward="false" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+          <folding>
+            <marker date="1481115485381" expanded="true" signature="443:7504" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="55" column="8" lean-forward="false" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/passport/signup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+        <state relative-caret-position="324">
+          <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
           <folding />
         </state>
       </provider>

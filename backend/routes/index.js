@@ -5,69 +5,50 @@ const express = require('express'),
     api = require('./../modules/functions/api-functions');
 
 const isAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated())
+    if (req.isAuthenticated()) {
         return next();
-    res.redirect('/');
+    }
+    res.render('pages/index',{
+        title: 'Welcome Page',
+        user: req.user,
+        advice: 'Sorry, but you must to login to use the simulator or manage data.'
+    });
 };
 
+/**
+ * Handle all web routes
+ * @module routes/index
+ */
 module.exports = function(passport){
-    /**
-     * All the index routes
-     * @see modules/functions/index-functions.js
-     * @module routes/index
-     */
+    /** GET routes */
     router.get('/', IndexFunctions.indexGetFunction);
-    router.get('/help', isAuthenticated, IndexFunctions.helpGetFunction);
+    router.get('/help', IndexFunctions.helpGetFunction);
     router.get('/leaflet-example', IndexFunctions.leafletExampleGetFunction);
-    router.get('/graphic-form', IndexFunctions.graphicFormGetFunction);
+    router.get('/graphic-form', isAuthenticated,IndexFunctions.graphicFormGetFunction);
     router.get('/learn', IndexFunctions.learnGetFunction);
-    router.get('/add-data', IndexFunctions.addDataGetFunction);
-    router.get('/stored-data', IndexFunctions.storedDataFunction);
-
+    router.get('/add-data', isAuthenticated,IndexFunctions.addDataGetFunction);
+    router.get('/stored-data', isAuthenticated,IndexFunctions.storedDataFunction);
+    router.get('/login', IndexFunctions.loginGetFunction);
+    router.get('/signup', IndexFunctions.signUpGetFunction);
+    router.get('/signout', IndexFunctions.signOutGetFunction);
     router.get('/parties', IndexFunctions.partiesFunction);
     router.get('/resultados/:id', api.findOneResultado);
+    router.get('/delete-data', isAuthenticated,IndexFunctions.deleteDataGetFunction);
+
+    /** POST routes */
     router.post('/add-data', IndexFunctions.addDataPostFunction);
-    router.get('/delete-data', IndexFunctions.deleteDataGetFunction);
     router.post('/delete-data', IndexFunctions.deleteDataPostFunction);
     router.post('/graphic-form', IndexFunctions.graphicFormPostFunction);
-
-    /* Handle Login POST */
     router.post('/login', passport.authenticate('login', {
         successRedirect: '/',
         failureRedirect: '/login',
         failureFlash : true
     }));
-
-    /* GET Registration Page */
-    router.get('/login', function(req, res){
-        res.render('pages/login',{
-            message: req.flash('message'),
-            title: 'Login Page',
-            user: req.user
-        });
-    });
-
-    /* GET Registration Page */
-    router.get('/signup', function(req, res){
-        res.render('pages/register',{
-            message: req.flash('message'),
-            title: 'Register Page',
-            user: req.user
-        });
-    });
-
-    /* Handle Registration POST */
     router.post('/signup', passport.authenticate('signup', {
         successRedirect: '/',
         failureRedirect: '/signup',
         failureFlash : true
     }));
-
-    /* Handle Logout */
-    router.get('/signout', function(req, res) {
-        req.logout();
-        res.redirect('/');
-    });
 
     return router;
 };

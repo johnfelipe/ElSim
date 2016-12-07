@@ -16,9 +16,31 @@ module.exports = {
         let options = {
             title: 'Welcome Page',
             moment: require('moment'),
-            user: req.user
+            user: req.user,
+            advice: null
         };
         res.render('pages/index', options);
+    },
+
+    loginGetFunction:  function(req, res){
+        res.render('pages/login',{
+            message: req.flash('message'),
+            title: 'Login Page',
+            user: req.user
+        });
+    },
+
+    signUpGetFunction: function(req, res){
+        res.render('pages/register',{
+            message: req.flash('message'),
+            title: 'Register Page',
+            user: req.user
+        });
+    },
+
+    signOutGetFunction: function(req, res) {
+        req.logout();
+        res.redirect('/');
     },
 
     helpGetFunction: function (req, res) {
