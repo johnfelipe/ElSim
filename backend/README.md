@@ -11,9 +11,15 @@ Install dependencies:
 Run project:
 
     $ npm start
-    Go http://localhost:3000/
-            or
-    Make GET,POST requests to the API.
+
+Web routes:
+
+    /
+    
+Api routes:
+
+    /api/
+
 
 Run tests:
 
@@ -33,38 +39,87 @@ Environment:
     $ npm -v
         3.10.8
 
-# Parsing CSV
+# Generate documentation
 
-You can use the csv examples or create new examples to load to the system.
-
-The csv file must be well formated for each year there are two files:
-
-The first file must be named:
-
-    YYYY.csv
+Only the first time:
     
-The second file must be named:
+    $ chmod a+x ./gen_doc.sh
 
-    YYYY_PARTIDOS.csv
+Generate documentation:
+
+    $ ./gen_doc.sh
     
-The first file and the second file must have same number of rows.
+How to read the documentation:
 
-First file headers and an example row:
+    If you are running the server go to:
+        /doc/index.html
+        
+    else you can read under directory:
+        ./public/doc/*
+   
+# Web auth and API auth   
+   
+Is the same. You can use your user to login on the web or to
+make requests to the api. 
 
-    comunidad,cod_provincia,provincia,poblacion,num_mesas,total_censo_electoral,total_votantes,votos_validos,votos_candidaturas,votos_blanco,votos_nulos,fecha
-    Andalucía ,4,Almería ,388437,392,239935,186342,185182,184822,360,1160,197706
+Web:
 
+    Click login button
     
-Second file headers and an example row:
-
-    UCD,PSOE,PCE,AP,PSP-US,PDPC,PNV,FDC-EDC,UDC-IDCC,EC-FED,FDI,ASDCI,AET,AN18,RSE,EE,FJONSA,FUT,CAIC,ESB,PSPV,INDEP,PSG,DCV,FJONS,UNAI,BNPG,AFN,URA,PSOE-H,LLIGA,ANEPA-CP,UAN,PCU,DIV,CUPS,UAB,CCIA,URAS,FNI,PPCAN,DSCC,MS,MFA,ASA,CJA,INDEP,ANV,INDEP,INDEP,DCAR,INDEP,FN,CUP,PSCAN,PIM,FAA,PPROV,INDEP,ICU,PSDE,PDG,UDIB,INDEP,FL,INDEP,INDEP,INDEP,PRSV,INDEP,INDEP,AEICYU,CUIR,CIPYE,ADEC,ADC,FEI,PAE,PLI,INDEP,BAI,CAI
-    92019,50723,11926,14886,5789,0,0,5553,0,0,770,892,0,775,771,0,718,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-
-# Generate docs
-
-Simply execute the bash script:
-
-    ./gen_doc.sh
+        OR
     
+    Go /login
+
+API:
+
+    Post request with:
+    {
+        'email': youremail,
+        'password': yourpassword
+    }
+   
+# API 
+## Token 
+
+Of course you must to have a token to authenticate and use the API. The reason is
+to limit the abuse of the API. You can use the API 2500 requests per day so you have no problem to use in the free
+way.
+
+## Free usage
+
+If you are planning to use the API in an external app or service, then you should pay a little to grow up your limit up to
+1000000 requests per day.
 
 
+## API methods
+
+GET
+
+    /setup
+    /
+    /users
+    /check
+    /logs
+    /resultados/year/:anio
+    /resultados/district/:cod_provincia
+    /resultados/setup
+    /resultados/:id
+    /resultados
+
+POST 
+
+    /users
+    /resultados
+
+PUT
+
+    /users/:id
+    /resultados/:id
+
+DELETE
+
+    /users/:id
+    /logs
+    /resultados/:id
+    /resultados
+    
