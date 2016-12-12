@@ -1,5 +1,3 @@
-const Graphic = require('./graphic-module'),
-    Icons = require('./icons');
 /**
  * To handle bar charts
  * @module modules/graphics/bar-module
@@ -42,9 +40,6 @@ module.exports = {
         };
         options.title = {
             text: 'Mandates by parties'
-        };
-        options.subtitle = {
-            text: 'Source: <a href="http://www.infoelectoral.mir.es/min/">http://www.infoelectoral.mir.es/min/</a>'
         };
         options.xAxis = {
             categories: categories,

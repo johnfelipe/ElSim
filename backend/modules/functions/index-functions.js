@@ -245,5 +245,8 @@ module.exports = {
                 res.render('pages/graphic', options);
             }
         }
+    },
+    countryFormPostFunction: function (req, res) {
+
     }
 };

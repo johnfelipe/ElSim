@@ -11,58 +11,9 @@
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">
-                        <b>Single district chart</b>
+                        <b><span class="fa fa-map-pin"></span> Single district chart</b>
                     </h4>
-
-                    <form class="card-text" method="POST" id="form1" action="/graphic-form">
-                        <div class="form-group">
-
-                            <label for="resultSelected">
-                                <span class="fa fa-list"></span> Select a stored district
-                            </label>
-                            <select class="form-control" name="resultSelected" id="resultSelected">
-                                <% for(let i = 0, len = results.length; i < len; i++){ %>
-                                <option value="<%= results[i]._id %>">
-                                    <%= results[i].eleccion.fecha.slice(4, 6) %>/<%= results[i].eleccion.fecha.slice(0, 4) %>,
-                                    <%= results[i].provincia %>,
-                                    by <%= results[i].eleccion.autor %>
-                                </option>
-                                <% } %>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="mode">
-                                <span class="fa fa-signal"></span> Chart kind
-                            </label>
-                            <select class="form-control" name="mode" id="mode">
-                                <option value="bar">Bar chart</option>
-                                <option value="pie">Pie chart</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="mandates">
-                                <span class="fa fa-user"></span> Number of mandates
-                            </label>
-                            <select class="form-control" name="mandates" id="mandates">
-                                <% for(i = 1; i <= 1000; i++){ %>
-                                <option value="<%= i %>"><%= i %></option>
-                                <% } %>
-                            </select>
-
-                        </div>
-                        <div class="form-group">
-                            <label for="percentage">
-                                <span class="fa fa-percent"></span> Select minimum percentage
-                            </label>
-                            <select class="form-control" name="percentage" id="percentage">
-                                <% for(var i = 0.00; i <= 100.00; i += 0.50){ %>
-                                <option value="<%= i %>"><%= i %>%</option>
-                                <% } %>
-                            </select>
-
-                        </div>
-                    </form>
-
+                    <% include ../forms/single-chart %>
                 </div>
                 <div class="card-footer text-xs-right">
                     <button type="submit" class="btn btn-primary" form="form1">
@@ -74,36 +25,9 @@
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">
-                        <b>Country chart</b>
+                        <b><span class="fa fa-institution"></span> Country chart</b>
                     </h4>
-                    <form class="card-text" method="POST" action="/graphic-form">
-                        <div class="form-group">
-
-                            <label for="resultSelected">
-                                <span class="fa fa-list"></span> Select a stored ellection
-                            </label>
-                            <select class="form-control" name="resultSelected" id="resultSelected">
-                                <% for(i = 0, len = ellections.length; i < len; i++){ %>
-                                <option value="<%= ellections[i].fecha %>">
-                                    <%= ellections[i].fecha.slice(4, 6) %>/<%= ellections[i].fecha.slice(0, 4) %>,
-                                    by <%= ellections[i].autor %>
-                                </option>
-                                <% } %>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="percentage">
-                                <span class="fa fa-percent"></span> Select minimum percentage
-                            </label>
-                            <select class="form-control" name="percentage" id="percentage">
-                                <% for(var i = 0.00; i <= 100.00; i += 0.50){ %>
-                                <option value="<%= i %>"><%= i %>%</option>
-                                <% } %>
-                            </select>
-
-                        </div>
-
-                    </form>
+                    <% include ../forms/country-chart %>
                 </div>
                 <div class="card-footer text-xs-right">
                     <button type="submit" class="btn btn-primary">

@@ -1,7 +1,7 @@
 'use strict';
 const express = require('express'),
     router = express.Router(),
-    IndexFunctions = require('./../modules/functions/index-functions'),
+    _ = require('./../modules/functions/index-functions'),
     api = require('./../modules/functions/api-functions');
 
 const isAuthenticated = function (req, res, next) {
@@ -21,24 +21,25 @@ const isAuthenticated = function (req, res, next) {
  */
 module.exports = function(passport){
     /** GET routes */
-    router.get('/', IndexFunctions.indexGetFunction);
-    router.get('/help', IndexFunctions.helpGetFunction);
-    router.get('/leaflet-example', IndexFunctions.leafletExampleGetFunction);
-    router.get('/graphic-form', isAuthenticated,IndexFunctions.graphicFormGetFunction);
-    router.get('/learn', IndexFunctions.learnGetFunction);
-    router.get('/add-data', isAuthenticated,IndexFunctions.addDataGetFunction);
-    router.get('/stored-data', isAuthenticated,IndexFunctions.storedDataFunction);
-    router.get('/login', IndexFunctions.loginGetFunction);
-    router.get('/signup', IndexFunctions.signUpGetFunction);
-    router.get('/signout', IndexFunctions.signOutGetFunction);
-    router.get('/parties', IndexFunctions.partiesFunction);
+    router.get('/', _.indexGetFunction);
+    router.get('/help', _.helpGetFunction);
+    router.get('/leaflet-example', _.leafletExampleGetFunction);
+    router.get('/graphic-form', isAuthenticated,_.graphicFormGetFunction);
+    router.get('/learn', _.learnGetFunction);
+    router.get('/add-data', isAuthenticated,_.addDataGetFunction);
+    router.get('/stored-data', isAuthenticated,_.storedDataFunction);
+    router.get('/login', _.loginGetFunction);
+    router.get('/signup', _.signUpGetFunction);
+    router.get('/signout', _.signOutGetFunction);
+    router.get('/parties', _.partiesFunction);
     router.get('/resultados/:id', api.findOneResultado);
-    router.get('/delete-data', isAuthenticated,IndexFunctions.deleteDataGetFunction);
+    router.get('/delete-data', isAuthenticated,_.deleteDataGetFunction);
 
     /** POST routes */
-    router.post('/add-data', IndexFunctions.addDataPostFunction);
-    router.post('/delete-data', IndexFunctions.deleteDataPostFunction);
-    router.post('/graphic-form', IndexFunctions.graphicFormPostFunction);
+    router.post('/add-data', _.addDataPostFunction);
+    router.post('/delete-data', _.deleteDataPostFunction);
+    router.post('/graphic-form', _.graphicFormPostFunction);
+    router.post('/country-form', _.countryFormPostFunction);
     router.post('/login', passport.authenticate('login', {
         successRedirect: '/',
         failureRedirect: '/login',

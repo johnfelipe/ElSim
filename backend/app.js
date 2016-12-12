@@ -41,8 +41,8 @@ app.use(logger('dev'));
 
 
 // Configuring Passport
-var passport = require('passport');
-var expressSession = require('express-session');
+let passport = require('passport'),
+    expressSession = require('express-session');
 // TODO - Why Do we need this key ?
 app.use(expressSession({secret: 'mySecretKey'}));
 app.use(passport.initialize());
@@ -50,14 +50,14 @@ app.use(passport.session());
 
 // Using the flash middleware provided by connect-flash to store messages in session
 // and displaying in templates
-var flash = require('connect-flash');
+let flash = require('connect-flash');
 app.use(flash());
 
 // Initialize Passport
-var initPassport = require('./passport/init');
+let initPassport = require('./passport/init');
 initPassport(passport);
 
-var routes = require('./routes/index')(passport);
+let routes = require('./routes/index')(passport);
 app.use('/', routes);
 
 /** Api routes under authentication */

@@ -10,16 +10,16 @@
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">
-                        <b>Data</b><hr>
+                        <b><span class="fa fa-list"></span> Data</b><hr>
                     </h4>
                     <div class="card-text">
-                        <span class="fa fa-user"></span> Author: <%= autor %>
+                        <span class="fa fa-user-o"></span> Author: <%= autor %>
                         <hr>
                         <span class="fa fa-calendar"></span> Date: <%= fecha.slice(4, 6) %>/<%= fecha.slice(0, 4) %>
                         <hr>
                         <span class="fa fa-map-marker"></span> District: <%= provincia %>
                         <hr>
-                        <span class="fa fa-envelope"></span> Number of votes: <%= result.numberOfVotes %>
+                        <span class="fa fa-envelope-o"></span> Number of votes: <%= result.numberOfVotes %>
                         <hr>
                         <ul class="list-group">
                             <% Object.keys(result.parties).forEach(function(key){ if(parseInt(result.parties[key]) > 0) { %>
@@ -36,8 +36,16 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-block">
-                    <h4 class="card-title">Chart</h4><hr>
+                    <h4 class="card-title"><span class="fa fa-bar-chart-o"></span> Chart</h4><hr>
                     <div id="container"></div>
+                </div>
+                <hr>
+                <div class="card-footer text-xs-right">
+                    <form class="card-text" method="POST" action="/save-single-chart">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="fa fa-save"></span> Save result
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

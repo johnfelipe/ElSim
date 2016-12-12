@@ -2,108 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd03d9dc-bbac-4ed5-a69d-e4ddc8716d37" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/forms/country-chart.ejs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/forms/single-chart.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Gruntfile.js.html" afterPath="$PROJECT_DIR$/doc/Gruntfile.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/app.js.html" afterPath="$PROJECT_DIR$/doc/app.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/index.html" afterPath="$PROJECT_DIR$/doc/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/models_log.js.html" afterPath="$PROJECT_DIR$/doc/models_log.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/models_result.js.html" afterPath="$PROJECT_DIR$/doc/models_result.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/models_subscriber.js.html" afterPath="$PROJECT_DIR$/doc/models_subscriber.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/models_user.js.html" afterPath="$PROJECT_DIR$/doc/models_user.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-Gruntfile.html" afterPath="$PROJECT_DIR$/doc/module-Gruntfile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-app.html" afterPath="$PROJECT_DIR$/doc/module-app.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-models_log.html" afterPath="$PROJECT_DIR$/doc/module-models_log.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-models_result.html" afterPath="$PROJECT_DIR$/doc/module-models_result.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-models_subscriber.html" afterPath="$PROJECT_DIR$/doc/module-models_subscriber.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-models_user.html" afterPath="$PROJECT_DIR$/doc/module-models_user.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_db-manager-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_db-manager-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_district-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_district-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_electoral-system-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_electoral-system-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_functions_api-functions.html" afterPath="$PROJECT_DIR$/doc/module-modules_functions_api-functions.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_functions_index-functions.html" afterPath="$PROJECT_DIR$/doc/module-modules_functions_index-functions.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_bar-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_graphics_bar-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_colors.html" afterPath="$PROJECT_DIR$/doc/module-modules_graphics_colors.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_graphic-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_graphics_graphic-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_icons.html" afterPath="$PROJECT_DIR$/doc/module-modules_graphics_icons.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_json-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_graphics_json-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_pie-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_graphics_pie-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-modules_util-module.html" afterPath="$PROJECT_DIR$/doc/module-modules_util-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-routes_index.html" afterPath="$PROJECT_DIR$/doc/module-routes_index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-test_district-test.html" afterPath="$PROJECT_DIR$/doc/module-test_district-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-test_electoral-system-test.html" afterPath="$PROJECT_DIR$/doc/module-test_electoral-system-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-test_graphic-test.html" afterPath="$PROJECT_DIR$/doc/module-test_graphic-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-test_model-test.html" afterPath="$PROJECT_DIR$/doc/module-test_model-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-test_other-test.html" afterPath="$PROJECT_DIR$/doc/module-test_other-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_db-manager-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_db-manager-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_district-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_district-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_electoral-system-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_electoral-system-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_functions_api-functions.js.html" afterPath="$PROJECT_DIR$/doc/modules_functions_api-functions.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_functions_index-functions.js.html" afterPath="$PROJECT_DIR$/doc/modules_functions_index-functions.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_bar-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_bar-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_colors.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_colors.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_graphic-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_graphic-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_icons.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_icons.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_json-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_json-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_pie-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_pie-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_util-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_util-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/routes_index.js.html" afterPath="$PROJECT_DIR$/doc/routes_index.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/test_district-test.js.html" afterPath="$PROJECT_DIR$/doc/test_district-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/test_electoral-system-test.js.html" afterPath="$PROJECT_DIR$/doc/test_electoral-system-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/test_graphic-test.js.html" afterPath="$PROJECT_DIR$/doc/test_graphic-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/test_model-test.js.html" afterPath="$PROJECT_DIR$/doc/test_model-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/test_other-test.js.html" afterPath="$PROJECT_DIR$/doc/test_other-test.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/functions/index-functions.js" afterPath="$PROJECT_DIR$/modules/functions/index-functions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/Gruntfile.js.html" afterPath="$PROJECT_DIR$/public/doc/Gruntfile.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/app.js.html" afterPath="$PROJECT_DIR$/public/doc/app.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/index.html" afterPath="$PROJECT_DIR$/public/doc/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/models_log.js.html" afterPath="$PROJECT_DIR$/public/doc/models_log.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/models_result.js.html" afterPath="$PROJECT_DIR$/public/doc/models_result.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/models_subscriber.js.html" afterPath="$PROJECT_DIR$/public/doc/models_subscriber.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/models_user.js.html" afterPath="$PROJECT_DIR$/public/doc/models_user.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-Gruntfile.html" afterPath="$PROJECT_DIR$/public/doc/module-Gruntfile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-app.html" afterPath="$PROJECT_DIR$/public/doc/module-app.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-models_log.html" afterPath="$PROJECT_DIR$/public/doc/module-models_log.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-models_result.html" afterPath="$PROJECT_DIR$/public/doc/module-models_result.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-models_subscriber.html" afterPath="$PROJECT_DIR$/public/doc/module-models_subscriber.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-models_user.html" afterPath="$PROJECT_DIR$/public/doc/module-models_user.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_db-manager-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_db-manager-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_district-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_district-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_electoral-system-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_electoral-system-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_functions_api-functions.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_functions_api-functions.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_functions_index-functions.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_functions_index-functions.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_bar-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_bar-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_colors.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_colors.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_graphic-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_graphic-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_icons.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_icons.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_json-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_json-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_pie-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_pie-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_util-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_util-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-routes_index.html" afterPath="$PROJECT_DIR$/public/doc/module-routes_index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-test_district-test.html" afterPath="$PROJECT_DIR$/public/doc/module-test_district-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-test_electoral-system-test.html" afterPath="$PROJECT_DIR$/public/doc/module-test_electoral-system-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-test_graphic-test.html" afterPath="$PROJECT_DIR$/public/doc/module-test_graphic-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-test_model-test.html" afterPath="$PROJECT_DIR$/public/doc/module-test_model-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-test_other-test.html" afterPath="$PROJECT_DIR$/public/doc/module-test_other-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_db-manager-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_db-manager-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_district-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_district-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_electoral-system-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_electoral-system-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_functions_api-functions.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_functions_api-functions.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_functions_index-functions.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_functions_index-functions.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_bar-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_bar-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_colors.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_colors.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_graphic-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_graphic-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_icons.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_icons.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_json-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_json-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_pie-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_pie-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_util-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_util-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/routes_index.js.html" afterPath="$PROJECT_DIR$/public/doc/routes_index.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/test_district-test.js.html" afterPath="$PROJECT_DIR$/public/doc/test_district-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/test_electoral-system-test.js.html" afterPath="$PROJECT_DIR$/public/doc/test_electoral-system-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/test_graphic-test.js.html" afterPath="$PROJECT_DIR$/public/doc/test_graphic-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/test_model-test.js.html" afterPath="$PROJECT_DIR$/public/doc/test_model-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/test_other-test.js.html" afterPath="$PROJECT_DIR$/public/doc/test_other-test.js.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/graphics/bar-module.js" afterPath="$PROJECT_DIR$/modules/graphics/bar-module.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/pages/index.ejs" afterPath="$PROJECT_DIR$/views/pages/index.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/pages/graphic-form.ejs" afterPath="$PROJECT_DIR$/views/pages/graphic-form.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/pages/graphic.ejs" afterPath="$PROJECT_DIR$/views/pages/graphic.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/pages/help.ejs" afterPath="$PROJECT_DIR$/views/pages/help.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/pages/login.ejs" afterPath="$PROJECT_DIR$/views/pages/login.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/pages/register.ejs" afterPath="$PROJECT_DIR$/views/pages/register.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/partials/head.ejs" afterPath="$PROJECT_DIR$/views/partials/head.ejs" />
     </list>
     <ignored path="Backend.iws" />
@@ -127,31 +37,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+            <state relative-caret-position="529">
+              <caret line="51" column="8" lean-forward="true" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="head.ejs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="head.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/partials/head.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="39" lean-forward="false" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
+            <state relative-caret-position="216">
+              <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/pages/index.ejs">
+      <file leaf-file-name="graphic-form.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/pages/graphic-form.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+            <state relative-caret-position="198">
+              <caret line="29" column="53" lean-forward="false" selection-start-line="29" selection-start-column="53" selection-end-line="29" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="country-chart.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/forms/country-chart.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="1" column="28" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="single-chart.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/forms/single-chart.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-380">
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -160,38 +90,28 @@
       <file leaf-file-name="graphic.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/pages/graphic.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
-              <caret line="38" column="57" lean-forward="false" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="57" />
+            <state relative-caret-position="324">
+              <caret line="45" column="51" lean-forward="false" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add-data.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/pages/add-data.ejs">
+      <file leaf-file-name="codigos.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/codigos.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1728">
-              <caret line="12" column="43" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="12" selection-end-column="43" />
+            <state relative-caret-position="0">
+              <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="delete-data.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/pages/delete-data.ejs">
+      <file leaf-file-name="graphic-module.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/graphics/graphic-module.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="12" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="init.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/passport/init.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="30" lean-forward="false" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+            <state relative-caret-position="612">
+              <caret line="34" column="26" lean-forward="false" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -200,30 +120,18 @@
       <file leaf-file-name="index-functions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/functions/index-functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="40" column="24" lean-forward="false" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
-              <folding>
-                <marker date="1481115485381" expanded="true" signature="443:7504" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="signup.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/passport/signup.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+            <state relative-caret-position="439">
+              <caret line="248" column="11" lean-forward="false" selection-start-line="248" selection-start-column="11" selection-end-line="248" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/passport/login.js">
+      <file leaf-file-name="json-module.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/graphics/json-module.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="27" lean-forward="false" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+            <state relative-caret-position="738">
+              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -267,8 +175,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/bin/www" />
-        <option value="$PROJECT_DIR$/Gruntfile.js" />
         <option value="$PROJECT_DIR$/test/other-test.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/modules/functions/colors.js" />
@@ -277,19 +183,16 @@
         <option value="$PROJECT_DIR$/modules/graphics/graphic-module.js" />
         <option value="$PROJECT_DIR$/modules/graphics/colors.js" />
         <option value="$PROJECT_DIR$/modules/graphics/icons.js" />
-        <option value="$PROJECT_DIR$/modules/graphics/bar-module.js" />
         <option value="$PROJECT_DIR$/modules/graphics/pie-module.js" />
         <option value="$PROJECT_DIR$/modules/graphics/span-map.js" />
         <option value="$PROJECT_DIR$/modules/graphics/json-module.js" />
         <option value="$PROJECT_DIR$/modules/electoral-system-module.js" />
         <option value="$PROJECT_DIR$/test/district-test.js" />
-        <option value="$PROJECT_DIR$/views/pages/graphic.ejs" />
         <option value="$PROJECT_DIR$/views/pages/add-data.ejs" />
         <option value="$PROJECT_DIR$/views/pages/learn.ejs" />
         <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/public/github-plugin/jquery.github.min.js" />
         <option value="$PROJECT_DIR$/public/github-plugin/github.css" />
-        <option value="$PROJECT_DIR$/views/pages/help.ejs" />
         <option value="$PROJECT_DIR$/config/passport.js" />
         <option value="$PROJECT_DIR$/config/passport" />
         <option value="$PROJECT_DIR$/modules/passport.js" />
@@ -304,20 +207,25 @@
         <option value="$PROJECT_DIR$/modules/functions/api-functions.js" />
         <option value="$PROJECT_DIR$/views/pages/stored-data.ejs" />
         <option value="$PROJECT_DIR$/views/partials/footer.ejs" />
-        <option value="$PROJECT_DIR$/views/pages/graphic-form.ejs" />
         <option value="$PROJECT_DIR$/views/pages/delete-data.ejs" />
         <option value="$PROJECT_DIR$/views/pages/parties.ejs" />
-        <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/views/pages/login.ejs" />
-        <option value="$PROJECT_DIR$/views/pages/register.ejs" />
         <option value="$PROJECT_DIR$/views/partials/menu.ejs" />
         <option value="$PROJECT_DIR$/passport/login.js" />
         <option value="$PROJECT_DIR$/passport/init.js" />
         <option value="$PROJECT_DIR$/passport/signup.js" />
         <option value="$PROJECT_DIR$/views/pages/index.ejs" />
-        <option value="$PROJECT_DIR$/views/partials/head.ejs" />
+        <option value="$PROJECT_DIR$/views/pages/help.ejs" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/modules/graphics/bar-module.js" />
+        <option value="$PROJECT_DIR$/views/pages/login.ejs" />
+        <option value="$PROJECT_DIR$/views/pages/register.ejs" />
         <option value="$PROJECT_DIR$/modules/functions/index-functions.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/views/forms/single-chart.ejs" />
+        <option value="$PROJECT_DIR$/views/forms/country-chart.ejs" />
+        <option value="$PROJECT_DIR$/views/pages/graphic-form.ejs" />
+        <option value="$PROJECT_DIR$/views/pages/graphic.ejs" />
+        <option value="$PROJECT_DIR$/views/partials/head.ejs" />
       </list>
     </option>
   </component>
@@ -360,8 +268,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -384,7 +290,75 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="forms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="routes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="passport" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -454,11 +428,13 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../dentaden-server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../xmas-sounds" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
@@ -471,17 +447,18 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/views/pages" />
-      <recent name="$PROJECT_DIR$/views/partials" />
-      <recent name="$PROJECT_DIR$/views" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/modules" />
       <recent name="$PROJECT_DIR$/modules/graphics" />
       <recent name="$PROJECT_DIR$/modules/functions" />
       <recent name="$PROJECT_DIR$/views/pages" />
       <recent name="$PROJECT_DIR$/views/partials" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/views/forms" />
+      <recent name="$PROJECT_DIR$/views/pages" />
+      <recent name="$PROJECT_DIR$/views/partials" />
+      <recent name="$PROJECT_DIR$/views" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.hare_module.js">
@@ -646,7 +623,10 @@
       <workItem from="1480679541308" duration="2373000" />
       <workItem from="1480934646532" duration="7297000" />
       <workItem from="1481104127403" duration="3667000" />
-      <workItem from="1481113902638" duration="1714000" />
+      <workItem from="1481113902638" duration="2497000" />
+      <workItem from="1481225328277" duration="14000" />
+      <workItem from="1481272764834" duration="44000" />
+      <workItem from="1481534506923" duration="3151000" />
     </task>
     <task id="LOCAL-00001" summary="Integrando git con WebStorm&#10;">
       <created>1476441402056</created>
@@ -673,7 +653,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="325175000" />
+    <option name="totallyTimeSpent" value="329167000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="24" width="1282" height="753" extended-state="6" />
@@ -747,41 +727,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gen_doc.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="5" lean-forward="false" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/graphics/icons.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="58" column="30" lean-forward="false" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/graphics/json-module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/graphics/pie-module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="20" column="8" lean-forward="false" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/electoral-system-module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="41" lean-forward="false" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/electoral-system-test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -824,13 +769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/pages/help.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="24" lean-forward="false" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/passport" />
     <entry file="file://$PROJECT_DIR$/modules/functions/passport-functions.js" />
     <entry file="file://$PROJECT_DIR$/modules/passport.js" />
@@ -862,45 +800,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/graphics/bar-module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="46" column="21" lean-forward="false" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/graphics/graphic-module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="34" column="26" lean-forward="false" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/db-manager-module.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
           <caret line="95" column="21" lean-forward="false" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/codigos.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/functions/api-functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="131" column="9" lean-forward="false" selection-start-line="131" selection-start-column="9" selection-end-line="131" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -925,13 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/pages/graphic-form.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/graphics/colors.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -950,7 +846,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -968,25 +863,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/pages/login.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="54" lean-forward="false" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/partials/menu.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
           <caret line="68" column="59" lean-forward="false" selection-start-line="68" selection-start-column="59" selection-end-line="68" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -994,15 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="24" column="4" lean-forward="false" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/pages/register.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="41" column="102" lean-forward="false" selection-start-line="41" selection-start-column="102" selection-end-line="41" selection-end-column="102" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1010,15 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1026,15 +888,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="5" column="27" lean-forward="false" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/passport/init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="30" lean-forward="false" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1042,21 +895,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/pages/graphic.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="38" column="57" lean-forward="false" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/pages/add-data.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1728">
+        <state relative-caret-position="216">
           <caret line="12" column="43" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="12" selection-end-column="43" />
           <folding />
         </state>
@@ -1078,28 +922,170 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/partials/head.ejs">
+    <entry file="file://$PROJECT_DIR$/passport/init.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="39" lean-forward="false" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
+        <state relative-caret-position="306">
+          <caret line="17" column="30" lean-forward="false" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/pages/help.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="23" column="24" lean-forward="false" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/functions/api-functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="131" column="9" lean-forward="false" selection-start-line="131" selection-start-column="9" selection-end-line="131" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-468">
+          <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/pages/leaflet-example.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/graphics/bar-module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/pages/login.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="29" column="54" lean-forward="false" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/pages/register.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="39" column="89" lean-forward="false" selection-start-line="39" selection-start-column="89" selection-end-line="39" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/graphics/pie-module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="20" column="8" lean-forward="false" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/graphics/json-module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="738">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/graphics/graphic-module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="34" column="26" lean-forward="false" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/functions/index-functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="40" column="24" lean-forward="false" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
-          <folding>
-            <marker date="1481115485381" expanded="true" signature="443:7504" ph="{...}" />
-          </folding>
+        <state relative-caret-position="439">
+          <caret line="248" column="11" lean-forward="false" selection-start-line="248" selection-start-column="11" selection-end-line="248" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="51" column="8" lean-forward="true" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/codigos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/forms/single-chart.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-380">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/pages/graphic-form.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="29" column="53" lean-forward="false" selection-start-line="29" selection-start-column="53" selection-end-line="29" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/forms/country-chart.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="28" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/pages/graphic.ejs">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
-          <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+          <caret line="45" column="51" lean-forward="false" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/partials/head.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
           <folding />
         </state>
       </provider>
