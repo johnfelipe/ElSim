@@ -1,5 +1,6 @@
 'use strict';
 const Log = require('./../../models/log'),
+    User = require('./../../models/user'),
     Graphic = require('./../graphics/graphic-module'),
     Result = require('./../../models/result'),
     District = require('./../district-module'),
@@ -14,7 +15,7 @@ const Log = require('./../../models/log'),
 module.exports = {
     indexGetFunction: function (req, res) {
         let options = {
-            title: 'Welcome Page',
+            title: 'EllSim',
             moment: require('moment'),
             user: req.user,
             advice: null
@@ -22,30 +23,30 @@ module.exports = {
         res.render('pages/index', options);
     },
 
-    loginGetFunction:  function(req, res){
-        res.render('pages/login',{
+    loginGetFunction: function (req, res) {
+        res.render('pages/login', {
             message: req.flash('message'),
             title: 'Login Page',
             user: req.user
         });
     },
 
-    signUpGetFunction: function(req, res){
-        res.render('pages/register',{
+    signUpGetFunction: function (req, res) {
+        res.render('pages/register', {
             message: req.flash('message'),
-            title: 'Register Page',
+            title: 'Register',
             user: req.user
         });
     },
 
-    signOutGetFunction: function(req, res) {
+    signOutGetFunction: function (req, res) {
         req.logout();
         res.redirect('/');
     },
 
     helpGetFunction: function (req, res) {
         let options = {
-            title: 'Help Page',
+            title: 'Help',
             user: req.user
         };
         res.render('pages/help', options);
@@ -71,7 +72,7 @@ module.exports = {
             }
             console.dir(ellections);
             let options = {
-                title: 'Create a graphic!',
+                title: 'Chart',
                 results: data,
                 ellections: ellections,
                 user: req.user
@@ -232,21 +233,40 @@ module.exports = {
             }
 
             function done(graph_options) {
-                let options = {
-                    title: 'Graphic Example',
-                    autor: data.eleccion.autor,
-                    fecha: data.eleccion.fecha,
-                    provincia: data.cod_provincia,
-                    options: graph_options,
-                    result: result,
-                    icons: Icons,
-                    user: req.user
-                };
-                res.render('pages/graphic', options);
+                User.findOne({_id: req.user._id}, function (err, user) {
+                    if (err) throw err;
+
+                    let options = {
+                        title: 'Chart',
+                        autor: data.eleccion.autor,
+                        fecha: data.eleccion.fecha,
+                        provincia: data.cod_provincia,
+                        options: graph_options,
+                        result: result,
+                        icons: Icons,
+                        user: req.user
+                    };
+                    user.resultados.push({
+                        fecha: data.eleccion.fecha,
+                        provincia: data.cod_provincia,
+                        result: result,
+                        mandates: req.body.mandates,
+                        percentage: req.body.percentage,
+                        blank: data.votos_blanco
+                    });
+                    user.save(function (err) {
+                        if (err) throw err;
+                        res.render('pages/single-chart', options);
+                    });
+                });
             }
         }
     },
     countryFormPostFunction: function (req, res) {
 
+    },
+    saveResultFunction: function (req, res) {
+        console.log(req.body.result);
+        res.send({result: req.body.result});
     }
 };

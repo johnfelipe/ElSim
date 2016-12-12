@@ -2,7 +2,7 @@
 <html>
 <% include ../partials/head %>
 <% include ../partials/menu %>
-<body background="images/construction.jpg">
+<body >
 <div class="container" style="margin-top: 20px;">
     <div class="alert alert-warning alert-dismissible fade in" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -13,7 +13,7 @@
     </div>
     <div class="card-deck-wrapper">
         <div class="card-deck">
-            <div class="card">
+            <div class="card myCard">
                 <div class="card-block">
                     <div class="card-text">
                         <form role="form" method="POST" action="/delete-data">
@@ -25,11 +25,13 @@
                                 </label>
                                 <select class="form-control" name="results" id="results" multiple size="12">
                                     <% for(var i = 0, len = data.length; i < len; i++){ %>
+                                    <% if(data[i].eleccion.autor === user._id || user.admin) { %>
                                     <option value="<%= data[i]._id %>">
                                         <%= data[i].eleccion.fecha.slice(4, 6) %>/<%= data[i].eleccion.fecha.slice(0, 4) %>,
                                         <%= data[i].provincia %>,
                                         by <%= data[i].eleccion.autor %>
                                     </option>
+                                    <% } %>
                                     <% } %>
                                 </select>
                             </div>

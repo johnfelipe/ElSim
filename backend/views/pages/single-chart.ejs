@@ -3,7 +3,7 @@
 <% include ../partials/head %>
 <% include ../partials/menu %>
 
-<body background="images/construction.jpg">
+<body>
 <div class="container" style="margin-top: 20px;">
     <div class="row">
         <div class="col-md-4">
@@ -34,18 +34,15 @@
         </div>
 
         <div class="col-md-8">
-            <div class="card">
+            <div class="card myCard">
                 <div class="card-block">
                     <h4 class="card-title"><span class="fa fa-bar-chart-o"></span> Chart</h4><hr>
                     <div id="container"></div>
                 </div>
                 <hr>
                 <div class="card-footer text-xs-right">
-                    <form class="card-text" method="POST" action="/save-single-chart">
-                        <button type="submit" class="btn btn-primary">
-                            <span class="fa fa-save"></span> Save result
-                        </button>
-                    </form>
+                    <span class="fa fa-database"></span> This result is now stored in your own results!<br>
+                    <small><a href="/users/profile">See my own results</a></small>
                 </div>
             </div>
         </div>

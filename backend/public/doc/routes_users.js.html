@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: test/other-test</title>
+    <title>JSDoc: Source: routes/users.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,126 +17,48 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: test/other-test</h1>
+    <h1 class="page-title">Source: routes/users.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">Test Miscellaneus</div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="test_other-test.js.html">test/other-test.js</a>, <a href="test_other-test.js.html#line5">line 5</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+const express = require('express'),
+    router = express.Router(),
+    User = require('./../models/user');
+const isAuthenticated = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.render('pages/profile', {
+        title: 'Profile',
+        user: req.user,
+        advice: 'Sorry, but you must to login to see your profile!'
+    });
+};
+/**
+ * Rutas de la interfaz web relativas a usuarios
+ */
+module.exports = function (passport) {
+    router.get('/profile', isAuthenticated, function (req, res) {
+        User.findOne({_id: req.user._id}, function (err, user) {
+            if (err) throw err;
+            let options = {
+                title: 'Profile',
+                user: req.user,
+                advice: false
+            };
+            res.render('pages/profile', options);
+        });
+    });
+    return router;
+};</code></pre>
+        </article>
+    </section>
 
 
 

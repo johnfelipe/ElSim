@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   /*font: 14px "Roboto Sans", Helvetica, Arial, sans-serif !important;*/
+  background-image: url('/images/construction.jpg');
 
 }
 button, select, input {
@@ -12,6 +13,8 @@ button, select, input {
 .card-deck .card{
   border-radius: 0px !important;
   padding-top: 10px;
+}
+.myCard {
   padding-bottom: 50px;
 }
 

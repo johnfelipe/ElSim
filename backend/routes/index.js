@@ -40,6 +40,8 @@ module.exports = function(passport){
     router.post('/delete-data', _.deleteDataPostFunction);
     router.post('/graphic-form', _.graphicFormPostFunction);
     router.post('/country-form', _.countryFormPostFunction);
+    router.post('/save-single-chart',_.saveResultFunction);
+
     router.post('/login', passport.authenticate('login', {
         successRedirect: '/',
         failureRedirect: '/login',

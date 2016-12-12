@@ -10,7 +10,7 @@ let express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     //routes = require('./routes/index'),
-    users = require('./routes/users'),
+    //users = require('./routes/users'),
     app = express(),
     mongoose = require('mongoose'),
     jwt = require('jsonwebtoken'),
@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/', routes);
-app.use('/users', users);
+//app.use('/users', users);
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database);
 app.set('superSecret', config.secret);
@@ -57,8 +57,10 @@ app.use(flash());
 let initPassport = require('./passport/init');
 initPassport(passport);
 
-let routes = require('./routes/index')(passport);
+let routes = require('./routes/index')(passport),
+    users = require('./routes/users')(passport);
 app.use('/', routes);
+app.use('/users', users);
 
 /** Api routes under authentication */
 let apiRoutes = express.Router();
