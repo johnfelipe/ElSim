@@ -40,6 +40,7 @@
 </div>
 
 <script type="text/javascript">
+    var global = <%- JSON.stringify(global) %>;
     jQuery.noConflict();
     var data = [
         {
@@ -185,11 +186,9 @@
         {
             "hc-key": "es-co",
             "value": 10,
-            "partidos": JSON.stringify({
-                PP: 10,
-                PSOE: 4,
-                PODEMOS: 12
-            },null,2)
+            "partidos": '<b>PP</b>: 10<br>' +
+            '<b>PSOE</b>: 1',
+            "color": '#00FF00'
         },
         {
             "hc-key": "es-h",
@@ -237,7 +236,8 @@
         },
         {
             "hc-key": "es-cr",
-            "value": 10
+            "value": 10,
+            "color": '#00FF00'
         },
         {
             "hc-key": "es-j",
@@ -276,12 +276,12 @@
         tooltip: {
             backgroundColor: 'none',
             borderWidth: 0,
-            shadow: false,
+            shadow: true,
             useHTML: true,
             padding: 0,
-            pointFormat: '{point.name}: <br>{point.partidos}',
+            pointFormat: '{point.partidos}',
             positioner: function () {
-                return { x: 0, y: 250 };
+                return {x: 0, y: 250};
             }
         },
         series: [{
@@ -298,18 +298,11 @@
                 enabled: true,
                 format: '{point.name}'
             }
-        }, {
-            name: 'Separators',
-            type: 'mapline',
-            data: Highcharts.geojson(Highcharts.maps['countries/es/es-all'], 'mapline'),
-            color: 'silver',
-            showInLegend: false,
-            enableMouseTracking: false
         }]
     };
     (function ($) {
         $(function () {
-            $('#container').highcharts('Map',options);
+            $('#container').highcharts('Map', options);
         });
     })(jQuery);
 

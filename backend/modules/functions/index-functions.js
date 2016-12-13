@@ -268,11 +268,44 @@ module.exports = {
         }
     },
     countryFormPostFunction: function (req, res) {
-        let options = {
-            user: req.user,
-            title: 'Country Chart'
+        let eleccion = {
+            autor: req.body.resultSelected.split(',')[1],
+            fecha: req.body.resultSelected.split(',')[0]
         };
-        res.render('pages/country-chart', options);
+        console.log(eleccion);
+        Result.find({eleccion: eleccion}, function (err, data) {
+            let votes = [],
+                names = [],
+                result,
+                config = {
+                    mandates: 2,
+                    percentage: 3,
+                    blankVotes: 0
+                };
+            let global = [];
+            for (let i = 0, len = data.length; i < len; i++) {
+                config.blankVotes = data[i].votos_blanco;
+
+                Object.keys(data[i].partidos).forEach(iteration);
+
+                function iteration(key) {
+                    votes.push(data[i].partidos[key]);
+                    names.push(key);
+                }
+
+                result = District.compute(votes, names, config);
+                global.push(result);
+                votes = [];
+                names = [];
+            }
+            let options = {
+                user: req.user,
+                global: global,
+                title: 'Country Chart'
+            };
+            res.render('pages/country-chart', options);
+        });
+
     },
     saveResultFunction: function (req, res) {
         console.log(req.body.result);

@@ -5,7 +5,7 @@
         </label>
         <select class="form-control" name="resultSelected" id="resultSelected">
             <% for(i = 0, len = ellections.length; i < len; i++){ %>
-            <option value="<%= ellections[i].fecha %>">
+            <option value="<%= ellections[i].fecha %>,<%= ellections[i].autor%>">
                 <%= ellections[i].fecha.slice(4, 6) %>/<%= ellections[i].fecha.slice(0, 4) %>,
                 by <%= ellections[i].autor %>
             </option>
