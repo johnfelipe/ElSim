@@ -14,8 +14,7 @@ let s = new Schema({
     password: {type: String, required: true},
     born: {type: Date, required: false},
     admin: {type: Boolean, required: true},
-    resultados: {type: [], required: false},
-    apiUsage: {type:{},required:false}
+    resultados: {type: [], required: false}
 });
 
 /** Generates the hash for bcrypt */
