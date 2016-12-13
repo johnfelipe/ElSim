@@ -22,4 +22,17 @@
             <% } %>
         </select>
     </div>
+    <div class="form-group">
+        <label for="mandates">
+            <span class="fa fa-user"></span> Number of mandates
+        </label>
+        <select class="form-control" name="mandates" id="mandates">
+            <% for(var i = 52; i <= 1000; ++i){ %>
+            <option value="<%= i %>"><%= i %> mandates</option>
+            <% } %>
+        </select>
+    </div>
+    <div class="text-info">
+        If your ellection doesn't appear, you should review if all districts matched.
+    </div>
 </form>

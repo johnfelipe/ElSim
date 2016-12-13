@@ -28,6 +28,7 @@ module.exports = function(passport){
                         newUser.password = createHash(password);
                         newUser.name = req.param('name');
                         newUser.admin = false;
+                        newUser.apiUsage = {};
                         newUser.save(function(err) {
                             if (err){
                                 console.log('Error in Saving user: '+err);

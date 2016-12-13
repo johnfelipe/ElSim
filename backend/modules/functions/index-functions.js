@@ -259,6 +259,7 @@ module.exports = {
                         percentage: req.body.percentage,
                         blank: data.votos_blanco
                     });
+
                     user.save(function (err) {
                         if (err) throw err;
                         res.render('pages/single-chart', options);
