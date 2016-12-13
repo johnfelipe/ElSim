@@ -82,16 +82,19 @@ module.exports = {
     },
 
     learnGetFunction: function (req, res) {
-        Result.find({}, haveResult);
-        function haveResult(err, data) {
-            if (err) throw err;
-            let options = {
-                title: 'Learn',
-                data: data,
-                user: req.user
-            };
-            res.render('pages/learn', options);
-        }
+        let options = {
+            title: 'Learn',
+            user: req.user
+        };
+        res.render('pages/learn', options);
+
+    },
+    lawsGetFunction: function (req, res) {
+        let options = {
+            title: 'Laws',
+            user: req.user
+        };
+        res.render('pages/laws', options);
     },
 
     storedDataFunction: function (req, res) {
@@ -194,9 +197,11 @@ module.exports = {
 
     },
     partiesFunction: function (req, res) {
+        let parties = require('./parties');
         let options = {
             title: 'Parties',
-            user: req.user
+            user: req.user,
+            parties: parties
         };
         res.render('pages/parties', options);
     },
@@ -263,7 +268,11 @@ module.exports = {
         }
     },
     countryFormPostFunction: function (req, res) {
-
+        let options = {
+            user: req.user,
+            title: 'Country Chart'
+        };
+        res.render('pages/country-chart', options);
     },
     saveResultFunction: function (req, res) {
         console.log(req.body.result);

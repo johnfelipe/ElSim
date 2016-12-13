@@ -8,18 +8,18 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card myCard">
                 <div class="card-block">
                     <h4 class="card-title">
                         <span class="fa fa-user"></span> Sign up
                     </h4>
                     <hr>
-                    <form method="POST" action="/signup">
+                    <form method="POST" id="form1" action="/signup">
                         <div class="row">
                             <div class="col-xs-6 form-group">
 
                                 <label for="username">
-                                    <span class="fa fa-envelope-o"></span> Username(e-mail)*
+                                    <span class="fa fa-envelope-o"></span> Username (e-mail) *
                                 </label>
                                 <input class="form-control" type="text" name="username"
                                        id="username" required/>
@@ -56,14 +56,13 @@
                                 <input class="form-control" type="date" name="born" id="born" />
                             </div>
                         </div>
-                        <div class="row ">
-                            <div class="col-xs-12 form-group card-footer text-xs-right" style="padding-bottom: 0px; margin-bottom: 0px;">
-                                <button type="submit" class="btn btn-primary">
-                                    <span class="fa fa-send-o"></span> Sign up
-                                </button>
-                            </div>
-                        </div>
+
                     </form>
+                </div>
+                <div class="card-footer text-xs-right">
+                    <button type="submit" class="btn btn-primary" form="form1">
+                        <span class="fa fa-send-o"></span> Sign up
+                    </button>
                 </div>
             </div>
 

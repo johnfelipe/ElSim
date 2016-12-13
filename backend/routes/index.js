@@ -26,6 +26,7 @@ module.exports = function(passport){
     router.get('/leaflet-example', _.leafletExampleGetFunction);
     router.get('/graphic-form', isAuthenticated,_.graphicFormGetFunction);
     router.get('/learn', _.learnGetFunction);
+    router.get('/laws', _.lawsGetFunction);
     router.get('/add-data', isAuthenticated,_.addDataGetFunction);
     router.get('/stored-data', isAuthenticated,_.storedDataFunction);
     router.get('/login', _.loginGetFunction);
