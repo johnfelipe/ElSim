@@ -74,7 +74,7 @@ let functions = {
     graphicFormPostFunction: function (req, res) {
         Graphic.calculateDistrict(req,function(options){
             res.render('pages/single-chart', options);
-        })
+        });
     },
     countryFormPostFunction: function (req, res) {
         Graphic.calculateCountry(req,function(options){

@@ -56,7 +56,7 @@ let functions = {
     },
 
     graphicFormGetFunction: function (req, res) {
-        Util.calculateEllections(function(data,ellections){
+        Util.calculateEllections(function (data, ellections) {
             let options = {
                 title: 'Chart',
                 results: data,

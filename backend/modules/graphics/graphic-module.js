@@ -11,7 +11,7 @@ const highcharts = require('node-highcharts'),
     District = require('../district-module');
 
 /**
- * To handle charts
+ * @description To handle charts
  * @module modules/graphics/graphic-module
  */
 let functions = {
@@ -36,24 +36,33 @@ let functions = {
         return Color[party];
     },
 
-    /** Create a bar chart */
+    /**
+     * Create a bar chart
+     */
     createBar: function (result, callback) {
         let options = BarChart.fillOptions(result);
         callback(options);
     },
 
-    /** Create a pie chart */
+    /**
+     * Create a pie chart
+     */
     createPie: function (result, callback) {
         let options = PieChart.fillOptions(result);
         callback(options);
     },
 
-    /** Create a country chart */
+    /**
+     * Create a country chart
+     */
     createMap: function(results, callback){
         let options = CountryChart.fillOptions(results);
         callback(options);
     },
 
+    /**
+     * To calculate district
+     */
     calculateDistrict: function(req,callback){
         let votes = [],
             names = [],
