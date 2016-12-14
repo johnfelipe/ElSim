@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: modules/functions/index-get-functions.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: modules/functions/index-get-functions.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+const Result = require('./../../models/result'),
+    Util = require('./../util-module');
+
+/**
+ * All the callback functions of index GET routes
+ * @module modules/functions/index-get-functions
+ */
+module.exports = {
+    indexGetFunction: function (req, res) {
+        let options = {
+            title: 'EllSim',
+            moment: require('moment'),
+            user: req.user,
+            advice: null
+        };
+        res.render('pages/index', options);
+    },
+
+    loginGetFunction: function (req, res) {
+        res.render('pages/login', {
+            message: req.flash('message'),
+            title: 'Login Page',
+            user: req.user
+        });
+    },
+
+    signUpGetFunction: function (req, res) {
+        res.render('pages/register', {
+            message: req.flash('message'),
+            title: 'Register',
+            user: req.user
+        });
+    },
+
+    signOutGetFunction: function (req, res) {
+        req.logout();
+        res.redirect('/');
+    },
+
+    helpGetFunction: function (req, res) {
+        let options = {
+            title: 'Help',
+            user: req.user
+        };
+        res.render('pages/help', options);
+    },
+
+    leafletExampleGetFunction: function (req, res) {
+        let options = {
+            title: 'LeafletJS example',
+            user: req.user
+        };
+        res.render('pages/leaflet-example', options);
+    },
+
+    graphicFormGetFunction: function (req, res) {
+        Result.find({}, haveResult);
+        function haveResult(err, data) {
+            if (err) throw err;
+            let ellections = [];
+            for (let i = 0, len = data.length; i &lt; len; i++) {
+                if (!Util.ellectionIsInArray(data[i].eleccion, ellections)) {
+                    ellections.push(data[i].eleccion);
+                }
+            }
+            console.dir(ellections);
+            let options = {
+                title: 'Chart',
+                results: data,
+                ellections: ellections,
+                user: req.user
+            };
+            res.render('pages/graphic-form', options);
+        }
+    },
+
+    learnGetFunction: function (req, res) {
+        let options = {
+            title: 'Learn',
+            user: req.user
+        };
+        res.render('pages/learn', options);
+
+    },
+    lawsGetFunction: function (req, res) {
+        let options = {
+            title: 'Laws',
+            user: req.user
+        };
+        res.render('pages/laws', options);
+    },
+
+    storedDataFunction: function (req, res) {
+        Result.find({}, haveResult);
+        function haveResult(err, data) {
+            if (err) throw err;
+            let options = {
+                title: 'Learn',
+                data: data,
+                user: req.user
+            };
+            res.render('pages/stored-data', options);
+        }
+    },
+
+    addDataGetFunction: function (req, res) {
+        let options = {
+            title: 'Add data',
+            error: 'NO',
+            codigos: require('./../../codigos'),
+            user: req.user
+        };
+        res.render('pages/add-data', options);
+    },
+    deleteDataGetFunction: function (req, res) {
+        Result.find({}, function (err, data) {
+            let options = {
+                title: 'Delete data',
+                error: 'NO',
+                data: data,
+                user: req.user
+            };
+            res.render('pages/delete-data', options);
+        });
+
+    },
+    partiesFunction: function (req, res) {
+        let parties = require('./parties');
+        let options = {
+            title: 'Parties',
+            user: req.user,
+            parties: parties
+        };
+        res.render('pages/parties', options);
+    }
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_subscriber.html">models/subscriber</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-modules_db-manager-module.html">modules/db-manager-module</a></li><li><a href="module-modules_district-module.html">modules/district-module</a></li><li><a href="module-modules_electoral-system-module.html">modules/electoral-system-module</a></li><li><a href="module-modules_functions_api-functions.html">modules/functions/api-functions</a></li><li><a href="module-modules_functions_index-get-functions.html">modules/functions/index-get-functions</a></li><li><a href="module-modules_functions_index-post-functions.html">modules/functions/index-post-functions</a></li><li><a href="module-modules_graphics_bar-module.html">modules/graphics/bar-module</a></li><li><a href="module-modules_graphics_colors.html">modules/graphics/colors</a></li><li><a href="module-modules_graphics_graphic-module.html">modules/graphics/graphic-module</a></li><li><a href="module-modules_graphics_icons.html">modules/graphics/icons</a></li><li><a href="module-modules_graphics_json-module.html">modules/graphics/json-module</a></li><li><a href="module-modules_graphics_pie-module.html">modules/graphics/pie-module</a></li><li><a href="module-modules_util-module.html">modules/util-module</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Wed Dec 14 2016 10:19:22 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

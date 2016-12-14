@@ -1,125 +1,16 @@
 'use strict';
-const Log = require('./../../models/log'),
-    User = require('./../../models/user'),
+const User = require('./../../models/user'),
     Graphic = require('./../graphics/graphic-module'),
     Result = require('./../../models/result'),
     District = require('./../district-module'),
     Promise = require('bluebird'),
-    Icons = require('./../graphics/icons'),
-    Util = require('./../util-module');
+    Icons = require('./../graphics/icons');
 
 /**
- * All the callback functions of index routes
- * @module modules/functions/index-functions
+ * All the callback functions of index POST routes
+ * @module modules/functions/index-post-functions
  */
 module.exports = {
-    indexGetFunction: function (req, res) {
-        let options = {
-            title: 'EllSim',
-            moment: require('moment'),
-            user: req.user,
-            advice: null
-        };
-        res.render('pages/index', options);
-    },
-
-    loginGetFunction: function (req, res) {
-        res.render('pages/login', {
-            message: req.flash('message'),
-            title: 'Login Page',
-            user: req.user
-        });
-    },
-
-    signUpGetFunction: function (req, res) {
-        res.render('pages/register', {
-            message: req.flash('message'),
-            title: 'Register',
-            user: req.user
-        });
-    },
-
-    signOutGetFunction: function (req, res) {
-        req.logout();
-        res.redirect('/');
-    },
-
-    helpGetFunction: function (req, res) {
-        let options = {
-            title: 'Help',
-            user: req.user
-        };
-        res.render('pages/help', options);
-    },
-
-    leafletExampleGetFunction: function (req, res) {
-        let options = {
-            title: 'LeafletJS example',
-            user: req.user
-        };
-        res.render('pages/leaflet-example', options);
-    },
-
-    graphicFormGetFunction: function (req, res) {
-        Result.find({}, haveResult);
-        function haveResult(err, data) {
-            if (err) throw err;
-            let ellections = [];
-            for (let i = 0, len = data.length; i < len; i++) {
-                if (!Util.ellectionIsInArray(data[i].eleccion, ellections)) {
-                    ellections.push(data[i].eleccion);
-                }
-            }
-            console.dir(ellections);
-            let options = {
-                title: 'Chart',
-                results: data,
-                ellections: ellections,
-                user: req.user
-            };
-            res.render('pages/graphic-form', options);
-        }
-    },
-
-    learnGetFunction: function (req, res) {
-        let options = {
-            title: 'Learn',
-            user: req.user
-        };
-        res.render('pages/learn', options);
-
-    },
-    lawsGetFunction: function (req, res) {
-        let options = {
-            title: 'Laws',
-            user: req.user
-        };
-        res.render('pages/laws', options);
-    },
-
-    storedDataFunction: function (req, res) {
-        Result.find({}, haveResult);
-        function haveResult(err, data) {
-            if (err) throw err;
-            let options = {
-                title: 'Learn',
-                data: data,
-                user: req.user
-            };
-            res.render('pages/stored-data', options);
-        }
-    },
-
-    addDataGetFunction: function (req, res) {
-        let options = {
-            title: 'Add data',
-            error: 'NO',
-            codigos: require('./../../codigos'),
-            user: req.user
-        };
-        res.render('pages/add-data', options);
-    },
-
     addDataPostFunction: function (req, res) {
         let lines = req.param('votes').split('\n'),
             partidos = {}, aux;
@@ -158,19 +49,6 @@ module.exports = {
 
     },
 
-    deleteDataGetFunction: function (req, res) {
-        Result.find({}, function (err, data) {
-            let options = {
-                title: 'Delete data',
-                error: 'NO',
-                data: data,
-                user: req.user
-            };
-            res.render('pages/delete-data', options);
-        });
-
-    },
-
     deleteDataPostFunction: function (req, res) {
         let promises = [], options;
 
@@ -195,15 +73,6 @@ module.exports = {
             });
         });
 
-    },
-    partiesFunction: function (req, res) {
-        let parties = require('./parties');
-        let options = {
-            title: 'Parties',
-            user: req.user,
-            parties: parties
-        };
-        res.render('pages/parties', options);
     },
     graphicFormPostFunction: function (req, res) {
         let votes = [],
@@ -273,32 +142,10 @@ module.exports = {
             autor: req.body.resultSelected.split(',')[1],
             fecha: req.body.resultSelected.split(',')[0]
         };
-        console.log(eleccion);
+        let ContryChart = require('../graphics/map-module');
         Result.find({eleccion: eleccion}, function (err, data) {
-            let votes = [],
-                names = [],
-                result,
-                config = {
-                    mandates: 2,
-                    percentage: 3,
-                    blankVotes: 0
-                };
-            let global = [];
-            for (let i = 0, len = data.length; i < len; i++) {
-                config.blankVotes = data[i].votos_blanco;
-
-                Object.keys(data[i].partidos).forEach(iteration);
-
-                function iteration(key) {
-                    votes.push(data[i].partidos[key]);
-                    names.push(key);
-                }
-
-                result = District.compute(votes, names, config);
-                global.push(result);
-                votes = [];
-                names = [];
-            }
+            let global;
+            global = ContryChart.calculateGlobal(data);
             let options = {
                 user: req.user,
                 global: global,
@@ -308,6 +155,7 @@ module.exports = {
         });
 
     },
+
     saveResultFunction: function (req, res) {
         console.log(req.body.result);
         res.send({result: req.body.result});

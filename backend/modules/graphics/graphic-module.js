@@ -2,7 +2,8 @@
 const highcharts = require('node-highcharts'),
     Color = require('./colors'),
     BarChart = require('./bar-module'),
-    PieChart = require('./pie-module');
+    PieChart = require('./pie-module'),
+    CountryChart = require('./map-module');
 
 /**
  * To handle charts
@@ -40,7 +41,11 @@ module.exports = {
     createPie: function (result, callback) {
         let options = PieChart.fillOptions(result);
         callback(options);
+    },
+
+    /** Create a country chart */
+    createMap: function(results, callback){
+        let options = CountryChart.fillOptions(results);
+        callback(options);
     }
-
-
 };
