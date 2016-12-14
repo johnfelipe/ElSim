@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 'use strict';
 const Log = require('./../models/log'),
     Resultado = require('../models/result'),
@@ -9,7 +10,7 @@ const Log = require('./../models/log'),
  * Module to handle the database.
  * @module modules/db-manager-module
  */
-module.exports = {
+let functions = {
 
     /** Init the real results with the stored csv files from Spain Goverment web */
     loadCsv: function (done) {
@@ -129,3 +130,4 @@ module.exports = {
         User.find({name: name}).remove(done);
     }
 };
+module.exports = functions;

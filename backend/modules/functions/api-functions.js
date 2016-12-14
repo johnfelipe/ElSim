@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 'use strict';
 const User = require('./../../models/user'),
     Log = require('./../../models/log'),
@@ -8,7 +9,7 @@ const User = require('./../../models/user'),
  * All the callback functions of api routes
  * @module modules/functions/api-functions
  */
-module.exports = {
+let functions = {
     /** Initial setup */
     setup: function (req, res) {
         User.find({}).remove(initialize);
@@ -158,3 +159,4 @@ module.exports = {
         });
     }
 };
+module.exports = functions;

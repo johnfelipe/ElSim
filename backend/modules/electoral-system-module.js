@@ -1,10 +1,11 @@
+/* jshint esversion: 6 */
 'use strict';
 
 /**
  * Utilities for a set of districts
  * @module modules/electoral-system-module
  */
-module.exports = {
+let functions = {
 
     /** Calculate the global result for a set of districts */
     calculate: function(districts){
@@ -21,3 +22,4 @@ module.exports = {
         return global;
     }
 };
+module.exports = functions;

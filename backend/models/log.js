@@ -1,9 +1,10 @@
+/* jshint esversion: 6 */
 'use strict';
+
 /**
  * Log mongoose model
  * @module models/log
  */
-
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 

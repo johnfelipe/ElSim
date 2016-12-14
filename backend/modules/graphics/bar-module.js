@@ -1,8 +1,9 @@
+/* jshint esversion: 6 */
 /**
  * To handle bar charts
  * @module modules/graphics/bar-module
  */
-module.exports = {
+let functions = {
     /** Fills the options object to rend a bar chart */
     fillOptions: function (result) {
         let options = {
@@ -83,3 +84,4 @@ module.exports = {
         return options;
     }
 };
+module.exports = functions;

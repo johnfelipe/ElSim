@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 'use strict';
 const Result = require('../../models/result'),
     Util = require('../util-module');
@@ -6,7 +7,7 @@ const Result = require('../../models/result'),
  * All the callback functions of index GET routes
  * @module modules/functions/index-get-functions
  */
-module.exports = {
+let functions = {
     indexGetFunction: function (req, res) {
         let options = {
             title: 'EllSim',
@@ -82,6 +83,7 @@ module.exports = {
     },
 
     storedDataFunction: function (req, res) {
+
         Result.find({}, haveResult);
         function haveResult(err, data) {
             if (err) throw err;
@@ -125,3 +127,4 @@ module.exports = {
         res.render('pages/parties', options);
     }
 };
+module.exports = functions;

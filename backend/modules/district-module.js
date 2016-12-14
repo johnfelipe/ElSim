@@ -1,14 +1,15 @@
+/* jshint esversion: 6 */
 'use strict';
 
 /**
  * Utilities for a district
  * @module modules/district-module
  */
-module.exports = {
+let functions = {
 
     /** Calculate the result of a district */
     compute: function (votes, names, options) {
-        let result = this.calculateSeats(votes,names,options.mandates,options.blankVotes,options.percentage);
+        let result = functions.calculateSeats(votes,names,options.mandates,options.blankVotes,options.percentage);
         console.dir(result);
         return result;
     },
@@ -56,7 +57,7 @@ module.exports = {
     /** Fills the seats */
     fillSeats: function (mandates, seats, validatedVotes, numberOfPartiesValidated) {
         for (let i = 0; i < mandates; ++i) {
-            seats[this.newSeat(validatedVotes, seats, numberOfPartiesValidated)]++;
+            seats[functions.newSeat(validatedVotes, seats, numberOfPartiesValidated)]++;
         }
     },
 
@@ -78,7 +79,7 @@ module.exports = {
      */
     calculateSeats: function (votes, names, mandates, blankVotes, percentage) {
         let numberOfParties = votes.length,
-            numberOfVotes = this.calculateTotalVotes(votes, blankVotes),
+            numberOfVotes = functions.calculateTotalVotes(votes, blankVotes),
             seats,
             minNumberOfVotes = Math.ceil(numberOfVotes * percentage / 100),
             result = {
@@ -90,10 +91,11 @@ module.exports = {
             validatedVotes = [],
             validatedNames = [];
 
-        numberOfPartiesValidated = this.validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
+        numberOfPartiesValidated = functions.validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
         seats = new Array(numberOfPartiesValidated).fill(0);
-        this.fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
-        this.fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
+        functions.fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
+        functions.fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
         return result;
     }
 };
+module.exports = functions;

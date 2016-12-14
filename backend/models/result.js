@@ -1,10 +1,10 @@
+/* jshint esversion: 6 */
 'use strict';
 
 /**
  * Ellectoral result mongoose model
  * @module models/result
  */
-
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 

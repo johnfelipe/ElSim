@@ -1,7 +1,8 @@
+/* jshint esversion: 6 */
 'use strict';
 const login = require('./login'),
     signup = require('./signup'),
-    User = require('./../models/user');
+    User = require('../models/user');
 
 /**
  * Serialize/Deserialize functions

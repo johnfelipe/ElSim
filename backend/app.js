@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 'use strict';
 /**
  * Main module of the server side
@@ -9,28 +10,27 @@ let express = require('express'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
-    //routes = require('./routes/index'),
-    //users = require('./routes/users'),
     app = express(),
     mongoose = require('mongoose'),
     jwt = require('jsonwebtoken'),
     config = require('./config'),
     api = require('./modules/functions/api-functions'),
-    User = require('./models/user');
+    User = require('./models/user'),
+    passport = require('passport'),
+    flash = require('connect-flash'),
+    expressSession = require('express-session');
 
 /**
  * @description Common configuration for the server side.
  */
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use('/', routes);
-//app.use('/users', users);
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database);
 app.set('superSecret', config.secret);
@@ -40,17 +40,13 @@ app.use(logger('dev'));
 
 
 
-// Configuring Passport
-let passport = require('passport'),
-    expressSession = require('express-session');
+/** Configuring Passport */
 // TODO - Why Do we need this key ?
 app.use(expressSession({secret: 'mySecretKey'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Using the flash middleware provided by connect-flash to store messages in session
-// and displaying in templates
-let flash = require('connect-flash');
+/** Using the flash middleware provided by connect-flash to store messages in session and displaying in templates */
 app.use(flash());
 
 // Initialize Passport

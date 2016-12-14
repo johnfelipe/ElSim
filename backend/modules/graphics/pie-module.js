@@ -1,8 +1,9 @@
+/* jshint esversion: 6 */
 /**
  * To handle pie charts
  * @module modules/graphics/pie-module
  */
-module.exports = {
+let functions = {
 
     /** Fills the options object to rend a pie chart */
     fillOptions: function(result){
@@ -69,4 +70,4 @@ module.exports = {
         return options;
     }
 };
-
+module.exports = functions;

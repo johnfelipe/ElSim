@@ -1,14 +1,13 @@
-const Graphic = require('./graphic-module'),
-    topojson = require('topojson'),
-    d3 = require('d3');
+/* jshint esversion: 6 */
+
 /**
  * To handle json charts
  * @module modules/graphics/json-module
  */
-module.exports = {
+let functions = {
 
     fillOptions: function () {
-        let options = {
+        return {
 
             title: {
                 text: 'Highmaps basic lat/lon demo'
@@ -86,6 +85,7 @@ module.exports = {
                 }]
             }]
         };
-        return options;
+
     }
 };
+module.exports = functions;

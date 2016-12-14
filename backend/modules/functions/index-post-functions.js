@@ -1,16 +1,13 @@
+/* jshint esversion: 6 */
 'use strict';
-const User = require('./../../models/user'),
-    Graphic = require('./../graphics/graphic-module'),
-    Result = require('./../../models/result'),
-    District = require('./../district-module'),
-    Promise = require('bluebird'),
-    Icons = require('./../graphics/icons');
+const Graphic = require('./../graphics/graphic-module'),
+    Result = require('./../../models/result');
 
 /**
  * All the callback functions of index POST routes
  * @module modules/functions/index-post-functions
  */
-module.exports = {
+let functions = {
     addDataPostFunction: function (req, res) {
         let lines = req.param('votes').split('\n'),
             partidos = {}, aux;
@@ -60,7 +57,7 @@ module.exports = {
             if (err) throw err;
         }
 
-        Promise.all(files).then(function () {
+        Promise.all(promises).then(function () {
             console.log('all the results were deleted');
             Result.find({}, function (err, data) {
                 let options = {
@@ -82,8 +79,7 @@ module.exports = {
     countryFormPostFunction: function (req, res) {
         Graphic.calculateCountry(req,function(options){
             res.render('pages/country-chart', options);
-        })
-
+        });
     },
 
     saveResultFunction: function (req, res) {
@@ -91,3 +87,4 @@ module.exports = {
         res.send({result: req.body.result});
     }
 };
+module.exports = functions;

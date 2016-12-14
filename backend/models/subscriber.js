@@ -1,4 +1,6 @@
+/* jshint esversion: 6 */
 'use strict';
+
 /**
  * Subscriber mongoose model
  * @module models/subscriber

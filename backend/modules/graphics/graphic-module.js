@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 'use strict';
 const highcharts = require('node-highcharts'),
     Color = require('./colors'),
@@ -13,7 +14,7 @@ const highcharts = require('node-highcharts'),
  * To handle charts
  * @module modules/graphics/graphic-module
  */
-module.exports = {
+let functions = {
 
     /** Rends a chart in the server-side */
     rendChart: function (options, callback) {
@@ -80,9 +81,9 @@ module.exports = {
 
             let result = District.compute(votes, names, districtOptions);
             if (mode === 'bar') {
-                this.createBar(result.parties, done);
+                functions.createBar(result.parties, done);
             } else if (mode === 'pie') {
-                this.createPie(result.parties, done);
+                functions.createPie(result.parties, done);
             }
 
             function done(graph_options) {
@@ -134,3 +135,4 @@ module.exports = {
         });
     }
 };
+module.exports = functions;

@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 'use strict';
 const fs = require('fs'),
     csv = require('fast-csv'),
@@ -6,7 +7,7 @@ const fs = require('fs'),
  * Useful module to some utilities
  * @module modules/util-module
  */
-module.exports = {
+let functions = {
 
     /** For pretty print any message */
     prettyPrint: function (message) {
@@ -57,7 +58,7 @@ module.exports = {
             resultados = [];
         csv.fromStream(stream, {
             headers: true
-        }).on('data-invalid', this.invalidRowException).on('data', function (data) {
+        }).on('data-invalid', functions.invalidRowException).on('data', function (data) {
             resultados.push(data);
         }).on('end', function () {
             done(resultados);
@@ -67,7 +68,7 @@ module.exports = {
         let i = 0, stream = fs.createReadStream(path);
         csv.fromStream(stream, {
             headers: true
-        }).on('data-invalid', this.invalidRowException).on('data', function (data) {
+        }).on('data-invalid', functions.invalidRowException).on('data', function (data) {
             resultados[i].partidos = data;
             i++;
         }).on('end', function () {
@@ -80,8 +81,8 @@ module.exports = {
     },
 
     readCsv: function (path1, path2, done) {
-        this.readResultados(path1, function (data) {
-            this.readParties(path2,data,function(data){
+        functions.readResultados(path1, function (data) {
+            functions.readParties(path2,data,function(data){
                 done(data);
             });
         });
@@ -92,7 +93,7 @@ module.exports = {
             if (err) throw err;
             let ellections = [];
             for (let i = 0, len = data.length; i < len; i++) {
-                if (!Util.ellectionIsInArray(data[i].eleccion, ellections)) {
+                if (!functions.ellectionIsInArray(data[i].eleccion, ellections)) {
                     ellections.push(data[i].eleccion);
                 }
             }
@@ -100,3 +101,4 @@ module.exports = {
         }
     }
 };
+module.exports = functions;

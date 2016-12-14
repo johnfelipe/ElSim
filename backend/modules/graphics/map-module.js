@@ -1,7 +1,8 @@
+/* jshint esversion: 6 */
 'use strict';
 let District = require('./graphic-module'),
     spainMap = require('./spain-map');
-module.exports = {
+let functions = {
 
     fillOptions: function(results){
         let options = {
@@ -72,3 +73,4 @@ module.exports = {
     }
 
 };
+module.exports = functions;
