@@ -75,84 +75,14 @@ module.exports = {
 
     },
     graphicFormPostFunction: function (req, res) {
-        let votes = [],
-            names = [],
-            mode = req.body.mode,
-            options = {
-                mandates: req.body.mandates,
-                percentage: req.body.percentage,
-                blankVotes: 0
-            },
-            id = req.body.resultSelected;
-
-        Result.findOne({_id: id}, haveResult);
-
-        function haveResult(err, data) {
-            if (err) throw err;
-
-            options.blankVotes = data.votos_blanco;
-
-            Object.keys(data.partidos).forEach(iteration);
-
-            function iteration(key) {
-                votes.push(data.partidos[key]);
-                names.push(key);
-            }
-
-            let result = District.compute(votes, names, options);
-            if (mode === 'bar') {
-                Graphic.createBar(result.parties, done);
-            } else if (mode === 'pie') {
-                Graphic.createPie(result.parties, done);
-            }
-
-            function done(graph_options) {
-                User.findOne({_id: req.user._id}, function (err, user) {
-                    if (err) throw err;
-
-                    let options = {
-                        title: 'Chart',
-                        autor: data.eleccion.autor,
-                        fecha: data.eleccion.fecha,
-                        provincia: data.cod_provincia,
-                        options: graph_options,
-                        result: result,
-                        icons: Icons,
-                        user: req.user
-                    };
-                    user.resultados.push({
-                        fecha: data.eleccion.fecha,
-                        provincia: data.cod_provincia,
-                        result: result,
-                        mandates: req.body.mandates,
-                        percentage: req.body.percentage,
-                        blank: data.votos_blanco
-                    });
-
-                    user.save(function (err) {
-                        if (err) throw err;
-                        res.render('pages/single-chart', options);
-                    });
-                });
-            }
-        }
+        Graphic.calculateDistrict(req,function(options){
+            res.render('pages/single-chart', options);
+        })
     },
     countryFormPostFunction: function (req, res) {
-        let eleccion = {
-            autor: req.body.resultSelected.split(',')[1],
-            fecha: req.body.resultSelected.split(',')[0]
-        };
-        let ContryChart = require('../graphics/map-module');
-        Result.find({eleccion: eleccion}, function (err, data) {
-            let global;
-            global = ContryChart.calculateGlobal(data);
-            let options = {
-                user: req.user,
-                global: global,
-                title: 'Country Chart'
-            };
+        Graphic.calculateCountry(req,function(options){
             res.render('pages/country-chart', options);
-        });
+        })
 
     },
 

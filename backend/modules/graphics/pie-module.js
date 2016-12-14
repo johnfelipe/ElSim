@@ -1,6 +1,3 @@
-const Graphic = require('./graphic-module'),
-    fs = require('fs'),
-    d3 = require('d3');
 /**
  * To handle pie charts
  * @module modules/graphics/pie-module
@@ -21,12 +18,13 @@ module.exports = {
         Object.keys(result).forEach(iteration);
 
         function iteration(key) {
-            if (result[key] > 0)
+            if (result[key] > 0) {
                 resultsArray.push({
                     name: key,
                     y: result[key],
                     color: require('./graphic-module').chooseColor(key)
                 });
+            }
         }
 
 

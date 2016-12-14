@@ -1,6 +1,7 @@
 'use strict';
 const fs = require('fs'),
-    csv = require('fast-csv');
+    csv = require('fast-csv'),
+    Result = require('../models/result');
 /**
  * Useful module to some utilities
  * @module modules/util-module
@@ -84,5 +85,18 @@ module.exports = {
                 done(data);
             });
         });
+    },
+    calculateEllections: function(done){
+        Result.find({}, haveResult);
+        function haveResult(err, data) {
+            if (err) throw err;
+            let ellections = [];
+            for (let i = 0, len = data.length; i < len; i++) {
+                if (!Util.ellectionIsInArray(data[i].eleccion, ellections)) {
+                    ellections.push(data[i].eleccion);
+                }
+            }
+            done(data,ellections);
+        }
     }
 };

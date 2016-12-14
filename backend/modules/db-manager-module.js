@@ -1,7 +1,7 @@
 'use strict';
 const Log = require('./../models/log'),
-    Resultado = require('./../models/result'),
-    User = require('./../models/user'),
+    Resultado = require('../models/result'),
+    User = require('../models/user'),
     _ = require('./util-module'),
     Promise = require('bluebird');
 

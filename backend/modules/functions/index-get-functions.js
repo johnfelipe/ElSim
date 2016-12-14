@@ -1,6 +1,6 @@
 'use strict';
-const Result = require('./../../models/result'),
-    Util = require('./../util-module');
+const Result = require('../../models/result'),
+    Util = require('../util-module');
 
 /**
  * All the callback functions of index GET routes
@@ -55,16 +55,7 @@ module.exports = {
     },
 
     graphicFormGetFunction: function (req, res) {
-        Result.find({}, haveResult);
-        function haveResult(err, data) {
-            if (err) throw err;
-            let ellections = [];
-            for (let i = 0, len = data.length; i < len; i++) {
-                if (!Util.ellectionIsInArray(data[i].eleccion, ellections)) {
-                    ellections.push(data[i].eleccion);
-                }
-            }
-            console.dir(ellections);
+        Util.calculateEllections(function(data,ellections){
             let options = {
                 title: 'Chart',
                 results: data,
@@ -72,9 +63,8 @@ module.exports = {
                 user: req.user
             };
             res.render('pages/graphic-form', options);
-        }
+        });
     },
-
     learnGetFunction: function (req, res) {
         let options = {
             title: 'Learn',
