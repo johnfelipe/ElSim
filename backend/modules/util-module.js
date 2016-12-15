@@ -1,5 +1,4 @@
 /* jshint esversion: 6 */
-'use strict';
 const fs = require('fs'),
     csv = require('fast-csv'),
     Result = require('../models/result');
@@ -88,16 +87,16 @@ module.exports = {
         });
     },
     calculateEllections: function(done){
-        Result.find({}, haveResult);
-        function haveResult(err, data) {
+        Result.find({}, function (err, data) {
+            let util = require('./util-module');
             if (err) throw err;
             let ellections = [];
             for (let i = 0, len = data.length; i < len; i++) {
-                if (!this.ellectionIsInArray(data[i].eleccion, ellections)) {
+                if (!util.ellectionIsInArray(data[i].eleccion, ellections)) {
                     ellections.push(data[i].eleccion);
                 }
             }
             done(data,ellections);
-        }
+        });
     }
 };
