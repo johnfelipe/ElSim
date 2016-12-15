@@ -10,7 +10,7 @@ const Log = require('./../models/log'),
  * Module to handle the database.
  * @module modules/db-manager-module
  */
-let functions = {
+module.exports = {
 
     /** Init the real results with the stored csv files from Spain Goverment web */
     loadCsv: function (done) {
@@ -130,4 +130,4 @@ let functions = {
         User.find({name: name}).remove(done);
     }
 };
-module.exports = functions;
+

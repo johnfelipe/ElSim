@@ -11,10 +11,10 @@ const highcharts = require('node-highcharts'),
     District = require('../district-module');
 
 /**
- * @description To handle charts
+ * To handle charts
  * @module modules/graphics/graphic-module
  */
-let functions = {
+module.exports = {
 
     /** Rends a chart in the server-side */
     rendChart: function (options, callback) {
@@ -36,33 +36,25 @@ let functions = {
         return Color[party];
     },
 
-    /**
-     * Create a bar chart
-     */
+    /** Create a bar chart */
     createBar: function (result, callback) {
         let options = BarChart.fillOptions(result);
         callback(options);
     },
 
-    /**
-     * Create a pie chart
-     */
+    /** Create a pie chart */
     createPie: function (result, callback) {
         let options = PieChart.fillOptions(result);
         callback(options);
     },
 
-    /**
-     * Create a country chart
-     */
+    /** Create a country chart */
     createMap: function(results, callback){
         let options = CountryChart.fillOptions(results);
         callback(options);
     },
 
-    /**
-     * To calculate district
-     */
+    /** To calculate district */
     calculateDistrict: function(req,callback){
         let votes = [],
             names = [],
@@ -126,6 +118,7 @@ let functions = {
             }
         }
     },
+    /** To calculate country */
     calculateCountry: function(req,callback){
         let eleccion = {
             autor: req.body.resultSelected.split(',')[1],
@@ -144,4 +137,3 @@ let functions = {
         });
     }
 };
-module.exports = functions;

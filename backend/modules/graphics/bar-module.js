@@ -3,7 +3,7 @@
  * To handle bar charts
  * @module modules/graphics/bar-module
  */
-let functions = {
+module.exports = {
     /** Fills the options object to rend a bar chart */
     fillOptions: function (result) {
         let options = {
@@ -84,4 +84,3 @@ let functions = {
         return options;
     }
 };
-module.exports = functions;

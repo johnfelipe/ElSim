@@ -5,7 +5,7 @@
  * Utilities for a set of districts
  * @module modules/electoral-system-module
  */
-let functions = {
+module.exports = {
 
     /** Calculate the global result for a set of districts */
     calculate: function(districts){
@@ -22,4 +22,3 @@ let functions = {
         return global;
     }
 };
-module.exports = functions;

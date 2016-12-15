@@ -2,7 +2,7 @@
 'use strict';
 let District = require('./graphic-module'),
     spainMap = require('./spain-map');
-let functions = {
+module.exports = {
 
     fillOptions: function(results){
         let options = {
@@ -73,4 +73,4 @@ let functions = {
     }
 
 };
-module.exports = functions;
+

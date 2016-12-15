@@ -7,7 +7,7 @@ const Result = require('../../models/result'),
  * All the callback functions of index GET routes
  * @module modules/functions/index-get-functions
  */
-let functions = {
+module.exports = {
     indexGetFunction: function (req, res) {
         let options = {
             title: 'EllSim',
@@ -127,4 +127,4 @@ let functions = {
         res.render('pages/parties', options);
     }
 };
-module.exports = functions;
+

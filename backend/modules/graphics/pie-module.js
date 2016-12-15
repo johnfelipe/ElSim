@@ -4,7 +4,7 @@ const chooseColor = require('./graphic-module').chooseColor;
  * To handle pie charts
  * @module modules/graphics/pie-module
  */
-let functions = {
+module.exports = {
 
     /** Fills the options object to rend a pie chart */
     fillOptions: function(result){
@@ -71,4 +71,4 @@ let functions = {
         return options;
     }
 };
-module.exports = functions;
+

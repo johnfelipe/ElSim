@@ -7,7 +7,7 @@ const Graphic = require('./../graphics/graphic-module'),
  * All the callback functions of index POST routes
  * @module modules/functions/index-post-functions
  */
-let functions = {
+module.exports = {
     addDataPostFunction: function (req, res) {
         let lines = req.param('votes').split('\n'),
             partidos = {}, aux;
@@ -87,4 +87,4 @@ let functions = {
         res.send({result: req.body.result});
     }
 };
-module.exports = functions;
+

@@ -7,7 +7,7 @@ const fs = require('fs'),
  * Useful module to some utilities
  * @module modules/util-module
  */
-let functions = {
+module.exports = {
 
     /** For pretty print any message */
     prettyPrint: function (message) {
@@ -101,4 +101,3 @@ let functions = {
         }
     }
 };
-module.exports = functions;

@@ -5,7 +5,7 @@
  * Utilities for a district
  * @module modules/district-module
  */
-let functions = {
+module.exports = {
 
     /** Calculate the result of a district */
     compute: function (votes, names, options) {
@@ -98,4 +98,3 @@ let functions = {
         return result;
     }
 };
-module.exports = functions;

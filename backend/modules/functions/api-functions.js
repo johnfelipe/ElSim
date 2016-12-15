@@ -9,7 +9,7 @@ const User = require('./../../models/user'),
  * All the callback functions of api routes
  * @module modules/functions/api-functions
  */
-let functions = {
+module.exports = {
     /** Initial setup */
     setup: function (req, res) {
         User.find({}).remove(initialize);
@@ -159,4 +159,4 @@ let functions = {
         });
     }
 };
-module.exports = functions;
+

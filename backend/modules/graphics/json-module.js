@@ -4,7 +4,7 @@
  * To handle json charts
  * @module modules/graphics/json-module
  */
-let functions = {
+module.exports = {
 
     fillOptions: function () {
         return {
@@ -88,4 +88,4 @@ let functions = {
 
     }
 };
-module.exports = functions;
+
