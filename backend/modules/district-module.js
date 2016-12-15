@@ -9,7 +9,7 @@ module.exports = {
 
     /** Calculate the result of a district */
     compute: function (votes, names, options) {
-        let result = functions.calculateSeats(votes,names,options.mandates,options.blankVotes,options.percentage);
+        let result = this.calculateSeats(votes,names,options.mandates,options.blankVotes,options.percentage);
         console.dir(result);
         return result;
     },
@@ -57,7 +57,7 @@ module.exports = {
     /** Fills the seats */
     fillSeats: function (mandates, seats, validatedVotes, numberOfPartiesValidated) {
         for (let i = 0; i < mandates; ++i) {
-            seats[functions.newSeat(validatedVotes, seats, numberOfPartiesValidated)]++;
+            seats[this.newSeat(validatedVotes, seats, numberOfPartiesValidated)]++;
         }
     },
 
@@ -79,7 +79,7 @@ module.exports = {
      */
     calculateSeats: function (votes, names, mandates, blankVotes, percentage) {
         let numberOfParties = votes.length,
-            numberOfVotes = functions.calculateTotalVotes(votes, blankVotes),
+            numberOfVotes = this.calculateTotalVotes(votes, blankVotes),
             seats,
             minNumberOfVotes = Math.ceil(numberOfVotes * percentage / 100),
             result = {
@@ -91,10 +91,10 @@ module.exports = {
             validatedVotes = [],
             validatedNames = [];
 
-        numberOfPartiesValidated = functions.validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
+        numberOfPartiesValidated = this.validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
         seats = new Array(numberOfPartiesValidated).fill(0);
-        functions.fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
-        functions.fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
+        this.fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
+        this.fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
         return result;
     }
 };

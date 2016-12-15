@@ -58,7 +58,7 @@ module.exports = {
             resultados = [];
         csv.fromStream(stream, {
             headers: true
-        }).on('data-invalid', functions.invalidRowException).on('data', function (data) {
+        }).on('data-invalid', this.invalidRowException).on('data', function (data) {
             resultados.push(data);
         }).on('end', function () {
             done(resultados);
@@ -68,7 +68,7 @@ module.exports = {
         let i = 0, stream = fs.createReadStream(path);
         csv.fromStream(stream, {
             headers: true
-        }).on('data-invalid', functions.invalidRowException).on('data', function (data) {
+        }).on('data-invalid', this.invalidRowException).on('data', function (data) {
             resultados[i].partidos = data;
             i++;
         }).on('end', function () {
@@ -81,8 +81,8 @@ module.exports = {
     },
 
     readCsv: function (path1, path2, done) {
-        functions.readResultados(path1, function (data) {
-            functions.readParties(path2,data,function(data){
+        this.readResultados(path1, function (data) {
+            this.readParties(path2,data,function(data){
                 done(data);
             });
         });
@@ -93,7 +93,7 @@ module.exports = {
             if (err) throw err;
             let ellections = [];
             for (let i = 0, len = data.length; i < len; i++) {
-                if (!functions.ellectionIsInArray(data[i].eleccion, ellections)) {
+                if (!this.ellectionIsInArray(data[i].eleccion, ellections)) {
                     ellections.push(data[i].eleccion);
                 }
             }

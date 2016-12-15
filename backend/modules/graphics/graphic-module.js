@@ -79,12 +79,11 @@ module.exports = {
                 votes.push(data.partidos[key]);
                 names.push(key);
             }
-
             let result = District.compute(votes, names, districtOptions);
             if (mode === 'bar') {
-                functions.createBar(result.parties, done);
+                this.createBar(result.parties, done);
             } else if (mode === 'pie') {
-                functions.createPie(result.parties, done);
+                this.createPie(result.parties, done);
             }
 
             function done(graph_options) {
