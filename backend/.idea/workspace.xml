@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd03d9dc-bbac-4ed5-a69d-e4ddc8716d37" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/result.js" afterPath="$PROJECT_DIR$/models/result.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/db-manager-module.js" afterPath="$PROJECT_DIR$/modules/db-manager-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/functions/admin-functions.js" afterPath="$PROJECT_DIR$/modules/functions/admin-functions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/functions/api-functions.js" afterPath="$PROJECT_DIR$/modules/functions/api-functions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/functions/index-post-functions.js" afterPath="$PROJECT_DIR$/modules/functions/index-post-functions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/util-module.js" afterPath="$PROJECT_DIR$/modules/util-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/model-test.js" afterPath="$PROJECT_DIR$/test/model-test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/functions/index-get-functions.js" afterPath="$PROJECT_DIR$/modules/functions/index-get-functions.js" />
     </list>
     <ignored path="Backend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/modules/graphics/bar-module.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="36">
-              <caret line="2" column="23" lean-forward="true" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+              <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -82,17 +75,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index-get-functions.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index-get-functions.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/functions/index-get-functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-144">
-              <caret line="4" column="31" lean-forward="false" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+            <state relative-caret-position="252">
+              <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="graphic-module.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="graphic-module.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/graphics/graphic-module.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2250">
@@ -235,7 +228,6 @@
         <option value="$PROJECT_DIR$/modules/graphics/map-module.js" />
         <option value="$PROJECT_DIR$/modules/district-module.js" />
         <option value="$PROJECT_DIR$/modules/electoral-system-module.js" />
-        <option value="$PROJECT_DIR$/modules/functions/index-get-functions.js" />
         <option value="$PROJECT_DIR$/modules/functions/admin-get-functions.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/views/partials/footer.ejs" />
@@ -248,6 +240,7 @@
         <option value="$PROJECT_DIR$/modules/functions/admin-functions.js" />
         <option value="$PROJECT_DIR$/modules/functions/api-functions.js" />
         <option value="$PROJECT_DIR$/modules/functions/index-post-functions.js" />
+        <option value="$PROJECT_DIR$/modules/functions/index-get-functions.js" />
       </list>
     </option>
   </component>
@@ -678,7 +671,7 @@
       <workItem from="1481710104314" duration="29000" />
       <workItem from="1481710229309" duration="5704000" />
       <workItem from="1481828678833" duration="1643000" />
-      <workItem from="1481830384634" duration="12694000" />
+      <workItem from="1481830384634" duration="13523000" />
     </task>
     <task id="LOCAL-00001" summary="Integrando git con WebStorm&#10;">
       <created>1476441402056</created>
@@ -705,7 +698,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="374497000" />
+    <option name="totallyTimeSpent" value="375326000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="24" width="1282" height="753" extended-state="6" />
@@ -1043,7 +1036,7 @@
         <state relative-caret-position="270">
           <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
           <folding>
-            <element signature="n#style#0;n#nav#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#nav#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1053,7 +1046,7 @@
         <state relative-caret-position="416">
           <caret line="54" column="26" lean-forward="false" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="26" />
           <folding>
-            <element signature="n#style#0;n#nav#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#nav#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1146,22 +1139,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/functions/api-functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/functions/index-get-functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-144">
-          <caret line="4" column="31" lean-forward="false" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/functions/index-post-functions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -1173,7 +1150,7 @@
     <entry file="file://$PROJECT_DIR$/modules/graphics/bar-module.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
-          <caret line="2" column="23" lean-forward="true" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -1182,6 +1159,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2250">
           <caret line="140" column="11" lean-forward="false" selection-start-line="140" selection-start-column="11" selection-end-line="140" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/functions/api-functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/functions/index-get-functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
           <folding />
         </state>
       </provider>

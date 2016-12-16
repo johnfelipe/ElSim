@@ -37,30 +37,31 @@ const Result = require('../../models/result'),
  * @module functions/index-get-functions
  */
 (function () {
-    function indexGetFunction(req, res) {
+    function indexResponse(req, res, page, title, other) {
         let options = {
-            title: 'EllSim',
-            moment: Moment,
-            user: req.user,
-            advice: null
+            title: title,
+            user: req.user
         };
-        res.render('pages/index', options);
+        let merged;
+        if (other) {
+            merged = Object.assign(options, other);
+        } else {
+            merged = options;
+        }
+        res.render(page, merged);
+
+    }
+
+    function indexGetFunction(req, res) {
+        indexResponse(req, res, 'pages/index', 'EllSim', {moment: Moment, advice: null});
     }
 
     function loginGetFunction(req, res) {
-        res.render('pages/login', {
-            message: req.flash('message'),
-            title: 'Login Page',
-            user: req.user
-        });
+        indexResponse(req, res, 'pages/login', 'Login Page', {message: req.flash('message')});
     }
 
     function signUpGetFunction(req, res) {
-        res.render('pages/register', {
-            message: req.flash('message'),
-            title: 'Register',
-            user: req.user
-        });
+        indexResponse(req, res, 'pages/register', 'Register', {message: req.flash('message')});
     }
 
     function signOutGetFunction(req, res) {
@@ -69,48 +70,28 @@ const Result = require('../../models/result'),
     }
 
     function helpGetFunction(req, res) {
-        let options = {
-            title: 'Help',
-            user: req.user
-        };
-        res.render('pages/help', options);
+        indexResponse(req, res, 'pages/help', 'Help', false);
     }
 
     function leafletExampleGetFunction(req, res) {
-        let options = {
-            title: 'LeafletJS example',
-            user: req.user
-        };
-        res.render('pages/leaflet-example', options);
+        indexResponse(req, res, 'pages/leaflet-example', 'LeafletJS', false);
     }
 
     function graphicFormGetFunction(req, res) {
         Util.calculateEllections(function (data, ellections) {
-            let options = {
-                title: 'Chart',
+            indexResponse(req, res, 'pages/graphic-form', 'Chart', {
                 results: data,
                 ellections: ellections,
-                user: req.user
-            };
-            res.render('pages/graphic-form', options);
+            });
         });
     }
 
     function learnGetFunction(req, res) {
-        let options = {
-            title: 'Learn',
-            user: req.user
-        };
-        res.render('pages/learn', options);
-
+        indexResponse(req, res, 'pages/learn', 'Learn', false);
     }
 
     function lawsGetFunction(req, res) {
-        let options = {
-            title: 'Laws',
-            user: req.user
-        };
-        res.render('pages/laws', options);
+        indexResponse(req, res, 'pages/laws', 'Laws', false);
     }
 
     function storedDataFunction(req, res) {
@@ -118,49 +99,43 @@ const Result = require('../../models/result'),
         Result.find({}, haveResult);
         function haveResult(err, data) {
             if (err) throw err;
-            let options = {
-                title: 'Learn',
-                data: data,
-                user: req.user
-            };
-            res.render('pages/stored-data', options);
+            indexResponse(req, res, 'pages/stored-data', 'Stored Data', {
+                data: data
+            });
         }
     }
 
     function addDataGetFunction(req, res) {
-        let options = {
-            title: 'Add data',
+        indexResponse(req, res, 'pages/add-data', 'Add data', {
             error: 'NO',
-            codigos: require('./../../codigos'),
-            user: req.user
-        };
-        res.render('pages/add-data', options);
+            codigos: require('../../codigos')
+        });
     }
 
     function deleteDataGetFunction(req, res) {
         Result.find({}, function (err, data) {
-            let options = {
-                title: 'Delete data',
-                error: 'NO',
+            indexResponse(req, res, 'pages/delete-data', 'Delete data', {
                 data: data,
-                user: req.user
-            };
-            res.render('pages/delete-data', options);
+                error: 'NO'
+            });
         });
 
     }
 
     function partiesFunction(req, res) {
         let parties = require('./parties');
-        let options = {
-            title: 'Parties',
-            user: req.user,
+        indexResponse(req, res, 'pages/parties', 'Parties', {
             parties: parties
-        };
-        res.render('pages/parties', options);
+        });
     }
 
     module.exports = {
+        /**
+         * @description Generic response
+         * @function
+         */
+        indexResponse: indexResponse,
+
         /**
          * @description
          * @function
@@ -257,7 +232,7 @@ const Result = require('../../models/result'),
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri Dec 16 2016 13:18:12 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri Dec 16 2016 13:31:54 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>
