@@ -6,10 +6,8 @@ const fs = require('fs'),
  * Useful module to some utilities
  * @module modules/util-module
  */
-module.exports = {
-
-    /** For pretty print any message */
-    prettyPrint: function (message) {
+(function () {
+    function prettyPrint(message) {
         let options = {
             depth: 2,
             colors: true
@@ -19,18 +17,18 @@ module.exports = {
         } catch (err) {
             throw err;
         }
-    },
+    }
 
-    groupByKey: function (array) {
+    function groupByKey(array) {
         if (!Array.isArray(array)) throw new Error('Use an array to call this method');
         let counts = {};
         for (let i = 0, len = array.length; i < len; ++i) {
             counts[array[i]] = 1 + (counts[array[i]] || 0);
         }
         return counts;
-    },
+    }
 
-    sortByRest: function (a, b) {
+    function sortByRest(a, b) {
         let keyA = a.rest,
             keyB = b.rest;
         if (keyA > keyB) {
@@ -40,9 +38,9 @@ module.exports = {
             return 1;
         }
         return 0;
-    },
+    }
 
-    ellectionIsInArray: function (obj, array) {
+    function ellectionIsInArray(obj, array) {
         for (let i = 0, len = array.length; i < len; i++) {
             if (array[i].autor === obj.autor &&
                 array[i].fecha === obj.fecha) {
@@ -50,43 +48,45 @@ module.exports = {
             }
         }
         return false;
-    },
+    }
 
-    readResultados: function (path, done) {
+    function readResultados(path, done) {
         let stream = fs.createReadStream(path),
             resultados = [];
         csv.fromStream(stream, {
             headers: true
-        }).on('data-invalid', this.invalidRowException).on('data', function (data) {
+        }).on('data-invalid', invalidRowException).on('data', function (data) {
             resultados.push(data);
         }).on('end', function () {
             done(resultados);
         });
-    },
-    readParties: function (path, resultados, done) {
+    }
+
+    function readParties(path, resultados, done) {
         let i = 0, stream = fs.createReadStream(path);
         csv.fromStream(stream, {
             headers: true
-        }).on('data-invalid', this.invalidRowException).on('data', function (data) {
+        }).on('data-invalid', invalidRowException).on('data', function (data) {
             resultados[i].partidos = data;
             i++;
         }).on('end', function () {
             done(resultados);
         });
-    },
+    }
 
-    invalidRowException: function(data){
+    function invalidRowException(data) {
         throw new Error('Data invalid exception, one or more rows are invalid' + data);
-    },
+    }
 
-    readCsv: function (path1, path2, done) {
-        this.readResultados(path1, function (data) {
-            this.readParties(path2,data,function(data){
+    function readCsv(path1, path2, done) {
+        readResultados(path1, function (data) {
+            readParties(path2, data, function (data) {
                 done(data);
             });
         });
-    },
-    calculateEllections: function(done){
+    }
+
+    function calculateEllections(done) {
         Result.find({}, function (err, data) {
             let util = require('./util-module');
             if (err) throw err;
@@ -96,7 +96,19 @@ module.exports = {
                     ellections.push(data[i].eleccion);
                 }
             }
-            done(data,ellections);
+            done(data, ellections);
         });
     }
-};
+
+    module.exports = {
+        prettyPrint: prettyPrint,
+        groupByKey: groupByKey,
+        sortByRest: sortByRest,
+        ellectionIsInArray: ellectionIsInArray,
+        readResultados: readResultados,
+        readParties: readParties,
+        invalidRowException: invalidRowException,
+        readCsv: readCsv,
+        calculateEllections: calculateEllections
+    };
+})();

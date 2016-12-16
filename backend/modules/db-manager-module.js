@@ -10,10 +10,9 @@ const Log = require('./../models/log'),
  * Module to handle the database.
  * @module modules/db-manager-module
  */
-module.exports = {
+(function () {
 
-    /** Init the real results with the stored csv files from Spain Goverment web */
-    loadCsv: function (done) {
+    function loadCsv(done) {
         const a = ['1977', '1979', '1982', '1986', '1989', '1993', '1996'];
 
         let path1, path2, promises = [];
@@ -32,14 +31,14 @@ module.exports = {
         function saveResultadoCallback() {
             console.log('Result saved...');
         }
-        Promise.all(promises).then(function(){
+
+        Promise.all(promises).then(function () {
             console.log('All results saved');
             done();
         });
-    },
+    }
 
-    /** Save a log into the database */
-    saveLog: function (message, done) {
+    function saveLog(message, done) {
         let l = new Log({
             message: message,
             date: new Date()
@@ -49,20 +48,17 @@ module.exports = {
             if (err) throw err;
             done();
         }
-    },
+    }
 
-    /** Remove all logs from the database */
-    cleanLog: function (done) {
+    function cleanLog(done) {
         Log.find({}).remove(done);
-    },
+    }
 
-    /** Remove all users from the database */
-    cleanUser: function (done) {
+    function cleanUser(done) {
         User.find({}).remove(done);
-    },
+    }
 
-    /** Save a user into the database */
-    saveUser: function (user, done) {
+    function saveUser(user, done) {
         let u = new User(user);
 
         u.save(callbackUserSave);
@@ -71,38 +67,34 @@ module.exports = {
             if (err) throw err;
             done();
         }
-    },
+    }
 
-    /** Get a result by year */
-    getResultadoByAnio: function (anio, done) {
+    function getResultadoByAnio(anio, done) {
         Resultado.find({anio: anio}, callbackFind);
 
         function callbackFind(err, data) {
             if (err) throw err;
             done(data);
         }
-    },
+    }
 
-    /** Get a result by district */
-    getResultadoByProvincia: function (cod, done) {
+    function getResultadoByProvincia(cod, done) {
         Resultado.find({cod_provincia: cod}, callbackFind);
 
         function callbackFind(err, data) {
             if (err) throw err;
             done(data);
         }
-    },
+    }
 
-    /** Get a result by id */
-    getResultadoById: function (id, done) {
-        Resultado.findOne({_id: id}, function(err,data){
-            if(err) throw err;
+    function getResultadoById(id, done) {
+        Resultado.findOne({_id: id}, function (err, data) {
+            if (err) throw err;
             done(data);
         });
-    },
+    }
 
-    /** Save a result into the database */
-    saveResultado: function (result, done) {
+    function saveResultado(result, done) {
 
         let r = new Resultado(result);
         r.eleccion = {
@@ -113,21 +105,31 @@ module.exports = {
             if (err) throw err;
             done();
         });
-    },
+    }
 
-    /** Remove all results from the database */
-    cleanResultado: function (done) {
+    function cleanResultado(done) {
         Resultado.find({}).remove(done);
-    },
+    }
 
-    /** Remove a user filtered by email */
-    deleteUserByEmail: function (email, done) {
+    function deleteUserByEmail(email, done) {
         User.find({email: email}).remove(done);
-    },
+    }
 
-    /** Remove a user filtered by name */
-    deleteUserByName: function (name, done) {
+    function deleteUserByName(name, done) {
         User.find({name: name}).remove(done);
     }
-};
+
+    module.exports = {
+        loadCsv: loadCsv,
+        saveLog: saveLog,
+        saveUser: saveUser,
+        getResultadoByAnio: getResultadoByAnio,
+        getResultadoByProvincia: getResultadoByProvincia,
+        getResultadoById: getResultadoById,
+        saveResultado: saveResultado,
+        cleanResultado: cleanResultado,
+        deleteUserByEmail: deleteUserByEmail,
+        deleteUserByName: deleteUserByName
+    }
+})();
 

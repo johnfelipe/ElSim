@@ -9,9 +9,8 @@ const User = require('./../../models/user'),
  * All the callback functions of api routes
  * @module modules/functions/api-functions
  */
-module.exports = {
-    /** Initial setup */
-    setup: function (req, res) {
+(function () {
+    function setup(req, res) {
         User.find({}).remove(initialize);
 
         function initialize() {
@@ -37,10 +36,9 @@ module.exports = {
             };
             res.json(result);
         }
-    },
+    }
 
-    /** Function to get all users */
-    findAllUsers: function (req, res) {
+    function findAllUsers(req, res) {
         User.find({}, userFinded);
 
         function userFinded(err, data) {
@@ -51,112 +49,117 @@ module.exports = {
             };
             res.send(result);
         }
-    },
+    }
 
-    /** Function to save an user */
-    saveOneUser: function (req, res) {
+    function saveOneUser(req, res) {
         throw new Error('Not yet implemented');
-    },
+    }
 
-    /** Function to delete an user */
-    deleteOneUser: function (req, res) {
+    function deleteOneUser(req, res) {
         throw new Error('Not yet implemented');
-    },
+    }
 
-    /** Function to update an user */
-    updateOneUser: function (req, res) {
+    function updateOneUser(req, res) {
         throw new Error('Not yet implemented');
-    },
+    }
 
-    /** Function to check a request */
-    check: function (req, res) {
+    function check(req, res) {
         res.json(req.decoded);
-    },
+    }
 
-    /** Function to api welcome message */
-    apiWelcome: function (req, res) {
+    function apiWelcome(req, res) {
         res.json({
             message: 'Hello from the API!',
             version: '0.0.1',
             contact: 'jesusgonzaleznovez@gmail.com'
         });
-    },
+    }
 
-    /** Function to get all results */
-    findAllResultados: function (req, res) {
+    function findAllResultados(req, res) {
         Resultado.find({}, function (err, data) {
             if (err) throw err;
             res.send({
                 result: data
             });
         });
-    },
+    }
 
-    /** Function to save a result */
-    saveOneResultado: function (req, res) {
+    function saveOneResultado(req, res) {
         throw new Error('Not yet implemented');
-    },
+    }
 
-    /** Function to update a result */
-    updateOneResultado: function (req, res) {
+    function updateOneResultado(req, res) {
         throw new Error('Not yet implemented');
-    },
+    }
 
-    /** Function to delete a result */
-    deleteOneResultado: function (req, res) {
+    function deleteOneResultado(req, res) {
         throw new Error('Not yet implemented');
-    },
+    }
 
-    /** Function to delete all results */
-    deleteAllResultados: function (req, res) {
+    function deleteAllResultados(req, res) {
         DB.deleteAllResultados(function () {
             res.send({result: 'OK'});
         });
-    },
+    }
 
-    /** Function filter results by year */
-    findManyResultadosByAnio: function (req, res) {
+    function findManyResultadosByAnio(req, res) {
         DB.findManyResultadosByAnio(req.param('anio'), function (data) {
             res.send({result: data});
         });
-    },
+    }
 
-    /** Function to filter results by district */
-    findManyResultadosByProvincia: function (req, res) {
+    function findManyResultadosByProvincia(req, res) {
         DB.findManyResultadosByProvincia(req.param('cod_provincia'), function (data) {
             res.send({result: data});
         });
-    },
+    }
 
-    /** Function to find a result by id */
-    findOneResultado: function (req, res) {
+    function findOneResultado(req, res) {
         DB.getResultadoById(req.param('id'), function (data) {
             res.send({result: data});
         });
-    },
+    }
 
-    /** Function to load csv files */
-    loadCsv: function (req, res) {
+    function loadCsv(req, res) {
         DB.loadCsv(function () {
             res.send({result: 'OK'});
         });
-    },
+    }
 
-    /** Function to get all logs */
-    findLogs: function (req, res) {
+    function findLogs(req, res) {
         Log.find({}, function (err, data) {
             if (err) throw err;
             res.send({
                 result: data
             });
         });
-    },
+    }
 
-    /** Function to delete all logs */
-    deleteAllLogs: function (req, res) {
+    function deleteAllLogs(req, res) {
         DB.deleteAllLogs(function () {
             res.send({result: 'OK'});
         });
     }
-};
+
+    module.exports = {
+        setup: setup,
+        findAllUsers: findAllUsers,
+        saveOneUser: saveOneUser,
+        deleteOneUser: deleteOneUser,
+        updateOneUser: updateOneUser,
+        check: check,
+        apiWelcome: apiWelcome,
+        findAllResultados: findAllResultados,
+        saveOneResultado: saveOneResultado,
+        updateOneResultado: updateOneResultado,
+        deleteOneResultado: deleteOneResultado,
+        deleteAllResultados: deleteAllResultados,
+        findManyResultadosByAnio: findManyResultadosByAnio,
+        findManyResultadosByProvincia: findManyResultadosByProvincia,
+        findOneResultado: findOneResultado,
+        loadCsv: loadCsv,
+        findLogs: findLogs,
+        deleteAllLogs: deleteAllLogs
+    };
+})();
 

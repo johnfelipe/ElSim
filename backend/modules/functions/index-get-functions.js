@@ -7,8 +7,8 @@ const Result = require('../../models/result'),
  * All the callback functions of index GET routes
  * @module modules/functions/index-get-functions
  */
-module.exports = {
-    indexGetFunction: function (req, res) {
+(function () {
+    function indexGetFunction(req, res) {
         let options = {
             title: 'EllSim',
             moment: require('moment'),
@@ -16,46 +16,46 @@ module.exports = {
             advice: null
         };
         res.render('pages/index', options);
-    },
+    }
 
-    loginGetFunction: function (req, res) {
+    function loginGetFunction(req, res) {
         res.render('pages/login', {
             message: req.flash('message'),
             title: 'Login Page',
             user: req.user
         });
-    },
+    }
 
-    signUpGetFunction: function (req, res) {
+    function signUpGetFunction(req, res) {
         res.render('pages/register', {
             message: req.flash('message'),
             title: 'Register',
             user: req.user
         });
-    },
+    }
 
-    signOutGetFunction: function (req, res) {
+    function signOutGetFunction(req, res) {
         req.logout();
         res.redirect('/');
-    },
+    }
 
-    helpGetFunction: function (req, res) {
+    function helpGetFunction(req, res) {
         let options = {
             title: 'Help',
             user: req.user
         };
         res.render('pages/help', options);
-    },
+    }
 
-    leafletExampleGetFunction: function (req, res) {
+    function leafletExampleGetFunction(req, res) {
         let options = {
             title: 'LeafletJS example',
             user: req.user
         };
         res.render('pages/leaflet-example', options);
-    },
+    }
 
-    graphicFormGetFunction: function (req, res) {
+    function graphicFormGetFunction(req, res) {
         Util.calculateEllections(function (data, ellections) {
             let options = {
                 title: 'Chart',
@@ -65,24 +65,26 @@ module.exports = {
             };
             res.render('pages/graphic-form', options);
         });
-    },
-    learnGetFunction: function (req, res) {
+    }
+
+    function learnGetFunction(req, res) {
         let options = {
             title: 'Learn',
             user: req.user
         };
         res.render('pages/learn', options);
 
-    },
-    lawsGetFunction: function (req, res) {
+    }
+
+    function lawsGetFunction(req, res) {
         let options = {
             title: 'Laws',
             user: req.user
         };
         res.render('pages/laws', options);
-    },
+    }
 
-    storedDataFunction: function (req, res) {
+    function storedDataFunction(req, res) {
 
         Result.find({}, haveResult);
         function haveResult(err, data) {
@@ -94,9 +96,9 @@ module.exports = {
             };
             res.render('pages/stored-data', options);
         }
-    },
+    }
 
-    addDataGetFunction: function (req, res) {
+    function addDataGetFunction(req, res) {
         let options = {
             title: 'Add data',
             error: 'NO',
@@ -104,8 +106,9 @@ module.exports = {
             user: req.user
         };
         res.render('pages/add-data', options);
-    },
-    deleteDataGetFunction: function (req, res) {
+    }
+
+    function deleteDataGetFunction(req, res) {
         Result.find({}, function (err, data) {
             let options = {
                 title: 'Delete data',
@@ -116,8 +119,9 @@ module.exports = {
             res.render('pages/delete-data', options);
         });
 
-    },
-    partiesFunction: function (req, res) {
+    }
+
+    function partiesFunction(req, res) {
         let parties = require('./parties');
         let options = {
             title: 'Parties',
@@ -126,5 +130,29 @@ module.exports = {
         };
         res.render('pages/parties', options);
     }
-};
+
+    module.exports = {
+        indexGetFunction: indexGetFunction,
+
+        loginGetFunction: loginGetFunction,
+
+        signUpGetFunction: signUpGetFunction,
+
+        signOutGetFunction: signOutGetFunction,
+
+        helpGetFunction: helpGetFunction,
+
+        leafletExampleGetFunction: leafletExampleGetFunction,
+
+        graphicFormGetFunction: graphicFormGetFunction,
+        learnGetFunction: learnGetFunction,
+        lawsGetFunction: lawsGetFunction,
+
+        storedDataFunction: storedDataFunction,
+
+        addDataGetFunction: addDataGetFunction,
+        deleteDataGetFunction: deleteDataGetFunction,
+        partiesFunction: partiesFunction
+    };
+})();
 

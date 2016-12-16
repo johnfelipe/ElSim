@@ -1,11 +1,10 @@
 /* jshint esversion: 6 */
 /**
  * To handle bar charts
- * @module modules/graphics/bar-module
+ * @module Bar
  */
-module.exports = {
-    /** Fills the options object to rend a bar chart */
-    fillOptions: function (result) {
+(function() {
+    function fillOptions(result) {
         let options = {
             chart: {},
             title: {},
@@ -83,4 +82,14 @@ module.exports = {
         }];
         return options;
     }
-};
+
+    module.exports = {
+        /**
+         * Do something
+         * @param req {request}
+         * @param callback {function}
+         * @function
+         */
+        fillOptions: fillOptions
+    };
+})();

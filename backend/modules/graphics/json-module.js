@@ -4,9 +4,9 @@
  * To handle json charts
  * @module modules/graphics/json-module
  */
-module.exports = {
+(function() {
 
-    fillOptions: function () {
+    function fillOptions() {
         return {
 
             title: {
@@ -87,5 +87,8 @@ module.exports = {
         };
 
     }
-};
+    module.exports = {
+        fillOptions: fillOptions
+    };
+})();
 

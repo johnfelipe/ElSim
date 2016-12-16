@@ -4,10 +4,10 @@ const Graphic = require('./../graphics/graphic-module'),
 
 /**
  * All the callback functions of index POST routes
- * @module modules/functions/index-post-functions
+ * @module IndexPostFunctions
  */
-module.exports = {
-    addDataPostFunction: function (req, res) {
+(function () {
+    function addDataPostFunction(req, res) {
         let lines = req.param('votes').split('\n'),
             partidos = {}, aux;
         for (let i = 0, len = lines.length; i < len; i++) {
@@ -43,9 +43,9 @@ module.exports = {
             res.render('pages/add-data', options);
         });
 
-    },
+    }
 
-    deleteDataPostFunction: function (req, res) {
+    function deleteDataPostFunction(req, res) {
         let promises = [], options;
 
         for (let i = 0, len = req.param('results').length; i < len; i++) {
@@ -69,21 +69,31 @@ module.exports = {
             });
         });
 
-    },
-    graphicFormPostFunction: function (req, res) {
-        Graphic.calculateDistrict(req,function(options){
+    }
+
+    function graphicFormPostFunction(req, res) {
+        Graphic.calculateDistrict(req, function (options) {
             res.render('pages/single-chart', options);
         });
-    },
-    countryFormPostFunction: function (req, res) {
-        Graphic.calculateCountry(req,function(options){
+    }
+
+    function countryFormPostFunction(req, res) {
+        Graphic.calculateCountry(req, function (options) {
             res.render('pages/country-chart', options);
         });
-    },
+    }
 
-    saveResultFunction: function (req, res) {
+    function saveResultFunction(req, res) {
         console.log(req.body.result);
         res.send({result: req.body.result});
     }
-};
+
+    module.exports = {
+        addDataPostFunction: addDataPostFunction,
+        deleteDataPostFunction: deleteDataPostFunction,
+        graphicFormPostFunction: graphicFormPostFunction,
+        countryFormPostFunction: countryFormPostFunction,
+        saveResultFunction: saveResultFunction
+    };
+})();
 

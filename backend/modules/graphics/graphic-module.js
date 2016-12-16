@@ -9,15 +9,14 @@ const highcharts = require('node-highcharts'),
     Result = require('../../models/result'),
     Icons = require('./icons'),
     District = require('../district-module');
-
 /**
  * To handle charts
- * @module modules/graphics/graphic-module
+ * @module Graphic
  */
-module.exports = {
+(function () {
 
-    /** Rends a chart in the server-side */
-    rendChart: function (options, callback) {
+
+    function rendChart(options, callback) {
         highcharts.render(options, callbackRender);
         function callbackRender(err, data) {
             if (err) {
@@ -26,36 +25,34 @@ module.exports = {
                 callback(data);
             }
         }
-    },
+    }
 
-    /** Returns the color for a party or blue if not found */
-    chooseColor: function (party) {
+    function chooseColor(party) {
         if (Color[party] === undefined) {
             return 'blue';
         }
         return Color[party];
-    },
+    }
 
-    /** Create a bar chart */
-    createBar: function (result, callback) {
+
+    function createBar(result, callback) {
         let options = BarChart.fillOptions(result);
         callback(options);
-    },
+    }
 
-    /** Create a pie chart */
-    createPie: function (result, callback) {
+
+    function createPie(result, callback) {
         let options = PieChart.fillOptions(result);
         callback(options);
-    },
+    }
 
-    /** Create a country chart */
-    createMap: function(results, callback){
+
+    function createMap(results, callback) {
         let options = CountryChart.fillOptions(results);
         callback(options);
-    },
+    }
 
-    /** To calculate district */
-    calculateDistrict: function(req,callback){
+    function calculateDistrict(req, callback) {
         let votes = [],
             names = [],
             mode = req.body.mode,
@@ -79,11 +76,12 @@ module.exports = {
                 votes.push(data.partidos[key]);
                 names.push(key);
             }
+
             let result = District.compute(votes, names, districtOptions);
             if (mode === 'bar') {
-                this.createBar(result.parties, done);
+                createBar(result.parties, done);
             } else if (mode === 'pie') {
-                this.createPie(result.parties, done);
+                createPie(result.parties, done);
             }
 
             function done(graph_options) {
@@ -116,9 +114,9 @@ module.exports = {
                 });
             }
         }
-    },
-    /** To calculate country */
-    calculateCountry: function(req,callback){
+    }
+
+    function calculateCountry(req, callback) {
         let eleccion = {
             autor: req.body.resultSelected.split(',')[1],
             fecha: req.body.resultSelected.split(',')[0]
@@ -135,4 +133,21 @@ module.exports = {
             callback(options);
         });
     }
-};
+
+    module.exports = {
+        rendChart: rendChart,
+        chooseColor: chooseColor,
+        createBar:createBar,
+        createPie: createPie,
+        createMap: createMap,
+
+        /**
+         * Do something
+         * @param req {request}
+         * @param callback {function}
+         * @function
+         */
+        calculateDistrict: calculateDistrict,
+        calculateCountry: calculateCountry
+    };
+})();

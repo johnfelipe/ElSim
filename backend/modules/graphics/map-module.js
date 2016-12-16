@@ -1,10 +1,10 @@
 /* jshint esversion: 6 */
 
-let District = require('./graphic-module'),
+let District = require('../district-module'),
     spainMap = require('./spain-map');
-module.exports = {
+(function () {
 
-    fillOptions: function(results){
+    function fillOptions(results) {
         let options = {
 
             title: {
@@ -46,8 +46,9 @@ module.exports = {
             }]
         };
 
-    },
-    calculateGlobal: function(data){
+    }
+
+    function calculateGlobal(data) {
         let votes = [],
             names = [],
             result,
@@ -69,8 +70,14 @@ module.exports = {
             votes.push(data[i].partidos[key]);
             names.push(key);
         }
+
         return global;
     }
 
-};
+    module.exports = {
+        fillOptions: fillOptions,
+        calculateGlobal: calculateGlobal
+    }
+
+})();
 
