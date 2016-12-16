@@ -1,0 +1,38 @@
+<form class="card-text" method="POST" id="country-form" action="/country-form">
+    <div class="form-group">
+        <label for="resultSelected">
+            <span class="fa fa-database"></span> Select a stored ellection
+        </label>
+        <select class="form-control" name="resultSelected" id="resultSelected">
+            <% for(i = 0, len = ellections.length; i < len; i++){ %>
+            <option value="<%= ellections[i].fecha %>,<%= ellections[i].autor%>">
+                <%= ellections[i].fecha.slice(4, 6) %>/<%= ellections[i].fecha.slice(0, 4) %>,
+                by <%= ellections[i].autor %>
+            </option>
+            <% } %>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="percentage">
+            <span class="fa fa-percent"></span> Select minimum percentage
+        </label>
+        <select class="form-control" name="percentage" id="percentage">
+            <% for(var i = 0.00; i <= 100.00; i += 0.50){ %>
+            <option value="<%= i %>"><%= i %>%</option>
+            <% } %>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="mandates">
+            <span class="fa fa-user"></span> Number of mandates
+        </label>
+        <select class="form-control" name="mandates" id="mandates">
+            <% for(var i = 52; i <= 1000; ++i){ %>
+            <option value="<%= i %>"><%= i %> mandates</option>
+            <% } %>
+        </select>
+    </div>
+    <div class="text-info">
+        If your ellection doesn't appear, you should review if all districts matched.
+    </div>
+</form>

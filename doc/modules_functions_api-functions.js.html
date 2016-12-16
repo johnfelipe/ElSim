@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: modules/functions/api-functions.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: modules/functions/api-functions.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* jshint esversion: 6 */
+
+const User = require('../../models/user'),
+    Log = require('../../models/log'),
+    Result = require('../../models/result'),
+    DB = require('../db-manager-module');
+
+/**
+ * All the callback functions of api routes
+ * @module functions/api-functions
+ */
+(function () {
+    function setup(req, res) {
+        User.find({}).remove(initialize);
+
+        function initialize() {
+            let nick = new User({
+                name: 'demo',
+                email: 'demo@demo.com',
+                password: 'password',
+                admin: true,
+                resultados: []
+            });
+            nick.save(userSaved);
+        }
+
+        function userSaved(err) {
+            if (err) {
+                throw err;
+            }
+            Log.find({}).remove(logRemoved);
+        }
+
+        function logRemoved() {
+            apiResponse(req, res, false, 'System initialized correctly', null);
+        }
+    }
+
+    function findAllUsers(req, res) {
+        User.find({}, userFinded);
+
+        function userFinded(err, data) {
+            apiResponse(req, res, err, 'All users', data);
+        }
+    }
+
+    function saveOneUser(req, res) {
+        resError(req, res);
+    }
+
+    function resError(req, res) {
+        let result;
+        result = {
+            result: 'fail',
+            success: false,
+            message: 'Not yet implemented',
+            data: null
+        };
+        res.send(result);
+    }
+
+    function deleteOneUser(req, res) {
+        resError(req, res);
+    }
+
+    function updateOneUser(req, res) {
+        resError(req, res);
+    }
+
+    function check(req, res) {
+        res.json(req.decoded);
+    }
+
+    function apiWelcome(req, res) {
+        apiResponse(req, res, false, {
+            message: 'Hello from the API!',
+            version: '0.0.1',
+            contact: 'jesusgonzaleznovez@gmail.com'
+        }, null);
+    }
+
+    function findAllResultados(req, res) {
+        Result.find({}, function (err, data) {
+            console.log(err,data);
+            apiResponse(req, res, err, 'All results', data);
+        });
+    }
+
+    function saveOneResultado(req, res) {
+        resError(req, res);
+    }
+
+    function updateOneResultado(req, res) {
+        resError(req, res);
+    }
+
+    function deleteOneResultado(req, res) {
+        resError(req, res);
+    }
+
+    function deleteAllResultados(req, res) {
+        DB.deleteAllResultados(function () {
+            apiResponse(req, res, false, 'All results removed', null);
+        });
+    }
+
+    function findManyResultadosByAnio(req, res) {
+        DB.findManyResultadosByAnio(req.param('anio'), function (data) {
+            apiResponse(req, res, false, 'All results by year', data);
+        });
+    }
+
+    function findManyResultadosByProvincia(req, res) {
+        DB.findManyResultadosByProvincia(req.param('cod_provincia'), function (data) {
+            apiResponse(req, res, false, 'All results by district', data);
+        });
+    }
+
+    function findOneResultado(req, res) {
+        DB.getResultadoById(req.param('id'), function (data) {
+            apiResponse(req, res, false, 'Result', data);
+        });
+    }
+
+    function loadCsv(req, res) {
+        DB.loadCsv(function () {
+            apiResponse(req, res, false, 'CSVs loaded', null);
+        });
+    }
+
+    function findLogs(req, res) {
+        Log.find({}, function (err, data) {
+            apiResponse(req, res, err, 'All logs', data);
+        });
+    }
+
+    function deleteAllLogs(req, res) {
+        DB.deleteAllLogs(function () {
+            apiResponse(req, res, false, 'All logs removed', null);
+        });
+    }
+
+    function apiResponse(req, res, err, message, data) {
+        let options;
+        if (err) {
+            console.log('ERROR:' + err);
+            options = {
+                result: 'fail',
+                success: false,
+                message: err,
+                data: null
+            };
+        } else {
+            console.log('DATA' + data);
+            options = {
+                result: 'OK',
+                success: true,
+                message: message,
+                data: data
+            };
+        }
+        res.send(options);
+    }
+
+    module.exports = {
+        /**
+         * @function
+         * @description Generic API response
+         */
+        apiResponse: apiResponse,
+        /**
+         * @function
+         * @description Generic error response
+         */
+        resError: resError,
+
+        /**
+         * @function
+         * @description Initial demo setup
+         */
+        setup: setup,
+
+        /**
+         * @function
+         * @description Find all users
+         */
+        findAllUsers: findAllUsers,
+
+        /**
+         * @function
+         * @description Saves one user
+         */
+        saveOneUser: saveOneUser,
+
+        /**
+         * @function
+         * @description Deletes one user
+         */
+        deleteOneUser: deleteOneUser,
+
+        /**
+         * @function
+         * @description Updates one user
+         */
+        updateOneUser: updateOneUser,
+
+        /**
+         * @function
+         * @description Checks system info
+         */
+        check: check,
+
+        /**
+         * @function
+         * @description Api welcome function
+         */
+        apiWelcome: apiWelcome,
+
+        /**
+         * @function
+         * @description Finds all results
+         */
+        findAllResultados: findAllResultados,
+
+        /**
+         * @function
+         * @description Saves one result
+         */
+        saveOneResultado: saveOneResultado,
+
+        /**
+         * @function
+         * @description Updates one result
+         */
+        updateOneResultado: updateOneResultado,
+
+        /**
+         * @function
+         * @description Deletes one result
+         */
+        deleteOneResultado: deleteOneResultado,
+
+        /**
+         * @function
+         * @description Deletes all results
+         */
+        deleteAllResultados: deleteAllResultados,
+
+        /**
+         * @function
+         * @description Finds many results by year
+         */
+        findManyResultadosByAnio: findManyResultadosByAnio,
+
+        /**
+         * @function
+         * @description Finds many results by district
+         */
+        findManyResultadosByProvincia: findManyResultadosByProvincia,
+
+        /**
+         * @function
+         * @description Finds one result
+         */
+        findOneResultado: findOneResultado,
+
+        /**
+         * @function
+         * @description Loads results in csv format
+         */
+        loadCsv: loadCsv,
+
+        /**
+         * @function
+         * @description To find logs
+         */
+        findLogs: findLogs,
+
+        /**
+         * @function
+         * @description Delete all logs
+         */
+        deleteAllLogs: deleteAllLogs
+    };
+})();
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-db-manager-module.html">db-manager-module</a></li><li><a href="module-district-module.html">district-module</a></li><li><a href="module-electoral-system-module.html">electoral-system-module</a></li><li><a href="module-functions_api-functions.html">functions/api-functions</a></li><li><a href="module-functions_index-get-functions.html">functions/index-get-functions</a></li><li><a href="module-functions_index-post-functions.html">functions/index-post-functions</a></li><li><a href="module-functions_parties.html">functions/parties</a></li><li><a href="module-Graphic.html">Graphic</a></li><li><a href="module-graphics_bar-module.html">graphics/bar-module</a></li><li><a href="module-graphics_colors.html">graphics/colors</a></li><li><a href="module-graphics_icons.html">graphics/icons</a></li><li><a href="module-graphics_json-module.html">graphics/json-module</a></li><li><a href="module-graphics_map-module.html">graphics/map-module</a></li><li><a href="module-graphics_pie-module.html">graphics/pie-module</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_subscriber.html">models/subscriber</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li><li><a href="module-util-module.html">util-module</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri Dec 16 2016 13:38:56 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" />
+</head>
+<body >
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <b>Message: </b><%= message %><hr>
+            <b>Status: </b><%= error.status %><hr>
+        </div>
+        <div class="col-md-8">
+            <b>Stack</b><hr>
+            <code><%= error.stack %></code>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" ></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,4 +1,3 @@
-backend/mongui
 # Logs
 logs
 *.log
@@ -37,5 +36,6 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-backend/.idea
-backend/env
+.idea
+env
+config.js
