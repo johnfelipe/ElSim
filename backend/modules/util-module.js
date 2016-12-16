@@ -4,7 +4,7 @@ const fs = require('fs'),
     Result = require('../models/result');
 /**
  * Useful module to some utilities
- * @module modules/util-module
+ * @module util-module
  */
 (function () {
     function prettyPrint(message) {
@@ -101,14 +101,58 @@ const fs = require('fs'),
     }
 
     module.exports = {
+        /**
+         * @description
+         * @function
+         */
         prettyPrint: prettyPrint,
+
+        /**
+         * @description
+         * @function
+         */
         groupByKey: groupByKey,
+
+        /**
+         * @description
+         * @function
+         */
         sortByRest: sortByRest,
+
+        /**
+         * @description
+         * @function
+         */
         ellectionIsInArray: ellectionIsInArray,
+
+        /**
+         * @description
+         * @function
+         */
         readResultados: readResultados,
+
+        /**
+         * @description
+         * @function
+         */
         readParties: readParties,
+
+        /**
+         * @description
+         * @function
+         */
         invalidRowException: invalidRowException,
+
+        /**
+         * @description
+         * @function
+         */
         readCsv: readCsv,
+
+        /**
+         * @description
+         * @function
+         */
         calculateEllections: calculateEllections
     };
 })();

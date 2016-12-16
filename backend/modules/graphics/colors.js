@@ -2,7 +2,7 @@
 
 /**
  * Object to find the party color
- * @module modules/graphics/colors
+ * @module graphics/colors
  */
 module.exports = {
     'FE-UF': 'blue',

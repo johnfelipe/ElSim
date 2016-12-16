@@ -4,7 +4,7 @@ const Graphic = require('./../graphics/graphic-module'),
 
 /**
  * All the callback functions of index POST routes
- * @module IndexPostFunctions
+ * @module functions/index-post-functions
  */
 (function () {
     function addDataPostFunction(req, res) {
@@ -89,10 +89,34 @@ const Graphic = require('./../graphics/graphic-module'),
     }
 
     module.exports = {
+        /**
+         * @description
+         * @function
+         */
         addDataPostFunction: addDataPostFunction,
+
+        /**
+         * @description
+         * @function
+         */
         deleteDataPostFunction: deleteDataPostFunction,
+
+        /**
+         * @description
+         * @function
+         */
         graphicFormPostFunction: graphicFormPostFunction,
+
+        /**
+         * @description
+         * @function
+         */
         countryFormPostFunction: countryFormPostFunction,
+
+        /**
+         * @description
+         * @function
+         */
         saveResultFunction: saveResultFunction
     };
 })();

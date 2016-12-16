@@ -8,7 +8,7 @@ const Log = require('./../models/log'),
 
 /**
  * Module to handle the database.
- * @module modules/db-manager-module
+ * @module db-manager-module
  */
 (function () {
 
@@ -120,16 +120,65 @@ const Log = require('./../models/log'),
     }
 
     module.exports = {
+        /**
+         * @description
+         * @function
+         */
         loadCsv: loadCsv,
+
+        /**
+         * @description
+         * @function
+         */
         saveLog: saveLog,
+
+        /**
+         * @description
+         * @function
+         */
         saveUser: saveUser,
+
+        /**
+         * @description
+         * @function
+         */
         getResultadoByAnio: getResultadoByAnio,
+
+        /**
+         * @description
+         * @function
+         */
         getResultadoByProvincia: getResultadoByProvincia,
+
+        /**
+         * @description
+         * @function
+         */
         getResultadoById: getResultadoById,
+
+        /**
+         * @description
+         * @function
+         */
         saveResultado: saveResultado,
+
+        /**
+         * @description
+         * @function
+         */
         cleanResultado: cleanResultado,
+
+        /**
+         * @description
+         * @function
+         */
         deleteUserByEmail: deleteUserByEmail,
+
+        /**
+         * @description
+         * @function
+         */
         deleteUserByName: deleteUserByName
-    }
+    };
 })();
 

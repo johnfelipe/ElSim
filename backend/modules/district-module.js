@@ -3,7 +3,7 @@
 
 /**
  * Utilities for a district
- * @module modules/district-module
+ * @module district-module
  */
 (function () {
 
@@ -83,13 +83,52 @@
     }
 
     module.exports = {
+        /**
+         * @description
+         * @function
+         */
         compute: compute,
+
+        /**
+         * @description
+         * @function
+         */
         isInt: isInt,
+
+        /**
+         * @description
+         * @function
+         */
         calculateTotalVotes: calculateTotalVotes,
+
+        /**
+         * @description
+         * @function
+         */
         validateParties: validateParties,
+
+        /**
+         * @description
+         * @function
+         */
         newSeat: newSeat,
+
+        /**
+         * @description
+         * @function
+         */
         fillSeats: fillSeats,
+
+        /**
+         * @description
+         * @function
+         */
         fillPartiesResult: fillPartiesResult,
+
+        /**
+         * @description
+         * @function
+         */
         calculateSeats: calculateSeats
     };
 })();

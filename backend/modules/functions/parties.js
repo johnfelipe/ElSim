@@ -1,5 +1,8 @@
 /* jshint esversion: 6 */
-
+/**
+ *
+ * @module functions/parties
+ */
 module.exports = [
 
     {

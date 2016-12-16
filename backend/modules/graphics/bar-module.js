@@ -1,7 +1,7 @@
 /* jshint esversion: 6 */
 /**
  * To handle bar charts
- * @module Bar
+ * @module graphics/bar-module
  */
 (function() {
     function fillOptions(result) {
@@ -85,7 +85,7 @@
 
     module.exports = {
         /**
-         * Do something
+         * @description Do something
          * @param req {request}
          * @param callback {function}
          * @function

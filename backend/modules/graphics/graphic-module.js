@@ -135,19 +135,48 @@ const highcharts = require('node-highcharts'),
     }
 
     module.exports = {
+        /**
+         * @description
+         * @function
+         */
         rendChart: rendChart,
+
+        /**
+         * @description
+         * @function
+         */
         chooseColor: chooseColor,
+
+        /**
+         * @description
+         * @function
+         */
         createBar:createBar,
+
+        /**
+         * @description
+         * @function
+         */
         createPie: createPie,
+
+        /**
+         * @description
+         * @function
+         */
         createMap: createMap,
 
         /**
-         * Do something
+         * @description Do something
          * @param req {request}
          * @param callback {function}
          * @function
          */
         calculateDistrict: calculateDistrict,
+
+        /**
+         * @description
+         * @function
+         */
         calculateCountry: calculateCountry
     };
 })();

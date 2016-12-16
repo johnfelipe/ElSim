@@ -2,7 +2,7 @@
 const chooseColor = require('./graphic-module').chooseColor;
 /**
  * To handle pie charts
- * @module modules/graphics/pie-module
+ * @module graphics/pie-module
  */
 (function () {
 
@@ -71,6 +71,10 @@ const chooseColor = require('./graphic-module').chooseColor;
     }
 
     module.exports = {
+        /**
+         * @description
+         * @function
+         */
         fillOptions: fillOptions
     };
 })();

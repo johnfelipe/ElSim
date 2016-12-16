@@ -5,7 +5,7 @@ const Result = require('../../models/result'),
 
 /**
  * All the callback functions of index GET routes
- * @module modules/functions/index-get-functions
+ * @module functions/index-get-functions
  */
 (function () {
     function indexGetFunction(req, res) {
@@ -132,26 +132,82 @@ const Result = require('../../models/result'),
     }
 
     module.exports = {
+        /**
+         * @description
+         * @function
+         */
         indexGetFunction: indexGetFunction,
 
+        /**
+         * @description
+         * @function
+         */
         loginGetFunction: loginGetFunction,
 
+        /**
+         * @description
+         * @function
+         */
         signUpGetFunction: signUpGetFunction,
 
+        /**
+         * @description
+         * @function
+         */
         signOutGetFunction: signOutGetFunction,
 
+        /**
+         * @description
+         * @function
+         */
         helpGetFunction: helpGetFunction,
 
+        /**
+         * @description
+         * @function
+         */
         leafletExampleGetFunction: leafletExampleGetFunction,
 
+        /**
+         * @description
+         * @function
+         */
         graphicFormGetFunction: graphicFormGetFunction,
+
+        /**
+         * @description
+         * @function
+         */
         learnGetFunction: learnGetFunction,
+
+        /**
+         * @description
+         * @function
+         */
         lawsGetFunction: lawsGetFunction,
 
+        /**
+         * @description
+         * @function
+         */
         storedDataFunction: storedDataFunction,
 
+        /**
+         * @description
+         * @function
+         */
         addDataGetFunction: addDataGetFunction,
+
+        /**
+         * @description
+         * @function
+         */
         deleteDataGetFunction: deleteDataGetFunction,
+
+        /**
+         * @description
+         * @function
+         */
         partiesFunction: partiesFunction
     };
 })();

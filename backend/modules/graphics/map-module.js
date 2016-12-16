@@ -2,6 +2,10 @@
 
 let District = require('../district-module'),
     spainMap = require('./spain-map');
+/**
+ * To handle map charts
+ * @module graphics/map-module
+ */
 (function () {
 
     function fillOptions(results) {
@@ -45,7 +49,7 @@ let District = require('../district-module'),
                 }
             }]
         };
-
+        return options;
     }
 
     function calculateGlobal(data) {
@@ -75,9 +79,18 @@ let District = require('../district-module'),
     }
 
     module.exports = {
+        /**
+         * @description
+         * @function
+         */
         fillOptions: fillOptions,
+
+        /**
+         * @description
+         * @function
+         */
         calculateGlobal: calculateGlobal
-    }
+    };
 
 })();
 

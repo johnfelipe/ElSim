@@ -7,7 +7,7 @@ const User = require('./../../models/user'),
 
 /**
  * All the callback functions of api routes
- * @module modules/functions/api-functions
+ * @module functions/api-functions
  */
 (function () {
     function setup(req, res) {
@@ -142,23 +142,112 @@ const User = require('./../../models/user'),
     }
 
     module.exports = {
+        /**
+         * @function
+         * @description Initial demo setup
+         */
         setup: setup,
+
+        /**
+         * @function
+         * @description Find all users
+         */
         findAllUsers: findAllUsers,
+
+        /**
+         * @function
+         * @description Saves one user
+         */
         saveOneUser: saveOneUser,
+
+        /**
+         * @function
+         * @description Deletes one user
+         */
         deleteOneUser: deleteOneUser,
+
+        /**
+         * @function
+         * @description Updates one user
+         */
         updateOneUser: updateOneUser,
+
+        /**
+         * @function
+         * @description Checks system info
+         */
         check: check,
+
+        /**
+         * @function
+         * @description Api welcome function
+         */
         apiWelcome: apiWelcome,
+
+        /**
+         * @function
+         * @description Finds all results
+         */
         findAllResultados: findAllResultados,
+
+        /**
+         * @function
+         * @description Saves one result
+         */
         saveOneResultado: saveOneResultado,
+
+        /**
+         * @function
+         * @description Updates one result
+         */
         updateOneResultado: updateOneResultado,
+
+        /**
+         * @function
+         * @description Deletes one result
+         */
         deleteOneResultado: deleteOneResultado,
+
+        /**
+         * @function
+         * @description Deletes all results
+         */
         deleteAllResultados: deleteAllResultados,
+
+        /**
+         * @function
+         * @description Finds many results by year
+         */
         findManyResultadosByAnio: findManyResultadosByAnio,
+
+        /**
+         * @function
+         * @description Finds many results by district
+         */
         findManyResultadosByProvincia: findManyResultadosByProvincia,
+
+        /**
+         * @function
+         * @description Finds one result
+         */
         findOneResultado: findOneResultado,
+
+        /**
+         * @function
+         * @description Loads results in csv format
+         */
         loadCsv: loadCsv,
+
+        /**
+         * @function
+         * @description To find logs
+         */
         findLogs: findLogs,
+
+        /**
+         * @function
+         * @description Delete all logs
+         */
         deleteAllLogs: deleteAllLogs
     };
 })();

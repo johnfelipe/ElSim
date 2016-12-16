@@ -3,7 +3,7 @@
 
 /**
  * Utilities for a set of districts
- * @module modules/electoral-system-module
+ * @module electoral-system-module
  */
 (function () {
     function calculate(districts) {
@@ -22,6 +22,10 @@
     }
 
     module.exports = {
+        /**
+         * @description
+         * @function
+         */
         calculate: calculate
     };
 })();

@@ -2,7 +2,7 @@
 
 /**
  * To handle json charts
- * @module modules/graphics/json-module
+ * @module graphics/json-module
  */
 (function() {
 
@@ -88,6 +88,10 @@
 
     }
     module.exports = {
+        /**
+         * @description
+         * @function
+         */
         fillOptions: fillOptions
     };
 })();

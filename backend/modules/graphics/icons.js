@@ -2,7 +2,7 @@
 
 /**
  * Object to find the party logo
- * @module modules/graphics/icons
+ * @module graphics/icons
  */
 module.exports = {
     'FE-UF': 'images/no-ico.png',
