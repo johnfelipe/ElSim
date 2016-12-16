@@ -30,4 +30,4 @@ resultSchema.index({
         unique: true
     }
 );
-module.exports = mongoose.model('Resultado',resultSchema);
+module.exports = mongoose.model('Result',resultSchema);

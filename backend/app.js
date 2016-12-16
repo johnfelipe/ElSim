@@ -123,6 +123,7 @@ apiRoutes.use(isAuthenticated);
  * @see modules/functions/api-functions
  */
 app.get('/setup', api.setup);
+app.get('/loadCsv', api.loadCsv);
 apiRoutes.get('/', api.apiWelcome);
 apiRoutes.get('/users', api.findAllUsers);
 apiRoutes.get('/check', api.check);

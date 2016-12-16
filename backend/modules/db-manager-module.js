@@ -24,7 +24,7 @@ const Log = require('./../models/log'),
 
         function csvCallback(data) {
             for (let j = 0, lenData = data.length; j < lenData; ++j) {
-                promises.push(DbManager.saveResultado(data[j], saveResultadoCallback));
+                promises.push(saveResultado(data[j], saveResultadoCallback));
             }
         }
 

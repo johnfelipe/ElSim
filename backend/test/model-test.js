@@ -31,7 +31,7 @@ describe('User', function() {
     });
 });
 
-describe('Resultado',function() {
+describe('Result',function() {
     describe('#save()', function() {
         it('Should not save if duplicate key(cod_provincia + eleccion)', function(done) {
             var resultado = new Resultado({

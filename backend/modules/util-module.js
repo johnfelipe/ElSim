@@ -88,11 +88,10 @@ const fs = require('fs'),
 
     function calculateEllections(done) {
         Result.find({}, function (err, data) {
-            let util = require('./util-module');
             if (err) throw err;
             let ellections = [];
             for (let i = 0, len = data.length; i < len; i++) {
-                if (!util.ellectionIsInArray(data[i].eleccion, ellections)) {
+                if (!ellectionIsInArray(data[i].eleccion, ellections)) {
                     ellections.push(data[i].eleccion);
                 }
             }

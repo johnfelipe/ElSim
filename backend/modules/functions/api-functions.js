@@ -1,9 +1,9 @@
 /* jshint esversion: 6 */
 
-const User = require('./../../models/user'),
-    Log = require('./../../models/log'),
-    Resultado = require('./../../models/result'),
-    DB = require('./../db-manager-module');
+const User = require('../../models/user'),
+    Log = require('../../models/log'),
+    Result = require('../../models/result'),
+    DB = require('../db-manager-module');
 
 /**
  * All the callback functions of api routes
@@ -25,16 +25,14 @@ const User = require('./../../models/user'),
         }
 
         function userSaved(err) {
-            if (err) throw err;
+            if (err) {
+                throw err;
+            }
             Log.find({}).remove(logRemoved);
         }
 
         function logRemoved() {
-            let result = {
-                result: 'OK',
-                success: true
-            };
-            res.json(result);
+            apiResponse(req, res, false, 'System initialized correctly', null);
         }
     }
 
@@ -42,25 +40,31 @@ const User = require('./../../models/user'),
         User.find({}, userFinded);
 
         function userFinded(err, data) {
-            if (err) throw err;
-            let result = {
-                result: 'OK',
-                data: data
-            };
-            res.send(result);
+            apiResponse(req, res, err, 'All users', data);
         }
     }
 
     function saveOneUser(req, res) {
-        throw new Error('Not yet implemented');
+        resError(req, res);
+    }
+
+    function resError(req, res) {
+        let result;
+        result = {
+            result: 'fail',
+            success: false,
+            message: 'Not yet implemented',
+            data: null
+        };
+        res.send(result);
     }
 
     function deleteOneUser(req, res) {
-        throw new Error('Not yet implemented');
+        resError(req, res);
     }
 
     function updateOneUser(req, res) {
-        throw new Error('Not yet implemented');
+        resError(req, res);
     }
 
     function check(req, res) {
@@ -68,80 +72,108 @@ const User = require('./../../models/user'),
     }
 
     function apiWelcome(req, res) {
-        res.json({
+        apiResponse(req, res, false, {
             message: 'Hello from the API!',
             version: '0.0.1',
             contact: 'jesusgonzaleznovez@gmail.com'
-        });
+        }, null);
     }
 
     function findAllResultados(req, res) {
-        Resultado.find({}, function (err, data) {
-            if (err) throw err;
-            res.send({
-                result: data
-            });
+        Result.find({}, function (err, data) {
+            console.log(err,data);
+            apiResponse(req, res, err, 'All results', data);
         });
     }
 
     function saveOneResultado(req, res) {
-        throw new Error('Not yet implemented');
+        resError(req, res);
     }
 
     function updateOneResultado(req, res) {
-        throw new Error('Not yet implemented');
+        resError(req, res);
     }
 
     function deleteOneResultado(req, res) {
-        throw new Error('Not yet implemented');
+        resError(req, res);
     }
 
     function deleteAllResultados(req, res) {
         DB.deleteAllResultados(function () {
-            res.send({result: 'OK'});
+            apiResponse(req, res, false, 'All results removed', null);
         });
     }
 
     function findManyResultadosByAnio(req, res) {
         DB.findManyResultadosByAnio(req.param('anio'), function (data) {
-            res.send({result: data});
+            apiResponse(req, res, false, 'All results by year', data);
         });
     }
 
     function findManyResultadosByProvincia(req, res) {
         DB.findManyResultadosByProvincia(req.param('cod_provincia'), function (data) {
-            res.send({result: data});
+            apiResponse(req, res, false, 'All results by district', data);
         });
     }
 
     function findOneResultado(req, res) {
         DB.getResultadoById(req.param('id'), function (data) {
-            res.send({result: data});
+            apiResponse(req, res, false, 'Result', data);
         });
     }
 
     function loadCsv(req, res) {
         DB.loadCsv(function () {
-            res.send({result: 'OK'});
+            apiResponse(req, res, false, 'CSVs loaded', null);
         });
     }
 
     function findLogs(req, res) {
         Log.find({}, function (err, data) {
-            if (err) throw err;
-            res.send({
-                result: data
-            });
+            apiResponse(req, res, err, 'All logs', data);
         });
     }
 
     function deleteAllLogs(req, res) {
         DB.deleteAllLogs(function () {
-            res.send({result: 'OK'});
+            apiResponse(req, res, false, 'All logs removed', null);
         });
     }
 
+    function apiResponse(req, res, err, message, data) {
+        let options;
+        if (err) {
+            console.log('ERROR:' + err);
+            options = {
+                result: 'fail',
+                success: false,
+                message: err,
+                data: null
+            };
+        } else {
+            console.log('DATA' + data);
+            options = {
+                result: 'OK',
+                success: true,
+                message: message,
+                data: data
+            };
+        }
+        res.send(options);
+    }
+
     module.exports = {
+        /**
+         * @function
+         * @description Generic API response
+         */
+        apiResponse: apiResponse,
+        /**
+         * @function
+         * @description Generic error response
+         */
+        resError: resError,
+
         /**
          * @function
          * @description Initial demo setup

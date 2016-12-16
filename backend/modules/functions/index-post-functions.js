@@ -1,6 +1,6 @@
 /* jshint esversion: 6 */
-const Graphic = require('./../graphics/graphic-module'),
-    Result = require('./../../models/result');
+const Graphic = require('../graphics/graphic-module'),
+    Result = require('../../models/result');
 
 /**
  * All the callback functions of index POST routes

@@ -2,8 +2,7 @@
 
 const User = require('./../../models/user'),
     Log = require('./../../models/log'),
-    Result = require('./../../models/result'),
-    DB = require('./../db-manager-module');
+    Result = require('./../../models/result');
 
 /**
  * All the callback functions of api routes
