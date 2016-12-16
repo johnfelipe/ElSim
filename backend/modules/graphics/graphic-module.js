@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-'use strict';
+
 const highcharts = require('node-highcharts'),
     Color = require('./colors'),
     BarChart = require('./bar-module'),

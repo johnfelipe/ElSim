@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-'use strict';
+
 const User = require('./../../models/user'),
     Log = require('./../../models/log'),
     Resultado = require('./../../models/result'),

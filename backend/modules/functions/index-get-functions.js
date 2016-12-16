@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-'use strict';
+
 const Result = require('../../models/result'),
     Util = require('../util-module');
 

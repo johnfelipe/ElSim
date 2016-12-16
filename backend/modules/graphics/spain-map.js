@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-'use strict';
+
 module.exports =  [
     {
         "hc-key": "es-pm",

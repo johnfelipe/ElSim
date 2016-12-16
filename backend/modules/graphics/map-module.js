@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-'use strict';
+
 let District = require('./graphic-module'),
     spainMap = require('./spain-map');
 module.exports = {

@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-'use strict';
+
 
 /**
  * Utilities for a set of districts

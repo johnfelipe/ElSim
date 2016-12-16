@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-'use strict';
+
 /**
  * Object to find the party logo
  * @module modules/graphics/icons

@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-'use strict';
+
 /**
  * Object to find the party color
  * @module modules/graphics/colors

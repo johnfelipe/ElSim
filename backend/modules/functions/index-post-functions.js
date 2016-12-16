@@ -1,5 +1,4 @@
 /* jshint esversion: 6 */
-'use strict';
 const Graphic = require('./../graphics/graphic-module'),
     Result = require('./../../models/result');
 
