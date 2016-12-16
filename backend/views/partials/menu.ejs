@@ -52,6 +52,11 @@
             <li class="nav-item active">
                 <a class="nav-item nav-link" href="/help"><span class="fa fa-question-circle-o"></span> Help</a>
             </li>
+            <% if(user && user.email === 'jesusgonzaleznovez@gmail.com') { %>
+            <li class="nav-item active">
+                <a class="nav-item nav-link" href="/admin"><span class="fa fa-gears"></span> Administration</a>
+            </li>
+            <% } %>
         </ul>
 
         <ul class="nav navbar-nav float-lg-right ">

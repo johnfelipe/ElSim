@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: models/result.js</title>
+    <title>JSDoc: Source: modules/functions/admin-functions.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: models/result.js</h1>
+    <h1 class="page-title">Source: modules/functions/admin-functions.js</h1>
 
     
 
@@ -27,38 +27,64 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/* jshint esversion: 6 */
-'use strict';
+
+const User = require('./../../models/user'),
+    Log = require('./../../models/log'),
+    Result = require('./../../models/result'),
+    DB = require('./../db-manager-module');
 
 /**
- * Ellectoral result mongoose model
- * @module models/result
+ * All the callback functions of api routes
+ * @module functions/api-functions
  */
-const mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
-
-let resultSchema =  new Schema({
-    comunidad: { type: String, required: true },
-    cod_provincia: { type: Number, required: true},
-    provincia: { type: String, required: true },
-    poblacion: { type: Number, required: true },
-    num_mesas: { type: Number, required: true },
-    total_censo_electoral: { type: Number, required: true },
-    total_votantes: { type: Number, required: true },
-    votos_validos: { type: Number, required: true },
-    votos_candidaturas: { type: Number, required: true },
-    votos_blanco: { type: Number, required: true },
-    votos_nulos: { type: Number, required: true },
-    eleccion: { type: Object, required: true},
-    partidos: { type: Object, required: true }
-});
-resultSchema.index({
-        cod_provincia: 1,
-        eleccion: 1
-    },{
-        unique: true
+(function () {
+    function adminSummaryFunction(req, res) {
+        if (req.user.email !== 'jesusgonzaleznovez@gmail.com') {
+            res.send({
+                result: 'fail',
+                status: 'ok',
+                message: 'You are not the admin, sorry!'
+            });
+        } else {
+            let promises = [], users, logs, results;
+            promises.push(
+                User.find({}, function (err, data) {
+                    users = data;
+                })
+            );
+            promises.push(
+                Log.find({}, function (err, data) {
+                    logs = data;
+                })
+            );
+            promises.push(
+                Result.find({}, function (err, data) {
+                    results = data;
+                })
+            );
+            Promise.all(promises).then(function(){
+                let options = {
+                    user: req.user,
+                    title: 'Administration',
+                    logs: logs,
+                    results: results,
+                    users: users
+                };
+                res.render('pages/admin', options);
+            });
+        }
     }
-);
-module.exports = mongoose.model('Resultado',resultSchema);
+
+    module.exports = {
+
+        /**
+         * @function
+         * @description Shows summary of system
+         */
+        adminSummaryFunction: adminSummaryFunction
+    };
+})();
+
 </code></pre>
         </article>
     </section>

@@ -4,7 +4,8 @@ const express = require('express'),
     router = express.Router(),
     IndexGetFunctions = require('../modules/functions/index-get-functions'),
     IndexPostFunctions = require('../modules/functions/index-post-functions'),
-    api = require('../modules/functions/api-functions');
+    api = require('../modules/functions/api-functions'),
+    Admin = require('../modules/functions/admin-functions');
 
 const isAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) {
@@ -37,6 +38,7 @@ module.exports = function(passport){
     router.get('/parties', IndexGetFunctions.partiesFunction);
     router.get('/resultados/:id', api.findOneResultado);
     router.get('/delete-data', isAuthenticated, IndexGetFunctions.deleteDataGetFunction);
+    router.get('/admin', isAuthenticated, Admin.adminSummaryFunction);
 
     /** POST routes */
     router.post('/add-data', IndexPostFunctions.addDataPostFunction);
