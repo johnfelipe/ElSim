@@ -1,7 +1,8 @@
 /* jshint esversion: 6 */
-
+'use strict';
 const Result = require('../../models/result'),
-    Util = require('../util-module');
+    Util = require('../util-module'),
+    Moment = require('moment');
 
 /**
  * All the callback functions of index GET routes
@@ -11,7 +12,7 @@ const Result = require('../../models/result'),
     function indexGetFunction(req, res) {
         let options = {
             title: 'EllSim',
-            moment: require('moment'),
+            moment: Moment,
             user: req.user,
             advice: null
         };

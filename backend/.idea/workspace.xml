@@ -2,158 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd03d9dc-bbac-4ed5-a69d-e4ddc8716d37" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/module-db-manager-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/module-district-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/module-electoral-system-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/module-functions_api-functions.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/module-functions_index-get-functions.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/module-functions_index-post-functions.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/module-functions_parties.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/module-graphics_bar-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/module-graphics_colors.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/module-graphics_icons.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/module-graphics_json-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/module-graphics_map-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/module-graphics_pie-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/module-util-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/modules_functions_parties.js.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/modules_graphics_map-module.js.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/module-API-Functions.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/module-db-manager-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/module-district-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/module-electoral-system-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/module-functions_api-functions.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/module-functions_index-get-functions.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/module-functions_index-post-functions.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/module-functions_parties.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/module-graphics_bar-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/module-graphics_colors.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/module-graphics_icons.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/module-graphics_json-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/module-graphics_map-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/module-graphics_pie-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/module-util-module.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/modules_functions_parties.js.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_map-module.js.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/doc/module-Bar.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/doc/module-IndexPostFunctions.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/doc/module-modules_db-manager-module.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/doc/module-modules_district-module.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/doc/module-modules_electoral-system-module.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/doc/module-modules_functions_api-functions.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/doc/module-modules_functions_index-get-functions.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_colors.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_icons.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_json-module.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/doc/module-modules_graphics_pie-module.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/doc/module-modules_util-module.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Gruntfile.js.html" afterPath="$PROJECT_DIR$/doc/Gruntfile.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/app.js.html" afterPath="$PROJECT_DIR$/doc/app.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/index.html" afterPath="$PROJECT_DIR$/doc/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/models_log.js.html" afterPath="$PROJECT_DIR$/doc/models_log.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/models_result.js.html" afterPath="$PROJECT_DIR$/doc/models_result.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/models_subscriber.js.html" afterPath="$PROJECT_DIR$/doc/models_subscriber.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/models_user.js.html" afterPath="$PROJECT_DIR$/doc/models_user.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-Graphic.html" afterPath="$PROJECT_DIR$/doc/module-Graphic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-Gruntfile.html" afterPath="$PROJECT_DIR$/doc/module-Gruntfile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-app.html" afterPath="$PROJECT_DIR$/doc/module-app.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-models_log.html" afterPath="$PROJECT_DIR$/doc/module-models_log.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-models_result.html" afterPath="$PROJECT_DIR$/doc/module-models_result.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-models_subscriber.html" afterPath="$PROJECT_DIR$/doc/module-models_subscriber.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-models_user.html" afterPath="$PROJECT_DIR$/doc/module-models_user.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-routes_index.html" afterPath="$PROJECT_DIR$/doc/module-routes_index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-test_district-test.html" afterPath="$PROJECT_DIR$/doc/module-test_district-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-test_electoral-system-test.html" afterPath="$PROJECT_DIR$/doc/module-test_electoral-system-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-test_graphic-test.html" afterPath="$PROJECT_DIR$/doc/module-test_graphic-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-test_model-test.html" afterPath="$PROJECT_DIR$/doc/module-test_model-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/module-test_other-test.html" afterPath="$PROJECT_DIR$/doc/module-test_other-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_db-manager-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_db-manager-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_district-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_district-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_electoral-system-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_electoral-system-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_functions_api-functions.js.html" afterPath="$PROJECT_DIR$/doc/modules_functions_api-functions.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_functions_index-get-functions.js.html" afterPath="$PROJECT_DIR$/doc/modules_functions_index-get-functions.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_functions_index-post-functions.js.html" afterPath="$PROJECT_DIR$/doc/modules_functions_index-post-functions.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_bar-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_bar-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_colors.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_colors.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_graphic-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_graphic-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_icons.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_icons.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_json-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_json-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_graphics_pie-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_graphics_pie-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/modules_util-module.js.html" afterPath="$PROJECT_DIR$/doc/modules_util-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/routes_index.js.html" afterPath="$PROJECT_DIR$/doc/routes_index.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/routes_users.js.html" afterPath="$PROJECT_DIR$/doc/routes_users.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/test_district-test.js.html" afterPath="$PROJECT_DIR$/doc/test_district-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/test_electoral-system-test.js.html" afterPath="$PROJECT_DIR$/doc/test_electoral-system-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/test_graphic-test.js.html" afterPath="$PROJECT_DIR$/doc/test_graphic-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/test_model-test.js.html" afterPath="$PROJECT_DIR$/doc/test_model-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/test_other-test.js.html" afterPath="$PROJECT_DIR$/doc/test_other-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/db-manager-module.js" afterPath="$PROJECT_DIR$/modules/db-manager-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/district-module.js" afterPath="$PROJECT_DIR$/modules/district-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/electoral-system-module.js" afterPath="$PROJECT_DIR$/modules/electoral-system-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/functions/api-functions.js" afterPath="$PROJECT_DIR$/modules/functions/api-functions.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/functions/index-get-functions.js" afterPath="$PROJECT_DIR$/modules/functions/index-get-functions.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/functions/index-post-functions.js" afterPath="$PROJECT_DIR$/modules/functions/index-post-functions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/functions/parties.js" afterPath="$PROJECT_DIR$/modules/functions/parties.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/graphics/bar-module.js" afterPath="$PROJECT_DIR$/modules/graphics/bar-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/graphics/colors.js" afterPath="$PROJECT_DIR$/modules/graphics/colors.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/graphics/graphic-module.js" afterPath="$PROJECT_DIR$/modules/graphics/graphic-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/graphics/icons.js" afterPath="$PROJECT_DIR$/modules/graphics/icons.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/graphics/json-module.js" afterPath="$PROJECT_DIR$/modules/graphics/json-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/graphics/map-module.js" afterPath="$PROJECT_DIR$/modules/graphics/map-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/graphics/pie-module.js" afterPath="$PROJECT_DIR$/modules/graphics/pie-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/util-module.js" afterPath="$PROJECT_DIR$/modules/util-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/Gruntfile.js.html" afterPath="$PROJECT_DIR$/public/doc/Gruntfile.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/app.js.html" afterPath="$PROJECT_DIR$/public/doc/app.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/index.html" afterPath="$PROJECT_DIR$/public/doc/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/models_log.js.html" afterPath="$PROJECT_DIR$/public/doc/models_log.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/models_result.js.html" afterPath="$PROJECT_DIR$/public/doc/models_result.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/models_subscriber.js.html" afterPath="$PROJECT_DIR$/public/doc/models_subscriber.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/models_user.js.html" afterPath="$PROJECT_DIR$/public/doc/models_user.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-Bar.html" afterPath="$PROJECT_DIR$/public/doc/module-Bar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-Graphic.html" afterPath="$PROJECT_DIR$/public/doc/module-Graphic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-Gruntfile.html" afterPath="$PROJECT_DIR$/public/doc/module-Gruntfile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-IndexPostFunctions.html" afterPath="$PROJECT_DIR$/public/doc/module-IndexPostFunctions.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-app.html" afterPath="$PROJECT_DIR$/public/doc/module-app.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-models_log.html" afterPath="$PROJECT_DIR$/public/doc/module-models_log.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-models_result.html" afterPath="$PROJECT_DIR$/public/doc/module-models_result.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-models_subscriber.html" afterPath="$PROJECT_DIR$/public/doc/module-models_subscriber.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-models_user.html" afterPath="$PROJECT_DIR$/public/doc/module-models_user.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_db-manager-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_db-manager-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_district-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_district-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_electoral-system-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_electoral-system-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_functions_index-get-functions.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_functions_index-get-functions.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_colors.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_colors.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_icons.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_icons.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_json-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_json-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_graphics_pie-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_graphics_pie-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-modules_util-module.html" afterPath="$PROJECT_DIR$/public/doc/module-modules_util-module.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-routes_index.html" afterPath="$PROJECT_DIR$/public/doc/module-routes_index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-test_district-test.html" afterPath="$PROJECT_DIR$/public/doc/module-test_district-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-test_electoral-system-test.html" afterPath="$PROJECT_DIR$/public/doc/module-test_electoral-system-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-test_graphic-test.html" afterPath="$PROJECT_DIR$/public/doc/module-test_graphic-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-test_model-test.html" afterPath="$PROJECT_DIR$/public/doc/module-test_model-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/module-test_other-test.html" afterPath="$PROJECT_DIR$/public/doc/module-test_other-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_db-manager-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_db-manager-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_district-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_district-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_electoral-system-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_electoral-system-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_functions_api-functions.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_functions_api-functions.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_functions_index-get-functions.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_functions_index-get-functions.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_functions_index-post-functions.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_functions_index-post-functions.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_bar-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_bar-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_colors.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_colors.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_graphic-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_graphic-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_icons.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_icons.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_json-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_json-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_graphics_pie-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_graphics_pie-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/modules_util-module.js.html" afterPath="$PROJECT_DIR$/public/doc/modules_util-module.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/routes_index.js.html" afterPath="$PROJECT_DIR$/public/doc/routes_index.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/routes_users.js.html" afterPath="$PROJECT_DIR$/public/doc/routes_users.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/test_district-test.js.html" afterPath="$PROJECT_DIR$/public/doc/test_district-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/test_electoral-system-test.js.html" afterPath="$PROJECT_DIR$/public/doc/test_electoral-system-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/test_graphic-test.js.html" afterPath="$PROJECT_DIR$/public/doc/test_graphic-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/test_model-test.js.html" afterPath="$PROJECT_DIR$/public/doc/test_model-test.js.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/doc/test_other-test.js.html" afterPath="$PROJECT_DIR$/public/doc/test_other-test.js.html" />
     </list>
     <ignored path="Backend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -176,31 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="electoral-system-module.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/electoral-system-module.js">
+      <file leaf-file-name="index-post-functions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/functions/index-post-functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="27" column="11" lean-forward="false" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="util-module.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/modules/util-module.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="583">
-              <caret line="154" column="11" lean-forward="false" selection-start-line="154" selection-start-column="11" selection-end-line="154" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/passport/login.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="25" lean-forward="false" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
+            <state relative-caret-position="1566">
+              <caret line="87" column="42" lean-forward="true" selection-start-line="87" selection-start-column="42" selection-end-line="87" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -266,11 +96,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="api-functions.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="api-functions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/functions/api-functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
+            <state relative-caret-position="288">
               <caret line="141" column="5" lean-forward="false" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index-get-functions.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/functions/index-get-functions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3287">
+              <caret line="4" column="31" lean-forward="true" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -373,8 +223,6 @@
         <option value="$PROJECT_DIR$/config.js" />
         <option value="$PROJECT_DIR$/Gruntfile.js" />
         <option value="$PROJECT_DIR$/modules/graphics/spain-map.js" />
-        <option value="$PROJECT_DIR$/modules/functions/index-get-functions.js" />
-        <option value="$PROJECT_DIR$/modules/functions/index-post-functions.js" />
         <option value="$PROJECT_DIR$/modules/functions/parties.js" />
         <option value="$PROJECT_DIR$/modules/graphics/bar-module.js" />
         <option value="$PROJECT_DIR$/modules/graphics/colors.js" />
@@ -389,6 +237,8 @@
         <option value="$PROJECT_DIR$/modules/util-module.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/modules/functions/api-functions.js" />
+        <option value="$PROJECT_DIR$/modules/functions/index-post-functions.js" />
+        <option value="$PROJECT_DIR$/modules/functions/index-get-functions.js" />
       </list>
     </option>
   </component>
@@ -412,8 +262,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-1" />
     <option name="y" value="24" />
-    <option name="width" value="1280" />
-    <option name="height" value="780" />
+    <option name="width" value="1282" />
+    <option name="height" value="753" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -769,7 +619,7 @@
       <workItem from="1481710104314" duration="29000" />
       <workItem from="1481710229309" duration="5704000" />
       <workItem from="1481828678833" duration="1643000" />
-      <workItem from="1481830384634" duration="5782000" />
+      <workItem from="1481830384634" duration="7113000" />
     </task>
     <task id="LOCAL-00001" summary="Integrando git con WebStorm&#10;">
       <created>1476441402056</created>
@@ -796,10 +646,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="367585000" />
+    <option name="totallyTimeSpent" value="368916000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="24" width="1280" height="780" extended-state="7" />
+    <frame x="-1" y="24" width="1282" height="753" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21875" sideWeight="0.5146379" order="0" side_tool="false" content_ui="combo" />
@@ -1079,22 +929,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/functions/index-get-functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/functions/index-post-functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="41" lean-forward="false" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/functions/parties.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -1259,8 +1093,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/functions/api-functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
+        <state relative-caret-position="288">
           <caret line="141" column="5" lean-forward="false" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/functions/index-post-functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1566">
+          <caret line="87" column="42" lean-forward="true" selection-start-line="87" selection-start-column="42" selection-end-line="87" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/functions/index-get-functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3287">
+          <caret line="4" column="31" lean-forward="true" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
           <folding />
         </state>
       </provider>

@@ -91,31 +91,31 @@ const Graphic = require('./../graphics/graphic-module'),
     module.exports = {
         /**
          * @description
-         * @function
+         * @function Handles add data form
          */
         addDataPostFunction: addDataPostFunction,
 
         /**
          * @description
-         * @function
+         * @function Handles delete data form
          */
         deleteDataPostFunction: deleteDataPostFunction,
 
         /**
          * @description
-         * @function
+         * @function Handles single district chart form
          */
         graphicFormPostFunction: graphicFormPostFunction,
 
         /**
          * @description
-         * @function
+         * @function Handles country chart form
          */
         countryFormPostFunction: countryFormPostFunction,
 
         /**
          * @description
-         * @function
+         * @function Saves a result
          */
         saveResultFunction: saveResultFunction
     };
