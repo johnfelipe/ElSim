@@ -1,52 +1,125 @@
-# TFG #
+# How to use
 
-![TRAVIS](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)
+Install nodemon:
 
-Repositorio para el desarrollo del TFG del Grado en Ingeniería Informática (UGR)
+    $ sudo npm i -g nodemon
+    
+Install dependencies:
 
------------------
+    $ npm i
+    
+Run project:
 
-## Planificación y progreso ##
+    $ npm start
 
-Se usará el sistema [Trello](https://trello.com), para mas información contactar directamente
-en mi correo jesusgonzaleznovez@gmail.com
+Web routes:
 
-## Tecnologías usadas ##
+    /
+    
+Api routes:
 
-Para la parte del servidor se usará NodeJS & MongoDB. Para la parte del cliente web se usará 
-HTML5/Bootstrap y para la app mobile se usará Ionic(Cordova + AngularJS).
+    /api/
 
-[https://nodejs.org/en/](https://nodejs.org/en/)
 
-[https://www.mongodb.com/es](https://www.mongodb.com/es)
+Run tests:
 
-[http://ionicframework.com/](http://ionicframework.com/)
+    $ npm test
+    
+Nodeenv:
 
-[http://getbootstrap.com/](http://getbootstrap.com/)
+    $ nodeenv env
+    $ . env/bin/activate
+    (env)$ npm test
+    (env)$ npm start   
 
-## ¿Qué idea desarrolla? ##
+Environment:
 
-El proyecto está centrado en el análisis matemáticamente hablando de todo lo referente
-al sistema electoral usado en España.
+    $ node -v
+        v.6.9.1
+    $ npm -v
+        3.10.8
 
-Muchísimos parámetros afectan, depende de muchos factores y podría ser sorprendente
-como varía un resultado viéndose afectado uno o varios parámetros de los que intervienen.
+# Generate documentation
 
-Podrá realizar simulaciones totalmente personalizables, generar gráficas de diversos tipos,
-consultar históricos, etc ...
+Only the first time:
+    
+    $ chmod a+x ./gen_doc.sh
 
-## ¿A quién va dirigido? ##
+Generate documentation:
 
-Principalmente a personal dedicado a la investigación de ámbito político y por otro lado
-al sector de la docencia pues una parte del sistema abarca una herramienta compleja para simulaciones,
-predicciones, análisis estadístico pero una segunda parte trata sobre como acercar a la gente
-joven nociones básicas sobre este tema de una forma interactiva y amena.
+    $ ./gen_doc.sh
+    
+How to read the documentation:
 
-## ¿Qué partes lo componen? ##
+    If you are running the server go to:
+        /doc/index.html
+        
+    else you can read under directory:
+        ./public/doc/*
+   
+# Web auth and API auth   
+   
+Is the same. You can use your user to login on the web or to
+make requests to the api. 
 
-El backend será la parte fundamental, pues contendrá una api usable desde aplicaciones móviles/web, que
-se encargará de realizar todos los calculos, generar gráficas, analizar los datos, etc ...
+Web:
 
-Una interfaz web con dos partes: la herramienta técnica y por otro lado la parte educativa.
+    Click login button
+    
+        OR
+    
+    Go /login
 
-Una aplicación móvil, aún por definir y con poca prioridad en estos momentos.
+API:
+
+    Post request with:
+    {
+        'email': youremail,
+        'password': yourpassword
+    }
+   
+# API 
+## Token 
+
+Of course you must to have a token to authenticate and use the API. The reason is
+to limit the abuse of the API. You can use the API 2500 requests per day so you have no problem to use in the free
+way.
+
+## Free usage
+
+If you are planning to use the API in an external app or service, then you should pay a little to grow up your limit up to
+1000000 requests per day.
+
+
+## API methods
+
+GET
+
+    /setup
+    /
+    /users
+    /check
+    /logs
+    /resultados/year/:anio
+    /resultados/district/:cod_provincia
+    /resultados/setup
+    /resultados/:id
+    /resultados
+
+POST 
+
+    /users
+    /resultados
+
+PUT
+
+    /users/:id
+    /resultados/:id
+
+DELETE
+
+    /users/:id
+    /logs
+    /resultados/:id
+    /resultados
+    
