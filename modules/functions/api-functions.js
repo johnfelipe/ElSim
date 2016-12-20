@@ -36,6 +36,14 @@ const User = require('../../models/user'),
         }
     }
 
+    function findOneLog(req, res) {
+        resError(req, res);
+    }
+
+    function findOneUser(req, res) {
+        resError(req, res);
+    }
+
     function findAllUsers(req, res) {
         User.find({}, userFinded);
 
@@ -65,10 +73,6 @@ const User = require('../../models/user'),
 
     function updateOneUser(req, res) {
         resError(req, res);
-    }
-
-    function check(req, res) {
-        res.json(req.decoded);
     }
 
     function apiWelcome(req, res) {
@@ -101,18 +105,6 @@ const User = require('../../models/user'),
     function deleteAllResultados(req, res) {
         DB.deleteAllResultados(function () {
             apiResponse(req, res, false, 'All results removed', null);
-        });
-    }
-
-    function findManyResultadosByAnio(req, res) {
-        DB.findManyResultadosByAnio(req.param('anio'), function (data) {
-            apiResponse(req, res, false, 'All results by year', data);
-        });
-    }
-
-    function findManyResultadosByProvincia(req, res) {
-        DB.findManyResultadosByProvincia(req.param('cod_provincia'), function (data) {
-            apiResponse(req, res, false, 'All results by district', data);
         });
     }
 
@@ -206,12 +198,6 @@ const User = require('../../models/user'),
 
         /**
          * @function
-         * @description Checks system info
-         */
-        check: check,
-
-        /**
-         * @function
          * @description Api welcome function
          */
         apiWelcome: apiWelcome,
@@ -246,17 +232,6 @@ const User = require('../../models/user'),
          */
         deleteAllResultados: deleteAllResultados,
 
-        /**
-         * @function
-         * @description Finds many results by year
-         */
-        findManyResultadosByAnio: findManyResultadosByAnio,
-
-        /**
-         * @function
-         * @description Finds many results by district
-         */
-        findManyResultadosByProvincia: findManyResultadosByProvincia,
 
         /**
          * @function
@@ -269,6 +244,18 @@ const User = require('../../models/user'),
          * @description Loads results in csv format
          */
         loadCsv: loadCsv,
+
+        /**
+         * @function
+         * @description To find one user
+         */
+        findOneUser: findOneUser,
+
+        /**
+         * @function
+         * @description To find one log
+         */
+        findOneLog: findOneLog,
 
         /**
          * @function

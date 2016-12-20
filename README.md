@@ -92,34 +92,42 @@ If you are planning to use the API in an external app or service, then you shoul
 
 
 ## API methods
-
-GET
-
-    /setup
-    /
-    /users
-    /check
-    /logs
-    /resultados/year/:anio
-    /resultados/district/:cod_provincia
-    /resultados/setup
-    /resultados/:id
-    /resultados
-
-POST 
-
-    /users
-    /resultados
-
-PUT
-
-    /users/:id
-    /resultados/:id
-
-DELETE
-
-    /users/:id
-    /logs
-    /resultados/:id
-    /resultados
     
+GET api welcome route
+    
+    /api/
+    
+GET api setup routes
+
+    /api/setup
+    /api/loadCsv
+
+GET api models routes
+
+    /api/users/:id
+    /api/users
+    /api/logs/:id
+    /api/logs
+    /api/resultados/:id
+    /api/resultados
+
+POST api authenticate route
+
+    /api/authenticate
+
+POST api models routes
+
+    /api/users
+    /api/resultados
+
+PUT api models routes
+
+    /api/users/:id
+    /api/resultados/:id
+
+DELETE api models routes
+
+    /api/users/:id
+    /api/logs
+    /api/resultados/:id
+    /api/resultados

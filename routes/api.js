@@ -68,12 +68,12 @@ module.exports = function () {
 
     router.get('/setup', API.setup);
     router.get('/', API.apiWelcome);
+    router.get('/loadCsv', API.loadCsv);
+
+    router.get('/users/:id', API.findOneUser);
     router.get('/users', API.findAllUsers);
-    router.get('/check', API.check);
+    router.get('/logs/:id', API.findOneLog);
     router.get('/logs', API.findLogs);
-    router.get('/resultados/year/:anio', API.findManyResultadosByAnio);
-    router.get('/resultados/district/:cod_provincia', API.findManyResultadosByProvincia);
-    router.get('/resultados/setup', API.loadCsv);
     router.get('/resultados/:id', API.findOneResultado);
     router.get('/resultados', API.findAllResultados);
 
