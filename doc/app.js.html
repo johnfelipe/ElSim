@@ -40,10 +40,7 @@ let express = require('express'),
     bodyParser = require('body-parser'),
     app = express(),
     mongoose = require('mongoose'),
-    jwt = require('jsonwebtoken'),
     config = require('./config'),
-    api = require('./modules/functions/api-functions'),
-    User = require('./models/user'),
     passport = require('passport'),
     flash = require('connect-flash'),
     expressSession = require('express-session');
@@ -87,112 +84,14 @@ app.use('/', routes);
 app.use('/users', users);
 
 /** Api routes under authentication */
-let apiRoutes = express.Router();
-
-/**
- * To check if is authenticated
- * @function app/isAuthenticated
- */
-let isAuthenticated = function (req, res, next) {
-    let token = req.body.token || req.param('token') || req.headers['x-access-token'];
-    if (token) {
-        jwt.verify(token, app.get('superSecret'), function (err, decoded) {
-            if (err) {
-                return res.json({success: false, message: 'Failed to authenticate token.'});
-            } else {
-                req.decoded = decoded;
-                next();
-            }
-        });
-    } else {
-        return res.status(403).send({
-            success: false,
-            message: 'No token provided.'
-        });
-    }
-};
-
-/**
- * Function to authenticate
- * @function app/authenticate
- */
-let authenticate = function (req, res) {
-    console.log('user ' + req.body.email + ' is trying to authenticate.');
-    User.findOne({email: req.body.email}, done);
-    function done(err, user) {
-        let object = {
-            success: false,
-            message: 'Authentication failed',
-            token: null
-        };
-        if (err) throw err;
-        if (user) {
-            if (user.password === req.body.password) {
-                let token = jwt.sign(user, app.get('superSecret'), {
-                    expiresIn: 3600 // expires in 1 hours
-                });
-                object.success = true;
-                object.message = 'Enjoy your token!';
-                object.token = token;
-            }
-        }
-        res.json(object);
-    }
-};
-
-/**
- * AUTH routes
- */
-apiRoutes.post('/authenticate', authenticate);
-apiRoutes.use(isAuthenticated);
-
-/**
- * GET routes
- * @see modules/functions/api-functions
- */
-app.get('/setup', api.setup);
-app.get('/loadCsv', api.loadCsv);
-apiRoutes.get('/', api.apiWelcome);
-apiRoutes.get('/users', api.findAllUsers);
-apiRoutes.get('/check', api.check);
-apiRoutes.get('/logs', api.findLogs);
-apiRoutes.get('/resultados/year/:anio', api.findManyResultadosByAnio);
-apiRoutes.get('/resultados/district/:cod_provincia', api.findManyResultadosByProvincia);
-apiRoutes.get('/resultados/setup', api.loadCsv);
-apiRoutes.get('/resultados/:id', api.findOneResultado);
-apiRoutes.get('/resultados', api.findAllResultados);
-
-/**
- * POST routes
- * @see modules/functions/api-functions
- */
-apiRoutes.post('/users', api.saveOneUser);
-apiRoutes.post('/resultados', api.saveOneResultado);
-
-/**
- * PUT routes
- * @see modules/functions/api-functions
- */
-apiRoutes.put('/users/:id', api.updateOneUser);
-apiRoutes.put('/resultados/:id', api.updateOneResultado);
-
-/**
- * DELETE routes
- * @see modules/functions/api-functions
- */
-apiRoutes.delete('/users/:id', api.deleteOneUser);
-apiRoutes.delete('/logs', api.deleteAllLogs);
-apiRoutes.delete('/resultados/:id', api.deleteOneResultado);
-apiRoutes.delete('/resultados', api.deleteAllResultados);
-
-
+let apiRoutes = require('./routes/api')();
 app.use('/api', apiRoutes);
 
 /**
  * Catch 404 and forward to error handler
  */
 app.use(function (req, res, next) {
-    var err = new Error('Not Found');
+    let err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
@@ -238,13 +137,13 @@ module.exports = app;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-db-manager-module.html">db-manager-module</a></li><li><a href="module-district-module.html">district-module</a></li><li><a href="module-electoral-system-module.html">electoral-system-module</a></li><li><a href="module-functions_api-functions.html">functions/api-functions</a></li><li><a href="module-functions_index-get-functions.html">functions/index-get-functions</a></li><li><a href="module-functions_index-post-functions.html">functions/index-post-functions</a></li><li><a href="module-functions_parties.html">functions/parties</a></li><li><a href="module-Graphic.html">Graphic</a></li><li><a href="module-graphics_bar-module.html">graphics/bar-module</a></li><li><a href="module-graphics_colors.html">graphics/colors</a></li><li><a href="module-graphics_icons.html">graphics/icons</a></li><li><a href="module-graphics_json-module.html">graphics/json-module</a></li><li><a href="module-graphics_map-module.html">graphics/map-module</a></li><li><a href="module-graphics_pie-module.html">graphics/pie-module</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_subscriber.html">models/subscriber</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li><li><a href="module-util-module.html">util-module</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-db-manager-module.html">db-manager-module</a></li><li><a href="module-district-module.html">district-module</a></li><li><a href="module-electoral-system-module.html">electoral-system-module</a></li><li><a href="module-functions_admin-functions.html">functions/admin-functions</a></li><li><a href="module-functions_api-functions.html">functions/api-functions</a></li><li><a href="module-functions_index-get-functions.html">functions/index-get-functions</a></li><li><a href="module-functions_index-post-functions.html">functions/index-post-functions</a></li><li><a href="module-functions_parties.html">functions/parties</a></li><li><a href="module-Graphic.html">Graphic</a></li><li><a href="module-graphics_bar-module.html">graphics/bar-module</a></li><li><a href="module-graphics_colors.html">graphics/colors</a></li><li><a href="module-graphics_icons.html">graphics/icons</a></li><li><a href="module-graphics_json-module.html">graphics/json-module</a></li><li><a href="module-graphics_map-module.html">graphics/map-module</a></li><li><a href="module-graphics_pie-module.html">graphics/pie-module</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_subscriber.html">models/subscriber</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li><li><a href="module-util-module.html">util-module</a></li></ul><h3>Global</h3><ul><li><a href="global.html#app/authenticate">app/authenticate</a></li><li><a href="global.html#app/isAuthenticated">app/isAuthenticated</a></li><li><a href="global.html#express">express</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri Dec 16 2016 13:38:56 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Dec 20 2016 13:17:16 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>
