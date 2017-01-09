@@ -90,6 +90,7 @@ const Graphic = require('../graphics/graphic-module'),
 
     function countryFormPostFunction(req, res) {
         Graphic.calculateCountry(req, function (options) {
+           options['colors'] = require('../graphics/colors');
             res.render('pages/country-chart', options);
         });
     }

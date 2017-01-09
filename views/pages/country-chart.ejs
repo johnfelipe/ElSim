@@ -42,49 +42,140 @@
 <script type="text/javascript">
 
     jQuery.noConflict();
+    var global = <%- JSON.stringify(global) %>;
+    var colors = <%- JSON.stringify(colors) %>;
+    function getParties(chartCode){
+        for(var g of global){
+            if(g.cc === chartCode){
+                return JSON.stringify(g.parties,null,2);
+            }
+        }
+    }
+    function getColor(parties){
+        var mayor = {
+            party: '',
+            mandates: 0
+        };
+        var ps = JSON.parse(parties);
+        Object.keys(ps).forEach(function(key){
+            console.log(ps[key]);
+           if(parseInt(ps[key]) >= mayor.mandates){
+               mayor.party = key;
+               mayor.mandates = ps[key];
+           }
+        });
 
+        return colors[mayor.party];
+    }
     var options = {
+        chart: {
+            borderWidth: 1
+        },
 
         title: {
-            text: 'Highmaps basic demo'
+            text: 'Nordic countries'
         },
-
         subtitle: {
-            text: 'Source map: <a href="https://code.highcharts.com/mapdata/countries/es/es-all.js">Spain</a>'
+            text: 'Demo of drawing all areas in the map, only highlighting partial data'
         },
 
-        colorAxis: {
-            min: 0
+        legend: {
+            enabled: false
         },
-        tooltip: {
-            backgroundColor: 'none',
-            borderWidth: 0,
-            shadow: true,
-            useHTML: true,
-            padding: 0,
-            pointFormat: '{point.partidos}',
-            positioner: function () {
-                return {x: 0, y: 250};
-            }
-        },
+
         series: [{
-            data: data,
+            name: 'Country',
             mapData: Highcharts.maps['countries/es/es-all'],
-            joinBy: 'hc-key',
-            name: 'Partidos',
-            states: {
-                hover: {
-                    color: '#a4edba'
-                }
-            },
+            data: [{
+                'hc-key': 'es-c',
+                value: 0,
+                parties: getParties('es-c'),
+                color: getColor(getParties('es-c'))
+            }, {
+                'hc-key': 'es-vi',
+                value: 0,
+                parties: getParties('es-vi'),
+                color: getColor(getParties('es-vi'))
+            }, {
+                'hc-key': 'es-ab',
+                value: 0,
+                parties: getParties('es-ab'),
+                color: getColor(getParties('es-ab'))
+            }, {
+                'hc-key': 'es-a',
+                value: 0,
+                parties: getParties('es-a'),
+                color: getColor(getParties('es-a'))
+            }, {
+                'hc-key': 'es-o',
+                value: 0,
+                parties: getParties('es-o'),
+                color: getColor(getParties('es-o'))
+            }, {
+                'hc-key': 'es-av',
+                value: 0,
+                parties: getParties('es-av'),
+                color: getColor(getParties('es-av'))
+            }, {
+                'hc-key': 'es-ba',
+                value: 0,
+                parties: getParties('es-ba'),
+                color: getColor(getParties('es-ba'))
+            }, {
+                'hc-key': 'es-pm',
+                value: 0,
+                parties: getParties('es-pm'),
+                color: getColor(getParties('es-pm'))
+            }, {
+                'hc-key': 'es-b',
+                value: 0,
+                parties: getParties('es-b'),
+                color: getColor(getParties('es-b'))
+            }, {
+                'hc-key': 'es-bi',
+                value: 0,
+                parties: getParties('es-bi'),
+                color: getColor(getParties('es-bi'))
+            }, {
+                'hc-key': 'es-bu',
+                value: 0,
+                parties: getParties('es-bu'),
+                color: getColor(getParties('es-bu'))
+            }, {
+                'hc-key': 'es-cc',
+                value: 0,
+                parties: getParties('es-cc'),
+                color: getColor(getParties('es-cc'))
+            }, {
+                'hc-key': 'es-ca',
+                value: 0,
+                parties: getParties('es-ca'),
+                color: getColor(getParties('es-ca'))
+            }, {
+                'hc-key': 'es-s',
+                value: 0,
+                parties: getParties('es-s'),
+                color: getColor(getParties('es-s'))
+            }],
             dataLabels: {
                 enabled: true,
-                format: '{point.name}'
+                color: '#FFFFFF',
+                formatter: function () {
+                    if (this.point.value) {
+                        return this.point.name;
+                    }
+                }
+            },
+            tooltip: {
+                useHTML: true,
+                headerFormat: '',
+                pointFormat: '{point.name}<br>{point.parties}'
             }
         }]
     };
     (function ($) {
         $(function () {
+
             $('#container').highcharts('Map', options);
         });
     })(jQuery);

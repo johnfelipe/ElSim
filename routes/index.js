@@ -27,18 +27,18 @@ module.exports = function(passport){
     router.get('/', IndexGetFunctions.indexGetFunction);
     router.get('/help', IndexGetFunctions.helpGetFunction);
     router.get('/leaflet-example', IndexGetFunctions.leafletExampleGetFunction);
-    router.get('/graphic-form', isAuthenticated, IndexGetFunctions.graphicFormGetFunction);
+    router.get('/graphic-form', IndexGetFunctions.graphicFormGetFunction);
     router.get('/learn', IndexGetFunctions.learnGetFunction);
     router.get('/laws', IndexGetFunctions.lawsGetFunction);
-    router.get('/add-data', isAuthenticated, IndexGetFunctions.addDataGetFunction);
-    router.get('/stored-data', isAuthenticated, IndexGetFunctions.storedDataFunction);
+    router.get('/add-data', IndexGetFunctions.addDataGetFunction);
+    router.get('/stored-data', IndexGetFunctions.storedDataFunction);
     router.get('/login', IndexGetFunctions.loginGetFunction);
     router.get('/signup', IndexGetFunctions.signUpGetFunction);
     router.get('/signout', IndexGetFunctions.signOutGetFunction);
     router.get('/parties', IndexGetFunctions.partiesFunction);
     router.get('/resultados/:id', api.findOneResultado);
-    router.get('/delete-data', isAuthenticated, IndexGetFunctions.deleteDataGetFunction);
-    router.get('/admin', isAuthenticated, Admin.adminSummaryFunction);
+    router.get('/delete-data', IndexGetFunctions.deleteDataGetFunction);
+    router.get('/admin', Admin.adminSummaryFunction);
 
     /** POST routes */
     router.post('/add-data', IndexPostFunctions.addDataPostFunction);

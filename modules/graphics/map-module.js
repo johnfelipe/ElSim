@@ -1,7 +1,6 @@
 /* jshint esversion: 6 */
 
-let District = require('../district-module'),
-    spainMap = require('./spain-map');
+let District = require('../district-module');
 /**
  * To handle map charts
  * @module graphics/map-module
@@ -52,6 +51,19 @@ let District = require('../district-module'),
         return options;
     }
 
+    function calculateCode(cod_provincia){
+        let provincias = [
+            'es-NULL','es-vi','es-ab','es-a','es-al','es-av','es-ba','es-pm',
+            'es-b','es-bu','es-cc','es-ca','es-cs','es-cr','es-co','es-c',
+            'es-cu','es-gi','es-gr','es-gu','es-ss','es-h','es-hu','es-j',
+            'es-le','es-l','es-lo','es-lu','es-m','es-ma','es-mu','es-na',
+            'es-or','es-o','es-p','es-gc','es-po','es-sa','es-tf','es-s',
+            'es-sg','es-se','es-so','es-t','es-te','es-to','es-v','es-va',
+            'es-bi','es-za','es-z','es-ce','es-ml'
+        ];
+        return provincias[cod_provincia];
+    }
+
     function calculateGlobal(data) {
         let votes = [],
             names = [],
@@ -62,10 +74,12 @@ let District = require('../district-module'),
                 blankVotes: 0
             };
         let global = [];
-        for (let i = 0, len = data.length; i < len; i++) {
+        let i,len = data.length;
+        for (i = 0; i < len; i++) {
             config.blankVotes = data[i].votos_blanco;
             Object.keys(data[i].partidos).forEach(iteration);
             result = District.compute(votes, names, config);
+            result['cc'] = calculateCode(data[i].cod_provincia);
             global.push(result);
             votes = [];
             names = [];

@@ -64,7 +64,7 @@ let authenticate = function (req, res) {
 };
 module.exports = function () {
     router.post('/authenticate', authenticate);
-    router.get('/', isAuthenticated, API.apiWelcome);
+    router.get('/', API.apiWelcome);
 
     router.get('/setup', API.setup);
     router.get('/', API.apiWelcome);

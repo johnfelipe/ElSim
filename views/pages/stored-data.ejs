@@ -7,21 +7,18 @@
     <div class="card-deck-wrapper">
         <div class="card-deck">
             <div class="card">
-
                 <div class="card-block">
                     <h4 class="card-title">
-                        Stored data
+                        <span class="fa fa-database"></span> Stored data
                     </h4>
                     <hr>
                     <% for(let i = 0, len = data.length; i < len; ++i) { %>
-
                     <button class="btn btn-block btn-secondary" id="<%= data[i]._id %>"
                             onclick="fillContent('<%= data[i]._id %>')">
                         <%= data[i].eleccion.fecha.slice(4, 6) %>/<%= data[i].eleccion.fecha.slice(0, 4) %>,
                         <%= data[i].provincia %>, by <%= data[i].eleccion.autor %>
                         <span class="fa fa-chevron-circle-right" style="float:right;"></span>
                     </button>
-
                     <% } %>
                 </div>
             </div>
@@ -29,7 +26,7 @@
 
                 <div class="card-block">
                     <h4 class="card-title">
-                        Selected data
+                        <span class="fa fa-check-circle-o"></span> Selected data
                     </h4>
                     <hr>
                     <div class="card-text" id="content">
@@ -42,37 +39,24 @@
 </div>
 <script>
     function fillContent(id) {
-        /* comunidad: { type: String, required: true },
-         cod_provincia: { type: Number, required: true},
-         provincia: { type: String, required: true },
-         poblacion: { type: Number, required: true },
-         num_mesas: { type: Number, required: true },
-         total_censo_electoral: { type: Number, required: true },
-         total_votantes: { type: Number, required: true },
-         votos_validos: { type: Number, required: true },
-         votos_candidaturas: { type: Number, required: true },
-         votos_blanco: { type: Number, required: true },
-         votos_nulos: { type: Number, required: true },
-         eleccion: { type: Object, required: true},
-         partidos: { type: Object, required: true }
-         */
-        var content = '<ul>';
+        var content = '<ul class="list-group"> ';
         $.get('/resultados/' + id, function (data, status) {
-            content += '<li><span class="fa fa-user"></span> <b>author:</b> ' + data.result.eleccion.autor + '</li>';
-            content += '<li><span class="fa fa-calendar"></span> <b>date:</b> ' + data.result.eleccion.fecha + '</li>';
-            content += '<li><span class="fa fa-map-o"></span> <b>comunity:</b> ' + data.result.comunidad + '</li>';
-            content += '<li><span class="fa fa-map-marker"></span> <b>district:</b> ' + data.result.provincia + '(' + data.result.cod_provincia + ')</li>';
-            content += '<li><span class="fa fa-group"></span> <b>total population:</b> ' + data.result.poblacion + '</li>';
-            content += '<li><span class="fa fa-group"></span> <b>number of boards:</b> ' + data.result.num_mesas + '</li>';
-            content += '<li><span class="fa fa-group"></span> <b>total ellectoral census:</b> ' + data.result.total_censo_electoral + '</li>';
-            content += '<li><span class="fa fa-group"></span> <b>total voters:</b> ' + data.result.total_votantes + '</li>';
-            content += '<li><span class="fa fa-envelope-o"></span> <b>valid votes:</b> ' + data.result.votos_validos + '</li>';
-            content += '<li><span class="fa fa-user-o"></span> <b>total parties votes:</b> ' + data.result.votos_candidaturas + '</li>';
-            content += '<li><span class="fa fa-sticky-note-o"></span> <b>blank votes:</b> ' + data.result.votos_blanco + '</li>';
-            content += '<li><span class="fa fa-times-circle-o"></span> <b>null votes:</b> ' + data.result.votos_nulos + '</li>';
+
+            content += '<li class="list-group-item"><span class="fa fa-user"></span> ' + data.data.eleccion.autor + '</li>';
+            content += '<li class="list-group-item"><span class="fa fa-calendar"></span> ' + data.data.eleccion.fecha.slice(4, 6) +'/'+ data.data.eleccion.fecha.slice(0, 4) + '</li>';
+            content += '<li class="list-group-item"><span class="fa fa-map-o"></span> ' + data.data.comunidad + '</li>';
+            content += '<li class="list-group-item"><span class="fa fa-map-marker"></span> ' + data.data.provincia + '(' + data.data.cod_provincia + ')</li>';
+            content += '<li class="list-group-item"><span class="fa fa-group"></span> ' + data.data.poblacion + ' total population </li>';
+            content += '<li class="list-group-item"><span class="fa fa-building-o"></span> ' + data.data.num_mesas + ' ellectoral colleages</li>';
+            content += '<li class="list-group-item"><span class="fa fa-group"></span> ' + data.data.total_censo_electoral + ' total ellectoral census</li>';
+            content += '<li class="list-group-item"><span class="fa fa-group"></span> ' + data.data.total_votantes + ' voters</li>';
+            content += '<li class="list-group-item"><span class="fa fa-check-circle-o"></span> ' + data.data.votos_validos + ' valid votes</li>';
+            content += '<li class="list-group-item"><span class="fa fa-envelope"></span> ' + data.data.votos_candidaturas + ' parties votes</li>';
+            content += '<li class="list-group-item"><span class="fa fa-envelope-o"></span> ' + data.data.votos_blanco + ' blank votes</li>';
+            content += '<li class="list-group-item"><span class="fa fa-times-circle-o"></span> ' + data.data.votos_nulos + ' null votes</li>';
             content += '</ul>'
-            content += '<span class="fa fa-envelope-open-o"></span> <b>votes:</b><hr>';
-            content += '<pre>' + JSON.stringify(data.result.partidos, undefined, 2) + '</pre>';
+            content += '<br><h4><span class="fa fa-envelope-open-o"></span> votes:</h4><hr>';
+            content += '<ul class="list-group"><li class="list-group-item"><pre>' + JSON.stringify(data.data.partidos, undefined, 2) + '</pre></li></ul>';
 
             $('#content').empty().append(content + '');
             $("html, body").animate({scrollTop: 0}, "slow");
