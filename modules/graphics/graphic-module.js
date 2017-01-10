@@ -84,9 +84,8 @@ const highcharts = require('node-highcharts'),
             }
 
             function done(graph_options) {
-                User.findOne({_id: req.user._id}, function (err, user) {
+                User.findOne({_id: req.user._id }, function (err, user) {
                     if (err) throw err;
-
                     let options = {
                         title: 'Chart',
                         autor: data.eleccion.autor,

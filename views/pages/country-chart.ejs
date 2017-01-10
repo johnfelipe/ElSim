@@ -16,7 +16,13 @@
                         <hr>
                     </h4>
                     <div class="card-text">
-
+                        <% for(let district of global) { %>
+                        <b><%= district.cc %></b><br>
+                            <% for(let party in district.parties) { %>
+                        <code><%= party %>: <%= district.parties[party] %></code><br>
+                            <% } %>
+                        <hr>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -42,6 +48,6 @@
     var global = <%- JSON.stringify(global) %>;
     var colors = <%- JSON.stringify(colors) %>;
 </script>
-<script type="text/javascript" src="/js/country-chart.js"> </script>
+<script type="text/javascript" src="/js/country-chart.js"></script>
 </body>
 </html>

@@ -11,8 +11,8 @@ for(c of ciudades){
     data.push({
         'hc-key': c,
         value: 0,
-        parties: getParties(c),
-        color: getColor(getParties(c))
+        parties: getParties(c,true),
+        color: getColor(getParties(c,false))
     });
 }
 let options = {
@@ -34,7 +34,6 @@ let options = {
     series: [{
         name: 'Country',
         mapData: Highcharts.maps['countries/es/es-all'],
-        /**/
         data: data,
         dataLabels: {
             enabled: true,
@@ -48,13 +47,20 @@ let options = {
         tooltip: {
             useHTML: true,
             headerFormat: '',
-            pointFormat: '{point.name}<br>{point.parties}'
+            pointFormat: '<b>{point.name}</b><br>{point.parties}'
         }
     }]
 };
-function getParties(chartCode){
+function getParties(chartCode,isFormat){
     for(let g of global){
         if(g.cc === chartCode){
+            if(isFormat){
+                let string = '';
+                for(let key in g.parties){
+                    string = string.concat(key + ': ' + g.parties[key] + '<br>');
+                }
+                return string;
+            }
             return JSON.stringify(g.parties,null,2);
         }
     }
