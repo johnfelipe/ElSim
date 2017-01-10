@@ -1,0 +1,81 @@
+jQuery.noConflict();
+const ciudades = ['es-vi','es-ab','es-a','es-al','es-av','es-ba','es-pm',
+    'es-b','es-bu','es-cc','es-ca','es-cs','es-cr','es-co','es-c',
+    'es-cu','es-gi','es-gr','es-gu','es-ss','es-h','es-hu','es-j',
+    'es-le','es-l','es-lo','es-lu','es-m','es-ma','es-mu','es-na',
+    'es-or','es-o','es-p','es-gc','es-po','es-sa','es-tf','es-s',
+    'es-sg','es-se','es-so','es-t','es-te','es-to','es-v','es-va',
+    'es-bi','es-za','es-z','es-ce','es-ml'];
+let data = [];
+for(c of ciudades){
+    data.push({
+        'hc-key': c,
+        value: 0,
+        parties: getParties(c),
+        color: getColor(getParties(c))
+    });
+}
+let options = {
+    chart: {
+        borderWidth: 1
+    },
+
+    title: {
+        text: 'District distribution'
+    },
+    subtitle: {
+        text: 'Check each district to show results'
+    },
+
+    legend: {
+        enabled: false
+    },
+
+    series: [{
+        name: 'Country',
+        mapData: Highcharts.maps['countries/es/es-all'],
+        /**/
+        data: data,
+        dataLabels: {
+            enabled: true,
+            color: '#FFFFFF',
+            formatter: function () {
+                if (this.point.value) {
+                    return this.point.name;
+                }
+            }
+        },
+        tooltip: {
+            useHTML: true,
+            headerFormat: '',
+            pointFormat: '{point.name}<br>{point.parties}'
+        }
+    }]
+};
+function getParties(chartCode){
+    for(let g of global){
+        if(g.cc === chartCode){
+            return JSON.stringify(g.parties,null,2);
+        }
+    }
+}
+function getColor(parties){
+    let mayor = {
+        party: '',
+        mandates: 0
+    };
+    let ps = JSON.parse(parties);
+    for(let key in ps){
+        console.log(ps[key]);
+        if(parseInt(ps[key]) >= mayor.mandates){
+            mayor.party = key;
+            mayor.mandates = ps[key];
+        }
+    }
+    return colors[mayor.party];
+}
+(function ($) {
+    $(function () {
+        $('#container').highcharts('Map', options);
+    });
+})(jQuery);

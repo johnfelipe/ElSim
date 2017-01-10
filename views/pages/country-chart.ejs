@@ -38,95 +38,10 @@
         </div>
     </div>
 </div>
-
 <script type="text/javascript">
-
-    jQuery.noConflict();
     var global = <%- JSON.stringify(global) %>;
     var colors = <%- JSON.stringify(colors) %>;
-    function getParties(chartCode){
-        for(var g of global){
-            if(g.cc === chartCode){
-                return JSON.stringify(g.parties,null,2);
-            }
-        }
-    }
-    function getColor(parties){
-        var mayor = {
-            party: '',
-            mandates: 0
-        };
-        var ps = JSON.parse(parties);
-        Object.keys(ps).forEach(function(key){
-            console.log(ps[key]);
-           if(parseInt(ps[key]) >= mayor.mandates){
-               mayor.party = key;
-               mayor.mandates = ps[key];
-           }
-        });
-
-        return colors[mayor.party];
-    }
-    var ciudades = ['es-vi','es-ab','es-a','es-al','es-av','es-ba','es-pm',
-        'es-b','es-bu','es-cc','es-ca','es-cs','es-cr','es-co','es-c',
-        'es-cu','es-gi','es-gr','es-gu','es-ss','es-h','es-hu','es-j',
-        'es-le','es-l','es-lo','es-lu','es-m','es-ma','es-mu','es-na',
-        'es-or','es-o','es-p','es-gc','es-po','es-sa','es-tf','es-s',
-        'es-sg','es-se','es-so','es-t','es-te','es-to','es-v','es-va',
-        'es-bi','es-za','es-z','es-ce','es-ml'];
-    var data = [];
-    for(c of ciudades){
-        data.push({
-            'hc-key': c,
-            value: 0,
-            parties: getParties(c),
-            color: getColor(getParties(c))
-        });
-    }
-    var options = {
-        chart: {
-            borderWidth: 1
-        },
-
-        title: {
-            text: 'Nordic countries'
-        },
-        subtitle: {
-            text: 'Demo of drawing all areas in the map, only highlighting partial data'
-        },
-
-        legend: {
-            enabled: false
-        },
-
-        series: [{
-            name: 'Country',
-            mapData: Highcharts.maps['countries/es/es-all'],
-            /**/
-            data: data,
-            dataLabels: {
-                enabled: true,
-                color: '#FFFFFF',
-                formatter: function () {
-                    if (this.point.value) {
-                        return this.point.name;
-                    }
-                }
-            },
-            tooltip: {
-                useHTML: true,
-                headerFormat: '',
-                pointFormat: '{point.name}<br>{point.parties}'
-            }
-        }]
-    };
-    (function ($) {
-        $(function () {
-
-            $('#container').highcharts('Map', options);
-        });
-    })(jQuery);
-
 </script>
+<script type="text/javascript" src="/js/country-chart.js"> </script>
 </body>
 </html>
