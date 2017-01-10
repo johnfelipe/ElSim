@@ -70,12 +70,11 @@ const highcharts = require('node-highcharts'),
 
             districtOptions.blankVotes = data.votos_blanco;
 
-            Object.keys(data.partidos).forEach(iteration);
-
-            function iteration(key) {
+            for (let key in data.partidos) {
                 votes.push(data.partidos[key]);
                 names.push(key);
             }
+
 
             let result = District.compute(votes, names, districtOptions);
             if (mode === 'bar') {
@@ -130,7 +129,7 @@ const highcharts = require('node-highcharts'),
         let ContryChart = require('../graphics/map-module');
         Result.find({eleccion: eleccion}, function (err, data) {
             let global;
-            global = ContryChart.calculateGlobal(data,config,req.body);
+            global = ContryChart.calculateGlobal(data, config, req.body);
             let options = {
                 user: req.user,
                 global: global,
@@ -157,7 +156,7 @@ const highcharts = require('node-highcharts'),
          * @description
          * @function
          */
-        createBar:createBar,
+        createBar: createBar,
 
         /**
          * @description

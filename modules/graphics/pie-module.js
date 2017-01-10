@@ -16,9 +16,7 @@ const chooseColor = require('./graphic-module').chooseColor;
         };
         let resultsArray = [];
 
-        Object.keys(result).forEach(iteration);
-
-        function iteration(key) {
+        for(let key in result){
             if (result[key] > 0) {
                 resultsArray.push({
                     name: key,
@@ -27,7 +25,6 @@ const chooseColor = require('./graphic-module').chooseColor;
                 });
             }
         }
-
 
         options.chart = {
             plotBackgroundColor: null,

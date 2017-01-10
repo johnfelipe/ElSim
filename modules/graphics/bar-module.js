@@ -20,9 +20,7 @@
         let categories = [],
             mandates = [];
 
-        Object.keys(result).forEach(iteration);
-
-        function iteration(key) {
+        for(let key in result){
             if (result[key] > 0) {
                 categories.push(key);
                 mandates.push({

@@ -85,7 +85,6 @@ const User = require('../../models/user'),
 
     function findAllResultados(req, res) {
         Result.find({}, function (err, data) {
-            console.log(err,data);
             apiResponse(req, res, err, 'All results', data);
         });
     }

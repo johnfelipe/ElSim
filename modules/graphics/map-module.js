@@ -86,8 +86,6 @@ let District = require('../district-module');
         for (i = 0; i < len; i++) {
             config.blankVotes = data[i].votos_blanco;
             config.mandates = calculateMandates(data[i].provincia,conjunto);
-
-            Object.keys(data[i].partidos).forEach(iteration);
             for(let key in data[i].partidos){
                 votes.push(data[i].partidos[key]);
                 names.push(key);
@@ -98,9 +96,7 @@ let District = require('../district-module');
             votes = [];
             names = [];
         }
-        function iteration(key) {
 
-        }
 
         for(i=0,len = global.length; i<len; i++){
             for(let key in global[i].parties){

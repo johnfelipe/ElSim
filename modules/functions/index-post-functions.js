@@ -21,6 +21,7 @@ const Graphic = require('../graphics/graphic-module'),
         res.render(page, merged);
 
     }
+
     function addDataPostFunction(req, res) {
         let lines = req.param('votes').split('\n'),
             partidos = {}, aux;
@@ -49,17 +50,19 @@ const Graphic = require('../graphics/graphic-module'),
         result.save(function (err) {
             if (err) throw err;
             indexResponse(req, res, 'pages/add-data', 'Add data', {
-                error:'NO',
+                error: 'NO',
                 codigos: require('../../codigos')
             });
         });
 
     }
+
     function checkError(err) {
         if (err) {
             throw err;
         }
     }
+
     function deleteDataPostFunction(req, res) {
         let promises = [], options;
 
@@ -74,8 +77,8 @@ const Graphic = require('../graphics/graphic-module'),
             Result.find({}, function (err, data) {
                 checkError(err);
                 indexResponse(req, res, 'pages/delete-data', 'Delete data', {
-                    error:'NO',
-                    data:data
+                    error: 'NO',
+                    data: data
                 });
             });
         });
@@ -90,7 +93,7 @@ const Graphic = require('../graphics/graphic-module'),
 
     function countryFormPostFunction(req, res) {
         Graphic.calculateCountry(req, function (options) {
-           options['colors'] = require('../graphics/colors');
+            options['colors'] = require('../graphics/colors');
             res.render('pages/country-chart', options);
         });
     }
