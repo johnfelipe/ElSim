@@ -67,6 +67,22 @@
 
         return colors[mayor.party];
     }
+    var ciudades = ['es-vi','es-ab','es-a','es-al','es-av','es-ba','es-pm',
+        'es-b','es-bu','es-cc','es-ca','es-cs','es-cr','es-co','es-c',
+        'es-cu','es-gi','es-gr','es-gu','es-ss','es-h','es-hu','es-j',
+        'es-le','es-l','es-lo','es-lu','es-m','es-ma','es-mu','es-na',
+        'es-or','es-o','es-p','es-gc','es-po','es-sa','es-tf','es-s',
+        'es-sg','es-se','es-so','es-t','es-te','es-to','es-v','es-va',
+        'es-bi','es-za','es-z','es-ce','es-ml'];
+    var data = [];
+    for(c of ciudades){
+        data.push({
+            'hc-key': c,
+            value: 0,
+            parties: getParties(c),
+            color: getColor(getParties(c))
+        });
+    }
     var options = {
         chart: {
             borderWidth: 1
@@ -86,77 +102,8 @@
         series: [{
             name: 'Country',
             mapData: Highcharts.maps['countries/es/es-all'],
-            data: [{
-                'hc-key': 'es-c',
-                value: 0,
-                parties: getParties('es-c'),
-                color: getColor(getParties('es-c'))
-            }, {
-                'hc-key': 'es-vi',
-                value: 0,
-                parties: getParties('es-vi'),
-                color: getColor(getParties('es-vi'))
-            }, {
-                'hc-key': 'es-ab',
-                value: 0,
-                parties: getParties('es-ab'),
-                color: getColor(getParties('es-ab'))
-            }, {
-                'hc-key': 'es-a',
-                value: 0,
-                parties: getParties('es-a'),
-                color: getColor(getParties('es-a'))
-            }, {
-                'hc-key': 'es-o',
-                value: 0,
-                parties: getParties('es-o'),
-                color: getColor(getParties('es-o'))
-            }, {
-                'hc-key': 'es-av',
-                value: 0,
-                parties: getParties('es-av'),
-                color: getColor(getParties('es-av'))
-            }, {
-                'hc-key': 'es-ba',
-                value: 0,
-                parties: getParties('es-ba'),
-                color: getColor(getParties('es-ba'))
-            }, {
-                'hc-key': 'es-pm',
-                value: 0,
-                parties: getParties('es-pm'),
-                color: getColor(getParties('es-pm'))
-            }, {
-                'hc-key': 'es-b',
-                value: 0,
-                parties: getParties('es-b'),
-                color: getColor(getParties('es-b'))
-            }, {
-                'hc-key': 'es-bi',
-                value: 0,
-                parties: getParties('es-bi'),
-                color: getColor(getParties('es-bi'))
-            }, {
-                'hc-key': 'es-bu',
-                value: 0,
-                parties: getParties('es-bu'),
-                color: getColor(getParties('es-bu'))
-            }, {
-                'hc-key': 'es-cc',
-                value: 0,
-                parties: getParties('es-cc'),
-                color: getColor(getParties('es-cc'))
-            }, {
-                'hc-key': 'es-ca',
-                value: 0,
-                parties: getParties('es-ca'),
-                color: getColor(getParties('es-ca'))
-            }, {
-                'hc-key': 'es-s',
-                value: 0,
-                parties: getParties('es-s'),
-                color: getColor(getParties('es-s'))
-            }],
+            /**/
+            data: data,
             dataLabels: {
                 enabled: true,
                 color: '#FFFFFF',
