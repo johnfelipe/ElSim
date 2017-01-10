@@ -121,10 +121,16 @@ const highcharts = require('node-highcharts'),
             autor: req.body.resultSelected.split(',')[1],
             fecha: req.body.resultSelected.split(',')[0]
         };
+        let config = {
+            mandates: 2,
+            percentage: parseFloat(req.body.percentage),
+            blankVotes: 0
+        };
+
         let ContryChart = require('../graphics/map-module');
         Result.find({eleccion: eleccion}, function (err, data) {
             let global;
-            global = ContryChart.calculateGlobal(data);
+            global = ContryChart.calculateGlobal(data,config,req.body);
             let options = {
                 user: req.user,
                 global: global,

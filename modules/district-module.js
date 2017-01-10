@@ -9,7 +9,6 @@
 
     function compute(votes, names, options) {
         let result = calculateSeats(votes, names, options.mandates, options.blankVotes, options.percentage);
-        console.dir(result);
         return result;
     }
 

@@ -64,19 +64,22 @@ let District = require('../district-module');
         return provincias[cod_provincia];
     }
 
-    function calculateGlobal(data) {
+    function calculateMandates(provincia, conjunto){
+        console.log(provincia);
+        console.log(conjunto);
+        return 2;
+    }
+
+    function calculateGlobal(data,config,conjunto) {
+
         let votes = [],
             names = [],
-            result,
-            config = {
-                mandates: 2,
-                percentage: 3,
-                blankVotes: 0
-            };
+            result;
         let global = [];
         let i,len = data.length;
         for (i = 0; i < len; i++) {
             config.blankVotes = data[i].votos_blanco;
+            config.mandates = calculateMandates(data[i].provincia,conjunto);
             Object.keys(data[i].partidos).forEach(iteration);
             result = District.compute(votes, names, config);
             result['cc'] = calculateCode(data[i].cod_provincia);

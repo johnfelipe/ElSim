@@ -96,7 +96,6 @@ const Graphic = require('../graphics/graphic-module'),
     }
 
     function saveResultFunction(req, res) {
-        console.log(req.body.result);
         res.send({result: req.body.result});
     }
 
