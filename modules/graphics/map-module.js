@@ -64,9 +64,14 @@ let District = require('../district-module');
         return provincias[cod_provincia];
     }
 
+
+
     function calculateMandates(provincia, conjunto){
-        console.log(provincia);
-        console.log(conjunto);
+        for(let c in conjunto){
+            if(provincia.toLowerCase() === c.toLowerCase()){
+                return parseInt(conjunto[c]);
+            }
+        }
         return 2;
     }
 
@@ -77,10 +82,16 @@ let District = require('../district-module');
             result;
         let global = [];
         let i,len = data.length;
+        console.log(conjunto);
         for (i = 0; i < len; i++) {
             config.blankVotes = data[i].votos_blanco;
             config.mandates = calculateMandates(data[i].provincia,conjunto);
+
             Object.keys(data[i].partidos).forEach(iteration);
+            for(let key in data[i].partidos){
+                votes.push(data[i].partidos[key]);
+                names.push(key);
+            }
             result = District.compute(votes, names, config);
             result['cc'] = calculateCode(data[i].cod_provincia);
             global.push(result);
@@ -88,10 +99,16 @@ let District = require('../district-module');
             names = [];
         }
         function iteration(key) {
-            votes.push(data[i].partidos[key]);
-            names.push(key);
+
         }
 
+        for(i=0,len = global.length; i<len; i++){
+            for(let key in global[i].parties){
+                if(global[i].parties[key] === 0){
+                    delete global[i].parties[key];
+                }
+            }
+        }
         return global;
     }
 
