@@ -2,7 +2,8 @@
 const Graphic = require('../graphics/graphic-module'),
     Result = require('../../models/result'),
     Colors = require('../graphics/colors'),
-    Icons = require('../graphics/icons');
+    Icons = require('../graphics/icons'),
+    Codigos = require('../../codigos');
 
 /**
  * All the callback functions of index POST routes
@@ -36,7 +37,7 @@ const Graphic = require('../graphics/graphic-module'),
             cod_provincia: req.param('province'),
             provincia: 'desconocida',
             poblacion: req.param('population'),
-            num_mesas: req.param('tables'),
+            num_mesas: req.param('num_mesas'),
             total_censo_electoral: req.param('census'),
             total_votantes: req.param('voters'),
             votos_validos: 0,
@@ -49,11 +50,11 @@ const Graphic = require('../graphics/graphic-module'),
             },
             partidos: partidos
         });
+        console.log(result);
         result.save(function (err) {
-            if (err) throw err;
             indexResponse(req, res, 'pages/add-data', 'Add data', {
-                error: 'NO',
-                codigos: require('../../codigos')
+                error: err,
+                codigos: Codigos
             });
         });
 
@@ -77,9 +78,8 @@ const Graphic = require('../graphics/graphic-module'),
         Promise.all(promises).then(function () {
             console.log('all the results were deleted');
             Result.find({}, function (err, data) {
-                checkError(err);
                 indexResponse(req, res, 'pages/delete-data', 'Delete data', {
-                    error: 'NO',
+                    error: err,
                     data: data
                 });
             });

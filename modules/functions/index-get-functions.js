@@ -62,8 +62,8 @@ const Result = require('../../models/result'),
         indexResponse(req, res, 'pages/learn', 'Learn', false);
     }
 
-    function lawsGetFunction(req, res) {
-        indexResponse(req, res, 'pages/laws', 'Laws', false);
+    function resourcesGetFunction(req, res) {
+        indexResponse(req, res, 'pages/resources', 'Resources', false);
     }
 
     function storedDataFunction(req, res) {
@@ -79,7 +79,7 @@ const Result = require('../../models/result'),
 
     function addDataGetFunction(req, res) {
         indexResponse(req, res, 'pages/add-data', 'Add data', {
-            error: 'NO',
+            error: null,
             codigos: require('../../codigos')
         });
     }
@@ -88,7 +88,7 @@ const Result = require('../../models/result'),
         Result.find({}, function (err, data) {
             indexResponse(req, res, 'pages/delete-data', 'Delete data', {
                 data: data,
-                error: 'NO'
+                error: null
             });
         });
 
@@ -160,7 +160,7 @@ const Result = require('../../models/result'),
          * @description
          * @function
          */
-        lawsGetFunction: lawsGetFunction,
+        resourcesGetFunction: resourcesGetFunction,
 
         /**
          * @description

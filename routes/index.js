@@ -29,7 +29,7 @@ module.exports = function(passport){
     router.get('/leaflet-example', IndexGetFunctions.leafletExampleGetFunction);
     router.get('/graphic-form', IndexGetFunctions.graphicFormGetFunction);
     router.get('/learn', IndexGetFunctions.learnGetFunction);
-    router.get('/laws', IndexGetFunctions.lawsGetFunction);
+    router.get('/resources', IndexGetFunctions.resourcesGetFunction);
     router.get('/add-data', IndexGetFunctions.addDataGetFunction);
     router.get('/stored-data', IndexGetFunctions.storedDataFunction);
     router.get('/login', IndexGetFunctions.loginGetFunction);
