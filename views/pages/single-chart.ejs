@@ -43,7 +43,8 @@
                                 </span>
                             </li>
 
-                            <% Object.keys(result.parties).forEach(function(key){ if(parseInt(result.parties[key]) > 0) { %>
+
+                            <% for(let key in result.parties) { if(parseInt(result.parties[key]) > 0) { %>
                             <li class="list-group-item">
                                 <img src="<%= icons[key] %>" width="18" height="18"/>
                                 <%= key %>
@@ -51,7 +52,7 @@
                                             <%= result.parties[key] %> mandates
                                         </span>
                             </li>
-                            <% }}); %>
+                            <% }} %>
 
                         </ul>
                     </div>
@@ -75,9 +76,9 @@
         </div>
     </div>
 </div>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="http://code.highcharts.com/highcharts-3d.js"></script>
+<script src="/js/highcharts.js"></script>
+<script src="/js/exporting.js"></script>
+<script src="/js/highcharts-3d.js"></script>
 <script type="text/javascript">
     jQuery.noConflict();
     var options = <%- JSON.stringify(options) %>;

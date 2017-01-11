@@ -1,6 +1,8 @@
 /* jshint esversion: 6 */
 const Graphic = require('../graphics/graphic-module'),
-    Result = require('../../models/result');
+    Result = require('../../models/result'),
+    Colors = require('../graphics/colors'),
+    Icons = require('../graphics/icons');
 
 /**
  * All the callback functions of index POST routes
@@ -93,7 +95,8 @@ const Graphic = require('../graphics/graphic-module'),
 
     function countryFormPostFunction(req, res) {
         Graphic.calculateCountry(req, function (options) {
-            options['colors'] = require('../graphics/colors');
+            options['colors'] = Colors;
+            options['icons'] = Icons;
             res.render('pages/country-chart', options);
         });
     }

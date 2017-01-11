@@ -78,6 +78,15 @@ function getColor(parties){
             mayor.mandates = ps[key];
         }
     }
+    let cont = 0;
+    for(let key in ps){
+        if(parseInt(ps[key]) === mayor.mandates){
+            cont++;
+        }
+    }
+    if(cont > 1){
+        return '#cbff75';
+    }
     return colors[mayor.party];
 }
 (function ($) {

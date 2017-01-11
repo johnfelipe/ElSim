@@ -1,5 +1,4 @@
 /* jshint esversion: 6 */
-const chooseColor = require('./graphic-module').chooseColor;
 /**
  * To handle pie charts
  * @module graphics/pie-module
@@ -21,7 +20,7 @@ const chooseColor = require('./graphic-module').chooseColor;
                 resultsArray.push({
                     name: key,
                     y: result[key],
-                    color: chooseColor(key)
+                    color: require('./graphic-module').chooseColor(key)
                 });
             }
         }
