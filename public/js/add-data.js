@@ -13,7 +13,7 @@ function parseFields(done) {
 }
 
 function fixDate(date) {
-    if (date != undefined) {
+    if (date !== undefined) {
         let fixed = date.toString();
         fixed = fixed.substring(5, 7) + '/' + fixed.substring(0, 4);
         return fixed;
