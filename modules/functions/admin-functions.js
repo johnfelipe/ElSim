@@ -10,7 +10,7 @@ const User = require('./../../models/user'),
  */
 (function () {
     function adminSummaryFunction(req, res) {
-        if (req.user.email !== 'jesusgonzaleznovez@gmail.com') {
+        if (!req.user || req.user.email !== 'jesusgonzaleznovez@gmail.com') {
             res.send({
                 result: 'fail',
                 status: 'ok',

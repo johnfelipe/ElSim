@@ -1,18 +1,18 @@
 jQuery.noConflict();
-const ciudades = ['es-vi','es-ab','es-a','es-al','es-av','es-ba','es-pm',
-    'es-b','es-bu','es-cc','es-ca','es-cs','es-cr','es-co','es-c',
-    'es-cu','es-gi','es-gr','es-gu','es-ss','es-h','es-hu','es-j',
-    'es-le','es-l','es-lo','es-lu','es-m','es-ma','es-mu','es-na',
-    'es-or','es-o','es-p','es-gc','es-po','es-sa','es-tf','es-s',
-    'es-sg','es-se','es-so','es-t','es-te','es-to','es-v','es-va',
-    'es-bi','es-za','es-z','es-ce','es-ml'];
+const ciudades = ['es-vi', 'es-ab', 'es-a', 'es-al', 'es-av', 'es-ba', 'es-pm',
+    'es-b', 'es-bu', 'es-cc', 'es-ca', 'es-cs', 'es-cr', 'es-co', 'es-c',
+    'es-cu', 'es-gi', 'es-gr', 'es-gu', 'es-ss', 'es-h', 'es-hu', 'es-j',
+    'es-le', 'es-l', 'es-lo', 'es-lu', 'es-m', 'es-ma', 'es-mu', 'es-na',
+    'es-or', 'es-o', 'es-p', 'es-gc', 'es-po', 'es-sa', 'es-tf', 'es-s',
+    'es-sg', 'es-se', 'es-so', 'es-t', 'es-te', 'es-to', 'es-v', 'es-va',
+    'es-bi', 'es-za', 'es-z', 'es-ce', 'es-ml'];
 let data = [];
-for(c of ciudades){
+for (c of ciudades) {
     data.push({
         'hc-key': c,
         value: 0,
-        parties: getParties(c,true),
-        color: getColor(getParties(c,false))
+        parties: getParties(c, true),
+        color: getColor(getParties(c, false))
     });
 }
 let options = {
@@ -51,43 +51,41 @@ let options = {
         }
     }]
 };
-function getParties(chartCode,isFormat){
-    for(let g of global){
-        if(g.cc === chartCode){
-            if(isFormat){
+function getParties(chartCode, isFormat) {
+    for (let g of global) {
+        if (g.cc === chartCode) {
+            if (isFormat) {
                 let string = '';
-                for(let key in g.parties){
+                for (let key in g.parties) {
                     string = string.concat(key + ': ' + g.parties[key] + '<br>');
                 }
                 return string;
             }
-            return JSON.stringify(g.parties,null,2);
+            return JSON.stringify(g.parties, null, 2);
         }
     }
 }
-function getColor(parties){
+function getColor(parties) {
     let mayor = {
         party: '',
         mandates: 0
     };
     let ps = JSON.parse(parties);
-    for(let key in ps){
-        console.log(ps[key]);
-        if(parseInt(ps[key]) >= mayor.mandates){
+    for (let key in ps) {
+        if (parseInt(ps[key]) >= mayor.mandates) {
             mayor.party = key;
             mayor.mandates = ps[key];
         }
     }
+    return variosMaximos(ps, mayor) || colors[mayor.party];
+}
+function variosMaximos(ps, mayor) {
     let cont = 0;
-    for(let key in ps){
-        if(parseInt(ps[key]) === mayor.mandates){
+    for (let key in ps)
+        if (parseInt(ps[key]) === mayor.mandates)
             cont++;
-        }
-    }
-    if(cont > 1){
-        return '#cbff75';
-    }
-    return colors[mayor.party];
+    if (cont > 1) return '#cbff75';
+    return false;
 }
 (function ($) {
     $(function () {

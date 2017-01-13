@@ -2,7 +2,11 @@
 'use strict';
 const express = require('express'),
     router = express.Router(),
-    User = require('./../models/user');
+    User = require('../models/user'),
+    Log = require('../models/log'),
+    Result = require('../models/result'),
+    Subscriber = require('../models/subscriber'),
+    Mailer = require('../modules/mailer');
 const isAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) {
         return next();
@@ -27,6 +31,62 @@ module.exports = function (passport) {
             };
             res.render('pages/profile', options);
         });
+    });
+
+    router.post('/addSubscriber', function(req,res){
+        let s = new Subscriber({
+           email: req.body.subscriber,
+            options: {}
+        });
+
+        s.save(function(err){
+            if(err) throw err;
+            let options = {
+                title: 'Help',
+                user: req.user,
+                err: err
+            };
+            res.render('pages/help',options);
+        });
+    });
+    router.post('/sendNews',function(req,res){
+        Subscriber.find({},function(err,subscribers){
+            if(err) throw err;
+            let mails = [];
+            for(let s of subscribers){
+                mails.push(s.email);
+            }
+            Mailer.sendMail(mails,'TEST',function(err,result){
+                console.log('ERROR: ' + err,'RESULT: ' + result);
+                let promises = [], users, logs, results;
+                promises.push(
+                    User.find({}, function (err, data) {
+                        users = data;
+                    })
+                );
+                promises.push(
+                    Log.find({}, function (err, data) {
+                        logs = data;
+                    })
+                );
+                promises.push(
+                    Result.find({}, function (err, data) {
+                        results = data;
+                    })
+                );
+                Promise.all(promises).then(function(){
+                    let options = {
+                        user: req.user,
+                        title: 'Administration',
+                        logs: logs,
+                        results: results,
+                        users: users
+                    };
+                    res.render('pages/admin', options);
+                });
+            })
+
+        })
     });
     return router;
 };
