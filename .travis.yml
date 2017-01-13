@@ -5,4 +5,5 @@ services: mongodb
 before_install:
   - npm install
 ignore:
+  - modules/mailer.js
   - modules/functions/admin-functions.js
