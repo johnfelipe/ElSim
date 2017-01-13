@@ -4,3 +4,5 @@ node_js:
 services: mongodb
 before_install:
   - npm install
+ignore:
+  - modules/functions/admin-functions.js
