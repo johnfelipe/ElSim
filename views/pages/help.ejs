@@ -11,61 +11,73 @@
                     <h4 class="card-title">
                         <span class="fa fa-code"></span> Api usage
                     </h4>
-                    <hr>
-                    <p class="card-text">
-                        Api is at:<br>
-                        <b>/api</b>
-                    <hr>
-
-                    Send a post request to: <br>
-                    <b>/api/authenticate</b>
-                    <hr>
-                    Use your token in every route under <b>/api</b> path.<br><br>
-                    </p>
+                    <div class="card-text">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                Api is at <b>/api</b>. Send a post request to <b>/api/authenticate</b>,
+                                use your token in every route under <b>/api</b> path.
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="card-deck">
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">
                         <span class="fa fa-github"></span> GitHub
                     </h4>
-                    <hr>
                     <div class="card-text">
-                        Clone, fork, collaborate<br>
-                        <a href="https://github.com/jesusgn90/TFG">
-                            <span class="fa fa-git-square fa-3x"></span>
-                        </a>
-                        <div data-repo="jesusgn90/TFG"></div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <a href="https://github.com/jesusgn90/TFG">
+                                    <span class="fa fa-git-square fa-3x"></span>
+                                </a>
+                            </div>
+                            <div class="col-xs-8">
+                                <div data-repo="jesusgn90/TFG"></div>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
-
-
             </div>
+        </div>
+        <div class="card-deck">
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">
                         <span class="fa fa-comments-o"></span> Updates
                     </h4>
-                    <hr>
                     <div class="card-text">
-                        <span class="fa fa-puzzle-piece"></span> Under construction&hellip; 45%<br>
-                        <progress class="progress progress-striped" value="45" max="100"
-                                  aria-describedby="example-caption-5">45%
-                        </progress>
-                        <hr>
-                        <span class="fa fa-envelope-o"></span> Receive updates<br>
-                        <form method="post" id="formSubscriber" name="formSubscriber" action="/users/addSubscriber">
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="subscriber" name="subscriber"
-                                       placeholder="e-mail" required>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                This project is growing day by day.
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary" form="formSubscriber">
-                                    <span class="fa fa-send-o"></span> Subscribe
-                                </button>
+                            <div class="col-xs-4">
+                                <span class="fa fa-puzzle-piece"></span> Under construction&hellip; 45%<br>
+                                <progress class="progress progress-striped" value="45" max="100"
+                                          aria-describedby="example-caption-5">45%
+                                </progress>
                             </div>
-                        </form>
+                            <div class="col-xs-4">
+                                <form method="post" id="formSubscriber" name="formSubscriber"
+                                      action="/users/addSubscriber">
+                                    <div class="form-group">
+                                        <label for="subscriber">
+                                            <span class="fa fa-envelope-o"></span> Receive updates
+                                        </label>
+                                        <input type="email" class="form-control" id="subscriber" name="subscriber"
+                                               placeholder="e-mail" required>
+                                    </div>
+                                    <div class="form-group pull-right">
+                                        <button type="submit" class="btn btn-primary" form="formSubscriber">
+                                            <span class="fa fa-send-o"></span> Subscribe
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -74,9 +86,9 @@
 </div>
 <script>
     $("[data-repo]").github({
-        iconStars: false,
-        iconForks: false,
-        iconIssues: false
+        iconStars: true,
+        iconForks: true,
+        iconIssues: true
     });
 </script>
 <% include ../partials/footer %>

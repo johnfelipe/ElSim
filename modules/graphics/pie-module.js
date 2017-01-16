@@ -6,13 +6,7 @@
 (function () {
 
     function fillOptions(result) {
-        let options = {
-            chart: {},
-            title: {},
-            tooltip: {},
-            plotOptions: {},
-            series: []
-        };
+        let options = { };
         let resultsArray = [];
 
         for(let key in result){
@@ -26,14 +20,15 @@
         }
 
         options.chart = {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
             type: 'pie',
-            options3d: {
+           /* options3d: {
                 enabled: true,
                 alpha: 45,
                 beta: 0
+            },*/
+            style: {
+                fontFamily: 'Signika, serif',
+                background: 'url(/images/sand.png)'
             }
         };
         options.title = {

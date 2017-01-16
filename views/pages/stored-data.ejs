@@ -13,10 +13,10 @@
                     </h4>
                     <hr>
                     <% for(let i = 0, len = data.length; i < len; ++i) { %>
-                    <button class="btn btn-block btn-secondary" id="<%= data[i]._id %>"
-                            onclick="fillContent('<%= data[i]._id %>')">
-                        <%= data[i].eleccion.fecha.slice(4, 6) %>/<%= data[i].eleccion.fecha.slice(0, 4) %>,
-                        <%= data[i].provincia %>, by <%= data[i].eleccion.autor %>
+                    <button class="btn btn-block " id="<%= data[i]._id %>"
+                            onclick="fillContent('<%= data[i]._id %>')" style="color:#FCFCFC;">
+                        <%= data[i].eleccion.fecha.slice(4, 6) %>/<%= data[i].eleccion.fecha.slice(0, 4) %> |
+                        <%= data[i].provincia %> | <%= data[i].eleccion.autor.toUpperCase() %>
                         <span class="fa fa-chevron-circle-right" style="float:right;"></span>
                     </button>
                     <% } %>
@@ -56,7 +56,7 @@
             content += '<li class="list-group-item"><span class="fa fa-times-circle-o"></span> ' + data.data.votos_nulos + ' null votes</li>';
             content += '</ul>'
             content += '<br><h4><span class="fa fa-envelope-open-o"></span> votes:</h4><hr>';
-            content += '<ul class="list-group"><li class="list-group-item"><pre>' + JSON.stringify(data.data.partidos, undefined, 2) + '</pre></li></ul>';
+            content += '<ul class="list-group"><li class="list-group-item"><pre>' + JSON.stringify(data.data.partidos, undefined, 4) + '</pre></li></ul>';
 
             $('#content').empty().append(content + '');
             $("html, body").animate({scrollTop: 0}, "slow");

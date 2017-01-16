@@ -17,9 +17,22 @@ body {
 .navbar-brand:hover, .nav-link:hover, .dropdown-toggle:hover, .dropdown-menu:hover, .dropdown-item:hover {
     color: #FCCCCC !important;
 }
-
+.btn:hover{
+    background-color: #89bdd3 !important;
+    color: #FCFCFC !important;
+}
 a, button, select, input, .card, .card-block, .card-deck, .card {
     border-radius: 0 !important;
+}
+.indexCard:hover {
+    background-color: #e3F3e3 !important;
+}
+.btn {
+    background-color: #1f7e9a !important;
+    border: 0 !important;
+    border-bottom-color: transparent !important;
+    border-bottom: none !important;
+
 }
 .indexCard {
     border: 0px !important;

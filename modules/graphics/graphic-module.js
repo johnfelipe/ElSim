@@ -2,7 +2,7 @@
 
 const highcharts = require('node-highcharts'),
     Color = require('./colors'),
-    BarChart = require('./bar-module'),
+    BarChart = require('./column-module'),
     PieChart = require('./pie-module'),
     CountryChart = require('./map-module'),
     User = require('../../models/user'),
@@ -35,7 +35,7 @@ const highcharts = require('node-highcharts'),
     }
 
 
-    function createBar(result, callback) {
+    function createColumn(result, callback) {
         let options = BarChart.fillOptions(result);
         callback(options);
     }
@@ -77,39 +77,44 @@ const highcharts = require('node-highcharts'),
 
 
             let result = District.compute(votes, names, districtOptions);
-            if (mode === 'bar') {
-                createBar(result.parties, done);
+            if (mode === 'column') {
+                createColumn(result.parties, done);
             } else if (mode === 'pie') {
                 createPie(result.parties, done);
             }
 
             function done(graph_options) {
-                User.findOne({_id: req.user._id }, function (err, user) {
-                    if (err) throw err;
-                    let options = {
-                        title: 'Chart',
-                        autor: data.eleccion.autor,
-                        fecha: data.eleccion.fecha,
-                        provincia: data.cod_provincia,
-                        options: graph_options,
-                        result: result,
-                        icons: Icons,
-                        user: req.user
-                    };
-                    user.resultados.push({
-                        fecha: data.eleccion.fecha,
-                        provincia: data.cod_provincia,
-                        result: result,
-                        mandates: req.body.mandates,
-                        percentage: req.body.percentage,
-                        blank: data.votos_blanco
-                    });
-
-                    user.save(function (err) {
+                let options = {
+                    title: 'Chart',
+                    autor: data.eleccion.autor,
+                    fecha: data.eleccion.fecha,
+                    provincia: data.cod_provincia,
+                    options: graph_options,
+                    result: result,
+                    icons: Icons,
+                    user: req.user
+                };
+                if (!req.user) {
+                    callback(options);
+                } else {
+                    User.findOne({_id: req.user._id}, function (err, user) {
                         if (err) throw err;
-                        callback(options);
+
+                        user.resultados.push({
+                            fecha: data.eleccion.fecha,
+                            provincia: data.cod_provincia,
+                            result: result,
+                            mandates: req.body.mandates,
+                            percentage: req.body.percentage,
+                            blank: data.votos_blanco
+                        });
+
+                        user.save(function (err) {
+                            if (err) throw err;
+                            callback(options);
+                        });
                     });
-                });
+                }
             }
         }
     }
@@ -155,7 +160,7 @@ const highcharts = require('node-highcharts'),
          * @description
          * @function
          */
-        createBar: createBar,
+        createColumn: createColumn,
 
         /**
          * @description

@@ -1,6 +1,6 @@
 <form class="card-text" method="POST" id="form1" action="/graphic-form">
     <div class="row">
-    <div class="form-group col-xs-6">
+    <div class="form-group col-xs-12">
 
         <label for="resultSelected">
             <span class="fa fa-database"></span> Select a stored district
@@ -8,37 +8,39 @@
         <select class="form-control" name="resultSelected" id="resultSelected">
             <% for(let i = 0, len = results.length; i < len; i++){ %>
             <option value="<%= results[i]._id %>">
-                <%= results[i].eleccion.fecha.slice(4, 6) %>/<%= results[i].eleccion.fecha.slice(0, 4) %>,
-                <%= results[i].provincia %>,
-                by <%= results[i].eleccion.autor %>
+                <%= results[i].eleccion.fecha.slice(4, 6) %>/<%= results[i].eleccion.fecha.slice(0, 4) %> |
+                <%= results[i].provincia %> |
+                <%= results[i].eleccion.autor.toUpperCase() %>
             </option>
             <% } %>
-        </select>
-    </div>
-    <div class="form-group col-xs-6">
-        <label for="mode">
-            <span class="fa fa-signal"></span> Chart kind
-        </label>
-        <select class="form-control" name="mode" id="mode">
-            <option value="bar">Bar chart</option>
-            <option value="pie">Pie chart</option>
         </select>
     </div>
 </div>
     <div class="row">
 
-        <div class="form-group col-xs-6">
+        <div class="form-group col-xs-4">
             <label for="mandates">
                 <span class="fa fa-user"></span> Number of mandates
             </label>
             <input class="form-control " type="number" value="2" min="2" max="30" name="mandates" id="mandates">
+            <label class="text-info">
+                <span class="fa fa-info-circle"></span> More mandates will mean lower cost per mandate.
+            </label>
         </div>
-        <div class="form-group col-xs-6">
+        <div class="form-group col-xs-4">
             <label for="percentage">
                 <span class="fa fa-percent"></span> Minimum percentage
             </label>
             <input class="form-control " type="number" value="2" min="0" max="100" name="percentage" id="percentage">
-
+        </div>
+        <div class="form-group col-xs-4">
+            <label for="mode">
+                <span class="fa fa-signal"></span> Chart kind
+            </label>
+            <select class="form-control" name="mode" id="mode">
+                <option value="column">Column</option>
+                <option value="pie">Pie</option>
+            </select>
         </div>
     </div>
 
