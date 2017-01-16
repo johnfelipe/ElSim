@@ -60,14 +60,20 @@ let District = require('../district-module');
             names = [];
         }
 
-
+        let aux = {};
         for (i = 0, len = global.length; i < len; i++) {
             for (let key in global[i].parties) {
                 if (global[i].parties[key] === 0) {
                     delete global[i].parties[key];
+                } else {
+                    if(aux[key] === undefined){
+                        aux[key] = 0;
+                    }
+                    aux[key] += global[i].parties[key];
                 }
             }
         }
+        global.agrupado = aux;
         return global;
     }
 

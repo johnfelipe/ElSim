@@ -11,38 +11,39 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-block">
-                    <h4 class="card-title">
-                        <b><span class="fa fa-list"></span> Data</b>
-                        <hr>
-                    </h4>
-                    <div class="card-text">
-                        <% for(let district of global) { %>
-                        <ul class="list-group"><b><span class="fa fa-map-marker"></span> <%= district.cc %></b><br>
-                            <% for(let party in district.parties) { %>
-                            <li class="list-group-item">
-                                <img src="<%= icons[party] %>" width="18" height="18"/> <%= party %> <span
-                                        class="tag tag-primary tag-pill "> <%= district.parties[party] %></span><br>
-                            </li>
-                            <% } %>
-                        </ul>
-                        <hr>
+                    <table id="tabla" class="display" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Party</th>
+                            <th>Mandates</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% for(let party in global.agrupado) { %>
+                        <tr>
+                            <td><img src="<%= icons[party] %>" width="18" height="18"/> <%= party %></td>
+                            <td><%= global.agrupado[party] %></td>
+                        </tr>
                         <% } %>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
         <div class="col-md-8">
             <div class="card myCard">
-                <div class="card-block">
-                    <h4 class="card-title"><span class="fa fa-bar-chart-o"></span> Chart</h4>
-                    <hr>
-                    <div id="container"></div>
-                </div>
-                <hr>
+                <div id="container" class="card-img-top"></div>
                 <div class="card-footer text-xs-right">
                     <span class="fa fa-database"></span> This result is now stored in your own results!<br>
                     <small><a href="/users/profile">See my own results</a></small>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">RAW</h4>
+                    <pre><code class="json"><%= JSON.stringify(global, undefined, 4) %></code></pre>
                 </div>
             </div>
         </div>
@@ -51,7 +52,15 @@
 <script type="text/javascript">
     var global = <%- JSON.stringify(global) %>;
     var colors = <%- JSON.stringify(colors) %>;
+
+    $('#tabla').DataTable({
+        "order": [[ 1, "desc" ]],
+        "paging":   false,
+        "search": false
+    } );
+
 </script>
+
 <script type="text/javascript" src="/js/country-chart.min.js"></script>
 <% include ../partials/footer.ejs %>
 </body>

@@ -1,9 +1,9 @@
 body {
     padding: 50px;
-    font: 14px "Roboto Sans", Helvetica, Arial, sans-serif !important;
+    font: 16px "Roboto Sans", Helvetica, Arial, sans-serif !important;
     background-color: #e3e3e3 !important;
 }
-
+.dataTables_filter { visibility: hidden;}
 .navbar, .dropdown-menu, .dropdown-item {
     background-color: #89bdd3 !important;
     color: #FCFCFC !important;
@@ -15,13 +15,13 @@ body {
     color: #FCFCFC !important;
 }
 .navbar-brand:hover, .nav-link:hover, .dropdown-toggle:hover, .dropdown-menu:hover, .dropdown-item:hover {
-    color: #FCCCCC !important;
+    color: #1f7e9a !important;
 }
 .btn:hover{
     background-color: #89bdd3 !important;
     color: #FCFCFC !important;
 }
-a, button, select, input, .card, .card-block, .card-deck, .card {
+a, button, select, input, .card, .card-block, .card-deck, .card, .card-img-top {
     border-radius: 0 !important;
 }
 .indexCard:hover {
@@ -34,6 +34,7 @@ a, button, select, input, .card, .card-block, .card-deck, .card {
     border-bottom: none !important;
 
 }
+
 .indexCard {
     border: 0px !important;
     border-bottom-color: transparent !important;

@@ -4,7 +4,6 @@
             <label for="resultSelected">
                 <span class="fa fa-database"></span> Select a stored ellection
             </label>
-
             <select class="form-control" name="resultSelected" id="resultSelected">
                 <% for(i = 0, len = ellections.length; i < len; i++){ %>
                 <option value="<%= ellections[i].fecha %>,<%= ellections[i].autor %>">
@@ -13,7 +12,7 @@
                 </option>
                 <% } %>
             </select>
-            <label class="text-info">
+            <label class="text-info" for="resultSelected">
                 <span class="fa fa-info-circle"></span> If your ellection doesn't appear, you should review if all districts matched.
             </label>
 
@@ -28,7 +27,7 @@
                 <option value="<%= i %>"><%= i %>%</option>
                 <% } %>
             </select>
-            <label class="text-info">
+            <label class="text-info" for="percentage">
                 <span class="fa fa-info-circle"></span> It will be applied to all districts.
             </label>
         </div>
