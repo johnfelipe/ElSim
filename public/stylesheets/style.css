@@ -42,6 +42,7 @@ a, button, select, input, .card, .card-block, .card-deck, .card, .card-img-top {
 .indexCard:hover {
     opacity: 0.80;
 }
+
 .footer {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
