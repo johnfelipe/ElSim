@@ -3,6 +3,12 @@ body {
     font: 16px "Roboto Sans", Helvetica, Arial, sans-serif !important;
     background-color: #e3e3e3 !important;
 }
+
+@media screen and (max-width: 980px) {
+    .a2a_floating_style.a2a_vertical_style { display: none; }
+}
+
+
 .container {
     margin-top: 20px;
 }
