@@ -3,6 +3,9 @@ body {
     font: 16px "Roboto Sans", Helvetica, Arial, sans-serif !important;
     background-color: #e3e3e3 !important;
 }
+.container {
+    margin-top: 20px;
+}
 .dataTables_filter { visibility: hidden;}
 .navbar, .dropdown-menu, .dropdown-item, .hidden-lg-up {
     background-color: #89bdd3 !important;

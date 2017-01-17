@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(favicon('public/favicon.png'));
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database);
 app.set('superSecret', config.secret);

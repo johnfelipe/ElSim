@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html>
 <% title = 'EllSim' %>
+<% user = null %>
 <% include ../partials/head.ejs %>
+<% include ../partials/menu.ejs %>
 <body>
-<div class="container-fluid">
+<div class="container">
     <div class="card-deck-wrapper">
         <div class="card-deck">
             <div class="card">
+                <img src="/images/error.jpg" class="card-img-top" width="100%"/>
+            </div>
+            <div class="card">
                 <div class="card-block">
-                    <h4 class="card-title"> Error </h4><hr>
-                    <ul class="card-text list-group">
-                        <li class="list-group-item">
-                            <b>Message: </b><%= message %>
-                        </li>
-                        <li class="list-group-item">
-                            <b>Status: </b><%= error.status %>
-                        </li>
-                    </ul><br>
-                    <h4 class="card-title"> Stack trace</h4><hr>
-                    <ul class="card-text list-group">
-                        <li class="list-group-item">
-                            <pre><%= error.stack %></pre>
-                        </li>
-                    </ul>
+                    <h4 class="card-title">
+                        Ouch! What happened?!
+                    </h4>
+                    <div class="card-text">
+                        <p>
+                            Sorry about it and please feel free to contact me through mail or GitHub. This is embarrassed for me,
+                            and i will appreciate you if help me to solve it. Thanks.<br>
+
+                        </p>
+                        <ul class=" list-group">
+                            <li class="list-group-item">
+                                <span class="fa fa-warning"></span> <code><%= message %>. Status <%= error.status %></code>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="fa fa-envelope-o"></span> Contact me at
+                                <a href="mailto:jesusgonzaleznovez@gmail.com">jesusgonzaleznovez@gmail.com</a>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="fa fa-github"></span> Create an issue on
+                                <a href="https://github.com/jesusgn90/TFG">https://github.com/jesusgn90/TFG</a>
+                            </li>
+                        </ul>
+
+                    </div>
                 </div>
-
-
             </div>
         </div>
+
     </div>
 </div>
+<% include ../partials/footer.ejs %>
 </body>
 </html>
