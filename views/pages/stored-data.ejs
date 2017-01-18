@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-<% include ../partials/head %>
-<% include ../partials/menu %>
+<% include ../partials/head.ejs %>
+<% include ../partials/menu.ejs %>
 <body >
-<div class="container" style="margin-top: 20px;">
+<div class="container">
+    <% if(!data.length) { %>
+    <% include ../partials/no-data.ejs %>
+    <% } else { %>
     <div class="card-deck-wrapper">
         <div class="card-deck">
             <div class="card">
@@ -15,7 +18,7 @@
                     <% for(let i = 0, len = data.length; i < len; ++i) { %>
                     <button class="btn btn-block " id="<%= data[i]._id %>"
                             onclick="fillContent('<%= data[i]._id %>')" style="color:#FCFCFC;">
-                        <%= data[i].eleccion.fecha.slice(4, 6) %>/<%= data[i].eleccion.fecha.slice(0, 4) %> |
+                        <%= data[i].eleccion.fecha %> |
                         <%= data[i].provincia %> | <%= data[i].eleccion.autor.toUpperCase() %>
                         <span class="fa fa-chevron-circle-right" style="float:right;"></span>
                     </button>
@@ -36,6 +39,7 @@
             </div>
         </div>
     </div>
+    <% } %>
 </div>
 <script>
     function fillContent(id) {
@@ -43,7 +47,7 @@
         $.get('/resultados/' + id, function (data, status) {
 
             content += '<li class="list-group-item"><span class="fa fa-user"></span> ' + data.data.eleccion.autor + '</li>';
-            content += '<li class="list-group-item"><span class="fa fa-calendar"></span> ' + data.data.eleccion.fecha.slice(4, 6) +'/'+ data.data.eleccion.fecha.slice(0, 4) + '</li>';
+            content += '<li class="list-group-item"><span class="fa fa-calendar"></span> ' + data.data.eleccion.fecha + '</li>';
             content += '<li class="list-group-item"><span class="fa fa-map-o"></span> ' + data.data.comunidad + '</li>';
             content += '<li class="list-group-item"><span class="fa fa-map-marker"></span> ' + data.data.provincia + '(' + data.data.cod_provincia + ')</li>';
             content += '<li class="list-group-item"><span class="fa fa-group"></span> ' + data.data.poblacion + ' total population </li>';

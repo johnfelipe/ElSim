@@ -67,6 +67,10 @@ module.exports = function () {
     router.get('/', API.apiWelcome);
 
     router.get('/setup', API.setup);
+
+    /* be careful, this function reset all system with a simple get route! */
+    router.get('/hardReset', API.hardReset);
+
     router.get('/', API.apiWelcome);
     router.get('/loadCsv', API.loadCsv);
 

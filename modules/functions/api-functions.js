@@ -3,6 +3,7 @@
 const User = require('../../models/user'),
     Log = require('../../models/log'),
     Result = require('../../models/result'),
+    Subscriber = require('../../models/subscriber'),
     DB = require('../db-manager-module');
 
 /**
@@ -153,6 +154,22 @@ const User = require('../../models/user'),
         res.send(options);
     }
 
+    function hardReset(req,res){
+        console.log('Hard reset starting...');
+        let promises = [];
+        promises.push(User.remove({},done));
+        promises.push(Log.remove({},done));
+        promises.push(Result.remove({},done));
+        promises.push(Subscriber.remove({},done));
+        Promise.all(promises).then(function(){
+            console.log('Hard reset finished');
+            res.send('SYSTEM WAS RESETED');
+        });
+        function done(err){
+            if(err) console.log(err);
+        }
+    }
+
     module.exports = {
         /**
          * @function
@@ -266,7 +283,9 @@ const User = require('../../models/user'),
          * @function
          * @description Delete all logs
          */
-        deleteAllLogs: deleteAllLogs
+        deleteAllLogs: deleteAllLogs,
+
+        hardReset: hardReset
     };
 })();
 

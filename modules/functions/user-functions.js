@@ -10,7 +10,7 @@ const User = require('../../models/user'),
         let options = {
             title: 'Profile',
             user: req.user,
-            err: false
+            advice: false
         };
         res.render('pages/profile', options);
     }
