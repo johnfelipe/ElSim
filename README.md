@@ -1,65 +1,54 @@
-# How to use
+* [EllSim](#EllSim)
+  * [Setup](#Setup)
+  * [Technologies](#Technologies)
+  * [Usage](#Usage)
+  
+# EllSim
+This is an ellectoral simulator, is based on Spanish system. You can
+ generate charts, reports, make changes on many params, learn, download some resources,
+ connect an external client to the api, play with the minigames, and few more things!
 
-Install nodemon:
-
+## Setup
     $ sudo npm i -g nodemon
-    
-Install dependencies:
-
+    $ git clone https://github.com/jesusgn90/TFG && cd TFG
     $ npm i
-    
-Run project:
-
     $ npm start
 
-Web routes:
+Only if you want to test it on a virtual environment:
 
-    /
-    
-Api routes:
+    $ nodeenv env
+    $ . env/bin/activate
+    (env)$ npm start   
 
-    /api/
+## Technologies
+- NodeJS
+- MongoDB
+- Bootstrap 4
 
+## Usage
+Open your browser or use an external api client.
+
+    Web routes:  /
+    Api routes:  /api/
 
 Run tests:
 
     $ npm test
+
+
+
+### Docs
+If you are running the server go to:
     
-Nodeenv:
-
-    $ nodeenv env
-    $ . env/bin/activate
-    (env)$ npm test
-    (env)$ npm start   
-
-Environment:
-
-    $ node -v
-        v.6.9.1
-    $ npm -v
-        3.10.8
-
-# Generate documentation
-
-Only the first time:
-    
-    $ chmod a+x ./gen_doc.sh
-
-Generate documentation:
-
-    $ ./gen_doc.sh
-    
-How to read the documentation:
-
-    If you are running the server go to:
-        /doc/index.html
+    /doc/index.html
         
-    else you can read under directory:
-        ./public/doc/*
+Also you can read them under directory:
+
+    ./public/doc/*
    
-# Web auth and API auth   
+### Login   
    
-Is the same. You can use your user to login on the web or to
+You can use your user to login on the web or to
 make requests to the api. 
 
 Web:
@@ -77,57 +66,6 @@ API:
         'email': youremail,
         'password': yourpassword
     }
-   
-# API 
-## Token 
 
-Of course you must to have a token to authenticate and use the API. The reason is
-to limit the abuse of the API. You can use the API 2500 requests per day so you have no problem to use in the free
-way.
-
-## Free usage
-
-If you are planning to use the API in an external app or service, then you should pay a little to grow up your limit up to
-1000000 requests per day.
-
-
-## API methods
-    
-GET api welcome route
-    
-    /api/
-    
-GET api setup routes
-
-    /api/setup
-    /api/loadCsv
-
-GET api models routes
-
-    /api/users/:id
-    /api/users
-    /api/logs/:id
-    /api/logs
-    /api/resultados/:id
-    /api/resultados
-
-POST api authenticate route
-
-    /api/authenticate
-
-POST api models routes
-
-    /api/users
-    /api/resultados
-
-PUT api models routes
-
-    /api/users/:id
-    /api/resultados/:id
-
-DELETE api models routes
-
-    /api/users/:id
-    /api/logs
-    /api/resultados/:id
-    /api/resultados
+## Contribute? Error detected? 
+Fork it and pull request for contribute. If error is detected, please open an issue please, that's the good way.
