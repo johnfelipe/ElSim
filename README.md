@@ -1,7 +1,7 @@
-* [EllSim](#EllSim)
-  * [Setup](#Setup)
-  * [Technologies](#Technologies)
-  * [Usage](#Usage)
+* [EllSim](#ellsim)
+  * [Setup](#setup)
+  * [Technologies](#technologies)
+  * [Usage](#usage)
   
 # EllSim
 This is an ellectoral simulator, is based on Spanish system. You can
