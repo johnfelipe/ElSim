@@ -32,7 +32,7 @@ app.set('superSecret', config.secret);
 
 /** Configuring Passport */
 // TODO - Why Do we need this key ?
-app.use(expressSession({secret: config.secret}));
+app.use(expressSession({secret: config.secret, cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 

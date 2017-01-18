@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top" >
+<nav class="navbar navbar-fixed-top">
     <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive"
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="fa fa-navicon"></span>
@@ -23,9 +23,10 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="supportedContentDropdown">
                     <a class="dropdown-item" href="/learn"><span class="fa fa-graduation-cap"></span> Culture</a>
-                    <a class="dropdown-item" href="/resources"><span class="fa fa-cloud"></span> Resources</a>
+                    <a class="dropdown-item" href="/resources"><span class="fa fa-cloud-download"></span> Resources</a>
                     <a class="dropdown-item" href="/parties"><span class="fa fa-group"></span> Parties</a>
-                    <a class="dropdown-item" href="/doc/index.html"><span class="fa fa-file-code-o"></span> Read the docs!</a>
+                    <a class="dropdown-item" href="/doc/index.html"><span class="fa fa-file-code-o"></span> Read the
+                        docs!</a>
                 </div>
             </li>
             <li class="nav-item active dropdown">
@@ -42,21 +43,48 @@
             <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="supportedContentDropdown" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    <span class="fa fa-smile-o"></span> Have fun!
+                    <span class="fa fa-play-circle"></span> Have fun!
                 </a>
                 <div class="dropdown-menu" aria-labelledby="supportedContentDropdown">
                     <a class="dropdown-item" href="#"><span class="fa fa-question-circle-o"></span> Quiz</a>
                     <a class="dropdown-item" href="#"><span class="fa fa-gamepad"></span> Foo Game</a>
                 </div>
             </li>
+            <li class="nav-item active dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="supportedContentDropdown" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <span class="fa fa-share-alt-square"></span> Social
+                </a>
+                <div class="dropdown-menu" aria-labelledby="supportedContentDropdown">
+
+                    <a class="dropdown-item" href="https://twitter.com/jesusgon90">
+                        <span class="fa fa-twitter-square"></span> @jesusgon90
+                    </a>
+
+                    <a class="dropdown-item" href="https://www.linkedin.com/in/jesusgn90">
+                        <span class="fa fa-linkedin-square "></span> /jesusgn90
+                    </a>
+
+                    <a class="dropdown-item" href="mailto:jesusgonzaleznovez@gmail.com">
+                        <span class="fa fa-envelope "></span> jesusgonzaleznovez@gmail.com
+                    </a>
+
+                    <a class="dropdown-item" href="https://github.com/jesusgn90">
+                        <span class="fa fa-git-square"></span> @jesusgn90
+                    </a>
+                </div>
+            </li>
             <li class="nav-item active">
-                <a class="nav-item nav-link" href="/help"><span class="fa fa-question-circle-o"></span> Help</a>
+                <a class="nav-item nav-link" href="/help">
+                    <span class="fa fa-question-circle"></span> Help
+                </a>
             </li>
             <% if(user && user.email === 'jesusgonzaleznovez@gmail.com') { %>
             <li class="nav-item active">
                 <a class="nav-item nav-link" href="/admin"><span class="fa fa-user-secret"></span> Administration</a>
             </li>
             <% } %>
+
         </ul>
         <ul class="nav navbar-nav pull-right ">
             <li class="nav-item active dropdown">
