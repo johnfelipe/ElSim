@@ -8,7 +8,7 @@
         <select class="form-control" name="resultSelected" id="resultSelected">
             <% for(let i = 0, len = results.length; i < len; i++){ %>
             <option value="<%= results[i]._id %>">
-                <%= results[i].eleccion.fecha %> |
+                <%= moment(results[i].eleccion.fecha).format('DD/MM/YYYY') %> |
                 <%= results[i].provincia %> |
                 <%= results[i].eleccion.autor.toUpperCase() %>
             </option>

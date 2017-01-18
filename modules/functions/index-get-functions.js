@@ -54,6 +54,7 @@ const Result = require('../../models/result'),
             indexResponse(req, res, 'pages/graphic-form', 'Chart', {
                 results: data,
                 ellections: ellections,
+                moment: Moment
             });
         });
     }
@@ -72,7 +73,8 @@ const Result = require('../../models/result'),
         function haveResult(err, data) {
             if (err) throw err;
             indexResponse(req, res, 'pages/stored-data', 'Stored Data', {
-                data: data
+                data: data,
+                moment: Moment
             });
         }
     }
