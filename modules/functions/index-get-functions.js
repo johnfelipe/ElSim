@@ -2,7 +2,9 @@
 'use strict';
 const Result = require('../../models/result'),
     Util = require('../util-module'),
-    Moment = require('moment');
+    Moment = require('moment'),
+    langEn = require('../lang/lang-en'),
+    langEs = require('../lang/lang-es');
 
 /**
  * All the callback functions of index GET routes
@@ -25,7 +27,7 @@ const Result = require('../../models/result'),
     }
 
     function indexGetFunction(req, res) {
-        indexResponse(req, res, 'pages/index', 'EllSim', {moment: Moment, advice: null});
+        indexResponse(req, res, 'pages/index', 'EllSim', {moment: Moment, text: langEn ,advice: null});
     }
 
     function loginGetFunction(req, res) {

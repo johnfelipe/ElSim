@@ -2,9 +2,9 @@
 'use strict';
 const express = require('express'),
     router = express.Router(),
-    IndexGetFunctions = require('../modules/functions/index-get-functions'),
-    IndexPostFunctions = require('../modules/functions/index-post-functions'),
-    api = require('../modules/functions/api-functions'),
+    IGF = require('../modules/functions/index-get-functions'),
+    IPF = require('../modules/functions/index-post-functions'),
+    Api = require('../modules/functions/api-functions'),
     Admin = require('../modules/functions/admin-functions');
 
 const isAuthenticated = function (req, res, next) {
@@ -24,28 +24,28 @@ const isAuthenticated = function (req, res, next) {
  */
 module.exports = function(passport){
     /** GET routes */
-    router.get('/', IndexGetFunctions.indexGetFunction);
-    router.get('/help', IndexGetFunctions.helpGetFunction);
-    router.get('/leaflet-example', IndexGetFunctions.leafletExampleGetFunction);
-    router.get('/graphic-form', IndexGetFunctions.graphicFormGetFunction);
-    router.get('/learn', IndexGetFunctions.learnGetFunction);
-    router.get('/resources', IndexGetFunctions.resourcesGetFunction);
-    router.get('/add-data', IndexGetFunctions.addDataGetFunction);
-    router.get('/stored-data', IndexGetFunctions.storedDataFunction);
-    router.get('/login', IndexGetFunctions.loginGetFunction);
-    router.get('/signup', IndexGetFunctions.signUpGetFunction);
-    router.get('/signout', IndexGetFunctions.signOutGetFunction);
-    router.get('/parties', IndexGetFunctions.partiesFunction);
-    router.get('/resultados/:id', api.findOneResultado);
-    router.get('/delete-data', IndexGetFunctions.deleteDataGetFunction);
+    router.get('/', IGF.indexGetFunction);
+    router.get('/help', IGF.helpGetFunction);
+    router.get('/leaflet-example', IGF.leafletExampleGetFunction);
+    router.get('/graphic-form', IGF.graphicFormGetFunction);
+    router.get('/learn', IGF.learnGetFunction);
+    router.get('/resources', IGF.resourcesGetFunction);
+    router.get('/add-data', IGF.addDataGetFunction);
+    router.get('/stored-data', IGF.storedDataFunction);
+    router.get('/login', IGF.loginGetFunction);
+    router.get('/signup', IGF.signUpGetFunction);
+    router.get('/signout', IGF.signOutGetFunction);
+    router.get('/parties', IGF.partiesFunction);
+    router.get('/resultados/:id', Api.findOneResultado);
+    router.get('/delete-data', IGF.deleteDataGetFunction);
     router.get('/admin', Admin.adminSummaryFunction);
 
     /** POST routes */
-    router.post('/add-data', IndexPostFunctions.addDataPostFunction);
-    router.post('/delete-data', IndexPostFunctions.deleteDataPostFunction);
-    router.post('/graphic-form', IndexPostFunctions.graphicFormPostFunction);
-    router.post('/country-form', IndexPostFunctions.countryFormPostFunction);
-    router.post('/save-single-chart', IndexPostFunctions.saveResultFunction);
+    router.post('/add-data', IPF.addDataPostFunction);
+    router.post('/delete-data', IPF.deleteDataPostFunction);
+    router.post('/graphic-form', IPF.graphicFormPostFunction);
+    router.post('/country-form', IPF.countryFormPostFunction);
+    router.post('/save-single-chart', IPF.saveResultFunction);
 
     router.post('/login', passport.authenticate('login', {
         successRedirect: '/',

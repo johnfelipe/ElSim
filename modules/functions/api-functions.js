@@ -7,8 +7,8 @@ const User = require('../../models/user'),
     DB = require('../db-manager-module');
 
 /**
- * All the callback functions of api routes
- * @module functions/api-functions
+ * All the callback functions of Api routes
+ * @module functions/Api-functions
  */
 (function () {
     function setup(req, res) {
