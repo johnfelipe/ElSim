@@ -1,8 +1,6 @@
 /* jshint esversion: 6 */
 
-const User = require('./../../models/user'),
-    Log = require('./../../models/log'),
-    Result = require('./../../models/result');
+const UF = require('./user-functions');
 
 /**
  * All the callback functions of api routes
@@ -11,38 +9,26 @@ const User = require('./../../models/user'),
 (function () {
     function adminSummaryFunction(req, res) {
         if (!req.user || req.user.email !== 'jesusgonzaleznovez@gmail.com') {
-            res.send({
+            res.render('pages/error',{
                 result: 'fail',
-                status: 'ok',
-                message: 'You are not the admin, sorry!'
+                message: 'You are not the admin, sorry!',
+                error: {
+                    status: 401
+                }
             });
         } else {
-            let promises = [], users, logs, results;
-            promises.push(
-                User.find({}, function (err, data) {
-                    users = data;
-                })
-            );
-            promises.push(
-                Log.find({}, function (err, data) {
-                    logs = data;
-                })
-            );
-            promises.push(
-                Result.find({}, function (err, data) {
-                    results = data;
-                })
-            );
-            Promise.all(promises).then(function(){
-                let options = {
-                    user: req.user,
-                    title: 'Administration',
-                    logs: logs,
-                    results: results,
-                    users: users
-                };
-                res.render('pages/admin', options);
-            });
+            UF.loadAll(loadDone);
+
+        }
+        function loadDone(logs,results,users){
+            let options = {
+                user: req.user,
+                title: 'Administration',
+                logs: logs,
+                results: results,
+                users: users
+            };
+            res.render('pages/admin', options);
         }
     }
 

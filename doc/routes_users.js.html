@@ -30,11 +30,7 @@
 'use strict';
 const express = require('express'),
     router = express.Router(),
-    User = require('../models/user'),
-    Log = require('../models/log'),
-    Result = require('../models/result'),
-    Subscriber = require('../models/subscriber'),
-    Mailer = require('../modules/mailer');
+    UF = require('../modules/functions/user-functions');
 const isAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) {
         return next();
@@ -49,73 +45,9 @@ const isAuthenticated = function (req, res, next) {
  * Rutas de la interfaz web relativas a usuarios
  */
 module.exports = function (passport) {
-    router.get('/profile', isAuthenticated, function (req, res) {
-        User.findOne({_id: req.user._id}, function (err, user) {
-            if (err) throw err;
-            let options = {
-                title: 'Profile',
-                user: req.user,
-                advice: false
-            };
-            res.render('pages/profile', options);
-        });
-    });
-
-    router.post('/addSubscriber', function(req,res){
-        let s = new Subscriber({
-           email: req.body.subscriber,
-            options: {}
-        });
-
-        s.save(function(err){
-            if(err) throw err;
-            let options = {
-                title: 'Help',
-                user: req.user,
-                err: err
-            };
-            res.render('pages/help',options);
-        });
-    });
-    router.post('/sendNews',function(req,res){
-        Subscriber.find({},function(err,subscribers){
-            if(err) throw err;
-            let mails = [];
-            for(let s of subscribers){
-                mails.push(s.email);
-            }
-            Mailer.sendMail(mails,'TEST',function(err,result){
-                console.log('ERROR: ' + err,'RESULT: ' + result);
-                let promises = [], users, logs, results;
-                promises.push(
-                    User.find({}, function (err, data) {
-                        users = data;
-                    })
-                );
-                promises.push(
-                    Log.find({}, function (err, data) {
-                        logs = data;
-                    })
-                );
-                promises.push(
-                    Result.find({}, function (err, data) {
-                        results = data;
-                    })
-                );
-                Promise.all(promises).then(function(){
-                    let options = {
-                        user: req.user,
-                        title: 'Administration',
-                        logs: logs,
-                        results: results,
-                        users: users
-                    };
-                    res.render('pages/admin', options);
-                });
-            })
-
-        })
-    });
+    router.get('/profile', isAuthenticated, UF.profile);
+    router.post('/addSubscriber', UF.addSubscriber);
+    router.post('/sendNews',UF.sendNews);
     return router;
 };</code></pre>
         </article>
@@ -127,13 +59,13 @@ module.exports = function (passport) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-db-manager-module.html">db-manager-module</a></li><li><a href="module-district-module.html">district-module</a></li><li><a href="module-electoral-system-module.html">electoral-system-module</a></li><li><a href="module-functions_admin-functions.html">functions/admin-functions</a></li><li><a href="module-functions_api-functions.html">functions/api-functions</a></li><li><a href="module-functions_index-get-functions.html">functions/index-get-functions</a></li><li><a href="module-functions_index-post-functions.html">functions/index-post-functions</a></li><li><a href="module-functions_parties.html">functions/parties</a></li><li><a href="module-Graphic.html">Graphic</a></li><li><a href="module-graphics_bar-module.html">graphics/bar-module</a></li><li><a href="module-graphics_colors.html">graphics/colors</a></li><li><a href="module-graphics_icons.html">graphics/icons</a></li><li><a href="module-graphics_json-module.html">graphics/json-module</a></li><li><a href="module-graphics_map-module.html">graphics/map-module</a></li><li><a href="module-graphics_pie-module.html">graphics/pie-module</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_subscriber.html">models/subscriber</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li><li><a href="module-util-module.html">util-module</a></li></ul><h3>Global</h3><ul><li><a href="global.html#app/authenticate">app/authenticate</a></li><li><a href="global.html#app/isAuthenticated">app/isAuthenticated</a></li><li><a href="global.html#express">express</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-db-manager-module.html">db-manager-module</a></li><li><a href="module-district-module.html">district-module</a></li><li><a href="module-electoral-system-module.html">electoral-system-module</a></li><li><a href="module-functions_admin-functions.html">functions/admin-functions</a></li><li><a href="module-functions_api-functions.html">functions/api-functions</a></li><li><a href="module-functions_index-get-functions.html">functions/index-get-functions</a></li><li><a href="module-functions_index-post-functions.html">functions/index-post-functions</a></li><li><a href="module-functions_parties.html">functions/parties</a></li><li><a href="module-Graphic.html">Graphic</a></li><li><a href="module-graphics_bar-module.html">graphics/bar-module</a></li><li><a href="module-graphics_colors.html">graphics/colors</a></li><li><a href="module-graphics_icons.html">graphics/icons</a></li><li><a href="module-graphics_map-module.html">graphics/map-module</a></li><li><a href="module-graphics_pie-module.html">graphics/pie-module</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_subscriber.html">models/subscriber</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li><li><a href="module-util-module.html">util-module</a></li></ul><h3>Global</h3><ul><li><a href="global.html#app/authenticate">app/authenticate</a></li><li><a href="global.html#app/isAuthenticated">app/isAuthenticated</a></li><li><a href="global.html#express">express</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Jan 17 2017 12:38:55 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Jan 18 2017 11:49:40 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>

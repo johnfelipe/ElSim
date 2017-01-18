@@ -74,11 +74,11 @@ module.exports = function () {
     router.get('/users', API.findAllUsers);
     router.get('/logs/:id', API.findOneLog);
     router.get('/logs', API.findLogs);
-    router.get('/resultados/:id', API.findOneResultado);
-    router.get('/resultados', API.findAllResultados);
+    router.get('/results/:id', API.findOneResultado);
+    router.get('/results', API.findAllResultados);
 
     router.post('/users', API.saveOneUser);
-    router.post('/resultados', API.saveOneResultado);
+    router.post('/results', API.saveOneResultado);
 
     router.put('/users/:id', API.updateOneUser);
     router.put('/resultados/:id', API.updateOneResultado);

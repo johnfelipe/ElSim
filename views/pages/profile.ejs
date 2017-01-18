@@ -65,8 +65,11 @@
     <% } %>
     <% include ../partials/footer %>
     <% include ../partials/modal-profile.ejs %>
+    <% if (user) { %>
     <script>
+
         function showResult(index) {
+
             var results = <%- JSON.stringify(user.resultados) %>;
             $('#modal-body').empty();
             $('#modal-body').append(
@@ -79,8 +82,8 @@
                 '<pre>' + JSON.stringify(results[index].result.parties, null, 2) + '</pre>'
             );
             $('#myModal').modal('show');
-            console.log(results);
         }
     </script>
+    <% } %>
 </body>
 </html>
