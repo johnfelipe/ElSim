@@ -1,8 +1,11 @@
+*Table of contents*
 * [EllSim](#ellsim)
   * [Setup](#setup)
   * [Technologies](#technologies)
   * [Usage](#usage)
-  
+    * [Docs](#docs)
+    * [Login](#login)
+  * [Contribute? Error detected?](#contribute-error-detected)
 # EllSim
 This is an ellectoral simulator, is based on Spanish system. You can
  generate charts, reports, make changes on many params, learn, download some resources,
