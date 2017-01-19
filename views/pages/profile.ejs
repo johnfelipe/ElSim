@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-<% include ../partials/head %>
-<% include ../partials/menu %>
+<% include ../partials/head.ejs %>
+<% include ../partials/menu.ejs %>
 <body>
-<div class="container" style="margin-top: 20px;">
+<div class="container" >
     <% if(advice) { %>
-    <% include ../partials/advice-login %>
+    <% include ../partials/advice-login.ejs %>
     <% } else { %>
     <div class="card-deck-wrapper">
         <div class="card-deck">

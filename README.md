@@ -6,7 +6,7 @@
     * [Docs](#docs)
     * [Login](#login)
   * [Contribute? Error detected?](#contribute-error-detected)
-
+  * [To-Do](#to-do)
 # EllSim
 This is an ellectoral simulator, is based on Spanish system. You can
  generate charts, reports, make changes on many params, learn, download some resources,
@@ -73,3 +73,14 @@ API:
 
 ## Contribute? Error detected? 
 Fork it and pull request for contribute. If error is detected, please open an issue please, that's the good way.
+
+# To-Do
+
+* Country chart
+    * Auto calculate mandates by population
+    * Set parameters of calculation
+    * Check Ceuta & Melilla
+    * Agreggations
+        * District, Comunity, Country
+* Single chart
+    * Show table of process

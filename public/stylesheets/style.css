@@ -8,7 +8,9 @@ body {
     .a2a_floating_style.a2a_vertical_style { display: none; }
 }
 
-
+.btn-stored{
+    color:#FCFCFC;
+}
 .container {
     margin-top: 20px;
 }
