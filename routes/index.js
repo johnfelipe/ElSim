@@ -27,7 +27,8 @@ module.exports = function(passport){
     router.get('/', IGF.indexGetFunction);
     router.get('/help', IGF.helpGetFunction);
     router.get('/leaflet-example', IGF.leafletExampleGetFunction);
-    router.get('/graphic-form', IGF.graphicFormGetFunction);
+    router.get('/single-graphic-form', IGF.singleGraphicFormGetFunction);
+    router.get('/country-graphic-form', IGF.countryGraphicFormGetFunction);
     router.get('/learn', IGF.learnGetFunction);
     router.get('/resources', IGF.resourcesGetFunction);
     router.get('/add-data', IGF.addDataGetFunction);

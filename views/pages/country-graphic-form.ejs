@@ -11,35 +11,32 @@
     <div class="card-deck-wrapper">
         <div class="card-deck">
             <div class="card myCard">
-                <img src="/images/granada.png" class="card-img-top"  width="100%" height="270"/>
-                <div class="card-block">
-                    <h4 class="card-title">
-                        Single district chart
-                    </h4>
-                    <% include ../forms/single-chart.ejs %>
-                    <div class="text-xs-right">
-                        <button type="submit" class="btn btn-primary" form="form1">
-                            <span class="fa fa-check-circle-o"></span> Let's do it!
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="card myCard">
-                <img src="/images/spain.png" class="card-img-top"  width="100%" height="270"/>
                 <div class="card-block">
                     <h4 class="card-title">
                         Country chart
                     </h4>
                     <% include ../forms/country-chart.ejs %>
                 </div>
-                <div class="card-footer text-xs-right">
+                <div class="card-footer pull-right">
                     <button type="submit" class="btn btn-primary" form="country-form">
                         <span class="fa fa-check-circle-o"></span> Let's do it!
                     </button>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">
+                        Map configuration
+                    </h4>
+                    <div class="card-text">
+                        <p>
+                            Here will live the setup map.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
     <% } %>

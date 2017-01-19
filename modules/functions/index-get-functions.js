@@ -51,9 +51,18 @@ const Result = require('../../models/result'),
         indexResponse(req, res, 'pages/leaflet-example', 'LeafletJS', false);
     }
 
-    function graphicFormGetFunction(req, res) {
+    function singleGraphicFormGetFunction(req, res) {
         Util.calculateEllections(function (data, ellections) {
-            indexResponse(req, res, 'pages/graphic-form', 'Chart', {
+            indexResponse(req, res, 'pages/single-graphic-form', 'Single Chart', {
+                results: data,
+                ellections: ellections,
+                moment: Moment
+            });
+        });
+    }
+    function countryGraphicFormGetFunction(req, res) {
+        Util.calculateEllections(function (data, ellections) {
+            indexResponse(req, res, 'pages/country-graphic-form', 'Country Chart', {
                 results: data,
                 ellections: ellections,
                 moment: Moment
@@ -152,7 +161,12 @@ const Result = require('../../models/result'),
          * @description
          * @function
          */
-        graphicFormGetFunction: graphicFormGetFunction,
+        singleGraphicFormGetFunction: singleGraphicFormGetFunction,
+        /**
+         * @description
+         * @function
+         */
+        countryGraphicFormGetFunction: countryGraphicFormGetFunction,
 
         /**
          * @description
