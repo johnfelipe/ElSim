@@ -135,7 +135,6 @@ const User = require('../../models/user'),
     function apiResponse(req, res, err, message, data) {
         let options;
         if (err) {
-            console.log('ERROR:' + err);
             options = {
                 result: 'fail',
                 success: false,
@@ -143,7 +142,6 @@ const User = require('../../models/user'),
                 data: null
             };
         } else {
-            console.log('DATA' + data);
             options = {
                 result: 'OK',
                 success: true,
@@ -154,135 +152,83 @@ const User = require('../../models/user'),
         res.send(options);
     }
 
-    function hardReset(req,res){
+    function hardReset(req, res) {
         console.log('Hard reset starting...');
         let promises = [];
-        promises.push(User.remove({},done));
-        promises.push(Log.remove({},done));
-        promises.push(Result.remove({},done));
-        promises.push(Subscriber.remove({},done));
-        Promise.all(promises).then(function(){
+        promises.push(User.remove({}, done));
+        promises.push(Log.remove({}, done));
+        promises.push(Result.remove({}, done));
+        promises.push(Subscriber.remove({}, done));
+        Promise.all(promises).then(function () {
             console.log('Hard reset finished');
-            res.send('SYSTEM WAS RESETED');
+            res.send({
+                result: 'Successful',
+                status: 200
+            });
         });
-        function done(err){
-            if(err) console.log(err);
+        function done(err) {
+            if (err) {
+                console.log(err);
+            }
         }
     }
 
     module.exports = {
-        /**
-         * @function
-         * @description Generic API response
-         */
+        /** Generic API response */
         apiResponse: apiResponse,
-        /**
-         * @function
-         * @description Generic error response
-         */
+
+        /** Generic error response */
         resError: resError,
 
-        /**
-         * @function
-         * @description Initial demo setup
-         */
+        /** Initial demo setup */
         setup: setup,
 
-        /**
-         * @function
-         * @description Find all users
-         */
+        /** Find all users */
         findAllUsers: findAllUsers,
 
-        /**
-         * @function
-         * @description Saves one user
-         */
+        /** Saves one user */
         saveOneUser: saveOneUser,
 
-        /**
-         * @function
-         * @description Deletes one user
-         */
+        /** Deletes one user */
         deleteOneUser: deleteOneUser,
 
-        /**
-         * @function
-         * @description Updates one user
-         */
+        /** Updates one user */
         updateOneUser: updateOneUser,
 
-        /**
-         * @function
-         * @description Api welcome function
-         */
+        /** Api welcome function */
         apiWelcome: apiWelcome,
 
-        /**
-         * @function
-         * @description Finds all results
-         */
+        /** Finds all results */
         findAllResultados: findAllResultados,
 
-        /**
-         * @function
-         * @description Saves one result
-         */
+        /** Saves one result */
         saveOneResultado: saveOneResultado,
 
-        /**
-         * @function
-         * @description Updates one result
-         */
+        /** Updates one result */
         updateOneResultado: updateOneResultado,
 
-        /**
-         * @function
-         * @description Deletes one result
-         */
+        /** Deletes one result */
         deleteOneResultado: deleteOneResultado,
 
-        /**
-         * @function
-         * @description Deletes all results
-         */
+        /** Deletes all results */
         deleteAllResultados: deleteAllResultados,
 
-
-        /**
-         * @function
-         * @description Finds one result
-         */
+        /** Finds one result */
         findOneResultado: findOneResultado,
 
-        /**
-         * @function
-         * @description Loads results in csv format
-         */
+        /** Loads results in csv format */
         loadCsv: loadCsv,
 
-        /**
-         * @function
-         * @description To find one user
-         */
+        /** To find one user */
         findOneUser: findOneUser,
 
-        /**
-         * @function
-         * @description To find one log
-         */
+        /** To find one log */
         findOneLog: findOneLog,
 
-        /**
-         * @function
-         * @description To find logs
-         */
+        /** To find logs */
         findLogs: findLogs,
 
-        /**
-         * @function
-         * @description Delete all logs
-         */
+        /** Delete all logs */
         deleteAllLogs: deleteAllLogs,
 
         hardReset: hardReset

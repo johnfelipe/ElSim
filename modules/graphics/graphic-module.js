@@ -8,14 +8,14 @@ const highcharts = require('node-highcharts'),
     User = require('../../models/user'),
     Result = require('../../models/result'),
     Icons = require('./icons'),
-    District = require('../district-module');
+    District = require('../district-module'),
+    Moment = require('moment');
+
 /**
  * To handle charts
  * @module Graphic
  */
 (function () {
-
-
     function rendChart(options, callback) {
         highcharts.render(options, callbackRender);
         function callbackRender(err, data) {
@@ -71,8 +71,10 @@ const highcharts = require('node-highcharts'),
             districtOptions.blankVotes = data.votos_blanco;
 
             for (let key in data.partidos) {
-                votes.push(data.partidos[key]);
-                names.push(key);
+                if (data.partidos.hasOwnProperty(key)) {
+                    votes.push(data.partidos[key]);
+                    names.push(key);
+                }
             }
 
 
@@ -92,7 +94,8 @@ const highcharts = require('node-highcharts'),
                     options: graph_options,
                     result: result,
                     icons: Icons,
-                    user: req.user
+                    user: req.user,
+                    moment: Moment
                 };
                 if (!req.user) {
                     callback(options);
@@ -130,10 +133,9 @@ const highcharts = require('node-highcharts'),
             blankVotes: 0
         };
 
-        let ContryChart = require('../graphics/map-module');
         Result.find({eleccion: eleccion}, function (err, data) {
             let global;
-            global = ContryChart.calculateGlobal(data, config, req.body);
+            global = CountryChart.calculateGlobal(data, config, req.body);
             let options = {
                 user: req.user,
                 global: global,
@@ -144,48 +146,12 @@ const highcharts = require('node-highcharts'),
     }
 
     module.exports = {
-        /**
-         * @description
-         * @function
-         */
         rendChart: rendChart,
-
-        /**
-         * @description
-         * @function
-         */
         chooseColor: chooseColor,
-
-        /**
-         * @description
-         * @function
-         */
         createColumn: createColumn,
-
-        /**
-         * @description
-         * @function
-         */
         createPie: createPie,
-
-        /**
-         * @description
-         * @function
-         */
         createMap: createMap,
-
-        /**
-         * @description Do something
-         * @param req {request}
-         * @param callback {function}
-         * @function
-         */
         calculateDistrict: calculateDistrict,
-
-        /**
-         * @description
-         * @function
-         */
         calculateCountry: calculateCountry
     };
 })();

@@ -14,26 +14,18 @@ const Log = require('./../models/log'),
 
     function loadCsv(done) {
         const a = ['1977', '1979', '1982', '1986', '1989', '1993', '1996'];
-
         let path1, path2, promises = [];
         for (let i = 0, len = a.length; i < len; ++i) {
             path1 = './csv/' + a[i] + '.csv';
             path2 = './csv/' + a[i] + '_PARTIDOS.csv';
             _.readCsv(path1, path2, csvCallback);
         }
-
         function csvCallback(data) {
             for (let j = 0, lenData = data.length; j < lenData; ++j) {
-                promises.push(saveResultado(data[j], saveResultadoCallback));
+                promises.push(saveResultado(data[j], function(){}));
             }
         }
-
-        function saveResultadoCallback() {
-            console.log('Result saved...');
-        }
-
         Promise.all(promises).then(function () {
-            console.log('All results saved');
             done();
         });
     }
@@ -48,14 +40,6 @@ const Log = require('./../models/log'),
             if (err) throw err;
             done();
         }
-    }
-
-    function cleanLog(done) {
-        Log.find({}).remove(done);
-    }
-
-    function cleanUser(done) {
-        User.find({}).remove(done);
     }
 
     function saveUser(user, done) {
@@ -120,64 +104,24 @@ const Log = require('./../models/log'),
     }
 
     module.exports = {
-        /**
-         * @description
-         * @function
-         */
         loadCsv: loadCsv,
 
-        /**
-         * @description
-         * @function
-         */
         saveLog: saveLog,
 
-        /**
-         * @description
-         * @function
-         */
         saveUser: saveUser,
 
-        /**
-         * @description
-         * @function
-         */
         getResultadoByAnio: getResultadoByAnio,
 
-        /**
-         * @description
-         * @function
-         */
         getResultadoByProvincia: getResultadoByProvincia,
 
-        /**
-         * @description
-         * @function
-         */
         getResultadoById: getResultadoById,
 
-        /**
-         * @description
-         * @function
-         */
         saveResultado: saveResultado,
 
-        /**
-         * @description
-         * @function
-         */
         cleanResultado: cleanResultado,
 
-        /**
-         * @description
-         * @function
-         */
         deleteUserByEmail: deleteUserByEmail,
 
-        /**
-         * @description
-         * @function
-         */
         deleteUserByName: deleteUserByName
     };
 })();

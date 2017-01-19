@@ -11,7 +11,7 @@ const Icons = require('./icons');
             mandates = [];
 
         for (let key in result) {
-            if (result[key] > 0) {
+            if (result.hasOwnProperty(key) && result[key] > 0) {
                 categories.push(key);
                 mandates.push({
                     y: result[key],
@@ -103,12 +103,7 @@ const Icons = require('./icons');
     }
 
     module.exports = {
-        /**
-         * @description Do something
-         * @param req {request}
-         * @param callback {function}
-         * @function
-         */
+        /** Do something */
         fillOptions: fillOptions
     };
 })();

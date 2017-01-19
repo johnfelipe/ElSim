@@ -89,7 +89,7 @@ const Graphic = require('../graphics/graphic-module'),
 
     function graphicFormPostFunction(req, res) {
         Graphic.calculateDistrict(req, function (options) {
-            res.render('pages/single-chart', options);
+            res.render('pages/simulator/single-chart', options);
         });
     }
 
@@ -97,7 +97,7 @@ const Graphic = require('../graphics/graphic-module'),
         Graphic.calculateCountry(req, function (options) {
             options['colors'] = Colors;
             options['icons'] = Icons;
-            res.render('pages/country-chart', options);
+            res.render('pages/simulator/country-chart', options);
         });
     }
 
@@ -106,46 +106,25 @@ const Graphic = require('../graphics/graphic-module'),
     }
 
     module.exports = {
-        /**
-         * @description Generic response
-         * @function
-         */
+        /** Generic response */
         indexResponse: indexResponse,
 
-        /**
-         * @description Simple if statement to check err var
-         * @function
-         */
+        /** Simple if statement to check err var */
         checkError: checkError,
 
-        /**
-         * @description Handles add data form
-         * @function
-         */
+        /** Handles add data form */
         addDataPostFunction: addDataPostFunction,
 
-        /**
-         * @description Handles delete data form
-         * @function
-         */
+        /** Handles delete data form */
         deleteDataPostFunction: deleteDataPostFunction,
 
-        /**
-         * @description Handles single district chart form
-         * @function
-         */
+        /** Handles single district chart form */
         graphicFormPostFunction: graphicFormPostFunction,
 
-        /**
-         * @description Handles country chart form
-         * @function
-         */
+        /** Handles country chart form */
         countryFormPostFunction: countryFormPostFunction,
 
-        /**
-         * @description Saves a result
-         * @function
-         */
+        /** Saves a result */
         saveResultFunction: saveResultFunction
     };
 })();

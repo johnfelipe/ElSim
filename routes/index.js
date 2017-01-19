@@ -23,10 +23,10 @@ const isAuthenticated = function (req, res, next) {
  * @module routes/index
  */
 module.exports = function(passport){
+
     /** GET routes */
     router.get('/', IGF.indexGetFunction);
     router.get('/help', IGF.helpGetFunction);
-    router.get('/leaflet-example', IGF.leafletExampleGetFunction);
     router.get('/single-graphic-form', IGF.singleGraphicFormGetFunction);
     router.get('/country-graphic-form', IGF.countryGraphicFormGetFunction);
     router.get('/learn', IGF.learnGetFunction);

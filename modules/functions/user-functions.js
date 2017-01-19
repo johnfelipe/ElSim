@@ -82,5 +82,5 @@ const User = require('../../models/user'),
         addSubscriber: addSubscriber,
         sendNews: sendNews,
         loadAll: loadAll
-    }
+    };
 })();

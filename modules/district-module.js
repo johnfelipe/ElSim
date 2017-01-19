@@ -8,8 +8,7 @@
 (function () {
 
     function compute(votes, names, options) {
-        let result = calculateSeats(votes, names, options.mandates, options.blankVotes, options.percentage);
-        return result;
+        return calculateSeats(votes, names, options.mandates, options.blankVotes, options.percentage);
     }
 
     function isInt(value) {
@@ -82,52 +81,20 @@
     }
 
     module.exports = {
-        /**
-         * @description
-         * @function
-         */
         compute: compute,
 
-        /**
-         * @description
-         * @function
-         */
         isInt: isInt,
 
-        /**
-         * @description
-         * @function
-         */
         calculateTotalVotes: calculateTotalVotes,
 
-        /**
-         * @description
-         * @function
-         */
         validateParties: validateParties,
 
-        /**
-         * @description
-         * @function
-         */
         newSeat: newSeat,
 
-        /**
-         * @description
-         * @function
-         */
         fillSeats: fillSeats,
 
-        /**
-         * @description
-         * @function
-         */
         fillPartiesResult: fillPartiesResult,
 
-        /**
-         * @description
-         * @function
-         */
         calculateSeats: calculateSeats
     };
 })();

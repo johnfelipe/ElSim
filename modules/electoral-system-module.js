@@ -22,10 +22,6 @@
     }
 
     module.exports = {
-        /**
-         * @description
-         * @function
-         */
         calculate: calculate
     };
 })();

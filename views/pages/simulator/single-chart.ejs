@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-<% include ../partials/head %>
-<% include ../partials/menu %>
+<% include ../../partials/head.ejs %>
+<% include ../../partials/menu.ejs %>
 <script src="/js/highcharts.js"></script>
 <script src="/js/exporting.js"></script>
 <script src="/js/highcharts-3d.js"></script>
@@ -51,7 +51,7 @@
                         </tr>
                         <tr>
                             <td>Date</td>
-                            <td><%= fecha.slice(4, 6) %>/<%= fecha.slice(0, 4) %></td>
+                            <td><%= moment(fecha).format('DD/MM/YYYY') %></td>
                         </tr>
                         <tr>
                             <td>District</td>
@@ -90,7 +90,7 @@
 </script>
 <script type="text/javascript">
     jQuery.noConflict();
-    var options = <%- JSON.stringify(options) %>;
+    let options = <%- JSON.stringify(options) %>;
     (function ($) {
         $(function () {
             $('#container').highcharts(options);
@@ -98,6 +98,6 @@
     })(jQuery);
 
 </script>
-<% include ../partials/footer %>
+<% include ../../partials/footer.ejs %>
 </body>
 </html>

@@ -1,6 +1,6 @@
 /* jshint esversion: 6 */
-const latinMap = require('./latinize-map');
-let District = require('../district-module');
+const latinMap = require('./latinize-map'),
+    District = require('../district-module');
 /**
  * To handle map charts
  * @module graphics/map-module
@@ -25,32 +25,36 @@ let District = require('../district-module');
         Latinise.latin_map = latinMap;
         String.prototype.latinise = function () {
             return this.replace(/[^A-Za-z0-9\[\] ]/g, function (a) {
-                return Latinise.latin_map[a] || a
-            })
+                return Latinise.latin_map[a] || a;
+            });
         };
         String.prototype.latinize = String.prototype.latinise;
-        console.log(provincia);
         for (let c in conjunto) {
             if (provincia.split('/')[0].toLowerCase().replace(new RegExp("\\s", 'g'), "").latinize() === c.toLowerCase().replace(new RegExp("\\s", 'g'), "").latinize()) {
-                return parseInt(conjunto[c]);
+                if (conjunto.hasOwnProperty(c)) {
+                    return parseInt(conjunto[c]);
+                }
             }
         }
         return 2;
     }
 
+
     function calculateGlobal(data, config, conjunto) {
         let votes = [],
             names = [],
-            result;
-        let global = [];
-        let i, len = data.length;
-        console.log(conjunto);
+            result,
+            global = [],
+            i, len = data.length;
+
         for (i = 0; i < len; i++) {
             config.blankVotes = data[i].votos_blanco;
             config.mandates = calculateMandates(data[i].provincia, conjunto);
             for (let key in data[i].partidos) {
-                votes.push(data[i].partidos[key]);
-                names.push(key);
+                if (data[i].partidos.hasOwnProperty(key)) {
+                    votes.push(data[i].partidos[key]);
+                    names.push(key);
+                }
             }
             result = District.compute(votes, names, config);
             result['cc'] = calculateCode(data[i].cod_provincia);
@@ -62,10 +66,10 @@ let District = require('../district-module');
         let aux = {};
         for (i = 0, len = global.length; i < len; i++) {
             for (let key in global[i].parties) {
-                if (global[i].parties[key] === 0) {
+                if (global[i].parties.hasOwnProperty(key) && global[i].parties[key] === 0) {
                     delete global[i].parties[key];
                 } else {
-                    if(aux[key] === undefined){
+                    if (aux[key] === undefined) {
                         aux[key] = 0;
                     }
                     aux[key] += global[i].parties[key];
@@ -77,10 +81,6 @@ let District = require('../district-module');
     }
 
     module.exports = {
-        /**
-         * @description
-         * @function
-         */
         calculateGlobal: calculateGlobal
     };
 

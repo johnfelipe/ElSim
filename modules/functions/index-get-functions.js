@@ -47,13 +47,9 @@ const Result = require('../../models/result'),
         indexResponse(req, res, 'pages/help', 'Help', false);
     }
 
-    function leafletExampleGetFunction(req, res) {
-        indexResponse(req, res, 'pages/leaflet-example', 'LeafletJS', false);
-    }
-
     function singleGraphicFormGetFunction(req, res) {
         Util.calculateEllections(function (data, ellections) {
-            indexResponse(req, res, 'pages/single-graphic-form', 'Single Chart', {
+            indexResponse(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
                 results: data,
                 ellections: ellections,
                 moment: Moment
@@ -62,7 +58,7 @@ const Result = require('../../models/result'),
     }
     function countryGraphicFormGetFunction(req, res) {
         Util.calculateEllections(function (data, ellections) {
-            indexResponse(req, res, 'pages/country-graphic-form', 'Country Chart', {
+            indexResponse(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
                 results: data,
                 ellections: ellections,
                 moment: Moment
@@ -79,7 +75,6 @@ const Result = require('../../models/result'),
     }
 
     function storedDataFunction(req, res) {
-
         Result.find({}, haveResult);
         function haveResult(err, data) {
             if (err) throw err;
@@ -115,93 +110,33 @@ const Result = require('../../models/result'),
     }
 
     module.exports = {
-        /**
-         * @description Generic response
-         * @function
-         */
+
         indexResponse: indexResponse,
 
-        /**
-         * @description
-         * @function
-         */
         indexGetFunction: indexGetFunction,
 
-        /**
-         * @description
-         * @function
-         */
         loginGetFunction: loginGetFunction,
 
-        /**
-         * @description
-         * @function
-         */
         signUpGetFunction: signUpGetFunction,
 
-        /**
-         * @description
-         * @function
-         */
         signOutGetFunction: signOutGetFunction,
 
-        /**
-         * @description
-         * @function
-         */
         helpGetFunction: helpGetFunction,
 
-        /**
-         * @description
-         * @function
-         */
-        leafletExampleGetFunction: leafletExampleGetFunction,
-
-        /**
-         * @description
-         * @function
-         */
         singleGraphicFormGetFunction: singleGraphicFormGetFunction,
-        /**
-         * @description
-         * @function
-         */
+
         countryGraphicFormGetFunction: countryGraphicFormGetFunction,
 
-        /**
-         * @description
-         * @function
-         */
         learnGetFunction: learnGetFunction,
 
-        /**
-         * @description
-         * @function
-         */
         resourcesGetFunction: resourcesGetFunction,
 
-        /**
-         * @description
-         * @function
-         */
         storedDataFunction: storedDataFunction,
 
-        /**
-         * @description
-         * @function
-         */
         addDataGetFunction: addDataGetFunction,
 
-        /**
-         * @description
-         * @function
-         */
         deleteDataGetFunction: deleteDataGetFunction,
 
-        /**
-         * @description
-         * @function
-         */
         partiesFunction: partiesFunction
     };
 })();

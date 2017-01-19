@@ -10,7 +10,7 @@
         let resultsArray = [];
 
         for(let key in result){
-            if (result[key] > 0) {
+            if (result.hasOwnProperty(key) && result[key] > 0) {
                 resultsArray.push({
                     name: key,
                     y: result[key],
@@ -21,11 +21,6 @@
 
         options.chart = {
             type: 'pie',
-           /* options3d: {
-                enabled: true,
-                alpha: 45,
-                beta: 0
-            },*/
             style: {
                 fontFamily: 'Signika, serif',
                 background: 'url(/images/sand.png)'
@@ -62,10 +57,6 @@
     }
 
     module.exports = {
-        /**
-         * @description
-         * @function
-         */
         fillOptions: fillOptions
     };
 })();

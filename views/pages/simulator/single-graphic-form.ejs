@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<% include ../partials/head %>
-<% include ../partials/menu %>
+<% include ../../partials/head.ejs %>
+<% include ../../partials/menu.ejs %>
 <body>
 
 <div class="container">
     <% if(!results.length || !ellections.length)  { %>
-    <% include ../partials/no-data.ejs %>
+    <% include ../../partials/no-data.ejs %>
     <% } else { %>
     <div class="card-deck-wrapper">
         <div class="card-deck">
@@ -15,7 +15,7 @@
                     <h4 class="card-title">
                         Single district chart
                     </h4>
-                    <% include ../forms/single-chart.ejs %>
+                    <% include ../../forms/single-chart.ejs %>
                     <div class="text-xs-right">
                         <button type="submit" class="btn btn-primary" form="form1">
                             <span class="fa fa-check-circle-o"></span> Let's do it!
@@ -41,10 +41,8 @@
     </div>
     <% } %>
 </div>
-<!--<script src="https://code.highcharts.com/maps/highmaps.js"></script>
-<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/mapdata/countries/es/es-all.js"></script>-->
-<% include ../partials/footer %>
+
+<% include ../../partials/footer.ejs %>
 </body>
 </html>
 
