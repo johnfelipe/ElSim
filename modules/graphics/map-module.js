@@ -31,9 +31,9 @@ const latinMap = require('./latinize-map'),
         String.prototype.latinize = String.prototype.latinise;
         for (let c in conjunto) {
             if (provincia.split('/')[0].toLowerCase().replace(new RegExp("\\s", 'g'), "").latinize() === c.toLowerCase().replace(new RegExp("\\s", 'g'), "").latinize()) {
-                if (conjunto.hasOwnProperty(c)) {
-                    return parseInt(conjunto[c]);
-                }
+
+                return parseInt(conjunto[c]);
+
             }
         }
         return 2;

@@ -28,21 +28,19 @@ body {
 .navbar-brand:hover, .nav-link:hover, .dropdown-toggle:hover, .dropdown-menu:hover, .dropdown-item:hover {
     color: #1f7e9a !important;
 }
-
-.btn:hover{
+.btn:hover {
+    color: #1f7e9a !important;
+}
+.btn {
     background-color: #89bdd3 !important;
     color: #FCFCFC !important;
+    border-radius: 0 !important;
+    border-width: 0 !important;
+    font: 16px "Roboto Sans", Helvetica, Arial, sans-serif !important;
 }
+
 a, button, select, input, .card, .card-block, .card-deck, .card, .card-img-top {
     border-radius: 0 !important;
-}
-
-.btn {
-    background-color: #1f7e9a !important;
-    border: 0 !important;
-    border-bottom-color: transparent !important;
-    border-bottom: none !important;
-
 }
 
 .indexCard {
