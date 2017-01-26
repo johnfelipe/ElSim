@@ -9,9 +9,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-
             <div class="card">
                 <div class="card-block">
+                    <h4 class="card-title">District result</h4>
                     <table id="tabla" class="display" cellspacing="0" width="100%">
                         <thead>
                         <tr>
@@ -33,6 +33,7 @@
             </div>
             <div class="card">
                 <div class="card-block">
+                    <h4 class="card-title">Ellection </h4>
                     <table id="tabla2" class="display" cellspacing="0" width="100%">
                         <thead>
                         <tr>
@@ -73,6 +74,41 @@
                     <small><a href="/users/profile">See my own results</a></small>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">Calculation process </h4>
+                    <table id="tabla3" class="display" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Iteración</th>
+
+                            <% for(let col of result.table[0]){ %>
+                            <% for(let key in col){ %>
+                            <th><%= key %></th>
+                            <% } %>
+                            <% } %>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% iter = 1 %>
+                        <% for(let fila of result.table) { %>
+                        <tr>
+                            <td><%= iter %></td>
+                            <% for(let col of fila){ %>
+                            <% for(let key in col){ %>
+                            <td>
+                                <%= col[key] %>
+                            </td>
+                            <% } %>
+                            <% } %>
+                        </tr>
+                        <% iter++; %>
+                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -83,6 +119,12 @@
         "search": false
     });
     $('#tabla2').DataTable({
+        "sort": false,
+        "paging": false,
+        "search": false
+    });
+    $('#tabla3').DataTable({
+        "sort": false,
         "paging": false,
         "search": false
     });

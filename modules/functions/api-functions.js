@@ -4,7 +4,8 @@ const User = require('../../models/user'),
     Log = require('../../models/log'),
     Result = require('../../models/result'),
     Subscriber = require('../../models/subscriber'),
-    DB = require('../db-manager-module');
+    DB = require('../db-manager-module'),
+    credentials = require('../../credentials');
 
 /**
  * All the callback functions of Api routes
@@ -159,13 +160,16 @@ const User = require('../../models/user'),
         promises.push(Log.remove({}, done));
         promises.push(Result.remove({}, done));
         promises.push(Subscriber.remove({}, done));
-        Promise.all(promises).then(function () {
+        Promise.all(promises).then(endPromises);
+
+        function endPromises() {
             console.log('Hard reset finished');
             res.send({
                 result: 'Successful',
                 status: 200
             });
-        });
+        }
+
         function done(err) {
             if (err) {
                 console.log(err);
@@ -231,6 +235,7 @@ const User = require('../../models/user'),
         /** Delete all logs */
         deleteAllLogs: deleteAllLogs,
 
+        /** Hard-resets the system, be careful */
         hardReset: hardReset
     };
 })();

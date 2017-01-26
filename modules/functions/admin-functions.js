@@ -1,6 +1,7 @@
 /* jshint esversion: 6 */
 
-const UF = require('./user-functions');
+const UF = require('./user-functions'),
+    credentials = require('../../credentials');
 
 /**
  * All the callback functions of api routes
@@ -8,8 +9,8 @@ const UF = require('./user-functions');
  */
 (function () {
     function adminSummaryFunction(req, res) {
-        if (!req.user || req.user.email !== 'jesusgonzaleznovez@gmail.com') {
-            res.render('pages/error',{
+        if (!req.user || req.user.email !== credentials.user) {
+            res.render('pages/error', {
                 result: 'fail',
                 message: 'You are not the admin, sorry!',
                 error: {
@@ -20,7 +21,7 @@ const UF = require('./user-functions');
             UF.loadAll(loadDone);
 
         }
-        function loadDone(logs,results,users){
+        function loadDone(logs, results, users) {
             let options = {
                 user: req.user,
                 title: 'Administration',
@@ -33,11 +34,7 @@ const UF = require('./user-functions');
     }
 
     module.exports = {
-
-        /**
-         * @function
-         * @description Shows summary of system
-         */
+        /** Shows summary of system */
         adminSummaryFunction: adminSummaryFunction
     };
 })();

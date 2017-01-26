@@ -58,11 +58,11 @@ const latinMap = require('./latinize-map'),
             }
             result = District.compute(votes, names, config);
             result['cc'] = calculateCode(data[i].cod_provincia);
+            delete result.table;
             global.push(result);
             votes = [];
             names = [];
         }
-
         let aux = {};
         for (i = 0, len = global.length; i < len; i++) {
             for (let key in global[i].parties) {

@@ -8,7 +8,7 @@
 (function () {
 
     function compute(votes, names, options) {
-        return calculateSeats(votes, names, options.mandates, options.blankVotes, options.percentage);
+        return calculateSeats(votes, names, options.mandates, options.blankVotes, options.percentage, options.fromCountry);
     }
 
     function isInt(value) {
@@ -48,9 +48,12 @@
     }
 
     function fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated) {
+        let table = [];
         for (let i = 0; i < mandates; ++i) {
             seats[newSeat(validatedVotes, seats, numberOfPartiesValidated)]++;
+            table.push(seats.slice());
         }
+        return table;
     }
 
     function fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats) {
@@ -75,8 +78,18 @@
 
         numberOfPartiesValidated = validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
         seats = new Array(numberOfPartiesValidated).fill(0);
-        fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
+        let table = fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
         fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
+
+        for (let i = 0, len = table.length; i < len; i++) {
+            for (let j = 0, fil_len = table[i].length; j < fil_len; j++) {
+                let aux = table[i][j];
+                table[i][j] = {};
+                table[i][j][validatedNames[j]] = aux;
+            }
+        }
+        result.table = table;
+
         return result;
     }
 
