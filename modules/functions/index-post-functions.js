@@ -36,21 +36,20 @@ const Graphic = require('../graphics/graphic-module'),
             comunidad: 'desconocida',
             cod_provincia: req.param('province'),
             provincia: 'desconocida',
-            poblacion: req.param('population'),
-            num_mesas: req.param('num_mesas'),
-            total_censo_electoral: req.param('census'),
-            total_votantes: req.param('voters'),
+            poblacion: parseInt(req.param('population')),
+            num_mesas: parseInt(req.param('num_mesas')),
+            total_censo_electoral: parseInt(req.param('census')),
+            total_votantes: parseInt(req.param('voters')),
             votos_validos: parseInt(req.param('voters')) - parseInt(req.param('nulos')),
             votos_candidaturas: (parseInt(req.param('voters')) - parseInt(req.param('nulos'))) - parseInt(req.param('blancos')) ,
-            votos_blanco: req.param('blancos'),
-            votos_nulos: req.param('nulos'),
+            votos_blanco: parseInt(req.param('blancos')),
+            votos_nulos: parseInt(req.param('nulos')),
             eleccion: {
                 autor: req.param('author'),
                 fecha: req.param('date')
             },
             partidos: partidos
         });
-        console.log(result);
         result.save(function (err) {
             indexResponse(req, res, 'pages/add-data', 'Add data', {
                 error: err,

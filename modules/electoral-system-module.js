@@ -16,8 +16,6 @@
                 global[key] += districts[i].parties[key];
             }
         }
-
-
         return global;
     }
 

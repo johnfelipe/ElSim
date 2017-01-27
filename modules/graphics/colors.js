@@ -54,6 +54,7 @@ module.exports = {
     'PSA-PA': '#1CA838',
     'UN': 'blue',
     'CIU': '#F69000',
+    'IU': '#117A52',
     'CD': '#98CE54',
     'CDS': '#98CE54',
     'PCE': '#D12123',

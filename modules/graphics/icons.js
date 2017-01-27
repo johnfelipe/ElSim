@@ -5,7 +5,7 @@
  * @module graphics/icons
  */
 module.exports = {
-    'FE-UF': 'images/no-ico.png',
+    'FE-UF': 'images/fe-uf-ico.jpg',
     'UF-FI-AT': 'images/no-ico.png',
     'CIME': 'images/no-ico.png',
     'POC': 'images/no-ico.png',
@@ -47,19 +47,25 @@ module.exports = {
     'EE': 'images/no-ico.png',
     'ERFN': 'images/no-ico.png',
     'ORT': 'images/no-ico.png',
+    'BNG': 'images/no-ico.png',
+    'EA': 'images/no-ico.png',
     'PSOE-H': 'images/no-ico.png',
     'HB': 'images/no-ico.png',
     'PTE': 'images/no-ico.png',
-    'PNV': 'images/no-ico.png',
+    'PNV': 'images/eaj-pnv-ico.jpg',
+    'EAJ-PNV': 'images/eaj-pnv-ico.jpg',
     'PSA-PA': 'images/psa-pa-ico.png',
     'UN': 'images/no-ico.png',
     'CIU': 'images/ciu-ico.png',
-    'CD': 'images/no-ico.png',
+    'CD': 'images/cd-ico.jpg',
     'CDS': 'images/cds-ico.png',
     'PCE': 'images/pce-ico.png',
     'PSOE': 'images/psoe-ico.jpg',
     'UCD': 'images/ucd-ico.jpg',
-    'PP': 'images/no-ico.png',
-    'PODEMOS': 'images/no-ico.png',
-    'CIUDADANOS': 'images/no-ico.png'
+    'PP': 'images/pp-ico.jpg',
+    'ERC': 'images/erc-ico.png',
+    'IU': 'images/iu-ico.jpg',
+    'CC': 'images/cc-ico.png',
+    'PODEMOS': 'images/podemos-ico.png',
+    'CIUDADANOS': 'images/ciudadanos-ico.jpg'
 };

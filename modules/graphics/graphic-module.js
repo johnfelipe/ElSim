@@ -78,7 +78,7 @@ const highcharts = require('node-highcharts'),
             }
 
 
-            let result = District.compute(votes, names, districtOptions);
+            let result = District.compute(votes, names, districtOptions,true);
             if (mode === 'column') {
                 createColumn(result.parties, done);
             } else if (mode === 'pie') {

@@ -7,8 +7,8 @@
  */
 (function () {
 
-    function compute(votes, names, options) {
-        return calculateSeats(votes, names, options.mandates, options.blankVotes, options.percentage, options.fromCountry);
+    function compute(votes, names, options,withTable) {
+        return calculateSeats(votes, names, options.mandates, options.blankVotes, options.percentage, withTable);
     }
 
     function isInt(value) {
@@ -62,35 +62,39 @@
         }
     }
 
-    function calculateSeats(votes, names, mandates, blankVotes, percentage) {
+    function calculateSeats(votes, names, mandates, blankVotes, percentage,withTable) {
         let numberOfParties = votes.length,
             numberOfVotes = calculateTotalVotes(votes, blankVotes),
-            seats,
             minNumberOfVotes = Math.ceil(numberOfVotes * percentage / 100),
-            result = {
-                numberOfVotes: numberOfVotes,
-                minNumberOfVotes: minNumberOfVotes,
-                parties: {}
-            },
-            numberOfPartiesValidated,
-            validatedVotes = [],
-            validatedNames = [];
+            result = fillResultVar(numberOfVotes,minNumberOfVotes),
+            seats, numberOfPartiesValidated, validatedVotes = [], validatedNames = [];
 
         numberOfPartiesValidated = validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
         seats = new Array(numberOfPartiesValidated).fill(0);
         let table = fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
         fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
-
+        if(withTable) {
+            result.table = fillTable(table,validatedNames);
+        }
+        return result;
+    }
+    function fillResultVar(numberOfVotes,minNumberOfVotes){
+        return {
+            numberOfVotes: numberOfVotes,
+                minNumberOfVotes: minNumberOfVotes,
+            parties: {}
+        };
+    }
+    function fillTable(table,validatedNames){
+        let aux;
         for (let i = 0, len = table.length; i < len; i++) {
             for (let j = 0, fil_len = table[i].length; j < fil_len; j++) {
-                let aux = table[i][j];
+                aux = table[i][j];
                 table[i][j] = {};
                 table[i][j][validatedNames[j]] = aux;
             }
         }
-        result.table = table;
-
-        return result;
+        return table;
     }
 
     module.exports = {

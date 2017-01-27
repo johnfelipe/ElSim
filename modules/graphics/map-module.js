@@ -18,9 +18,7 @@ const latinMap = require('./latinize-map'),
         ];
         return provincias[cod_provincia];
     }
-
-
-    function calculateMandates(provincia, conjunto) {
+    function setLatinise(){
         let Latinise = {};
         Latinise.latin_map = latinMap;
         String.prototype.latinise = function () {
@@ -29,25 +27,30 @@ const latinMap = require('./latinize-map'),
             });
         };
         String.prototype.latinize = String.prototype.latinise;
+    }
+
+
+    function calculateMandates(provincia, conjunto) {
+        setLatinise();
         for (let c in conjunto) {
             if (provincia.split('/')[0].toLowerCase().replace(new RegExp("\\s", 'g'), "").latinize() === c.toLowerCase().replace(new RegExp("\\s", 'g'), "").latinize()) {
-
                 return parseInt(conjunto[c]);
-
             }
         }
-        return 2;
+        return 2; // if the loop does not return anything, return minimum!
     }
 
 
     function calculateGlobal(data, config, conjunto) {
-        let votes = [],
-            names = [],
-            result,
-            global = [],
-            i, len = data.length;
+        let global = globalLoop(data,config,conjunto);
+        global.agrupado = groupParties(global);
+        return global;
+    }
 
-        for (i = 0; i < len; i++) {
+    function globalLoop(data, config, conjunto){
+        let votes = [], names = [], result, global = [];
+
+        for (let i=0, len = data.length; i < len; ++i) {
             config.blankVotes = data[i].votos_blanco;
             config.mandates = calculateMandates(data[i].provincia, conjunto);
             for (let key in data[i].partidos) {
@@ -56,15 +59,17 @@ const latinMap = require('./latinize-map'),
                     names.push(key);
                 }
             }
-            result = District.compute(votes, names, config);
-            result['cc'] = calculateCode(data[i].cod_provincia);
-            delete result.table;
+            result = District.compute(votes, names, config,false);
+            result.cc = calculateCode(data[i].cod_provincia);
             global.push(result);
             votes = [];
             names = [];
         }
+        return global;
+    }
+    function groupParties(global){
         let aux = {};
-        for (i = 0, len = global.length; i < len; i++) {
+        for (let i = 0, len = global.length; i < len; i++) {
             for (let key in global[i].parties) {
                 if (global[i].parties.hasOwnProperty(key) && global[i].parties[key] === 0) {
                     delete global[i].parties[key];
@@ -76,10 +81,8 @@ const latinMap = require('./latinize-map'),
                 }
             }
         }
-        global.agrupado = aux;
-        return global;
+        return aux;
     }
-
     module.exports = {
         calculateGlobal: calculateGlobal
     };
