@@ -48,17 +48,22 @@ const Result = require('../../models/result'),
     }
 
     function singleGraphicFormGetFunction(req, res) {
-        Util.calculateEllections(function (data, ellections) {
+        Result.find({}, function (err, data) {
+            data.sort(function(a,b){
+                return new Date(a.eleccion.fecha) - new Date(b.eleccion.fecha);
+            });
             indexResponse(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
                 results: data,
-                ellections: ellections,
                 moment: Moment,
-                err: null
+                err: err
             });
         });
     }
     function countryGraphicFormGetFunction(req, res) {
         Util.calculateEllections(function (data, ellections) {
+            ellections.sort(function(a,b){
+                return new Date(a.fecha) - new Date(b.fecha);
+            });
             indexResponse(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
                 results: data,
                 ellections: ellections,
@@ -79,6 +84,9 @@ const Result = require('../../models/result'),
     function storedDataFunction(req, res) {
         Result.find({}, haveResult);
         function haveResult(err, data) {
+            data.sort(function(a,b){
+                return new Date(a.eleccion.fecha) - new Date(b.eleccion.fecha);
+            });
             indexResponse(req, res, 'pages/stored-data', 'Stored Data', {
                 data: data,
                 moment: Moment,
@@ -98,6 +106,7 @@ const Result = require('../../models/result'),
         Result.find({}, function (err, data) {
             indexResponse(req, res, 'pages/delete-data', 'Delete data', {
                 data: data,
+                moment: Moment,
                 err: null
             });
         });

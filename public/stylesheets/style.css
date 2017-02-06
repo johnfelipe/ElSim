@@ -6,6 +6,11 @@ body {
 
 .btn-stored{
     color:#FCFCFC;
+    background-color: #1f7e9a;
+}
+.btn-stored:hover{
+    color:#FCFCFC;
+    background-color: #82919a;
 }
 .container {
     margin-top: 20px;
