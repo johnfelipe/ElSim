@@ -64,6 +64,7 @@ const User = require('../../models/user'),
             result: 'fail',
             success: false,
             message: 'Not yet implemented',
+            err: null,
             data: null
         };
         res.send(result);
@@ -139,14 +140,16 @@ const User = require('../../models/user'),
             options = {
                 result: 'fail',
                 success: false,
-                message: err,
+                message: null,
+                err: err,
                 data: null
             };
         } else {
             options = {
-                result: 'OK',
+                result: 'successful',
                 success: true,
                 message: message,
+                err: null,
                 data: data
             };
         }
@@ -166,13 +169,18 @@ const User = require('../../models/user'),
             console.log('Hard reset finished');
             res.send({
                 result: 'Successful',
-                status: 200
+                status: 200,
+                err: null
             });
         }
 
         function done(err) {
             if (err) {
-                console.log(err);
+                res.send({
+                    result: 'Fail',
+                    status: 200,
+                    err: err
+                });
             }
         }
     }

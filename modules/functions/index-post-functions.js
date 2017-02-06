@@ -52,7 +52,7 @@ const Graphic = require('../graphics/graphic-module'),
         });
         result.save(function (err) {
             indexResponse(req, res, 'pages/add-data', 'Add data', {
-                error: err,
+                err: err,
                 codigos: Codigos
             });
         });
@@ -78,7 +78,7 @@ const Graphic = require('../graphics/graphic-module'),
             console.log('all the results were deleted');
             Result.find({}, function (err, data) {
                 indexResponse(req, res, 'pages/delete-data', 'Delete data', {
-                    error: err,
+                    err: err,
                     data: data
                 });
             });

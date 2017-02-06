@@ -42,7 +42,6 @@ const User = require('../../models/user'),
         });
 
         s.save(function(err){
-            if(err) throw err;
             let options = {
                 title: 'Help',
                 user: req.user,
@@ -62,8 +61,7 @@ const User = require('../../models/user'),
             Mailer.sendMail(mails,'TEST',mailSent);
         }
         function mailSent(err,result){
-            if(err) throw err;
-            console.log(result);
+            if(err) console.error(err);
             loadAll(doneLoad);
         }
         function doneLoad(logs,results,users){

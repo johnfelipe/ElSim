@@ -27,7 +27,7 @@ const Result = require('../../models/result'),
     }
 
     function indexGetFunction(req, res) {
-        indexResponse(req, res, 'pages/index', 'EllSim', {moment: Moment, text: langEn ,advice: null});
+        indexResponse(req, res, 'pages/index', 'EllSim', {moment: Moment, text: langEn ,err: null});
     }
 
     function loginGetFunction(req, res) {
@@ -52,7 +52,8 @@ const Result = require('../../models/result'),
             indexResponse(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
                 results: data,
                 ellections: ellections,
-                moment: Moment
+                moment: Moment,
+                err: null
             });
         });
     }
@@ -61,7 +62,8 @@ const Result = require('../../models/result'),
             indexResponse(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
                 results: data,
                 ellections: ellections,
-                moment: Moment
+                moment: Moment,
+                err: null
             });
         });
     }
@@ -77,17 +79,17 @@ const Result = require('../../models/result'),
     function storedDataFunction(req, res) {
         Result.find({}, haveResult);
         function haveResult(err, data) {
-            if (err) throw err;
             indexResponse(req, res, 'pages/stored-data', 'Stored Data', {
                 data: data,
-                moment: Moment
+                moment: Moment,
+                err: err
             });
         }
     }
 
     function addDataGetFunction(req, res) {
         indexResponse(req, res, 'pages/add-data', 'Add data', {
-            error: null,
+            err: null,
             codigos: require('../../codigos')
         });
     }
@@ -96,7 +98,7 @@ const Result = require('../../models/result'),
         Result.find({}, function (err, data) {
             indexResponse(req, res, 'pages/delete-data', 'Delete data', {
                 data: data,
-                error: null
+                err: null
             });
         });
 

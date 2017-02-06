@@ -14,11 +14,10 @@ let express = require('express'),
     config = require('./config'),
     passport = require('passport'),
     flash = require('connect-flash'),
-    expressSession = require('express-session');
+    expressSession = require('express-session'),
+    initPassport = require('./passport/init');
 
-/**
- * @description Common configuration for the server side.
- */
+/** Common configuration for the server side. */
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
@@ -35,35 +34,27 @@ app.set('superSecret', config.secret);
 app.use(expressSession({secret: config.secret, cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-/** Using the flash middleware provided by connect-flash to store messages in session and displaying in templates */
-app.use(flash());
-
-// Initialize Passport
-let initPassport = require('./passport/init');
 initPassport(passport);
 
+/** Flash messages */
+app.use(flash());
+
 let routes = require('./routes/index')(passport),
-    users = require('./routes/users')(passport);
+    users = require('./routes/users')(passport),
+    apiRoutes = require('./routes/api')();
+
 app.use('/', routes);
 app.use('/users', users);
-
-/** Api routes under authentication */
-let apiRoutes = require('./routes/api')();
 app.use('/api', apiRoutes);
 
-/**
- * Catch 404 and forward to error handler
- */
+/** Catch 404 and forward to error handler */
 app.use(function (req, res, next) {
     let err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
-/**
- * Development error handler will print stacktrace
- */
+/** Development error handler will print stacktrace */
 if (app.get('env') === 'development') {
     app.use(function (err, req, res, next) {
         res.status(err.status || 500);
@@ -74,9 +65,7 @@ if (app.get('env') === 'development') {
     });
 }
 
-/**
- * Production error handler, no stacktraces leaked to user
- */
+/** Production error handler, no stacktraces leaked to user */
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('pages/error', {
