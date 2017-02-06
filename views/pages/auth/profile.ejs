@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-<% include ../partials/head.ejs %>
-<% include ../partials/menu.ejs %>
+<% include ../../partials/head.ejs %>
+<% include ../../partials/menu.ejs %>
 <body>
 <div class="container" >
     <% if(err) { %>
-    <% include ../partials/advice-login.ejs %>
+    <% include ../../partials/advice-login.ejs %>
     <% } else { %>
     <div class="card-deck-wrapper">
         <div class="card-deck">
@@ -66,16 +66,16 @@
         </div>
     </div>
     <% } %>
-    <% include ../partials/footer %>
-    <% include ../partials/modal-profile.ejs %>
+    <% include ../../partials/footer.ejs %>
+    <% include ../../partials/modal-profile.ejs %>
     <% if (user) { %>
     <script>
 
         function showResult(index) {
-
-            var results = <%- JSON.stringify(user.resultados) %>;
-            $('#modal-body').empty();
-            $('#modal-body').append(
+            let results = <%- JSON.stringify(user.resultados) %>;
+            let modalBody = $('#modal-body');
+            modalBody.empty();
+            modalBody.append(
                 '<b>District: </b>' + results[index].provincia + '<br>' +
                 '<b>Minimum votes: </b>' + results[index].result.minNumberOfVotes + '<br>' +
                 '<b>Barrier percentage: </b>' + results[index].percentage + '%<br>' +

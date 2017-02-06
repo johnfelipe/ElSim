@@ -10,7 +10,7 @@ const UF = require('./user-functions'),
 (function () {
     function adminSummaryFunction(req, res) {
         if (!req.user || req.user.email !== credentials.user) {
-            res.render('pages/error', {
+            res.render('pages/misc/error', {
                 result: 'fail',
                 message: 'You are not the admin, sorry!',
                 error: {
@@ -29,7 +29,7 @@ const UF = require('./user-functions'),
                 results: results,
                 users: users
             };
-            res.render('pages/admin', options);
+            res.render('pages/auth/admin', options);
         }
     }
 

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<% include ../partials/head %>
-<% include ../partials/menu %>
+<% include ../../partials/head.ejs %>
+<% include ../../partials/menu.ejs %>
 <body>
 <div class="container">
     <% if(!user) { %>
     <% advice = 'You need to authenticate'%>
-    <% include ../partials/advice-login.ejs %>
+    <% include ../../partials/advice-login.ejs %>
     <% } else { %>
     <div class="alert alert-warning alert-dismissible fade in" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -62,6 +62,6 @@
     </div>
 </div>
 <% } %>
-<% include ../partials/footer %>
+<% include ../../partials/footer.ejs %>
 </body>
 </html>

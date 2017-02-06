@@ -38,6 +38,7 @@ th,td { text-align: center !important; }
     color: #FCFCFC !important;
     border-radius: 0 !important;
     border-width: 0 !important;
+    border-color: transparent !important;
     font: 16px "Roboto Sans", Helvetica, Arial, sans-serif !important;
 }
 

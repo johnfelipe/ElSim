@@ -10,7 +10,7 @@ const isAuthenticated = function (req, res, next) {
     res.render('pages/profile', {
         title: 'Profile',
         user: req.user,
-        advice: 'Sorry, but you must to login to see your profile!'
+        err: 'Sorry, but you must to login to see your profile!'
     });
 };
 /**

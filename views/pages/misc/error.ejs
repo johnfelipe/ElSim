@@ -24,7 +24,11 @@
                         </p>
                         <ul class=" list-group">
                             <li class="list-group-item">
-                                <span class="fa fa-warning"></span> <code><%= message %>. Status <%= err.status %></code>
+                                <span class="fa fa-warning"></span>
+                                <code>
+                                    <%= message %>.
+                                    Status <% if(err.hasOwnProperty('status')){ %> <%= err.status %> <% } %>
+                                </code>
                             </li>
                             <li class="list-group-item">
                                 <span class="fa fa-envelope-o"></span> Contact me at
@@ -43,6 +47,6 @@
 
     </div>
 </div>
-<% include ../partials/footer.ejs %>
+<% include ../../partials/footer.ejs %>
 </body>
 </html>

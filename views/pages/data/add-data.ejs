@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-<% include ../partials/head %>
-<% include ../partials/menu %>
+<% include ../../partials/head.ejs %>
+<% include ../../partials/menu.ejs %>
 <script src="/js/add-data.min.js"></script>
 <body>
 <div class="container">
@@ -12,7 +12,7 @@
         </button>
         <strong><span class="fa fa-info-circle"></span> ERROR</strong>
         <hr>
-        <%= err %>
+        <%= err || null %>
 
     </div>
     <% } %>
@@ -37,7 +37,7 @@
                 <img src="/images/file-uploads.png" width="100%" class="card-img-top" height="99"/>
                 <div class="card-block">
                     <div class="card-text">
-                        <form method="POST" action="/add-data" id="formCsv" name="formCsv"  enctype="multipart/form-data">
+                        <form method="POST" action="/add-data-file" id="formCsv" name="formCsv"  enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="file">
                                     Your file
@@ -45,7 +45,7 @@
                                 <input class="form-control form-control-file" type="file" required/>
                             </div>
                             <div class="form-group pull-right">
-                                <button class="btn btn-primary" type="submit">
+                                <button class="btn btn-primary" type="submit" form="formCsv">
                                     <span class="fa fa-cloud-upload"></span> Upload csv
                                 </button>
                             </div>
@@ -138,8 +138,7 @@
                                     <label for="author">
                                         <span class="fa fa-user-circle-o"></span> Your name
                                     </label>
-                                    <input class="form-control" value="Anonymous" type="text" name="author" id="author"
-                                           onchange="parseFields(processTextarea)" required/>
+                                    <input class="form-control" value="<%= user.name || 'anonymous' %>" type="text" name="author" id="author" disabled/>
 
                                 </div>
                             </div>
@@ -184,6 +183,6 @@ PSOE - 123</textarea>
 <script>
     parseFields(processTextarea);
 </script>
-<% include ../partials/footer %>
+<% include ../../partials/footer.ejs %>
 </body>
 </html>

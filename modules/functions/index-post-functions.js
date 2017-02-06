@@ -25,6 +25,15 @@ const Graphic = require('../graphics/graphic-module'),
 
     }
 
+    function addDataFilePostFunction(req, res) {
+        indexResponse(req,res,'pages/misc/error','Not Implemented',{
+            err: {
+                status: 500
+            },
+            message: 'Not implemented'
+        });
+    }
+
     function addDataPostFunction(req, res) {
         let lines = req.param('votes').split('\n'),
             partidos = {}, aux;
@@ -51,7 +60,7 @@ const Graphic = require('../graphics/graphic-module'),
             partidos: partidos
         });
         result.save(function (err) {
-            indexResponse(req, res, 'pages/add-data', 'Add data', {
+            indexResponse(req, res, 'pages/data/add-data', 'Add data', {
                 err: err,
                 codigos: Codigos
             });
@@ -77,7 +86,7 @@ const Graphic = require('../graphics/graphic-module'),
         Promise.all(promises).then(function () {
             console.log('all the results were deleted');
             Result.find({}, function (err, data) {
-                indexResponse(req, res, 'pages/delete-data', 'Delete data', {
+                indexResponse(req, res, 'pages/data/delete-data', 'Delete data', {
                     err: err,
                     data: data
                 });
@@ -113,6 +122,7 @@ const Graphic = require('../graphics/graphic-module'),
 
         /** Handles add data form */
         addDataPostFunction: addDataPostFunction,
+        addDataFilePostFunction: addDataFilePostFunction,
 
         /** Handles delete data form */
         deleteDataPostFunction: deleteDataPostFunction,

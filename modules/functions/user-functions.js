@@ -12,7 +12,7 @@ const User = require('../../models/user'),
             user: req.user,
             advice: false
         };
-        res.render('pages/profile', options);
+        res.render('pages/auth/profile', options);
     }
     function loadAll(done){
         let promises = [], users, logs, results;
@@ -47,7 +47,7 @@ const User = require('../../models/user'),
                 user: req.user,
                 err: err
             };
-            res.render('pages/help',options);
+            res.render('pages/misc/help',options);
         });
     }
     function sendNews(req,res){
@@ -72,7 +72,7 @@ const User = require('../../models/user'),
                 results: results,
                 users: users
             };
-            res.render('pages/admin', options);
+            res.render('pages/auth/admin', options);
         }
     }
     module.exports = {

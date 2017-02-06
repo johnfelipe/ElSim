@@ -27,7 +27,14 @@
             </select>
         </div>
     </div>
-    <div id="comunidades">
+    <div class="row">
+        <div class="form-group col-xs-6">
+            <button type='button' class="btn pastel-btn" onclick="switchComunidades();">
+                <span class="fa fa-eye"></span> Show/Hide districts
+            </button>
+        </div>
+    </div>
+    <div id="comunidades" style="display: none;">
         <h4 class="row col-xs-12">Andalucía</h4>
         <div class="row">
             <div class="form-group col-xs-4">
@@ -325,4 +332,17 @@
         If your ellection doesn't appear, you should review if all districts matched.
     </div>
 </form>
+<script>
+    let comunidadesHide = false;
+    function switchComunidades() {
+        if (comunidadesHide) {
+            $('#comunidades').hide();
+            comunidadesHide = false;
+        } else {
+            $('#comunidades').show();
+            comunidadesHide = true;
+        }
+
+    }
+</script>
 

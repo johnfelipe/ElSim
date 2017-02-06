@@ -22,6 +22,7 @@ const Result = require('../../models/result'),
         } else {
             merged = options;
         }
+        console.log(merged);
         res.render(page, merged);
 
     }
@@ -31,11 +32,11 @@ const Result = require('../../models/result'),
     }
 
     function loginGetFunction(req, res) {
-        indexResponse(req, res, 'pages/login', 'Login Page', {message: req.flash('message')});
+        indexResponse(req, res, 'pages/auth/login', 'Login Page', {message: req.flash('message')});
     }
 
     function signUpGetFunction(req, res) {
-        indexResponse(req, res, 'pages/register', 'Register', {message: req.flash('message')});
+        indexResponse(req, res, 'pages/auth/register', 'Register', {message: req.flash('message')});
     }
 
     function signOutGetFunction(req, res) {
@@ -44,7 +45,7 @@ const Result = require('../../models/result'),
     }
 
     function helpGetFunction(req, res) {
-        indexResponse(req, res, 'pages/help', 'Help', false);
+        indexResponse(req, res, 'pages/misc/help', 'Help', false);
     }
 
     function singleGraphicFormGetFunction(req, res) {
@@ -74,11 +75,11 @@ const Result = require('../../models/result'),
     }
 
     function learnGetFunction(req, res) {
-        indexResponse(req, res, 'pages/learn', 'Learn', false);
+        indexResponse(req, res, 'pages/more/learn', 'Learn', false);
     }
 
     function resourcesGetFunction(req, res) {
-        indexResponse(req, res, 'pages/resources', 'Resources', false);
+        indexResponse(req, res, 'pages/more/resources', 'Resources', false);
     }
 
     function storedDataFunction(req, res) {
@@ -87,7 +88,7 @@ const Result = require('../../models/result'),
             data.sort(function(a,b){
                 return new Date(a.eleccion.fecha) - new Date(b.eleccion.fecha);
             });
-            indexResponse(req, res, 'pages/stored-data', 'Stored Data', {
+            indexResponse(req, res, 'pages/data/stored-data', 'Stored Data', {
                 data: data,
                 moment: Moment,
                 err: err
@@ -96,7 +97,7 @@ const Result = require('../../models/result'),
     }
 
     function addDataGetFunction(req, res) {
-        indexResponse(req, res, 'pages/add-data', 'Add data', {
+        indexResponse(req, res, 'pages/data/add-data', 'Add data', {
             err: null,
             codigos: require('../../codigos')
         });
@@ -104,7 +105,7 @@ const Result = require('../../models/result'),
 
     function deleteDataGetFunction(req, res) {
         Result.find({}, function (err, data) {
-            indexResponse(req, res, 'pages/delete-data', 'Delete data', {
+            indexResponse(req, res, 'pages/data/delete-data', 'Delete data', {
                 data: data,
                 moment: Moment,
                 err: null
@@ -115,7 +116,7 @@ const Result = require('../../models/result'),
 
     function partiesFunction(req, res) {
         let parties = require('./parties');
-        indexResponse(req, res, 'pages/parties', 'Parties', {
+        indexResponse(req, res, 'pages/more/parties', 'Parties', {
             parties: parties
         });
     }

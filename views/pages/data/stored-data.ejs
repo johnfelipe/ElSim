@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-<% include ../partials/head.ejs %>
-<% include ../partials/menu.ejs %>
+<% include ../../partials/head.ejs %>
+<% include ../../partials/menu.ejs %>
 <body >
 <div class="container">
     <% if(!data.length) { %>
-    <% include ../partials/no-data.ejs %>
+    <% include ../../partials/no-data.ejs %>
     <% } else { %>
     <div class="card-deck-wrapper">
         <div class="card-deck">
@@ -42,6 +42,6 @@
 </div>
 <script src="/js/moment.min.js"></script>
 <script src="/js/stored-data.js"></script>
-<% include ../partials/footer.ejs %>
+<% include ../../partials/footer.ejs %>
 </body>
 </html>
