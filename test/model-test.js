@@ -37,7 +37,7 @@ describe('User', function () {
 describe('Result', function () {
     describe('#save()', function () {
         it('Should not save if duplicate key(cod_provincia + eleccion)', function (done) {
-            var resultado = new Resultado({
+            let resultado = new Resultado({
                 comunidad: '',
                 cod_provincia: 22,
                 provincia: '',

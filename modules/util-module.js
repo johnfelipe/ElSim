@@ -99,23 +99,54 @@ const fs = require('fs'),
         });
     }
 
+    function loadCsv(done) {
+        const a = ['1977', '1979', '1982', '1986', '1989', '1993', '1996'];
+        let path1, path2, promises = [];
+        for (let i = 0, len = a.length; i < len; ++i) {
+            path1 = './csv/' + a[i] + '.csv';
+            path2 = './csv/' + a[i] + '_PARTIDOS.csv';
+            _.readCsv(path1, path2, csvCallback);
+        }
+        function csvCallback(data) {
+            for (let j = 0, lenData = data.length; j < lenData; ++j) {
+                promises.push(saveResultado(data[j], function(){}));
+            }
+        }
+        function saveResultado(result, done) {
+
+            let r = new Result(result);
+            r.eleccion = {
+                fecha: result.fecha,
+                autor: 'sistema'
+            };
+            r.save(function (err) {
+                if (err) throw err;
+                done();
+            });
+        }
+        Promise.all(promises).then(function () {
+            done();
+        });
+    }
+
+    function getResultadoById(id, done) {
+        Result.findOne({_id: id}, function (err, data) {
+            if (err) throw err;
+            done(data);
+        });
+    }
+
     module.exports = {
         prettyPrint: prettyPrint,
-
         groupByKey: groupByKey,
-
         sortByRest: sortByRest,
-
         ellectionIsInArray: ellectionIsInArray,
-
         readResultados: readResultados,
-
         readParties: readParties,
-
         invalidRowException: invalidRowException,
-
         readCsv: readCsv,
-
-        calculateEllections: calculateEllections
+        calculateEllections: calculateEllections,
+        loadCsv: loadCsv,
+        getResultadoById: getResultadoById
     };
 })();

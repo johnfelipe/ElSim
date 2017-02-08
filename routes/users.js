@@ -7,7 +7,7 @@ const isAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
-    res.render('pages/profile', {
+    res.render('pages/auth/profile', {
         title: 'Profile',
         user: req.user,
         err: 'Sorry, but you must to login to see your profile!'

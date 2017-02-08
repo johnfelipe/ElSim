@@ -42,7 +42,7 @@ const isAuthenticated = function (req, res, next) {
     res.render('pages/index',{
         title: 'Welcome Page',
         user: req.user,
-        advice: 'Sorry, but you must to login to use the simulator or manage data.'
+        err: 'Sorry, but you must to login to use the simulator or manage data.'
     });
 };
 
@@ -55,28 +55,29 @@ module.exports = function(passport){
     /** GET routes */
     router.get('/', IGF.indexGetFunction);
     router.get('/help', IGF.helpGetFunction);
-    router.get('/single-graphic-form', IGF.singleGraphicFormGetFunction);
-    router.get('/country-graphic-form', IGF.countryGraphicFormGetFunction);
+    router.get('/single-graphic-form',isAuthenticated, IGF.singleGraphicFormGetFunction);
+    router.get('/country-graphic-form', isAuthenticated, IGF.countryGraphicFormGetFunction);
     router.get('/learn', IGF.learnGetFunction);
     router.get('/resources', IGF.resourcesGetFunction);
-    router.get('/add-data', IGF.addDataGetFunction);
+    router.get('/add-data',isAuthenticated, IGF.addDataGetFunction);
     router.get('/stored-data', IGF.storedDataFunction);
     router.get('/quiz', IGF.learnGetFunction);
     router.get('/minigame', IGF.learnGetFunction);
     router.get('/login', IGF.loginGetFunction);
     router.get('/signup', IGF.signUpGetFunction);
-    router.get('/signout', IGF.signOutGetFunction);
+    router.get('/signout',isAuthenticated, IGF.signOutGetFunction);
     router.get('/parties', IGF.partiesFunction);
     router.get('/resultados/:id', Api.findOneResultado);
-    router.get('/delete-data', IGF.deleteDataGetFunction);
-    router.get('/admin', Admin.adminSummaryFunction);
+    router.get('/delete-data',isAuthenticated, IGF.deleteDataGetFunction);
+    router.get('/admin',isAuthenticated, Admin.adminSummaryFunction);
 
     /** POST routes */
-    router.post('/add-data', IPF.addDataPostFunction);
-    router.post('/delete-data', IPF.deleteDataPostFunction);
-    router.post('/graphic-form', IPF.graphicFormPostFunction);
-    router.post('/country-form', IPF.countryFormPostFunction);
-    router.post('/save-single-chart', IPF.saveResultFunction);
+    router.post('/add-data', isAuthenticated,IPF.addDataPostFunction);
+    router.post('/add-data-file', isAuthenticated, IPF.addDataFilePostFunction);
+    router.post('/delete-data', isAuthenticated, IPF.deleteDataPostFunction);
+    router.post('/graphic-form', isAuthenticated, IPF.graphicFormPostFunction);
+    router.post('/country-form', isAuthenticated, IPF.countryFormPostFunction);
+    router.post('/save-single-chart', isAuthenticated, IPF.saveResultFunction);
 
     router.post('/login', passport.authenticate('login', {
         successRedirect: '/',
@@ -102,13 +103,13 @@ module.exports = function(passport){
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-db-manager-module.html">db-manager-module</a></li><li><a href="module-district-module.html">district-module</a></li><li><a href="module-electoral-system-module.html">electoral-system-module</a></li><li><a href="module-functions_admin-functions.html">functions/admin-functions</a></li><li><a href="module-functions_Api-functions.html">functions/Api-functions</a></li><li><a href="module-functions_index-get-functions.html">functions/index-get-functions</a></li><li><a href="module-functions_index-post-functions.html">functions/index-post-functions</a></li><li><a href="module-functions_parties.html">functions/parties</a></li><li><a href="module-Graphic.html">Graphic</a></li><li><a href="module-graphics_bar-module.html">graphics/bar-module</a></li><li><a href="module-graphics_colors.html">graphics/colors</a></li><li><a href="module-graphics_icons.html">graphics/icons</a></li><li><a href="module-graphics_map-module.html">graphics/map-module</a></li><li><a href="module-graphics_pie-module.html">graphics/pie-module</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_subscriber.html">models/subscriber</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_electoral-system-test.html">test/electoral-system-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li><li><a href="module-util-module.html">util-module</a></li></ul><h3>Global</h3><ul><li><a href="global.html#app/authenticate">app/authenticate</a></li><li><a href="global.html#app/isAuthenticated">app/isAuthenticated</a></li><li><a href="global.html#express">express</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-district-module.html">district-module</a></li><li><a href="module-functions_admin-functions.html">functions/admin-functions</a></li><li><a href="module-functions_Api-functions.html">functions/Api-functions</a></li><li><a href="module-functions_index-get-functions.html">functions/index-get-functions</a></li><li><a href="module-functions_index-post-functions.html">functions/index-post-functions</a></li><li><a href="module-functions_parties.html">functions/parties</a></li><li><a href="module-Graphic.html">Graphic</a></li><li><a href="module-graphics_bar-module.html">graphics/bar-module</a></li><li><a href="module-graphics_colors.html">graphics/colors</a></li><li><a href="module-graphics_icons.html">graphics/icons</a></li><li><a href="module-graphics_map-module.html">graphics/map-module</a></li><li><a href="module-graphics_pie-module.html">graphics/pie-module</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_subscriber.html">models/subscriber</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li><li><a href="module-util-module.html">util-module</a></li></ul><h3>Global</h3><ul><li><a href="global.html#app/authenticate">app/authenticate</a></li><li><a href="global.html#app/isAuthenticated">app/isAuthenticated</a></li><li><a href="global.html#express">express</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Feb 06 2017 09:55:34 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Feb 08 2017 12:33:11 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>

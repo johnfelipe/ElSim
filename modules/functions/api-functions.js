@@ -1,11 +1,12 @@
+'use strict';
 /* jshint esversion: 6 */
 
 const User = require('../../models/user'),
     Log = require('../../models/log'),
     Result = require('../../models/result'),
     Subscriber = require('../../models/subscriber'),
-    DB = require('../db-manager-module'),
-    credentials = require('../../credentials');
+    credentials = require('../../credentials'),
+    Util = require('../util-module');
 
 /**
  * All the callback functions of Api routes
@@ -105,19 +106,17 @@ const User = require('../../models/user'),
     }
 
     function deleteAllResultados(req, res) {
-        DB.deleteAllResultados(function () {
-            apiResponse(req, res, false, 'All results removed', null);
-        });
+        resError(req, res);
     }
 
     function findOneResultado(req, res) {
-        DB.getResultadoById(req.param('id'), function (data) {
+        Util.getResultadoById(req.param('id'), function (data) {
             apiResponse(req, res, false, 'Result', data);
         });
     }
 
     function loadCsv(req, res) {
-        DB.loadCsv(function () {
+        Util.loadCsv(function () {
             apiResponse(req, res, false, 'CSVs loaded', null);
         });
     }
@@ -129,35 +128,23 @@ const User = require('../../models/user'),
     }
 
     function deleteAllLogs(req, res) {
-        DB.deleteAllLogs(function () {
-            apiResponse(req, res, false, 'All logs removed', null);
-        });
+        resError(req, res);
     }
 
     function apiResponse(req, res, err, message, data) {
         let options;
-        if (err) {
-            options = {
-                result: 'fail',
-                success: false,
-                message: null,
-                err: err,
-                data: null
-            };
-        } else {
-            options = {
-                result: 'successful',
-                success: true,
-                message: message,
-                err: null,
-                data: data
-            };
-        }
+        options = {
+            result: (err) ? 'fail' : 'successful',
+            success: !err,
+            message: (err) ? null : message,
+            err: (err) ? err : null,
+            data: (err) ? null : data
+        };
+
         res.send(options);
     }
 
     function hardReset(req, res) {
-        console.log('Hard reset starting...');
         let promises = [];
         promises.push(User.remove({}, done));
         promises.push(Log.remove({}, done));
@@ -166,7 +153,6 @@ const User = require('../../models/user'),
         Promise.all(promises).then(endPromises);
 
         function endPromises() {
-            console.log('Hard reset finished');
             res.send({
                 result: 'Successful',
                 status: 200,
