@@ -3,7 +3,7 @@ const Graphic = require('../graphics/graphic-module'),
     Result = require('../../models/result'),
     Colors = require('../graphics/misc/colors'),
     Icons = require('../graphics/misc/icons'),
-    Codigos = require('../../codigos');
+    Codigos = require('misc/codigos');
 
 /**
  * All the callback functions of index POST routes

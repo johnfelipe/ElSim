@@ -97,7 +97,7 @@ const Result = require('../../models/result'),
     function addDataGetFunction(req, res) {
         indexResponse(req, res, 'pages/data/add-data', 'Add data', {
             err: null,
-            codigos: require('../../codigos')
+            codigos: require('misc/codigos')
         });
     }
 
@@ -113,7 +113,7 @@ const Result = require('../../models/result'),
     }
 
     function partiesFunction(req, res) {
-        let parties = require('./parties');
+        let parties = require('./misc/parties');
         indexResponse(req, res, 'pages/more/parties', 'Parties', {
             parties: parties
         });
