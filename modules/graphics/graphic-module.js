@@ -1,13 +1,13 @@
 /* jshint esversion: 6 */
 
 const highcharts = require('node-highcharts'),
-    Color = require('./colors'),
+    Color = require('./misc/colors'),
     BarChart = require('./column-module'),
     PieChart = require('./pie-module'),
     CountryChart = require('./map-module'),
     User = require('../../models/user'),
     Result = require('../../models/result'),
-    Icons = require('./icons'),
+    Icons = require('./misc/icons'),
     District = require('../district-module'),
     Moment = require('moment');
 
@@ -19,11 +19,9 @@ const highcharts = require('node-highcharts'),
     function rendChart(options, callback) {
         highcharts.render(options, callbackRender);
         function callbackRender(err, data) {
-            if (err) {
-                console.log('Error: ' + err);
-            } else {
-                callback(data);
-            }
+            if (err)
+                throw err;
+            callback(data);
         }
     }
 
@@ -78,7 +76,7 @@ const highcharts = require('node-highcharts'),
             }
 
 
-            let result = District.compute(votes, names, districtOptions,true);
+            let result = District.compute(votes, names, districtOptions, true);
             if (mode === 'column') {
                 createColumn(result.parties, done);
             } else if (mode === 'pie') {

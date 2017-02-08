@@ -40,7 +40,6 @@ let isValidPassword = function (user, password) {
  * @function app/authenticate
  */
 let authenticate = function (req, res) {
-    console.log('user ' + req.body.email + ' is trying to authenticate.');
     User.findOne({email: req.body.email}, done);
     function done(err, user) {
         let object = {

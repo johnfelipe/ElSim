@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-const latinMap = require('./latinize-map'),
+const latinMap = require('./misc/latinize-map'),
     District = require('../district-module');
 /**
  * To handle map charts

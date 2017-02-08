@@ -22,9 +22,7 @@ const Result = require('../../models/result'),
         } else {
             merged = options;
         }
-        console.log(merged);
         res.render(page, merged);
-
     }
 
     function indexGetFunction(req, res) {

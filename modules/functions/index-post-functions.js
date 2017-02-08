@@ -1,8 +1,8 @@
 /* jshint esversion: 6 */
 const Graphic = require('../graphics/graphic-module'),
     Result = require('../../models/result'),
-    Colors = require('../graphics/colors'),
-    Icons = require('../graphics/icons'),
+    Colors = require('../graphics/misc/colors'),
+    Icons = require('../graphics/misc/icons'),
     Codigos = require('../../codigos');
 
 /**
@@ -84,7 +84,6 @@ const Graphic = require('../graphics/graphic-module'),
 
 
         Promise.all(promises).then(function () {
-            console.log('all the results were deleted');
             Result.find({}, function (err, data) {
                 indexResponse(req, res, 'pages/data/delete-data', 'Delete data', {
                     err: err,

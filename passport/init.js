@@ -9,20 +9,23 @@ const login = require('./login'),
  * @module passport/init
  */
 module.exports = function(passport){
+
+    passport.serializeUser(serializeUser);
+
+
+    passport.deserializeUser(deserializeUser);
+
     /** Serialize an user */
-    passport.serializeUser(function(user, done) {
-        console.log('serializing user: ');
-        console.log(user);
+    function serializeUser(user, done) {
         done(null, user._id);
-    });
+    }
 
     /** Deserialize an user */
-    passport.deserializeUser(function(id, done) {
+    function deserializeUser(id, done) {
         User.findById(id, function(err, user) {
-            console.log('deserializing user:',user);
             done(err, user);
         });
-    });
+    }
 
     login(passport);
     signup(passport);
