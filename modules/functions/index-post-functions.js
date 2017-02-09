@@ -3,7 +3,8 @@ const Graphic = require('../graphics/graphic-module'),
     Result = require('../../models/result'),
     Colors = require('../graphics/misc/colors'),
     Icons = require('../graphics/misc/icons'),
-    Codigos = require('misc/codigos');
+    Codigos = require('misc/codigos'),
+    District = require('../district-module');
 
 /**
  * All the callback functions of index POST routes
@@ -26,7 +27,7 @@ const Graphic = require('../graphics/graphic-module'),
     }
 
     function addDataFilePostFunction(req, res) {
-        indexResponse(req,res,'pages/misc/error','Not Implemented',{
+        indexResponse(req, res, 'pages/misc/error', 'Not Implemented', {
             err: {
                 status: 500
             },
@@ -34,31 +35,23 @@ const Graphic = require('../graphics/graphic-module'),
         });
     }
 
+
+
     function addDataPostFunction(req, res) {
-        let lines = req.param('votes').split('\n'),
-            partidos = {}, aux;
-        for (let i = 0, len = lines.length; i < len; i++) {
-            aux = lines[i].split(' ');
-            partidos[aux[0].replace(/(\r\n|\n|\r)/gm, "")] = aux[2].replace(/(\r\n|\n|\r)/gm, "");
-        }
-        let result = new Result({
-            comunidad: 'desconocida',
-            cod_provincia: req.param('province'),
-            provincia: 'desconocida',
-            poblacion: parseInt(req.param('population')),
-            num_mesas: parseInt(req.param('num_mesas')),
-            total_censo_electoral: parseInt(req.param('census')),
-            total_votantes: parseInt(req.param('voters')),
-            votos_validos: parseInt(req.param('voters')) - parseInt(req.param('nulos')),
-            votos_candidaturas: (parseInt(req.param('voters')) - parseInt(req.param('nulos'))) - parseInt(req.param('blancos')) ,
-            votos_blanco: parseInt(req.param('blancos')),
-            votos_nulos: parseInt(req.param('nulos')),
-            eleccion: {
-                autor: req.param('author'),
-                fecha: req.param('date')
-            },
-            partidos: partidos
-        });
+        let args = [req.param('votes'),
+            req.param('province'),
+            parseInt(req.param('population')),
+            parseInt(req.param('num_mesas')),
+            parseInt(req.param('census')),
+            parseInt(req.param('voters')),
+            parseInt(req.param('nulos')),
+            parseInt(req.param('blancos')),
+            req.param('author'),
+            req.param('date')
+        ];
+
+        let result = District.createResultEntity(args);
+
         result.save(function (err) {
             indexResponse(req, res, 'pages/data/add-data', 'Add data', {
                 err: err,
@@ -75,22 +68,29 @@ const Graphic = require('../graphics/graphic-module'),
     }
 
     function deleteDataPostFunction(req, res) {
-        let promises = [], options;
+        let promises = [],
+            options,
+            results = req.param('results');
 
-        for (let i = 0, len = req.param('results').length; i < len; i++) {
-            options = {_id: req.param('results')[i]};
+        for (let i = 0, len = results.length; i < len; ++i) {
+            options = {
+                _id: results[i]
+            };
             promises.push(Result.remove(options, checkError));
         }
 
+        Promise.all(promises).then(promisesFinish);
 
-        Promise.all(promises).then(function () {
-            Result.find({}, function (err, data) {
-                indexResponse(req, res, 'pages/data/delete-data', 'Delete data', {
-                    err: err,
-                    data: data
-                });
+        function promisesFinish() {
+            Result.find({}, findCallback);
+        }
+
+        function findCallback(err, data) {
+            indexResponse(req, res, 'pages/data/delete-data', 'Delete data', {
+                err: err,
+                data: data
             });
-        });
+        }
 
     }
 
@@ -121,6 +121,7 @@ const Graphic = require('../graphics/graphic-module'),
 
         /** Handles add data form */
         addDataPostFunction: addDataPostFunction,
+
         addDataFilePostFunction: addDataFilePostFunction,
 
         /** Handles delete data form */

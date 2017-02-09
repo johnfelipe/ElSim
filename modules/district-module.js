@@ -1,6 +1,6 @@
 /* jshint esversion: 6 */
 
-
+const Result = require('../models/result');
 /**
  * Utilities for a district
  * @module district-module
@@ -97,6 +97,34 @@
         return table;
     }
 
+    function createResultEntity(args) {
+        let lines = args[0].split('\n'),
+            partidos = {}, aux;
+        for (let i = 0, len = lines.length; i < len; i++) {
+            aux = lines[i].split(' ');
+            partidos[aux[0].replace(/(\r\n|\n|\r)/gm, "")] = aux[2].replace(/(\r\n|\n|\r)/gm, "");
+        }
+        return new Result({
+            comunidad: 'desconocida',
+            cod_provincia: args[1],
+            provincia: 'desconocida',
+            poblacion: args[2],
+            num_mesas: args[3],
+            total_censo_electoral: args[4],
+            total_votantes: args[5],
+            votos_validos: args[5] - args[6],
+            votos_candidaturas: (args[5] - args[6]) - args[7],
+            votos_blanco: args[7],
+            votos_nulos: args[6],
+            eleccion: {
+                autor: args[8],
+                fecha: args[9]
+            },
+            partidos: partidos
+        });
+    }
+
+
     module.exports = {
         compute: compute,
 
@@ -112,6 +140,8 @@
 
         fillPartiesResult: fillPartiesResult,
 
-        calculateSeats: calculateSeats
+        calculateSeats: calculateSeats,
+
+        createResultEntity: createResultEntity
     };
 })();

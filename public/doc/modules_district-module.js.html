@@ -28,7 +28,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>/* jshint esversion: 6 */
 
-
+const Result = require('../models/result');
 /**
  * Utilities for a district
  * @module district-module
@@ -125,6 +125,34 @@
         return table;
     }
 
+    function createResultEntity(args) {
+        let lines = args[0].split('\n'),
+            partidos = {}, aux;
+        for (let i = 0, len = lines.length; i &lt; len; i++) {
+            aux = lines[i].split(' ');
+            partidos[aux[0].replace(/(\r\n|\n|\r)/gm, "")] = aux[2].replace(/(\r\n|\n|\r)/gm, "");
+        }
+        return new Result({
+            comunidad: 'desconocida',
+            cod_provincia: args[1],
+            provincia: 'desconocida',
+            poblacion: args[2],
+            num_mesas: args[3],
+            total_censo_electoral: args[4],
+            total_votantes: args[5],
+            votos_validos: args[5] - args[6],
+            votos_candidaturas: (args[5] - args[6]) - args[7],
+            votos_blanco: args[7],
+            votos_nulos: args[6],
+            eleccion: {
+                autor: args[8],
+                fecha: args[9]
+            },
+            partidos: partidos
+        });
+    }
+
+
     module.exports = {
         compute: compute,
 
@@ -140,7 +168,9 @@
 
         fillPartiesResult: fillPartiesResult,
 
-        calculateSeats: calculateSeats
+        calculateSeats: calculateSeats,
+
+        createResultEntity: createResultEntity
     };
 })();
 </code></pre>
@@ -153,13 +183,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-district-module.html">district-module</a></li><li><a href="module-functions_admin-functions.html">functions/admin-functions</a></li><li><a href="module-functions_Api-functions.html">functions/Api-functions</a></li><li><a href="module-functions_index-get-functions.html">functions/index-get-functions</a></li><li><a href="module-functions_index-post-functions.html">functions/index-post-functions</a></li><li><a href="module-functions_parties.html">functions/parties</a></li><li><a href="module-Graphic.html">Graphic</a></li><li><a href="module-graphics_bar-module.html">graphics/bar-module</a></li><li><a href="module-graphics_map-module.html">graphics/map-module</a></li><li><a href="module-graphics_pie-module.html">graphics/pie-module</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_subscriber.html">models/subscriber</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li><li><a href="module-util-module.html">util-module</a></li></ul><h3>Global</h3><ul><li><a href="global.html#app/authenticate">app/authenticate</a></li><li><a href="global.html#app/isAuthenticated">app/isAuthenticated</a></li><li><a href="global.html#express">express</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-district-module.html">district-module</a></li><li><a href="module-functions_admin-functions.html">functions/admin-functions</a></li><li><a href="module-functions_Api-functions.html">functions/Api-functions</a></li><li><a href="module-functions_index-get-functions.html">functions/index-get-functions</a></li><li><a href="module-functions_index-post-functions.html">functions/index-post-functions</a></li><li><a href="module-Graphic.html">Graphic</a></li><li><a href="module-graphics_bar-module.html">graphics/bar-module</a></li><li><a href="module-graphics_map-module.html">graphics/map-module</a></li><li><a href="module-graphics_pie-module.html">graphics/pie-module</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_subscriber.html">models/subscriber</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li><li><a href="module-util-module.html">util-module</a></li></ul><h3>Global</h3><ul><li><a href="global.html#app/authenticate">app/authenticate</a></li><li><a href="global.html#app/isAuthenticated">app/isAuthenticated</a></li><li><a href="global.html#express">express</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Feb 08 2017 12:56:51 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Feb 09 2017 10:50:44 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>

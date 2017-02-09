@@ -14,42 +14,54 @@ const User = require('../../models/user'),
         };
         res.render('pages/auth/profile', options);
     }
+
     function loadAll(done){
         let promises = [], users, logs, results;
-        promises.push(
-            User.find({}, function (err, data) {
-                users = data;
-            })
-        );
-        promises.push(
-            Log.find({}, function (err, data) {
-                logs = data;
-            })
-        );
-        promises.push(
-            Result.find({}, function (err, data) {
-                results = data;
-            })
-        );
+
+        promises.push(User.find({}, userCallback));
+        promises.push(Log.find({}, logCallback));
+        promises.push(Result.find({}, resultCallback));
+
+        function userCallback(err, data) {
+            if(err) throw err;
+            users = [...data];
+        }
+
+        function logCallback(err, data) {
+            if(err) throw err;
+            logs = [...data];
+        }
+
+        function resultCallback(err, data) {
+            if (err) throw err;
+            results = [...data];
+        }
+
+
         Promise.all(promises).then(function(){
             done(logs,results,users);
         });
     }
+
     function addSubscriber(req,res){
+        let user = req.user,
+            email = req.body.subscriber;
+
         let s = new Subscriber({
-            email: req.body.subscriber,
+            email: email,
             options: {}
         });
 
         s.save(function(err){
             let options = {
                 title: 'Help',
-                user: req.user,
+                user: user,
                 err: err
             };
             res.render('pages/misc/help',options);
         });
     }
+
     function sendNews(req,res){
         Subscriber.find({},findDone);
         function findDone(err,subscribers){
@@ -75,10 +87,12 @@ const User = require('../../models/user'),
             res.render('pages/auth/admin', options);
         }
     }
+
     module.exports = {
         profile: profile,
         addSubscriber: addSubscriber,
         sendNews: sendNews,
         loadAll: loadAll
     };
+
 })();
