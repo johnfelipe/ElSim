@@ -95,17 +95,32 @@ const Graphic = require('../graphics/graphic-module'),
     }
 
     function graphicFormPostFunction(req, res) {
-        Graphic.calculateDistrict(req, function (options) {
+        let mode = req.body.mode,
+            mandates = req.body.mandates,
+            percentage = req.body.percentage,
+            resultSelected = req.body.resultSelected,
+            user = req.body.user;
+
+        Graphic.calculateDistrict(mode, mandates, percentage, resultSelected, user, districtCalculated);
+
+        function districtCalculated(options) {
             res.render('pages/simulator/single-chart', options);
-        });
+        }
     }
 
     function countryFormPostFunction(req, res) {
-        Graphic.calculateCountry(req, function (options) {
-            options['colors'] = Colors;
-            options['icons'] = Icons;
+        let resultSelected = req.body.resultSelected,
+            percentage = req.body.percentage,
+            user = req.body.user,
+            body = req.body;
+
+        Graphic.calculateCountry(resultSelected, percentage, user, body, calculatedCountry);
+
+        function calculatedCountry(options) {
+            options.colors = Colors;
+            options.icons = Icons;
             res.render('pages/simulator/country-chart', options);
-        });
+        }
     }
 
     function saveResultFunction(req, res) {

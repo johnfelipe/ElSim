@@ -50,20 +50,18 @@ const highcharts = require('node-highcharts'),
         callback(options);
     }
 
-    function calculateDistrict(req, callback) {
+    function calculateDistrict(mode, mandates, percentage, resultSelected, user, callback) {
         let votes = [],
             names = [],
-            mode = req.body.mode,
             districtOptions = {
-                mandates: req.body.mandates,
-                percentage: req.body.percentage,
+                mandates: mandates,
+                percentage: percentage,
                 blankVotes: 0
-            },
-            id = req.body.resultSelected;
+            };
 
-        Result.findOne({_id: id}, haveResult);
+        Result.findOne({_id: resultSelected}, findCallback);
 
-        function haveResult(err, data) {
+        function findCallback(err, data) {
             if (err) throw err;
 
             districtOptions.blankVotes = data.votos_blanco;
@@ -75,72 +73,76 @@ const highcharts = require('node-highcharts'),
                 }
             }
 
-
             let result = District.compute(votes, names, districtOptions, true);
+
             if (mode === 'column') {
-                createColumn(result.parties, done);
+                createColumn(result.parties, chartDone);
             } else if (mode === 'pie') {
-                createPie(result.parties, done);
+                createPie(result.parties, chartDone);
             }
+        }
 
-            function done(graph_options) {
-                let options = {
-                    title: 'Chart',
-                    autor: data.eleccion.autor,
-                    fecha: data.eleccion.fecha,
-                    provincia: data.cod_provincia,
-                    options: graph_options,
-                    result: result,
-                    icons: Icons,
-                    user: req.user,
-                    moment: Moment
-                };
-                if (!req.user) {
-                    callback(options);
-                } else {
-                    User.findOne({_id: req.user._id}, function (err, user) {
-                        if (err) throw err;
+        function chartDone(data, graph_options, result) {
+            let options = {
+                title: 'Chart',
+                autor: data.eleccion.autor,
+                fecha: data.eleccion.fecha,
+                provincia: data.cod_provincia,
+                options: graph_options,
+                result: result,
+                icons: Icons,
+                user: user,
+                moment: Moment
+            };
+            if (!user) {
+                callback(options);
+            } else {
+                User.findOne({_id: user._id}, function findOneCallback(err, user) {
+                    if (err) throw err;
 
-                        user.resultados.push({
-                            fecha: data.eleccion.fecha,
-                            provincia: data.cod_provincia,
-                            result: result,
-                            mandates: req.body.mandates,
-                            percentage: req.body.percentage,
-                            blank: data.votos_blanco
-                        });
-
-                        user.save(function (err) {
-                            if (err) throw err;
-                            callback(options);
-                        });
+                    user.resultados.push({
+                        fecha: data.eleccion.fecha,
+                        provincia: data.cod_provincia,
+                        result: result,
+                        mandates: mandates,
+                        percentage: percentage,
+                        blank: data.votos_blanco
                     });
-                }
+
+                    user.save(function (err) {
+                        if (err) throw err;
+                        callback(options);
+                    });
+                });
             }
         }
     }
 
-    function calculateCountry(req, callback) {
+    function calculateCountry(resultSelected, percentage, user, body, callback) {
         let eleccion = {
-            autor: req.body.resultSelected.split(',')[1],
-            fecha: req.body.resultSelected.split(',')[0]
+            autor: resultSelected.split(',')[1],
+            fecha: resultSelected.split(',')[0]
         };
         let config = {
             mandates: 2,
-            percentage: parseFloat(req.body.percentage),
+            percentage: parseFloat(percentage),
             blankVotes: 0
         };
 
-        Result.find({eleccion: eleccion}, function (err, data) {
-            let global;
-            global = CountryChart.calculateGlobal(data, config, req.body);
+        Result.find({eleccion: eleccion}, findCallback);
+
+        function findCallback(err, data) {
+            if (err) throw err;
+
+            let global = CountryChart.calculateGlobal(data, config, body);
+
             let options = {
-                user: req.user,
+                user: user,
                 global: global,
                 title: 'Country Chart'
             };
             callback(options);
-        });
+        }
     }
 
     module.exports = {
