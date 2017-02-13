@@ -1,6 +1,8 @@
 /* jshint esversion: 6 */
 const latinMap = require('./misc/latinize-map'),
-    District = require('../district-module');
+    District = require('../district-module'),
+    has = Object.prototype.hasOwnProperty;
+
 /**
  * To handle map charts
  * @module graphics/map-module
@@ -54,7 +56,7 @@ const latinMap = require('./misc/latinize-map'),
             config.blankVotes = data[i].votos_blanco;
             config.mandates = calculateMandates(data[i].provincia, conjunto);
             for (let key in data[i].partidos) {
-                if (data[i].partidos.hasOwnProperty(key)) {
+                if (has.call(data[i].partidos,key)) {
                     votes.push(data[i].partidos[key]);
                     names.push(key);
                 }
@@ -71,7 +73,7 @@ const latinMap = require('./misc/latinize-map'),
         let aux = {};
         for (let i = 0, len = global.length; i < len; i++) {
             for (let key in global[i].parties) {
-                if (global[i].parties.hasOwnProperty(key) && global[i].parties[key] === 0) {
+                if (has.call(global[i].parties,key) && global[i].parties[key] === 0) {
                     delete global[i].parties[key];
                 } else {
                     if (aux[key] === undefined) {

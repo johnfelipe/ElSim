@@ -97,7 +97,7 @@ const highcharts = require('node-highcharts'),
             if (!user) {
                 callback(options);
             } else {
-                User.findOne({_id: user._id}, function findOneCallback(err, user) {
+                User.findOne({_id: user._id}, function (err, user) {
                     if (err) throw err;
 
                     user.resultados.push({

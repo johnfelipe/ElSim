@@ -3,39 +3,24 @@ const Graphic = require('../graphics/graphic-module'),
     Result = require('../../models/result'),
     Colors = require('../graphics/misc/colors'),
     Icons = require('../graphics/misc/icons'),
-    Codigos = require('misc/codigos'),
+    Codigos = require('./misc/codigos'),
     District = require('../district-module');
+
+let response = require('./index-get-functions').response;
 
 /**
  * All the callback functions of index POST routes
  * @module functions/index-post-functions
  */
 (function () {
-    function indexResponse(req, res, page, title, other) {
-        let options = {
-            title: title,
-            user: req.user
-        };
-        let merged;
-        if (other) {
-            merged = Object.assign(options, other);
-        } else {
-            merged = options;
-        }
-        res.render(page, merged);
-
-    }
-
     function addDataFilePostFunction(req, res) {
-        indexResponse(req, res, 'pages/misc/error', 'Not Implemented', {
+        response(req, res, 'pages/misc/error', 'Not Implemented', {
             err: {
                 status: 500
             },
             message: 'Not implemented'
         });
     }
-
-
 
     function addDataPostFunction(req, res) {
         let args = [req.param('votes'),
@@ -53,7 +38,7 @@ const Graphic = require('../graphics/graphic-module'),
         let result = District.createResultEntity(args);
 
         result.save(function (err) {
-            indexResponse(req, res, 'pages/data/add-data', 'Add data', {
+            response(req, res, 'pages/data/add-data', 'Add data', {
                 err: err,
                 codigos: Codigos
             });
@@ -86,7 +71,7 @@ const Graphic = require('../graphics/graphic-module'),
         }
 
         function findCallback(err, data) {
-            indexResponse(req, res, 'pages/data/delete-data', 'Delete data', {
+            response(req, res, 'pages/data/delete-data', 'Delete data', {
                 err: err,
                 data: data
             });
@@ -129,7 +114,7 @@ const Graphic = require('../graphics/graphic-module'),
 
     module.exports = {
         /** Generic response */
-        indexResponse: indexResponse,
+        response: response,
 
         /** Simple if statement to check err var */
         checkError: checkError,

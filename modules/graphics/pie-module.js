@@ -1,5 +1,6 @@
 /* jshint esversion: 6 */
 let pieOptions = require('./options/pie-options');
+const has = Object.prototype.hasOwnProperty;
 /**
  * To handle pie charts
  * @module graphics/pie-module
@@ -11,7 +12,7 @@ let pieOptions = require('./options/pie-options');
             resultsArray = [];
 
         for (let key in result) {
-            if (result.hasOwnProperty(key) && result[key] > 0) {
+            if (has.call(result,key) && result[key] > 0) {
                 resultsArray.push({
                     name: key,
                     y: result[key],
