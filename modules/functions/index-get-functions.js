@@ -2,7 +2,8 @@
 'use strict';
 const Result = require('../../models/result'),
     Util = require('../util-module'),
-    Moment = require('moment');
+    Moment = require('moment'),
+    codigos = require('./misc/codigos');
 
 /**
  * All the callback functions of index GET routes
@@ -95,7 +96,7 @@ const Result = require('../../models/result'),
     function addDataGetFunction(req, res) {
         indexResponse(req, res, 'pages/data/add-data', 'Add data', {
             err: null,
-            codigos: require('misc/codigos')
+            codigos: codigos
         });
     }
 

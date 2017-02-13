@@ -63,6 +63,7 @@ const latinMap = require('./misc/latinize-map'),
             }
             result = District.compute(votes, names, config,false);
             result.cc = calculateCode(data[i].cod_provincia);
+            console.log(result);
             global.push(result);
             votes = [];
             names = [];

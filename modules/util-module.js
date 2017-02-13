@@ -100,12 +100,12 @@ const fs = require('fs'),
     }
 
     function loadCsv(done) {
-        const a = ['1977', '1979', '1982', '1986', '1989', '1993', '1996'];
+        const a = ['1977', '1979', '1982', '1986', '1989', '1993', '1996','2000'];
         let path1, path2, promises = [];
         for (let i = 0, len = a.length; i < len; ++i) {
             path1 = './csv/' + a[i] + '.csv';
             path2 = './csv/' + a[i] + '_PARTIDOS.csv';
-            _.readCsv(path1, path2, csvCallback);
+            readCsv(path1, path2, csvCallback);
         }
         function csvCallback(data) {
             for (let j = 0, lenData = data.length; j < lenData; ++j) {
@@ -120,7 +120,7 @@ const fs = require('fs'),
                 autor: 'sistema'
             };
             r.save(function (err) {
-                if (err) throw err;
+                if (err) console.log(err);
                 done();
             });
         }

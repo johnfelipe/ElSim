@@ -70,14 +70,20 @@ function getColor(parties) {
         party: '',
         mandates: 0
     };
-    let ps = JSON.parse(parties);
-    for (let key in ps) {
-        if (parseInt(ps[key]) >= mayor.mandates) {
-            mayor.party = key;
-            mayor.mandates = ps[key];
+
+    if (parties !== undefined) {
+        let ps = JSON.parse(parties);
+        for (let key in ps) {
+            if (parseInt(ps[key]) >= mayor.mandates) {
+                mayor.party = key;
+                mayor.mandates = ps[key];
+            }
         }
+        return variosMaximos(ps, mayor) || colors[mayor.party];
+    } else {
+        return 'UNDEFINED';
     }
-    return variosMaximos(ps, mayor) || colors[mayor.party];
+
 }
 function variosMaximos(ps, mayor) {
     let cont = 0;

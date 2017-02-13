@@ -102,8 +102,10 @@ let response = require('./index-get-functions').response;
         Graphic.calculateCountry(resultSelected, percentage, user, body, calculatedCountry);
 
         function calculatedCountry(options) {
+
             options.colors = Colors;
             options.icons = Icons;
+            console.log(options);
             res.render('pages/simulator/country-chart', options);
         }
     }
