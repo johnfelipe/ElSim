@@ -58,11 +58,14 @@ const highcharts = require('node-highcharts'),
                 percentage: percentage,
                 blankVotes: 0
             };
-
+        let result = null,
+            ellection = null;
         Result.findOne({_id: resultSelected}, findCallback);
 
         function findCallback(err, data) {
             if (err) throw err;
+
+            ellection = data;
 
             districtOptions.blankVotes = data.votos_blanco;
 
@@ -73,7 +76,7 @@ const highcharts = require('node-highcharts'),
                 }
             }
 
-            let result = District.compute(votes, names, districtOptions, true);
+            result = District.compute(votes, names, districtOptions, true);
 
             if (mode === 'column') {
                 createColumn(result.parties, chartDone);
@@ -82,12 +85,13 @@ const highcharts = require('node-highcharts'),
             }
         }
 
-        function chartDone(data, graph_options, result) {
+        function chartDone(graph_options) {
+            console.log(ellection);
             let options = {
                 title: 'Chart',
-                autor: data.eleccion.autor,
-                fecha: data.eleccion.fecha,
-                provincia: data.cod_provincia,
+                autor: ellection.eleccion.autor,
+                fecha: ellection.eleccion.fecha,
+                provincia: ellection.cod_provincia,
                 options: graph_options,
                 result: result,
                 icons: Icons,
@@ -101,12 +105,12 @@ const highcharts = require('node-highcharts'),
                     if (err) throw err;
 
                     user.resultados.push({
-                        fecha: data.eleccion.fecha,
-                        provincia: data.cod_provincia,
+                        fecha: ellection.eleccion.fecha,
+                        provincia: ellection.cod_provincia,
                         result: result,
                         mandates: mandates,
                         percentage: percentage,
-                        blank: data.votos_blanco
+                        blank: ellection.votos_blanco
                     });
 
                     user.save(function (err) {
@@ -119,7 +123,7 @@ const highcharts = require('node-highcharts'),
     }
 
     function calculateCountry(resultSelected, percentage, user, body, callback) {
-        let eleccion = {
+        let ellection = {
             autor: resultSelected.split(',')[1],
             fecha: resultSelected.split(',')[0]
         };
@@ -129,7 +133,7 @@ const highcharts = require('node-highcharts'),
             blankVotes: 0
         };
 
-        Result.find({eleccion: eleccion}, findCallback);
+        Result.find({eleccion: ellection}, findCallback);
 
         function findCallback(err, data) {
             if (err) throw err;

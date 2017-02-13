@@ -22,7 +22,7 @@
                         <tbody>
                         <% for(let key in result.parties) { if(parseInt(result.parties[key]) > 0) { %>
                         <tr>
-                            <td><img src="<%= icons[key] %>" width="18" height="18"/> <%= key %></td>
+                            <td><img src="<%= Object.prototype.hasOwnProperty.call(icons,key) ? icons[key] : 'images/no-ico.png'%>" width="18" height="18"/> <%= key %></td>
                             <td><%= result.parties[key] %></td>
                         </tr>
                         <% } %>

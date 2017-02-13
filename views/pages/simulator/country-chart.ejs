@@ -21,7 +21,7 @@
                         <tbody>
                         <% for(let party in global.agrupado) { %>
                         <tr>
-                            <td><img src="<%= icons[party] %>" width="18" height="18"/> <%= party %></td>
+                            <td><img src="<%= Object.prototype.hasOwnProperty.call(icons,party) ? icons[party] : 'images/no-ico.png'%>" width="18" height="18"/> <%= party %></td>
                             <td><%= global.agrupado[party] %></td>
                         </tr>
                         <% } %>
