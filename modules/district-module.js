@@ -124,6 +124,20 @@ const Result = require('../models/result');
         });
     }
 
+    function addPopulation(populations){
+        let population = 0;
+        for(let i=0,len=populations.length; i< len; ++i)
+            population += populations[i];
+        return population;
+    }
+
+    function howManyMandates(totalPopulation,districtPopulation,totalMandates,district){
+        if(district === 'Ceuta' || district === 'Melilla') return 1;
+        let numberOfMandates = 2;
+        let percentage = (districtPopulation / totalPopulation);
+        numberOfMandates += Math.trunc(248*percentage);
+        return numberOfMandates;
+    }
 
     module.exports = {
         compute: compute,
@@ -142,6 +156,10 @@ const Result = require('../models/result');
 
         calculateSeats: calculateSeats,
 
-        createResultEntity: createResultEntity
+        createResultEntity: createResultEntity,
+
+        addPopulation: addPopulation,
+
+        howManyMandates: howManyMandates
     };
 })();
