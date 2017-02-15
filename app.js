@@ -1,9 +1,6 @@
 /* jshint esversion: 6 */
 'use strict';
-/**
- * Main module of the server side
- * @module app
- */
+/** Main module of the server side */
 let express = require('express'),
     path = require('path'),
     favicon = require('serve-favicon'),
@@ -15,7 +12,8 @@ let express = require('express'),
     passport = require('passport'),
     flash = require('connect-flash'),
     expressSession = require('express-session'),
-    initPassport = require('./passport/init');
+    initPassport = require('./passport/init'),
+    errorHandler = require('./modules/errorHandler');
 
 /** Common configuration for the server side. */
 app.set('views', path.join(__dirname, 'views'));
@@ -31,7 +29,7 @@ app.set('superSecret', config.secret);
 
 /** Configuring Passport */
 // TODO - Why Do we need this key ?
-app.use(expressSession({secret: config.secret, cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true }));
+app.use(expressSession({secret: config.secret, cookie: {maxAge: 60000}, resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 initPassport(passport);
@@ -48,30 +46,9 @@ app.use('/users', users);
 app.use('/api', apiRoutes);
 
 /** Catch 404 and forward to error handler */
-app.use(function (req, res, next) {
-    let err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
+app.use(errorHandler.catchNotFound);
 
 /** Development error handler will print stacktrace */
-if (app.get('env') === 'development') {
-    app.use(function (err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('pages/misc/error', {
-            message: err.message,
-            err: err
-        });
-    });
-}
-
-/** Production error handler, no stacktraces leaked to user */
-app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('pages/misc/error', {
-        message: err.message,
-        err: {}
-    });
-});
+(app.get('env') === 'development') ? app.use(errorHandler.developmentHandler) : app.use(errorHandler.productionHandler);
 
 module.exports = app;

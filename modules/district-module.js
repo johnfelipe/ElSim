@@ -7,7 +7,7 @@ const Result = require('../models/result');
  */
 (function () {
 
-    function compute(votes, names, options,withTable) {
+    function compute(votes, names, options, withTable) {
         return calculateSeats(votes, names, options.mandates, options.blankVotes, options.percentage, withTable);
     }
 
@@ -62,30 +62,32 @@ const Result = require('../models/result');
         }
     }
 
-    function calculateSeats(votes, names, mandates, blankVotes, percentage,withTable) {
+    function calculateSeats(votes, names, mandates, blankVotes, percentage, withTable) {
         let numberOfParties = votes.length,
             numberOfVotes = calculateTotalVotes(votes, blankVotes),
             minNumberOfVotes = Math.ceil(numberOfVotes * percentage / 100),
-            result = fillResultVar(numberOfVotes,minNumberOfVotes),
+            result = fillResultVar(numberOfVotes, minNumberOfVotes),
             seats, numberOfPartiesValidated, validatedVotes = [], validatedNames = [];
 
         numberOfPartiesValidated = validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
         seats = new Array(numberOfPartiesValidated).fill(0);
         let table = fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
         fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
-        if(withTable) {
-            result.table = fillTable(table,validatedNames);
+        if (withTable) {
+            result.table = fillTable(table, validatedNames);
         }
         return result;
     }
-    function fillResultVar(numberOfVotes,minNumberOfVotes){
+
+    function fillResultVar(numberOfVotes, minNumberOfVotes) {
         return {
             numberOfVotes: numberOfVotes,
-                minNumberOfVotes: minNumberOfVotes,
+            minNumberOfVotes: minNumberOfVotes,
             parties: {}
         };
     }
-    function fillTable(table,validatedNames){
+
+    function fillTable(table, validatedNames) {
         let aux;
         for (let i = 0, len = table.length; i < len; i++) {
             for (let j = 0, fil_len = table[i].length; j < fil_len; j++) {
@@ -124,19 +126,18 @@ const Result = require('../models/result');
         });
     }
 
-    function addPopulation(populations){
+    function addPopulation(populations) {
         let population = 0;
-        for(let i=0,len=populations.length; i< len; ++i)
+        for (let i = 0, len = populations.length; i < len; ++i)
             population += populations[i];
         return population;
     }
 
-    function howManyMandates(totalPopulation,districtPopulation,totalMandates,district){
-        if(district === 'Ceuta' || district === 'Melilla') return 1;
-        let numberOfMandates = 2;
+    function howManyMandates(totalPopulation, districtPopulation, totalMandates, district) {
+        if (district === 'Ceuta' || district === 'Melilla') return 1;
         let percentage = (districtPopulation / totalPopulation);
-        numberOfMandates += Math.trunc(248*percentage);
-        return numberOfMandates;
+        let numberOfMandates = Math.trunc((totalMandates - 52) * percentage);
+        return numberOfMandates + 2;
     }
 
     module.exports = {

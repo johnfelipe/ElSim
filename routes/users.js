@@ -2,22 +2,12 @@
 'use strict';
 const express = require('express'),
     router = express.Router(),
-    UF = require('../modules/functions/user-functions');
-const isAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.render('pages/auth/profile', {
-        title: 'Profile',
-        user: req.user,
-        err: 'Sorry, but you must to login to see your profile!'
-    });
-};
-/**
- * Rutas de la interfaz web relativas a usuarios
- */
-module.exports = function (passport) {
-    router.get('/profile', isAuthenticated, UF.profile);
+    UF = require('../modules/functions/user-functions'),
+    Auth = require('../passport/auth');
+
+/** Rutas de la interfaz web relativas a usuarios */
+module.exports = (passport) => {
+    router.get('/profile', Auth.isProfileAuthenticated, UF.profile);
     router.post('/addSubscriber', UF.addSubscriber);
     router.post('/sendNews',UF.sendNews);
     return router;

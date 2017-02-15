@@ -28,10 +28,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>/* jshint esversion: 6 */
 'use strict';
-/**
- * Main module of the server side
- * @module app
- */
+/** Main module of the server side */
 let express = require('express'),
     path = require('path'),
     favicon = require('serve-favicon'),
@@ -43,7 +40,8 @@ let express = require('express'),
     passport = require('passport'),
     flash = require('connect-flash'),
     expressSession = require('express-session'),
-    initPassport = require('./passport/init');
+    initPassport = require('./passport/init'),
+    errorHandler = require('./modules/errorHandler');
 
 /** Common configuration for the server side. */
 app.set('views', path.join(__dirname, 'views'));
@@ -59,7 +57,7 @@ app.set('superSecret', config.secret);
 
 /** Configuring Passport */
 // TODO - Why Do we need this key ?
-app.use(expressSession({secret: config.secret, cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true }));
+app.use(expressSession({secret: config.secret, cookie: {maxAge: 60000}, resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 initPassport(passport);
@@ -76,31 +74,10 @@ app.use('/users', users);
 app.use('/api', apiRoutes);
 
 /** Catch 404 and forward to error handler */
-app.use(function (req, res, next) {
-    let err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
+app.use(errorHandler.catchNotFound);
 
 /** Development error handler will print stacktrace */
-if (app.get('env') === 'development') {
-    app.use(function (err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('pages/misc/error', {
-            message: err.message,
-            err: err
-        });
-    });
-}
-
-/** Production error handler, no stacktraces leaked to user */
-app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('pages/misc/error', {
-        message: err.message,
-        err: {}
-    });
-});
+(app.get('env') === 'development') ? app.use(errorHandler.developmentHandler) : app.use(errorHandler.productionHandler);
 
 module.exports = app;
 </code></pre>
@@ -113,13 +90,13 @@ module.exports = app;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li><li><a href="module-district-module.html">district-module</a></li><li><a href="module-functions_admin-functions.html">functions/admin-functions</a></li><li><a href="module-functions_Api-functions.html">functions/Api-functions</a></li><li><a href="module-functions_index-get-functions.html">functions/index-get-functions</a></li><li><a href="module-functions_index-post-functions.html">functions/index-post-functions</a></li><li><a href="module-Graphic.html">Graphic</a></li><li><a href="module-graphics_bar-module.html">graphics/bar-module</a></li><li><a href="module-graphics_map-module.html">graphics/map-module</a></li><li><a href="module-graphics_pie-module.html">graphics/pie-module</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_subscriber.html">models/subscriber</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li><li><a href="module-util-module.html">util-module</a></li></ul><h3>Global</h3><ul><li><a href="global.html#app/authenticate">app/authenticate</a></li><li><a href="global.html#app/isAuthenticated">app/isAuthenticated</a></li><li><a href="global.html#express">express</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-district-module.html">district-module</a></li><li><a href="module-functions_admin-functions.html">functions/admin-functions</a></li><li><a href="module-functions_Api-functions.html">functions/Api-functions</a></li><li><a href="module-functions_index-get-functions.html">functions/index-get-functions</a></li><li><a href="module-functions_index-post-functions.html">functions/index-post-functions</a></li><li><a href="module-Graphic.html">Graphic</a></li><li><a href="module-graphics_bar-module.html">graphics/bar-module</a></li><li><a href="module-graphics_map-module.html">graphics/map-module</a></li><li><a href="module-graphics_pie-module.html">graphics/pie-module</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_subscriber.html">models/subscriber</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li><li><a href="module-util-module.html">util-module</a></li></ul><h3>Global</h3><ul><li><a href="global.html#express">express</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Feb 14 2017 13:35:39 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Feb 15 2017 13:43:35 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>

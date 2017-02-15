@@ -10,11 +10,11 @@ const transportConfig = {
 };
 
 (function(){
-    function sendMail(dest,text,done){
+    function sendMail(destination,text,done){
         let transporter = nodemailer.createTransport(transportConfig);
         let mailOptions = {
             from: '"EllSim News" ' + config.user,
-            to: dest,
+            to: destination,
             subject: 'EllSim newsletter',
             text: text,
             html: '<h2>EllSim NewsLetter</h2>' +

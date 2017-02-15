@@ -5,51 +5,41 @@ const express = require('express'),
     IGF = require('../modules/functions/index-get-functions'),
     IPF = require('../modules/functions/index-post-functions'),
     Api = require('../modules/functions/api-functions'),
-    Admin = require('../modules/functions/admin-functions');
-
-const isAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.render('pages/index',{
-        title: 'Welcome Page',
-        user: req.user,
-        err: 'Sorry, but you must to login to use the simulator or manage data.'
-    });
-};
+    Admin = require('../modules/functions/admin-functions'),
+    Auth = require('../passport/auth');
 
 /**
  * Handle all web routes
  * @module routes/index
  */
-module.exports = function(passport){
+module.exports = (passport) => {
 
     /** GET routes */
     router.get('/', IGF.indexGetFunction);
     router.get('/help', IGF.helpGetFunction);
-    router.get('/single-graphic-form',isAuthenticated, IGF.singleGraphicFormGetFunction);
-    router.get('/country-graphic-form', isAuthenticated, IGF.countryGraphicFormGetFunction);
+    router.get('/single-graphic-form',Auth.isAuthenticated, IGF.singleGraphicFormGetFunction);
+    router.get('/country-graphic-form', Auth.isAuthenticated, IGF.countryGraphicFormGetFunction);
     router.get('/learn', IGF.learnGetFunction);
     router.get('/resources', IGF.resourcesGetFunction);
-    router.get('/add-data',isAuthenticated, IGF.addDataGetFunction);
+    router.get('/add-data',Auth.isAuthenticated, IGF.addDataGetFunction);
     router.get('/stored-data', IGF.storedDataFunction);
     router.get('/quiz', IGF.learnGetFunction);
     router.get('/minigame', IGF.learnGetFunction);
     router.get('/login', IGF.loginGetFunction);
     router.get('/signup', IGF.signUpGetFunction);
-    router.get('/signout',isAuthenticated, IGF.signOutGetFunction);
+    router.get('/signout',Auth.isAuthenticated, IGF.signOutGetFunction);
     router.get('/parties', IGF.partiesFunction);
     router.get('/resultados/:id', Api.findOneResultado);
-    router.get('/delete-data',isAuthenticated, IGF.deleteDataGetFunction);
-    router.get('/admin',isAuthenticated, Admin.adminSummaryFunction);
+    router.get('/delete-data',Auth.isAuthenticated, IGF.deleteDataGetFunction);
+    router.get('/admin',Auth.isAuthenticated, Admin.adminSummaryFunction);
 
     /** POST routes */
-    router.post('/add-data', isAuthenticated,IPF.addDataPostFunction);
-    router.post('/add-data-file', isAuthenticated, IPF.addDataFilePostFunction);
-    router.post('/delete-data', isAuthenticated, IPF.deleteDataPostFunction);
-    router.post('/graphic-form', isAuthenticated, IPF.graphicFormPostFunction);
-    router.post('/country-form', isAuthenticated, IPF.countryFormPostFunction);
-    router.post('/save-single-chart', isAuthenticated, IPF.saveResultFunction);
+    router.post('/add-data', Auth.isAuthenticated,IPF.addDataPostFunction);
+    router.post('/add-data-file', Auth.isAuthenticated, IPF.addDataFilePostFunction);
+    router.post('/delete-data', Auth.isAuthenticated, IPF.deleteDataPostFunction);
+    router.post('/graphic-form', Auth.isAuthenticated, IPF.graphicFormPostFunction);
+    router.post('/country-form', Auth.isAuthenticated, IPF.countryFormPostFunction);
+    router.post('/save-single-chart', Auth.isAuthenticated, IPF.saveResultFunction);
 
     router.post('/login', passport.authenticate('login', {
         successRedirect: '/',
