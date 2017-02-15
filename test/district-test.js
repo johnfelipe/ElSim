@@ -2,16 +2,15 @@
 const app = require('./../app'),
     http = require('http'),
     District = require('./../modules/district-module'),
-    expect = require('chai').expect,
-    Resultado = require('./../models/result');
+    expect = require('chai').expect;
 
 /**
  * Test de District
  * @module test/district-test
  */
-describe('District', function () {
-    describe('#compute', function () {
-        it('Fake data to use compute function', function (done) {
+describe('District', () => {
+    describe('#compute', () => {
+        it('Fake data to use compute function', (done) => {
             let votes = [12000, 30000, 200000, 4500],
                 names = ['PP', 'PSOE', 'PODEMOS', 'CIUDADANOS'],
                 options = {

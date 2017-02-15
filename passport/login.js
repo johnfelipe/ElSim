@@ -8,15 +8,12 @@ const passReq = {
     passReqToCallback: true
 };
 
-/**
- * Use to handle web logins
- * @module passport/login
- */
-module.exports = function (passport) {
+/** Use to handle web logins */
+module.exports =  (passport) => {
     passport.use('login', new LocalStrategy(passReq, strategyCallback));
 
     function strategyCallback(req, username, password, done) {
-        User.findOne({'email': username}, function (err, user) {
+        User.findOne({'email': username}, (err, user) => {
                 if (err)
                     return done(err);
                 if (!user) {

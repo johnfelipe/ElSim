@@ -20,7 +20,9 @@ const fs = require('fs'),
     }
 
     function groupByKey(array) {
-        if (!Array.isArray(array)) throw new Error('Use an array to call this method');
+        if (!Array.isArray(array)) {
+            throw new Error('Use an array to call this method');
+        }
         let counts = {};
         for (let i = 0, len = array.length; i < len; ++i) {
             counts[array[i]] = 1 + (counts[array[i]] || 0);
@@ -55,40 +57,38 @@ const fs = require('fs'),
             resultados = [];
         csv.fromStream(stream, {
             headers: true
-        }).on('data-invalid', invalidRowException).on('data', function (data) {
-            resultados.push(data);
-        }).on('end', function () {
-            done(resultados);
-        });
+        }).on('data-invalid', invalidRowException).on('data', (data) =>
+            resultados.push(data)
+        ).on('end', () => done(resultados));
     }
 
     function readParties(path, resultados, done) {
         let i = 0, stream = fs.createReadStream(path);
         csv.fromStream(stream, {
             headers: true
-        }).on('data-invalid', invalidRowException).on('data', function (data) {
+        }).on('data-invalid', invalidRowException).on('data', (data) => {
             resultados[i].partidos = data;
             i++;
-        }).on('end', function () {
-            done(resultados);
-        });
+        }).on('end', () => done(resultados));
     }
 
-    function invalidRowException(data) {
+    const invalidRowException = (data) => {
         throw new Error('Data invalid exception, one or more rows are invalid' + data);
-    }
+    };
+
 
     function readCsv(path1, path2, done) {
-        readResultados(path1, function (data) {
-            readParties(path2, data, function (data) {
-                done(data);
-            });
-        });
+        readResultados(path1, (data) =>
+            readParties(path2, data, (data) =>
+                done(data))
+        );
     }
 
     function calculateEllections(done) {
         Result.find({}, function (err, data) {
-            if (err) throw err;
+            if (err) {
+                throw err;
+            }
             let ellections = [];
             for (let i = 0, len = data.length; i < len; i++) {
                 if (!ellectionIsInArray(data[i].eleccion, ellections)) {
@@ -100,7 +100,7 @@ const fs = require('fs'),
     }
 
     function loadCsv(done) {
-        const a = ['1977', '1979', '1982', '1986', '1989', '1993', '1996','2000'];
+        const a = ['1977', '1979', '1982', '1986', '1989', '1993', '1996', '2000'];
         let path1, path2, promises = [];
         for (let i = 0, len = a.length; i < len; ++i) {
             path1 = './csv/' + a[i] + '.csv';
@@ -109,9 +109,11 @@ const fs = require('fs'),
         }
         function csvCallback(data) {
             for (let j = 0, lenData = data.length; j < lenData; ++j) {
-                promises.push(saveResultado(data[j], function(){}));
+                promises.push(saveResultado(data[j], function () {
+                }));
             }
         }
+
         function saveResultado(result, done) {
 
             let r = new Result(result);
@@ -124,6 +126,7 @@ const fs = require('fs'),
                 done();
             });
         }
+
         Promise.all(promises).then(function () {
             done();
         });
