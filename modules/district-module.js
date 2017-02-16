@@ -7,24 +7,24 @@ const Result = require('../models/result');
  */
 (function () {
 
-    function compute(votes, names, options, withTable) {
+    const compute = (votes, names, options, withTable) => {
         return calculateSeats(votes, names, options.mandates, options.blankVotes, options.percentage, withTable);
-    }
+    };
 
-    function isInt(value) {
+    const isInt = (value) => {
         let x;
         return isNaN(value) ? !1 : (x = parseFloat(value), (0 | x) === x);
-    }
+    };
 
-    function calculateTotalVotes(votes, blankVotes) {
+    const calculateTotalVotes = (votes, blankVotes) => {
         let total = parseInt(blankVotes);
         for (let i = 0, len = votes.length; i < len; ++i) {
             total = parseInt(votes[i]) + total;
         }
         return total;
-    }
+    };
 
-    function validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames) {
+    const validateParties = (numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames) => {
         let numberOfPartiesValidated = 0;
         for (let i = 0; i < numberOfParties; ++i) {
             if (votes[i] >= minNumberOfVotes) {
@@ -34,9 +34,9 @@ const Result = require('../models/result');
             }
         }
         return numberOfPartiesValidated;
-    }
+    };
 
-    function newSeat(votos, esc, num_par) {
+    const newSeat = (votos, esc, num_par) => {
         let imax = 0, ct, max = 0;
         for (ct = 0; ct < num_par; ++ct) {
             if (max < (votos[ct] / (esc[ct] + 1))) {
@@ -45,24 +45,24 @@ const Result = require('../models/result');
             }
         }
         return imax;
-    }
+    };
 
-    function fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated) {
+    const fillSeats = (mandates, seats, validatedVotes, numberOfPartiesValidated) => {
         let table = [];
         for (let i = 0; i < mandates; ++i) {
             seats[newSeat(validatedVotes, seats, numberOfPartiesValidated)]++;
             table.push(seats.slice());
         }
         return table;
-    }
+    };
 
-    function fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats) {
+    const fillPartiesResult = (numberOfPartiesValidated, result, validatedNames, seats) => {
         for (let i = 0; i < numberOfPartiesValidated; ++i) {
             result.parties[validatedNames[i]] = seats[i];
         }
-    }
+    };
 
-    function calculateSeats(votes, names, mandates, blankVotes, percentage, withTable) {
+    const calculateSeats = (votes, names, mandates, blankVotes, percentage, withTable) => {
         let numberOfParties = votes.length,
             numberOfVotes = calculateTotalVotes(votes, blankVotes),
             minNumberOfVotes = Math.ceil(numberOfVotes * percentage / 100),
@@ -77,17 +77,17 @@ const Result = require('../models/result');
             result.table = fillTable(table, validatedNames);
         }
         return result;
-    }
+    };
 
-    function fillResultVar(numberOfVotes, minNumberOfVotes) {
+    const fillResultVar = (numberOfVotes, minNumberOfVotes) => {
         return {
             numberOfVotes: numberOfVotes,
             minNumberOfVotes: minNumberOfVotes,
             parties: {}
         };
-    }
+    };
 
-    function fillTable(table, validatedNames) {
+    const fillTable = (table, validatedNames) => {
         let aux;
         for (let i = 0, len = table.length; i < len; i++) {
             for (let j = 0, fil_len = table[i].length; j < fil_len; j++) {
@@ -97,15 +97,19 @@ const Result = require('../models/result');
             }
         }
         return table;
-    }
+    };
 
-    function createResultEntity(args) {
+    const createResultEntity = (args) => {
         let lines = args[0].split('\n'),
             partidos = {}, aux;
+
+        const regEx = new RegExp(/(\r\n|\n|\r)/gm);
+
         for (let i = 0, len = lines.length; i < len; i++) {
             aux = lines[i].split(' ');
-            partidos[aux[0].replace(/(\r\n|\n|\r)/gm, "")] = aux[2].replace(/(\r\n|\n|\r)/gm, "");
+            partidos[aux[0].replace(regEx, "")] = aux[2].replace(regEx, "");
         }
+
         return new Result({
             comunidad: 'desconocida',
             cod_provincia: args[1],
@@ -124,21 +128,24 @@ const Result = require('../models/result');
             },
             partidos: partidos
         });
-    }
+    };
 
-    function addPopulation(populations) {
+    const addPopulation = (populations) => {
         let population = 0;
-        for (let i = 0, len = populations.length; i < len; ++i)
+        for (let i = 0, len = populations.length; i < len; ++i) {
             population += populations[i];
+        }
         return population;
-    }
+    };
 
-    function howManyMandates(totalPopulation, districtPopulation, totalMandates, district) {
-        if (district === 'Ceuta' || district === 'Melilla') return 1;
+    const howManyMandates = (totalPopulation, districtPopulation, totalMandates, district) => {
+        if (district === 'Ceuta' || district === 'Melilla') {
+            return 1;
+        }
         let percentage = (districtPopulation / totalPopulation);
         let numberOfMandates = Math.trunc((totalMandates - 52) * percentage);
         return numberOfMandates + 2;
-    }
+    };
 
     module.exports = {
         compute: compute,

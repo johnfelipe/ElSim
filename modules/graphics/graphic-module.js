@@ -11,46 +11,54 @@ const highcharts = require('node-highcharts'),
     District = require('../district-module'),
     Moment = require('moment');
 
-/**
- * To handle charts
- * @module Graphic
- */
+/** To handle charts */
 (function () {
-    function rendChart(options, callback) {
-        highcharts.render(options, callbackRender);
-        function callbackRender(err, data) {
-            if (err)
+    const rendChart = (options, callback) => {
+        highcharts.render(options, (err, data) => {
+            if (err) {
                 throw err;
+            }
             callback(data);
-        }
-    }
+        });
+    };
 
-    function chooseColor(party) {
+    const chooseColor = (party) => {
         if (Color[party] === undefined) {
             return 'blue';
         }
         return Color[party];
-    }
+    };
 
-
-    function createColumn(result, callback) {
+    const createColumn = (result, callback) => {
         let options = BarChart.fillOptions(result);
         callback(options);
-    }
+    };
 
-
-    function createPie(result, callback) {
+    const createPie = (result, callback) => {
         let options = PieChart.fillOptions(result);
         callback(options);
-    }
+    };
 
-
-    function createMap(results, callback) {
+    const createMap = (results, callback) => {
         let options = CountryChart.fillOptions(results);
         callback(options);
-    }
+    };
 
-    function calculateDistrict(mode, mandates, percentage, resultSelected, user, callback) {
+    const fillCalculateDistrictOptions = (ellection,graph_options,result,user) => {
+        return {
+            title: 'Chart',
+                autor: ellection.eleccion.autor,
+            fecha: ellection.eleccion.fecha,
+            provincia: ellection.cod_provincia,
+            options: graph_options,
+            result: result,
+            icons: Icons,
+            user: user,
+            moment: Moment
+        };
+    };
+
+    const calculateDistrict = (mode, mandates, percentage, resultSelected, user, callback) => {
         let votes = [],
             names = [],
             districtOptions = {
@@ -60,10 +68,11 @@ const highcharts = require('node-highcharts'),
             };
         let result = null,
             ellection = null;
-        Result.findOne({_id: resultSelected}, findCallback);
 
-        function findCallback(err, data) {
-            if (err) throw err;
+        const findCalculateDistrictCallback = (err, data) => {
+            if (err) {
+                throw err;
+            }
 
             ellection = data;
 
@@ -78,76 +87,74 @@ const highcharts = require('node-highcharts'),
 
             result = District.compute(votes, names, districtOptions, true);
 
-            if (mode === 'column') {
-                createColumn(result.parties, chartDone);
-            } else if (mode === 'pie') {
-                createPie(result.parties, chartDone);
-            }
-        }
+            (mode === 'column') ? createColumn(result.parties, chartDone) : createPie(result.parties, chartDone);
+        };
 
-        function chartDone(graph_options) {
-            console.log(ellection);
-            let options = {
-                title: 'Chart',
-                autor: ellection.eleccion.autor,
-                fecha: ellection.eleccion.fecha,
-                provincia: ellection.cod_provincia,
-                options: graph_options,
-                result: result,
-                icons: Icons,
-                user: user,
-                moment: Moment
-            };
+        Result.findOne({_id: resultSelected}, findCalculateDistrictCallback);
+
+        const chartDone = (graph_options) => {
+            let options = fillCalculateDistrictOptions(ellection,graph_options,result,user);
+
             if (!user) {
                 callback(options);
             } else {
-                User.findOne({_id: user._id}, function (err, user) {
-                    if (err) throw err;
-
-                    user.resultados.push({
-                        fecha: ellection.eleccion.fecha,
-                        provincia: ellection.cod_provincia,
-                        result: result,
-                        mandates: mandates,
-                        percentage: percentage,
-                        blank: ellection.votos_blanco
-                    });
-
-                    user.save(function (err) {
-                        if (err) throw err;
-                        callback(options);
-                    });
-                });
+                addResultToUser(user,ellection,result,mandates,percentage,() => callback(options));
             }
-        }
-    }
+        };
+    };
 
-    function calculateCountry(resultSelected, percentage, user, body, callback) {
+    const addResultToUser = (user,ellection,result,mandates,percentage,callback) => {
+        User.findOne({_id: user._id}, (err, user) => {
+            if (err) {
+                throw err;
+            }
+
+            user.resultados.push({
+                fecha: ellection.eleccion.fecha,
+                provincia: ellection.cod_provincia,
+                result: result,
+                mandates: mandates,
+                percentage: percentage,
+                blank: ellection.votos_blanco
+            });
+
+            user.save((err) => {
+                if (err) {
+                    throw err;
+                }
+                callback();
+            });
+        });
+    };
+
+    const calculateCountry = (resultSelected, percentage, user, body, done) => {
         let ellection = {
             autor: resultSelected.split(',')[1],
             fecha: resultSelected.split(',')[0]
         };
+
         let config = {
             mandates: 2,
             percentage: parseFloat(percentage),
             blankVotes: 0
         };
 
-        Result.find({eleccion: ellection}, findCallback);
-
-        function findCallback(err, data) {
-            if (err) throw err;
+        const findCallback = (err, data) => {
+            if (err) {
+                throw err;
+            }
 
             let global = CountryChart.calculateGlobal(data, config, body);
 
-            let options = {
+            done({
                 user: user,
                 global: global,
                 title: 'Country Chart'
-            };
-            callback(options);
-        }
-    }
+            });
+        };
+
+        Result.find({eleccion: ellection}, findCallback);
+    };
 
     module.exports = {
         rendChart: rendChart,

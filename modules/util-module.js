@@ -1,14 +1,13 @@
 /* jshint esversion: 6 */
+'use strict';
 const fs = require('fs'),
     csv = require('fast-csv'),
     Result = require('../models/result');
-/**
- * Useful module to some utilities
- * @module util-module
- */
+
+/** Useful module to some utilities */
 (function () {
-    function prettyPrint(message) {
-        let options = {
+    const prettyPrint = (message) => {
+        const options = {
             depth: 2,
             colors: true
         };
@@ -17,9 +16,9 @@ const fs = require('fs'),
         } catch (err) {
             throw err;
         }
-    }
+    };
 
-    function groupByKey(array) {
+    const groupByKey = (array) => {
         if (!Array.isArray(array)) {
             throw new Error('Use an array to call this method');
         }
@@ -28,9 +27,9 @@ const fs = require('fs'),
             counts[array[i]] = 1 + (counts[array[i]] || 0);
         }
         return counts;
-    }
+    };
 
-    function sortByRest(a, b) {
+    const sortByRest = (a, b) => {
         let keyA = a.rest,
             keyB = b.rest;
         if (keyA > keyB) {
@@ -40,9 +39,9 @@ const fs = require('fs'),
             return 1;
         }
         return 0;
-    }
+    };
 
-    function ellectionIsInArray(obj, array) {
+    const ellectionIsInArray = (obj, array) => {
         for (let i = 0, len = array.length; i < len; i++) {
             if (array[i].autor === obj.autor &&
                 array[i].fecha === obj.fecha) {
@@ -50,9 +49,9 @@ const fs = require('fs'),
             }
         }
         return false;
-    }
+    };
 
-    function readResultados(path, done) {
+    const readResultados = (path, done) => {
         let stream = fs.createReadStream(path),
             resultados = [];
         csv.fromStream(stream, {
@@ -60,9 +59,9 @@ const fs = require('fs'),
         }).on('data-invalid', invalidRowException).on('data', (data) =>
             resultados.push(data)
         ).on('end', () => done(resultados));
-    }
+    };
 
-    function readParties(path, resultados, done) {
+    const readParties = (path, resultados, done) => {
         let i = 0, stream = fs.createReadStream(path);
         csv.fromStream(stream, {
             headers: true
@@ -70,22 +69,20 @@ const fs = require('fs'),
             resultados[i].partidos = data;
             i++;
         }).on('end', () => done(resultados));
-    }
+    };
 
     const invalidRowException = (data) => {
         throw new Error('Data invalid exception, one or more rows are invalid' + data);
     };
 
-
-    function readCsv(path1, path2, done) {
-        readResultados(path1, (data) =>
-            readParties(path2, data, (data) =>
-                done(data))
+    const readCsv = (path1, path2, done) => {
+        readResultados(
+            path1, (data) => readParties(path2, data, (data) => done(data))
         );
-    }
+    };
 
-    function calculateEllections(done) {
-        Result.find({}, function (err, data) {
+    const calculateEllections = (done) => {
+        Result.find({}, (err, data) => {
             if (err) {
                 throw err;
             }
@@ -97,47 +94,50 @@ const fs = require('fs'),
             }
             done(data, ellections);
         });
-    }
+    };
 
-    function loadCsv(done) {
+    const loadCsv = (done) => {
         const a = ['1977', '1979', '1982', '1986', '1989', '1993', '1996', '2000'];
         let path1, path2, promises = [];
+
+        const csvCallback = (data) => {
+            for (let j = 0, lenData = data.length; j < lenData; ++j) {
+                promises.push(saveResultado(data[j], () => {
+                }));
+            }
+        };
+
         for (let i = 0, len = a.length; i < len; ++i) {
             path1 = './csv/' + a[i] + '.csv';
             path2 = './csv/' + a[i] + '_PARTIDOS.csv';
             readCsv(path1, path2, csvCallback);
         }
-        function csvCallback(data) {
-            for (let j = 0, lenData = data.length; j < lenData; ++j) {
-                promises.push(saveResultado(data[j], function () {
-                }));
-            }
-        }
 
-        function saveResultado(result, done) {
-
+        const saveResultado = (result, done) => {
             let r = new Result(result);
             r.eleccion = {
                 fecha: result.fecha,
                 autor: 'sistema'
             };
-            r.save(function (err) {
-                if (err) console.log(err);
+            r.save((err) => {
+                if (err) {
+                    console.log(err);
+                }
                 done();
             });
-        }
+        };
 
-        Promise.all(promises).then(function () {
-            done();
-        });
-    }
+        Promise.all(promises).then(() => done());
+    };
 
-    function getResultadoById(id, done) {
-        Result.findOne({_id: id}, function (err, data) {
-            if (err) throw err;
+    const getResultadoById = (id, done) => {
+        Result.findOne({_id: id}, (err, data) => {
+            if (err) {
+                throw err;
+            }
             done(data);
         });
-    }
+    };
 
     module.exports = {
         prettyPrint: prettyPrint,

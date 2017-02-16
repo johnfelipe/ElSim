@@ -1,13 +1,10 @@
 /* jshint esversion: 6 */
 let pieOptions = require('./options/pie-options');
 const has = Object.prototype.hasOwnProperty;
-/**
- * To handle pie charts
- * @module graphics/pie-module
- */
-(function () {
 
-    function fillOptions(result) {
+/** To handle pie charts */
+(function () {
+    const fillOptions = (result) => {
         let options = pieOptions,
             resultsArray = [];
 
@@ -22,8 +19,9 @@ const has = Object.prototype.hasOwnProperty;
         }
 
         options.series[0].data = [...resultsArray];
+
         return options;
-    }
+    };
 
     module.exports = {
         fillOptions: fillOptions

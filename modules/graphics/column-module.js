@@ -8,7 +8,7 @@ let columnOptions = require('./options/column-options');
  * @module graphics/bar-module
  */
 (function () {
-    function fillOptions(result) {
+    const fillOptions = (result) => {
 
         let options = columnOptions, categories = [], mandates = [];
         for (let key in result) {
@@ -24,7 +24,7 @@ let columnOptions = require('./options/column-options');
         options.xAxis.categories = [...categories];
         options.series[0].data = [...mandates];
         return options;
-    }
+    };
 
     module.exports = {
         /** Do something */

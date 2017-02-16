@@ -35,24 +35,24 @@ const Result = require('../models/result');
  */
 (function () {
 
-    function compute(votes, names, options, withTable) {
+    const compute = (votes, names, options, withTable) => {
         return calculateSeats(votes, names, options.mandates, options.blankVotes, options.percentage, withTable);
-    }
+    };
 
-    function isInt(value) {
+    const isInt = (value) => {
         let x;
         return isNaN(value) ? !1 : (x = parseFloat(value), (0 | x) === x);
-    }
+    };
 
-    function calculateTotalVotes(votes, blankVotes) {
+    const calculateTotalVotes = (votes, blankVotes) => {
         let total = parseInt(blankVotes);
         for (let i = 0, len = votes.length; i &lt; len; ++i) {
             total = parseInt(votes[i]) + total;
         }
         return total;
-    }
+    };
 
-    function validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames) {
+    const validateParties = (numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames) => {
         let numberOfPartiesValidated = 0;
         for (let i = 0; i &lt; numberOfParties; ++i) {
             if (votes[i] >= minNumberOfVotes) {
@@ -62,9 +62,9 @@ const Result = require('../models/result');
             }
         }
         return numberOfPartiesValidated;
-    }
+    };
 
-    function newSeat(votos, esc, num_par) {
+    const newSeat = (votos, esc, num_par) => {
         let imax = 0, ct, max = 0;
         for (ct = 0; ct &lt; num_par; ++ct) {
             if (max &lt; (votos[ct] / (esc[ct] + 1))) {
@@ -73,24 +73,24 @@ const Result = require('../models/result');
             }
         }
         return imax;
-    }
+    };
 
-    function fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated) {
+    const fillSeats = (mandates, seats, validatedVotes, numberOfPartiesValidated) => {
         let table = [];
         for (let i = 0; i &lt; mandates; ++i) {
             seats[newSeat(validatedVotes, seats, numberOfPartiesValidated)]++;
             table.push(seats.slice());
         }
         return table;
-    }
+    };
 
-    function fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats) {
+    const fillPartiesResult = (numberOfPartiesValidated, result, validatedNames, seats) => {
         for (let i = 0; i &lt; numberOfPartiesValidated; ++i) {
             result.parties[validatedNames[i]] = seats[i];
         }
-    }
+    };
 
-    function calculateSeats(votes, names, mandates, blankVotes, percentage, withTable) {
+    const calculateSeats = (votes, names, mandates, blankVotes, percentage, withTable) => {
         let numberOfParties = votes.length,
             numberOfVotes = calculateTotalVotes(votes, blankVotes),
             minNumberOfVotes = Math.ceil(numberOfVotes * percentage / 100),
@@ -105,17 +105,17 @@ const Result = require('../models/result');
             result.table = fillTable(table, validatedNames);
         }
         return result;
-    }
+    };
 
-    function fillResultVar(numberOfVotes, minNumberOfVotes) {
+    const fillResultVar = (numberOfVotes, minNumberOfVotes) => {
         return {
             numberOfVotes: numberOfVotes,
             minNumberOfVotes: minNumberOfVotes,
             parties: {}
         };
-    }
+    };
 
-    function fillTable(table, validatedNames) {
+    const fillTable = (table, validatedNames) => {
         let aux;
         for (let i = 0, len = table.length; i &lt; len; i++) {
             for (let j = 0, fil_len = table[i].length; j &lt; fil_len; j++) {
@@ -125,15 +125,19 @@ const Result = require('../models/result');
             }
         }
         return table;
-    }
+    };
 
-    function createResultEntity(args) {
+    const createResultEntity = (args) => {
         let lines = args[0].split('\n'),
             partidos = {}, aux;
+
+        const regEx = new RegExp(/(\r\n|\n|\r)/gm);
+
         for (let i = 0, len = lines.length; i &lt; len; i++) {
             aux = lines[i].split(' ');
-            partidos[aux[0].replace(/(\r\n|\n|\r)/gm, "")] = aux[2].replace(/(\r\n|\n|\r)/gm, "");
+            partidos[aux[0].replace(regEx, "")] = aux[2].replace(regEx, "");
         }
+
         return new Result({
             comunidad: 'desconocida',
             cod_provincia: args[1],
@@ -152,21 +156,24 @@ const Result = require('../models/result');
             },
             partidos: partidos
         });
-    }
+    };
 
-    function addPopulation(populations) {
+    const addPopulation = (populations) => {
         let population = 0;
-        for (let i = 0, len = populations.length; i &lt; len; ++i)
+        for (let i = 0, len = populations.length; i &lt; len; ++i) {
             population += populations[i];
+        }
         return population;
-    }
+    };
 
-    function howManyMandates(totalPopulation, districtPopulation, totalMandates, district) {
-        if (district === 'Ceuta' || district === 'Melilla') return 1;
+    const howManyMandates = (totalPopulation, districtPopulation, totalMandates, district) => {
+        if (district === 'Ceuta' || district === 'Melilla') {
+            return 1;
+        }
         let percentage = (districtPopulation / totalPopulation);
         let numberOfMandates = Math.trunc((totalMandates - 52) * percentage);
         return numberOfMandates + 2;
-    }
+    };
 
     module.exports = {
         compute: compute,
@@ -202,13 +209,13 @@ const Result = require('../models/result');
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-district-module.html">district-module</a></li><li><a href="module-functions_admin-functions.html">functions/admin-functions</a></li><li><a href="module-functions_Api-functions.html">functions/Api-functions</a></li><li><a href="module-functions_index-get-functions.html">functions/index-get-functions</a></li><li><a href="module-functions_index-post-functions.html">functions/index-post-functions</a></li><li><a href="module-Graphic.html">Graphic</a></li><li><a href="module-graphics_bar-module.html">graphics/bar-module</a></li><li><a href="module-graphics_map-module.html">graphics/map-module</a></li><li><a href="module-graphics_pie-module.html">graphics/pie-module</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_subscriber.html">models/subscriber</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li><li><a href="module-util-module.html">util-module</a></li></ul><h3>Global</h3><ul><li><a href="global.html#express">express</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-district-module.html">district-module</a></li><li><a href="module-functions_admin-functions.html">functions/admin-functions</a></li><li><a href="module-functions_Api-functions.html">functions/Api-functions</a></li><li><a href="module-functions_index-get-functions.html">functions/index-get-functions</a></li><li><a href="module-functions_index-post-functions.html">functions/index-post-functions</a></li><li><a href="module-graphics_bar-module.html">graphics/bar-module</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-models_log.html">models/log</a></li><li><a href="module-models_result.html">models/result</a></li><li><a href="module-models_subscriber.html">models/subscriber</a></li><li><a href="module-models_user.html">models/user</a></li><li><a href="module-routes_index.html">routes/index</a></li><li><a href="module-test_district-test.html">test/district-test</a></li><li><a href="module-test_graphic-test.html">test/graphic-test</a></li><li><a href="module-test_model-test.html">test/model-test</a></li><li><a href="module-test_other-test.html">test/other-test</a></li></ul><h3>Global</h3><ul><li><a href="global.html#express">express</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Feb 15 2017 13:51:37 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Feb 16 2017 10:59:51 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>
