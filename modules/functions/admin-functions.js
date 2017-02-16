@@ -3,10 +3,7 @@
 const UF = require('./user-functions'),
     credentials = require('../../credentials');
 
-/**
- * All the callback functions of api routes
- * @module functions/admin-functions
- */
+/** All the callback functions of api routes */
 (function () {
     function adminSummaryFunction(req, res) {
         if (!req.user || req.user.email !== credentials.user) {

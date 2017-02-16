@@ -3,14 +3,12 @@
 const Result = require('../../models/result'),
     Util = require('../util-module'),
     Moment = require('moment'),
-    codigos = require('./misc/codigos');
+    codigos = require('./misc/codigos'),
+    parties = require('./misc/parties');
 
-/**
- * All the callback functions of index GET routes
- * @module functions/index-get-functions
- */
+/** All the callback functions of index GET routes */
 (function () {
-    function indexResponse(req, res, page, title, other) {
+    const indexResponse = (req, res, page, title, other) => {
         let options = {
             title: title,
             user: req.user
@@ -22,46 +20,50 @@ const Result = require('../../models/result'),
             merged = options;
         }
         res.render(page, merged);
-    }
+    };
 
-    function indexGetFunction(req, res) {
-        indexResponse(req, res, 'pages/index', 'EllSim', {moment: Moment, err: null});
-    }
+    const indexGetFunction = (req, res) => indexResponse(
+        req, res, 'pages/index', 'EllSim', {moment: Moment, err: null}
+    );
 
-    function loginGetFunction(req, res) {
-        indexResponse(req, res, 'pages/auth/login', 'Login Page', {message: req.flash('message')});
-    }
+    const loginGetFunction = (req, res) => indexResponse(
+        req, res, 'pages/auth/login', 'Login Page', {message: req.flash('message')}
+    );
 
-    function signUpGetFunction(req, res) {
-        indexResponse(req, res, 'pages/auth/register', 'Register', {message: req.flash('message')});
-    }
+    const signUpGetFunction = (req, res) => indexResponse(
+        req, res, 'pages/auth/register', 'Register', {message: req.flash('message')}
+    );
 
-    function signOutGetFunction(req, res) {
+    const signOutGetFunction = (req, res) => {
         req.logout();
         res.redirect('/');
-    }
+    };
 
-    const helpGetFunction = (req, res) => {
-        indexResponse(req, res, 'pages/misc/help', 'Help', false);
-    }
+    const helpGetFunction = (req, res) => indexResponse(
+        req, res, 'pages/misc/help', 'Help', false
+    );
 
-    function singleGraphicFormGetFunction(req, res) {
-        Result.find({},  (err, data) => {
-            data.sort((a,b) => {
+
+    const singleGraphicFormGetFunction = (req, res) => {
+        Result.find({}, (err, data) => {
+            data.sort((a, b) => {
                 return new Date(a.eleccion.fecha) - new Date(b.eleccion.fecha);
             });
+
             indexResponse(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
                 results: data,
                 moment: Moment,
                 err: err
             });
         });
-    }
-    function countryGraphicFormGetFunction(req, res) {
+    };
+
+    const countryGraphicFormGetFunction = (req, res) => {
         Util.calculateEllections((data, ellections) => {
-            ellections.sort((a,b) => {
+            ellections.sort((a, b) => {
                 return new Date(a.fecha) - new Date(b.fecha);
             });
+
             indexResponse(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
                 results: data,
                 ellections: ellections,
@@ -69,54 +71,56 @@ const Result = require('../../models/result'),
                 err: null
             });
         });
-    }
+    };
 
-    function learnGetFunction(req, res) {
-        indexResponse(req, res, 'pages/more/learn', 'Learn', false);
-    }
+    const learnGetFunction = (req, res) => indexResponse(
+        req, res, 'pages/more/learn', 'Learn', false
+    );
 
-    function resourcesGetFunction(req, res) {
-        indexResponse(req, res, 'pages/more/resources', 'Resources', false);
-    }
+    const resourcesGetFunction = (req, res) => indexResponse(
+        req, res, 'pages/more/resources', 'Resources', false
+    );
 
-    function storedDataFunction(req, res) {
-        Result.find({}, haveResult);
-        function haveResult(err, data) {
-            data.sort((a,b) => {
+
+    const storedDataFunction = (req, res) => {
+        const haveResult = (err, data) => {
+            data.sort((a, b) => {
                 return new Date(a.eleccion.fecha) - new Date(b.eleccion.fecha);
             });
+
             indexResponse(req, res, 'pages/data/stored-data', 'Stored Data', {
                 data: data,
                 moment: Moment,
                 err: err
             });
-        }
-    }
+        };
 
-    function addDataGetFunction(req, res) {
-        indexResponse(req, res, 'pages/data/add-data', 'Add data', {
+        Result.find({}, haveResult);
+    };
+
+    const addDataGetFunction = (req, res) => indexResponse(
+        req, res, 'pages/data/add-data', 'Add data', {
             err: null,
             codigos: codigos
-        });
-    }
+        }
+    );
 
-    function deleteDataGetFunction(req, res) {
-        Result.find({}, (err, data) => {
+
+    const deleteDataGetFunction = (req, res) => {
+        Result.find({}, (err, data) =>
             indexResponse(req, res, 'pages/data/delete-data', 'Delete data', {
                 data: data,
                 moment: Moment,
                 err: null
-            });
-        });
+            })
+        );
+    };
 
-    }
-
-    function partiesFunction(req, res) {
-        let parties = require('./misc/parties');
+    const partiesFunction = (req, res) => {
         indexResponse(req, res, 'pages/more/parties', 'Parties', {
             parties: parties
         });
-    }
+    };
 
     module.exports = {
 

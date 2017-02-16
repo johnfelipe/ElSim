@@ -4,25 +4,23 @@ const Graphic = require('../graphics/graphic-module'),
     Colors = require('../graphics/misc/colors'),
     Icons = require('../graphics/misc/icons'),
     Codigos = require('./misc/codigos'),
-    District = require('../district-module');
+    District = require('../district-module'),
+    checkError = require('../util-module').checkError;
 
-let response = require('./index-get-functions').response;
+let response = require('./index-get-functions').indexResponse;
 
-/**
- * All the callback functions of index POST routes
- * @module functions/index-post-functions
- */
+/** All the callback functions of index POST routes */
 (function () {
-    function addDataFilePostFunction(req, res) {
+    const addDataFilePostFunction = (req, res) => {
         response(req, res, 'pages/misc/error', 'Not Implemented', {
             err: {
                 status: 500
             },
             message: 'Not implemented'
         });
-    }
+    };
 
-    function addDataPostFunction(req, res) {
+    const addDataPostFunction = (req, res) => {
         let args = [req.param('votes'),
             req.param('province'),
             parseInt(req.param('population')),
@@ -37,22 +35,15 @@ let response = require('./index-get-functions').response;
 
         let result = District.createResultEntity(args);
 
-        result.save(function (err) {
+        result.save((err) =>
             response(req, res, 'pages/data/add-data', 'Add data', {
                 err: err,
                 codigos: Codigos
-            });
-        });
+            })
+        );
+    };
 
-    }
-
-    function checkError(err) {
-        if (err) {
-            throw err;
-        }
-    }
-
-    function deleteDataPostFunction(req, res) {
+    const deleteDataPostFunction = (req, res) => {
         let promises = [],
             options,
             results = req.param('results');
@@ -64,63 +55,50 @@ let response = require('./index-get-functions').response;
             promises.push(Result.remove(options, checkError));
         }
 
+        const promisesFinish = () => Result.find({}, findCallback);
+
         Promise.all(promises).then(promisesFinish);
 
-        function promisesFinish() {
-            Result.find({}, findCallback);
-        }
-
-        function findCallback(err, data) {
-            response(req, res, 'pages/data/delete-data', 'Delete data', {
+        const findCallback = (err, data) => response(
+            req, res, 'pages/data/delete-data', 'Delete data', {
                 err: err,
                 data: data
-            });
-        }
+            }
+        );
 
-    }
+    };
 
-    function graphicFormPostFunction(req, res) {
+    const graphicFormPostFunction = (req, res) => {
         let mode = req.body.mode,
             mandates = req.body.mandates,
             percentage = req.body.percentage,
             resultSelected = req.body.resultSelected,
             user = req.body.user;
 
-        Graphic.calculateDistrict(mode, mandates, percentage, resultSelected, user, districtCalculated);
+        Graphic.calculateDistrict(mode, mandates, percentage, resultSelected, user,
+            (options) => res.render('pages/simulator/single-chart', options)
+        );
+    };
 
-        function districtCalculated(options) {
-            res.render('pages/simulator/single-chart', options);
-        }
-    }
-
-    function countryFormPostFunction(req, res) {
+    const countryFormPostFunction = (req, res) => {
         let resultSelected = req.body.resultSelected,
             percentage = req.body.percentage,
             user = req.body.user,
             body = req.body;
 
-        Graphic.calculateCountry(resultSelected, percentage, user, body, calculatedCountry);
-
-        function calculatedCountry(options) {
-
+        const calculatedCountry = (options) => {
             options.colors = Colors;
             options.icons = Icons;
-            console.log(options);
             res.render('pages/simulator/country-chart', options);
-        }
-    }
+        };
 
-    function saveResultFunction(req, res) {
-        res.send({result: req.body.result});
-    }
+        Graphic.calculateCountry(resultSelected, percentage, user, body, calculatedCountry);
+    };
+
+    const saveResultFunction = (req, res) => res.send({result: req.body.result});
+
 
     module.exports = {
-        /** Generic response */
-        response: response,
-
-        /** Simple if statement to check err var */
-        checkError: checkError,
-
         /** Handles add data form */
         addDataPostFunction: addDataPostFunction,
 

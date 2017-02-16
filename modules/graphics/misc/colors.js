@@ -1,9 +1,6 @@
 /* jshint esversion: 6 */
 
-/**
- * Object to find the party color
- * @module graphics/colors
- */
+/** Object to find the party color */
 module.exports = {
     'FE-UF': 'blue',
     'UF-FI-AT': 'blue',

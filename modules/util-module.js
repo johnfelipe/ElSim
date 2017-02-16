@@ -17,6 +17,11 @@ const fs = require('fs'),
             throw err;
         }
     };
+    const checkError = (err) => {
+        if(err) {
+            throw err;
+        }
+    };
 
     const groupByKey = (array) => {
         if (!Array.isArray(array)) {
@@ -132,9 +137,7 @@ const fs = require('fs'),
 
     const getResultadoById = (id, done) => {
         Result.findOne({_id: id}, (err, data) => {
-            if (err) {
-                throw err;
-            }
+            checkError(err);
             done(data);
         });
     };
@@ -150,6 +153,7 @@ const fs = require('fs'),
         readCsv: readCsv,
         calculateEllections: calculateEllections,
         loadCsv: loadCsv,
-        getResultadoById: getResultadoById
+        getResultadoById: getResultadoById,
+        checkError: checkError
     };
 })();

@@ -6,44 +6,47 @@ const User = require('../../models/user'),
     Mailer = require('../../modules/mailer');
 
 (function () {
-    function profile(req, res) {
+    const profile = (req, res) => {
         let options = {
             title: 'Profile',
             user: req.user,
             advice: false
         };
         res.render('pages/auth/profile', options);
-    }
+    };
 
-    function loadAll(done){
+    const checkError = (err) => {
+        if (err) {
+            throw err;
+        }
+    };
+
+    const loadAll = (done) => {
         let promises = [], users, logs, results;
+
+        const userCallback = (err, data) => {
+            checkError(err);
+            users = [...data];
+        };
+
+        const logCallback = (err, data) => {
+            checkError(err);
+            logs = [...data];
+        };
+
+        const resultCallback = (err, data) => {
+            checkError(err);
+            results = [...data];
+        };
 
         promises.push(User.find({}, userCallback));
         promises.push(Log.find({}, logCallback));
         promises.push(Result.find({}, resultCallback));
 
-        function userCallback(err, data) {
-            if(err) throw err;
-            users = [...data];
-        }
+        Promise.all(promises).then(() => done(logs, results, users));
+    };
 
-        function logCallback(err, data) {
-            if(err) throw err;
-            logs = [...data];
-        }
-
-        function resultCallback(err, data) {
-            if (err) throw err;
-            results = [...data];
-        }
-
-
-        Promise.all(promises).then(function(){
-            done(logs,results,users);
-        });
-    }
-
-    function addSubscriber(req,res){
+    const addSubscriber = (req, res) => {
         let user = req.user,
             email = req.body.subscriber;
 
@@ -52,41 +55,41 @@ const User = require('../../models/user'),
             options: {}
         });
 
-        s.save(function(err){
-            let options = {
+        s.save(
+            (err) => res.render('pages/misc/help', {
                 title: 'Help',
                 user: user,
                 err: err
-            };
-            res.render('pages/misc/help',options);
-        });
-    }
+            })
+        );
+    };
 
-    function sendNews(req,res){
-        Subscriber.find({},findDone);
-        function findDone(err,subscribers){
-            if(err) throw err;
+    const sendNews = (req, res) =>{
+        Subscriber.find({}, findDone);
+        function findDone(err, subscribers) {
+            checkError(err);
             let mails = [];
-            for(let s of subscribers){
+            for (let s of subscribers) {
                 mails.push(s.email);
             }
-            Mailer.sendMail(mails,'TEST',mailSent);
+            Mailer.sendMail(mails, 'TEST', mailSent);
         }
-        function mailSent(err,result){
-            if(err) console.error(err);
+
+        const mailSent = (err, result) => {
+            checkError(err);
             loadAll(doneLoad);
-        }
-        function doneLoad(logs,results,users){
-            let options = {
+        };
+
+        const doneLoad = (logs, results, users) => {
+            res.render('pages/auth/admin', {
                 user: req.user,
                 title: 'Administration',
                 logs: logs,
                 results: results,
                 users: users
-            };
-            res.render('pages/auth/admin', options);
-        }
-    }
+            });
+        };
+    };
 
     module.exports = {
         profile: profile,

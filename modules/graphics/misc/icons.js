@@ -1,9 +1,6 @@
 /* jshint esversion: 6 */
 
-/**
- * Object to find the party logo
- * @module graphics/icons
- */
+/** Object to find the party logo */
 module.exports = {
     'FE-UF': 'images/ico/fe-uf-ico.jpg',
     'UF-FI-AT': 'images/ico/no-ico.png',

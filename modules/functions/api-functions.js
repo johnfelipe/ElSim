@@ -8,15 +8,10 @@ const User = require('../../models/user'),
     credentials = require('../../credentials'),
     Util = require('../util-module');
 
-/**
- * All the callback functions of Api routes
- * @module functions/Api-functions
- */
+/** All the callback functions of Api routes */
 (function () {
-    function setup(req, res) {
-        User.find({}).remove(initialize);
-
-        function initialize() {
+    const setup = (req, res) => {
+        const initialize = () => {
             let nick = new User({
                 name: 'demo',
                 email: 'demo@demo.com',
@@ -25,151 +20,120 @@ const User = require('../../models/user'),
                 resultados: []
             });
             nick.save(userSaved);
-        }
-
-        function userSaved(err) {
-            if (err) {
-                throw err;
-            }
-            Log.find({}).remove(logRemoved);
-        }
-
-        function logRemoved() {
-            apiResponse(req, res, false, 'System initialized correctly', null);
-        }
-    }
-
-    function findOneLog(req, res) {
-        resError(req, res);
-    }
-
-    function findOneUser(req, res) {
-        resError(req, res);
-    }
-
-    function findAllUsers(req, res) {
-        User.find({}, userFinded);
-
-        function userFinded(err, data) {
-            apiResponse(req, res, err, 'All users', data);
-        }
-    }
-
-    function saveOneUser(req, res) {
-        resError(req, res);
-    }
-
-    function resError(req, res) {
-        let result;
-        result = {
-            result: 'fail',
-            success: false,
-            message: 'Not yet implemented',
-            err: null,
-            data: null
         };
-        res.send(result);
-    }
 
-    function deleteOneUser(req, res) {
-        resError(req, res);
-    }
+        User.find({}).remove(initialize);
 
-    function updateOneUser(req, res) {
-        resError(req, res);
-    }
+        const userSaved = (err) => {
+            resError(req, res, err);
+            Log.find({}).remove(
+                () => apiResponse(req, res, false, 'System initialized correctly', null)
+            );
+        };
+    };
 
-    function apiWelcome(req, res) {
-        apiResponse(req, res, false, {
-            message: 'Hello from the API!',
-            version: '0.0.1',
-            contact: 'jesusgonzaleznovez@gmail.com'
-        }, null);
-    }
+    const findOneLog = (req, res) => resError(req, res, null);
 
-    function findAllResultados(req, res) {
-        Result.find({}, function (err, data) {
-            apiResponse(req, res, err, 'All results', data);
-        });
-    }
+    const findOneUser = (req, res) => resError(req, res, null);
 
-    function saveOneResultado(req, res) {
-        resError(req, res);
-    }
+    const findAllUsers = (req, res) => User.find({},
+        (err, data) => apiResponse(req, res, err, 'All users', data)
+    );
 
-    function updateOneResultado(req, res) {
-        resError(req, res);
-    }
+    const saveOneUser = (req, res) => resError(req, res, null);
 
-    function deleteOneResultado(req, res) {
-        resError(req, res);
-    }
+    const resError = (req, res, err) => {
+        if (err) {
+            res.send({
+                result: 'fail',
+                success: false,
+                message: 'Something went wrong.',
+                err: err,
+                data: null
+            });
+        }
+    };
 
-    function deleteAllResultados(req, res) {
-        resError(req, res);
-    }
+    const deleteOneUser = (req, res) => resError(req, res, null);
 
-    function findOneResultado(req, res) {
-        Util.getResultadoById(req.param('id'), function (data) {
-            apiResponse(req, res, false, 'Result', data);
-        });
-    }
+    const updateOneUser = (req, res) => resError(req, res, null);
 
-    function loadCsv(req, res) {
-        Util.loadCsv(function () {
-            apiResponse(req, res, false, 'CSVs loaded', null);
-        });
-    }
+    const apiWelcome = (req, res) => apiResponse(req, res, false, {
+        message: 'Hello from the API!',
+        version: '0.0.1',
+        contact: 'jesusgonzaleznovez@gmail.com'
+    }, null);
 
-    function findLogs(req, res) {
-        Log.find({}, function (err, data) {
-            apiResponse(req, res, err, 'All logs', data);
-        });
-    }
+    const findAllResultados = (req, res) => Result.find({},
+        (err, data) => apiResponse(req, res, err, 'All results', data)
+    );
 
-    function deleteAllLogs(req, res) {
-        resError(req, res);
-    }
+    const saveOneResultado = (req, res) => {
+        resError(req, res, null);
+    };
 
-    function apiResponse(req, res, err, message, data) {
-        let options;
-        options = {
+    const updateOneResultado = (req, res) => {
+        resError(req, res, null);
+    };
+
+    const deleteOneResultado = (req, res) => {
+        resError(req, res, null);
+    };
+
+    const deleteAllResultados = (req, res) => {
+        resError(req, res, null);
+    };
+
+    const findOneResultado = (req, res) => Util.getResultadoById(req.param('id'),
+        (data) => apiResponse(req, res, false, 'Result', data)
+    );
+
+    const loadCsv = (req, res) => Util.loadCsv(() =>
+        apiResponse(req, res, false, 'CSVs loaded', null)
+    );
+
+    const findLogs = (req, res) => Log.find({},
+        (err, data) => apiResponse(req, res, err, 'All logs', data)
+    );
+
+    const deleteAllLogs = (req, res) => {
+        resError(req, res, null);
+    };
+
+    const apiResponse = (req, res, err, message, data) => {
+        res.send({
             result: (err) ? 'fail' : 'successful',
             success: !err,
             message: (err) ? null : message,
             err: (err) ? err : null,
             data: (err) ? null : data
+        });
+    };
+
+    const hardReset = (req, res) => {
+        let promises = [];
+
+        const done = (err) => {
+            if (err) {
+                resError(req, res, err);
+            }
         };
 
-        res.send(options);
-    }
-
-    function hardReset(req, res) {
-        let promises = [];
-        promises.push(User.remove({}, done));
-        promises.push(Log.remove({}, done));
-        promises.push(Result.remove({}, done));
-        promises.push(Subscriber.remove({}, done));
-        Promise.all(promises).then(endPromises);
-
-        function endPromises() {
+        const endPromises = () => {
             res.send({
                 result: 'Successful',
                 status: 200,
                 err: null
             });
-        }
+        };
 
-        function done(err) {
-            if (err) {
-                res.send({
-                    result: 'Fail',
-                    status: 200,
-                    err: err
-                });
-            }
-        }
-    }
+        promises.push(User.remove({}, done));
+        promises.push(Log.remove({}, done));
+        promises.push(Result.remove({}, done));
+        promises.push(Subscriber.remove({}, done));
+
+        Promise.all(promises).then(endPromises);
+    };
 
     module.exports = {
         /** Generic API response */
