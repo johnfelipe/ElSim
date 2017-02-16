@@ -11,9 +11,7 @@ const passReq = {
 /** Handle web signups */
 module.exports = (passport) => {
 
-    passport.use('signup', new LocalStrategy(passReq, strategyCallback));
-
-    function strategyCallback(req, username, password, done) {
+    const strategyCallback = (req, username, password, done) => {
         let findOrCreateUser = () => {
             User.findOne({'email': username}, (err, user) => {
                 if (err) {
@@ -39,9 +37,11 @@ module.exports = (passport) => {
             });
         };
         process.nextTick(findOrCreateUser);
-    }
+    };
 
-    function createHash(password) {
+    passport.use('signup', new LocalStrategy(passReq, strategyCallback));
+
+    const createHash = (password) => {
         return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
-    }
+    };
 };

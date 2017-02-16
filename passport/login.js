@@ -9,25 +9,27 @@ const passReq = {
 };
 
 /** Use to handle web logins */
-module.exports =  (passport) => {
-    passport.use('login', new LocalStrategy(passReq, strategyCallback));
+module.exports = (passport) => {
 
-    function strategyCallback(req, username, password, done) {
+    const strategyCallback = (req, username, password, done) => {
         User.findOne({'email': username}, (err, user) => {
-                if (err)
+                if (err) {
                     return done(err);
+                }
                 if (!user) {
                     return done(null, false, req.flash('message', 'User Not found.'));
                 }
                 if (!isValidPassword(user, password)) {
-                    return done(null, false, req.flash('message', 'Invalid Password')); // redirect back to login page
+                    return done(null, false, req.flash('message', 'Invalid Password'));
                 }
                 return done(null, user);
             }
         );
-    }
+    };
 
-    function isValidPassword(user, password) {
+    const isValidPassword = (user, password) => {
         return bCrypt.compareSync(password, user.password);
-    }
+    };
+
+    passport.use('login', new LocalStrategy(passReq, strategyCallback));
 };

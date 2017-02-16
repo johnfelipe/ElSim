@@ -48,8 +48,7 @@ const config = require('../config'),
     };
 
     const authenticate = (req, res) => {
-        User.findOne({email: req.body.email}, done);
-        function done(err, user) {
+        const done = (err, user) => {
             let object = {
                 success: false,
                 message: 'Authentication failed',
@@ -67,13 +66,14 @@ const config = require('../config'),
                 }
             }
             res.json(object);
-        }
+        };
+
+        User.findOne({email: req.body.email}, done);
     };
 
     const isValidPassword = (user, password) => {
         return bCrypt.compareSync(password, user.password);
     };
-
 
     module.exports = {
         isAuthenticated: isAuthenticated,

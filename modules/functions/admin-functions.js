@@ -5,7 +5,16 @@ const UF = require('./user-functions'),
 
 /** All the callback functions of api routes */
 (function () {
-    function adminSummaryFunction(req, res) {
+    const adminSummaryFunction = (req, res) => {
+        const loadDone = (logs, results, users) => res.render('pages/auth/admin', {
+                user: req.user,
+                title: 'Administration',
+                logs: logs,
+                results: results,
+                users: users
+            }
+        );
+
         if (!req.user || req.user.email !== credentials.user) {
             res.render('pages/misc/error', {
                 result: 'fail',
@@ -16,19 +25,8 @@ const UF = require('./user-functions'),
             });
         } else {
             UF.loadAll(loadDone);
-
         }
-        function loadDone(logs, results, users) {
-            let options = {
-                user: req.user,
-                title: 'Administration',
-                logs: logs,
-                results: results,
-                users: users
-            };
-            res.render('pages/auth/admin', options);
-        }
-    }
+    };
 
     module.exports = {
         /** Shows summary of system */
