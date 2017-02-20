@@ -5,11 +5,6 @@ const app = require('./../app'),
     District = require('./../modules/district-module'),
     expect = require('chai').expect;
 
-/** Test de District */
-describe('District', () => {
-    describe('#compute', () => it('Fake data to use compute function', fakeData));
-});
-
 const fakeData = (done) => {
     let votes = [12000, 30000, 200000, 4500],
         names = ['PP', 'PSOE', 'PODEMOS', 'CIUDADANOS'],
@@ -22,3 +17,9 @@ const fakeData = (done) => {
     expect(result).to.have.all.keys('numberOfVotes', 'minNumberOfVotes', 'parties');
     done();
 };
+
+/** Test de District */
+describe('District', () => {
+    describe('#compute', () => it('Fake data to use compute function', fakeData));
+});
+

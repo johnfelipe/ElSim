@@ -14,28 +14,6 @@ const createHash = (password) => {
     return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
 };
 
-/** Test models */
-describe('User', () => {
-    describe('#save()', () => {
-        it('Should not save if duplicate key(email)', checkDuplicateMail);
-    });
-});
-
-describe('Result', () => {
-    describe('#save()', () => {
-        it('Should not save if duplicate key(cod_provincia + eleccion)', checkDuplicateDistrict);
-    });
-});
-
-describe('HTTP methods and routes', () => {
-    before(startApp);
-
-    it('GET / route should return 200', fineRoutes);
-
-    it('GET strange routes should return 404', strangeRoutes);
-});
-
-
 const checkDuplicateMail = (done) => {
     let user = new User({
         name: 'demo',
@@ -95,3 +73,27 @@ const checkDuplicateDistrict = (done) => {
         done();
     });
 };
+
+
+/** Test models */
+describe('User', () => {
+    describe('#save()', () => {
+        it('Should not save if duplicate key(email)', checkDuplicateMail);
+    });
+});
+
+describe('Result', () => {
+    describe('#save()', () => {
+        it('Should not save if duplicate key(cod_provincia + eleccion)', checkDuplicateDistrict);
+    });
+});
+
+describe('HTTP methods and routes', () => {
+    before(startApp);
+
+    it('GET / route should return 200', fineRoutes);
+
+    it('GET strange routes should return 404', strangeRoutes);
+});
+
+
