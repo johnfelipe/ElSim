@@ -1,5 +1,3 @@
-
-
 # Table of contents 
 
 * [EllSim](#ellsim)
@@ -15,9 +13,12 @@
 
 ![https://travis-ci.org/jesusgn90/TFG.svg?branch=master](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)
 
-This is an ellectoral simulator, is based on Spanish system. You can generate charts, reports, make changes on many params, learn, download some resources, connect an external client to the api, play with the minigames, and few more things!
+This is an ellectoral simulator, it's based on Spanish system. You can generate charts, reports, make changes on many params, learn, download some resources, connect an external client to the api, play with the minigames, and few more things!
 
 ## Setup
+
+The basic setup is:
+
     $ sudo npm i -g nodemon
     $ git clone https://github.com/jesusgn90/TFG && cd TFG
     $ npm i
@@ -30,23 +31,25 @@ Only if you want to test it on a virtual environment:
     (env)$ npm start   
 
 ## Technologies
-- NodeJS
-- MongoDB
-- Bootstrap 4
+
+* NodeJS
+* MongoDB
+* Bootstrap 4
 
 ## Usage
+
 Open your browser or use an external api client.
 
     Web routes:  /
-    Api routes:  /api/
+    Api routes:  /api/v1/
 
 Run tests:
 
     $ npm test
 
 
-
 ### Docs
+
 If you are running the server go to:
     
     /doc/index.html
