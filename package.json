@@ -9,6 +9,7 @@
   "dependencies": {
     "assert": "^1.4.1",
     "bcrypt-nodejs": "0.0.3",
+    "better-console": "^1.0.0",
     "bluebird": "^3.4.6",
     "body-parser": "~1.13.2",
     "chai": "^3.5.0",

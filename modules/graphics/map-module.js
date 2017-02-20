@@ -1,6 +1,7 @@
 /* jshint esversion: 6 */
 const latinMap = require('./misc/latinize-map'),
-    District = require('../district-module');
+    District = require('../district-module'),
+    console = require('better-console');
 
 const has = Object.prototype.hasOwnProperty;
 
@@ -43,8 +44,10 @@ const provincias = [
     };
 
     const calculateGlobal = (data, config, conjunto) => {
+        console.time('timer');
         let global = globalLoop(data, config, conjunto);
         global.agrupado = groupParties(global);
+        console.timeEnd('timer');
         return global;
     };
 
@@ -89,7 +92,6 @@ const provincias = [
     };
 
     const calculateGlobalWithCommunities = (data, config, conjunto) => {
-        console.log(data);
         let groupedByCommunity = {};
         for (let i = 0, len = data.length; i < len; i++) {
             if (!has.call(groupedByCommunity, data[i].comunidad)) {
@@ -136,7 +138,35 @@ const provincias = [
     };
 
     const calculateGlobalWholeCountry = (data, config, conjunto) => {
+        let groupedByCommunity = calculateGlobalWithCommunities(data, config, conjunto);
+        let partidos = {}, votes = [], names = [];
+        for (let key in groupedByCommunity) {
+            if (has.call(groupedByCommunity, key)) {
+                for (let partido in groupedByCommunity[key].partidos) {
+                    if (has.call(partidos, partido)) {
+                        partidos[partido] += parseInt(groupedByCommunity[key].partidos[partido]);
+                    } else {
+                        partidos[partido] = parseInt(groupedByCommunity[key].partidos[partido]);
+                    }
+                }
+            }
+        }
 
+        for (let key in partidos) {
+            if (has.call(partidos, key)) {
+                votes.push(partidos[key]);
+                names.push(key);
+            }
+        }
+
+        let dhondtConfig = {
+            mandates: 350,
+            percentage: 3.0,
+            blankVotes: 0
+        };
+
+        let result = District.compute(votes, names, dhondtConfig, false);
+        console.log(result);
         return null;
     };
 

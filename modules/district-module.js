@@ -1,10 +1,9 @@
 /* jshint esversion: 6 */
 
-const Result = require('../models/result');
-/**
- * Utilities for a district
- * @module district-module
- */
+const Result = require('../models/result'),
+    console = require('better-console');
+
+/** Utilities for a district */
 (function () {
 
     const compute = (votes, names, options, withTable) => {
@@ -63,6 +62,7 @@ const Result = require('../models/result');
     };
 
     const calculateSeats = (votes, names, mandates, blankVotes, percentage, withTable) => {
+
         let numberOfParties = votes.length,
             numberOfVotes = calculateTotalVotes(votes, blankVotes),
             minNumberOfVotes = Math.floor(numberOfVotes * percentage / 100),
@@ -76,6 +76,7 @@ const Result = require('../models/result');
         if (withTable) {
             result.table = fillTable(table, validatedNames);
         }
+
         return result;
     };
 

@@ -158,6 +158,10 @@ const highcharts = require('node-highcharts'),
              }
              */
 
+            if(body.wholeCountry) {
+                let aux = CountryChart.calculateGlobalWholeCountry(data,config,body);
+            }
+
             global = CountryChart.calculateGlobal(data, config, body);
 
             done({
