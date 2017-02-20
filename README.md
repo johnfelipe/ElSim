@@ -1,4 +1,7 @@
-*Table of contents*
+
+
+# Table of contents 
+
 * [EllSim](#ellsim)
   * [Setup](#setup)
   * [Technologies](#technologies)
@@ -9,9 +12,10 @@
   * [To-Do](#to-do)
   
 # EllSim
-This is an ellectoral simulator, is based on Spanish system. You can
- generate charts, reports, make changes on many params, learn, download some resources,
- connect an external client to the api, play with the minigames, and few more things!
+
+![https://travis-ci.org/jesusgn90/TFG.svg?branch=master](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)
+
+This is an ellectoral simulator, is based on Spanish system. You can generate charts, reports, make changes on many params, learn, download some resources, connect an external client to the api, play with the minigames, and few more things!
 
 ## Setup
     $ sudo npm i -g nodemon
@@ -53,8 +57,7 @@ Also you can read them under directory:
    
 ### Login   
    
-You can use your user to login on the web or to
-make requests to the api. 
+You can use your user to login on the web or to make requests to the api. 
 
 Web:
 
@@ -73,15 +76,10 @@ API:
     }
 
 ## Contribute? Error detected? 
+
 Fork it and pull request for contribute. If error is detected, please open an issue please, that's the good way.
 
-# To-Do
+# Contact
 
-* Country chart
-    * Auto calculate mandates by population
-    * Set parameters of calculation
-    * Check Ceuta & Melilla
-    * Agreggations
-        * District, Comunity, Country
-* Single chart
-    * Show table of process
+* Twitter: [@jesusgon90](https://twitter.com/jesusgon90)
+* Linkedin: [@jesusgonzaleznovez](https://www.linkedin.com/in/jesusgonzaleznovez)
