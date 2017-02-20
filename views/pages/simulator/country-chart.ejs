@@ -11,7 +11,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-block">
-                    <table id="tabla" class="display" cellspacing="0" width="100%">
+                    <table id="tabla" class="display card-text" cellspacing="0" width="100%">
                         <thead>
                         <tr>
                             <th>Party</th>
@@ -32,6 +32,7 @@
         </div>
 
         <div class="col-md-8">
+            <% if(!wholeCountry) { %>
             <div class="card myCard">
                 <div id="container" class="card-img-top"></div>
                 <div class="card-footer text-xs-right">
@@ -39,7 +40,16 @@
                     <small><a href="/users/profile">See my own results</a></small>
                 </div>
             </div>
-
+            <% } else {%>
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">No map for whole country mode</h4>
+                    <p class="card-text">
+                        <img src="/images/spain.gif" width="100%" height="auto"/>
+                    </p>
+                </div>
+            </div>
+            <% } %>
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">RAW</h4>

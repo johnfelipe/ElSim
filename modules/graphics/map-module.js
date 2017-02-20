@@ -1,7 +1,8 @@
 /* jshint esversion: 6 */
 const latinMap = require('./misc/latinize-map'),
     District = require('../district-module'),
-    console = require('better-console');
+    console = require('better-console'),
+    Util = require('../util-module');
 
 const has = Object.prototype.hasOwnProperty;
 
@@ -59,7 +60,7 @@ const provincias = [
             config.mandates = calculateMandates(data[i].provincia, conjunto);
 
             for (let key in data[i].partidos) {
-                if (has.call(data[i].partidos, key)) {
+                if (data[i].partidos.hasOwnProperty(key)) {
                     votes.push(data[i].partidos[key]);
                     names.push(key);
                 }
@@ -140,8 +141,10 @@ const provincias = [
     const calculateGlobalWholeCountry = (data, config, conjunto) => {
         let groupedByCommunity = calculateGlobalWithCommunities(data, config, conjunto);
         let partidos = {}, votes = [], names = [];
+        let blankVotes = 0;
         for (let key in groupedByCommunity) {
             if (has.call(groupedByCommunity, key)) {
+                blankVotes += parseInt(groupedByCommunity[key].votos_blanco);
                 for (let partido in groupedByCommunity[key].partidos) {
                     if (has.call(partidos, partido)) {
                         partidos[partido] += parseInt(groupedByCommunity[key].partidos[partido]);
@@ -152,22 +155,21 @@ const provincias = [
             }
         }
 
-        for (let key in partidos) {
-            if (has.call(partidos, key)) {
-                votes.push(partidos[key]);
-                names.push(key);
-            }
-        }
-
         let dhondtConfig = {
             mandates: 350,
             percentage: 3.0,
-            blankVotes: 0
+            blankVotes: blankVotes
         };
 
-        let result = District.compute(votes, names, dhondtConfig, false);
-        console.log(result);
-        return null;
+
+        for (let partido in partidos) {
+            if (has.call(partidos, partido)) {
+                votes.push(partidos[partido]);
+                names.push(partido);
+            }
+        }
+
+        return District.compute(votes, names, dhondtConfig, false);
     };
 
     module.exports = {

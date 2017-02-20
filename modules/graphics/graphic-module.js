@@ -9,7 +9,8 @@ const highcharts = require('node-highcharts'),
     Result = require('../../models/result'),
     Icons = require('./misc/icons'),
     District = require('../district-module'),
-    Moment = require('moment');
+    Moment = require('moment'),
+    Util = require('../util-module');
 
 /** To handle charts */
 (function () {
@@ -146,27 +147,19 @@ const highcharts = require('node-highcharts'),
 
             let global;
 
-            /*
-             if(body.aggregateCommunities) {
-             global = CountryChart.calculateGlobalWithCommunities(data,config,body);
-             }
-             else if(body.wholeCountry) {
-             global = CountryChart.calculateGlobalWholeCountry(data,config,body);
-             }
-             else {
-             global = CountryChart.calculateGlobal(data, config, body);
-             }
-             */
-
             if(body.wholeCountry) {
-                let aux = CountryChart.calculateGlobalWholeCountry(data,config,body);
+                global = {
+                    agrupado: CountryChart.calculateGlobalWholeCountry(data,config,body).parties
+                };
+            } else {
+                global = CountryChart.calculateGlobal(data, config, body);
             }
-
-            global = CountryChart.calculateGlobal(data, config, body);
 
             done({
                 user: user,
                 global: global,
+                wholeCountry: body.wholeCountry,
+                communities: body.aggregateCommunities,
                 title: 'Country Chart'
             });
         };
