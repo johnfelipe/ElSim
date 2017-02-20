@@ -1,8 +1,12 @@
 /* jshint esversion: 6 */
-
-const UF = require('./user-functions'),
+const UF = require('./user-functions');
+let credentials;
+try {
     credentials = require('../../credentials');
-
+} catch (e) {
+    console.log('credentials.js not found, using jesusgonzaleznovez@gmail.com as user');
+    credentials = {user: 'jesusgonzaleznovez@gmail.com'};
+}
 /** All the callback functions of api routes */
 (function () {
     const adminSummaryFunction = (req, res) => {
@@ -33,4 +37,3 @@ const UF = require('./user-functions'),
         adminSummaryFunction: adminSummaryFunction
     };
 })();
-

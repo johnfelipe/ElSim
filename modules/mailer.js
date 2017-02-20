@@ -1,7 +1,17 @@
 /* jshint esversion: 6 */
 'use strict';
-const nodemailer = require('nodemailer'),
+
+const nodemailer = require('nodemailer');
+
+let config;
+
+try {
     config = require('../credentials');
+} catch (e) {
+    console.log('credentials.js not found, using jesusgonzaleznovez@gmail.com as user');
+    config = {user: 'foo@foo.com', password: 'foo'};
+}
+
 const transportConfig = {
     service: 'Gmail',
     auth: {
