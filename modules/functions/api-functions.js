@@ -5,7 +5,6 @@ const User = require('../../models/user'),
     Log = require('../../models/log'),
     Result = require('../../models/result'),
     Subscriber = require('../../models/subscriber'),
-    credentials = require('../../credentials'),
     Util = require('../util-module');
 
 /** All the callback functions of Api routes */
