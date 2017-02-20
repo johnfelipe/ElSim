@@ -18,7 +18,7 @@
 
         <div class="form-group col-xs-6">
             <label for="percentage">
-                <span class="fa fa-percent"></span> Select minimum percentage
+                <span class="fa fa-percent"></span> Select minimum percentage<br>
             </label>
             <select class="form-control" name="percentage" id="percentage">
                 <% for(var i = 0.00; i <= 100.00; i += 0.50){ %>
@@ -32,6 +32,14 @@
             <button type='button' class="btn pastel-btn" onclick="switchComunidades();">
                 <span class="fa fa-eye"></span> Show/Hide districts
             </button>
+        </div>
+        <div class="form-group col-xs-3">
+            <input type='checkbox' name="aggregateCommunities" class="custom-checkbox" />  Aggregate communities
+
+        </div>
+        <div class="form-group col-xs-3">
+            <input type='checkbox' name="wholeCountry" class="custom-checkbox" /> Aggregate whole country
+
         </div>
     </div>
     <div id="comunidades" style="display: none;">

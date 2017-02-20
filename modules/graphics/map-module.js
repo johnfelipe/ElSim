@@ -31,12 +31,15 @@ const provincias = [
 
     const calculateMandates = (provincia, conjunto) => {
         let regEx = new RegExp("\\s", 'g');
+        if (provincia === 'Araba - Álava') {
+            return conjunto.alava;
+        }
         for (let c in conjunto) {
             if (latinize(provincia.split('/')[0].toLowerCase().replace(regEx, "")) === latinize(c.toLowerCase().replace(regEx, ""))) {
                 return parseInt(conjunto[c]);
             }
         }
-        return 2; // if the loop does not return anything, return minimum!
+        return 2;
     };
 
     const calculateGlobal = (data, config, conjunto) => {
@@ -51,19 +54,20 @@ const provincias = [
         for (let i = 0, len = data.length; i < len; ++i) {
             config.blankVotes = data[i].votos_blanco;
             config.mandates = calculateMandates(data[i].provincia, conjunto);
+
             for (let key in data[i].partidos) {
                 if (has.call(data[i].partidos, key)) {
                     votes.push(data[i].partidos[key]);
                     names.push(key);
                 }
             }
+
             result = District.compute(votes, names, config, false);
             result.cc = calculateCode(data[i].cod_provincia);
             global.push(result);
             votes = [];
             names = [];
         }
-
         return global;
     };
 
@@ -84,8 +88,62 @@ const provincias = [
         return aux;
     };
 
+    const calculateGlobalWithCommunities = (data, config, conjunto) => {
+        console.log(data);
+        let groupedByCommunity = {};
+        for (let i = 0, len = data.length; i < len; i++) {
+            if (!has.call(groupedByCommunity, data[i].comunidad)) {
+                groupedByCommunity[data[i].comunidad] = {
+                    eleccion: data[i].eleccion,
+                    comunidad: data[i].comunidad,
+                    poblacion: parseInt(data[i].poblacion),
+                    num_mesas: parseInt(data[i].num_mesas),
+                    total_censo_electoral: parseInt(data[i].total_censo_electoral),
+                    total_votantes: parseInt(data[i].total_votantes),
+                    votos_validos: parseInt(data[i].votos_validos),
+                    votos_candidaturas: parseInt(data[i].votos_candidaturas),
+                    votos_blanco: parseInt(data[i].votos_blanco),
+                    votos_nulos: parseInt(data[i].votos_nulos),
+                    partidos: data[i].partidos,
+                    mandates: parseInt(calculateMandates(data[i].provincia, conjunto))
+                };
+
+                for (let key in groupedByCommunity[data[i].comunidad].partidos) {
+                    if (has.call(groupedByCommunity[data[i].comunidad].partidos, key)) {
+                        groupedByCommunity[data[i].comunidad].partidos[key] = parseInt(groupedByCommunity[data[i].comunidad].partidos[key]);
+                    }
+                }
+            } else {
+                groupedByCommunity[data[i].comunidad].mandates += parseInt(calculateMandates(data[i].provincia, conjunto));
+                groupedByCommunity[data[i].comunidad].poblacion += data[i].poblacion;
+                groupedByCommunity[data[i].comunidad].num_mesas += data[i].num_mesas;
+                groupedByCommunity[data[i].comunidad].total_censo_electoral += data[i].total_censo_electoral;
+                groupedByCommunity[data[i].comunidad].total_votantes += data[i].total_votantes;
+                groupedByCommunity[data[i].comunidad].votos_validos += data[i].votos_validos;
+                groupedByCommunity[data[i].comunidad].votos_candidaturas += data[i].votos_candidaturas;
+                groupedByCommunity[data[i].comunidad].votos_blanco += data[i].votos_blanco;
+                groupedByCommunity[data[i].comunidad].votos_nulos += data[i].votos_nulos;
+                for (let key in data[i].partidos) {
+                    if (has.call(groupedByCommunity[data[i].comunidad].partidos, key)) {
+                        groupedByCommunity[data[i].comunidad].partidos[key] += parseInt(data[i].partidos[key]);
+                    } else {
+                        groupedByCommunity[data[i].comunidad].partidos[key] = parseInt(data[i].partidos[key]);
+                    }
+                }
+            }
+        }
+        return groupedByCommunity;
+    };
+
+    const calculateGlobalWholeCountry = (data, config, conjunto) => {
+
+        return null;
+    };
+
     module.exports = {
-        calculateGlobal: calculateGlobal
+        calculateGlobal: calculateGlobal,
+        calculateGlobalWholeCountry: calculateGlobalWholeCountry,
+        calculateGlobalWithCommunities: calculateGlobalWithCommunities
     };
 
 })();

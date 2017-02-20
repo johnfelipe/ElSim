@@ -17,29 +17,29 @@ module.exports = (passport) => {
     /** GET routes */
     router.get('/', IGF.indexGetFunction);
     router.get('/help', IGF.helpGetFunction);
-    router.get('/single-graphic-form',Auth.isAuthenticated, IGF.singleGraphicFormGetFunction);
-    router.get('/country-graphic-form', Auth.isAuthenticated, IGF.countryGraphicFormGetFunction);
+    router.get('/single-graphic-form',  IGF.singleGraphicFormGetFunction);
+    router.get('/country-graphic-form',  IGF.countryGraphicFormGetFunction);
     router.get('/learn', IGF.learnGetFunction);
     router.get('/resources', IGF.resourcesGetFunction);
-    router.get('/add-data',Auth.isAuthenticated, IGF.addDataGetFunction);
+    router.get('/add-data',  IGF.addDataGetFunction);
     router.get('/stored-data', IGF.storedDataFunction);
     router.get('/quiz', IGF.learnGetFunction);
     router.get('/minigame', IGF.learnGetFunction);
     router.get('/login', IGF.loginGetFunction);
     router.get('/signup', IGF.signUpGetFunction);
-    router.get('/signout',Auth.isAuthenticated, IGF.signOutGetFunction);
+    router.get('/signout',  IGF.signOutGetFunction);
     router.get('/parties', IGF.partiesFunction);
     router.get('/resultados/:id', Api.findOneResultado);
-    router.get('/delete-data',Auth.isAuthenticated, IGF.deleteDataGetFunction);
-    router.get('/admin',Auth.isAuthenticated, Admin.adminSummaryFunction);
+    router.get('/delete-data',  IGF.deleteDataGetFunction);
+    router.get('/admin',  Admin.adminSummaryFunction);
 
     /** POST routes */
-    router.post('/add-data', Auth.isAuthenticated,IPF.addDataPostFunction);
-    router.post('/add-data-file', Auth.isAuthenticated, IPF.addDataFilePostFunction);
-    router.post('/delete-data', Auth.isAuthenticated, IPF.deleteDataPostFunction);
-    router.post('/graphic-form', Auth.isAuthenticated, IPF.graphicFormPostFunction);
-    router.post('/country-form', Auth.isAuthenticated, IPF.countryFormPostFunction);
-    router.post('/save-single-chart', Auth.isAuthenticated, IPF.saveResultFunction);
+    router.post('/add-data', IPF.addDataPostFunction);
+    router.post('/add-data-file',  IPF.addDataFilePostFunction);
+    router.post('/delete-data',  IPF.deleteDataPostFunction);
+    router.post('/graphic-form',  IPF.graphicFormPostFunction);
+    router.post('/country-form',  IPF.countryFormPostFunction);
+    router.post('/save-single-chart',  IPF.saveResultFunction);
 
     router.post('/login', passport.authenticate('login', {
         successRedirect: '/',

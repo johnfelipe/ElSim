@@ -63,7 +63,6 @@ const Result = require('../../models/result'),
             ellections.sort((a, b) => {
                 return new Date(a.fecha) - new Date(b.fecha);
             });
-
             indexResponse(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
                 results: data,
                 ellections: ellections,

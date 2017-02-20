@@ -44,10 +44,10 @@ const highcharts = require('node-highcharts'),
         callback(options);
     };
 
-    const fillCalculateDistrictOptions = (ellection,graph_options,result,user) => {
+    const fillCalculateDistrictOptions = (ellection, graph_options, result, user) => {
         return {
             title: 'Chart',
-                autor: ellection.eleccion.autor,
+            autor: ellection.eleccion.autor,
             fecha: ellection.eleccion.fecha,
             provincia: ellection.cod_provincia,
             options: graph_options,
@@ -93,17 +93,17 @@ const highcharts = require('node-highcharts'),
         Result.findOne({_id: resultSelected}, findCalculateDistrictCallback);
 
         const chartDone = (graph_options) => {
-            let options = fillCalculateDistrictOptions(ellection,graph_options,result,user);
+            let options = fillCalculateDistrictOptions(ellection, graph_options, result, user);
 
             if (!user) {
                 callback(options);
             } else {
-                addResultToUser(user,ellection,result,mandates,percentage,() => callback(options));
+                addResultToUser(user, ellection, result, mandates, percentage, () => callback(options));
             }
         };
     };
 
-    const addResultToUser = (user,ellection,result,mandates,percentage,callback) => {
+    const addResultToUser = (user, ellection, result, mandates, percentage, callback) => {
         User.findOne({_id: user._id}, (err, user) => {
             if (err) {
                 throw err;
@@ -144,7 +144,21 @@ const highcharts = require('node-highcharts'),
                 throw err;
             }
 
-            let global = CountryChart.calculateGlobal(data, config, body);
+            let global;
+
+            /*
+             if(body.aggregateCommunities) {
+             global = CountryChart.calculateGlobalWithCommunities(data,config,body);
+             }
+             else if(body.wholeCountry) {
+             global = CountryChart.calculateGlobalWholeCountry(data,config,body);
+             }
+             else {
+             global = CountryChart.calculateGlobal(data, config, body);
+             }
+             */
+
+            global = CountryChart.calculateGlobal(data, config, body);
 
             done({
                 user: user,

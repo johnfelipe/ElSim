@@ -73,7 +73,7 @@ let response = require('./index-get-functions').indexResponse;
             mandates = req.body.mandates,
             percentage = req.body.percentage,
             resultSelected = req.body.resultSelected,
-            user = req.body.user;
+            user = req.user;
 
         Graphic.calculateDistrict(mode, mandates, percentage, resultSelected, user,
             (options) => res.render('pages/simulator/single-chart', options)
@@ -83,12 +83,13 @@ let response = require('./index-get-functions').indexResponse;
     const countryFormPostFunction = (req, res) => {
         let resultSelected = req.body.resultSelected,
             percentage = req.body.percentage,
-            user = req.body.user,
+            user = req.user,
             body = req.body;
 
         const calculatedCountry = (options) => {
             options.colors = Colors;
             options.icons = Icons;
+            options.user = user;
             res.render('pages/simulator/country-chart', options);
         };
 

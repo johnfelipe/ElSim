@@ -65,7 +65,7 @@ const Result = require('../models/result');
     const calculateSeats = (votes, names, mandates, blankVotes, percentage, withTable) => {
         let numberOfParties = votes.length,
             numberOfVotes = calculateTotalVotes(votes, blankVotes),
-            minNumberOfVotes = Math.ceil(numberOfVotes * percentage / 100),
+            minNumberOfVotes = Math.floor(numberOfVotes * percentage / 100),
             result = fillResultVar(numberOfVotes, minNumberOfVotes),
             seats, numberOfPartiesValidated, validatedVotes = [], validatedNames = [];
 
@@ -143,7 +143,7 @@ const Result = require('../models/result');
             return 1;
         }
         let percentage = (districtPopulation / totalPopulation);
-        let numberOfMandates = Math.trunc((totalMandates - 52) * percentage);
+        let numberOfMandates = Math.floor((totalMandates - 52) * percentage);
         return numberOfMandates + 2;
     };
 
