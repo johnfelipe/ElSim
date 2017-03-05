@@ -1,10 +1,7 @@
 /* jshint esversion: 6 */
 'use strict';
 
-/**
- * User mongoose model
- * @module models/user
- */
+/** User mongoose model */
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     bcrypt = require('bcrypt-nodejs');
@@ -19,12 +16,12 @@ let s = new Schema({
 });
 
 /** Generates the hash for bcrypt */
-s.methods.generateHash = function (password) {
+s.methods.generateHash =  (password) => {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 /** Checks password */
-s.methods.validPassword = function (password) {
+s.methods.validPassword = (password) => {
     return bcrypt.compareSync(password, this.password);
 };
 
