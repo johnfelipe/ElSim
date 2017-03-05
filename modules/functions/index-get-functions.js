@@ -106,13 +106,16 @@ const Result = require('../../models/result'),
 
 
     const deleteDataGetFunction = (req, res) => {
-        Result.find({}, (err, data) =>
+        Result.find({}, (err, data) => {
+            data.sort((a, b) => {
+                return new Date(a.eleccion.fecha) - new Date(b.eleccion.fecha);
+            });
             indexResponse(req, res, 'pages/data/delete-data', 'Delete data', {
                 data: data,
                 moment: Moment,
                 err: null
-            })
-        );
+            });
+        });
     };
 
     const partiesFunction = (req, res) => {

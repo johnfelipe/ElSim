@@ -10,7 +10,8 @@ const User = require('../../models/user'),
         let options = {
             title: 'Profile',
             user: req.user,
-            advice: false
+            advice: false,
+            err: false
         };
         res.render('pages/auth/profile', options);
     };
