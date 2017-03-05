@@ -5,7 +5,8 @@ const User = require('../../models/user'),
     Log = require('../../models/log'),
     Result = require('../../models/result'),
     Subscriber = require('../../models/subscriber'),
-    Util = require('../util-module');
+    Util = require('../util-module'),
+    Question = require('../../models/question');
 
 /** All the callback functions of Api routes */
 (function () {
@@ -31,15 +32,15 @@ const User = require('../../models/user'),
         };
     };
 
-    const findOneLog = (req, res) => resError(req, res, null);
+    const findOneLog = (req, res) => resError(req, res, 'not yet implemented');
 
-    const findOneUser = (req, res) => resError(req, res, null);
+    const findOneUser = (req, res) => resError(req, res, 'not yet implemented');
 
     const findAllUsers = (req, res) => User.find({},
         (err, data) => apiResponse(req, res, err, 'All users', data)
     );
 
-    const saveOneUser = (req, res) => resError(req, res, null);
+    const saveOneUser = (req, res) => resError(req, res, 'not yet implemented');
 
     const resError = (req, res, err) => {
         if (err) {
@@ -53,9 +54,9 @@ const User = require('../../models/user'),
         }
     };
 
-    const deleteOneUser = (req, res) => resError(req, res, null);
+    const deleteOneUser = (req, res) => resError(req, res, 'not yet implemented');
 
-    const updateOneUser = (req, res) => resError(req, res, null);
+    const updateOneUser = (req, res) => resError(req, res, 'not yet implemented');
 
     const apiWelcome = (req, res) => apiResponse(req, res, false, {
         message: 'Hello from the API!',
@@ -68,19 +69,19 @@ const User = require('../../models/user'),
     );
 
     const saveOneResultado = (req, res) => {
-        resError(req, res, null);
+        resError(req, res, 'not yet implemented');
     };
 
     const updateOneResultado = (req, res) => {
-        resError(req, res, null);
+        resError(req, res, 'not yet implemented');
     };
 
     const deleteOneResultado = (req, res) => {
-        resError(req, res, null);
+        resError(req, res, 'not yet implemented');
     };
 
     const deleteAllResultados = (req, res) => {
-        resError(req, res, null);
+        resError(req, res, 'not yet implemented');
     };
 
     const findOneResultado = (req, res) => Util.getResultadoById(req.param('id'),
@@ -101,7 +102,6 @@ const User = require('../../models/user'),
 
     const apiResponse = (req, res, err, message, data) => {
         res.send({
-            result: (err) ? 'fail' : 'successful',
             success: !err,
             message: (err) ? null : message,
             err: (err) ? err : null,
@@ -135,19 +135,33 @@ const User = require('../../models/user'),
     };
 
     const saveOneQuestion = (req, res) => {
-        resError(req, res, null);
+        let q = new Question({
+            title: req.body.title,
+            correct: req.body.correct,
+            answers: JSON.parse(req.body.answers)
+        });
+        q.save((err) => {
+            resError(req, res, err || true);
+        });
     };
 
     const checkQuestion = (req, res) => {
-        resError(req, res, null);
+        resError(req, res, 'not yet implemented');
     };
 
     const getAllQuestions = (req, res) => {
-        resError(req, res, null);
+        Question.find({}, (err, questions) => {
+                if (err) {
+                    resError(req, res, err);
+                } else {
+                    apiResponse(req, res, null, questions.length + ' questions loaded', questions);
+                }
+            }
+        );
     };
 
     const deleteOneQuestion = (req, res) => {
-        resError(req, res, null);
+        Question.findByIdAndRemove({_id: req.param('id')},(err,data) => apiResponse(req, res, null, 'great', null));
     };
 
     module.exports = {

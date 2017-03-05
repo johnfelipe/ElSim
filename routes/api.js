@@ -25,13 +25,16 @@ module.exports =  () => {
     router.get('/v1/logs', API.findLogs);
     router.get('/v1/results/:id', API.findOneResultado);
     router.get('/v1/results', API.findAllResultados);
+    router.get('/v1/questions', API.getAllQuestions);
 
     router.post('/v1/users', API.saveOneUser);
     router.post('/v1/results', API.saveOneResultado);
+    router.post('/v1/questions', API.saveOneQuestion);
 
     router.put('/v1/users/:id', API.updateOneUser);
     router.put('/v1/results/:id', API.updateOneResultado);
 
+    router.delete('/v1/questions/:id', API.deleteOneQuestion);
     router.delete('/v1/users/:id', API.deleteOneUser);
     router.delete('/v1/logs', API.deleteAllLogs);
     router.delete('/v1/results/:id', API.deleteOneResultado);
