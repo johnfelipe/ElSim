@@ -1,19 +1,23 @@
 /* jshint esversion: 6 */
 'use strict';
 
-/** Subscriber mongoose model */
+/** Questions mongoose model */
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 let s = new Schema({
-    email: {
+    title: {
         type: String,
         required: true
     },
-    options: {
-        type: Object,
+    answers: {
+        type: [String],
+        required: true
+    },
+    correct: {
+        type: String,
         required: true
     }
 });
 
-module.exports = mongoose.model('Subscriber',s);
+module.exports = mongoose.model('Question', s);

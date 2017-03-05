@@ -1,14 +1,10 @@
 /* jshint esversion: 6 */
 'use strict';
 
-/**
- * Log mongoose model
- * @module models/log
- */
+/** Log mongoose model */
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-/** The schema for the model */
 let s = new Schema({
     message: {
         type: String,

@@ -6,7 +6,7 @@ let app = require('../app'),
     debug = require('debug')('Backend:server'),
     http = require('http');
 
-    /** Normalize a port into a number, string, or false. */
+/** Normalize a port into a number, string, or false. */
 const normalizePort = (val) => {
     let port = parseInt(val, 10);
     if (isNaN(port)) {

@@ -161,7 +161,6 @@ const provincias = [
             blankVotes: blankVotes
         };
 
-
         for (let partido in partidos) {
             if (has.call(partidos, partido)) {
                 votes.push(partidos[partido]);

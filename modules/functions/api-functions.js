@@ -134,6 +134,22 @@ const User = require('../../models/user'),
         Promise.all(promises).then(endPromises);
     };
 
+    const saveOneQuestion = (req, res) => {
+        resError(req, res, null);
+    };
+
+    const checkQuestion = (req, res) => {
+        resError(req, res, null);
+    };
+
+    const getAllQuestions = (req, res) => {
+        resError(req, res, null);
+    };
+
+    const deleteOneQuestion = (req, res) => {
+        resError(req, res, null);
+    };
+
     module.exports = {
         /** Generic API response */
         apiResponse: apiResponse,
@@ -193,7 +209,15 @@ const User = require('../../models/user'),
         deleteAllLogs: deleteAllLogs,
 
         /** Hard-resets the system, be careful */
-        hardReset: hardReset
+        hardReset: hardReset,
+
+        checkQuestion: checkQuestion,
+
+        getAllQuestions: getAllQuestions,
+
+        saveOneQuestion: saveOneQuestion,
+
+        deleteOneQuestion: deleteOneQuestion
     };
 })();
 
