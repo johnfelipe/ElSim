@@ -3,7 +3,10 @@
 const Result = require('../models/result'),
     console = require('better-console');
 
-/** Utilities for a district */
+/**
+ *
+ * @module district-module
+ */
 (function () {
 
     const compute = (votes, names, options, withTable) => {
@@ -148,10 +151,7 @@ const Result = require('../models/result'),
         return numberOfMandates + 2;
     };
 
-    /**
-     *
-     * @module district-module
-     */
+
     module.exports = {
         compute: compute,
 

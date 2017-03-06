@@ -4,6 +4,10 @@ const config = require('../config'),
     User = require('../models/user'),
     bCrypt = require('bcrypt-nodejs');
 
+/**
+ * Module to handle authentication
+ * @module auth
+ */
 (function () {
 
     const isAuthenticated = (req, res, next) => {
@@ -75,10 +79,7 @@ const config = require('../config'),
         return bCrypt.compareSync(password, user.password);
     };
 
-    /**
-     * Module to handle authentication
-     * @module auth
-     */
+
     module.exports = {
         /** Checks if user is authenticated WEB */
         isAuthenticated: isAuthenticated,

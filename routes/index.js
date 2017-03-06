@@ -5,8 +5,7 @@ const express = require('express'),
     IGF = require('../modules/functions/index-get-functions'),
     IPF = require('../modules/functions/index-post-functions'),
     Api = require('../modules/functions/api-functions'),
-    Admin = require('../modules/functions/admin-functions'),
-    Auth = require('../passport/auth');
+    Admin = require('../modules/functions/admin-functions');
 
 /** Handle all web routes */
 module.exports = (passport) => {

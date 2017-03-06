@@ -9,7 +9,10 @@ const Graphic = require('../graphics/graphic-module'),
 
 let response = require('./index-get-functions').indexResponse;
 
-/** All the callback functions of index POST routes */
+/**
+ *
+ * @module index-post-functions
+ */
 (function () {
     const addDataFilePostFunction = (req, res) => {
         response(req, res, 'pages/misc/error', 'Not Implemented', {
@@ -98,10 +101,7 @@ let response = require('./index-get-functions').indexResponse;
 
     const saveResultFunction = (req, res) => res.send({result: req.body.result});
 
-    /**
-     *
-     * @module index-post-functions
-     */
+
     module.exports = {
         /** Handles add data form */
         addDataPostFunction: addDataPostFunction,

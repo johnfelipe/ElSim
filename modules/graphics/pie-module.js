@@ -2,7 +2,10 @@
 let pieOptions = require('./options/pie-options');
 const has = Object.prototype.hasOwnProperty;
 
-/** To handle pie charts */
+/**
+ *
+ * @module pie-module
+ */
 (function () {
     const fillOptions = (result) => {
         let options = pieOptions,
@@ -23,10 +26,7 @@ const has = Object.prototype.hasOwnProperty;
         return options;
     };
 
-    /**
-     *
-     * @module pie-module
-     */
+
     module.exports = {
         /** Fills options to pie chart */
         fillOptions: fillOptions

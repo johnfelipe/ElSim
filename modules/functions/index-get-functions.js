@@ -6,7 +6,11 @@ const Result = require('../../models/result'),
     codigos = require('./misc/codigos'),
     parties = require('./misc/parties');
 
-/** All the callback functions of index GET routes */
+
+/**
+ *
+ * @module index-get-functions
+ */
 (function () {
     const indexResponse = (req, res, page, title, other) => {
         let options = {
@@ -124,10 +128,6 @@ const Result = require('../../models/result'),
         });
     };
 
-    /**
-     *
-     * @module index-get-functions
-     */
     module.exports = {
 
         indexResponse: indexResponse,

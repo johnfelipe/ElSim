@@ -12,7 +12,10 @@ const highcharts = require('node-highcharts'),
     Moment = require('moment'),
     Util = require('../util-module');
 
-/** To handle charts */
+/**
+ *
+ * @module graphic-module
+ */
 (function () {
     const rendChart = (options, callback) => {
         highcharts.render(options, (err, data) => {
@@ -167,10 +170,7 @@ const highcharts = require('node-highcharts'),
         Result.find({eleccion: ellection}, findCallback);
     };
 
-    /**
-     *
-     * @module graphic-module
-     */
+
     module.exports = {
         rendChart: rendChart,
         chooseColor: chooseColor,

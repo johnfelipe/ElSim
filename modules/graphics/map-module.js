@@ -16,7 +16,10 @@ const provincias = [
     'es-bi', 'es-za', 'es-z', 'es-ce', 'es-ml'
 ];
 
-/** To handle map charts */
+/**
+ *
+ * @module map-module
+ */
 (function () {
     const calculateCode = (cod_provincia) => {
         return provincias[cod_provincia];
@@ -171,10 +174,7 @@ const provincias = [
         return District.compute(votes, names, dhondtConfig, false);
     };
 
-    /**
-     *
-     * @module map-module
-     */
+
     module.exports = {
         calculateGlobal: calculateGlobal,
         calculateGlobalWholeCountry: calculateGlobalWholeCountry,

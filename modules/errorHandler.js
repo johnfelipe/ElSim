@@ -1,6 +1,10 @@
 /* jshint esversion: 6 */
 'use strict';
 
+/**
+ *
+ * @module errorHandler
+ */
 (function () {
 
     const catchNotFound = (req, res, next) => {
@@ -27,10 +31,7 @@
         });
     };
 
-    /**
-     *
-     * @module errorHandler
-     */
+
     module.exports = {
         /** Catch 404 and forward to error handler */
         catchNotFound: catchNotFound,

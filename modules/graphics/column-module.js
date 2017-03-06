@@ -4,7 +4,10 @@ const Icons = require('./misc/icons'),
 
 let columnOptions = require('./options/column-options');
 
-/** To handle bar charts */
+/**
+ *
+ * @module column-module
+ */
 (function () {
     const fillOptions = (result) => {
         let options = columnOptions, categories = [], mandates = [];
@@ -26,10 +29,7 @@ let columnOptions = require('./options/column-options');
         return options;
     };
 
-    /**
-     *
-     * @module column-module
-     */
+
     module.exports = {
         /** Fills options to a column chart */
         fillOptions: fillOptions

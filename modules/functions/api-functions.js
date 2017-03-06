@@ -8,7 +8,10 @@ const User = require('../../models/user'),
     Util = require('../util-module'),
     Question = require('../../models/question');
 
-/** All the callback functions of Api routes */
+/**
+ *
+ * @module api-functions
+ */
 (function () {
     const setup = (req, res) => {
         const initialize = () => {
@@ -169,10 +172,7 @@ const User = require('../../models/user'),
         (err, data) => apiResponse(req, res, null, 'great', null)
     );
 
-    /**
-     *
-     * @module api-functions
-     */
+
     module.exports = {
         /** Generic API response */
         apiResponse: apiResponse,

@@ -4,7 +4,10 @@ const fs = require('fs'),
     csv = require('fast-csv'),
     Result = require('../models/result');
 
-/** Useful module to some utilities */
+/**
+ *
+ * @module util-module
+ */
 (function () {
 
     const checkError = (err) => {
@@ -125,10 +128,7 @@ const fs = require('fs'),
         Promise.all(promises).then(() => done());
     };
 
-    /**
-     *
-     * @module util-module
-     */
+
     module.exports = {
         groupByKey: groupByKey,
         sortByRest: sortByRest,

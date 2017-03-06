@@ -5,6 +5,10 @@ const User = require('../../models/user'),
     Result = require('../../models/result'),
     Mailer = require('../../modules/mailer');
 
+/**
+ *
+ * @module user-functions
+ */
 (function () {
     const profile = (req, res) => {
         let options = {
@@ -90,10 +94,6 @@ const User = require('../../models/user'),
         Subscriber.find({}, findDone);
     };
 
-    /**
-     *
-     * @module user-functions
-     */
     module.exports = {
         profile: profile,
         addSubscriber: addSubscriber,

@@ -7,7 +7,11 @@ try {
     console.log('credentials.js not found, using jesusgonzaleznovez@gmail.com as user');
     credentials = {user: 'jesusgonzaleznovez@gmail.com'};
 }
-/** All the callback functions of api routes */
+
+/**
+ *
+ * @module admin-functions
+ */
 (function () {
     const adminSummaryFunction = (req, res) => {
         const loadDone = (logs, results, users) => res.render('pages/auth/admin', {
@@ -32,10 +36,6 @@ try {
         }
     };
 
-    /**
-     *
-     * @module admin-functions
-     */
     module.exports = {
         /** Shows summary of system */
         adminSummaryFunction: adminSummaryFunction
