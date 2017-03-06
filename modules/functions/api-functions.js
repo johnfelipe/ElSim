@@ -32,9 +32,13 @@ const User = require('../../models/user'),
         };
     };
 
-    const findOneLog = (req, res) => resError(req, res, 'not yet implemented');
+    const findOneLog = (req, res) => Log.findOne({_id: req.param('id')},
+        (err, data) => apiResponse(req, res, err, 'Result', data)
+    );
 
-    const findOneUser = (req, res) => resError(req, res, 'not yet implemented');
+    const findOneUser = (req, res) => User.findOne({_id: req.param('id')},
+        (err, data) => apiResponse(req, res, err, 'Result', data)
+    );
 
     const findAllUsers = (req, res) => User.find({},
         (err, data) => apiResponse(req, res, err, 'All users', data)
@@ -54,7 +58,9 @@ const User = require('../../models/user'),
         }
     };
 
-    const deleteOneUser = (req, res) => resError(req, res, 'not yet implemented');
+    const deleteOneUser = (req, res) => User.findByIdAndRemove({_id: req.param('id')},
+        (err, data) => apiResponse(req, res, null, 'great', null)
+    );
 
     const updateOneUser = (req, res) => resError(req, res, 'not yet implemented');
 
@@ -76,16 +82,16 @@ const User = require('../../models/user'),
         resError(req, res, 'not yet implemented');
     };
 
-    const deleteOneResultado = (req, res) => {
-        resError(req, res, 'not yet implemented');
-    };
+    const deleteOneResultado = (req, res) => Result.findByIdAndRemove({_id: req.param('id')},
+        (err, data) => apiResponse(req, res, null, 'great', null)
+    );
 
-    const deleteAllResultados = (req, res) => {
-        resError(req, res, 'not yet implemented');
-    };
+    const deleteAllResultados = (req, res) => Result.find({}).remove(
+        () => apiResponse(req, res, null, 'great', null)
+    );
 
-    const findOneResultado = (req, res) => Util.getResultadoById(req.param('id'),
-        (data) => apiResponse(req, res, false, 'Result', data)
+    const findOneResultado = (req, res) => Result.findOne({_id: req.param('id')},
+        (err, data) => apiResponse(req, res, err, 'Result', data)
     );
 
     const loadCsv = (req, res) => Util.loadCsv(() =>
@@ -96,18 +102,17 @@ const User = require('../../models/user'),
         (err, data) => apiResponse(req, res, err, 'All logs', data)
     );
 
-    const deleteAllLogs = (req, res) => {
-        resError(req, res, null);
-    };
+    const deleteAllLogs = (req, res) => Log.find({}).remove(
+        () => apiResponse(req, res, null, 'great', null)
+    );
 
-    const apiResponse = (req, res, err, message, data) => {
-        res.send({
-            success: !err,
-            message: (err) ? null : message,
-            err: (err) ? err : null,
-            data: (err) ? null : data
-        });
-    };
+    const apiResponse = (req, res, err, message, data) => res.send({
+        success: !err,
+        message: (err) ? null : message,
+        err: (err) ? err : null,
+        data: (err) ? null : data
+    });
+
 
     const hardReset = (req, res) => {
         let promises = [];
@@ -126,10 +131,11 @@ const User = require('../../models/user'),
             });
         };
 
-        promises.push(User.remove({}, done));
-        promises.push(Log.remove({}, done));
-        promises.push(Result.remove({}, done));
-        promises.push(Subscriber.remove({}, done));
+        promises.push(User.find({}).remove(done));
+        promises.push(Log.find({}).remove(done));
+        promises.push(Result.find({}).remove(done));
+        promises.push(Subscriber.find({}).remove(done));
+        promises.push(Question.find({}).remove(done));
 
         Promise.all(promises).then(endPromises);
     };
@@ -140,6 +146,7 @@ const User = require('../../models/user'),
             correct: req.body.correct,
             answers: JSON.parse(req.body.answers)
         });
+
         q.save((err) => {
             resError(req, res, err || true);
         });
@@ -149,20 +156,18 @@ const User = require('../../models/user'),
         resError(req, res, 'not yet implemented');
     };
 
-    const getAllQuestions = (req, res) => {
-        Question.find({}, (err, questions) => {
-                if (err) {
-                    resError(req, res, err);
-                } else {
-                    apiResponse(req, res, null, questions.length + ' questions loaded', questions);
-                }
+    const getAllQuestions = (req, res) => Question.find({}, (err, questions) => {
+            if (err) {
+                resError(req, res, err);
+            } else {
+                apiResponse(req, res, null, questions.length + ' questions loaded', questions);
             }
-        );
-    };
+        }
+    );
 
-    const deleteOneQuestion = (req, res) => {
-        Question.findByIdAndRemove({_id: req.param('id')},(err,data) => apiResponse(req, res, null, 'great', null));
-    };
+    const deleteOneQuestion = (req, res) => Question.findByIdAndRemove({_id: req.param('id')},
+        (err, data) => apiResponse(req, res, null, 'great', null)
+    );
 
     module.exports = {
         /** Generic API response */

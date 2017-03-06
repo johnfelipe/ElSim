@@ -56,8 +56,7 @@ const User = require('../../models/user'),
             options: {}
         });
 
-        s.save(
-            (err) => res.render('pages/misc/help', {
+        s.save((err) => res.render('pages/misc/help', {
                 title: 'Help',
                 user: user,
                 err: err
@@ -65,31 +64,30 @@ const User = require('../../models/user'),
         );
     };
 
-    const sendNews = (req, res) =>{
-        Subscriber.find({}, findDone);
-        function findDone(err, subscribers) {
-            checkError(err);
-            let mails = [];
-            for (let s of subscribers) {
-                mails.push(s.email);
-            }
-            Mailer.sendMail(mails, 'TEST', mailSent);
-        }
+    const sendNews = (req, res) => {
+        const doneLoad = (logs, results, users) => res.render('pages/auth/admin', {
+            user: req.user,
+            title: 'Administration',
+            logs: logs,
+            results: results,
+            users: users
+        });
 
         const mailSent = (err, result) => {
             checkError(err);
             loadAll(doneLoad);
         };
 
-        const doneLoad = (logs, results, users) => {
-            res.render('pages/auth/admin', {
-                user: req.user,
-                title: 'Administration',
-                logs: logs,
-                results: results,
-                users: users
-            });
+        const findDone = (err, subscribers) => {
+            checkError(err);
+            let mails = [];
+            for (let s of subscribers) {
+                mails.push(s.email);
+            }
+            Mailer.sendMail(mails, 'TEST', mailSent);
         };
+
+        Subscriber.find({}, findDone);
     };
 
     module.exports = {

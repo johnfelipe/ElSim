@@ -6,17 +6,7 @@ const fs = require('fs'),
 
 /** Useful module to some utilities */
 (function () {
-    const prettyPrint = (message) => {
-        const options = {
-            depth: 2,
-            colors: true
-        };
-        try {
-            console.dir(message, options);
-        } catch (err) {
-            throw err;
-        }
-    };
+
     const checkError = (err) => {
         if(err) {
             throw err;
@@ -135,16 +125,7 @@ const fs = require('fs'),
         Promise.all(promises).then(() => done());
     };
 
-    const getResultadoById = (id, done) => {
-        Result.findOne({_id: id}, (err, data) => {
-            checkError(err);
-            done(data);
-        });
-    };
-
-
     module.exports = {
-        prettyPrint: prettyPrint,
         groupByKey: groupByKey,
         sortByRest: sortByRest,
         ellectionIsInArray: ellectionIsInArray,
@@ -154,7 +135,6 @@ const fs = require('fs'),
         readCsv: readCsv,
         calculateEllections: calculateEllections,
         loadCsv: loadCsv,
-        getResultadoById: getResultadoById,
         checkError: checkError
     };
 })();
