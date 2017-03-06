@@ -15,15 +15,24 @@ let s = new Schema({
     resultados: {type: [], required: false}
 });
 
-/** Generates the hash for bcrypt */
-s.methods.generateHash =  (password) => {
+/**
+ * Generates the hash for bcrypt
+ * @memberOf User
+ */
+s.methods.generateHash = (password) => {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-/** Checks password */
+/**
+ * Checks password
+ * @memberOf User
+ */
 s.methods.validPassword = (password) => {
     return bcrypt.compareSync(password, this.password);
 };
 
-module.exports = mongoose.model('User', s);
+/** @class User */
+let User = mongoose.model('User', s);
+
+module.exports = User;
 

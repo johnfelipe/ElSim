@@ -75,11 +75,24 @@ const config = require('../config'),
         return bCrypt.compareSync(password, user.password);
     };
 
+    /**
+     * Module to handle authentication
+     * @module auth
+     */
     module.exports = {
+        /** Checks if user is authenticated WEB */
         isAuthenticated: isAuthenticated,
+
+        /** Checks if user is authenticated API */
         isApiAuthenticated: isApiAuthenticated,
+
+        /** Checks if user is authenticated */
         authenticate: authenticate,
+
+        /** Checks if password is valid */
         isValidPassword: isValidPassword,
+
+        /** Checks if user is authenticated PROFILE */
         isProfileAuthenticated: isProfileAuthenticated
     };
 })();

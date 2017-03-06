@@ -148,6 +148,10 @@ const Result = require('../models/result'),
         return numberOfMandates + 2;
     };
 
+    /**
+     *
+     * @module district-module
+     */
     module.exports = {
         compute: compute,
 

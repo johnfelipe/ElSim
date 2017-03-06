@@ -125,6 +125,10 @@ const fs = require('fs'),
         Promise.all(promises).then(() => done());
     };
 
+    /**
+     *
+     * @module util-module
+     */
     module.exports = {
         groupByKey: groupByKey,
         sortByRest: sortByRest,

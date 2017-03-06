@@ -90,6 +90,10 @@ const User = require('../../models/user'),
         Subscriber.find({}, findDone);
     };
 
+    /**
+     *
+     * @module user-functions
+     */
     module.exports = {
         profile: profile,
         addSubscriber: addSubscriber,

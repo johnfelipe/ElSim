@@ -1,7 +1,4 @@
 /* jshint esversion: 6 */
-/**
- * @module functions/parties
- */
 module.exports = [{
     name: 'PP',
     img: '/images/parties/pp.png',

@@ -32,6 +32,10 @@ const Question = require('../models/question');
         done();
     };
 
+    /**
+     *
+     * @module quiz-game
+     */
     module.exports = {
         checkQuestion: checkQuestion,
         getAllQuestions: getAllQuestions,

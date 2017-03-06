@@ -23,7 +23,12 @@ const has = Object.prototype.hasOwnProperty;
         return options;
     };
 
+    /**
+     *
+     * @module pie-module
+     */
     module.exports = {
+        /** Fills options to pie chart */
         fillOptions: fillOptions
     };
 })();

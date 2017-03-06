@@ -16,4 +16,7 @@ let s = new Schema({
     }
 });
 
-module.exports = mongoose.model('Subscriber',s);
+let Subscriber = mongoose.model('Subscriber', s);
+
+/** @class Subscriber */
+module.exports = Subscriber;

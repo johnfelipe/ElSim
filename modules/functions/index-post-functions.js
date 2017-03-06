@@ -98,7 +98,10 @@ let response = require('./index-get-functions').indexResponse;
 
     const saveResultFunction = (req, res) => res.send({result: req.body.result});
 
-
+    /**
+     *
+     * @module index-post-functions
+     */
     module.exports = {
         /** Handles add data form */
         addDataPostFunction: addDataPostFunction,

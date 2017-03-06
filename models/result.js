@@ -27,4 +27,8 @@ resultSchema.index({
         unique: true
     }
 );
-module.exports = mongoose.model('Result',resultSchema);
+
+let Result = mongoose.model('Result',resultSchema);
+
+/** @class Result */
+module.exports = Result;

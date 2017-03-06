@@ -169,6 +169,10 @@ const User = require('../../models/user'),
         (err, data) => apiResponse(req, res, null, 'great', null)
     );
 
+    /**
+     *
+     * @module api-functions
+     */
     module.exports = {
         /** Generic API response */
         apiResponse: apiResponse,
@@ -230,12 +234,16 @@ const User = require('../../models/user'),
         /** Hard-resets the system, be careful */
         hardReset: hardReset,
 
+        /** Check if a answer is correct */
         checkQuestion: checkQuestion,
 
+        /** Get all questions */
         getAllQuestions: getAllQuestions,
 
+        /** Saves one question */
         saveOneQuestion: saveOneQuestion,
 
+        /** Deletes one question */
         deleteOneQuestion: deleteOneQuestion
     };
 })();

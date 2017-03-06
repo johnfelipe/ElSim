@@ -1,4 +1,5 @@
 /* jshint esversion: 6 */
+
 module.exports = {
     chart: {
         type: 'pie',

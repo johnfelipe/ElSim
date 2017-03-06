@@ -32,6 +32,10 @@ try {
         }
     };
 
+    /**
+     *
+     * @module admin-functions
+     */
     module.exports = {
         /** Shows summary of system */
         adminSummaryFunction: adminSummaryFunction

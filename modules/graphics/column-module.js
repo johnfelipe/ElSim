@@ -26,8 +26,12 @@ let columnOptions = require('./options/column-options');
         return options;
     };
 
+    /**
+     *
+     * @module column-module
+     */
     module.exports = {
-        /** Do something */
+        /** Fills options to a column chart */
         fillOptions: fillOptions
     };
 })();

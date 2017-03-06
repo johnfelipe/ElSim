@@ -8,7 +8,10 @@ const passReq = {
     passReqToCallback: true
 };
 
-/** Use to handle web logins */
+/**
+ * Use to handle web logins
+ * @module login
+ */
 module.exports = (passport) => {
 
     const strategyCallback = (req, username, password, done) => {

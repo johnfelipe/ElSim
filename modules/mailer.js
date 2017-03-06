@@ -33,7 +33,12 @@ const transportConfig = {
         transporter.sendMail(mailOptions, done);
     };
 
+    /**
+     *
+     * @module mailer
+     */
     module.exports = {
+        /** Sends an email to/from you want, with the text given */
         sendMail: sendMail
     };
 })();

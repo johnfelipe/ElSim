@@ -4,8 +4,11 @@ const login = require('./login'),
     signup = require('./signup'),
     User = require('../models/user');
 
-/** Serialize/Deserialize functions */
-module.exports = function (passport) {
+/**
+ * Serialize/Deserialize functions
+ * @module init
+ */
+module.exports = (passport) => {
 
     /** Serialize an user */
     const serializeUser = (user, done) => done(null, user._id);
@@ -14,10 +17,8 @@ module.exports = function (passport) {
     const deserializeUser = (id, done) => User.findById(id,
         (err, user) => done(err, user)
     );
-
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
-
     login(passport);
     signup(passport);
 };

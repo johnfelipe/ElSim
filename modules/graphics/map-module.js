@@ -171,6 +171,10 @@ const provincias = [
         return District.compute(votes, names, dhondtConfig, false);
     };
 
+    /**
+     *
+     * @module map-module
+     */
     module.exports = {
         calculateGlobal: calculateGlobal,
         calculateGlobalWholeCountry: calculateGlobalWholeCountry,

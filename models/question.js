@@ -20,4 +20,7 @@ let s = new Schema({
     }
 });
 
-module.exports = mongoose.model('Question', s);
+let Question = mongoose.model('Question', s);
+
+/** @class Question */
+module.exports = Question;

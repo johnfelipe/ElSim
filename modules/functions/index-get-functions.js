@@ -124,6 +124,10 @@ const Result = require('../../models/result'),
         });
     };
 
+    /**
+     *
+     * @module index-get-functions
+     */
     module.exports = {
 
         indexResponse: indexResponse,

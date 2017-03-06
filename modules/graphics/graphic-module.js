@@ -167,6 +167,10 @@ const highcharts = require('node-highcharts'),
         Result.find({eleccion: ellection}, findCallback);
     };
 
+    /**
+     *
+     * @module graphic-module
+     */
     module.exports = {
         rendChart: rendChart,
         chooseColor: chooseColor,

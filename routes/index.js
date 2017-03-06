@@ -8,10 +8,7 @@ const express = require('express'),
     Admin = require('../modules/functions/admin-functions'),
     Auth = require('../passport/auth');
 
-/**
- * Handle all web routes
- * @module routes/index
- */
+/** Handle all web routes */
 module.exports = (passport) => {
 
     /** GET routes */

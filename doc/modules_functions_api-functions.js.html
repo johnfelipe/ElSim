@@ -33,7 +33,8 @@ const User = require('../../models/user'),
     Log = require('../../models/log'),
     Result = require('../../models/result'),
     Subscriber = require('../../models/subscriber'),
-    Util = require('../util-module');
+    Util = require('../util-module'),
+    Question = require('../../models/question');
 
 /** All the callback functions of Api routes */
 (function () {
@@ -59,15 +60,19 @@ const User = require('../../models/user'),
         };
     };
 
-    const findOneLog = (req, res) => resError(req, res, null);
+    const findOneLog = (req, res) => Log.findOne({_id: req.param('id')},
+        (err, data) => apiResponse(req, res, err, 'Result', data)
+    );
 
-    const findOneUser = (req, res) => resError(req, res, null);
+    const findOneUser = (req, res) => User.findOne({_id: req.param('id')},
+        (err, data) => apiResponse(req, res, err, 'Result', data)
+    );
 
     const findAllUsers = (req, res) => User.find({},
         (err, data) => apiResponse(req, res, err, 'All users', data)
     );
 
-    const saveOneUser = (req, res) => resError(req, res, null);
+    const saveOneUser = (req, res) => resError(req, res, 'not yet implemented');
 
     const resError = (req, res, err) => {
         if (err) {
@@ -81,9 +86,11 @@ const User = require('../../models/user'),
         }
     };
 
-    const deleteOneUser = (req, res) => resError(req, res, null);
+    const deleteOneUser = (req, res) => User.findByIdAndRemove({_id: req.param('id')},
+        (err, data) => apiResponse(req, res, null, 'great', null)
+    );
 
-    const updateOneUser = (req, res) => resError(req, res, null);
+    const updateOneUser = (req, res) => resError(req, res, 'not yet implemented');
 
     const apiWelcome = (req, res) => apiResponse(req, res, false, {
         message: 'Hello from the API!',
@@ -96,23 +103,23 @@ const User = require('../../models/user'),
     );
 
     const saveOneResultado = (req, res) => {
-        resError(req, res, null);
+        resError(req, res, 'not yet implemented');
     };
 
     const updateOneResultado = (req, res) => {
-        resError(req, res, null);
+        resError(req, res, 'not yet implemented');
     };
 
-    const deleteOneResultado = (req, res) => {
-        resError(req, res, null);
-    };
+    const deleteOneResultado = (req, res) => Result.findByIdAndRemove({_id: req.param('id')},
+        (err, data) => apiResponse(req, res, null, 'great', null)
+    );
 
-    const deleteAllResultados = (req, res) => {
-        resError(req, res, null);
-    };
+    const deleteAllResultados = (req, res) => Result.find({}).remove(
+        () => apiResponse(req, res, null, 'great', null)
+    );
 
-    const findOneResultado = (req, res) => Util.getResultadoById(req.param('id'),
-        (data) => apiResponse(req, res, false, 'Result', data)
+    const findOneResultado = (req, res) => Result.findOne({_id: req.param('id')},
+        (err, data) => apiResponse(req, res, err, 'Result', data)
     );
 
     const loadCsv = (req, res) => Util.loadCsv(() =>
@@ -123,19 +130,17 @@ const User = require('../../models/user'),
         (err, data) => apiResponse(req, res, err, 'All logs', data)
     );
 
-    const deleteAllLogs = (req, res) => {
-        resError(req, res, null);
-    };
+    const deleteAllLogs = (req, res) => Log.find({}).remove(
+        () => apiResponse(req, res, null, 'great', null)
+    );
 
-    const apiResponse = (req, res, err, message, data) => {
-        res.send({
-            result: (err) ? 'fail' : 'successful',
-            success: !err,
-            message: (err) ? null : message,
-            err: (err) ? err : null,
-            data: (err) ? null : data
-        });
-    };
+    const apiResponse = (req, res, err, message, data) => res.send({
+        success: !err,
+        message: (err) ? null : message,
+        err: (err) ? err : null,
+        data: (err) ? null : data
+    });
+
 
     const hardReset = (req, res) => {
         let promises = [];
@@ -154,14 +159,48 @@ const User = require('../../models/user'),
             });
         };
 
-        promises.push(User.remove({}, done));
-        promises.push(Log.remove({}, done));
-        promises.push(Result.remove({}, done));
-        promises.push(Subscriber.remove({}, done));
+        promises.push(User.find({}).remove(done));
+        promises.push(Log.find({}).remove(done));
+        promises.push(Result.find({}).remove(done));
+        promises.push(Subscriber.find({}).remove(done));
+        promises.push(Question.find({}).remove(done));
 
         Promise.all(promises).then(endPromises);
     };
 
+    const saveOneQuestion = (req, res) => {
+        let q = new Question({
+            title: req.body.title,
+            correct: req.body.correct,
+            answers: JSON.parse(req.body.answers)
+        });
+
+        q.save((err) => {
+            resError(req, res, err || true);
+        });
+    };
+
+    const checkQuestion = (req, res) => {
+        resError(req, res, 'not yet implemented');
+    };
+
+    const getAllQuestions = (req, res) => Question.find({}, (err, questions) => {
+            if (err) {
+                resError(req, res, err);
+            } else {
+                apiResponse(req, res, null, questions.length + ' questions loaded', questions);
+            }
+        }
+    );
+
+    const deleteOneQuestion = (req, res) => Question.findByIdAndRemove({_id: req.param('id')},
+        (err, data) => apiResponse(req, res, null, 'great', null)
+    );
+
+    /**
+     *
+     * @module api-functions
+     */
     module.exports = {
         /** Generic API response */
         apiResponse: apiResponse,
@@ -221,7 +260,19 @@ const User = require('../../models/user'),
         deleteAllLogs: deleteAllLogs,
 
         /** Hard-resets the system, be careful */
-        hardReset: hardReset
+        hardReset: hardReset,
+
+        /** Check if a answer is correct */
+        checkQuestion: checkQuestion,
+
+        /** Get all questions */
+        getAllQuestions: getAllQuestions,
+
+        /** Saves one question */
+        saveOneQuestion: saveOneQuestion,
+
+        /** Deletes one question */
+        deleteOneQuestion: deleteOneQuestion
     };
 })();
 
@@ -235,13 +286,13 @@ const User = require('../../models/user'),
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-routes_index.html">routes/index</a></li></ul><h3>Global</h3><ul><li><a href="global.html#express">express</a></li><li><a href="global.html#mongoose">mongoose</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-admin-functions.html">admin-functions</a></li><li><a href="module-api-functions.html">api-functions</a></li><li><a href="module-auth.html">auth</a></li><li><a href="module-column-module.html">column-module</a></li><li><a href="module-district-module.html">district-module</a></li><li><a href="module-errorHandler.html">errorHandler</a></li><li><a href="module-graphic-module.html">graphic-module</a></li><li><a href="module-Gruntfile.html">Gruntfile</a></li><li><a href="module-index-get-functions.html">index-get-functions</a></li><li><a href="module-index-post-functions.html">index-post-functions</a></li><li><a href="module-init.html">init</a></li><li><a href="module-login.html">login</a></li><li><a href="module-mailer.html">mailer</a></li><li><a href="module-map-module.html">map-module</a></li><li><a href="module-pie-module.html">pie-module</a></li><li><a href="module-quiz-game.html">quiz-game</a></li><li><a href="module-signup.html">signup</a></li><li><a href="module-user-functions.html">user-functions</a></li><li><a href="module-util-module.html">util-module</a></li></ul><h3>Classes</h3><ul><li><a href="Log.html">Log</a></li><li><a href="Question.html">Question</a></li><li><a href="Result.html">Result</a></li><li><a href="Subscriber.html">Subscriber</a></li><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#express">express</a></li><li><a href="global.html#mongoose">mongoose</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun Mar 05 2017 17:15:39 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Mar 06 2017 11:31:07 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>
