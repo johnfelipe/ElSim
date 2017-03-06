@@ -19,7 +19,7 @@ module.exports = (passport) => {
     router.get('/resources', IGF.resourcesGetFunction);
     router.get('/add-data',  IGF.addDataGetFunction);
     router.get('/stored-data', IGF.storedDataFunction);
-    router.get('/quiz', IGF.learnGetFunction);
+    router.get('/quiz', IGF.quizGetFunction);
     router.get('/minigame', IGF.learnGetFunction);
     router.get('/login', IGF.loginGetFunction);
     router.get('/signup', IGF.signUpGetFunction);

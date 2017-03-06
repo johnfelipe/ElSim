@@ -1,11 +1,11 @@
 /* jshint esversion: 6 */
 'use strict';
 const Result = require('../../models/result'),
+    Question = require('../../models/question'),
     Util = require('../util-module'),
     Moment = require('moment'),
     codigos = require('./misc/codigos'),
     parties = require('./misc/parties');
-
 
 /**
  *
@@ -128,6 +128,15 @@ const Result = require('../../models/result'),
         });
     };
 
+    const quizGetFunction = (req, res) => {
+        Question.find({}, (err,questions) => {
+            let max = questions.length;
+            let index = parseInt(Math.random() * max);
+            indexResponse(req, res, 'pages/more/quiz', 'Quiz', { question: questions[index]});
+        });
+
+    };
+
     module.exports = {
 
         indexResponse: indexResponse,
@@ -156,7 +165,9 @@ const Result = require('../../models/result'),
 
         deleteDataGetFunction: deleteDataGetFunction,
 
-        partiesFunction: partiesFunction
+        partiesFunction: partiesFunction,
+
+        quizGetFunction: quizGetFunction
     };
 })();
 

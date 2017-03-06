@@ -13,7 +13,7 @@
             <div class="card myCard">
                 <div class="card-block">
                     <h4 class="card-title">
-                        Country chart
+                        <span class="fa fa-pie-chart"></span> Country chart
                     </h4>
                     <% include ../../forms/country-chart.ejs %>
                 </div>
@@ -26,11 +26,19 @@
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">
-                        Map configuration
+                        <span class="fa fa-gears"></span> Setup
                     </h4>
                     <div class="card-text">
                         <p>
-
+                            Using <b><span id="span1"></span>%</b> as minimum percentage, means that parties without a
+                            minimum number of votes equal to that percentage of the total number of votes.
+                        </p>
+                        <p>
+                            If you <b>aggregate communities</b> each community counts like a district.
+                        </p>
+                        <p>
+                            If you <b>aggregate whole country</b>, it counts like a single district. Also, it disables
+                            aggregation if checked.
                         </p>
                     </div>
                 </div>
@@ -41,6 +49,10 @@
     </div>
     <% } %>
 </div>
+<script>
+    $('#span1').text($('#percentage').val());
+
+</script>
 <% include ../../partials/footer.ejs %>
 </body>
 </html>

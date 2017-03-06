@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<% include ../../partials/head.ejs %>
+<% include ../../partials/menu.ejs %>
+
+<body>
+<div class="container">
+    <div class="card-deck-wrapper">
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-block  ">
+                    <h4 class="card-title">
+                        <span class="fa fa-info-circle"></span> Welcome to the Quiz
+                    </h4>
+                    <p class="card-text">
+                        Hello friend, the right card give you some questions, you must to check only one answer and
+                        check if it is the correct answer.
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-block  ">
+                    <h4 class="card-title">
+                        <span class="fa fa-question-circle-o"></span> <%= question.title %>
+                    </h4>
+                    <div class="card-text">
+                        <form method="POST" id="quiz-form" action="/quiz">
+                            <% for(let a of question.answers) { %>
+                            <div class="form-group">
+                                <input type='checkbox' name="answer" id="answer" class="custom-checkbox"/> <%= a %>
+
+                            </div>
+                            <% } %>
+                            <div class="text-xs-right">
+                                <button type="submit" class="btn pastel-btn" >
+                                    <span class="fa fa-send-o"></span> Send
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../../partials/footer.ejs %>
+</body>
+</html>

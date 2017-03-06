@@ -31,7 +31,15 @@
                     </h4>
                     <div class="card-text">
                         <p>
-                            Here will live setup params!
+                            You are going to calculate the result of distributing <b><span id="span1"></span> seats</b>
+                            between the presented parties.
+                        </p>
+                        <p>
+                            Using <b><span id="span2"></span>%</b> as minimum percentage, means that parties without a
+                            minimum number of votes equal to that percentage of the total number of votes.
+                        </p>
+                        <p>
+                            The chart will be a <b><span id="span3"></span></b> kind chart.
                         </p>
                     </div>
                 </div>
@@ -41,7 +49,11 @@
     </div>
     <% } %>
 </div>
-
+<script>
+    $('#span1').text($('#mandates').val());
+    $('#span2').text($('#percentage').val());
+    $('#span3').text($('#mode').val());
+</script>
 <% include ../../partials/footer.ejs %>
 </body>
 </html>
