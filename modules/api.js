@@ -1,7 +1,7 @@
 'use strict';
 /* jshint esversion: 6 */
 
-const Util = require('../utilities/util-module'),
+const Util = require('../utilities/util'),
     Logs = require('../services/logs'),
     Results = require('../services/results'),
     Users = require('../services/users'),

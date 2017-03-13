@@ -1,12 +1,11 @@
 /* jshint esversion: 6 */
 'use strict';
-const Result = require('../models/result'),
-    Question = require('../models/question'),
-    Util = require('../utilities/util-module'),
+const Util = require('../utilities/util'),
     Moment = require('moment'),
-    codigos = require('./.././codigos'),
-    parties = require('./.././parties');
-
+    codigos = require('../misc/codigos'),
+    parties = require('../misc/parties'),
+    Results = require('../services/results'),
+    Questions = require('../services/quiz');
 /**
  *
  * @module index-get-functions
@@ -49,11 +48,8 @@ const Result = require('../models/result'),
 
 
     const singleGraphicFormGetFunction = (req, res) => {
-        Result.find({}, (err, data) => {
-            data.sort((a, b) => {
-                return new Date(a.eleccion.fecha) - new Date(b.eleccion.fecha);
-            });
-
+        Results.find((err, data) => {
+            data.sort(Util.sortByDate);
             indexResponse(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
                 results: data,
                 moment: Moment,
@@ -64,9 +60,7 @@ const Result = require('../models/result'),
 
     const countryGraphicFormGetFunction = (req, res) => {
         Util.calculateEllections((data, ellections) => {
-            ellections.sort((a, b) => {
-                return new Date(a.fecha) - new Date(b.fecha);
-            });
+            ellections.sort(Util.sortByDate);
             indexResponse(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
                 results: data,
                 ellections: ellections,
@@ -84,21 +78,17 @@ const Result = require('../models/result'),
         req, res, 'pages/more/resources', 'Resources', false
     );
 
-
     const storedDataFunction = (req, res) => {
-        const haveResult = (err, data) => {
-            data.sort((a, b) => {
-                return new Date(a.eleccion.fecha) - new Date(b.eleccion.fecha);
-            });
+        Results.find((err, data) => {
+            data.sort(Util.sortByDate);
 
             indexResponse(req, res, 'pages/data/stored-data', 'Stored Data', {
                 data: data,
                 moment: Moment,
                 err: err
             });
-        };
+        });
 
-        Result.find({}, haveResult);
     };
 
     const addDataGetFunction = (req, res) => indexResponse(
@@ -110,10 +100,8 @@ const Result = require('../models/result'),
 
 
     const deleteDataGetFunction = (req, res) => {
-        Result.find({}, (err, data) => {
-            data.sort((a, b) => {
-                return new Date(a.eleccion.fecha) - new Date(b.eleccion.fecha);
-            });
+        Results.find((err, data) => {
+            data.sort(Util.sortByDate);
             indexResponse(req, res, 'pages/data/delete-data', 'Delete data', {
                 data: data,
                 moment: Moment,
@@ -129,10 +117,10 @@ const Result = require('../models/result'),
     };
 
     const quizGetFunction = (req, res) => {
-        Question.find({}, (err,questions) => {
+        Questions.find((err, questions) => {
             let max = questions.length;
             let index = parseInt(Math.random() * max);
-            indexResponse(req, res, 'pages/more/quiz', 'Quiz', { question: questions[index]});
+            indexResponse(req, res, 'pages/more/quiz', 'Quiz', {question: questions[index]});
         });
 
     };

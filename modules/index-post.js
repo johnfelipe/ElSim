@@ -1,11 +1,12 @@
 /* jshint esversion: 6 */
-const Graphic = require('../graphics/chart'),
+const Chart = require('../charts/chart'),
     Result = require('../models/result'),
-    Colors = require('../graphics/misc/colors'),
-    Icons = require('../graphics/misc/icons'),
-    Codigos = require('./.././codigos'),
-    District = require('district-module'),
-    checkError = require('../utilities/util-module').checkError;
+    Colors = require('../misc/colors'),
+    Icons = require('../misc/icons'),
+    Codigos = require('../misc/codigos'),
+    District = require('./district'),
+    checkError = require('../utilities/util').checkError,
+    Results = require('../services/results');
 
 let response = require('./index-get').indexResponse;
 
@@ -58,17 +59,14 @@ let response = require('./index-get').indexResponse;
             promises.push(Result.remove(options, checkError));
         }
 
-        const promisesFinish = () => Result.find({}, findCallback);
-
-        Promise.all(promises).then(promisesFinish);
-
-        const findCallback = (err, data) => response(
+        const promisesFinish = () => Results.find((err, data) => response(
             req, res, 'pages/data/delete-data', 'Delete data', {
                 err: err,
                 data: data
             }
-        );
+        ));
 
+        Promise.all(promises).then(promisesFinish);
     };
 
     const graphicFormPostFunction = (req, res) => {
@@ -78,7 +76,7 @@ let response = require('./index-get').indexResponse;
             resultSelected = req.body.resultSelected,
             user = req.user;
 
-        Graphic.calculateDistrict(mode, mandates, percentage, resultSelected, user,
+        Chart.calculateDistrict(mode, mandates, percentage, resultSelected, user,
             (options) => res.render('pages/simulator/single-chart', options)
         );
     };
@@ -89,14 +87,12 @@ let response = require('./index-get').indexResponse;
             user = req.user,
             body = req.body;
 
-        const calculatedCountry = (options) => {
+        Chart.calculateCountry(resultSelected, percentage, user, body, (options) => {
             options.colors = Colors;
             options.icons = Icons;
             options.user = user;
             res.render('pages/simulator/country-chart', options);
-        };
-
-        Graphic.calculateCountry(resultSelected, percentage, user, body, calculatedCountry);
+        });
     };
 
     const saveResultFunction = (req, res) => res.send({result: req.body.result});

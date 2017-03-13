@@ -1,9 +1,9 @@
 /* jshint esversion: 6 */
-const User = require('../models/user'),
-    Subscriber = require('../models/subscriber'),
-    Log = require('../models/log'),
-    Result = require('../models/result'),
-    Mailer = require('../utilities/mailer');
+const Mailer = require('../utilities/mailer'),
+    Users = require('../services/users'),
+    Subscribers = require('../services/subscribers'),
+    Logs = require('../services/logs'),
+    Results = require('../services/results');
 
 /**
  *
@@ -44,9 +44,9 @@ const User = require('../models/user'),
             results = [...data];
         };
 
-        promises.push(User.find({}, userCallback));
-        promises.push(Log.find({}, logCallback));
-        promises.push(Result.find({}, resultCallback));
+        promises.push(Users.find(userCallback));
+        promises.push(Logs.find(logCallback));
+        promises.push(Results.find(resultCallback));
 
         Promise.all(promises).then(() => done(logs, results, users));
     };
@@ -55,17 +55,18 @@ const User = require('../models/user'),
         let user = req.user,
             email = req.body.subscriber;
 
-        let s = new Subscriber({
+        let s = {
             email: email,
             options: {}
-        });
+        };
 
-        s.save((err) => res.render('pages/misc/help', {
+        Subscribers.saveOne(s, (err, data) => res.render('pages/misc/help', {
                 title: 'Help',
                 user: user,
                 err: err
             })
         );
+
     };
 
     const sendNews = (req, res) => {
@@ -78,20 +79,19 @@ const User = require('../models/user'),
         });
 
         const mailSent = (err, result) => {
+            console.log('Mail sent result:', result)
             checkError(err);
             loadAll(doneLoad);
         };
 
-        const findDone = (err, subscribers) => {
+        Subscribers.find((err, subscribers) => {
             checkError(err);
             let mails = [];
             for (let s of subscribers) {
                 mails.push(s.email);
             }
             Mailer.sendMail(mails, 'TEST', mailSent);
-        };
-
-        Subscriber.find({}, findDone);
+        });
     };
 
     module.exports = {

@@ -10,8 +10,8 @@ const foo = (done) => {
 
 const basicTest = () => it('Basic test', foo);
 
-/** Test Graphic */
-describe('Graphic', () => {
+/** Test Chart */
+describe('Chart', () => {
     describe('#Pie Chart', basicTest);
     describe('#Column Chart', basicTest);
 });
