@@ -5,12 +5,11 @@ const highcharts = require('node-highcharts'),
     BarChart = require('./column-chart'),
     PieChart = require('./pie-module'),
     CountryChart = require('./map-chart'),
-    User = require('../../models/user'),
-    Result = require('../../models/result'),
+    User = require('../models/user'),
+    Result = require('../models/result'),
     Icons = require('./../misc/icons'),
-    District = require('../district-module'),
-    Moment = require('moment'),
-    Util = require('../util-module');
+    District = require('../modules/district'),
+    Moment = require('moment');
 
 /**
  *
@@ -150,9 +149,9 @@ const highcharts = require('node-highcharts'),
 
             let global;
 
-            if(body.wholeCountry) {
+            if (body.wholeCountry) {
                 global = {
-                    agrupado: CountryChart.calculateGlobalWholeCountry(data,config,body).parties
+                    agrupado: CountryChart.calculateGlobalWholeCountry(data, config, body).parties
                 };
             } else {
                 global = CountryChart.calculateGlobal(data, config, body);
