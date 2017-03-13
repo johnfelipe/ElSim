@@ -1,8 +1,8 @@
 /* jshint esversion: 6 */
 'use strict';
 const app = require('./../app'),
-    User = require('./../models/user'),
-    Resultado = require('./../models/result'),
+    User = require('../models/user'),
+    Resultado = require('../models/result'),
     should = require('chai').should(),
     expect = require('chai').expect,
     superagent = require('superagent'),
