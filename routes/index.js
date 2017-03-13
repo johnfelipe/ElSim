@@ -2,10 +2,10 @@
 'use strict';
 const express = require('express'),
     router = express.Router(),
-    IGF = require('../modules/functions/index-get-functions'),
-    IPF = require('../modules/functions/index-post-functions'),
-    Api = require('../modules/functions/api-functions'),
-    Admin = require('../modules/functions/admin-functions');
+    IGF = require('../modules/index-get'),
+    IPF = require('../modules/index-post'),
+    Api = require('../modules/api'),
+    Admin = require('../modules/admin');
 
 /** Handle all web routes */
 module.exports = (passport) => {

@@ -24,7 +24,7 @@ let options = {
         text: 'District distribution'
     },
     subtitle: {
-        text: 'Check each district to show results'
+        text: 'Check each district to show Results'
     },
 
     legend: {

@@ -2,7 +2,7 @@
 'use strict';
 const express = require('express'),
     router = express.Router(),
-    UF = require('../modules/functions/user-functions'),
+    UF = require('../modules/user'),
     Auth = require('../passport/auth');
 
 /** Rutas de la interfaz web relativas a usuarios */

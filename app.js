@@ -13,7 +13,7 @@ let express = require('express'),
     flash = require('connect-flash'),
     expressSession = require('express-session'),
     initPassport = require('./passport/init'),
-    errorHandler = require('./modules/errorHandler');
+    errorHandler = require('./utilities/errorHandler');
 
 /** Common configuration for the server side. */
 app.set('views', path.join(__dirname, 'views'));
@@ -42,7 +42,7 @@ let routes = require('./routes/index')(passport),
     apiRoutes = require('./routes/api')();
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/Users', users);
 app.use('/api', apiRoutes);
 
 /** Catch 404 and forward to error handler */

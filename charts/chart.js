@@ -1,13 +1,13 @@
 /* jshint esversion: 6 */
 
 const highcharts = require('node-highcharts'),
-    Color = require('./misc/colors'),
-    BarChart = require('./column-module'),
+    Color = require('./../misc/colors'),
+    BarChart = require('./column-chart'),
     PieChart = require('./pie-module'),
-    CountryChart = require('./map-module'),
+    CountryChart = require('./map-chart'),
     User = require('../../models/user'),
     Result = require('../../models/result'),
-    Icons = require('./misc/icons'),
+    Icons = require('./../misc/icons'),
     District = require('../district-module'),
     Moment = require('moment'),
     Util = require('../util-module');

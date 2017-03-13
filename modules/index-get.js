@@ -1,11 +1,11 @@
 /* jshint esversion: 6 */
 'use strict';
-const Result = require('../../models/result'),
-    Question = require('../../models/question'),
-    Util = require('../util-module'),
+const Result = require('../models/result'),
+    Question = require('../models/question'),
+    Util = require('../utilities/util-module'),
     Moment = require('moment'),
-    codigos = require('./misc/codigos'),
-    parties = require('./misc/parties');
+    codigos = require('./.././codigos'),
+    parties = require('./.././parties');
 
 /**
  *

@@ -1,9 +1,9 @@
 /* jshint esversion: 6 */
-const User = require('../../models/user'),
-    Subscriber = require('../../models/subscriber'),
-    Log = require('../../models/log'),
-    Result = require('../../models/result'),
-    Mailer = require('../../modules/mailer');
+const User = require('../models/user'),
+    Subscriber = require('../models/subscriber'),
+    Log = require('../models/log'),
+    Result = require('../models/result'),
+    Mailer = require('../utilities/mailer');
 
 /**
  *

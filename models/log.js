@@ -16,7 +16,5 @@ let s = new Schema({
     }
 });
 
-let Log = mongoose.model('Log',s);
-
 /** @class Log */
-module.exports = Log;
+module.exports = mongoose.model('Log',s);

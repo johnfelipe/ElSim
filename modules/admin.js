@@ -1,8 +1,8 @@
 /* jshint esversion: 6 */
-const UF = require('./user-functions');
+const UF = require('./user');
 let credentials;
 try {
-    credentials = require('../../credentials');
+    credentials = require('../credentials');
 } catch (e) {
     console.log('credentials.js not found, using jesusgonzaleznovez@gmail.com as user');
     credentials = {user: 'jesusgonzaleznovez@gmail.com'};

@@ -6,11 +6,11 @@
             <span class="fa fa-database"></span> Select a stored district
         </label>
         <select class="form-control" name="resultSelected" id="resultSelected">
-            <% for(let i = 0, len = results.length; i < len; i++){ %>
-            <option value="<%= results[i]._id %>">
-                <%= moment(results[i].eleccion.fecha).format('DD/MM/YYYY') %> |
-                <%= results[i].provincia %> |
-                <%= results[i].eleccion.autor.toUpperCase() %>
+            <% for(let i = 0, len = Results.length; i < len; i++){ %>
+            <option value="<%= Results[i]._id %>">
+                <%= moment(Results[i].eleccion.fecha).format('DD/MM/YYYY') %> |
+                <%= Results[i].provincia %> |
+                <%= Results[i].eleccion.autor.toUpperCase() %>
             </option>
             <% } %>
         </select>

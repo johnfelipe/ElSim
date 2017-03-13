@@ -16,7 +16,7 @@ const has = Object.prototype.hasOwnProperty;
                 resultsArray.push({
                     name: key,
                     y: result[key],
-                    color: require('./graphic-module').chooseColor(key)
+                    color: require('./chart').chooseColor(key)
                 });
             }
         }

@@ -1,13 +1,13 @@
 /* jshint esversion: 6 */
-const Graphic = require('../graphics/graphic-module'),
-    Result = require('../../models/result'),
+const Graphic = require('../graphics/chart'),
+    Result = require('../models/result'),
     Colors = require('../graphics/misc/colors'),
     Icons = require('../graphics/misc/icons'),
-    Codigos = require('./misc/codigos'),
-    District = require('../district-module'),
-    checkError = require('../util-module').checkError;
+    Codigos = require('./.././codigos'),
+    District = require('district-module'),
+    checkError = require('../utilities/util-module').checkError;
 
-let response = require('./index-get-functions').indexResponse;
+let response = require('./index-get').indexResponse;
 
 /**
  *
@@ -49,7 +49,7 @@ let response = require('./index-get-functions').indexResponse;
     const deleteDataPostFunction = (req, res) => {
         let promises = [],
             options,
-            results = req.param('results');
+            results = req.param('Results');
 
         for (let i = 0, len = results.length; i < len; ++i) {
             options = {

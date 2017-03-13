@@ -1,12 +1,12 @@
 'use strict';
 /* jshint esversion: 6 */
 
-const User = require('../../models/user'),
-    Log = require('../../models/log'),
-    Result = require('../../models/result'),
-    Subscriber = require('../../models/subscriber'),
-    Util = require('../util-module'),
-    Question = require('../../models/question');
+const Util = require('../utilities/util-module'),
+    Logs = require('../services/logs'),
+    Results = require('../services/results'),
+    Users = require('../services/users'),
+    Subscribers = require('../services/subscribers'),
+    Questions = require('../services/quiz');
 
 /**
  *
@@ -14,37 +14,33 @@ const User = require('../../models/user'),
  */
 (function () {
     const setup = (req, res) => {
-        const initialize = () => {
-            let nick = new User({
+        Users.remove(() => {
+            let nick = {
                 name: 'demo',
                 email: 'demo@demo.com',
                 password: 'password',
                 admin: true,
                 resultados: []
+            };
+
+            Users.saveOne(nick, (err, user) => {
+                console.log('User saved: ', user);
+                resError(req, res, err);
+                Logs.remove(() => apiResponse(req, res, false, 'System initialized correctly', null));
             });
-            nick.save(userSaved);
-        };
-
-        User.find({}).remove(initialize);
-
-        const userSaved = (err) => {
-            resError(req, res, err);
-            Log.find({}).remove(
-                () => apiResponse(req, res, false, 'System initialized correctly', null)
-            );
-        };
+        });
     };
 
-    const findOneLog = (req, res) => Log.findOne({_id: req.param('id')},
+    const findOneLog = (req, res) => Logs.findOne(req.param('id'),
         (err, data) => apiResponse(req, res, err, 'Result', data)
     );
 
-    const findOneUser = (req, res) => User.findOne({_id: req.param('id')},
+    const findOneUser = (req, res) => Users.findOne(req.param('id'),
         (err, data) => apiResponse(req, res, err, 'Result', data)
     );
 
-    const findAllUsers = (req, res) => User.find({},
-        (err, data) => apiResponse(req, res, err, 'All users', data)
+    const findAllUsers = (req, res) => Users.find(
+        (err, data) => apiResponse(req, res, err, 'All Users', data)
     );
 
     const saveOneUser = (req, res) => resError(req, res, 'not yet implemented');
@@ -61,7 +57,7 @@ const User = require('../../models/user'),
         }
     };
 
-    const deleteOneUser = (req, res) => User.findByIdAndRemove({_id: req.param('id')},
+    const deleteOneUser = (req, res) => Users.findOne(req.param('id'),
         (err, data) => apiResponse(req, res, null, 'great', null)
     );
 
@@ -73,27 +69,27 @@ const User = require('../../models/user'),
         contact: 'jesusgonzaleznovez@gmail.com'
     }, null);
 
-    const findAllResultados = (req, res) => Result.find({},
-        (err, data) => apiResponse(req, res, err, 'All results', data)
+    const findAllResultados = (req, res) => Results.find(
+        (err, data) => apiResponse(req, res, err, 'All Results', data)
     );
 
-    const saveOneResultado = (req, res) => {
-        resError(req, res, 'not yet implemented');
-    };
+    const saveOneResultado = (req, res) => Results.saveOne(
+        (err, data) => apiResponse(req, res, err, 'All Results', data)
+    );
 
     const updateOneResultado = (req, res) => {
         resError(req, res, 'not yet implemented');
     };
 
-    const deleteOneResultado = (req, res) => Result.findByIdAndRemove({_id: req.param('id')},
+    const deleteOneResultado = (req, res) => Results.removeOne(req.param('id'),
         (err, data) => apiResponse(req, res, null, 'great', null)
     );
 
-    const deleteAllResultados = (req, res) => Result.find({}).remove(
+    const deleteAllResultados = (req, res) => Results.remove(
         () => apiResponse(req, res, null, 'great', null)
     );
 
-    const findOneResultado = (req, res) => Result.findOne({_id: req.param('id')},
+    const findOneResultado = (req, res) => Results.findOne(req.param('id'),
         (err, data) => apiResponse(req, res, err, 'Result', data)
     );
 
@@ -101,11 +97,11 @@ const User = require('../../models/user'),
         apiResponse(req, res, false, 'CSVs loaded', null)
     );
 
-    const findLogs = (req, res) => Log.find({},
-        (err, data) => apiResponse(req, res, err, 'All logs', data)
+    const findLogs = (req, res) => Logs.find(
+        (err, data) => apiResponse(req, res, err, 'All Logs', data)
     );
 
-    const deleteAllLogs = (req, res) => Log.find({}).remove(
+    const deleteAllLogs = (req, res) => Logs.remove(
         () => apiResponse(req, res, null, 'great', null)
     );
 
@@ -134,41 +130,39 @@ const User = require('../../models/user'),
             });
         };
 
-        promises.push(User.find({}).remove(done));
-        promises.push(Log.find({}).remove(done));
-        promises.push(Result.find({}).remove(done));
-        promises.push(Subscriber.find({}).remove(done));
-        promises.push(Question.find({}).remove(done));
+        promises.push(Users.remove(done));
+        promises.push(Logs.remove(done));
+        promises.push(Results.remove(done));
+        promises.push(Subscribers.remove(done));
+        promises.push(Questions.remove(done));
 
         Promise.all(promises).then(endPromises);
     };
 
     const saveOneQuestion = (req, res) => {
-        let q = new Question({
+        let q = {
             title: req.body.title,
             correct: req.body.correct,
             answers: JSON.parse(req.body.answers)
-        });
+        };
 
-        q.save((err) => {
-            resError(req, res, err || true);
-        });
+        Questions.saveOne(q, (err, data) => resError(req, res, err || true));
     };
 
     const checkQuestion = (req, res) => {
         resError(req, res, 'not yet implemented');
     };
 
-    const getAllQuestions = (req, res) => Question.find({}, (err, questions) => {
+    const getAllQuestions = (req, res) => Questions.find((err, questions) => {
             if (err) {
                 resError(req, res, err);
             } else {
-                apiResponse(req, res, null, questions.length + ' questions loaded', questions);
+                apiResponse(req, res, null, questions.length + ' Questions loaded', questions);
             }
         }
     );
 
-    const deleteOneQuestion = (req, res) => Question.findByIdAndRemove({_id: req.param('id')},
+    const deleteOneQuestion = (req, res) => Questions.removeOne(req.param('id'),
         (err, data) => apiResponse(req, res, null, 'great', null)
     );
 
@@ -183,7 +177,7 @@ const User = require('../../models/user'),
         /** Initial demo setup */
         setup: setup,
 
-        /** Find all users */
+        /** Find all Users */
         findAllUsers: findAllUsers,
 
         /** Saves one user */
@@ -198,7 +192,7 @@ const User = require('../../models/user'),
         /** Api welcome function */
         apiWelcome: apiWelcome,
 
-        /** Finds all results */
+        /** Finds all Results */
         findAllResultados: findAllResultados,
 
         /** Saves one result */
@@ -210,13 +204,13 @@ const User = require('../../models/user'),
         /** Deletes one result */
         deleteOneResultado: deleteOneResultado,
 
-        /** Deletes all results */
+        /** Deletes all Results */
         deleteAllResultados: deleteAllResultados,
 
         /** Finds one result */
         findOneResultado: findOneResultado,
 
-        /** Loads results in csv format */
+        /** Loads Results in csv format */
         loadCsv: loadCsv,
 
         /** To find one user */
@@ -225,10 +219,10 @@ const User = require('../../models/user'),
         /** To find one log */
         findOneLog: findOneLog,
 
-        /** To find logs */
+        /** To find Logs */
         findLogs: findLogs,
 
-        /** Delete all logs */
+        /** Delete all Logs */
         deleteAllLogs: deleteAllLogs,
 
         /** Hard-resets the system, be careful */
@@ -237,7 +231,7 @@ const User = require('../../models/user'),
         /** Check if a answer is correct */
         checkQuestion: checkQuestion,
 
-        /** Get all questions */
+        /** Get all Questions */
         getAllQuestions: getAllQuestions,
 
         /** Saves one question */

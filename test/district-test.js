@@ -2,7 +2,7 @@
 'use strict';
 const app = require('./../app'),
     http = require('http'),
-    District = require('./../modules/district-module'),
+    District = require('./../modules/district'),
     expect = require('chai').expect;
 
 const fakeData = (done) => {

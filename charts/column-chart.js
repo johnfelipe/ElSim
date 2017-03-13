@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-const Icons = require('./misc/icons'),
+const Icons = require('./../misc/icons'),
     has = Object.prototype.hasOwnProperty;
 
 let columnOptions = require('./options/column-options');
@@ -18,7 +18,7 @@ let columnOptions = require('./options/column-options');
                 mandates.push({
                     y: result[key],
                     icon: Icons[key],
-                    color: require('./graphic-module').chooseColor(key)
+                    color: require('./chart').chooseColor(key)
                 });
             }
         }
