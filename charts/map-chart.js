@@ -1,8 +1,7 @@
 /* jshint esversion: 6 */
 const latinMap = require('./../misc/latinize-map'),
-    District = require('../district-module'),
-    console = require('better-console'),
-    Util = require('../util-module');
+    District = require('../modules/district'),
+    console = require('better-console');
 
 const has = Object.prototype.hasOwnProperty;
 
