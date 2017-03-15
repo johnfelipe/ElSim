@@ -14,10 +14,18 @@ const Log = require('../models/log');
         () => done()
     );
 
+    const save = (log,done) => {
+        let l = new Log(log);
+        l.save((err) => {
+            done(err);
+        });
+    };
+
     module.exports = {
         findOne: findOne,
         find: find,
-        remove: remove
+        remove: remove,
+        save: save
     };
 
 })();
