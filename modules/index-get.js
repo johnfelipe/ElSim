@@ -70,6 +70,18 @@ const Util = require('../utilities/util'),
         });
     };
 
+    const compareCountryGraphicFormGetFunction = (req, res) => {
+        Util.calculateEllections((data, ellections) => {
+            ellections.sort(Util.sortByDate);
+            indexResponse(req, res, 'pages/simulator/compare-country-graphic-form', 'Compare Country Chart', {
+                results: data,
+                ellections: ellections,
+                moment: Moment,
+                err: null
+            });
+        });
+    };
+
     const learnGetFunction = (req, res) => indexResponse(
         req, res, 'pages/more/learn', 'Learn', false
     );
@@ -142,6 +154,8 @@ const Util = require('../utilities/util'),
         singleGraphicFormGetFunction,
 
         countryGraphicFormGetFunction,
+
+        compareCountryGraphicFormGetFunction,
 
         learnGetFunction,
 

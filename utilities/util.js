@@ -12,7 +12,7 @@ const console = require('better-console');
 (function () {
 
     const checkError = (err) => {
-        if(err) {
+        if (err) {
             throw err;
         }
     };
@@ -64,10 +64,20 @@ const console = require('better-console');
         let i = 0, stream = fs.createReadStream(path);
         csv.fromStream(stream, {
             headers: true
-        }).on('data-invalid', invalidRowException).on('data', (data) => {
-            resultados[i].partidos = data;
-            i++;
-        }).on('end', () => done(resultados));
+        })
+            .on('data-invalid', invalidRowException)
+            .on('data', (data) => {
+                for(let key in data){
+                    if(data[key] === '0'){
+                        delete data[key];
+                    }
+                }
+                resultados[i].partidos = data;
+                i++;
+
+            })
+            .on('end', () => done(resultados)
+            );
     };
 
     const invalidRowException = (data) => {
@@ -96,16 +106,19 @@ const console = require('better-console');
     };
 
     const loadCsv = (done) => {
-        const a = ['1977', '1979', '1982', '1986', '1989', '1993', '1996', '2000'];
+        const a = ['1977', '1979', '1982', '1986', '1989', '1993', '1996'];
         let path1, path2, promises = [];
 
+        const saveCallback = () => {
+
+        };
         const csvCallback = (data) => {
             for (let j = 0, lenData = data.length; j < lenData; ++j) {
-                if(data[j].partidos !== undefined) {
-                    promises.push(saveResultado(data[j], () => {
-                    }));
-                }else {
-                    console.error('ERROR LEYENDO CSV', data[j]);
+                if (data[j].partidos !== undefined) {
+
+                    promises.push(saveResultado(data[j], saveCallback));
+                } else {
+                    console.error('Error guardando datos: ', data[j]);
                 }
             }
         };
@@ -113,6 +126,8 @@ const console = require('better-console');
         for (let i = 0, len = a.length; i < len; ++i) {
             path1 = './csv/' + a[i] + '.csv';
             path2 = './csv/' + a[i] + '_PARTIDOS.csv';
+            console.warn('Leyendo ' + path1);
+            console.warn('Leyendo ' + path2);
             readCsv(path1, path2, csvCallback);
         }
 
@@ -124,7 +139,7 @@ const console = require('better-console');
             };
             r.save((err) => {
                 if (err) {
-                    console.log(err);
+                    console.error(err);
                 }
                 done();
             });
@@ -134,9 +149,9 @@ const console = require('better-console');
     };
 
     const sortByDate = (a, b) => {
-        if(a.hasOwnProperty('eleccion')){
+        if (a.hasOwnProperty('eleccion')) {
             return new Date(a.eleccion.fecha) - new Date(b.eleccion.fecha);
-        }else {
+        } else {
             return new Date(a.fecha) - new Date(b.fecha);
         }
     };

@@ -35,14 +35,15 @@ const provincias = [
 
     const calculateMandates = (provincia, conjunto) => {
         let regEx = new RegExp("\\s", 'g');
-        if (provincia === 'Araba - Álava') {
-            return conjunto.alava;
+        if (latinize(provincia.split('/')[0].toLowerCase().replace(regEx, "")) === 'araba-alava') {
+            return parseInt(conjunto.alava);
         }
         for (let c in conjunto) {
             if (latinize(provincia.split('/')[0].toLowerCase().replace(regEx, "")) === latinize(c.toLowerCase().replace(regEx, ""))) {
                 return parseInt(conjunto[c]);
             }
         }
+
         return 2;
     };
 
@@ -56,6 +57,7 @@ const provincias = [
 
     const globalLoop = (data, config, conjunto) => {
         let votes = [], names = [], result, global = [];
+
         for (let i = 0, len = data.length; i < len; ++i) {
             config.blankVotes = data[i].votos_blanco;
             config.mandates = calculateMandates(data[i].provincia, conjunto);
@@ -65,9 +67,9 @@ const provincias = [
                     names.push(key);
                 }
             }
+
             result = District.compute(votes, names, config, false);
             result.cc = calculateCode(data[i].cod_provincia);
-            console.warn('PP en ' + data[i].provincia + ' --> ' + result.parties.PP);
             global.push(result);
             votes = [];
             names = [];

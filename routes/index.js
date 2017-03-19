@@ -15,6 +15,7 @@ module.exports = (passport) => {
     router.get('/help', IGF.helpGetFunction);
     router.get('/single-graphic-form',  IGF.singleGraphicFormGetFunction);
     router.get('/country-graphic-form',  IGF.countryGraphicFormGetFunction);
+    router.get('/compare-country-graphic-form',  IGF.compareCountryGraphicFormGetFunction);
     router.get('/learn', IGF.learnGetFunction);
     router.get('/resources', IGF.resourcesGetFunction);
     router.get('/add-data',  IGF.addDataGetFunction);

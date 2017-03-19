@@ -41,8 +41,8 @@ const Result = require('../models/result'),
     const newSeat = (votos, esc, num_par) => {
         let imax = 0, ct, max = 0;
         for (ct = 0; ct < num_par; ++ct) {
-            if (max < (votos[ct] / (esc[ct] + 1))) {
-                max = votos[ct] / (esc[ct] + 1);
+            if (max < (parseInt(votos[ct]) / (esc[ct] + 1))) {
+                max = parseInt(votos[ct]) / (esc[ct] + 1);
                 imax = ct;
             }
         }
@@ -53,19 +53,18 @@ const Result = require('../models/result'),
         let table = [];
         for (let i = 0; i < mandates; ++i) {
             seats[newSeat(validatedVotes, seats, numberOfPartiesValidated)]++;
-            table.push(seats.slice());
+            table.push([...seats]);
         }
         return table;
     };
 
     const fillPartiesResult = (numberOfPartiesValidated, result, validatedNames, seats) => {
-        for (let i = 0; i < numberOfPartiesValidated; ++i) {
+        for (let i = 0; i < numberOfPartiesValidated; i++) {
             result.parties[validatedNames[i]] = seats[i];
         }
     };
 
     const calculateSeats = (votes, names, mandates, blankVotes, percentage, withTable) => {
-
         let numberOfParties = votes.length,
             numberOfVotes = calculateTotalVotes(votes, blankVotes),
             minNumberOfVotes = Math.floor(numberOfVotes * percentage / 100),
@@ -140,16 +139,6 @@ const Result = require('../models/result'),
         return population;
     };
 
-    const howManyMandates = (totalPopulation, districtPopulation, totalMandates, district) => {
-        if (district === 'Ceuta' || district === 'Melilla') {
-            return 1;
-        }
-        let percentage = (districtPopulation / totalPopulation);
-        let numberOfMandates = Math.floor((totalMandates - 52) * percentage);
-        return numberOfMandates + 2;
-    };
-
-
     module.exports = {
         compute,
 
@@ -169,8 +158,6 @@ const Result = require('../models/result'),
 
         createResultEntity,
 
-        addPopulation,
-
-        howManyMandates
+        addPopulation
     };
 })();
