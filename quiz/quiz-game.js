@@ -14,10 +14,7 @@ const Question = require('../models/question');
 
     const getAllQuestions = (done) => {
         Question.find({},(err,questions) => {
-            if(err){
-                throw err;
-            }
-            done(questions);
+            done(err,questions);
         });
     };
 
