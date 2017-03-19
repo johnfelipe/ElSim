@@ -1,0 +1,33 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": [
+      "jsdoc",
+      "closure"
+    ]
+  },
+  "source": {
+    "include": [
+      "./bin/",
+      "./charts/",
+      "./charts/options/",
+      "./misc/",
+      "./models/",
+      "./modules/",
+      "./passport/",
+      "./quiz/",
+      "./routes/",
+      "./services/",
+      "./utilities/",
+      "./"
+    ],
+    "exclude": [
+    ],
+    "includePattern": ".+\\.js(doc|x)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false
+  }
+}
