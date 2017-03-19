@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "test": "./node_modules/.bin/mocha --reporter spec $(find test -name '*.js')"
+    "test": "./node_modules/.bin/mocha --reporter spec $(find test -name '*.js')",
+    "generate-doc": "./node_modules/.bin/jsdoc -c conf.json -d doc"
   },
   "dependencies": {
     "assert": "^1.4.1",

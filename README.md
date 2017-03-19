@@ -50,13 +50,9 @@ Run tests:
 
 ### Docs
 
-If you are running the server go to:
-    
-    /doc/index.html
+    $ npm run generate-doc    
+    Go --> /doc/index.html
         
-Also you can read them under directory:
-
-    ./public/doc/*
    
 ### Login   
    
