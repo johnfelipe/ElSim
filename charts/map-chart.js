@@ -47,29 +47,27 @@ const provincias = [
     };
 
     const calculateGlobal = (data, config, conjunto) => {
-        console.time('timer');
+        console.time('Cálculo de elección general...');
         let global = globalLoop(data, config, conjunto);
         global.agrupado = groupParties(global);
-        console.timeEnd('timer');
+        console.timeEnd('Cálculo de elección general...');
         return global;
     };
 
     const globalLoop = (data, config, conjunto) => {
         let votes = [], names = [], result, global = [];
-
         for (let i = 0, len = data.length; i < len; ++i) {
             config.blankVotes = data[i].votos_blanco;
             config.mandates = calculateMandates(data[i].provincia, conjunto);
-
             for (let key in data[i].partidos) {
                 if (data[i].partidos.hasOwnProperty(key)) {
                     votes.push(data[i].partidos[key]);
                     names.push(key);
                 }
             }
-
             result = District.compute(votes, names, config, false);
             result.cc = calculateCode(data[i].cod_provincia);
+            console.warn('PP en ' + data[i].provincia + ' --> ' + result.parties.PP);
             global.push(result);
             votes = [];
             names = [];
@@ -102,8 +100,6 @@ const provincias = [
                     eleccion: data[i].eleccion,
                     comunidad: data[i].comunidad,
                     poblacion: parseInt(data[i].poblacion),
-                    num_mesas: parseInt(data[i].num_mesas),
-                    total_censo_electoral: parseInt(data[i].total_censo_electoral),
                     total_votantes: parseInt(data[i].total_votantes),
                     votos_validos: parseInt(data[i].votos_validos),
                     votos_candidaturas: parseInt(data[i].votos_candidaturas),
@@ -121,8 +117,6 @@ const provincias = [
             } else {
                 groupedByCommunity[data[i].comunidad].mandates += parseInt(calculateMandates(data[i].provincia, conjunto));
                 groupedByCommunity[data[i].comunidad].poblacion += data[i].poblacion;
-                groupedByCommunity[data[i].comunidad].num_mesas += data[i].num_mesas;
-                groupedByCommunity[data[i].comunidad].total_censo_electoral += data[i].total_censo_electoral;
                 groupedByCommunity[data[i].comunidad].total_votantes += data[i].total_votantes;
                 groupedByCommunity[data[i].comunidad].votos_validos += data[i].votos_validos;
                 groupedByCommunity[data[i].comunidad].votos_candidaturas += data[i].votos_candidaturas;

@@ -119,16 +119,14 @@ const Result = require('../models/result'),
             cod_provincia: args[1],
             provincia: 'desconocida',
             poblacion: args[2],
-            num_mesas: args[3],
-            total_censo_electoral: args[4],
-            total_votantes: args[5],
-            votos_validos: args[5] - args[6],
-            votos_candidaturas: (args[5] - args[6]) - args[7],
-            votos_blanco: args[7],
-            votos_nulos: args[6],
+            total_votantes: args[3],
+            votos_validos: args[3] - args[4],
+            votos_candidaturas: (args[3] - args[4]) - args[5],
+            votos_blanco: args[5],
+            votos_nulos: args[4],
             eleccion: {
-                autor: args[8],
-                fecha: args[9]
+                autor: args[6],
+                fecha: args[7]
             },
             partidos: partidos
         });

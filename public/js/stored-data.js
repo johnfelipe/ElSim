@@ -7,8 +7,6 @@ function fillContent(id) {
         content += '<li class="list-group-item"><span class="fa fa-map-o"></span> ' + data.data.comunidad + '</li>';
         content += '<li class="list-group-item"><span class="fa fa-map-marker"></span> ' + data.data.provincia + '(' + data.data.cod_provincia + ')</li>';
         content += '<li class="list-group-item"><span class="fa fa-group"></span> ' + data.data.poblacion + ' total population </li>';
-        content += '<li class="list-group-item"><span class="fa fa-building-o"></span> ' + data.data.num_mesas + ' ellectoral colleages</li>';
-        content += '<li class="list-group-item"><span class="fa fa-group"></span> ' + data.data.total_censo_electoral + ' total ellectoral census</li>';
         content += '<li class="list-group-item"><span class="fa fa-group"></span> ' + data.data.total_votantes + ' voters</li>';
         content += '<li class="list-group-item"><span class="fa fa-check-circle-o"></span> ' + data.data.votos_validos + ' valid votes</li>';
         content += '<li class="list-group-item"><span class="fa fa-envelope"></span> ' + data.data.votos_candidaturas + ' parties votes</li>';

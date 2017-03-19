@@ -4,6 +4,7 @@ const fs = require('fs'),
     csv = require('fast-csv'),
     Result = require('../models/result');
 
+const console = require('better-console');
 /**
  *
  * @module util-module
@@ -100,8 +101,12 @@ const fs = require('fs'),
 
         const csvCallback = (data) => {
             for (let j = 0, lenData = data.length; j < lenData; ++j) {
-                promises.push(saveResultado(data[j], () => {
-                }));
+                if(data[j].partidos !== undefined) {
+                    promises.push(saveResultado(data[j], () => {
+                    }));
+                }else {
+                    console.error('ERROR LEYENDO CSV', data[j]);
+                }
             }
         };
 

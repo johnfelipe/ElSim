@@ -28,7 +28,6 @@ let response = require('./index-get').indexResponse;
         let args = [req.param('votes'),
             req.param('province'),
             parseInt(req.param('population')),
-            parseInt(req.param('num_mesas')),
             parseInt(req.param('census')),
             parseInt(req.param('voters')),
             parseInt(req.param('nulos')),

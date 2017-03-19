@@ -1,8 +1,6 @@
 function parseFields(done) {
     $('#cod_provinciaSpan').text($('#province').val());
     $('#poblacionSpan').text($('#population').val());
-    $('#num_mesasSpan').text($('#num_mesas').val());
-    $('#total_censo_electoralSpan').text($('#census').val());
     $('#total_votantesSpan').text($('#voters').val());
     $('#votos_validosSpan').text();
     $('#votos_blancoSpan').text($('#blancos').val());
