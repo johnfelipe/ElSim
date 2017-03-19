@@ -1,7 +1,6 @@
-# AngularJS client boilerplate
+# AngularJS client 
 
-With this starter template you are allowed to get/send data from/to 
-the NodeJS API backend in this repository.
+This is the client part of the project.
 
 ## Separated files
 
@@ -12,4 +11,4 @@ The file config.js is used by constants.
 
 The app.js file is the main file.
 
-The factory.js file has the request methods to/from the API:
+The factory.js file has the request methods to/from the API.
