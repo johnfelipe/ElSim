@@ -169,76 +169,76 @@ const Util = require('../utilities/util'),
 
     module.exports = {
         /** Generic API response */
-        apiResponse: apiResponse,
+        apiResponse,
 
         /** Generic error response */
-        resError: resError,
+        resError,
 
         /** Initial demo setup */
-        setup: setup,
+        setup,
 
         /** Find all Users */
-        findAllUsers: findAllUsers,
+        findAllUsers,
 
         /** Saves one user */
-        saveOneUser: saveOneUser,
+        saveOneUser,
 
         /** Deletes one user */
-        deleteOneUser: deleteOneUser,
+        deleteOneUser,
 
         /** Updates one user */
-        updateOneUser: updateOneUser,
+        updateOneUser,
 
         /** Api welcome function */
-        apiWelcome: apiWelcome,
+        apiWelcome,
 
         /** Finds all Results */
-        findAllResultados: findAllResultados,
+        findAllResultados,
 
         /** Saves one result */
-        saveOneResultado: saveOneResultado,
+        saveOneResultado,
 
         /** Updates one result */
-        updateOneResultado: updateOneResultado,
+        updateOneResultado,
 
         /** Deletes one result */
-        deleteOneResultado: deleteOneResultado,
+        deleteOneResultado,
 
         /** Deletes all Results */
-        deleteAllResultados: deleteAllResultados,
+        deleteAllResultados,
 
         /** Finds one result */
-        findOneResultado: findOneResultado,
+        findOneResultado,
 
         /** Loads Results in csv format */
-        loadCsv: loadCsv,
+        loadCsv,
 
         /** To find one user */
-        findOneUser: findOneUser,
+        findOneUser,
 
         /** To find one log */
         findOneLog: findOneLog,
 
         /** To find Logs */
-        findLogs: findLogs,
+        findLogs,
 
         /** Delete all Logs */
-        deleteAllLogs: deleteAllLogs,
+        deleteAllLogs,
 
         /** Hard-resets the system, be careful */
-        hardReset: hardReset,
+        hardReset,
 
         /** Check if a answer is correct */
-        checkQuestion: checkQuestion,
+        checkQuestion,
 
         /** Get all Questions */
-        getAllQuestions: getAllQuestions,
+        getAllQuestions,
 
         /** Saves one question */
-        saveOneQuestion: saveOneQuestion,
+        saveOneQuestion,
 
         /** Deletes one question */
-        deleteOneQuestion: deleteOneQuestion
+        deleteOneQuestion
     };
 })();
 

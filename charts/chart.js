@@ -171,12 +171,12 @@ const highcharts = require('node-highcharts'),
 
 
     module.exports = {
-        rendChart: rendChart,
-        chooseColor: chooseColor,
-        createColumn: createColumn,
-        createPie: createPie,
-        createMap: createMap,
-        calculateDistrict: calculateDistrict,
-        calculateCountry: calculateCountry
+        rendChart,
+        chooseColor,
+        createColumn,
+        createPie,
+        createMap,
+        calculateDistrict,
+        calculateCountry
     };
 })();

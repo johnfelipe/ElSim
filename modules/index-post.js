@@ -100,21 +100,21 @@ let response = require('./index-get').indexResponse;
 
     module.exports = {
         /** Handles add data form */
-        addDataPostFunction: addDataPostFunction,
+        addDataPostFunction,
 
-        addDataFilePostFunction: addDataFilePostFunction,
+        addDataFilePostFunction,
 
         /** Handles delete data form */
-        deleteDataPostFunction: deleteDataPostFunction,
+        deleteDataPostFunction,
 
         /** Handles single district chart form */
-        graphicFormPostFunction: graphicFormPostFunction,
+        graphicFormPostFunction,
 
         /** Handles country chart form */
-        countryFormPostFunction: countryFormPostFunction,
+        countryFormPostFunction,
 
         /** Saves a result */
-        saveResultFunction: saveResultFunction
+        saveResultFunction
     };
 })();
 

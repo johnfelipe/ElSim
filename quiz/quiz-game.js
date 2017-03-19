@@ -38,10 +38,10 @@ const Question = require('../models/question');
 
 
     module.exports = {
-        checkQuestion: checkQuestion,
-        getAllQuestions: getAllQuestions,
-        saveQuestion: saveQuestion,
-        deleteQuestion: deleteQuestion
+        checkQuestion,
+        getAllQuestions,
+        saveQuestion,
+        deleteQuestion
     };
 
 })();

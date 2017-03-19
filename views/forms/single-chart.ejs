@@ -22,14 +22,14 @@
             <label for="mandates">
                 <span class="fa fa-user"></span> Number of mandates
             </label>
-            <input class="form-control" type="number" value="2" min="2" max="30" name="mandates" id="mandates" >
+            <input class="form-control" onchange="changeSpan1();" type="number" value="2" min="2" max="30" name="mandates" id="mandates" >
 
         </div>
         <div class="form-group col-xs-6">
             <label for="percentage">
                 <span class="fa fa-percent"></span> Minimum percentage
             </label>
-            <input class="form-control " type="number" value="2" min="0" max="100" name="percentage" id="percentage">
+            <input class="form-control " onchange="changeSpan2();" type="number" value="2" min="0" max="100" name="percentage" id="percentage">
         </div>
     </div>
     <div class="row">
@@ -37,7 +37,7 @@
             <label for="mode">
                 <span class="fa fa-signal"></span> Chart kind
             </label>
-            <select class="form-control" name="mode" id="mode">
+            <select class="form-control" name="mode" id="mode" onchange="changeSpan3();">
                 <option value="column">Column</option>
                 <option value="pie">Pie</option>
             </select>

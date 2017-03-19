@@ -38,6 +38,6 @@ try {
 
     module.exports = {
         /** Shows summary of system */
-        adminSummaryFunction: adminSummaryFunction
+        adminSummaryFunction
     };
 })();

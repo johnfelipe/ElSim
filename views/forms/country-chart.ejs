@@ -20,7 +20,7 @@
             <label for="percentage">
                 <span class="fa fa-percent"></span> Select minimum percentage<br>
             </label>
-            <select class="form-control" name="percentage" id="percentage">
+            <select class="form-control" onchange="changeSpan1();" name="percentage" id="percentage">
                 <% for(var i = 0.00; i <= 100.00; i += 0.50){ %>
                 <option value="<%= i %>"><%= i %>%</option>
                 <% } %>
@@ -43,12 +43,12 @@
             </div>
             <div class="row">
                 <div class="form-group col-xs-6">
-                    <input type='checkbox' name="aggregateCommunities" id="aggregateCommunities" class="custom-checkbox" />
+                    <input type='checkbox' onchange="changeSpan2();" name="aggregateCommunities" id="aggregateCommunities" class="custom-checkbox" />
                     Aggregate communities
 
                 </div>
                 <div class="form-group col-xs-6">
-                    <input type='checkbox' name="wholeCountry" id="wholeCountry" class="custom-checkbox" /> Aggregate whole country
+                    <input type='checkbox' onchange="changeSpan3();" name="wholeCountry" id="wholeCountry" class="custom-checkbox" /> Aggregate whole country
 
                 </div>
             </div>

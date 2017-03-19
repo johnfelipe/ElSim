@@ -28,7 +28,5 @@ resultSchema.index({
     }
 );
 
-let Result = mongoose.model('Result',resultSchema);
-
 /** @class Result */
-module.exports = Result;
+module.exports = mongoose.model('Result',resultSchema);

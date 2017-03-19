@@ -127,35 +127,35 @@ const Util = require('../utilities/util'),
 
     module.exports = {
 
-        indexResponse: indexResponse,
+        indexResponse,
 
-        indexGetFunction: indexGetFunction,
+        indexGetFunction,
 
-        loginGetFunction: loginGetFunction,
+        loginGetFunction,
 
-        signUpGetFunction: signUpGetFunction,
+        signUpGetFunction,
 
-        signOutGetFunction: signOutGetFunction,
+        signOutGetFunction,
 
-        helpGetFunction: helpGetFunction,
+        helpGetFunction,
 
-        singleGraphicFormGetFunction: singleGraphicFormGetFunction,
+        singleGraphicFormGetFunction,
 
-        countryGraphicFormGetFunction: countryGraphicFormGetFunction,
+        countryGraphicFormGetFunction,
 
-        learnGetFunction: learnGetFunction,
+        learnGetFunction,
 
-        resourcesGetFunction: resourcesGetFunction,
+        resourcesGetFunction,
 
-        storedDataFunction: storedDataFunction,
+        storedDataFunction,
 
-        addDataGetFunction: addDataGetFunction,
+        addDataGetFunction,
 
-        deleteDataGetFunction: deleteDataGetFunction,
+        deleteDataGetFunction,
 
-        partiesFunction: partiesFunction,
+        partiesFunction,
 
-        quizGetFunction: quizGetFunction
+        quizGetFunction
     };
 })();
 

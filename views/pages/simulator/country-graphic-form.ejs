@@ -34,6 +34,12 @@
                             minimum number of votes equal to that percentage of the total number of votes.
                         </p>
                         <p>
+                        <ul class="ul">
+                            <li>Aggregate Communities: <b><span id="span2"></span></b></li>
+                            <li>Aggregate Whole Country: <b><span id="span3"></span></b></li>
+                        </ul>
+                        </p>
+                        <p>
                             If you <b>aggregate communities</b> each community counts like a district.
                         </p>
                         <p>
@@ -50,7 +56,26 @@
     <% } %>
 </div>
 <script>
+    function changeSpan1(){
+        $('#span1').text($('#percentage').val());
+    }
+    function changeSpan2(){
+        if(document.getElementById('aggregateCommunities').checked){
+            $('#span2').text('enabled');
+        } else {
+            $('#span2').text('disabled');
+        }
+    }
+    function changeSpan3(){
+        if(document.getElementById('wholeCountry').checked){
+            $('#span3').text('enabled');
+        } else {
+            $('#span3').text('disabled');
+        }
+    }
     $('#span1').text($('#percentage').val());
+    $('#span2').text('disabled');
+    $('#span3').text('disabled');
 
 </script>
 <% include ../../partials/footer.ejs %>

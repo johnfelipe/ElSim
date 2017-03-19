@@ -95,10 +95,10 @@ const Mailer = require('../utilities/mailer'),
     };
 
     module.exports = {
-        profile: profile,
-        addSubscriber: addSubscriber,
-        sendNews: sendNews,
-        loadAll: loadAll
+        profile,
+        addSubscriber,
+        sendNews,
+        loadAll
     };
 
 })();

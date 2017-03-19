@@ -175,9 +175,9 @@ const provincias = [
 
 
     module.exports = {
-        calculateGlobal: calculateGlobal,
-        calculateGlobalWholeCountry: calculateGlobalWholeCountry,
-        calculateGlobalWithCommunities: calculateGlobalWithCommunities
+        calculateGlobal,
+        calculateGlobalWholeCountry,
+        calculateGlobalWithCommunities
     };
 
 })();

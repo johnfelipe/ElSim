@@ -153,26 +153,26 @@ const Result = require('../models/result'),
 
 
     module.exports = {
-        compute: compute,
+        compute,
 
-        isInt: isInt,
+        isInt,
 
-        calculateTotalVotes: calculateTotalVotes,
+        calculateTotalVotes,
 
-        validateParties: validateParties,
+        validateParties,
 
-        newSeat: newSeat,
+        newSeat,
 
-        fillSeats: fillSeats,
+        fillSeats,
 
-        fillPartiesResult: fillPartiesResult,
+        fillPartiesResult,
 
-        calculateSeats: calculateSeats,
+        calculateSeats,
 
-        createResultEntity: createResultEntity,
+        createResultEntity,
 
-        addPopulation: addPopulation,
+        addPopulation,
 
-        howManyMandates: howManyMandates
+        howManyMandates
     };
 })();

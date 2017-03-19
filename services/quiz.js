@@ -19,11 +19,11 @@ const Question = require('../models/question');
     const remove = (done) => Question.find({}).remove(() => done());
 
     module.exports = {
-        saveOne: saveOne,
-        checkQuestion: checkQuestion,
-        find: find,
-        removeOne: removeOne,
-        remove: remove
+        saveOne,
+        checkQuestion,
+        find,
+        removeOne,
+        remove
     };
 
 })();

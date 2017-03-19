@@ -50,6 +50,15 @@
     <% } %>
 </div>
 <script>
+    function changeSpan1() {
+        $('#span1').text($('#mandates').val());
+    }
+    function changeSpan2() {
+        $('#span2').text($('#percentage').val());
+    }
+    function changeSpan3() {
+        $('#span3').text($('#mode').val());
+    }
     $('#span1').text($('#mandates').val());
     $('#span2').text($('#percentage').val());
     $('#span3').text($('#mode').val());

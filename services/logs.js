@@ -19,6 +19,7 @@ const Log = require('../models/log');
         l.save((err) => {
             done(err);
         });
+        
     };
 
     module.exports = {

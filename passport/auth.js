@@ -82,18 +82,18 @@ const config = require('../config'),
 
     module.exports = {
         /** Checks if user is authenticated WEB */
-        isAuthenticated: isAuthenticated,
+        isAuthenticated,
 
         /** Checks if user is authenticated API */
-        isApiAuthenticated: isApiAuthenticated,
+        isApiAuthenticated,
 
         /** Checks if user is authenticated */
-        authenticate: authenticate,
+        authenticate,
 
         /** Checks if password is valid */
-        isValidPassword: isValidPassword,
+        isValidPassword,
 
         /** Checks if user is authenticated PROFILE */
-        isProfileAuthenticated: isProfileAuthenticated
+        isProfileAuthenticated
     };
 })();

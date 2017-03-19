@@ -1,6 +1,5 @@
 /* jshint esversion: 6 */
 const User = require('../models/user');
-
 (function () {
 
     const findOne = (id, done) => User.findOne({_id: id},
@@ -25,12 +24,12 @@ const User = require('../models/user');
     const remove = (done) => User.find({}).remove(() => done());
 
     module.exports = {
-        findOne: findOne,
-        find: find,
-        saveOne: saveOne,
-        removeOne: removeOne,
-        updateOne: updateOne,
-        remove: remove
+        findOne,
+        find,
+        saveOne,
+        removeOne,
+        updateOne,
+        remove
     };
 
 })();
