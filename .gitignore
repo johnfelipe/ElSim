@@ -38,3 +38,8 @@ jspm_packages
 
 .idea
 env
+
+# angular client
+angular-client/_build
+angular-client/bower_components
+angular-client/node_modules
