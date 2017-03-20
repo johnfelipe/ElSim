@@ -9,7 +9,7 @@
     <% include ../../partials/no-data.ejs %>
     <% } else { %>
     <div class="card-deck-wrapper">
-        <form class="card-text " method="POST" id="country-form" action="/country-form">
+        <form class="card-text " method="POST" id="country-form" action="/compare-country-form">
         <div class="card-deck">
             <div class="card myCard">
                 <div class="card-block">
@@ -57,8 +57,8 @@
                                 <label for="percentage">
                                     <span class="fa fa-percent"></span> Select minimum percentage<br>
                                 </label>
-                                <select class="form-control"  name="percentage"
-                                        id="percentage">
+                                <select class="form-control"  name="percentage1"
+                                        id="percentage1">
                                     <% for(var i = 0.00; i <= 100.00; i += 0.50){ %>
                                     <option value="<%= i %>"><%= i %>%</option>
                                     <% } %>
@@ -74,14 +74,14 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-xs-6">
-                                        <input type='checkbox'  name="aggregateCommunities"
-                                               id="aggregateCommunities" class="custom-checkbox"/>
+                                        <input type='checkbox'  name="aggregateCommunities1"
+                                               id="aggregateCommunities1" class="custom-checkbox"/>
                                         Aggregate communities
 
                                     </div>
                                     <div class="form-group col-xs-6">
-                                        <input type='checkbox' name="wholeCountry"
-                                               id="wholeCountry" class="custom-checkbox"/> Aggregate whole country
+                                        <input type='checkbox' name="wholeCountry1"
+                                               id="wholeCountry1" class="custom-checkbox"/> Aggregate whole country
 
                                     </div>
                                 </div>
@@ -100,45 +100,45 @@
                             <h4 class="row col-xs-12">Andalucía</h4>
                             <div class="row">
                                 <div class="form-group col-xs-4">
-                                    <label for="almeria">Almería</label>
+                                    <label for="almeria1">Almería</label>
                                     <input class="form-control " type="number" value="5" min="2" max="30"
-                                           name="almeria">
+                                           name="almeria1">
                                 </div>
                                 <div class="form-group col-xs-4">
-                                    <label for="cadiz">Cádiz</label>
-                                    <input class="form-control " type="number" value="9" min="2" max="30" name="cadiz">
+                                    <label for="cadiz1">Cádiz</label>
+                                    <input class="form-control " type="number" value="9" min="2" max="30" name="cadiz1">
                                 </div>
                                 <div class="form-group col-xs-4">
-                                    <label for="cordoba">Córdoba</label>
+                                    <label for="cordoba1">Córdoba</label>
                                     <input class="form-control " type="number" value="7" min="2" max="30"
-                                           name="cordoba">
+                                           name="cordoba1">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-xs-4">
-                                    <label for="granada">Granada</label>
+                                    <label for="granada1">Granada</label>
                                     <input class="form-control " type="number" value="7" min="2" max="30"
-                                           name="granada">
+                                           name="granada1">
                                 </div>
                                 <div class="form-group col-xs-4">
-                                    <label for="huelva">Huelva</label>
-                                    <input class="form-control " type="number" value="5" min="2" max="30" name="huelva">
+                                    <label for="huelva1">Huelva</label>
+                                    <input class="form-control " type="number" value="5" min="2" max="30" name="huelva1">
                                 </div>
                                 <div class="form-group col-xs-4">
-                                    <label for="jaen">Jaén</label>
-                                    <input class="form-control " type="number" value="6" min="2" max="30" name="jaen">
+                                    <label for="jaen1">Jaén</label>
+                                    <input class="form-control " type="number" value="6" min="2" max="30" name="jaen1">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-xs-4">
-                                    <label for="malaga">Málaga</label>
+                                    <label for="malaga1">Málaga</label>
                                     <input class="form-control " type="number" value="10" min="2" max="30"
-                                           name="malaga">
+                                           name="malaga1">
                                 </div>
                                 <div class="form-group col-xs-4">
-                                    <label for="sevilla">Sevilla</label>
+                                    <label for="sevilla1">Sevilla</label>
                                     <input class="form-control " type="number" value="13" min="2" max="30"
-                                           name="sevilla">
+                                           name="sevilla1">
                                 </div>
                             </div>
 
@@ -146,16 +146,16 @@
                             <div class="row">
                                 <div class="form-group col-xs-4">
                                     <label for="">Huesca</label>
-                                    <input class="form-control " type="number" value="3" min="2" max="30" name="huesca">
+                                    <input class="form-control " type="number" value="3" min="2" max="30" name="huesca1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Teruel</label>
-                                    <input class="form-control " type="number" value="3" min="2" max="30" name="teruel">
+                                    <input class="form-control " type="number" value="3" min="2" max="30" name="teruel1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Zaragoza</label>
                                     <input class="form-control " type="number" value="7" min="2" max="30"
-                                           name="zaragoza">
+                                           name="zaragoza1">
                                 </div>
                             </div>
 
@@ -164,7 +164,7 @@
                                 <div class="form-group col-xs-4">
                                     <label for="">Asturias</label>
                                     <input class="form-control " type="number" value="9" min="2" max="30"
-                                           name="asturias">
+                                           name="asturias1">
                                 </div>
                             </div>
 
@@ -173,27 +173,27 @@
                                 <div class="form-group col-xs-4">
                                     <label for="">Albacete</label>
                                     <input class="form-control " type="number" value="4" min="2" max="30"
-                                           name="albacete">
+                                           name="albacete1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Ciudad Real</label>
                                     <input class="form-control " type="number" value="5" min="2" max="30"
-                                           name="ciudadreal">
+                                           name="ciudadreal1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Cuenca</label>
-                                    <input class="form-control " type="number" value="3" min="2" max="30" name="cuenca">
+                                    <input class="form-control " type="number" value="3" min="2" max="30" name="cuenca1">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-xs-4">
                                     <label for="">Guadalajara</label>
                                     <input class="form-control " type="number" value="3" min="2" max="30"
-                                           name="guadalajara">
+                                           name="guadalajara1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Toledo</label>
-                                    <input class="form-control " type="number" value="5" min="2" max="30" name="toledo">
+                                    <input class="form-control " type="number" value="5" min="2" max="30" name="toledo1">
                                 </div>
                             </div>
 
@@ -202,7 +202,7 @@
                                 <div class="form-group col-xs-4">
                                     <label for="">Illes-Balears</label>
                                     <input class="form-control " type="number" value="7" min="2" max="30"
-                                           name="illesbalears">
+                                           name="illesbalears1">
                                 </div>
                             </div>
 
@@ -210,47 +210,47 @@
                             <div class="row">
                                 <div class="form-group col-xs-4">
                                     <label for="">Ávila</label>
-                                    <input class="form-control " type="number" value="3" min="2" max="30" name="avila">
+                                    <input class="form-control " type="number" value="3" min="2" max="30" name="avila1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Burgos</label>
-                                    <input class="form-control " type="number" value="4" min="2" max="30" name="burgos">
+                                    <input class="form-control " type="number" value="4" min="2" max="30" name="burgos1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">León</label>
-                                    <input class="form-control " type="number" value="5" min="2" max="30" name="leon">
+                                    <input class="form-control " type="number" value="5" min="2" max="30" name="leon1">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-xs-4">
                                     <label for="">Palencia</label>
                                     <input class="form-control " type="number" value="3" min="2" max="30"
-                                           name="palencia">
+                                           name="palencia1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Salamanca</label>
                                     <input class="form-control " type="number" value="4" min="2" max="30"
-                                           name="salamanca">
+                                           name="salamanca1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Segovia</label>
                                     <input class="form-control " type="number" value="3" min="2" max="30"
-                                           name="segovia">
+                                           name="segovia1">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-xs-4">
                                     <label for="">Soria</label>
-                                    <input class="form-control " type="number" value="3" min="2" max="30" name="soria">
+                                    <input class="form-control " type="number" value="3" min="2" max="30" name="soria1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Valladolid</label>
                                     <input class="form-control " type="number" value="5" min="2" max="30"
-                                           name="valladolid">
+                                           name="valladolid1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Zamora</label>
-                                    <input class="form-control " type="number" value="3" min="2" max="30" name="zamora">
+                                    <input class="form-control " type="number" value="3" min="2" max="30" name="zamora1">
                                 </div>
                             </div>
 
@@ -259,12 +259,12 @@
                                 <div class="form-group col-xs-4">
                                     <label for="">Las Palmas</label>
                                     <input class="form-control " type="number" value="7" min="2" max="30"
-                                           name="laspalmas">
+                                           name="laspalmas1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Canarias</label>
                                     <input class="form-control " type="number" value="7" min="2" max="30"
-                                           name="santacruzdetenerife">
+                                           name="santacruzdetenerife1">
                                 </div>
                             </div>
 
@@ -273,7 +273,7 @@
                                 <div class="form-group col-xs-4">
                                     <label for="">Cantabria</label>
                                     <input class="form-control " type="number" value="5" min="2" max="30"
-                                           name="cantabria">
+                                           name="cantabria1">
                                 </div>
                             </div>
 
@@ -282,22 +282,22 @@
                                 <div class="form-group col-xs-4">
                                     <label for="">Barcelona</label>
                                     <input class="form-control " type="number" value="31" min="2" max="50"
-                                           name="barcelona">
+                                           name="barcelona1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Girona</label>
-                                    <input class="form-control " type="number" value="5" min="2" max="30" name="girona">
+                                    <input class="form-control " type="number" value="5" min="2" max="30" name="girona1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Lleida</label>
-                                    <input class="form-control " type="number" value="4" min="2" max="30" name="lleida">
+                                    <input class="form-control " type="number" value="4" min="2" max="30" name="lleida1">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-xs-4">
                                     <label for="">Tarragona</label>
                                     <input class="form-control " type="number" value="6" min="2" max="30"
-                                           name="tarragona">
+                                           name="tarragona1">
                                 </div>
                             </div>
 
@@ -306,12 +306,12 @@
                                 <div class="form-group col-xs-4">
                                     <label for="">Cáceres</label>
                                     <input class="form-control " type="number" value="4" min="2" max="30"
-                                           name="caceres">
+                                           name="caceres1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="badajoz">Badajoz</label>
                                     <input class="form-control " type="number" value="6" min="2" max="30"
-                                           name="badajoz">
+                                           name="badajoz1">
                                 </div>
                             </div>
 
@@ -320,23 +320,23 @@
                                 <div class="form-group col-xs-4">
                                     <label for="">A Corunia</label>
                                     <input class="form-control " type="number" value="9" min="2" max="30"
-                                           name="acoruña">
+                                           name="acoruña1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Lugo</label>
-                                    <input class="form-control " type="number" value="4" min="2" max="30" name="lugo">
+                                    <input class="form-control " type="number" value="4" min="2" max="30" name="lugo1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Ourense</label>
                                     <input class="form-control " type="number" value="4" min="2" max="30"
-                                           name="ourense">
+                                           name="ourense1">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-xs-4">
                                     <label for="">Pontevedra</label>
                                     <input class="form-control " type="number" value="8" min="2" max="30"
-                                           name="pontevedra">
+                                           name="pontevedra1">
                                 </div>
                             </div>
 
@@ -345,7 +345,7 @@
                                 <div class="form-group col-xs-4">
                                     <label for="">Madrid</label>
                                     <input class="form-control " type="number" value="34" min="2" max="50"
-                                           name="madrid">
+                                           name="madrid1">
                                 </div>
                             </div>
 
@@ -354,7 +354,7 @@
                                 <div class="form-group col-xs-4">
                                     <label for="">Navarra</label>
                                     <input class="form-control " type="number" value="5" min="2" max="30"
-                                           name="navarra">
+                                           name="navarra1">
                                 </div>
                             </div>
 
@@ -362,17 +362,17 @@
                             <div class="row">
                                 <div class="form-group col-xs-4">
                                     <label for="">Álava</label>
-                                    <input class="form-control " type="number" value="4" min="2" max="30" name="alava">
+                                    <input class="form-control " type="number" value="4" min="2" max="30" name="alava1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Guipuzkoa</label>
                                     <input class="form-control " type="number" value="6" min="2" max="30"
-                                           name="gipuzkoa">
+                                           name="gipuzkoa1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Bizkaia</label>
                                     <input class="form-control " type="number" value="9" min="2" max="30"
-                                           name="bizkaia">
+                                           name="bizkaia1">
                                 </div>
                             </div>
 
@@ -380,7 +380,7 @@
                             <div class="row">
                                 <div class="form-group col-xs-4">
                                     <label for="">Murcia</label>
-                                    <input class="form-control " type="number" value="9" min="2" max="30" name="murcia">
+                                    <input class="form-control " type="number" value="9" min="2" max="30" name="murcia1">
                                 </div>
                             </div>
                             <h4>La Rioja</h4>
@@ -388,7 +388,7 @@
                                 <div class="form-group col-xs-4">
                                     <label for="">La Rioja</label>
                                     <input class="form-control " type="number" value="4" min="2" max="30"
-                                           name="larioja">
+                                           name="larioja1">
                                 </div>
                             </div>
 
@@ -397,17 +397,17 @@
                                 <div class="form-group col-xs-4">
                                     <label for="">Alicante</label>
                                     <input class="form-control " type="number" value="11" min="2" max="30"
-                                           name="alicante">
+                                           name="alicante1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Castellón</label>
                                     <input class="form-control " type="number" value="5" min="2" max="30"
-                                           name="castellon">
+                                           name="castellon1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Valencia</label>
                                     <input class="form-control " type="number" value="16" min="2" max="30"
-                                           name="valencia">
+                                           name="valencia1">
                                 </div>
                             </div>
 
@@ -415,12 +415,12 @@
                             <div class="row">
                                 <div class="form-group col-xs-4">
                                     <label for="">Ceuta</label>
-                                    <input class="form-control " type="number" value="1" min="1" max="30" name="ceuta">
+                                    <input class="form-control " type="number" value="1" min="1" max="30" name="ceuta1">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label for="">Melilla</label>
                                     <input class="form-control " type="number" value="1" min="1" max="30"
-                                           name="melilla">
+                                           name="melilla1">
                                 </div>
                             </div>
                         </div>

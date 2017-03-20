@@ -6,7 +6,9 @@ const Chart = require('../charts/chart'),
     Codigos = require('../misc/codigos'),
     District = require('./district'),
     checkError = require('../utilities/util').checkError,
-    Results = require('../services/results');
+    Results = require('../services/results'),
+    console = require('better-console'),
+    comparator = require('./comparator');
 
 let response = require('./index-get').indexResponse;
 
@@ -94,6 +96,41 @@ let response = require('./index-get').indexResponse;
         });
     };
 
+    const compareCountryFormPostFunction = (req, res) => {
+        let resultSelected = req.body.resultSelected,
+            percentage1 = req.body.percentage1,
+            percentage2 = req.body.percentage,
+            user = req.user;
+
+        let conjunto1 = {};
+        let conjunto2 = {};
+
+        comparator.fillSets(conjunto1, conjunto2, req.body);
+
+        Chart.calculateCountry(resultSelected, percentage1, user, conjunto1, (options1) => {
+            Chart.calculateCountry(resultSelected, percentage2, user, conjunto2, (options2) => {
+                let options = {};
+                options.options1 = options1;
+                options.options2 = options2;
+                options.colors = Colors;
+                options.icons = Icons;
+                options.user = user;
+                options.title = 'Compare Country';
+                options.differences = comparator.fillDifferences(
+                    options1.global.agrupado,
+                    options2.global.agrupado,
+                    percentage1,
+                    percentage2,
+                    conjunto1,
+                    conjunto2
+                );
+                res.render('pages/simulator/compare-country-chart', options);
+            });
+        });
+
+
+    };
+
     const saveResultFunction = (req, res) => res.send({result: req.body.result});
 
 
@@ -111,6 +148,9 @@ let response = require('./index-get').indexResponse;
 
         /** Handles country chart form */
         countryFormPostFunction,
+
+        /** Handles compare country chart form */
+        compareCountryFormPostFunction,
 
         /** Saves a result */
         saveResultFunction

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<% include ../../partials/head.ejs %>
+<% include ../../partials/menu.ejs %>
+<script src="/js/highmaps.js"></script>
+<script src="/js/exporting.js"></script>
+<script src="/js/es-all.js"></script>
+<body>
+<div class="container">
+    <div class="card-deck-wrapper">
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title"><span class="fa fa-info-circle"></span> Differences Between Parties</h4>
+                    <div class="card-text">
+                        <ul>
+                            <% for(let i = 0, len = differences.results.length; i < len; i++) { %>
+                            <li>
+                                <% if(differences.results[i].kind === 'E') { %>
+                                <%= differences.results[i].path %> has <%= differences.results[i].lhs %>
+                                mandates in Country #1, but has <b>changed</b>
+                                to <%= differences.results[i].rhs %> mandates in Country #2.
+                                <% } %>
+                                <% if(differences.results[i].kind === 'D') { %>
+                                <%= differences.results[i].path %> has <b>disappeared</b> in Country #2.
+                                <% } %>
+                                <% if(differences.results[i].kind === 'N') { %>
+                                <%= differences.results[i].path %> has been <b>added</b> in Country #2 with
+                                <%= differences.results[i].rhs %> mandates.
+                                <% } %>
+                                <% if(differences.results[i].kind === 'A') { %>
+                                Array Change.
+                                <% } %>
+                            </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title"><span class="fa fa-info-circle"></span> Differences Between Parameters</h4>
+                    <div class="card-text">
+                        <ul>
+                            <% for(let i = 0, len = differences.parameters.length; i < len; i++) { %>
+                            <li>
+                                <% if(differences.parameters[i].kind === 'E') { %>
+                                The value of <%= differences.parameters[i].path %> has <b>changed</b> from
+                                <%= parseFloat(differences.parameters[i].lhs) %>% to <%= parseFloat(differences.parameters[i].rhs) %>%.
+                                <% } %>
+
+                                <% if(differences.parameters[i].kind === 'D') { %>
+                                The value of <%= differences.parameters[i].path %> has been <b>disabled</b> in Country #2.
+                                <% } %>
+
+                                <% if(differences.parameters[i].kind === 'N') { %>
+                                The value of <%= differences.parameters[i].path %> has been <b>enabled</b> in Country #2.
+                                <% } %>
+
+                                <% if(differences.parameters[i].kind === 'A') { %>
+                                Array Change.
+                                <% } %>
+                            </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title"><span class="fa fa-pie-chart"></span> Country #1</h4>
+                    <table id="tabla1" class="display card-text" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Party</th>
+                            <th>Mandates</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% for(let party in options1.global.agrupado) { %>
+                        <tr>
+                            <td>
+                                <img src="<%= Object.prototype.hasOwnProperty.call(icons, party) ? icons[party] : 'images/ico/no-ico.png' %>"
+                                     width="18" height="18"/> <%= party %></td>
+                            <td><%= options1.global.agrupado[party] %></td>
+                        </tr>
+                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title"><span class="fa fa-pie-chart"></span> Country #2</h4>
+                    <table id="tabla2" class="display card-text" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Party</th>
+                            <th>Mandates</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% for(let party in options2.global.agrupado) { %>
+                        <tr>
+                            <td>
+                                <img src="<%= Object.prototype.hasOwnProperty.call(icons, party) ? icons[party] : 'images/ico/no-ico.png' %>"
+                                     width="18" height="18"/> <%= party %></td>
+                            <td><%= options2.global.agrupado[party] %></td>
+                        </tr>
+                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    let colors = <%- JSON.stringify(colors) %>;
+
+    $('#tabla1').DataTable({
+        "order": [[1, "desc"]],
+        "paging": false,
+        "search": false
+    });
+    $('#tabla2').DataTable({
+        "order": [[1, "desc"]],
+        "paging": false,
+        "search": false
+    });
+
+
+</script>
+
+<% include ../../partials/footer.ejs %>
+</body>
+</html>
