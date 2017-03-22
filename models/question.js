@@ -5,6 +5,8 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+mongoose.Promise = global.Promise;
+
 let s = new Schema({
     title: {
         type: String,

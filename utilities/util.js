@@ -50,6 +50,10 @@ const console = require('better-console');
         return false;
     };
 
+    const invalidRowException = (data) => {
+        throw new Error('Data invalid exception, one or more rows are invalid' + data);
+    };
+
     const readResultados = (path, done) => {
         let stream = fs.createReadStream(path),
             resultados = [];
@@ -60,6 +64,7 @@ const console = require('better-console');
         ).on('end', () => done(resultados));
     };
 
+
     const readParties = (path, resultados, done) => {
         let i = 0, stream = fs.createReadStream(path);
         csv.fromStream(stream, {
@@ -68,20 +73,18 @@ const console = require('better-console');
             .on('data-invalid', invalidRowException)
             .on('data', (data) => {
                 for (let key in data) {
-                    if (data[key] === '0') {
-                        delete data[key];
+                    if (data.hasOwnProperty(key)) {
+
+                        if (data[key] === '0') {
+                            delete data[key];
+                        }
                     }
                 }
+
                 resultados[i].partidos = data;
                 i++;
-
             })
-            .on('end', () => done(resultados)
-            );
-    };
-
-    const invalidRowException = (data) => {
-        throw new Error('Data invalid exception, one or more rows are invalid' + data);
+            .on('end', () => done(resultados));
     };
 
     const readCsv = (path1, path2, done) => {

@@ -37,16 +37,37 @@ initPassport(passport);
 /** Flash messages */
 app.use(flash());
 
-let routes = require('./routes/index')(passport),
-    users = require('./routes/users')(passport),
-    apiCsv = require('./routes/api/csv'),
+let miniGame = require('./routes/games/minigame'),
+    quiz = require('./routes/games/quiz');
+
+let comparator = require('./routes/simulator/comparator'),
+    country = require('./routes/simulator/country'),
+    district = require('./routes/simulator/district');
+
+let users = require('./routes/users/users'),
+    auth = require('./routes/users/auth')(passport);
+
+let data = require('./routes/data'),
+    misc = require('./routes/misc');
+
+let apiCsv = require('./routes/api/csv'),
     apiLogs = require('./routes/api/logs'),
     apiMisc = require('./routes/api/misc'),
     apiQuestions = require('./routes/api/questions'),
     apiResults = require('./routes/api/results'),
     apiUsers = require('./routes/api/users');
 
-app.use('/', routes);
+app.use('/', miniGame);
+app.use('/', quiz);
+
+app.use('/', comparator);
+app.use('/', country);
+app.use('/', district);
+
+app.use('/',data);
+app.use('/',misc);
+
+app.use('/', auth);
 app.use('/Users', users);
 app.use('/api/v1/csv', apiCsv);
 app.use('/api/v1/Logs', apiLogs);

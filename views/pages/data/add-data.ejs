@@ -15,7 +15,7 @@
         <%= err || null %>
 
     </div>
-    <% } %>
+    <% } else { %>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -171,6 +171,7 @@ PSOE - 123</textarea>
             </div>
         </div>
     </div>
+    <% } %>
 </div>
 <script>
     parseFields(processTextarea);

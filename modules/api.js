@@ -6,7 +6,8 @@ const Util = require('../utilities/util'),
     Results = require('../services/results'),
     Users = require('../services/users'),
     Subscribers = require('../services/subscribers'),
-    Questions = require('../services/quiz');
+    Questions = require('../services/quiz'),
+    apiResponse = require('./response').apiResponse;
 
 /**
  *
@@ -105,12 +106,7 @@ const Util = require('../utilities/util'),
         () => apiResponse(req, res, null, 'great', null)
     );
 
-    const apiResponse = (req, res, err, message, data) => res.send({
-        success: !err,
-        message: (err) ? null : message,
-        err: (err) ? err : null,
-        data: (err) ? null : data
-    });
+
 
 
     const hardReset = (req, res) => {

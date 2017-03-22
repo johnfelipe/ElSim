@@ -1,10 +1,15 @@
 /* jshint esversion: 6 */
-const diff = require('deep-diff').diff;
+let diff = require('deep-diff').diff;
+const console = require('better-console');
 
 {
     const fillDifferences = (result1, result2, perc1, perc2, set1, set2) => {
         let differences = {};
+
+        console.warn('Calculando diferencias.');
+
         differences.results = diff(result1, result2);
+
         differences.parameters = diff({
             percentage: perc1,
             wholeCountry: set1.wholeCountry,
@@ -14,6 +19,9 @@ const diff = require('deep-diff').diff;
             wholeCountry: set2.wholeCountry,
             communities: set2.communities
         });
+
+        console.info(differences);
+
         return differences;
     };
 
