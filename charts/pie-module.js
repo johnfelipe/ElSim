@@ -6,7 +6,7 @@ const has = Object.prototype.hasOwnProperty;
  *
  * @module pie-module
  */
-(function () {
+{
     const fillOptions = (result) => {
         let options = pieOptions,
             resultsArray = [];
@@ -31,5 +31,5 @@ const has = Object.prototype.hasOwnProperty;
         /** Fills options to pie chart */
         fillOptions
     };
-})();
+}
 

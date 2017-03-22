@@ -6,7 +6,7 @@ const Question = require('../models/question');
  *
  * @module quiz-game
  */
-(function(){
+{
 
     const checkQuestion = (question,answer) => {
         return (question.correct === answer);
@@ -41,4 +41,4 @@ const Question = require('../models/question');
         deleteQuestion
     };
 
-})();
+}

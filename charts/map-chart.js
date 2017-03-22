@@ -19,7 +19,7 @@ const provincias = [
  *
  * @module map-module
  */
-(function () {
+{
     const calculateCode = (cod_provincia) => {
         return provincias[cod_provincia];
     };
@@ -176,5 +176,5 @@ const provincias = [
         calculateGlobalWithCommunities
     };
 
-})();
+}
 

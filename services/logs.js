@@ -1,7 +1,7 @@
 /* jshint esversion: 6 */
 const Log = require('../models/log');
 
-(function(){
+{
     const findOne = (id,done) => Log.findOne({_id: id},
         (err, data) => done(err,data)
     );
@@ -23,10 +23,10 @@ const Log = require('../models/log');
     };
 
     module.exports = {
-        findOne: findOne,
-        find: find,
-        remove: remove,
-        save: save
+        findOne,
+        find,
+        remove,
+        save
     };
 
-})();
+}

@@ -1,6 +1,6 @@
 /* jshint esversion: 6 */
 const User = require('../models/user');
-(function () {
+{
 
     const findOne = (id, done) => User.findOne({_id: id},
         (err, data) => done(err, data)
@@ -32,4 +32,4 @@ const User = require('../models/user');
         remove
     };
 
-})();
+}

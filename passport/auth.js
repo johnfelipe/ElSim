@@ -8,7 +8,7 @@ const config = require('../config'),
  * Module to handle authentication
  * @module auth
  */
-(function () {
+{
 
     const isAuthenticated = (req, res, next) => {
         if (req.isAuthenticated()) {
@@ -96,4 +96,4 @@ const config = require('../config'),
         /** Checks if user is authenticated PROFILE */
         isProfileAuthenticated
     };
-})();
+}

@@ -5,7 +5,7 @@
  *
  * @module errorHandler
  */
-(function () {
+{
 
     const catchNotFound = (req, res, next) => {
         let err = new Error('Not Found');
@@ -34,12 +34,12 @@
 
     module.exports = {
         /** Catch 404 and forward to error handler */
-        catchNotFound: catchNotFound,
+        catchNotFound,
 
         /** Development error handler will print stacktrace */
-        developmentHandler: developmentHandler,
+        developmentHandler,
 
         /** Production error handler, no stacktraces leaked to user */
-        productionHandler: productionHandler
+        productionHandler
     };
-})();
+}

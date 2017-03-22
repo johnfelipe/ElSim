@@ -1,7 +1,7 @@
 /* jshint esversion: 6 */
 const Result = require('../models/result');
 
-(function () {
+{
 
     const find = (done) => Result.find({}, (err, data) => done(err, data));
 
@@ -33,4 +33,4 @@ const Result = require('../models/result');
         remove
     };
 
-})();
+}

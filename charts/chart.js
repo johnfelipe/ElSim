@@ -15,7 +15,7 @@ const highcharts = require('node-highcharts'),
  *
  * @module graphic-module
  */
-(function () {
+{
     const rendChart = (options, callback) => {
         highcharts.render(options, (err, data) => {
             if (err) {
@@ -179,4 +179,4 @@ const highcharts = require('node-highcharts'),
         calculateDistrict,
         calculateCountry
     };
-})();
+}

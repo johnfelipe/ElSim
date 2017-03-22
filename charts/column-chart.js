@@ -8,7 +8,7 @@ let columnOptions = require('./options/column-options');
  *
  * @module column-module
  */
-(function () {
+{
     const fillOptions = (result) => {
         if (typeof result === 'undefined' ||
             result === null) {
@@ -38,4 +38,4 @@ let columnOptions = require('./options/column-options');
         /** Fills options to a column chart */
         fillOptions
     };
-})();
+}

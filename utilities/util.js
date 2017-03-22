@@ -9,7 +9,7 @@ const console = require('better-console');
  *
  * @module util-module
  */
-(function () {
+{
 
     const checkError = (err) => {
         if (err) {
@@ -67,8 +67,8 @@ const console = require('better-console');
         })
             .on('data-invalid', invalidRowException)
             .on('data', (data) => {
-                for(let key in data){
-                    if(data[key] === '0'){
+                for (let key in data) {
+                    if (data[key] === '0') {
                         delete data[key];
                     }
                 }
@@ -157,16 +157,16 @@ const console = require('better-console');
     };
 
     module.exports = {
-        groupByKey: groupByKey,
-        sortByRest: sortByRest,
-        ellectionIsInArray: ellectionIsInArray,
-        readResultados: readResultados,
-        readParties: readParties,
-        invalidRowException: invalidRowException,
-        readCsv: readCsv,
-        calculateEllections: calculateEllections,
-        loadCsv: loadCsv,
-        checkError: checkError,
-        sortByDate: sortByDate
+        groupByKey,
+        sortByRest,
+        ellectionIsInArray,
+        readResultados,
+        readParties,
+        invalidRowException,
+        readCsv,
+        calculateEllections,
+        loadCsv,
+        checkError,
+        sortByDate
     };
-})();
+}

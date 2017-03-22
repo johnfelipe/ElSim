@@ -1,7 +1,7 @@
 /* jshint esversion: 6 */
 const Question = require('../models/question');
 
-(function () {
+{
 
     const saveOne = (question, done) => {
         let q = new Question(question);
@@ -26,4 +26,4 @@ const Question = require('../models/question');
         remove
     };
 
-})();
+}

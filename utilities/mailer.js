@@ -24,7 +24,7 @@ const transportConfig = {
  *
  * @module mailer
  */
-(function () {
+{
     const sendMail = (destination, text, done) => {
         let transporter = nodemailer.createTransport(transportConfig);
         let mailOptions = {
@@ -32,7 +32,7 @@ const transportConfig = {
             to: destination,
             subject: 'EllSim newsletter',
             text: text,
-            html: '<h2>EllSim NewsLetter</h2> Thanks for be a member of our comunity.<hr><b>I want to tell you something:</b><br><i>' + text + '</i>'
+            html: '<h2>EllSim NewsLetter</h2> Thanks for be a member of our community.<hr><b>I want to tell you something:</b><br><i>' + text + '</i>'
         };
         transporter.sendMail(mailOptions, done);
     };
@@ -40,7 +40,7 @@ const transportConfig = {
 
     module.exports = {
         /** Sends an email to/from you want, with the text given */
-        sendMail: sendMail
+        sendMail
     };
-})();
+}
 
