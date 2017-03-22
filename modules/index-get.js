@@ -10,7 +10,7 @@ const Util = require('../utilities/util'),
  *
  * @module index-get-functions
  */
-(function () {
+{
     const indexResponse = (req, res, page, title, other) => {
         let options = {
             title: title,
@@ -171,5 +171,5 @@ const Util = require('../utilities/util'),
 
         quizGetFunction
     };
-})();
+}
 

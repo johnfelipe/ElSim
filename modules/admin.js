@@ -12,7 +12,7 @@ try {
  *
  * @module admin-functions
  */
-(function () {
+{
     const adminSummaryFunction = (req, res) => {
         const loadDone = (logs, results, users) => res.render('pages/auth/admin', {
                 user: req.user,
@@ -40,4 +40,4 @@ try {
         /** Shows summary of system */
         adminSummaryFunction
     };
-})();
+}

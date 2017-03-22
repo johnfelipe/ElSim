@@ -16,7 +16,7 @@ let response = require('./index-get').indexResponse;
  *
  * @module index-post-functions
  */
-(function () {
+{
     const addDataFilePostFunction = (req, res) => {
         response(req, res, 'pages/misc/error', 'Not Implemented', {
             err: {
@@ -155,5 +155,5 @@ let response = require('./index-get').indexResponse;
         /** Saves a result */
         saveResultFunction
     };
-})();
+}
 

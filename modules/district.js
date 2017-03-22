@@ -7,16 +7,7 @@ const Result = require('../models/result'),
  *
  * @module district-module
  */
-(function () {
-
-    const compute = (votes, names, options, withTable) => {
-        return calculateSeats(votes, names, options.mandates, options.blankVotes, options.percentage, withTable);
-    };
-
-    const isInt = (value) => {
-        let x;
-        return isNaN(value) ? !1 : (x = parseFloat(value), (0 | x) === x);
-    };
+{
 
     const calculateTotalVotes = (votes, blankVotes) => {
         let total = parseInt(blankVotes);
@@ -64,24 +55,6 @@ const Result = require('../models/result'),
         }
     };
 
-    const calculateSeats = (votes, names, mandates, blankVotes, percentage, withTable) => {
-        let numberOfParties = votes.length,
-            numberOfVotes = calculateTotalVotes(votes, blankVotes),
-            minNumberOfVotes = Math.floor(numberOfVotes * percentage / 100),
-            result = fillResultVar(numberOfVotes, minNumberOfVotes),
-            seats, numberOfPartiesValidated, validatedVotes = [], validatedNames = [];
-
-        numberOfPartiesValidated = validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
-        seats = new Array(numberOfPartiesValidated).fill(0);
-        let table = fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
-        fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
-        if (withTable) {
-            result.table = fillTable(table, validatedNames);
-        }
-
-        return result;
-    };
-
     const fillResultVar = (numberOfVotes, minNumberOfVotes) => {
         return {
             numberOfVotes: numberOfVotes,
@@ -100,6 +73,24 @@ const Result = require('../models/result'),
             }
         }
         return table;
+    };
+
+    const calculateSeats = (votes, names, mandates, blankVotes, percentage, withTable) => {
+        let numberOfParties = votes.length,
+            numberOfVotes = calculateTotalVotes(votes, blankVotes),
+            minNumberOfVotes = Math.floor(numberOfVotes * percentage / 100),
+            result = fillResultVar(numberOfVotes, minNumberOfVotes),
+            seats, numberOfPartiesValidated, validatedVotes = [], validatedNames = [];
+
+        numberOfPartiesValidated = validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
+        seats = new Array(numberOfPartiesValidated).fill(0);
+        let table = fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
+        fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
+        if (withTable) {
+            result.table = fillTable(table, validatedNames);
+        }
+
+        return result;
     };
 
     const createResultEntity = (args) => {
@@ -139,10 +130,12 @@ const Result = require('../models/result'),
         return population;
     };
 
+    const compute = (votes, names, options, withTable) => {
+        return calculateSeats(votes, names, options.mandates, options.blankVotes, options.percentage, withTable);
+    };
+
     module.exports = {
         compute,
-
-        isInt,
 
         calculateTotalVotes,
 
@@ -160,4 +153,4 @@ const Result = require('../models/result'),
 
         addPopulation
     };
-})();
+}

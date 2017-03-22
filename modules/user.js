@@ -9,7 +9,7 @@ const Mailer = require('../utilities/mailer'),
  *
  * @module user-functions
  */
-(function () {
+{
     const profile = (req, res) => {
         let options = {
             title: 'Profile',
@@ -79,7 +79,7 @@ const Mailer = require('../utilities/mailer'),
         });
 
         const mailSent = (err, result) => {
-            console.log('Mail sent result:', result)
+            console.log('Mail sent result:', result);
             checkError(err);
             loadAll(doneLoad);
         };
@@ -101,4 +101,4 @@ const Mailer = require('../utilities/mailer'),
         loadAll
     };
 
-})();
+}

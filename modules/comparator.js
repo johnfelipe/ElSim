@@ -1,7 +1,7 @@
 /* jshint esversion: 6 */
 const diff = require('deep-diff').diff;
 
-(function () {
+{
     const fillDifferences = (result1, result2, perc1, perc2, set1, set2) => {
         let differences = {};
         differences.results = diff(result1, result2);
@@ -40,4 +40,4 @@ const diff = require('deep-diff').diff;
         fillSets
     };
 
-})();
+}

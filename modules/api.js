@@ -12,7 +12,7 @@ const Util = require('../utilities/util'),
  *
  * @module api-functions
  */
-(function () {
+{
     const setup = (req, res) => {
         Users.remove(() => {
             let nick = {
@@ -240,5 +240,5 @@ const Util = require('../utilities/util'),
         /** Deletes one question */
         deleteOneQuestion
     };
-})();
+}
 
