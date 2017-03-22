@@ -39,11 +39,21 @@ app.use(flash());
 
 let routes = require('./routes/index')(passport),
     users = require('./routes/users')(passport),
-    apiRoutes = require('./routes/api')();
+    apiCsv = require('./routes/api/csv')(),
+    apiLogs = require('./routes/api/logs')(),
+    apiMisc = require('./routes/api/misc')(),
+    apiQuestions = require('./routes/api/questions')(),
+    apiResults = require('./routes/api/results')(),
+    apiUsers = require('./routes/api/users')();
 
 app.use('/', routes);
 app.use('/Users', users);
-app.use('/api', apiRoutes);
+app.use('/api/v1/csv', apiCsv);
+app.use('/api/v1/Logs', apiLogs);
+app.use('/api/v1', apiMisc);
+app.use('/api/v1/Questions', apiQuestions);
+app.use('/api/v1/Results', apiResults);
+app.use('/api/v1/Users', apiUsers);
 
 /** Catch 404 and forward to error handler */
 app.use(errorHandler.catchNotFound);
