@@ -39,12 +39,12 @@ app.use(flash());
 
 let routes = require('./routes/index')(passport),
     users = require('./routes/users')(passport),
-    apiCsv = require('./routes/api/csv')(),
-    apiLogs = require('./routes/api/logs')(),
-    apiMisc = require('./routes/api/misc')(),
-    apiQuestions = require('./routes/api/questions')(),
-    apiResults = require('./routes/api/results')(),
-    apiUsers = require('./routes/api/users')();
+    apiCsv = require('./routes/api/csv'),
+    apiLogs = require('./routes/api/logs'),
+    apiMisc = require('./routes/api/misc'),
+    apiQuestions = require('./routes/api/questions'),
+    apiResults = require('./routes/api/results'),
+    apiUsers = require('./routes/api/users');
 
 app.use('/', routes);
 app.use('/Users', users);
