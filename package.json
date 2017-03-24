@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "test": "./node_modules/.bin/mocha --reporter spec $(find test -name '*.js')",
+    "test": "./node_modules/.bin/mocha --reporter spec test/**/*.js test/*.js",
     "generate-doc": "./node_modules/.bin/jsdoc -c conf.json -d doc"
   },
   "dependencies": {
@@ -30,6 +30,7 @@
     "nodemailer": "^2.7.0",
     "passport": "~0.2.0",
     "passport-local": "~1.0.0",
+    "q": "^1.5.0",
     "serve-favicon": "~2.3.0",
     "xmldom": "0.1.19"
   },
