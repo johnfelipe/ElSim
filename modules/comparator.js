@@ -28,9 +28,11 @@ const console = require('better-console');
     const fillSets = (set1, set2, wholeSet) => {
 
         set1.wholeCountry = wholeSet.wholeCountry1;
+
         set1.communities = wholeSet.aggregateCommunities1;
 
         set2.wholeCountry = wholeSet.wholeCountry;
+
         set2.communities = wholeSet.aggregateCommunities;
 
         for (let key in wholeSet) {

@@ -10,10 +10,10 @@ let columnOptions = require('./options/column-options');
  */
 {
     const fillOptions = (result) => {
-        if (typeof result === 'undefined' ||
-            result === null) {
+        if (typeof result === 'undefined' || result === null) {
             return new Error('invalid param type');
         }
+
         let options = columnOptions, categories = [], mandates = [];
 
         for (let key in result) {

@@ -106,9 +106,6 @@ const Util = require('../utilities/util'),
         () => apiResponse(req, res, null, 'great', null)
     );
 
-
-
-
     const hardReset = (req, res) => {
         let promises = [];
 

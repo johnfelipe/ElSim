@@ -12,11 +12,13 @@
             user: req.user
         };
         let merged;
+
         if (other) {
             merged = Object.assign(options, other);
         } else {
             merged = options;
         }
+
         res.render(page, merged);
     };
 

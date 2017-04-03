@@ -9,33 +9,32 @@ const express = require('express'),
     console = require('better-console'),
     Util = require('../../utilities/util'),
     Moment = require('moment');
-
-router.get('/country-graphic-form', (req, res) => {
-    Util.calculateEllections((data, ellections) => {
-        ellections.sort(Util.sortByDate);
-        response(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
-            results: data,
-            ellections: ellections,
-            moment: Moment,
-            err: null
+{
+    router.get('/country-graphic-form', (req, res) => {
+        Util.calculateEllections((data, ellections) => {
+            ellections.sort(Util.sortByDate);
+            response(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
+                results: data,
+                ellections: ellections,
+                moment: Moment,
+                err: null
+            });
         });
     });
-});
 
-router.post('/country-form', (req, res) => {
-    let resultSelected = req.body.resultSelected,
-        percentage = req.body.percentage,
-        user = req.user,
-        body = req.body;
+    router.post('/country-form', (req, res) => {
+        let resultSelected = req.body.resultSelected,
+            percentage = req.body.percentage,
+            user = req.user,
+            body = req.body;
 
-    Chart.calculateCountry(resultSelected, percentage, user, body, (options) => {
-        options.colors = Colors;
-        options.icons = Icons;
-        options.user = user;
-        res.render('pages/simulator/country-chart', options);
+        Chart.calculateCountry(resultSelected, percentage, user, body, (options) => {
+            options.colors = Colors;
+            options.icons = Icons;
+            options.user = user;
+            res.render('pages/simulator/country-chart', options);
+        });
     });
-});
 
-module.exports = router;
-
-
+    module.exports = router;
+}

@@ -17,6 +17,7 @@ module.exports = (passport) => {
     const strategyCallback = (req, username, password, done) => {
         User.findOne({'email': username}, (err, user) => {
                 if (err) {
+                    console.error(err);
                     return done(err);
                 }
                 if (!user) {

@@ -96,39 +96,45 @@ const console = require('better-console');
     const calculateEllections = (done) => {
         Result.find({}, (err, data) => {
             if (err) {
+                console.error(err);
                 throw err;
             }
+
             let ellections = [];
-            for (let i = 0, len = data.length; i < len; i++) {
-                if (!ellectionIsInArray(data[i].eleccion, ellections)) {
-                    ellections.push(data[i].eleccion);
+
+            for (let d of data) {
+                if (!ellectionIsInArray(d.eleccion, ellections)) {
+                    ellections.push(d.eleccion);
                 }
             }
+
             done(data, ellections);
         });
     };
 
     const loadCsv = (done) => {
-        const a = ['1977', '1979', '1982', '1986', '1989', '1993', '1996'];
+        const years = ['1977', '1979', '1982', '1986', '1989', '1993', '1996'];
+
         let path1, path2, promises = [];
 
         const saveCallback = () => {
-
+            console.info('Datos guardados con éxito.');
         };
-        const csvCallback = (data) => {
-            for (let j = 0, lenData = data.length; j < lenData; ++j) {
-                if (data[j].partidos !== undefined) {
 
-                    promises.push(saveResultado(data[j], saveCallback));
+        const csvCallback = (data) => {
+            for (let d of data) {
+                if (d.partidos !== undefined) {
+
+                    promises.push(saveResultado(d, saveCallback));
                 } else {
-                    console.error('Error guardando datos: ', data[j]);
+                    console.error('Error guardando datos: ', d);
                 }
             }
         };
 
-        for (let i = 0, len = a.length; i < len; ++i) {
-            path1 = './csv/' + a[i] + '.csv';
-            path2 = './csv/' + a[i] + '_PARTIDOS.csv';
+        for (let y of years) {
+            path1 = './csv/' + y + '.csv';
+            path2 = './csv/' + y + '_PARTIDOS.csv';
             console.warn('Leyendo ' + path1);
             console.warn('Leyendo ' + path2);
             readCsv(path1, path2, csvCallback);
@@ -136,12 +142,15 @@ const console = require('better-console');
 
         const saveResultado = (result, done) => {
             let r = new Result(result);
+
             r.eleccion = {
                 fecha: result.fecha,
                 autor: 'sistema'
             };
+
             r.save((err) => {
                 if (err) {
+                    console.error(err);
                     console.error(err);
                 }
                 done();

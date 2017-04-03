@@ -16,8 +16,9 @@ module.exports = (passport) => {
 
     const strategyCallback = (req, username, password, done) => {
         let findOrCreateUser = () => {
-            User.findOne({'email': username}, (err, user) => {
+            User.findOne({email: username}, (err, user) => {
                 if (err) {
+                    console.error(err);
                     return done(err);
                 }
 
@@ -32,6 +33,7 @@ module.exports = (passport) => {
                     newUser.apiUsage = {};
                     newUser.save((err) => {
                         if (err) {
+                            console.error(err);
                             throw err;
                         }
                         return done(null, newUser);

@@ -11,9 +11,11 @@ const Result = require('../models/result'),
 
     const calculateTotalVotes = (votes, blankVotes) => {
         let total = parseInt(blankVotes);
-        for (let i = 0, len = votes.length; i < len; ++i) {
-            total = parseInt(votes[i]) + total;
+
+        for (let v of votes) {
+            total = parseInt(v) + total;
         }
+
         return total;
     };
 
@@ -65,6 +67,7 @@ const Result = require('../models/result'),
 
     const fillTable = (table, validatedNames) => {
         let aux;
+
         for (let i = 0, len = table.length; i < len; i++) {
             for (let j = 0, fil_len = table[i].length; j < fil_len; j++) {
                 aux = table[i][j];
@@ -72,6 +75,7 @@ const Result = require('../models/result'),
                 table[i][j][validatedNames[j]] = aux;
             }
         }
+
         return table;
     };
 
@@ -83,9 +87,13 @@ const Result = require('../models/result'),
             seats, numberOfPartiesValidated, validatedVotes = [], validatedNames = [];
 
         numberOfPartiesValidated = validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
+
         seats = new Array(numberOfPartiesValidated).fill(0);
+
         let table = fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
+
         fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
+
         if (withTable) {
             result.table = fillTable(table, validatedNames);
         }
@@ -99,8 +107,8 @@ const Result = require('../models/result'),
 
         const regEx = new RegExp(/(\r\n|\n|\r)/gm);
 
-        for (let i = 0, len = lines.length; i < len; i++) {
-            aux = lines[i].split(' ');
+        for (let line of lines) {
+            aux = line.split(' ');
             partidos[aux[0].replace(regEx, "")] = aux[2].replace(regEx, "");
         }
 
@@ -124,8 +132,8 @@ const Result = require('../models/result'),
 
     const addPopulation = (populations) => {
         let population = 0;
-        for (let i = 0, len = populations.length; i < len; ++i) {
-            population += populations[i];
+        for (let p of populations) {
+            population += p;
         }
         return population;
     };

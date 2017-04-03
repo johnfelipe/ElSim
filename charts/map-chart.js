@@ -47,14 +47,6 @@ const provincias = [
         return 2;
     };
 
-    const calculateGlobal = (data, config, conjunto) => {
-        console.time('Cálculo de elección general...');
-        let global = globalLoop(data, config, conjunto);
-        global.agrupado = groupParties(global);
-        console.timeEnd('Cálculo de elección general...');
-        return global;
-    };
-
     const globalLoop = (data, config, conjunto) => {
         let votes = [], names = [], result, global = [];
 
@@ -81,10 +73,11 @@ const provincias = [
         let aux = {};
         for (let i = 0, len = global.length; i < len; i++) {
             for (let key in global[i].parties) {
+
                 if (has.call(global[i].parties, key) && global[i].parties[key] === 0) {
                     delete global[i].parties[key];
                 } else {
-                    if (aux[key] === undefined) {
+                    if (typeof aux[key] === 'undefined') {
                         aux[key] = 0;
                     }
                     aux[key] += global[i].parties[key];
@@ -94,9 +87,19 @@ const provincias = [
         return aux;
     };
 
+    const calculateGlobal = (data, config, conjunto) => {
+        console.time('Cálculo de elección general...');
+        let global = globalLoop(data, config, conjunto);
+        global.agrupado = groupParties(global);
+        console.timeEnd('Cálculo de elección general...');
+        return global;
+    };
+
     const calculateGlobalWithCommunities = (data, config, conjunto) => {
         let groupedByCommunity = {};
+
         for (let i = 0, len = data.length; i < len; i++) {
+
             if (!has.call(groupedByCommunity, data[i].comunidad)) {
                 groupedByCommunity[data[i].comunidad] = {
                     eleccion: data[i].eleccion,
@@ -116,7 +119,9 @@ const provincias = [
                         groupedByCommunity[data[i].comunidad].partidos[key] = parseInt(groupedByCommunity[data[i].comunidad].partidos[key]);
                     }
                 }
+
             } else {
+
                 groupedByCommunity[data[i].comunidad].mandates += parseInt(calculateMandates(data[i].provincia, conjunto));
                 groupedByCommunity[data[i].comunidad].poblacion += data[i].poblacion;
                 groupedByCommunity[data[i].comunidad].total_votantes += data[i].total_votantes;
@@ -124,6 +129,7 @@ const provincias = [
                 groupedByCommunity[data[i].comunidad].votos_candidaturas += data[i].votos_candidaturas;
                 groupedByCommunity[data[i].comunidad].votos_blanco += data[i].votos_blanco;
                 groupedByCommunity[data[i].comunidad].votos_nulos += data[i].votos_nulos;
+
                 for (let key in data[i].partidos) {
                     if (has.call(groupedByCommunity[data[i].comunidad].partidos, key)) {
                         groupedByCommunity[data[i].comunidad].partidos[key] += parseInt(data[i].partidos[key]);
@@ -140,6 +146,7 @@ const provincias = [
         let groupedByCommunity = calculateGlobalWithCommunities(data, config, conjunto);
         let partidos = {}, votes = [], names = [];
         let blankVotes = 0;
+
         for (let key in groupedByCommunity) {
             if (has.call(groupedByCommunity, key)) {
                 blankVotes += parseInt(groupedByCommunity[key].votos_blanco);

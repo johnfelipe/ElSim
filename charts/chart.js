@@ -61,6 +61,30 @@ const highcharts = require('node-highcharts'),
         };
     };
 
+    const addResultToUser = (user, ellection, result, mandates, percentage, callback) => {
+        User.findOne({_id: user._id}, (err, user) => {
+            if (err) {
+                throw err;
+            }
+
+            user.resultados.push({
+                fecha: ellection.eleccion.fecha,
+                provincia: ellection.cod_provincia,
+                result: result,
+                mandates: mandates,
+                percentage: percentage,
+                blank: ellection.votos_blanco
+            });
+
+            user.save((err) => {
+                if (err) {
+                    throw err;
+                }
+                callback();
+            });
+        });
+    };
+
     const calculateDistrict = (mode, mandates, percentage, resultSelected, user, callback) => {
         let votes = [],
             names = [],
@@ -104,30 +128,6 @@ const highcharts = require('node-highcharts'),
                 addResultToUser(user, ellection, result, mandates, percentage, () => callback(options));
             }
         };
-    };
-
-    const addResultToUser = (user, ellection, result, mandates, percentage, callback) => {
-        User.findOne({_id: user._id}, (err, user) => {
-            if (err) {
-                throw err;
-            }
-
-            user.resultados.push({
-                fecha: ellection.eleccion.fecha,
-                provincia: ellection.cod_provincia,
-                result: result,
-                mandates: mandates,
-                percentage: percentage,
-                blank: ellection.votos_blanco
-            });
-
-            user.save((err) => {
-                if (err) {
-                    throw err;
-                }
-                callback();
-            });
-        });
     };
 
     const calculateCountry = (resultSelected, percentage, user, body, done) => {

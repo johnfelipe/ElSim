@@ -37,6 +37,7 @@ const config = require('../config'),
         if (token) {
             jwt.verify(token, config.secret, (err, decoded) => {
                 if (err) {
+                    console.error(err);
                     return res.json({success: false, message: 'Failed to authenticate token.'});
                 } else {
                     req.decoded = decoded;
@@ -44,6 +45,7 @@ const config = require('../config'),
                 }
             });
         } else {
+            console.warn('No token provided');
             return res.status(403).send({
                 success: false,
                 message: 'No token provided.'
@@ -58,7 +60,10 @@ const config = require('../config'),
                 message: 'Authentication failed',
                 token: null
             };
-            if (err) throw err;
+            if (err) {
+                console.error(err);
+                throw err;
+            }
             if (user) {
                 if (isValidPassword(user, req.body.password)) {
                     let token = jwt.sign(user, config.secret, {

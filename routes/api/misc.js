@@ -6,11 +6,12 @@ const express = require('express'),
     API = require('../../modules/api'),
     Auth = require('../../passport/auth');
 
+{
+    router.post('/authenticate', Auth.authenticate);
+    router.get('/', API.apiWelcome);
+    router.get('/setup', API.setup);
+    /** be careful, this function reset all system with a simple get route! */
+    router.get('/reset', API.hardReset);
 
-router.post('/authenticate', Auth.authenticate);
-router.get('/', API.apiWelcome);
-router.get('/setup', API.setup);
-/** be careful, this function reset all system with a simple get route! */
-router.get('/reset', API.hardReset);
-
-module.exports = router;
+    module.exports = router;
+}
