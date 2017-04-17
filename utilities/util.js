@@ -2,7 +2,8 @@
 'use strict';
 const fs = require('fs'),
     csv = require('fast-csv'),
-    Result = require('../models/result');
+    Result = require('../models/result'),
+moment = require('moment');
 
 const console = require('better-console');
 /**
@@ -161,10 +162,10 @@ const console = require('better-console');
     };
 
     const sortByDate = (a, b) => {
-        if (a.hasOwnProperty('eleccion')) {
-            return new Date(a.eleccion.fecha) - new Date(b.eleccion.fecha);
+        if (typeof a.eleccion !== 'undefined') {
+            return new moment(a.eleccion.fecha) - new moment(b.eleccion.fecha);
         } else {
-            return new Date(a.fecha) - new Date(b.fecha);
+            return new moment(a.fecha) - new moment(b.fecha);
         }
     };
 

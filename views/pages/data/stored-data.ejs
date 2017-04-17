@@ -2,7 +2,7 @@
 <html>
 <% include ../../partials/head.ejs %>
 <% include ../../partials/menu.ejs %>
-<body >
+<body>
 <div class="container">
     <% if(!data.length) { %>
     <% include ../../partials/no-data.ejs %>
@@ -15,14 +15,28 @@
                         <span class="fa fa-database"></span> Stored data
                     </h4>
                     <hr>
-                    <% for(let i = 0, len = data.length; i < len; ++i) { %>
-                    <button class="btn btn-block btn-stored" id="<%= data[i]._id %>"
-                            onclick="fillContent('<%= data[i]._id %>')">
-                        <%= moment(data[i].eleccion.fecha).format('DD/MM/YYYY') %> |
-                        <%= data[i].provincia %> | <%= data[i].eleccion.autor.toUpperCase() %>
-                        <span class="fa fa-chevron-circle-right pull-right" ></span>
-                    </button>
+
+                    <% let fechaActual; for(let i = 0, len = data.length; i < len; ++i) { %>
+
+                    <% if(typeof fechaActual === 'undefined' || fechaActual !== moment(data[i].eleccion.fecha).format('DD/MM/YYYY')) {
+                        fechaActual = moment(data[i].eleccion.fecha).format('DD/MM/YYYY'); %>
+                    <% if(i > 0) { %>
+                    </ul>
+                </div>
+                <br>
                     <% } %>
+                <div class="dropdown">
+                <button class="btn btn-stored dropdown-toggle" type="button" data-toggle="dropdown"><%= moment(data[i].eleccion.fecha).format('DD/MM/YYYY') %> Ellections
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                    <% } %>
+                    <li class="list-group-item"><a href="#" id="<%= data[i]._id %>" onclick="fillContent('<%= data[i]._id %>')">
+                        <%= data[i].provincia %> (<%= data[i].eleccion.autor %>)
+                        <span class="fa fa-chevron-circle-right pull-right"></span>
+                    </a></li>
+                    <% } %>
+                    </ul>
+                </div>
                 </div>
             </div>
             <div class="card">
@@ -32,7 +46,7 @@
                     </h4>
                     <hr>
                     <div class="card-text" id="content">
-                            <span class="fa fa-info-circle"></span> Click on a result in your left to see the content here!
+                        <span class="fa fa-info-circle"></span> Click on a result in your left to see the content here!
                     </div>
                 </div>
             </div>
