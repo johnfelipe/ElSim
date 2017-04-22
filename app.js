@@ -14,7 +14,9 @@ let express = require('express'),
     expressSession = require('express-session'),
     initPassport = require('./passport/init'),
     errorHandler = require('./utilities/errorHandler'),
-Q = require('q');
+    Q = require('q'),
+    colors = require('colors'),
+    console = require('better-console');
 
 /** Common configuration for the server side. */
 app.set('views', path.join(__dirname, 'views'));
@@ -67,8 +69,8 @@ app.use('/', comparator);
 app.use('/', country);
 app.use('/', district);
 
-app.use('/',data);
-app.use('/',misc);
+app.use('/', data);
+app.use('/', misc);
 
 app.use('/', auth);
 app.use('/Users', users);

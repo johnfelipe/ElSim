@@ -8,14 +8,17 @@ const express = require('express'),
     Icons = require('../../misc/icons'),
     Util = require('../../utilities/util'),
     Moment = require('moment'),
-    sendError = require('../error').sendError;
+    sendError = require('../error').sendError,
+    console = require('better-console'),
+    colors = require('colors');
 
 {
     router.get('/country-graphic-form', (req, res) => {
-
         Util.calculateEllections()
             .then((result) => {
                 result.ellections.sort(Util.sortByDate);
+
+                console.warn('Ellections found: '.blue + result.ellections.length);
 
                 response(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
                     results: result.data,
@@ -25,7 +28,7 @@ const express = require('express'),
                 });
             })
             .catch((err) => {
-                sendError(req,res,err);
+                sendError(req, res, err);
             });
     });
 
@@ -35,15 +38,18 @@ const express = require('express'),
             user = req.user,
             body = req.body;
 
+        console.warn('Processing post request...');
         Chart.calculateCountry(resultSelected, percentage, user, body)
             .then((options) => {
                 options.colors = Colors;
                 options.icons = Icons;
                 options.user = user;
+                console.warn('Post request processed successfull.');
                 res.render('pages/simulator/country-chart', options);
             })
             .catch((err) => {
-                sendError(req,res,err);
+                console.error(err);
+                sendError(req, res, err);
             });
     });
 

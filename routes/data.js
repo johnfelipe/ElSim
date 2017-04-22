@@ -24,8 +24,10 @@ const express = require('express'),
     });
 
     router.get('/stored-data', (req, res) => {
+        console.warn('Getting data...');
         Results.find()
             .then((data) => {
+                console.warn('Results found: '.blue + data.length);
                 data.sort(Util.sortByDate);
                 response(req, res, 'pages/data/stored-data', 'Stored Data', {
                     data: data,

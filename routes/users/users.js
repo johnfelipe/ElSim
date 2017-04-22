@@ -41,15 +41,6 @@ const express = require('express'),
     });
 
     router.post('/sendNews', (req, res) => {
-        const doneLoad = (logs, results, users) => {
-            res.render('pages/auth/admin', {
-                user: req.user,
-                title: 'Administration',
-                logs: logs,
-                results: results,
-                users: users
-            });
-        };
 
         const mailSent = (err, result) => {
             if (err) {

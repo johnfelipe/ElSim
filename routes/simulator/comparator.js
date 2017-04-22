@@ -16,6 +16,9 @@ const express = require('express'),
 
         Util.calculateEllections()
             .then((result) => {
+
+                console.warn('Ellections found: '.blue + result.ellections.length);
+
                 result.ellections.sort(Util.sortByDate);
 
                 response(req, res, 'pages/simulator/compare-country-graphic-form', 'Compare Country Chart', {
@@ -42,6 +45,8 @@ const express = require('express'),
 
         comparator.fillSets(conjunto1, conjunto2, req.body);
 
+        console.warn('Processing post request...');
+
         Chart.calculateCountry(resultSelected, percentage1, user, conjunto1)
             .then((options1) => {
                 Chart.calculateCountry(resultSelected, percentage2, user, conjunto2)
@@ -64,6 +69,7 @@ const express = require('express'),
                         if (typeof options.differences.results === 'undefined') {
                             sendError(req, res, 'Both results are the same');
                         }
+                        console.warn('Post request processed successfull');
                         res.render('pages/simulator/compare-country-chart', options);
                     })
                     .catch((err) => {

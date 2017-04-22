@@ -18,17 +18,15 @@
                     </h4>
                     <div class="card-text">
                         <p>
-                            Sorry about it and please feel free to contact me through mail or GitHub. This is embarrassed for me,
+                            Sorry about it and please feel free to contact me through mail or GitHub. This is
+                            embarrassed for me,
                             and i will appreciate you if help me to solve it. Thanks.<br>
 
                         </p>
                         <ul class=" list-group">
                             <li class="list-group-item">
                                 <span class="fa fa-warning"></span>
-                                <code>
-                                    <% if(typeof message !== 'undefined'){ %><%= message %>.<% } %>
-                                    <% if(typeof err !== 'undefined'){ %><%= err %>.<% } %>
-                                </code>
+                                <pre><% if(typeof err !== 'undefined'){ %><%= JSON.stringify(err, null, 2) %><% } %></pre>
                             </li>
                             <li class="list-group-item">
                                 <span class="fa fa-envelope-o"></span> Contact me at

@@ -11,6 +11,7 @@ const express = require('express'),
 
         Questions.find({})
             .then((questions)=> {
+                console.warn('Questions found: '.blue + questions.length);
                 let max = questions.length;
                 let index = parseInt(Math.random() * max);
                 indexResponse(req, res, 'pages/more/quiz', 'Quiz', {question: questions[index]});

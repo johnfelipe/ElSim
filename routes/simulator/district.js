@@ -15,6 +15,8 @@ const express = require('express'),
 
         Results.find()
             .then((data) => {
+
+                console.warn('Results found: '.blue + data.length);
                 data.sort(Util.sortByDate);
                 response(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
                     results: data,
@@ -34,9 +36,10 @@ const express = require('express'),
             percentage = req.body.percentage,
             resultSelected = req.body.resultSelected,
             user = req.user;
-
+        console.warn('Processing post request...');
         Chart.calculateDistrict(mode, mandates, percentage, resultSelected, user)
             .then((options)=> {
+                console.warn('Post request processed successfull');
                 res.render('pages/simulator/single-chart', options);
             })
             .catch((err)=> {

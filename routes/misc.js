@@ -21,28 +21,34 @@ try {
 
 {
     router.get('/', (req, res) => {
+        console.warn('Getting index');
         response(req, res, 'pages/index', 'EllSim', {moment: Moment, err: null});
     });
 
     router.get('/help', (req, res) => {
+        console.warn('Getting /help');
         response(req, res, 'pages/misc/help', 'Help', false);
     });
 
     router.get('/learn', (req, res) => {
+        console.warn('Getting /learn');
         response(req, res, 'pages/more/learn', 'Learn', false);
     });
 
     router.get('/resources', (req, res) => {
+        console.warn('Getting /resources');
         response(req, res, 'pages/more/resources', 'Resources', false);
     });
 
     router.get('/parties', (req, res) => {
+        console.warn('Getting parties');
         response(req, res, 'pages/more/parties', 'Parties', {
             parties: parties
         });
     });
 
     router.get('/admin', (req, res) => {
+        console.warn('Getting /admin');
         if (!req.user || req.user.email !== credentials.user) {
             sendError(req,res,{
                 result: 'fail',
