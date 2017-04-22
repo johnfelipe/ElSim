@@ -33,19 +33,16 @@ const highcharts = require('node-highcharts'),
         return Color[party];
     };
 
-    const createColumn = (result, callback) => {
-        let options = BarChart.fillOptions(result);
-        callback(options);
+    const createColumn = (result) => {
+        return BarChart.fillOptions(result);
     };
 
-    const createPie = (result, callback) => {
-        let options = PieChart.fillOptions(result);
-        callback(options);
+    const createPie = (result) => {
+        return PieChart.fillOptions(result);
     };
 
-    const createMap = (results, callback) => {
-        let options = CountryChart.fillOptions(results);
-        callback(options);
+    const createMap = (results) => {
+        return CountryChart.fillOptions(results);
     };
 
     const fillCalculateDistrictOptions = (ellection, graph_options, result, user) => {
@@ -62,32 +59,38 @@ const highcharts = require('node-highcharts'),
         };
     };
 
-    const addResultToUser = (user, ellection, result, mandates, percentage, callback) => {
-        User.findOne({_id: user._id}, (err, user) => {
-            if (err) {
-                throw err;
-            }
+    const addResultToUser = (user, ellection, result, mandates, percentage) => {
+        let promise = Q.defer();
 
-            user.resultados.push({
-                fecha: ellection.eleccion.fecha,
-                provincia: ellection.cod_provincia,
-                result: result,
-                mandates: mandates,
-                percentage: percentage,
-                blank: ellection.votos_blanco
+        User.findOne({_id: user._id})
+            .then((user) => {
+                user.resultados.push({
+                    fecha: ellection.eleccion.fecha,
+                    provincia: ellection.cod_provincia,
+                    result: result,
+                    mandates: mandates,
+                    percentage: percentage,
+                    blank: ellection.votos_blanco
+                });
+
+                user.save()
+                    .then(() => {
+                        promise.resolve();
+                    })
+                    .catch((err) => {
+                        promise.reject(err);
+                    });
+            })
+            .catch((err) => {
+                promise.reject(err);
             });
 
-            user.save((err) => {
-                if (err) {
-                    throw err;
-                }
-                callback();
-            });
-        });
+        return promise.promise;
     };
 
-    const calculateDistrict = (mode, mandates, percentage, resultSelected, user, callback) => {
+    const calculateDistrict = (mode, mandates, percentage, resultSelected, user) => {
         let promise = Q.defer();
+
         let votes = [],
             names = [],
             districtOptions = {
@@ -114,10 +117,10 @@ const highcharts = require('node-highcharts'),
 
                 result = District.compute(votes, names, districtOptions, true);
 
-                if(mode === 'column') {
-                    createColumn(result.parties, chartDone);
-                } else  {
-                    createPie(result.parties, chartDone);
+                if (mode === 'column') {
+                    chartDone(createColumn(result.parties));
+                } else {
+                    chartDone(createPie(result.parties));
                 }
 
             })
@@ -131,9 +134,13 @@ const highcharts = require('node-highcharts'),
             if (!user) {
                 promise.resolve(options);
             } else {
-                addResultToUser(user, ellection, result, mandates, percentage, () => {
-                    promise.resolve(options);
-                });
+                addResultToUser(user, ellection, result, mandates, percentage)
+                    .then(() => {
+                        promise.resolve(options);
+                    })
+                    .catch((err) => {
+                        promise.reject(err);
+                    });
             }
         };
 
