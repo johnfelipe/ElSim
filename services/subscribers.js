@@ -3,7 +3,9 @@ const Subscriber = require('../models/subscriber');
 
 {
 
-    const remove = (done) =>  Subscriber.find({}).remove(() => done());
+    const remove = () =>  {
+        return Subscriber.find({}).remove();
+    };
 
     module.exports = {
         remove

@@ -15,11 +15,8 @@ const passReq = {
 module.exports = (passport) => {
 
     const strategyCallback = (req, username, password, done) => {
-        User.findOne({'email': username}, (err, user) => {
-                if (err) {
-                    console.error(err);
-                    return done(err);
-                }
+        User.findOne({email: username})
+            .then((user) => {
                 if (!user) {
                     return done(null, false, req.flash('message', 'User Not found.'));
                 }
@@ -27,8 +24,11 @@ module.exports = (passport) => {
                     return done(null, false, req.flash('message', 'Invalid Password'));
                 }
                 return done(null, user);
-            }
-        );
+            })
+            .catch((err) => {
+                console.error(err);
+                return done(err);
+            });
     };
 
     const isValidPassword = (user, password) => {

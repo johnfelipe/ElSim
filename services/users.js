@@ -6,29 +6,25 @@ const User = require('../models/user');
         return User.findOne({_id: id});
     };
 
-    const find = (done) => {
-        User.find({},
-            (err, data) => done(err, data)
-        );
+    const find = () => {
+        return User.find({});
     };
 
-    const saveOne = (user, done) => {
+    const saveOne = (user) => {
         let u = new User(user);
-        u.save((err) => done(err, user));
+        return u.save();
     };
 
-    const removeOne = (id, done) => {
-        User.findByIdAndRemove({_id: id},
-            (err, data) => done(err, data)
-        );
+    const removeOne = (id) => {
+        return User.findByIdAndRemove({_id: id});
     };
 
     const updateOne = (id, done) => {
         done(new Error('not yet implemented'), null);
     };
 
-    const remove = (done) => {
-        User.find({}).remove(() => done());
+    const remove = () => {
+        return User.find({}).remove();
     };
 
     module.exports = {

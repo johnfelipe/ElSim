@@ -17,29 +17,22 @@ try {
     console.warn('credentials.js not found, using jesusgonzaleznovez@gmail.com as user');
     credentials = {user: 'jesusgonzaleznovez@gmail.com'};
 }
+
 {
     router.get('/', (req, res) => {
-        response(
-            req, res, 'pages/index', 'EllSim', {moment: Moment, err: null}
-        )
+        response(req, res, 'pages/index', 'EllSim', {moment: Moment, err: null});
     });
 
     router.get('/help', (req, res) => {
-        response(
-            req, res, 'pages/misc/help', 'Help', false
-        )
+        response(req, res, 'pages/misc/help', 'Help', false);
     });
 
     router.get('/learn', (req, res) => {
-        response(
-            req, res, 'pages/more/learn', 'Learn', false
-        )
+        response(req, res, 'pages/more/learn', 'Learn', false);
     });
 
     router.get('/resources', (req, res) => {
-        response(
-            req, res, 'pages/more/resources', 'Resources', false
-        )
+        response(req, res, 'pages/more/resources', 'Resources', false);
     });
 
     router.get('/parties', (req, res) => {
@@ -60,15 +53,26 @@ try {
                 }
             });
         } else {
-            loadAll((logs, results, users) => {
-                res.render('pages/auth/admin', {
-                    user: req.user,
-                    title: 'Administration',
-                    Logs: logs,
-                    Results: results,
-                    Users: users
+            loadAll()
+                .then((logs,results,users)=> {
+                    res.render('pages/auth/admin', {
+                        user: req.user,
+                        title: 'Administration',
+                        Logs: logs,
+                        Results: results,
+                        Users: users
+                    });
+                })
+                .catch((err)=> {
+                    res.render('pages/misc/error', {
+                        result: 'fail',
+                        message: err,
+                        err: {
+                            message: err,
+                            status: 401
+                        }
+                    });
                 });
-            });
         }
     });
 

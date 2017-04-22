@@ -3,7 +3,8 @@
 const fs = require('fs'),
     csv = require('fast-csv'),
     Result = require('../models/result'),
-moment = require('moment');
+    moment = require('moment'),
+    Q = require('q');
 
 const console = require('better-console');
 /**
@@ -51,66 +52,71 @@ const console = require('better-console');
         return false;
     };
 
-    const invalidRowException = (data) => {
-        throw new Error('Data invalid exception, one or more rows are invalid' + data);
-    };
-
     const readResultados = (path, done) => {
-        let stream = fs.createReadStream(path),
-            resultados = [];
-        csv.fromStream(stream, {
-            headers: true
-        }).on('data-invalid', invalidRowException).on('data', (data) =>
-            resultados.push(data)
-        ).on('end', () => done(resultados));
+        let stream = fs.createReadStream(path), resultados = [];
+
+        csv.fromStream(stream, {headers: true})
+            .on('data-invalid', (data) => {
+                throw new Error('Data invalid exception, one or more rows are invalid' + data);
+            })
+            .on('data', (data) => {
+                resultados.push(data);
+            })
+            .on('end', () => {
+                done(resultados);
+            });
     };
 
 
     const readParties = (path, resultados, done) => {
         let i = 0, stream = fs.createReadStream(path);
-        csv.fromStream(stream, {
-            headers: true
-        })
-            .on('data-invalid', invalidRowException)
+        csv.fromStream(stream, {headers: true})
+            .on('data-invalid', (data) => {
+                throw new Error('Data invalid exception, one or more rows are invalid' + data);
+            })
             .on('data', (data) => {
                 for (let key in data) {
                     if (data.hasOwnProperty(key)) {
-
                         if (data[key] === '0') {
                             delete data[key];
                         }
                     }
                 }
-
                 resultados[i].partidos = data;
                 i++;
             })
-            .on('end', () => done(resultados));
+            .on('end', () => {
+                done(resultados);
+            });
     };
 
     const readCsv = (path1, path2, done) => {
-        readResultados(
-            path1, (data) => readParties(path2, data, (data) => done(data))
-        );
+        readResultados(path1, (data) => {
+            readParties(path2, data, (data) => {
+                done(data);
+            });
+        });
     };
 
-    const calculateEllections = (done) => {
-        Result.find({}, (err, data) => {
-            if (err) {
-                console.error(err);
-                throw err;
-            }
+    const calculateEllections = () => {
+        let promise = Q.defer();
 
-            let ellections = [];
+        Result.find({})
+            .then((data) => {
+                let ellections = [];
 
-            for (let d of data) {
-                if (!ellectionIsInArray(d.eleccion, ellections)) {
-                    ellections.push(d.eleccion);
+                for (let d of data) {
+                    if (!ellectionIsInArray(d.eleccion, ellections)) {
+                        ellections.push(d.eleccion);
+                    }
                 }
-            }
+                promise.resolve(ellections);
+            })
+            .catch((err) => {
+                promise.reject(err);
+            });
 
-            done(data, ellections);
-        });
+        return promise.promise;
     };
 
     const loadCsv = (done) => {
@@ -175,7 +181,6 @@ const console = require('better-console');
         ellectionIsInArray,
         readResultados,
         readParties,
-        invalidRowException,
         readCsv,
         calculateEllections,
         loadCsv,

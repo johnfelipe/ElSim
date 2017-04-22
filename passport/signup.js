@@ -15,33 +15,33 @@ const passReq = {
 module.exports = (passport) => {
 
     const strategyCallback = (req, username, password, done) => {
-        let findOrCreateUser = () => {
-            User.findOne({email: username}, (err, user) => {
-                if (err) {
+        process.nextTick(() => {
+            User.findOne({email: username})
+                .then((user) => {
+                    if (user) {
+                        return done(null, false, req.flash('message', 'User Already Exists'));
+                    } else {
+                        let newUser = new User();
+                        newUser.email = username;
+                        newUser.password = createHash(password);
+                        newUser.name = req.param('name');
+                        newUser.admin = false;
+                        newUser.apiUsage = {};
+                        newUser.save()
+                            .then(()=> {
+                                return done(null, newUser);
+                            })
+                            .catch((err) => {
+                                console.error(err);
+                                throw err;
+                            });
+                    }
+                })
+                .catch((err) => {
                     console.error(err);
                     return done(err);
-                }
-
-                if (user) {
-                    return done(null, false, req.flash('message', 'User Already Exists'));
-                } else {
-                    let newUser = new User();
-                    newUser.email = username;
-                    newUser.password = createHash(password);
-                    newUser.name = req.param('name');
-                    newUser.admin = false;
-                    newUser.apiUsage = {};
-                    newUser.save((err) => {
-                        if (err) {
-                            console.error(err);
-                            throw err;
-                        }
-                        return done(null, newUser);
-                    });
-                }
-            });
-        };
-        process.nextTick(findOrCreateUser);
+                });
+        });
     };
 
     passport.use('signup', new LocalStrategy(passReq, strategyCallback));

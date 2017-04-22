@@ -12,15 +12,6 @@ const express = require('express'),
 {
     router.get('/single-graphic-form', (req, res) => {
 
-        Results.find((err, data) => {
-            data.sort(Util.sortByDate);
-            response(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
-                results: data,
-                moment: Moment,
-                err: err
-            });
-        });
-
         Results.find()
             .then((data) => {
                 data.sort(Util.sortByDate);
@@ -47,15 +38,20 @@ const express = require('express'),
             resultSelected = req.body.resultSelected,
             user = req.user;
 
-        Chart.calculateDistrict(mode, mandates, percentage, resultSelected, user,
-            (options) => res.render('pages/simulator/single-chart', options)
-        );
-
+        Chart.calculateDistrict(mode, mandates, percentage, resultSelected, user)
+            .then((options)=> {
+                res.render('pages/simulator/single-chart', options);
+            })
+            .catch((err)=> {
+                res.render('pages/simulator/single-chart', {err:err});
+            });
     });
 
-    router.post('/save-single-chart', (req, res) => res.send({
-            result: req.body.result
-        })
+    router.post('/save-single-chart', (req, res) => {
+        res.send({
+                result: req.body.result
+            });
+        }
     );
 
     /** Handle all web routes */

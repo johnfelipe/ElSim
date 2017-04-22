@@ -12,20 +12,13 @@ const Question = require('../models/question');
         return (question.correct === answer);
     };
 
-    const getAllQuestions = (done) => {
-        Question.find({},(err,questions) => {
-            done(err,questions);
-        });
+    const getAllQuestions = () => {
+        return Question.find({});
     };
 
-    const saveQuestion = (question,done) => {
+    const saveQuestion = (question) => {
         let q = new Question(question);
-        q.save((err) => {
-            if(err) {
-                throw err;
-            }
-            done();
-        });
+        return q.save();
     };
 
     const deleteQuestion = (question,done) => {

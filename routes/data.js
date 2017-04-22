@@ -93,9 +93,12 @@ const express = require('express'),
                 });
             })
             .catch((err) => {
-                response(req, res, 'pages/data/add-data', 'Add data', {
-                    err: err,
-                    codigos: Codigos
+                response(req, res, 'pages/misc/error', 'Not Implemented', {
+                    err: {
+                        message: err,
+                        status: 500
+                    },
+                    message: err
                 });
             });
     });

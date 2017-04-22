@@ -29,7 +29,7 @@
             err: (err) ? err : null,
             data: (err) ? null : data
         });
-    }
+    };
 
     module.exports = {
         response,

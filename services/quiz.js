@@ -3,27 +3,25 @@ const Question = require('../models/question');
 
 {
 
-    const saveOne = (question, done) => {
+    const saveOne = (question) => {
         let q = new Question(question);
-        q.save((err) => done(err, question));
+        return q.save();
     };
 
     const checkQuestion = (done) => {
         done(new Error('not yet implemented'), null);
     };
 
-    const find = (done) => {
-        Question.find({}, (err, questions) => done(err, questions));
+    const find = () => {
+        return Question.find({});
     };
 
-    const removeOne = (id, done) => {
-        Question.findByIdAndRemove({_id: id},
-            (err, data) => done(err, data)
-        );
+    const removeOne = (id) => {
+        return Question.findByIdAndRemove({_id: id});
     };
 
-    const remove = (done) => {
-        Question.find({}).remove(() => done());
+    const remove = () => {
+        return Question.find({}).remove();
     };
 
     module.exports = {
