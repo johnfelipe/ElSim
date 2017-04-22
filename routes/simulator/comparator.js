@@ -10,21 +10,24 @@ const express = require('express'),
     Icons = require('../../misc/icons'),
     console = require('better-console'),
     comparator = require('../../modules/comparator'),
-    resError = require('../../utilities/errorHandler').productionHandler;
+    sendError = require('../error').sendError;
 {
     router.get('/compare-country-graphic-form', (req, res) => {
 
-        Util.calculateEllections((data, ellections) => {
+        Util.calculateEllections()
+            .then((result) => {
+                result.ellections.sort(Util.sortByDate);
 
-            ellections.sort(Util.sortByDate);
-
-            response(req, res, 'pages/simulator/compare-country-graphic-form', 'Compare Country Chart', {
-                results: data,
-                ellections: ellections,
-                moment: Moment,
-                err: null
+                response(req, res, 'pages/simulator/compare-country-graphic-form', 'Compare Country Chart', {
+                    results: result.data,
+                    ellections: result.ellections,
+                    moment: Moment,
+                    err: null
+                });
+            })
+            .catch((err) => {
+                sendError(req, res, err);
             });
-        });
 
     });
 
@@ -39,34 +42,37 @@ const express = require('express'),
 
         comparator.fillSets(conjunto1, conjunto2, req.body);
 
-        Chart.calculateCountry(resultSelected, percentage1, user, conjunto1, (options1) => {
-            Chart.calculateCountry(resultSelected, percentage2, user, conjunto2, (options2) => {
-                let options = {};
-                options.options1 = options1;
-                options.options2 = options2;
-                options.colors = Colors;
-                options.icons = Icons;
-                options.user = user;
-                options.title = 'Compare Country';
-                options.differences = comparator.fillDifferences(
-                    options1.global.agrupado,
-                    options2.global.agrupado,
-                    percentage1,
-                    percentage2,
-                    conjunto1,
-                    conjunto2
-                );
-                if (typeof options.differences.results === 'undefined') {
-                    response(req, res, 'pages/misc/error', 'Both results are the same', {
-                        err: {
-                            status: 500
-                        },
-                        message: 'Both results are the same'
+        Chart.calculateCountry(resultSelected, percentage1, user, conjunto1)
+            .then((options1) => {
+                Chart.calculateCountry(resultSelected, percentage2, user, conjunto2)
+                    .then((options2) => {
+                        let options = {};
+                        options.options1 = options1;
+                        options.options2 = options2;
+                        options.colors = Colors;
+                        options.icons = Icons;
+                        options.user = user;
+                        options.title = 'Compare Country';
+                        options.differences = comparator.fillDifferences(
+                            options1.global.agrupado,
+                            options2.global.agrupado,
+                            percentage1,
+                            percentage2,
+                            conjunto1,
+                            conjunto2
+                        );
+                        if (typeof options.differences.results === 'undefined') {
+                            sendError(req, res, 'Both results are the same');
+                        }
+                        res.render('pages/simulator/compare-country-chart', options);
+                    })
+                    .catch((err) => {
+                        sendError(req, res, err);
                     });
-                }
-                res.render('pages/simulator/compare-country-chart', options);
+            })
+            .catch((err) => {
+                sendError(req, res, err);
             });
-        });
     });
 
     /** Handle all web routes */

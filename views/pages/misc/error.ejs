@@ -26,8 +26,8 @@
                             <li class="list-group-item">
                                 <span class="fa fa-warning"></span>
                                 <code>
-                                    <%= message %>.
-                                    Status <% if(err.hasOwnProperty('status')){ %> <%= err.status %> <% } %>
+                                    <% if(typeof message !== 'undefined'){ %><%= message %>.<% } %>
+                                    <% if(typeof err !== 'undefined'){ %><%= err %>.<% } %>
                                 </code>
                             </li>
                             <li class="list-group-item">

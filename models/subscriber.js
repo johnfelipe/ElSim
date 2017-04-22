@@ -5,6 +5,7 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+
 let s = new Schema({
     email: {
         type: String,

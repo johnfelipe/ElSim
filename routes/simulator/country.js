@@ -6,20 +6,27 @@ const express = require('express'),
     Chart = require('../../charts/chart'),
     Colors = require('../../misc/colors'),
     Icons = require('../../misc/icons'),
-    console = require('better-console'),
     Util = require('../../utilities/util'),
-    Moment = require('moment');
+    Moment = require('moment'),
+    sendError = require('../error').sendError;
+
 {
     router.get('/country-graphic-form', (req, res) => {
-        Util.calculateEllections((data, ellections) => {
-            ellections.sort(Util.sortByDate);
-            response(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
-                results: data,
-                ellections: ellections,
-                moment: Moment,
-                err: null
+
+        Util.calculateEllections()
+            .then((result) => {
+                result.ellections.sort(Util.sortByDate);
+
+                response(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
+                    results: result.data,
+                    ellections: result.ellections,
+                    moment: Moment,
+                    err: null
+                });
+            })
+            .catch((err) => {
+                sendError(req,res,err);
             });
-        });
     });
 
     router.post('/country-form', (req, res) => {
@@ -28,12 +35,16 @@ const express = require('express'),
             user = req.user,
             body = req.body;
 
-        Chart.calculateCountry(resultSelected, percentage, user, body, (options) => {
-            options.colors = Colors;
-            options.icons = Icons;
-            options.user = user;
-            res.render('pages/simulator/country-chart', options);
-        });
+        Chart.calculateCountry(resultSelected, percentage, user, body)
+            .then((options) => {
+                options.colors = Colors;
+                options.icons = Icons;
+                options.user = user;
+                res.render('pages/simulator/country-chart', options);
+            })
+            .catch((err) => {
+                sendError(req,res,err);
+            });
     });
 
     module.exports = router;

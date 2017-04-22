@@ -6,6 +6,7 @@ const mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     bcrypt = require('bcrypt-nodejs');
 
+
 let s = new Schema({
     name: {type: String, required: true},
     email: {type: String, required: true, index: {unique: true}},

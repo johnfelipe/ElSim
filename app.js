@@ -25,8 +25,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon('public/favicon.png'));
 
-mongoose.Promise = Q.Promise;
 mongoose.connect(config.database);
+mongoose.Promise = Q.Promise;
 
 app.set('superSecret', config.secret);
 

@@ -7,7 +7,8 @@ const express = require('express'),
     codigos = require('../misc/codigos'),
     parties = require('../misc/parties'),
     console = require('better-console'),
-    loadAll = require('../services/all').loadAll;
+    loadAll = require('../services/all').loadAll,
+    sendError = require('./error').sendError;
 
 let credentials;
 
@@ -42,9 +43,8 @@ try {
     });
 
     router.get('/admin', (req, res) => {
-
         if (!req.user || req.user.email !== credentials.user) {
-            res.render('pages/misc/error', {
+            sendError(req,res,{
                 result: 'fail',
                 message: 'You are not the admin, sorry!',
                 err: {
@@ -54,24 +54,17 @@ try {
             });
         } else {
             loadAll()
-                .then((logs,results,users)=> {
+                .then((resultado) => {
                     res.render('pages/auth/admin', {
                         user: req.user,
                         title: 'Administration',
-                        Logs: logs,
-                        Results: results,
-                        Users: users
+                        Logs: resultado.logs,
+                        Results: resultado.results,
+                        Users: resultado.users
                     });
                 })
-                .catch((err)=> {
-                    res.render('pages/misc/error', {
-                        result: 'fail',
-                        message: err,
-                        err: {
-                            message: err,
-                            status: 401
-                        }
-                    });
+                .catch((err) => {
+                    sendError(req,res,err);
                 });
         }
     });

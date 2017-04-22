@@ -2,9 +2,12 @@
 'use strict';
 const express = require('express'),
     router = express.Router(),
-    response = require('../../modules/response');
+    response = require('../../modules/response'),
+    sendError = require('../error').sendError;
 
-router.get('/minigame', (req,res) => res.send('Not yet implemented!'));
+router.get('/minigame', (req,res) => {
+    sendError(req,res,'Not yet implemented.');
+});
 
 module.exports = router;
 

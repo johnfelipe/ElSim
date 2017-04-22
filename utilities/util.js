@@ -104,15 +104,16 @@ const console = require('better-console');
         Result.find({})
             .then((data) => {
                 let ellections = [];
-
-                for (let d of data) {
-                    if (!ellectionIsInArray(d.eleccion, ellections)) {
-                        ellections.push(d.eleccion);
+                for (let i=0,len=data.length; i<len; i++) {
+                    if (!ellectionIsInArray(data[i].eleccion, ellections)) {
+                        ellections.push(data[i].eleccion);
                     }
                 }
-                promise.resolve(ellections);
+
+                promise.resolve({data,ellections});
             })
             .catch((err) => {
+                console.error(err);
                 promise.reject(err);
             });
 

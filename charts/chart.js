@@ -147,7 +147,10 @@ const highcharts = require('node-highcharts'),
         return promise.promise;
     };
 
-    const calculateCountry = (resultSelected, percentage, user, body, done) => {
+    const calculateCountry = (resultSelected, percentage, user, body) => {
+
+        let promise = Q.defer();
+
         let ellection = {
             autor: resultSelected.split(',')[1],
             fecha: resultSelected.split(',')[0]
@@ -159,29 +162,30 @@ const highcharts = require('node-highcharts'),
             blankVotes: 0
         };
 
-        const findCallback = (err, data) => {
-            if (err) {
-                throw err;
-            }
+        Result.find({eleccion:ellection})
+            .then((data) => {
+                let global;
 
-            let global;
+                if (body.wholeCountry) {
+                    global = {
+                        agrupado: CountryChart.calculateGlobalWholeCountry(data, config, body).parties
+                    };
+                } else {
+                    global = CountryChart.calculateGlobal(data, config, body);
+                }
 
-            if (body.wholeCountry) {
-                global = {
-                    agrupado: CountryChart.calculateGlobalWholeCountry(data, config, body).parties
-                };
-            } else {
-                global = CountryChart.calculateGlobal(data, config, body);
-            }
-
-            done({
-                user: user,
-                global: global,
-                wholeCountry: body.wholeCountry,
-                communities: body.aggregateCommunities,
-                title: 'Country Chart'
+                promise.resolve({
+                    user: user,
+                    global: global,
+                    wholeCountry: body.wholeCountry,
+                    communities: body.aggregateCommunities,
+                    title: 'Country Chart'
+                });
+            })
+            .catch((err)=> {
+                promise.reject(err);
             });
-        };
+        return promise.promise;
     };
 
 

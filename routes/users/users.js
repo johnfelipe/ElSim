@@ -5,8 +5,8 @@ const express = require('express'),
     Auth = require('../../passport/auth'),
     Subscribers = require('../../models/subscriber'),
     Mailer = require('../../utilities/mailer'),
-    checkError = require('../../services/all').checkError,
-    loadAll = require('../../services/all').loadAll;
+    loadAll = require('../../services/all').loadAll,
+    sendError = require('../error').sendError;
 {
     router.get('/profile', Auth.isProfileAuthenticated, (req, res) => {
         let options = {
@@ -36,11 +36,7 @@ const express = require('express'),
                 });
             })
             .catch((err) => {
-                res.render('pages/misc/help', {
-                    title: 'Help',
-                    user: user,
-                    err: err
-                });
+                sendError(req, res, err);
             });
     });
 
@@ -56,9 +52,25 @@ const express = require('express'),
         };
 
         const mailSent = (err, result) => {
-            console.log('Mail sent result:', result);
-            checkError(err);
-            loadAll(doneLoad);
+            if (err) {
+                sendError(req, res, err);
+            } else {
+                console.log('Mail sent result:', result);
+                loadAll()
+                    .then((resultado) => {
+                        res.render('pages/auth/admin', {
+                            user: req.user,
+                            title: 'Administration',
+                            logs: resultado.logs,
+                            results: resultado.results,
+                            users: resultado.users
+                        });
+                    })
+                    .catch((err) => {
+                        sendError(req, res, err);
+                    });
+            }
+
         };
 
         Subscribers.find()
@@ -69,8 +81,8 @@ const express = require('express'),
                 }
                 Mailer.sendMail(mails, 'TEST', mailSent);
             })
-            .catch((err)=> {
-                checkError(err);
+            .catch((err) => {
+                sendError(req, res, err);
             });
     });
 

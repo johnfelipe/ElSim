@@ -11,9 +11,9 @@ const express = require('express'),
     Results = require('../services/results'),
     Result = require('../models/result'),
     Codigos = require('../misc/codigos'),
-    checkError = require('../utilities/util').checkError,
     isAuthenticated = require('../passport/auth').isAuthenticated,
-    Q = require('q');
+    Q = require('q'),
+    sendError = require('./error').sendError;
 
 {
     router.get('/add-data', isAuthenticated, (req, res) => {
@@ -34,11 +34,7 @@ const express = require('express'),
                 });
             })
             .catch((err) => {
-                response(req, res, 'pages/data/stored-data', 'Stored Data', {
-                    data: null,
-                    moment: Moment,
-                    err: err
-                });
+                sendError(req, res, err);
             });
     });
 
@@ -63,16 +59,13 @@ const express = require('express'),
                 });
             })
             .catch((err) => {
-                response(req, res, 'pages/data/delete-data', 'Delete data', {
-                    data: null,
-                    moment: Moment,
-                    err: err
-                });
+                sendError(req, res, err);
             });
     });
 
     router.post('/add-data', (req, res) => {
-        let args = [req.param('votes'),
+        let args = [
+            req.param('votes'),
             req.param('province'),
             parseInt(req.param('population')),
             parseInt(req.param('census')),
@@ -93,13 +86,7 @@ const express = require('express'),
                 });
             })
             .catch((err) => {
-                response(req, res, 'pages/misc/error', 'Not Implemented', {
-                    err: {
-                        message: err,
-                        status: 500
-                    },
-                    message: err
-                });
+                sendError(req, res, err);
             });
     });
 
@@ -114,14 +101,10 @@ const express = require('express'),
 
     router.post('/delete-data', (req, res) => {
         let promises = [],
-            options,
             results = req.param('Results');
 
         for (let result of results) {
-            options = {
-                _id: result
-            };
-            promises.push(Result.remove(options, checkError));
+            promises.push(Result.remove({_id: result}));
         }
 
         const promisesFinish = () => {
@@ -133,10 +116,7 @@ const express = require('express'),
                     });
                 })
                 .catch((err) => {
-                    response(req, res, 'pages/data/delete-data', 'Delete data', {
-                        err: err,
-                        data: null
-                    });
+                    sendError(req, res, err);
                 });
         };
 

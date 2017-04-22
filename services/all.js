@@ -3,15 +3,9 @@ const Users = require('../models/user'),
     Logs = require('../models/log'),
     Results = require('../models/result'),
     console = require('better-console'),
-Q = require('q');
+    Q = require('q');
 
 {
-
-    const checkError = (err) => {
-        if (err) {
-            console.error(err);
-        }
-    };
 
     const loadAll = () => {
         let promise = Q.defer();
@@ -19,25 +13,25 @@ Q = require('q');
         let users, logs, results;
 
         Users.find()
-            .then((data)=> {
+            .then((data) => {
                 users = [...data];
                 Logs.find()
-                    .then((data)=> {
+                    .then((data) => {
                         logs = [...data];
                         Results.find()
-                            .then((data)=> {
+                            .then((data) => {
                                 results = [...data];
-                                promise.resolve(logs,results,users);
+                                promise.resolve({logs, results, users});
                             })
-                            .catch((err)=> {
-                            promise.reject(err);
+                            .catch((err) => {
+                                promise.reject(err);
                             });
                     })
-                    .catch((err)=> {
+                    .catch((err) => {
                         promise.reject(err);
                     });
             })
-            .catch((err)=> {
+            .catch((err) => {
                 promise.reject(err);
             });
 
@@ -45,8 +39,7 @@ Q = require('q');
     };
 
     module.exports = {
-        loadAll,
-        checkError
+        loadAll
     };
 
 }

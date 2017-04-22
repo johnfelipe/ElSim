@@ -7,7 +7,8 @@ const express = require('express'),
     Results = require('../../services/results'),
     console = require('better-console'),
     Util = require('../../utilities/util'),
-    Moment = require('moment');
+    Moment = require('moment'),
+    sendError = require('../error').sendError;
 
 {
     router.get('/single-graphic-form', (req, res) => {
@@ -22,11 +23,7 @@ const express = require('express'),
                 });
             })
             .catch((err) => {
-                response(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
-                    results: null,
-                    moment: Moment,
-                    err: err
-                });
+                sendError(req,res,err);
             });
     });
 
@@ -43,7 +40,7 @@ const express = require('express'),
                 res.render('pages/simulator/single-chart', options);
             })
             .catch((err)=> {
-                res.render('pages/simulator/single-chart', {err:err});
+                sendError(req,res,err);
             });
     });
 
