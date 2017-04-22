@@ -21,6 +21,22 @@ const express = require('express'),
             });
         });
 
+        Results.find()
+            .then((data) => {
+                data.sort(Util.sortByDate);
+                response(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
+                    results: data,
+                    moment: Moment,
+                    err: null
+                });
+            })
+            .catch((err) => {
+                response(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
+                    results: null,
+                    moment: Moment,
+                    err: err
+                });
+            });
     });
 
     router.post('/graphic-form', (req, res) => {

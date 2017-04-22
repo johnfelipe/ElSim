@@ -18,21 +18,29 @@ try {
     credentials = {user: 'jesusgonzaleznovez@gmail.com'};
 }
 {
-    router.get('/', (req, res) => response(
-        req, res, 'pages/index', 'EllSim', {moment: Moment, err: null}
-    ));
+    router.get('/', (req, res) => {
+        response(
+            req, res, 'pages/index', 'EllSim', {moment: Moment, err: null}
+        )
+    });
 
-    router.get('/help', (req, res) => response(
-        req, res, 'pages/misc/help', 'Help', false
-    ));
+    router.get('/help', (req, res) => {
+        response(
+            req, res, 'pages/misc/help', 'Help', false
+        )
+    });
 
-    router.get('/learn', (req, res) => response(
-        req, res, 'pages/more/learn', 'Learn', false
-    ));
+    router.get('/learn', (req, res) => {
+        response(
+            req, res, 'pages/more/learn', 'Learn', false
+        )
+    });
 
-    router.get('/resources', (req, res) => response(
-        req, res, 'pages/more/resources', 'Resources', false
-    ));
+    router.get('/resources', (req, res) => {
+        response(
+            req, res, 'pages/more/resources', 'Resources', false
+        )
+    });
 
     router.get('/parties', (req, res) => {
         response(req, res, 'pages/more/parties', 'Parties', {
@@ -52,14 +60,15 @@ try {
                 }
             });
         } else {
-            loadAll((logs, results, users) => res.render('pages/auth/admin', {
+            loadAll((logs, results, users) => {
+                res.render('pages/auth/admin', {
                     user: req.user,
                     title: 'Administration',
                     Logs: logs,
                     Results: results,
                     Users: users
-                }
-            ));
+                });
+            });
         }
     });
 

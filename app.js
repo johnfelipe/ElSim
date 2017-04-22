@@ -13,7 +13,8 @@ let express = require('express'),
     flash = require('connect-flash'),
     expressSession = require('express-session'),
     initPassport = require('./passport/init'),
-    errorHandler = require('./utilities/errorHandler');
+    errorHandler = require('./utilities/errorHandler'),
+Q = require('q');
 
 /** Common configuration for the server side. */
 app.set('views', path.join(__dirname, 'views'));
@@ -24,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon('public/favicon.png'));
 
-mongoose.Promise = global.Promise;
+mongoose.Promise = Q.Promise;
 mongoose.connect(config.database);
 
 app.set('superSecret', config.secret);

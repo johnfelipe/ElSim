@@ -5,13 +5,13 @@ const Users = require('../models/user'),
     console = require('better-console');
 
 {
-    
+
     const checkError = (err) => {
         if (err) {
             console.error(err);
         }
     };
-    
+
     const loadAll = (done) => {
         let promises = [], users, logs, results;
 
@@ -34,7 +34,10 @@ const Users = require('../models/user'),
         promises.push(Logs.find(logCallback));
         promises.push(Results.find(resultCallback));
 
-        Promise.all(promises).then(() => done(logs, results, users));
+        Promise.all(promises)
+            .then(() => {
+                done(logs, results, users);
+            });
     };
 
     module.exports = {

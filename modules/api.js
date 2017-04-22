@@ -15,6 +15,7 @@ const Util = require('../utilities/util'),
  */
 {
     const setup = (req, res) => {
+
         Users.remove(() => {
             let nick = {
                 name: 'demo',

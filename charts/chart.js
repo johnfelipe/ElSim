@@ -9,7 +9,8 @@ const highcharts = require('node-highcharts'),
     Result = require('../models/result'),
     Icons = require('./../misc/icons'),
     District = require('../modules/district'),
-    Moment = require('moment');
+    Moment = require('moment'),
+    Q = require('q');
 
 /**
  *
@@ -86,6 +87,7 @@ const highcharts = require('node-highcharts'),
     };
 
     const calculateDistrict = (mode, mandates, percentage, resultSelected, user, callback) => {
+        let promise = Q.defer();
         let votes = [],
             names = [],
             districtOptions = {
@@ -93,41 +95,49 @@ const highcharts = require('node-highcharts'),
                 percentage: percentage,
                 blankVotes: 0
             };
+
         let result = null,
             ellection = null;
 
-        const findCalculateDistrictCallback = (err, data) => {
-            if (err) {
-                throw err;
-            }
+        Result.findOne({_id: resultSelected})
+            .then((data) => {
 
-            ellection = data;
+                ellection = data;
+                districtOptions.blankVotes = data.votos_blanco;
 
-            districtOptions.blankVotes = data.votos_blanco;
-
-            for (let key in data.partidos) {
-                if (data.partidos.hasOwnProperty(key)) {
-                    votes.push(data.partidos[key]);
-                    names.push(key);
+                for (let key in data.partidos) {
+                    if (data.partidos.hasOwnProperty(key)) {
+                        votes.push(data.partidos[key]);
+                        names.push(key);
+                    }
                 }
-            }
 
-            result = District.compute(votes, names, districtOptions, true);
+                result = District.compute(votes, names, districtOptions, true);
 
-            (mode === 'column') ? createColumn(result.parties, chartDone) : createPie(result.parties, chartDone);
-        };
+                if(mode === 'column') {
+                    createColumn(result.parties, chartDone);
+                } else  {
+                    createPie(result.parties, chartDone);
+                }
 
-        Result.findOne({_id: resultSelected}, findCalculateDistrictCallback);
+            })
+            .catch((err) => {
+                promise.reject(err);
+            });
 
         const chartDone = (graph_options) => {
             let options = fillCalculateDistrictOptions(ellection, graph_options, result, user);
 
             if (!user) {
-                callback(options);
+                promise.resolve(options);
             } else {
-                addResultToUser(user, ellection, result, mandates, percentage, () => callback(options));
+                addResultToUser(user, ellection, result, mandates, percentage, () => {
+                    promise.resolve(options);
+                });
             }
         };
+
+        return promise.promise;
     };
 
     const calculateCountry = (resultSelected, percentage, user, body, done) => {
@@ -165,8 +175,6 @@ const highcharts = require('node-highcharts'),
                 title: 'Country Chart'
             });
         };
-
-        Result.find({eleccion: ellection}, findCallback);
     };
 
 

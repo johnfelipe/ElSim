@@ -22,12 +22,14 @@
         res.render(page, merged);
     };
 
-    const apiResponse = (req, res, err, message, data) => res.send({
-        success: !err,
-        message: (err) ? null : message,
-        err: (err) ? err : null,
-        data: (err) ? null : data
-    });
+    const apiResponse = (req, res, err, message, data) => {
+        res.send({
+            success: !err,
+            message: (err) ? null : message,
+            err: (err) ? err : null,
+            data: (err) ? null : data
+        });
+    }
 
     module.exports = {
         response,

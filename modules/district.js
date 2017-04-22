@@ -144,21 +144,13 @@ const Result = require('../models/result'),
 
     module.exports = {
         compute,
-
         calculateTotalVotes,
-
         validateParties,
-
         newSeat,
-
         fillSeats,
-
         fillPartiesResult,
-
         calculateSeats,
-
         createResultEntity,
-
         addPopulation
     };
 }

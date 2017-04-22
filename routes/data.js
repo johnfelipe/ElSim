@@ -12,7 +12,9 @@ const express = require('express'),
     Result = require('../models/result'),
     Codigos = require('../misc/codigos'),
     checkError = require('../utilities/util').checkError,
-    isAuthenticated = require('../passport/auth').isAuthenticated;
+    isAuthenticated = require('../passport/auth').isAuthenticated,
+    Q = require('q');
+
 {
     router.get('/add-data', isAuthenticated, (req, res) => {
         response(req, res, 'pages/data/add-data', 'Add data', {
@@ -22,30 +24,51 @@ const express = require('express'),
     });
 
     router.get('/stored-data', (req, res) => {
-        Results.find((err, data) => {
-            data.sort(Util.sortByDate);
-            response(req, res, 'pages/data/stored-data', 'Stored Data', {
-                data: data,
-                moment: Moment,
-                err: err
+        Results.find()
+            .then((data) => {
+                data.sort(Util.sortByDate);
+                response(req, res, 'pages/data/stored-data', 'Stored Data', {
+                    data: data,
+                    moment: Moment,
+                    err: null
+                });
+            })
+            .catch((err) => {
+                response(req, res, 'pages/data/stored-data', 'Stored Data', {
+                    data: null,
+                    moment: Moment,
+                    err: err
+                });
             });
-        });
-
     });
 
-    router.get('/resultados/:id', (req, res) => Results.findOne(req.param('id'),
-        (err, data) => Api.apiResponse(req, res, err, 'Result', data)
-    ));
+    router.get('/resultados/:id', (req, res) => {
+        Results.findOne(req.param('id'))
+            .then((data) => {
+                Api.apiResponse(req, res, null, 'Result', data);
+            })
+            .catch((err) => {
+                Api.apiResponse(req, res, err, 'Result', null);
+            });
+    });
 
     router.get('/delete-data', isAuthenticated, (req, res) => {
-        Results.find((err, data) => {
-            data.sort(Util.sortByDate);
-            response(req, res, 'pages/data/delete-data', 'Delete data', {
-                data: data,
-                moment: Moment,
-                err: null
+        Results.find()
+            .then((data) => {
+                data.sort(Util.sortByDate);
+                response(req, res, 'pages/data/delete-data', 'Delete data', {
+                    data: data,
+                    moment: Moment,
+                    err: null
+                });
+            })
+            .catch((err) => {
+                response(req, res, 'pages/data/delete-data', 'Delete data', {
+                    data: null,
+                    moment: Moment,
+                    err: err
+                });
             });
-        });
     });
 
     router.post('/add-data', (req, res) => {
@@ -62,12 +85,19 @@ const express = require('express'),
 
         let result = District.createResultEntity(args);
 
-        result.save((err) =>
-            response(req, res, 'pages/data/add-data', 'Add data', {
-                err: err,
-                codigos: Codigos
+        result.save()
+            .then(() => {
+                response(req, res, 'pages/data/add-data', 'Add data', {
+                    err: null,
+                    codigos: Codigos
+                });
             })
-        );
+            .catch((err) => {
+                response(req, res, 'pages/data/add-data', 'Add data', {
+                    err: err,
+                    codigos: Codigos
+                });
+            });
     });
 
     router.post('/add-data-file', (req, res) => {
@@ -91,14 +121,23 @@ const express = require('express'),
             promises.push(Result.remove(options, checkError));
         }
 
-        const promisesFinish = () => Results.find((err, data) => response(
-            req, res, 'pages/data/delete-data', 'Delete data', {
-                err: err,
-                data: data
-            }
-        ));
+        const promisesFinish = () => {
+            Results.find()
+                .then((data) => {
+                    response(req, res, 'pages/data/delete-data', 'Delete data', {
+                        err: null,
+                        data: data
+                    });
+                })
+                .catch((err) => {
+                    response(req, res, 'pages/data/delete-data', 'Delete data', {
+                        err: err,
+                        data: null
+                    });
+                });
+        };
 
-        Promise.all(promises).then(promisesFinish);
+        Q.all(promises).then(promisesFinish);
     });
 
     module.exports = router;

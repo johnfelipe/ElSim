@@ -28,9 +28,9 @@
                             <% for(let a of question.answers) { %>
                             <div class="form-group">
                                 <input type='checkbox' name="answer" id="answer" class="custom-checkbox"/> <%= a %>
-
                             </div>
                             <% } %>
+                            <input type="hidden" name="question_id" id="question_id" value="<%= question._id %>"/>
                             <div class="text-xs-right">
                                 <button type="submit" class="btn pastel-btn" >
                                     <span class="fa fa-send-o"></span> Send

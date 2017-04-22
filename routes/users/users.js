@@ -27,23 +27,33 @@ const express = require('express'),
             options: {}
         };
 
-        Subscribers.saveOne(s, (err, data) => res.render('pages/misc/help', {
-                title: 'Help',
-                user: user,
-                err: err
+        Subscribers.saveOne(s)
+            .then((data) => {
+                res.render('pages/misc/help', {
+                    title: 'Help',
+                    user: user,
+                    err: null
+                });
             })
-        );
-
+            .catch((err) => {
+                res.render('pages/misc/help', {
+                    title: 'Help',
+                    user: user,
+                    err: err
+                });
+            });
     });
 
     router.post('/sendNews', (req, res) => {
-        const doneLoad = (logs, results, users) => res.render('pages/auth/admin', {
-            user: req.user,
-            title: 'Administration',
-            logs: logs,
-            results: results,
-            users: users
-        });
+        const doneLoad = (logs, results, users) => {
+            res.render('pages/auth/admin', {
+                user: req.user,
+                title: 'Administration',
+                logs: logs,
+                results: results,
+                users: users
+            });
+        };
 
         const mailSent = (err, result) => {
             console.log('Mail sent result:', result);
@@ -51,14 +61,17 @@ const express = require('express'),
             loadAll(doneLoad);
         };
 
-        Subscribers.find((err, subscribers) => {
-            checkError(err);
-            let mails = [];
-            for (let s of subscribers) {
-                mails.push(s.email);
-            }
-            Mailer.sendMail(mails, 'TEST', mailSent);
-        });
+        Subscribers.find()
+            .then((subscribers) => {
+                let mails = [];
+                for (let s of subscribers) {
+                    mails.push(s.email);
+                }
+                Mailer.sendMail(mails, 'TEST', mailSent);
+            })
+            .catch((err)=> {
+                checkError(err);
+            });
     });
 
     /** Rutas de la interfaz web relativas a usuarios */
