@@ -2,7 +2,7 @@
 'use strict';
 
 const nodemailer = require('nodemailer');
-
+const Q = require('q');
 let config;
 
 try {
@@ -25,11 +25,14 @@ const transportConfig = {
  * @module mailer
  */
 {
-    const sendMail = (destination, text, done) => {
+    const sendMail = (destination, text) => {
+        let promise = Q.defer();
+
         if(destination.length === 0){
-            done(new Error('No destination to send mail'),null);
+            promise.reject('No destination to send mail');
         }else {
             let transporter = nodemailer.createTransport(transportConfig);
+
             let mailOptions = {
                 from: '"EllSim News" ' + config.user,
                 to: destination,
@@ -37,6 +40,15 @@ const transportConfig = {
                 text: text,
                 html: '<h2>EllSim NewsLetter</h2> Thanks for be a member of our community.<hr><b>I want to tell you something:</b><br><i>' + text + '</i>'
             };
+
+            const done = (err,result) => {
+                if(err){
+                    promise.reject(err);
+                }else {
+                    promise.resolve(result);
+                }
+            };
+
             transporter.sendMail(mailOptions, done);
         }
     };

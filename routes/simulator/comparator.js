@@ -13,11 +13,10 @@ const express = require('express'),
     sendError = require('../error').sendError;
 {
     router.get('/compare-country-graphic-form', (req, res) => {
+        console.info('GET '.green + '/compare-country-graphic-form');
 
         Util.calculateEllections()
             .then((result) => {
-
-                console.warn('Ellections found: '.blue + result.ellections.length);
 
                 result.ellections.sort(Util.sortByDate);
 
@@ -35,6 +34,10 @@ const express = require('express'),
     });
 
     router.post('/compare-country-form', (req, res) => {
+
+        console.info('GET '.green + '/compare-country-form');
+        console.warn(req.body);
+
         let resultSelected = req.body.resultSelected,
             percentage1 = req.body.percentage1,
             percentage2 = req.body.percentage,
@@ -45,20 +48,12 @@ const express = require('express'),
 
         comparator.fillSets(conjunto1, conjunto2, req.body);
 
-        console.warn('Processing post request...');
-
         Chart.calculateCountry(resultSelected, percentage1, user, conjunto1)
             .then((options1) => {
                 Chart.calculateCountry(resultSelected, percentage2, user, conjunto2)
                     .then((options2) => {
-                        let options = {};
-                        options.options1 = options1;
-                        options.options2 = options2;
-                        options.colors = Colors;
-                        options.icons = Icons;
-                        options.user = user;
-                        options.title = 'Compare Country';
-                        options.differences = comparator.fillDifferences(
+
+                        let differences = comparator.fillDifferences(
                             options1.global.agrupado,
                             options2.global.agrupado,
                             percentage1,
@@ -66,19 +61,26 @@ const express = require('express'),
                             conjunto1,
                             conjunto2
                         );
+
+                        let options = {
+                            options1: options1,
+                            options2: options2,
+                            colors: Colors,
+                            icons: Icons,
+                            user: user,
+                            title: 'Compare Country',
+                            differences: differences
+                        };
+
                         if (typeof options.differences.results === 'undefined') {
                             sendError(req, res, 'Both results are the same');
                         }
-                        console.warn('Post request processed successfull');
+
                         res.render('pages/simulator/compare-country-chart', options);
                     })
-                    .catch((err) => {
-                        sendError(req, res, err);
-                    });
+                    .catch((err) => sendError(req, res, err));
             })
-            .catch((err) => {
-                sendError(req, res, err);
-            });
+            .catch((err) => sendError(req, res, err));
     });
 
     /** Handle all web routes */

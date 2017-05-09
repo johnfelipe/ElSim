@@ -7,6 +7,7 @@ const express = require('express'),
     codigos = require('../misc/codigos'),
     parties = require('../misc/parties'),
     console = require('better-console'),
+    colors = require('colors'),
     loadAll = require('../services/all').loadAll,
     sendError = require('./error').sendError;
 
@@ -15,40 +16,40 @@ let credentials;
 try {
     credentials = require('../credentials');
 } catch (e) {
-    console.warn('credentials.js not found, using jesusgonzaleznovez@gmail.com as user');
+    console.info('credentials.js not found, using jesusgonzaleznovez@gmail.com as user');
     credentials = {user: 'jesusgonzaleznovez@gmail.com'};
 }
 
 {
     router.get('/', (req, res) => {
-        console.warn('Getting index');
+        console.info('GET '.green + ' /');
         response(req, res, 'pages/index', 'EllSim', {moment: Moment, err: null});
     });
 
     router.get('/help', (req, res) => {
-        console.warn('Getting /help');
+        console.info('GET '.green + ' /help');
         response(req, res, 'pages/misc/help', 'Help', false);
     });
 
     router.get('/learn', (req, res) => {
-        console.warn('Getting /learn');
+        console.info('GET '.green + ' /learn');
         response(req, res, 'pages/more/learn', 'Learn', false);
     });
 
     router.get('/resources', (req, res) => {
-        console.warn('Getting /resources');
+        console.info('GET '.green + ' /resources');
         response(req, res, 'pages/more/resources', 'Resources', false);
     });
 
     router.get('/parties', (req, res) => {
-        console.warn('Getting parties');
+        console.info('GET '.green + ' parties');
         response(req, res, 'pages/more/parties', 'Parties', {
             parties: parties
         });
     });
 
     router.get('/admin', (req, res) => {
-        console.warn('Getting /admin');
+        console.info('GET '.green + ' /admin');
         if (!req.user || req.user.email !== credentials.user) {
             sendError(req,res,{
                 result: 'fail',

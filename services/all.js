@@ -12,6 +12,8 @@ const Users = require('../models/user'),
 
         let users, logs, results;
 
+        const reject = (err) => promise.reject(err);
+
         Users.find()
             .then((data) => {
                 users = [...data];
@@ -22,18 +24,9 @@ const Users = require('../models/user'),
                             .then((data) => {
                                 results = [...data];
                                 promise.resolve({logs, results, users});
-                            })
-                            .catch((err) => {
-                                promise.reject(err);
-                            });
-                    })
-                    .catch((err) => {
-                        promise.reject(err);
-                    });
-            })
-            .catch((err) => {
-                promise.reject(err);
-            });
+                            }).catch(reject);
+                    }).catch(reject);
+            }).catch(reject);
 
         return promise.promise;
     };

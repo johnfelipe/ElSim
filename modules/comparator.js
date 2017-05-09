@@ -35,13 +35,16 @@ const console = require('better-console');
 
         set2.communities = wholeSet.aggregateCommunities;
 
-        for (let key in wholeSet) {
+        let keys = Object.keys(wholeSet);
+        for (let key of keys) {
+
             if (key.includes('1') && key !== 'percentage' && key !== 'percentage1' && key !== 'resultSelected') {
                 set1[key.split('1')[0]] = wholeSet[key];
             }
             if (!key.includes('1') && key !== 'percentage' && key !== 'percentage1' && key !== 'resultSelected') {
                 set2[key] = wholeSet[key];
             }
+
         }
     };
 

@@ -17,6 +17,7 @@ const express = require('express'),
 
 {
     router.get('/add-data', isAuthenticated, (req, res) => {
+        console.info('GET '.green + ' /add-data');
         response(req, res, 'pages/data/add-data', 'Add data', {
             err: null,
             codigos: codigos
@@ -24,10 +25,10 @@ const express = require('express'),
     });
 
     router.get('/stored-data', (req, res) => {
-        console.warn('Getting data...');
+        console.info('GET '.green + ' /stored-data');
         Results.find()
             .then((data) => {
-                console.warn('Results found: '.blue + data.length);
+                console.info('Results found: '.green + data.length);
                 data.sort(Util.sortByDate);
                 response(req, res, 'pages/data/stored-data', 'Stored Data', {
                     data: data,
@@ -41,6 +42,7 @@ const express = require('express'),
     });
 
     router.get('/resultados/:id', (req, res) => {
+        console.info('GET '.green + ' /resultados/' + req.param('id'));
         Results.findOne(req.param('id'))
             .then((data) => {
                 Api.apiResponse(req, res, null, 'Result', data);
@@ -51,6 +53,7 @@ const express = require('express'),
     });
 
     router.get('/delete-data', isAuthenticated, (req, res) => {
+        console.info('GET '.green + ' /delete-data');
         Results.find()
             .then((data) => {
                 data.sort(Util.sortByDate);
@@ -66,6 +69,9 @@ const express = require('express'),
     });
 
     router.post('/add-data', (req, res) => {
+        console.info('POST '.green + ' /add-data');
+        console.warn(req.params);
+
         let args = [
             req.param('votes'),
             req.param('province'),
@@ -93,6 +99,7 @@ const express = require('express'),
     });
 
     router.post('/add-data-file', (req, res) => {
+        console.info('POST '.green + ' /add-data-file');
         response(req, res, 'pages/misc/error', 'Not Implemented', {
             err: {
                 status: 500
@@ -102,6 +109,9 @@ const express = require('express'),
     });
 
     router.post('/delete-data', (req, res) => {
+        console.info('POST '.green + ' /delete-data');
+        console.warn(req.params);
+
         let promises = [],
             results = req.param('Results');
 

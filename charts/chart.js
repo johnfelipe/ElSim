@@ -62,6 +62,8 @@ const highcharts = require('node-highcharts'),
     const addResultToUser = (user, ellection, result, mandates, percentage) => {
         let promise = Q.defer();
 
+        const reject = (err) => promise.reject(err);
+
         User.findOne({_id: user._id})
             .then((user) => {
                 user.resultados.push({
@@ -74,16 +76,10 @@ const highcharts = require('node-highcharts'),
                 });
 
                 user.save()
-                    .then(() => {
-                        promise.resolve();
-                    })
-                    .catch((err) => {
-                        promise.reject(err);
-                    });
+                    .then(() => promise.resolve())
+                    .catch(reject);
             })
-            .catch((err) => {
-                promise.reject(err);
-            });
+            .catch(reject);
 
         return promise.promise;
     };
@@ -102,17 +98,18 @@ const highcharts = require('node-highcharts'),
         let result = null,
             ellection = null;
 
+        const reject = (err) => promise.reject(err);
+
         Result.findOne({_id: resultSelected})
             .then((data) => {
 
                 ellection = data;
                 districtOptions.blankVotes = data.votos_blanco;
 
-                for (let key in data.partidos) {
-                    if (data.partidos.hasOwnProperty(key)) {
-                        votes.push(data.partidos[key]);
-                        names.push(key);
-                    }
+                let keys = Object.keys(data.partidos);
+                for (let key of keys) {
+                    votes.push(data.partidos[key]);
+                    names.push(key);
                 }
 
                 result = District.compute(votes, names, districtOptions, true);
@@ -124,9 +121,7 @@ const highcharts = require('node-highcharts'),
                 }
 
             })
-            .catch((err) => {
-                promise.reject(err);
-            });
+            .catch(reject);
 
         const chartDone = (graph_options) => {
             let options = fillCalculateDistrictOptions(ellection, graph_options, result, user);
@@ -135,12 +130,8 @@ const highcharts = require('node-highcharts'),
                 promise.resolve(options);
             } else {
                 addResultToUser(user, ellection, result, mandates, percentage)
-                    .then(() => {
-                        promise.resolve(options);
-                    })
-                    .catch((err) => {
-                        promise.reject(err);
-                    });
+                    .then(() => promise.resolve(options))
+                    .catch(reject);
             }
         };
 
@@ -162,7 +153,7 @@ const highcharts = require('node-highcharts'),
             blankVotes: 0
         };
 
-        Result.find({eleccion:ellection})
+        Result.find({eleccion: ellection})
             .then((data) => {
                 let global;
 
@@ -182,9 +173,7 @@ const highcharts = require('node-highcharts'),
                     title: 'Country Chart'
                 });
             })
-            .catch((err)=> {
-                promise.reject(err);
-            });
+            .catch((err) => promise.reject(err));
         return promise.promise;
     };
 

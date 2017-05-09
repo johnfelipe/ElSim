@@ -11,12 +11,13 @@ const express = require('express'),
     sendError = require('../error').sendError;
 
 {
+
+
     router.get('/single-graphic-form', (req, res) => {
+        console.info('GET '.green + '/single-graphic-form');
 
         Results.find()
             .then((data) => {
-
-                console.warn('Results found: '.blue + data.length);
                 data.sort(Util.sortByDate);
                 response(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
                     results: data,
@@ -25,34 +26,35 @@ const express = require('express'),
                 });
             })
             .catch((err) => {
-                sendError(req,res,err);
+                sendError(req, res, err);
             });
     });
 
     router.post('/graphic-form', (req, res) => {
+
+        console.info('POST '.green + '/graphic-form');
+        console.warn(req.body);
 
         let mode = req.body.mode,
             mandates = req.body.mandates,
             percentage = req.body.percentage,
             resultSelected = req.body.resultSelected,
             user = req.user;
-        console.warn('Processing post request...');
+
         Chart.calculateDistrict(mode, mandates, percentage, resultSelected, user)
-            .then((options)=> {
-                console.warn('Post request processed successfull');
-                res.render('pages/simulator/single-chart', options);
-            })
-            .catch((err)=> {
-                sendError(req,res,err);
-            });
+            .then((options) => res.render('pages/simulator/single-chart', options))
+            .catch((err) => sendError(req, res, err));
     });
 
     router.post('/save-single-chart', (req, res) => {
+
+        console.info('POST '.green + '/save-single-chart');
+        console.warn(req.body);
+
         res.send({
-                result: req.body.result
-            });
-        }
-    );
+            result: req.body.result
+        });
+    });
 
     /** Handle all web routes */
     module.exports = router;

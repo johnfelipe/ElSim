@@ -5,7 +5,7 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-let s = new Schema({
+let LogSchema = new Schema({
     message: {
         type: String,
         required: true
@@ -17,4 +17,4 @@ let s = new Schema({
 });
 
 /** @class Log */
-module.exports = mongoose.model('Log',s);
+module.exports = mongoose.model('Log',LogSchema);

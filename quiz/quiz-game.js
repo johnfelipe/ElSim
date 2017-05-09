@@ -21,9 +21,8 @@ const Question = require('../models/question');
         return q.save();
     };
 
-    const deleteQuestion = (question,done) => {
-        console.log(question);
-        done();
+    const deleteQuestion = (question) => {
+        return Question.findOne(question).remove();
     };
 
 

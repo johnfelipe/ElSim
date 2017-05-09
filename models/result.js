@@ -6,7 +6,7 @@ const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 
-let resultSchema =  new Schema({
+let ResultSchema =  new Schema({
     comunidad: { type: String, required: true },
     cod_provincia: { type: Number, required: true},
     provincia: { type: String, required: true },
@@ -19,7 +19,8 @@ let resultSchema =  new Schema({
     eleccion: { type: Object, required: true},
     partidos: { type: Object, required: true }
 });
-resultSchema.index({
+
+ResultSchema.index({
         cod_provincia: 1,
         eleccion: 1
     },{
@@ -28,4 +29,4 @@ resultSchema.index({
 );
 
 /** @class Result */
-module.exports = mongoose.model('Result',resultSchema);
+module.exports = mongoose.model('Result',ResultSchema);

@@ -6,7 +6,7 @@ const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 
-let s = new Schema({
+let QuestionSchema = new Schema({
     title: {
         type: String,
         required: true
@@ -23,4 +23,4 @@ let s = new Schema({
 
 
 /** @class Question */
-module.exports = mongoose.model('Question', s);
+module.exports = mongoose.model('Question', QuestionSchema);

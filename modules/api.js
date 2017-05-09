@@ -28,54 +28,54 @@ const Util = require('../utilities/util'),
     };
 
     const setup = (req, res) => {
+
+        const errorHandler = (err) => resError(req, res, err);
+
+        const userSaved = (user) => {
+            console.log('User saved: ', user);
+
+            errorHandler(null);
+
+            Logs.remove()
+                .then(() => apiResponse(req, res, null, 'System initialized correctly', null))
+                .catch((err) => apiResponse(req, res, err, 'System initialized correctly', null));
+        };
+
+        const userRemoved = () => {
+            let nick = {
+                name: 'demo',
+                email: 'demo@demo.com',
+                password: 'password',
+                admin: true,
+                resultados: []
+            };
+
+            Users.saveOne(nick)
+                .then(userSaved)
+                .catch(errorHandler);
+        };
+
         Users.remove()
-            .then(()=> {
-                let nick = {
-                    name: 'demo',
-                    email: 'demo@demo.com',
-                    password: 'password',
-                    admin: true,
-                    resultados: []
-                };
-
-                Users.saveOne(nick)
-                    .then((user)=> {
-                        console.log('User saved: ', user);
-                        resError(req, res, null);
-                        Logs.remove()
-                            .then(()=> {
-                                apiResponse(req, res, false, 'System initialized correctly', null);
-                            })
-                            .catch((err)=> {
-                                apiResponse(req, res, err, 'System initialized correctly', null);
-                            });
-                    })
-                    .catch((err)=> {
-                        resError(req,res,err);
-                    });
-            })
-            .catch((err)=> {
-                resError(req, res, err);
-            });
-
+            .then(userRemoved)
+            .catch(errorHandler);
     };
 
     const findOneLog = (req, res) => {
-        Logs.findOne(req.param('id'),
-            (err, data) => apiResponse(req, res, err, 'Result', data)
-        );
+        Logs.findOne(req.param('id'))
+            .then((data) => apiResponse(req, res, null, 'Result', data))
+            .catch((err) => apiResponse(req, res, err, 'Result', null));
     };
 
     const findOneUser = (req, res) => {
-        Users.findOne(req.param('id'),
-            (err, data) => apiResponse(req, res, err, 'Result', data)
-        );
+        Users.findOne(req.param('id'))
+            .then((data) => apiResponse(req, res, null, 'Result', data))
+            .catch((err) => apiResponse(req, res, err, 'Result', null));
     };
 
     const findAllUsers = (req, res) => {
-        Users.find(
-            (err, data) => apiResponse(req, res, err, 'All Users', data)
-        );
+        Users.find()
+            .then((data) => apiResponse(req, res, null, 'All Users', data))
+            .catch((err) => apiResponse(req, res, err, 'All Users', null));
     };
 
     const saveOneUser = (req, res) => {
@@ -83,9 +83,9 @@ const Util = require('../utilities/util'),
     };
 
     const deleteOneUser = (req, res) => {
-        Users.findOne(req.param('id'),
-            (err, data) => apiResponse(req, res, null, 'great', null)
-        );
+        Users.removeOne(req.param('id'))
+            .then((data) => apiResponse(req, res, null, 'great', null))
+            .catch((err) => apiResponse(req, res, err, 'great', null));
     };
 
     const updateOneUser = (req, res) => {
@@ -93,7 +93,7 @@ const Util = require('../utilities/util'),
     };
 
     const apiWelcome = (req, res) => {
-        apiResponse(req, res, false, {
+        apiResponse(req, res, null, {
             message: 'Hello from the API!',
             version: '0.0.1',
             contact: 'jesusgonzaleznovez@gmail.com'
@@ -101,15 +101,15 @@ const Util = require('../utilities/util'),
     };
 
     const findAllResultados = (req, res) => {
-        Results.find(
-            (err, data) => apiResponse(req, res, err, 'All Results', data)
-        );
+        Results.find()
+            .then((data) => apiResponse(req, res, null, 'All Results', data))
+            .catch((err) => apiResponse(req, res, err, 'All Results', null));
     };
 
     const saveOneResultado = (req, res) => {
-        Results.saveOne(
-            (err, data) => apiResponse(req, res, err, 'All Results', data)
-        );
+        Results.saveOne()
+            .then((data) => apiResponse(req, res, null, 'All Results', data))
+            .catch((err) => apiResponse(req, res, err, 'All Results', null));
     };
 
     const updateOneResultado = (req, res) => {
@@ -117,65 +117,57 @@ const Util = require('../utilities/util'),
     };
 
     const deleteOneResultado = (req, res) => {
-        Results.removeOne(req.param('id'),
-            (err, data) => apiResponse(req, res, null, 'great', null)
-        );
+        Results.removeOne(req.param('id'))
+            .then((data) => apiResponse(req, res, null, 'great', null))
+            .catch((err) => apiResponse(req, res, err, 'great', null));
     };
 
     const deleteAllResultados = (req, res) => {
-        Results.remove(
-            () => apiResponse(req, res, null, 'great', null)
-        );
+        Results.remove()
+            .then(() => apiResponse(req, res, null, 'great', null))
+            .catch((err) => apiResponse(req, res, err, 'great', null));
     };
 
     const findOneResultado = (req, res) => {
-        Results.findOne(req.param('id'),
-            (err, data) => apiResponse(req, res, err, 'Result', data)
-        );
+        Results.findOne(req.param('id'))
+            .then((data) => apiResponse(req, res, null, 'Result', data))
+            .catch((err) => apiResponse(req, res, err, 'Result', null));
     };
 
     const loadCsv = (req, res) => {
-        Util.loadCsv(() =>
-            apiResponse(req, res, false, 'CSVs loaded', null)
-        );
+        Util.loadCsv()
+            .then(() => apiResponse(req, res, null, 'CSVs loaded', null))
+            .catch((err) => apiResponse(req, res, err, 'Result', null));
     };
 
     const findLogs = (req, res) => {
-        Logs.find(
-            (err, data) => apiResponse(req, res, err, 'All Logs', data)
-        );
+        Logs.find()
+            .then((data) => apiResponse(req, res, null, 'All Logs', data))
+            .catch((err) => apiResponse(req, res, err, 'All Logs', null));
     };
 
     const deleteAllLogs = (req, res) => {
-        Logs.remove(
-            () => apiResponse(req, res, null, 'great', null)
-        );
+        Logs.remove()
+            .then(() => apiResponse(req, res, null, 'great', null))
+            .catch((err) => apiResponse(req, res, err, 'great', null));
     };
 
     const hardReset = (req, res) => {
         let promises = [];
 
-        const done = (err) => {
-            if (err) {
-                resError(req, res, err);
-            }
-        };
+        promises.push(Users.remove());
+        promises.push(Logs.remove());
+        promises.push(Results.remove());
+        promises.push(Subscribers.remove());
+        promises.push(Questions.remove());
 
-        const endPromises = () => {
-            res.send({
+        Promise.all(promises)
+            .then(() => res.send({
                 result: 'Successful',
                 status: 200,
                 err: null
-            });
-        };
-
-        promises.push(Users.remove(done));
-        promises.push(Logs.remove(done));
-        promises.push(Results.remove(done));
-        promises.push(Subscribers.remove(done));
-        promises.push(Questions.remove(done));
-
-        Promise.all(promises).then(endPromises);
+            }))
+            .catch((err) => resError(req, res, err));
     };
 
     const saveOneQuestion = (req, res) => {
@@ -185,7 +177,9 @@ const Util = require('../utilities/util'),
             answers: JSON.parse(req.body.answers)
         };
 
-        Questions.saveOne(q, (err, data) => resError(req, res, err || true));
+        Questions.saveOne(q)
+            .then((data) => resError(req, res, true))
+            .catch((err) => resError(req, res, err));
     };
 
     const checkQuestion = (req, res) => {
@@ -193,20 +187,15 @@ const Util = require('../utilities/util'),
     };
 
     const getAllQuestions = (req, res) => {
-        Questions.find((err, questions) => {
-                if (err) {
-                    resError(req, res, err);
-                } else {
-                    apiResponse(req, res, null, questions.length + ' Questions loaded', questions);
-                }
-            }
-        );
+        Questions.find()
+            .then((questions) => apiResponse(req, res, null, questions.length + ' Questions loaded', questions))
+            .catch((err) => resError(req, res, err));
     };
 
     const deleteOneQuestion = (req, res) => {
-        Questions.removeOne(req.param('id'),
-            (err, data) => apiResponse(req, res, null, 'great', null)
-        );
+        Questions.removeOne(req.param('id'))
+            .then((data) => apiResponse(req, res, null, 'great', null))
+            .catch((err) => apiResponse(req, res, err, 'fail', null));
     };
 
 

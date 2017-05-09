@@ -14,11 +14,12 @@ const express = require('express'),
 
 {
     router.get('/country-graphic-form', (req, res) => {
+
+        console.info('GET '.green + '/country-graphic-form');
+
         Util.calculateEllections()
             .then((result) => {
                 result.ellections.sort(Util.sortByDate);
-
-                console.warn('Ellections found: '.blue + result.ellections.length);
 
                 response(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
                     results: result.data,
@@ -33,12 +34,15 @@ const express = require('express'),
     });
 
     router.post('/country-form', (req, res) => {
+
+        console.info('POST '.green + '/country-form');
+        console.warn(req.body);
+
         let resultSelected = req.body.resultSelected,
             percentage = req.body.percentage,
             user = req.user,
             body = req.body;
 
-        console.warn('Processing post request...');
         Chart.calculateCountry(resultSelected, percentage, user, body)
             .then((options) => {
                 options.colors = Colors;

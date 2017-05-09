@@ -6,7 +6,7 @@ const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 
-let s = new Schema({
+let SubscriberSchema = new Schema({
     email: {
         type: String,
         required: true
@@ -19,4 +19,4 @@ let s = new Schema({
 
 
 /** @class Subscriber */
-module.exports = mongoose.model('Subscriber', s);
+module.exports = mongoose.model('Subscriber', SubscriberSchema);
