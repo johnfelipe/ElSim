@@ -31,9 +31,7 @@ module.exports = (passport) => {
             });
     };
 
-    const isValidPassword = (user, password) => {
-        return bCrypt.compareSync(password, user.password);
-    };
+    const isValidPassword = (user, password) => bCrypt.compareSync(password, user.password);
 
     passport.use('login', new LocalStrategy(passReq, strategyCallback));
 };

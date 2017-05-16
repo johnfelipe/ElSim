@@ -28,9 +28,7 @@ module.exports = (passport) => {
                         newUser.admin = false;
                         newUser.apiUsage = {};
                         newUser.save()
-                            .then(()=> {
-                                return done(null, newUser);
-                            })
+                            .then(() => done(null, newUser))
                             .catch((err) => {
                                 console.error(err);
                                 throw err;
@@ -46,7 +44,6 @@ module.exports = (passport) => {
 
     passport.use('signup', new LocalStrategy(passReq, strategyCallback));
 
-    const createHash = (password) => {
-        return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
-    };
+    const createHash = (password) => bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+
 };

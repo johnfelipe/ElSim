@@ -8,23 +8,16 @@ const Question = require('../models/question');
  */
 {
 
-    const checkQuestion = (question,answer) => {
-        return (question.correct === answer);
-    };
+    const checkQuestion = (question, answer) => (question.correct === answer);
 
-    const getAllQuestions = () => {
-        return Question.find({});
-    };
+    const getAllQuestions = () => Question.find({});
 
     const saveQuestion = (question) => {
         let q = new Question(question);
         return q.save();
     };
 
-    const deleteQuestion = (question) => {
-        return Question.findOne(question).remove();
-    };
-
+    const deleteQuestion = (question) => Question.findOne(question).remove();
 
     module.exports = {
         checkQuestion,

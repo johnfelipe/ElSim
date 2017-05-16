@@ -11,19 +11,13 @@ const login = require('./login'),
 module.exports = (passport) => {
 
     /** Serialize an user */
-    const serializeUser = (user, done) => {
-        done(null, user._id);
-    };
+    const serializeUser = (user, done) => done(null, user._id);
 
     /** Deserialize an user */
     const deserializeUser = (id, done) => {
         User.findById(id)
-            .then((user) => {
-                done(null,user);
-            })
-            .catch((err) => {
-                done(err,null);
-            });
+            .then((user) => done(null, user))
+            .catch((err) => done(err, null));
     };
 
     passport.serializeUser(serializeUser);

@@ -138,9 +138,15 @@ const Result = require('../models/result'),
         return population;
     };
 
-    const compute = (votes, names, options, withTable) => {
-        return calculateSeats(votes, names, options.mandates, options.blankVotes, options.percentage, withTable);
-    };
+    const compute = (votes, names, options, withTable) => calculateSeats(
+        votes,
+        names,
+        options.mandates,
+        options.blankVotes,
+        options.percentage,
+        withTable
+    );
+
 
     module.exports = {
         compute,

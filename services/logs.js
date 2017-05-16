@@ -2,17 +2,11 @@
 const Log = require('../models/log');
 
 {
-    const findOne = (id) => {
-        return Log.findOne({_id: id});
-    };
+    const findOne = (id) => Log.findOne({_id: id});
 
-    const find = () => {
-        return Log.find({});
-    };
+    const find = () => Log.find({});
 
-    const remove = () => {
-        return Log.find({}).remove();
-    };
+    const remove = () => Log.find({}).remove();
 
     const save = (log) => {
         let l = new Log(log);

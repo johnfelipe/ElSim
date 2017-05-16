@@ -55,9 +55,7 @@ const config = require('../config'),
     };
 
 
-    const isValidPassword = (user, password) => {
-        return bCrypt.compareSync(password, user.password);
-    };
+    const isValidPassword = (user, password) => bCrypt.compareSync(password, user.password);
 
     const authenticate = (req, res) => {
         User.findOne({email: req.body.email})

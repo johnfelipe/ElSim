@@ -20,17 +20,13 @@ const provincias = [
  * @module map-module
  */
 {
-    const calculateCode = (cod_provincia) => {
-        return provincias[cod_provincia];
-    };
+    const calculateCode = (cod_provincia) => provincias[cod_provincia];
 
     const latinize = (s) => {
         let latinise = {};
         latinise.latin_map = latinMap;
         let regEx = new RegExp(/[^A-Za-z0-9\[\] ]/g);
-        return s.replace(regEx, (a) => {
-            return latinise.latin_map[a] || a;
-        });
+        return s.replace(regEx, (a) => latinise.latin_map[a] || a);
     };
 
     const calculateMandates = (provincia, conjunto) => {

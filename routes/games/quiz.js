@@ -13,14 +13,12 @@ const express = require('express'),
         console.info('GET '.green + '/quiz');
 
         Questions.find({})
-            .then((questions)=> {
+            .then((questions) => {
                 let max = questions.length;
                 let index = parseInt(Math.random() * max);
                 indexResponse(req, res, 'pages/more/quiz', 'Quiz', {question: questions[index]});
             })
-            .catch((err)=> {
-                sendError(req,res,err);
-            });
+            .catch((err) => sendError(req, res, err));
 
     });
 

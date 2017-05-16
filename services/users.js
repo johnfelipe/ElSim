@@ -2,30 +2,20 @@
 const User = require('../models/user');
 {
 
-    const findOne = (id) => {
-        return User.findOne({_id: id});
-    };
+    const findOne = (id) => User.findOne({_id: id});
 
-    const find = () => {
-        return User.find({});
-    };
+    const find = () => User.find({});
 
     const saveOne = (user) => {
         let u = new User(user);
         return u.save();
     };
 
-    const removeOne = (id) => {
-        return User.findByIdAndRemove({_id: id});
-    };
+    const removeOne = (id) => User.findByIdAndRemove({_id: id});
 
-    const updateOne = (id, done) => {
-        done(new Error('not yet implemented'), null);
-    };
+    const updateOne = (id, done) => done(new Error('not yet implemented'), null);
 
-    const remove = () => {
-        return User.find({}).remove();
-    };
+    const remove = () => User.find({}).remove();
 
     module.exports = {
         findOne,
