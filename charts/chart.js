@@ -12,6 +12,9 @@ const highcharts = require('node-highcharts'),
     Moment = require('moment'),
     Q = require('q');
 
+/**
+ * @class Chart
+ */
 class Chart {
     constructor() {
 

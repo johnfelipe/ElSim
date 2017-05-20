@@ -2,8 +2,9 @@
 'use strict';
 const express = require('express'),
     router = express.Router(),
-    response = require('../modules/response').response,
-    Api = require('../modules/api'),
+    Response = require('../modules/response'),
+    response = Response.response,
+    apiResponse = Response.apiResponse,
     codigos = require('../misc/codigos'),
     Util = require('../utilities/util'),
     Moment = require('moment'),
@@ -42,13 +43,14 @@ const express = require('express'),
     });
 
     router.get('/resultados/:id', (req, res) => {
-        console.info('GET '.green + ' /resultados/' + req.param('id'));
-        Results.findOne(req.param('id'))
+        console.info('GET '.green + ' /resultados/' + req.params.id);
+
+        Results.findOne(req.params.id)
             .then((data) => {
-                Api.apiResponse(req, res, null, 'Result', data);
+                apiResponse(req, res, null, 'Result', data);
             })
             .catch((err) => {
-                Api.apiResponse(req, res, err, 'Result', null);
+                apiResponse(req, res, err, 'Result', null);
             });
     });
 
@@ -73,15 +75,15 @@ const express = require('express'),
         console.warn(req.params);
 
         let args = [
-            req.param('votes'),
-            req.param('province'),
-            parseInt(req.param('population')),
-            parseInt(req.param('census')),
-            parseInt(req.param('voters')),
-            parseInt(req.param('nulos')),
-            parseInt(req.param('blancos')),
-            req.param('author'),
-            req.param('date')
+            req.params.votes,
+            req.params.province,
+            parseInt(req.params.population),
+            parseInt(req.params.census),
+            parseInt(req.params.voters),
+            parseInt(req.params.nulos),
+            parseInt(req.params.blancos),
+            req.params.author,
+            req.params.date
         ];
 
         let result = District.createResultEntity(args);
@@ -113,7 +115,7 @@ const express = require('express'),
         console.warn(req.params);
 
         let promises = [],
-            results = req.param('Results');
+            results = req.params.Results;
 
         for (let result of results) {
             promises.push(Result.remove({_id: result}));

@@ -23,7 +23,7 @@ class SingUp {
                         let newUser = new User();
                         newUser.email = username;
                         newUser.password = SingUp.createHash(password);
-                        newUser.name = req.param('name');
+                        newUser.name = req.params.name;
                         newUser.admin = false;
                         newUser.apiUsage = {};
                         newUser.save()

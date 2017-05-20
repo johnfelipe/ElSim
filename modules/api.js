@@ -60,13 +60,13 @@ class ApiHandler {
     }
 
     static findOneLog(req, res) {
-        Logs.findOne(req.param('id'))
+        Logs.findOne(req.params.id)
             .then((data) => apiResponse(req, res, null, 'Result', data))
             .catch((err) => apiResponse(req, res, err, 'Result', null));
     }
 
     static findOneUser(req, res) {
-        Users.findOne(req.param('id'))
+        Users.findOne(req.params.id)
             .then((data) => apiResponse(req, res, null, 'Result', data))
             .catch((err) => apiResponse(req, res, err, 'Result', null));
     }
@@ -82,7 +82,7 @@ class ApiHandler {
     }
 
     static deleteOneUser(req, res) {
-        Users.removeOne(req.param('id'))
+        Users.removeOne(req.params.id)
             .then((data) => apiResponse(req, res, null, 'great', null))
             .catch((err) => apiResponse(req, res, err, 'great', null));
     }
@@ -116,7 +116,7 @@ class ApiHandler {
     }
 
     static deleteOneResultado(req, res) {
-        Results.removeOne(req.param('id'))
+        Results.removeOne(req.params.id)
             .then((data) => apiResponse(req, res, null, 'great', null))
             .catch((err) => apiResponse(req, res, err, 'great', null));
     }
@@ -128,7 +128,7 @@ class ApiHandler {
     }
 
     static findOneResultado(req, res) {
-        Results.findOne(req.param('id'))
+        Results.findOne(req.params.id)
             .then((data) => apiResponse(req, res, null, 'Result', data))
             .catch((err) => apiResponse(req, res, err, 'Result', null));
     }
@@ -192,7 +192,7 @@ class ApiHandler {
     }
 
     static deleteOneQuestion(req, res) {
-        Questions.removeOne(req.param('id'))
+        Questions.removeOne(req.params.id)
             .then((data) => apiResponse(req, res, null, 'great', null))
             .catch((err) => apiResponse(req, res, err, 'fail', null));
     }

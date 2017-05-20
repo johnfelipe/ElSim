@@ -23,5 +23,4 @@ let QuestionSchema = new Schema({
 });
 
 
-/** @class Question */
 module.exports = mongoose.model('Question', QuestionSchema);

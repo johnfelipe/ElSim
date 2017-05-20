@@ -19,5 +19,5 @@ let LogSchema = new Schema({
     }
 });
 
-/** @class Log */
+
 module.exports = mongoose.model('Log',LogSchema);

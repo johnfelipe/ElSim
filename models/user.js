@@ -1,5 +1,4 @@
 /* jshint esversion: 6 */
-'use strict';
 
 /** User mongoose model */
 const mongoose = require('mongoose'),

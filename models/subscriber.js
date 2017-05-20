@@ -19,5 +19,4 @@ let SubscriberSchema = new Schema({
 });
 
 
-/** @class Subscriber */
 module.exports = mongoose.model('Subscriber', SubscriberSchema);

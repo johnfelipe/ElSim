@@ -29,5 +29,4 @@ ResultSchema.index({
     }
 );
 
-/** @class Result */
 module.exports = mongoose.model('Result',ResultSchema);
