@@ -2,28 +2,26 @@
 
 const Question = require('../models/question');
 
-/**
- *
- * @module quiz-game
- */
-{
+class QuizGame {
+    constructor() {
 
-    const checkQuestion = (question, answer) => (question.correct === answer);
+    }
 
-    const getAllQuestions = () => Question.find({});
+    static checkQuestion(question, answer) {
+        return (question.correct === answer);
+    }
 
-    const saveQuestion = (question) => {
+    static getAllQuestions() {
+        return Question.find({});
+    }
+
+    static saveQuestion(question) {
         let q = new Question(question);
         return q.save();
     };
 
-    const deleteQuestion = (question) => Question.findOne(question).remove();
-
-    module.exports = {
-        checkQuestion,
-        getAllQuestions,
-        saveQuestion,
-        deleteQuestion
-    };
-
+    static deleteQuestion(question) {
+        return Question.findOne(question).remove();
+    }
 }
+module.exports = QuizGame;

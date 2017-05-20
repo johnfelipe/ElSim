@@ -4,23 +4,23 @@ let LocalStrategy = require('passport-local').Strategy,
     User = require('../models/user'),
     bCrypt = require('bcrypt-nodejs');
 
-const passReq = {
-    passReqToCallback: true
-};
+class Login {
 
-/**
- * Use to handle web logins
- * @module login
- */
-module.exports = (passport) => {
+    constructor(passport) {
+        this.passReq = {
+            passReqToCallback: true
+        };
+        this.passport = passport;
+        this.passport.use('login', new LocalStrategy(this.passReq, this.strategyCallback));
+    }
 
-    const strategyCallback = (req, username, password, done) => {
+    strategyCallback(req, username, password, done) {
         User.findOne({email: username})
             .then((user) => {
                 if (!user) {
                     return done(null, false, req.flash('message', 'User Not found.'));
                 }
-                if (!isValidPassword(user, password)) {
+                if (!Login.isValidPassword(user, password)) {
                     return done(null, false, req.flash('message', 'Invalid Password'));
                 }
                 return done(null, user);
@@ -29,9 +29,10 @@ module.exports = (passport) => {
                 console.error(err);
                 return done(err);
             });
-    };
+    }
 
-    const isValidPassword = (user, password) => bCrypt.compareSync(password, user.password);
-
-    passport.use('login', new LocalStrategy(passReq, strategyCallback));
-};
+    static isValidPassword(user, password) {
+        return bCrypt.compareSync(password, user.password);
+    }
+}
+module.exports = Login;

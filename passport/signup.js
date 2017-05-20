@@ -4,17 +4,16 @@ let LocalStrategy = require('passport-local').Strategy,
     User = require('../models/user'),
     bCrypt = require('bcrypt-nodejs');
 
-const passReq = {
-    passReqToCallback: true
-};
+class SingUp {
+    constructor(passport) {
+        this.passReq = {
+            passReqToCallback: true
+        };
+        this.passport = passport;
+        this.passport.use('signup', new LocalStrategy(this.passReq, this.strategyCallback));
+    }
 
-/**
- * Handle web signups
- * @module signup
- */
-module.exports = (passport) => {
-
-    const strategyCallback = (req, username, password, done) => {
+    strategyCallback(req, username, password, done) {
         process.nextTick(() => {
             User.findOne({email: username})
                 .then((user) => {
@@ -23,7 +22,7 @@ module.exports = (passport) => {
                     } else {
                         let newUser = new User();
                         newUser.email = username;
-                        newUser.password = createHash(password);
+                        newUser.password = SingUp.createHash(password);
                         newUser.name = req.param('name');
                         newUser.admin = false;
                         newUser.apiUsage = {};
@@ -35,15 +34,13 @@ module.exports = (passport) => {
                             });
                     }
                 })
-                .catch((err) => {
-                    console.error(err);
-                    return done(err);
-                });
+                .catch((err) => done(err));
         });
-    };
+    }
 
-    passport.use('signup', new LocalStrategy(passReq, strategyCallback));
 
-    const createHash = (password) => bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
-
-};
+    static createHash(password) {
+        return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+    }
+}
+module.exports = SingUp;

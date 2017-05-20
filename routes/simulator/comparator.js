@@ -1,5 +1,4 @@
 /* jshint esversion: 6 */
-'use strict';
 const express = require('express'),
     router = express.Router(),
     response = require('../../modules/response').response,
@@ -9,7 +8,7 @@ const express = require('express'),
     Colors = require('../../misc/colors'),
     Icons = require('../../misc/icons'),
     console = require('better-console'),
-    comparator = require('../../modules/comparator'),
+    Comparator = require('../../modules/comparator'),
     sendError = require('../error').sendError;
 {
     router.get('/compare-country-graphic-form', (req, res) => {
@@ -43,24 +42,24 @@ const express = require('express'),
             percentage2 = req.body.percentage,
             user = req.user;
 
-        let conjunto1 = {};
-        let conjunto2 = {};
 
-        comparator.fillSets(conjunto1, conjunto2, req.body);
+        let comparator = new Comparator(req.body);
 
-        Chart.calculateCountry(resultSelected, percentage1, user, conjunto1)
+        comparator.fillSets();
+
+        Chart.calculateCountry(resultSelected, percentage1, user, comparator.getSet1())
             .then((options1) => {
-                Chart.calculateCountry(resultSelected, percentage2, user, conjunto2)
+                Chart.calculateCountry(resultSelected, percentage2, user, comparator.getSet2())
                     .then((options2) => {
 
-                        let differences = comparator.fillDifferences(
+                        comparator.fillDifferences(
                             options1.global.agrupado,
                             options2.global.agrupado,
                             percentage1,
-                            percentage2,
-                            conjunto1,
-                            conjunto2
+                            percentage2
                         );
+
+                        let differences = comparator.getDifferences();
 
                         let options = {
                             options1: options1,
@@ -73,7 +72,7 @@ const express = require('express'),
                         };
 
                         if (typeof options.differences.results === 'undefined') {
-                            sendError(req, res, 'Both results are the same');
+                            return sendError(req, res, 'Both results are the same');
                         }
 
                         res.render('pages/simulator/compare-country-chart', options);

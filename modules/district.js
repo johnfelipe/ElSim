@@ -3,13 +3,16 @@
 const Result = require('../models/result'),
     console = require('better-console');
 
-/**
- *
- * @module district-module
- */
-{
+class District {
 
-    const calculateTotalVotes = (votes, blankVotes) => {
+    constructor(votes, names, options, withTable) {
+        this.votes = votes;
+        this.names = names;
+        this.options = options;
+        this.withTable = withTable;
+    }
+
+    calculateTotalVotes(votes, blankVotes) {
         let total = parseInt(blankVotes);
 
         for (let v of votes) {
@@ -17,9 +20,9 @@ const Result = require('../models/result'),
         }
 
         return total;
-    };
+    }
 
-    const validateParties = (numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames) => {
+    validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames) {
         let numberOfPartiesValidated = 0;
         for (let i = 0; i < numberOfParties; ++i) {
             if (votes[i] >= minNumberOfVotes) {
@@ -29,9 +32,9 @@ const Result = require('../models/result'),
             }
         }
         return numberOfPartiesValidated;
-    };
+    }
 
-    const newSeat = (votos, esc, num_par) => {
+    newSeat(votos, esc, num_par) {
         let imax = 0, ct, max = 0;
         for (ct = 0; ct < num_par; ++ct) {
             if (max < (parseInt(votos[ct]) / (esc[ct] + 1))) {
@@ -40,32 +43,32 @@ const Result = require('../models/result'),
             }
         }
         return imax;
-    };
+    }
 
-    const fillSeats = (mandates, seats, validatedVotes, numberOfPartiesValidated) => {
+    fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated) {
         let table = [];
         for (let i = 0; i < mandates; ++i) {
-            seats[newSeat(validatedVotes, seats, numberOfPartiesValidated)]++;
+            seats[this.newSeat(validatedVotes, seats, numberOfPartiesValidated)]++;
             table.push([...seats]);
         }
         return table;
-    };
+    }
 
-    const fillPartiesResult = (numberOfPartiesValidated, result, validatedNames, seats) => {
+    fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats) {
         for (let i = 0; i < numberOfPartiesValidated; i++) {
             result.parties[validatedNames[i]] = seats[i];
         }
-    };
+    }
 
-    const fillResultVar = (numberOfVotes, minNumberOfVotes) => {
+    fillResultVar(numberOfVotes, minNumberOfVotes) {
         return {
             numberOfVotes: numberOfVotes,
             minNumberOfVotes: minNumberOfVotes,
             parties: {}
         };
-    };
+    }
 
-    const fillTable = (table, validatedNames) => {
+    fillTable(table, validatedNames) {
         let aux;
 
         for (let i = 0, len = table.length; i < len; i++) {
@@ -77,31 +80,31 @@ const Result = require('../models/result'),
         }
 
         return table;
-    };
+    }
 
-    const calculateSeats = (votes, names, mandates, blankVotes, percentage, withTable) => {
+    calculateSeats(votes, names, mandates, blankVotes, percentage, withTable) {
         let numberOfParties = votes.length,
-            numberOfVotes = calculateTotalVotes(votes, blankVotes),
+            numberOfVotes = this.calculateTotalVotes(votes, blankVotes),
             minNumberOfVotes = Math.floor(numberOfVotes * percentage / 100),
-            result = fillResultVar(numberOfVotes, minNumberOfVotes),
+            result = this.fillResultVar(numberOfVotes, minNumberOfVotes),
             seats, numberOfPartiesValidated, validatedVotes = [], validatedNames = [];
 
-        numberOfPartiesValidated = validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
+        numberOfPartiesValidated = this.validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
 
         seats = new Array(numberOfPartiesValidated).fill(0);
 
-        let table = fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
+        let table = this.fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
 
-        fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
+        this.fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
 
         if (withTable) {
-            result.table = fillTable(table, validatedNames);
+            result.table = this.fillTable(table, validatedNames);
         }
 
         return result;
-    };
+    }
 
-    const createResultEntity = (args) => {
+    static createResultEntity(args) {
         let lines = args[0].split('\n'),
             partidos = {}, aux;
 
@@ -128,35 +131,17 @@ const Result = require('../models/result'),
             },
             partidos: partidos
         });
-    };
+    }
 
-    const addPopulation = (populations) => {
-        let population = 0;
-        for (let p of populations) {
-            population += p;
-        }
-        return population;
-    };
-
-    const compute = (votes, names, options, withTable) => calculateSeats(
-        votes,
-        names,
-        options.mandates,
-        options.blankVotes,
-        options.percentage,
-        withTable
-    );
-
-
-    module.exports = {
-        compute,
-        calculateTotalVotes,
-        validateParties,
-        newSeat,
-        fillSeats,
-        fillPartiesResult,
-        calculateSeats,
-        createResultEntity,
-        addPopulation
-    };
+    compute() {
+        return this.calculateSeats(
+            this.votes,
+            this.names,
+            this.options.mandates,
+            this.options.blankVotes,
+            this.options.percentage,
+            this.withTable
+        );
+    }
 }
+module.exports = District;

@@ -12,7 +12,7 @@ let express = require('express'),
     passport = require('passport'),
     flash = require('connect-flash'),
     expressSession = require('express-session'),
-    initPassport = require('./passport/init'),
+    InitPassport = require('./passport/init'),
     errorHandler = require('./utilities/errorHandler'),
     Q = require('q'),
     colors = require('colors'),
@@ -37,7 +37,7 @@ app.set('superSecret', config.secret);
 app.use(expressSession({secret: config.secret, cookie: {maxAge: 60000}, resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
-initPassport(passport);
+let initPassport = new InitPassport(passport);
 
 /** Flash messages */
 app.use(flash());

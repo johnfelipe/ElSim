@@ -1,27 +1,30 @@
 /* jshint esversion: 6 */
 const Question = require('../models/question');
 
-{
+class QuizService {
+    constructor() {
 
-    const saveOne = (question) => {
+    }
+    static saveOne(question) {
         let q = new Question(question);
         return q.save();
-    };
+    }
 
-    const checkQuestion = (done) => done(new Error('not yet implemented'), null);
+    static checkQuestion(done) {
+        return done(new Error('not yet implemented'), null);
+    }
 
-    const find = () => Question.find({});
+    static find() {
+        return Question.find({});
+    }
 
-    const removeOne = (id) => Question.findByIdAndRemove({_id: id});
+    static removeOne(id) {
+        return Question.findByIdAndRemove({_id: id});
+    }
 
-    const remove = () => Question.find({}).remove();
-
-    module.exports = {
-        saveOne,
-        checkQuestion,
-        find,
-        removeOne,
-        remove
-    };
+    static remove() {
+        return Question.find({}).remove();
+    }
 
 }
+module.exports = QuizService;

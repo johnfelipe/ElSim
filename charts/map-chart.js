@@ -1,54 +1,44 @@
 /* jshint esversion: 6 */
-const latinMap = require('./../misc/latinize-map'),
-    District = require('../modules/district'),
-    console = require('better-console');
+const District = require('../modules/district'),
+    console = require('better-console'),
+    Latinize = require('../misc/latinize'),
+    latinize = Latinize.latinize;
 
 const has = Object.prototype.hasOwnProperty;
+const provincias = Latinize.getProvincias();
 
-const provincias = [
-    'es-NULL', 'es-vi', 'es-ab', 'es-a', 'es-al', 'es-av', 'es-ba', 'es-pm',
-    'es-b', 'es-bu', 'es-cc', 'es-ca', 'es-cs', 'es-cr', 'es-co', 'es-c',
-    'es-cu', 'es-gi', 'es-gr', 'es-gu', 'es-ss', 'es-h', 'es-hu', 'es-j',
-    'es-le', 'es-l', 'es-lo', 'es-lu', 'es-m', 'es-ma', 'es-mu', 'es-na',
-    'es-or', 'es-o', 'es-p', 'es-gc', 'es-po', 'es-sa', 'es-tf', 'es-s',
-    'es-sg', 'es-se', 'es-so', 'es-t', 'es-te', 'es-to', 'es-v', 'es-va',
-    'es-bi', 'es-za', 'es-z', 'es-ce', 'es-ml'
-];
+class MapChart {
+    constructor() {
 
-/**
- *
- * @module map-module
- */
-{
-    const calculateCode = (cod_provincia) => provincias[cod_provincia];
+    }
 
-    const latinize = (s) => {
-        let latinise = {};
-        latinise.latin_map = latinMap;
-        let regEx = new RegExp(/[^A-Za-z0-9\[\] ]/g);
-        return s.replace(regEx, (a) => latinise.latin_map[a] || a);
-    };
+    static calculateCode(cod_provincia) {
+        return provincias[cod_provincia];
+    }
 
-    const calculateMandates = (provincia, conjunto) => {
+    static calculateMandates(provincia, conjunto) {
         let regEx = new RegExp("\\s", 'g');
-        if (latinize(provincia.split('/')[0].toLowerCase().replace(regEx, "")) === 'araba-alava') {
+
+        if (MapChart.latinize(provincia.split('/')[0].toLowerCase().replace(regEx, "")) === 'araba-alava') {
             return parseInt(conjunto.alava);
         }
-        for (let c in conjunto) {
-            if (latinize(provincia.split('/')[0].toLowerCase().replace(regEx, "")) === latinize(c.toLowerCase().replace(regEx, ""))) {
+
+        let keys = Object.keys(conjunto);
+        for (let c of keys) {
+            if (MapChart.latinize(provincia.split('/')[0].toLowerCase().replace(regEx, "")) === MapChart.latinize(c.toLowerCase().replace(regEx, ""))) {
                 return parseInt(conjunto[c]);
             }
         }
 
         return 2;
-    };
+    }
 
-    const globalLoop = (data, config, conjunto) => {
+    static globalLoop(data, config, conjunto) {
         let votes = [], names = [], result, global = [];
 
         for (let i = 0, len = data.length; i < len; ++i) {
             config.blankVotes = data[i].votos_blanco;
-            config.mandates = calculateMandates(data[i].provincia, conjunto);
+            config.mandates = MapChart.calculateMandates(data[i].provincia, conjunto);
             for (let key in data[i].partidos) {
                 if (data[i].partidos.hasOwnProperty(key)) {
                     votes.push(data[i].partidos[key]);
@@ -56,16 +46,19 @@ const provincias = [
                 }
             }
 
-            result = District.compute(votes, names, config, false);
-            result.cc = calculateCode(data[i].cod_provincia);
+            let d = new District(votes, names, config, false);
+
+            result = d.compute();
+
+            result.cc = MapChart.calculateCode(data[i].cod_provincia);
             global.push(result);
             votes = [];
             names = [];
         }
         return global;
-    };
+    }
 
-    const groupParties = (global) => {
+    static groupParties(global) {
         let aux = {};
         for (let i = 0, len = global.length; i < len; i++) {
             for (let key in global[i].parties) {
@@ -81,17 +74,17 @@ const provincias = [
             }
         }
         return aux;
-    };
+    }
 
-    const calculateGlobal = (data, config, conjunto) => {
+    static calculateGlobal(data, config, conjunto) {
         console.time('Cálculo de elección general...');
-        let global = globalLoop(data, config, conjunto);
-        global.agrupado = groupParties(global);
+        let global = MapChart.globalLoop(data, config, conjunto);
+        global.agrupado = MapChart.groupParties(global);
         console.timeEnd('Cálculo de elección general...');
         return global;
-    };
+    }
 
-    const calculateGlobalWithCommunities = (data, config, conjunto) => {
+    static calculateGlobalWithCommunities(data, conjunto) {
         let groupedByCommunity = {};
 
         for (let i = 0, len = data.length; i < len; i++) {
@@ -107,7 +100,7 @@ const provincias = [
                     votos_blanco: parseInt(data[i].votos_blanco),
                     votos_nulos: parseInt(data[i].votos_nulos),
                     partidos: data[i].partidos,
-                    mandates: parseInt(calculateMandates(data[i].provincia, conjunto))
+                    mandates: parseInt(MapChart.calculateMandates(data[i].provincia, conjunto))
                 };
 
                 for (let key in groupedByCommunity[data[i].comunidad].partidos) {
@@ -118,7 +111,7 @@ const provincias = [
 
             } else {
 
-                groupedByCommunity[data[i].comunidad].mandates += parseInt(calculateMandates(data[i].provincia, conjunto));
+                groupedByCommunity[data[i].comunidad].mandates += parseInt(MapChart.calculateMandates(data[i].provincia, conjunto));
                 groupedByCommunity[data[i].comunidad].poblacion += data[i].poblacion;
                 groupedByCommunity[data[i].comunidad].total_votantes += data[i].total_votantes;
                 groupedByCommunity[data[i].comunidad].votos_validos += data[i].votos_validos;
@@ -126,7 +119,8 @@ const provincias = [
                 groupedByCommunity[data[i].comunidad].votos_blanco += data[i].votos_blanco;
                 groupedByCommunity[data[i].comunidad].votos_nulos += data[i].votos_nulos;
 
-                for (let key in data[i].partidos) {
+                let keys = Object.keys(data[i].partidos);
+                for (let key of keys) {
                     if (has.call(groupedByCommunity[data[i].comunidad].partidos, key)) {
                         groupedByCommunity[data[i].comunidad].partidos[key] += parseInt(data[i].partidos[key]);
                     } else {
@@ -136,22 +130,24 @@ const provincias = [
             }
         }
         return groupedByCommunity;
-    };
+    }
 
-    const calculateGlobalWholeCountry = (data, config, conjunto) => {
-        let groupedByCommunity = calculateGlobalWithCommunities(data, config, conjunto);
+    static calculateGlobalWholeCountry(data, conjunto) {
+        let groupedByCommunity = MapChart.calculateGlobalWithCommunities(data, conjunto);
         let partidos = {}, votes = [], names = [];
         let blankVotes = 0;
 
-        for (let key in groupedByCommunity) {
-            if (has.call(groupedByCommunity, key)) {
-                blankVotes += parseInt(groupedByCommunity[key].votos_blanco);
-                for (let partido in groupedByCommunity[key].partidos) {
-                    if (has.call(partidos, partido)) {
-                        partidos[partido] += parseInt(groupedByCommunity[key].partidos[partido]);
-                    } else {
-                        partidos[partido] = parseInt(groupedByCommunity[key].partidos[partido]);
-                    }
+        let communityKeys = Object.keys(groupedByCommunity);
+        for (let key of communityKeys) {
+            blankVotes += parseInt(groupedByCommunity[key].votos_blanco);
+
+            let partidosKeys = Object.keys(groupedByCommunity[key].partidos);
+
+            for (let partido of partidosKeys) {
+                if (has.call(partidos, partido)) {
+                    partidos[partido] += parseInt(groupedByCommunity[key].partidos[partido]);
+                } else {
+                    partidos[partido] = parseInt(groupedByCommunity[key].partidos[partido]);
                 }
             }
         }
@@ -168,16 +164,10 @@ const provincias = [
                 names.push(partido);
             }
         }
+        let d = new District(votes, names, dhondtConfig, false);
 
-        return District.compute(votes, names, dhondtConfig, false);
-    };
+        return d.compute();
 
-
-    module.exports = {
-        calculateGlobal,
-        calculateGlobalWholeCountry,
-        calculateGlobalWithCommunities
-    };
-
+    }
 }
-
+module.exports = MapChart;

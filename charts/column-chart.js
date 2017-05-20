@@ -4,12 +4,12 @@ const Icons = require('./../misc/icons'),
 
 let columnOptions = require('./options/column-options');
 
-/**
- *
- * @module column-module
- */
-{
-    const fillOptions = (result) => {
+
+class ColumnChart{
+    constructor(){
+
+    }
+    static fillOptions(result) {
         if (typeof result === 'undefined' || result === null) {
             return new Error('invalid param type');
         }
@@ -31,11 +31,6 @@ let columnOptions = require('./options/column-options');
         options.series[0].data = [...mandates];
 
         return options;
-    };
-
-
-    module.exports = {
-        /** Fills options to a column chart */
-        fillOptions
-    };
+    }
 }
+module.exports = ColumnChart;

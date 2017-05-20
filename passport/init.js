@@ -1,27 +1,29 @@
 /* jshint esversion: 6 */
 'use strict';
-const login = require('./login'),
-    signup = require('./signup'),
+const Login = require('./login'),
+    SingUp = require('./signup'),
     User = require('../models/user');
 
-/**
- * Serialize/Deserialize functions
- * @module init
- */
-module.exports = (passport) => {
+class InitAuth {
+
+    constructor(passport) {
+        this.passport = passport;
+        this.passport.serializeUser(InitAuth.serializeUser);
+        this.passport.deserializeUser(this.deserializeUser);
+        this.login = new Login(passport);
+        this.singnup = new SingUp(passport);
+    }
 
     /** Serialize an user */
-    const serializeUser = (user, done) => done(null, user._id);
+    static serializeUser(user, done) {
+        return done(null, user._id);
+    }
 
     /** Deserialize an user */
-    const deserializeUser = (id, done) => {
+    deserializeUser(id, done) {
         User.findById(id)
             .then((user) => done(null, user))
             .catch((err) => done(err, null));
-    };
-
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
-    login(passport);
-    signup(passport);
-};
+    }
+}
+module.exports = InitAuth;

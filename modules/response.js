@@ -1,12 +1,11 @@
 /* jshint esversion: 6 */
-'use strict';
 
-/**
- *
- * @module response
- */
-{
-    const response = (req, res, page, title, other) => {
+class Response {
+    constructor() {
+
+    }
+
+    static response(req, res, page, title, other) {
         let options = {
             title: title,
             user: req.user
@@ -20,20 +19,16 @@
         }
 
         res.render(page, merged);
-    };
+    }
 
-    const apiResponse = (req, res, err, message, data) => {
+    static apiResponse(req, res, err, message, data) {
         res.send({
             success: !err,
             message: (err) ? null : message,
             err: (err) ? err : null,
             data: (err) ? null : data
         });
-    };
-
-    module.exports = {
-        response,
-        apiResponse
-    };
+    }
 }
+module.exports = Response;
 

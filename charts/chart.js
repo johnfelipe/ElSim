@@ -12,40 +12,27 @@ const highcharts = require('node-highcharts'),
     Moment = require('moment'),
     Q = require('q');
 
-/**
- *
- * @module graphic-module
- */
-{
-    const rendChart = (options, callback) => {
-        highcharts.render(options, (err, data) => {
-            if (err) {
-                throw err;
-            }
-            callback(data);
-        });
-    };
+class Chart {
+    constructor() {
 
-    const chooseColor = (party) => {
+    }
+
+    static chooseColor(party) {
         if (Color[party] === undefined) {
             return 'blue';
         }
         return Color[party];
-    };
+    }
 
-    const createColumn = (result) => {
+    static createColumn(result) {
         return BarChart.fillOptions(result);
-    };
+    }
 
-    const createPie = (result) => {
+    static createPie(result) {
         return PieChart.fillOptions(result);
-    };
+    }
 
-    const createMap = (results) => {
-        return CountryChart.fillOptions(results);
-    };
-
-    const fillCalculateDistrictOptions = (ellection, graph_options, result, user) => {
+    static fillCalculateDistrictOptions(ellection, graph_options, result, user) {
         return {
             title: 'Chart',
             autor: ellection.eleccion.autor,
@@ -57,9 +44,9 @@ const highcharts = require('node-highcharts'),
             user: user,
             moment: Moment
         };
-    };
+    }
 
-    const addResultToUser = (user, ellection, result, mandates, percentage) => {
+    static addResultToUser(user, ellection, result, mandates, percentage) {
         let promise = Q.defer();
 
         const reject = (err) => promise.reject(err);
@@ -82,9 +69,9 @@ const highcharts = require('node-highcharts'),
             .catch(reject);
 
         return promise.promise;
-    };
+    }
 
-    const calculateDistrict = (mode, mandates, percentage, resultSelected, user) => {
+    static calculateDistrict(mode, mandates, percentage, resultSelected, user) {
         let promise = Q.defer();
 
         let votes = [],
@@ -112,33 +99,35 @@ const highcharts = require('node-highcharts'),
                     names.push(key);
                 }
 
-                result = District.compute(votes, names, districtOptions, true);
+                let d = new District(votes,names,districtOptions,true);
+
+                result = d.compute();
 
                 if (mode === 'column') {
-                    chartDone(createColumn(result.parties));
+                    chartDone(Chart.createColumn(result.parties));
                 } else {
-                    chartDone(createPie(result.parties));
+                    chartDone(Chart.createPie(result.parties));
                 }
 
             })
             .catch(reject);
 
         const chartDone = (graph_options) => {
-            let options = fillCalculateDistrictOptions(ellection, graph_options, result, user);
+            let options = Chart.fillCalculateDistrictOptions(ellection, graph_options, result, user);
 
             if (!user) {
                 promise.resolve(options);
             } else {
-                addResultToUser(user, ellection, result, mandates, percentage)
+                Chart.addResultToUser(user, ellection, result, mandates, percentage)
                     .then(() => promise.resolve(options))
                     .catch(reject);
             }
         };
 
         return promise.promise;
-    };
+    }
 
-    const calculateCountry = (resultSelected, percentage, user, body) => {
+    static calculateCountry(resultSelected, percentage, user, body) {
 
         let promise = Q.defer();
 
@@ -159,7 +148,7 @@ const highcharts = require('node-highcharts'),
 
                 if (body.wholeCountry) {
                     global = {
-                        agrupado: CountryChart.calculateGlobalWholeCountry(data, config, body).parties
+                        agrupado: CountryChart.calculateGlobalWholeCountry(data, body).parties
                     };
                 } else {
                     global = CountryChart.calculateGlobal(data, config, body);
@@ -175,16 +164,6 @@ const highcharts = require('node-highcharts'),
             })
             .catch((err) => promise.reject(err));
         return promise.promise;
-    };
-
-
-    module.exports = {
-        rendChart,
-        chooseColor,
-        createColumn,
-        createPie,
-        createMap,
-        calculateDistrict,
-        calculateCountry
-    };
+    }
 }
+module.exports = Chart;

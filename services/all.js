@@ -2,12 +2,14 @@
 const Users = require('../models/user'),
     Logs = require('../models/log'),
     Results = require('../models/result'),
-    console = require('better-console'),
     Q = require('q');
 
-{
+class AllService {
+    constructor() {
 
-    const loadAll = () => {
+    }
+
+    static loadAll() {
         let promise = Q.defer();
 
         let users, logs, results;
@@ -29,10 +31,6 @@ const Users = require('../models/user'),
             }).catch(reject);
 
         return promise.promise;
-    };
-
-    module.exports = {
-        loadAll
-    };
-
+    }
 }
+module.exports = AllService;

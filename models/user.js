@@ -6,7 +6,8 @@ const mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     bcrypt = require('bcrypt-nodejs');
 
-
+const Q = require('q');
+mongoose.Promise = Q.Promise;
 let UserSchema = new Schema({
     name: {type: String, required: true},
     email: {type: String, required: true, index: {unique: true}},

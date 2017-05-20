@@ -1,27 +1,33 @@
 /* jshint esversion: 6 */
 const Result = require('../models/result');
 
-{
+class ResultService {
+    constructor() {
 
-    const find = () => Result.find({});
+    }
+    static find() {
+        return Result.find({});
+    }
 
-    const saveOne = (done) => done(new Error('not yet implemented', null));
+    static saveOne(done) {
+        return done(new Error('not yet implemented', null));
+    }
 
-    const updateOne = (done) => done(new Error('not yet implemented', null));
+    static updateOne(done) {
+        return done(new Error('not yet implemented', null));
+    }
 
-    const removeOne = (id) => Result.findByIdAndRemove({_id: id});
+    static removeOne(id) {
+        return Result.findByIdAndRemove({_id: id});
+    }
 
-    const remove = () => Result.find({}).remove();
+    static remove() {
+        return Result.find({}).remove();
+    }
 
-    const findOne = (id) => Result.findOne({_id: id});
-
-    module.exports = {
-        find,
-        findOne,
-        saveOne,
-        updateOne,
-        removeOne,
-        remove
-    };
+    static findOne(id) {
+        return Result.findOne({_id: id});
+    }
 
 }
+module.exports = ResultService;

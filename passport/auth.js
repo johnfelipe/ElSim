@@ -5,13 +5,13 @@ const config = require('../config'),
     bCrypt = require('bcrypt-nodejs'),
     console = require('better-console');
 
-/**
- * Module to handle authentication
- * @module auth
- */
-{
+class Auth {
 
-    const isAuthenticated = (req, res, next) => {
+    constructor() {
+
+    }
+
+    static isAuthenticated(req, res, next) {
         if (req.isAuthenticated()) {
             return next();
         }
@@ -20,9 +20,9 @@ const config = require('../config'),
             user: req.user,
             err: 'Sorry, but you must to login to use the simulator or manage data.'
         });
-    };
+    }
 
-    const isProfileAuthenticated = (req, res, next) => {
+    static isProfileAuthenticated(req, res, next) {
         if (req.isAuthenticated()) {
             return next();
         }
@@ -31,9 +31,9 @@ const config = require('../config'),
             user: req.user,
             err: 'Sorry, but you must to login to see your profile!'
         });
-    };
+    }
 
-    const isApiAuthenticated = (req, res, next) => {
+    static isApiAuthenticated(req, res, next) {
         let token = req.body.token || req.param('token') || req.headers['x-access-token'];
         if (token) {
             jwt.verify(token, config.secret, (err, decoded) => {
@@ -52,12 +52,13 @@ const config = require('../config'),
                 message: 'No token provided.'
             });
         }
-    };
+    }
 
+    static isValidPassword(user, password) {
+        return bCrypt.compareSync(password, user.password);
+    }
 
-    const isValidPassword = (user, password) => bCrypt.compareSync(password, user.password);
-
-    const authenticate = (req, res) => {
+    static authenticate(req, res) {
         User.findOne({email: req.body.email})
             .then((user) => {
                 let object = {
@@ -66,7 +67,7 @@ const config = require('../config'),
                     token: null
                 };
                 if (user) {
-                    if (isValidPassword(user, req.body.password)) {
+                    if (Auth.isValidPassword(user, req.body.password)) {
                         let token = jwt.sign(user, config.secret, {
                             expiresIn: 3600 // expires in 1 hours
                         });
@@ -81,22 +82,7 @@ const config = require('../config'),
                 console.error(err);
                 throw err;
             });
-    };
-
-    module.exports = {
-        /** Checks if user is authenticated WEB */
-        isAuthenticated,
-
-        /** Checks if user is authenticated API */
-        isApiAuthenticated,
-
-        /** Checks if user is authenticated */
-        authenticate,
-
-        /** Checks if password is valid */
-        isValidPassword,
-
-        /** Checks if user is authenticated PROFILE */
-        isProfileAuthenticated
-    };
+    }
 }
+
+module.exports = Auth;

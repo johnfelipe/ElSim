@@ -5,7 +5,8 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-
+const Q = require('q');
+mongoose.Promise = Q.Promise;
 let SubscriberSchema = new Schema({
     email: {
         type: String,

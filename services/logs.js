@@ -1,23 +1,26 @@
 /* jshint esversion: 6 */
 const Log = require('../models/log');
 
-{
-    const findOne = (id) => Log.findOne({_id: id});
+class LogService {
+    constructor() {
 
-    const find = () => Log.find({});
+    }
 
-    const remove = () => Log.find({}).remove();
+    static findOne(id) {
+        return Log.findOne({_id: id});
+    }
 
-    const save = (log) => {
+    static find() {
+        return Log.find({});
+    }
+
+    static remove() {
+        return Log.find({}).remove();
+    }
+
+    static save(log) {
         let l = new Log(log);
         return l.save();
-    };
-
-    module.exports = {
-        findOne,
-        find,
-        remove,
-        save
-    };
-
+    }
 }
+module.exports = LogService;

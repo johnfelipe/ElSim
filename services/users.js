@@ -1,29 +1,35 @@
 /* jshint esversion: 6 */
 const User = require('../models/user');
-{
 
-    const findOne = (id) => User.findOne({_id: id});
+class UserService {
+    constructor() {
 
-    const find = () => User.find({});
+    }
 
-    const saveOne = (user) => {
+    static findOne(id) {
+        return User.findOne({_id: id});
+    }
+
+    static find() {
+        return User.find({});
+    }
+
+    static saveOne(user) {
         let u = new User(user);
         return u.save();
-    };
+    }
 
-    const removeOne = (id) => User.findByIdAndRemove({_id: id});
+    static removeOne(id) {
+        return User.findByIdAndRemove({_id: id});
+    }
 
-    const updateOne = (id, done) => done(new Error('not yet implemented'), null);
+    static updateOne(id, done) {
+        return done(new Error('not yet implemented'), null);
+    }
 
-    const remove = () => User.find({}).remove();
-
-    module.exports = {
-        findOne,
-        find,
-        saveOne,
-        removeOne,
-        updateOne,
-        remove
-    };
+    static remove() {
+        return User.find({}).remove();
+    }
 
 }
+module.exports = UserService;

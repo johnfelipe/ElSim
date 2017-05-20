@@ -1,6 +1,10 @@
 /* jshint esversion: 6 */
-{
-    const sendError = (req,res,err) =>  {
+class ErrorSender {
+    constructor() {
+
+    }
+
+    static sendError(req, res, err) {
         console.error(err);
         res.render('pages/misc/error', {
             result: 'fail',
@@ -10,9 +14,6 @@
                 status: 401
             }
         });
-    };
-
-    module.exports = {
-        sendError
-    };
+    }
 }
+module.exports = ErrorSender;

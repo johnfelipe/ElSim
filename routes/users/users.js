@@ -57,7 +57,9 @@ const express = require('express'),
                     mails.push(s.email);
                 }
 
-                Mailer.sendMail(mails, 'TEST')
+                let mailer = new Mailer(mails,'TEST');
+
+                mailer.sendMail()
                     .then((result) => {
                         console.log('Mail sent result:', result);
                         loadAll()

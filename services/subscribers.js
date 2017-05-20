@@ -1,12 +1,12 @@
 /* jshint esversion: 6 */
 const Subscriber = require('../models/subscriber');
 
-{
+class SubscriberService {
+    constructor() {
 
-    const remove = () => Subscriber.find({}).remove();
-
-    module.exports = {
-        remove
-    };
-
+    }
+    static remove() {
+        return Subscriber.find({}).remove();
+    }
 }
+module.exports = SubscriberService;

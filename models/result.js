@@ -5,7 +5,8 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-
+const Q = require('q');
+mongoose.Promise = Q.Promise;
 let ResultSchema =  new Schema({
     comunidad: { type: String, required: true },
     cod_provincia: { type: Number, required: true},

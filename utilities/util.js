@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-'use strict';
+
 const fs = require('fs'),
     csv = require('fast-csv'),
     Result = require('../models/result'),
@@ -7,51 +7,22 @@ const fs = require('fs'),
     Q = require('q');
 
 const console = require('better-console');
-/**
- *
- * @module util-module
- */
-{
 
-    const checkError = (err) => {
-        if (err) {
-            throw err;
-        }
-    };
+class Util {
+    constructor() {
 
-    const groupByKey = (array) => {
-        if (!Array.isArray(array)) {
-            throw new Error('Use an array to call this method');
-        }
-        let counts = {};
-        for (let i = 0, len = array.length; i < len; ++i) {
-            counts[array[i]] = 1 + (counts[array[i]] || 0);
-        }
-        return counts;
-    };
+    }
 
-    const sortByRest = (a, b) => {
-        let keyA = a.rest,
-            keyB = b.rest;
-        if (keyA > keyB) {
-            return -1;
-        }
-        if (keyA < keyB) {
-            return 1;
-        }
-        return 0;
-    };
-
-    const ellectionIsInArray = (obj, array) => {
+    static ellectionIsInArray(obj, array) {
         for (let i = 0, len = array.length; i < len; i++) {
             if (array[i].autor === obj.autor && array[i].fecha === obj.fecha) {
                 return true;
             }
         }
         return false;
-    };
+    }
 
-    const readResultados = (path) => {
+    static readResultados(path) {
         let promise = Q.defer();
         let stream = fs.createReadStream(path), resultados = [];
 
@@ -66,10 +37,10 @@ const console = require('better-console');
                 promise.resolve(resultados);
             });
         return promise.promise;
-    };
+    }
 
 
-    const readParties = (path, resultados) => {
+    static readParties(path, resultados) {
         let promise = Q.defer();
         let i = 0, stream = fs.createReadStream(path);
         csv.fromStream(stream, {headers: true})
@@ -87,36 +58,34 @@ const console = require('better-console');
                 resultados[i].partidos = data;
                 i++;
             })
-            .on('end', () => {
-                promise.resolve(resultados);
-            });
-        return promise.promise;
-    };
+            .on('end', () => promise.resolve(resultados));
 
-    const readCsv = (path1, path2) => {
+        return promise.promise;
+    }
+
+    static readCsv(path1, path2) {
         let promise = Q.defer();
 
         const reject = (err) => promise.reject(err);
 
-        readResultados(path1)
+        Util.readResultados(path1)
             .then((data) => {
-                readParties(path2, data)
-                    .then((data) => {
-                        promise.resolve(data);
-                    }).catch(reject);
+                Util.readParties(path2, data)
+                    .then((data) => promise.resolve(data))
+                    .catch(reject);
             }).catch(reject);
 
         return promise.promise;
-    };
+    }
 
-    const calculateEllections = () => {
+    static calculateEllections() {
         let promise = Q.defer();
 
         Result.find({})
             .then((data) => {
                 let ellections = [];
                 for (let i = 0, len = data.length; i < len; i++) {
-                    if (!ellectionIsInArray(data[i].eleccion, ellections)) {
+                    if (!Util.ellectionIsInArray(data[i].eleccion, ellections)) {
                         ellections.push(data[i].eleccion);
                     }
                 }
@@ -125,30 +94,33 @@ const console = require('better-console');
             .catch((err) => promise.reject(err));
 
         return promise.promise;
-    };
+    }
 
-    const loadCsv = () => {
+    static loadCsv() {
         let promise = Q.defer();
         const years = ['1977', '1979', '1982', '1986', '1989', '1993', '1996'];
 
         let path1, path2, promises = [];
 
+        const loopF = (data) => {
+            for (let dato of data) {
+                if (dato.partidos !== undefined) {
+                    promises.push(saveResultado(dato));
+                } else {
+                    console.error('Error guardando datos: ', dato);
+                }
+            }
+        };
+
+        const loopE = (err) => promise.reject(err);
 
         for (let year of years) {
             path1 = './csv/' + year + '.csv';
             path2 = './csv/' + year + '_PARTIDOS.csv';
 
-            readCsv(path1, path2)
-                .then((data) => {
-                    for (let dato of data) {
-                        if (dato.partidos !== undefined) {
-                            promises.push(saveResultado(dato));
-                        } else {
-                            console.error('Error guardando datos: ', dato);
-                        }
-                    }
-                })
-                .catch((err) => promise.reject(err));
+            Util.readCsv(path1, path2)
+                .then(loopF)
+                .catch(loopE);
         }
 
         const saveResultado = (result) => {
@@ -172,26 +144,14 @@ const console = require('better-console');
             .catch((err) => promise.reject(err));
 
         return promise.promise;
-    };
+    }
 
-    const sortByDate = (a, b) => {
+    static sortByDate(a, b) {
         if (typeof a.eleccion !== 'undefined') {
             return new moment(a.eleccion.fecha) - new moment(b.eleccion.fecha);
         } else {
             return new moment(a.fecha) - new moment(b.fecha);
         }
-    };
-
-    module.exports = {
-        groupByKey,
-        sortByRest,
-        ellectionIsInArray,
-        readResultados,
-        readParties,
-        readCsv,
-        calculateEllections,
-        loadCsv,
-        checkError,
-        sortByDate
-    };
+    }
 }
+module.exports = Util;

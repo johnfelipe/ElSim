@@ -2,17 +2,17 @@
 let pieOptions = require('./options/pie-options');
 const has = Object.prototype.hasOwnProperty;
 
-/**
- *
- * @module pie-module
- */
-{
-    const fillOptions = (result) => {
+class PieChart {
+    constructor() {
+
+    }
+
+    static fillOptions(result) {
         let options = pieOptions,
             resultsArray = [];
 
         for (let key in result) {
-            if (has.call(result,key) && result[key] > 0) {
+            if (has.call(result, key) && result[key] > 0) {
                 resultsArray.push({
                     name: key,
                     y: result[key],
@@ -24,12 +24,7 @@ const has = Object.prototype.hasOwnProperty;
         options.series[0].data = [...resultsArray];
 
         return options;
-    };
-
-
-    module.exports = {
-        /** Fills options to pie chart */
-        fillOptions
-    };
+    }
 }
+module.exports = PieChart;
 
