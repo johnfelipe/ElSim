@@ -3,6 +3,22 @@
 <% include ../../partials/head.ejs %>
 <% include ../../partials/menu.ejs %>
 <body>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5
+    }
+</style>
 <div class="container">
     <div class="card-deck-wrapper">
         <div class="card-deck">
@@ -12,25 +28,40 @@
                         <span class="fa fa-users"></span> Users
                     </h4>
                     <ul class="list-group">
-                    <% for(var i = 0, len = Users.length; i < len; i++) { %>
-                        <li class="list-group-item">
-                            <span class="fa fa-user-circle-o"></span> <%= Users[i].name %>, <%= Users[i].email %>
-                        </li>
-                    <% } %>
+                        <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>E-mail</th>
+                            </tr>
+                        <% for(var i = 0, len = Users.length; i < len; i++) { %>
+                        <tr>
+                            <td><%= Users[i].name %></td><td><%= Users[i].email %></td>
+                        </tr>
+                        <% } %>
+                        </table>
                     </ul>
                 </div>
             </div>
+        </div>
+        <div class="card-deck">
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">
                         <span class="fa fa-file-text"></span> Logs
                     </h4>
                     <% if(Logs.length) { %>
-                    <ul class="list-group">
+                    <table>
+                        <tr>
+                            <th>Message</th>
+                            <th>Date</th>
+                        </tr>
                         <% for(i = 0, len = Logs.length; i < len; i++) { %>
-                        <li class="list-group-item"><%= Logs[i] %></li>
+                        <tr>
+                            <td><%= Logs[i].message %></td>
+                            <td><%= moment(Logs[i].date).format('hh:mm DD/MM/YYYY') %></td>
+                        </tr>
                         <% } %>
-                    </ul>
+                    </table>
                     <% } else { %>
                     <ul class="list-group">
                         <li class="list-group-item">
@@ -40,6 +71,9 @@
                     <% } %>
                 </div>
             </div>
+        </div>
+        <div class="card-deck">
+
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">
@@ -47,7 +81,7 @@
                     </h4>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <span class="tag tag-default tag-pill float-xs-right"><%= Results.length %></span><span class="fa fa-file-text-o"></span> Results stored
+                            <span class="fa fa-file-text-o"></span> Results stored just now <span class="tag tag-default tag-pill "><%= Results %></span>
                         </li>
                     </ul>
                 </div>
@@ -61,6 +95,11 @@
                     </h4>
                     <div class="card-text">
                         <form method="POST" name="formNews" id="formNews" action="/users/sendNews">
+                            <div class="form-group">
+                                <% if(typeof mailResult !== 'undefined') { %>
+                                Result: <%= mailResult %>
+                                <% } %>
+                            </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" id="notice" name="notice"
                                        placeholder="What do you want to tell subscribed users?" required>

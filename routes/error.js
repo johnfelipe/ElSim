@@ -1,4 +1,3 @@
-
 class ErrorSender {
     constructor() {
 
@@ -12,7 +11,8 @@ class ErrorSender {
             err: {
                 message: err,
                 status: 401
-            }
+            },
+            user: req.user
         });
     }
 }

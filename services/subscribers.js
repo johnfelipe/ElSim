@@ -5,6 +5,7 @@ class SubscriberService {
     constructor() {
 
     }
+
     static remove() {
         return Subscriber.find({}).remove();
     }

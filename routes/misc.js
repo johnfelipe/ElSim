@@ -66,8 +66,9 @@ try {
                         user: req.user,
                         title: 'Administration',
                         Logs: resultado.logs,
-                        Results: resultado.results,
-                        Users: resultado.users
+                        Results: resultado.results.length,
+                        Users: resultado.users,
+                        moment:Moment
                     });
                 })
                 .catch((err) => {

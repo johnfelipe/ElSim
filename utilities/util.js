@@ -146,10 +146,21 @@ class Util {
     }
 
     static sortByDate(a, b) {
+        let f1,f2;
         if (typeof a.eleccion !== 'undefined') {
-            return new moment(a.eleccion.fecha) - new moment(b.eleccion.fecha);
+            f1 = new moment(a.eleccion.fecha);
+            f2 = new moment(b.eleccion.fecha);
         } else {
-            return new moment(a.fecha) - new moment(b.fecha);
+            f1 = new moment(a.fecha);
+            f2 = new moment(b.fecha);
+        }
+
+        if(f1 > f2){
+            return 1;
+        }else if(f1 < f2){
+            return -1;
+        }else{
+            return 0;
         }
     }
 }

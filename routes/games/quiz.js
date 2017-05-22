@@ -22,5 +22,34 @@ const express = require('express'),
 
     });
 
+    router.post('/quiz', (req, res) => {
+
+        console.info('POST '.green + '/quiz');
+
+
+        Questions.findById(req.body.question_id)
+            .then((question) => {
+                let acierto = false;
+
+                console.log(question,req.body);
+                if(question.correct === req.body.answer){
+                    acierto = true;
+                }
+
+                Questions.find({})
+                    .then((questions) => {
+                        let max = questions.length;
+                        let index = parseInt(Math.random() * max);
+                        indexResponse(req, res, 'pages/more/quiz', 'Quiz', {
+                            question: questions[index],
+                            acierto: acierto
+                        });
+                    })
+                    .catch((err) => sendError(req, res, err));
+            })
+            .catch((err) => sendError(req, res, err));
+
+    });
+
     module.exports = router;
 }

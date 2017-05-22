@@ -15,7 +15,8 @@ class ErrorHandler {
         res.status(err.status || 500);
         res.render('pages/misc/error', {
             message: err.message,
-            err: err
+            err: err,
+            user: req.user
         });
     }
 
@@ -23,7 +24,8 @@ class ErrorHandler {
         res.status(err.status || 500);
         res.render('pages/misc/error', {
             message: err.message,
-            err: {}
+            err: {},
+            user: req.user
         });
     }
 }

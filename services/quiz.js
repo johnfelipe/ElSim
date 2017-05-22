@@ -10,12 +10,16 @@ class QuizService {
         return q.save();
     }
 
-    static checkQuestion(done) {
-        return done(new Error('not yet implemented'), null);
+    static checkQuestion(question,answer) {
+        return question.correct === answer;
     }
 
     static find() {
         return Question.find({});
+    }
+
+    static findById(id) {
+        return Question.findOne({_id:id});
     }
 
     static removeOne(id) {

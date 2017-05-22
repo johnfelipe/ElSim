@@ -116,32 +116,30 @@ const express = require('express'),
             });
     });
 
-    router.post('/add-data-file', (req, res) => {
-        console.info('POST '.green + ' /add-data-file');
-        response(req, res, 'pages/misc/error', 'Not Implemented', {
-            err: {
-                status: 500
-            },
-            message: 'Not implemented'
-        });
-    });
 
     router.post('/delete-data', (req, res) => {
         console.info('POST '.green + ' /delete-data');
-        console.warn(req.params);
 
         let promises = [],
-            results = req.params.Results;
+            results = req.body.results;
 
-        for (let result of results) {
-            promises.push(Result.remove({_id: result}));
+        if(results instanceof Array) {
+            console.info('Es un array: ' + results);
+            for (let result of results) {
+                promises.push(Results.removeOne(result));
+            }
+        } else{
+            console.info('Es una string: ' + results);
+            promises.push(Results.removeOne(results));
         }
 
         const promisesFinish = () => {
             Results.find()
                 .then((data) => {
+
                     response(req, res, 'pages/data/delete-data', 'Delete data', {
                         err: null,
+                        moment: Moment,
                         data: data
                     });
                 })
