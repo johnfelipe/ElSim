@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 const Question = require('../models/question');
 
 class QuizService {

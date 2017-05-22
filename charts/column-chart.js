@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 const Icons = require('./../misc/icons'),
     has = Object.prototype.hasOwnProperty;
 

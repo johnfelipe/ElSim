@@ -1,5 +1,5 @@
-/* jshint esversion: 6 */
-'use strict';
+
+
 let LocalStrategy = require('passport-local').Strategy,
     User = require('../models/user'),
     bCrypt = require('bcrypt-nodejs');

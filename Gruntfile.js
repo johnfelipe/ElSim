@@ -1,5 +1,5 @@
-/* jshint esversion: 6 */
-'use strict';
+
+
 /**
  * File to tell Grunt what to do.
  * @module Gruntfile

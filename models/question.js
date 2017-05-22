@@ -1,5 +1,5 @@
-/* jshint esversion: 6 */
-'use strict';
+
+
 
 /** Questions mongoose model */
 const mongoose = require('mongoose'),

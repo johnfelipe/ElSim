@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 
 const Result = require('../models/result'),
     console = require('better-console');

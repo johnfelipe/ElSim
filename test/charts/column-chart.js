@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 const chai = require('chai');
 const columnChart = require('../../charts/column-chart');
 const Result = require('../../models/result');

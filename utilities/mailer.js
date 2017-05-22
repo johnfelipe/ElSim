@@ -1,5 +1,5 @@
-/* jshint esversion: 6 */
-'use strict';
+
+
 
 const nodemailer = require('nodemailer');
 const Q = require('q');

@@ -1,5 +1,4 @@
-/* jshint esversion: 6 */
-'use strict';
+
 const express = require('express'),
     router = express.Router(),
     response = require('../../modules/response').response;

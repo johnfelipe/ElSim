@@ -1,5 +1,5 @@
-'use strict';
-/* jshint esversion: 6 */
+
+
 
 const Util = require('../utilities/util'),
     Logs = require('../services/logs'),

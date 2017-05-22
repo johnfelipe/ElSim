@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 const Subscriber = require('../models/subscriber');
 
 class SubscriberService {

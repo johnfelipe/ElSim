@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 let diff = require('deep-diff').diff;
 const console = require('better-console');
 

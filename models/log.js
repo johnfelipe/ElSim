@@ -1,5 +1,5 @@
-/* jshint esversion: 6 */
-'use strict';
+
+
 
 /** Log mongoose model */
 const mongoose = require('mongoose'),

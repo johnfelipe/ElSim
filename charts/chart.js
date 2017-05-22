@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 
 const highcharts = require('node-highcharts'),
     Color = require('./../misc/colors'),

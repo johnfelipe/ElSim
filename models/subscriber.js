@@ -1,5 +1,5 @@
-/* jshint esversion: 6 */
-'use strict';
+
+
 
 /** Subscriber mongoose model */
 const mongoose = require('mongoose'),

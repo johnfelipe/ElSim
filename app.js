@@ -1,5 +1,5 @@
-/* jshint esversion: 6 */
-'use strict';
+
+
 /** Main module of the server side */
 let express = require('express'),
     path = require('path'),

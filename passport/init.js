@@ -1,5 +1,5 @@
-/* jshint esversion: 6 */
-'use strict';
+
+
 const Login = require('./login'),
     SingUp = require('./signup'),
     User = require('../models/user');

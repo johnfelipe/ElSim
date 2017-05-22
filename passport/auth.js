@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 const config = require('../config'),
     jwt = require('jsonwebtoken'),
     User = require('../models/user'),

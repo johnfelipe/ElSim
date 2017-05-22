@@ -1,5 +1,5 @@
-/* jshint esversion: 6 */
-'use strict';
+
+
 
 /** Ellectoral result mongoose model */
 const mongoose = require('mongoose'),

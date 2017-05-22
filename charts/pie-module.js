@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 let pieOptions = require('./options/pie-options');
 const has = Object.prototype.hasOwnProperty;
 

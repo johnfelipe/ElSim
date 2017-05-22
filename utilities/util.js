@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 
 const fs = require('fs'),
     csv = require('fast-csv'),

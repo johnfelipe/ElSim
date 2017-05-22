@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 const latinMap = require('./../misc/latinize-map');
 
 class Latinize {

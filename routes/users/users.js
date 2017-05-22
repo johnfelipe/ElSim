@@ -1,5 +1,5 @@
-/* jshint esversion: 6 */
-'use strict';
+
+
 const express = require('express'),
     router = express.Router(),
     Auth = require('../../passport/auth'),

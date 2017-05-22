@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 const District = require('../modules/district'),
     console = require('better-console'),
     Latinize = require('../misc/latinize'),

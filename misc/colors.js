@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 
 /** Object to find the party color */
 module.exports = {

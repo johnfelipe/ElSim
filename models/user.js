@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 
 /** User mongoose model */
 const mongoose = require('mongoose'),

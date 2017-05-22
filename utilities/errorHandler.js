@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 
 class ErrorHandler {
     constructor() {
