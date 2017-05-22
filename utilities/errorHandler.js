@@ -19,7 +19,6 @@ class ErrorHandler {
         });
     }
 
-
     static productionHandler(err, req, res, next) {
         res.status(err.status || 500);
         res.render('pages/misc/error', {

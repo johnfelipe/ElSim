@@ -39,7 +39,6 @@ class Util {
         return promise.promise;
     }
 
-
     static readParties(path, resultados) {
         let promise = Q.defer();
         let i = 0, stream = fs.createReadStream(path);

@@ -1,6 +1,5 @@
 
 
-
 /** Ellectoral result mongoose model */
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;

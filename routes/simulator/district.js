@@ -12,7 +12,6 @@ const express = require('express'),
 
 {
 
-
     router.get('/single-graphic-form', (req, res) => {
         console.info('GET '.green + '/single-graphic-form');
 

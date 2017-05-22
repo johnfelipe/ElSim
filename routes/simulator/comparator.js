@@ -42,7 +42,6 @@ const express = require('express'),
             percentage2 = req.body.percentage,
             user = req.user;
 
-
         let comparator = new Comparator(req.body);
 
         comparator.fillSets();

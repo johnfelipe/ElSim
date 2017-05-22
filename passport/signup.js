@@ -38,7 +38,6 @@ class SingUp {
         });
     }
 
-
     static createHash(password) {
         return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
     }

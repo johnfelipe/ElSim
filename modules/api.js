@@ -1,6 +1,5 @@
 
 
-
 const Util = require('../utilities/util'),
     Logs = require('../services/logs'),
     Results = require('../services/results'),

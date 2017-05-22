@@ -1,6 +1,5 @@
 
 
-
 /** Subscriber mongoose model */
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
@@ -17,6 +16,5 @@ let SubscriberSchema = new Schema({
         required: true
     }
 });
-
 
 module.exports = mongoose.model('Subscriber', SubscriberSchema);

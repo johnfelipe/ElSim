@@ -1,6 +1,5 @@
 
 
-
 /** Questions mongoose model */
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
@@ -21,6 +20,5 @@ let QuestionSchema = new Schema({
         required: true
     }
 });
-
 
 module.exports = mongoose.model('Question', QuestionSchema);

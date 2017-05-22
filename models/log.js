@@ -1,6 +1,5 @@
 
 
-
 /** Log mongoose model */
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
@@ -18,6 +17,5 @@ let LogSchema = new Schema({
         required: true
     }
 });
-
 
 module.exports = mongoose.model('Log',LogSchema);

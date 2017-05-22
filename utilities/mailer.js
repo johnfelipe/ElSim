@@ -1,6 +1,5 @@
 
 
-
 const nodemailer = require('nodemailer');
 const Q = require('q');
 let config;
