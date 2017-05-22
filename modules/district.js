@@ -104,8 +104,8 @@ class District {
         return result;
     }
 
-    static createResultEntity(args) {
-        let lines = args[0].split('\n'),
+    static createResultEntity(result) {
+        let lines = result.votes.split('\n'),
             partidos = {}, aux;
 
         const regEx = new RegExp(/(\r\n|\n|\r)/gm);
@@ -115,22 +115,27 @@ class District {
             partidos[aux[0].replace(regEx, "")] = aux[2].replace(regEx, "");
         }
 
-        return new Result({
-            comunidad: 'desconocida',
-            cod_provincia: args[1],
-            provincia: 'desconocida',
-            poblacion: args[2],
-            total_votantes: args[3],
-            votos_validos: args[3] - args[4],
-            votos_candidaturas: (args[3] - args[4]) - args[5],
-            votos_blanco: args[5],
-            votos_nulos: args[4],
+        let sObject = {
+            comunidad: result.comunidad,
+            cod_provincia: result.cod_province,
+            provincia: result.province,
+            poblacion: result.population,
+            total_votantes: result.census,
+            votos_validos: result.census - result.nulos,
+            votos_candidaturas: (result.census - result.nulos) - result.blancos,
+            votos_blanco: result.blancos,
+            votos_nulos: result.nulos,
             eleccion: {
-                autor: args[6],
-                fecha: args[7]
+                autor: result.author,
+                fecha: result.date
             },
             partidos: partidos
-        });
+        };
+
+        console.warn('Intentando crear:');
+        console.warn(sObject);
+
+        return new Result(sObject);
     }
 
     compute() {

@@ -1,5 +1,3 @@
-
-
 const express = require('express'),
     router = express.Router(),
     Response = require('../modules/response'),
@@ -21,7 +19,8 @@ const express = require('express'),
         console.info('GET '.green + ' /add-data');
         response(req, res, 'pages/data/add-data', 'Add data', {
             err: null,
-            codigos: codigos
+            codigos: codigos,
+            moment: Moment
         });
     });
 
@@ -72,23 +71,40 @@ const express = require('express'),
 
     router.post('/add-data', (req, res) => {
         console.info('POST '.green + ' /add-data');
-        console.warn(req.params);
 
-        let args = [
-            req.params.votes,
-            req.params.province,
-            parseInt(req.params.population),
-            parseInt(req.params.census),
-            parseInt(req.params.voters),
-            parseInt(req.params.nulos),
-            parseInt(req.params.blancos),
-            req.params.author,
-            req.params.date
-        ];
 
-        let result = District.createResultEntity(args);
+        let province = 'Not found';
+        let comunidad = 'Not found';
+        let cod_province = 0;
+        let keys = Object.keys(Codigos);
+        for(let key of keys){
+            let subKeys = Object.keys(Codigos[key]);
+            for(let subKey of subKeys){
+                if(Codigos[key][subKey] === parseInt(req.body.province)){
+                    province = subKey.toLowerCase();
+                    cod_province = Codigos[key][subKey];
+                    comunidad = key;
+                }
+            }
+        }
 
-        result.save()
+        let result = {
+            votes: req.body.votes,
+            province: province,
+            cod_province: cod_province,
+            comunidad: comunidad,
+            population: parseInt(req.body.population),
+            census: parseInt(req.body.census),
+            voters: parseInt(req.body.voters),
+            nulos: parseInt(req.body.nulos),
+            blancos: parseInt(req.body.blancos),
+            author: req.body.author,
+            date: req.body.date
+        };
+
+        let resultEntity = District.createResultEntity(result);
+
+        resultEntity.save()
             .then(() => {
                 response(req, res, 'pages/data/add-data', 'Add data', {
                     err: null,

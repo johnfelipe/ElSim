@@ -19,13 +19,13 @@ class MapChart {
     static calculateMandates(provincia, conjunto) {
         let regEx = new RegExp("\\s", 'g');
 
-        if (MapChart.latinize(provincia.split('/')[0].toLowerCase().replace(regEx, "")) === 'araba-alava') {
+        if (latinize(provincia.split('/')[0].toLowerCase().replace(regEx, "")) === 'araba-alava') {
             return parseInt(conjunto.alava);
         }
 
         let keys = Object.keys(conjunto);
         for (let c of keys) {
-            if (MapChart.latinize(provincia.split('/')[0].toLowerCase().replace(regEx, "")) === MapChart.latinize(c.toLowerCase().replace(regEx, ""))) {
+            if (latinize(provincia.split('/')[0].toLowerCase().replace(regEx, "")) === latinize(c.toLowerCase().replace(regEx, ""))) {
                 return parseInt(conjunto[c]);
             }
         }

@@ -1,7 +1,6 @@
 
-const Icons = require('./../misc/icons'),
-    has = Object.prototype.hasOwnProperty;
-
+const Icons = require('./../misc/icons');
+const clone = require('clone-any').cloneAny;
 let columnOptions = require('./options/column-options');
 
 
@@ -16,8 +15,9 @@ class ColumnChart{
 
         let options = columnOptions, categories = [], mandates = [];
 
-        for (let key in result) {
-            if (has.call(result, key) && result[key] > 0) {
+        let keys = Object.keys(result);
+        for (let key of keys) {
+            if (result[key] > 0) {
                 categories.push(key);
                 mandates.push({
                     y: result[key],

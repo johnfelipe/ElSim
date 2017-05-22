@@ -1,6 +1,5 @@
-
+let clone = require('clone-any').cloneAny;
 let pieOptions = require('./options/pie-options');
-const has = Object.prototype.hasOwnProperty;
 
 class PieChart {
     constructor() {
@@ -11,8 +10,10 @@ class PieChart {
         let options = pieOptions,
             resultsArray = [];
 
-        for (let key in result) {
-            if (has.call(result, key) && result[key] > 0) {
+        let keys = Object.keys(result);
+
+        for (let key of keys) {
+            if (result[key] > 0) {
                 resultsArray.push({
                     name: key,
                     y: result[key],

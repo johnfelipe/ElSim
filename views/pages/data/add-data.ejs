@@ -70,7 +70,7 @@
                                             onchange="parseFields(processTextarea)">
                                         <% for(let ccaa in codigos) { %>
                                         <% for(let provincia in codigos[ccaa]) { %>
-                                        <option value="<%- codigos[ccaa][provincia] %> "><%= ccaa %> - <%= provincia %> </option>
+                                        <option value="<%- codigos[ccaa][provincia] %>"><%= ccaa %> - <%= provincia %> </option>
 
                                         <% } %>
                                         <% } %>
@@ -80,14 +80,14 @@
                                     <label for="population">
                                         <span class="fa fa-users"></span> Population
                                     </label>
-                                    <input class="form-control" min="1" value="1000" type="number" name="population"
+                                    <input class="form-control" min="1" value="15000" type="number" name="population"
                                            id="population" onchange="parseFields(processTextarea)" required/>
                                 </div>
                                 <div class="col-xs-4 form-group">
                                     <label for="date">
                                         <span class="fa fa-calendar"></span> Select a date
                                     </label>
-                                    <input class="form-control" type="date" name="date" id="date"
+                                    <input class="form-control" type="date" name="date" id="date" value="<%= moment(new Date()).format('DD/MM/YYYY') %>"
                                            onchange="parseFields()"
                                            required/>
                                 </div>
@@ -97,7 +97,7 @@
                                     <label for="voters">
                                         <span class="fa fa-envelope-o"></span> Voters
                                     </label>
-                                    <input class="form-control" min="1" value="0" type="number" name="voters"
+                                    <input class="form-control" min="1" value="150" type="number" name="voters"
                                            id="voters"
                                            onchange="parseFields(processTextarea)" required/>
                                 </div>
@@ -105,7 +105,7 @@
                                     <label for="census">
                                         <span class="fa fa-list-alt"></span> Electoral census
                                     </label>
-                                    <input class="form-control" min="0" value="0" type="number" name="census"
+                                    <input class="form-control" min="0" value="200" type="number" name="census"
                                            id="census"
                                            onchange="parseFields(processTextarea)" required/>
                                 </div>
@@ -113,7 +113,7 @@
                                     <label for="blancos">
                                         <span class="fa fa-circle-o"></span> Blank votes
                                     </label>
-                                    <input class="form-control" type="number" min="0" value="0" name="blancos"
+                                    <input class="form-control" type="number" min="0" value="10" name="blancos"
                                            id="blancos"
                                            onchange="parseFields(processTextarea)" required/>
                                 </div>
@@ -123,14 +123,14 @@
                                     <label for="nulos">
                                         <span class="fa fa-thumbs-o-down"></span> Null votes
                                     </label>
-                                    <input class="form-control" min="0" value="0" type="number" name="nulos" id="nulos"
+                                    <input class="form-control" min="0" value="20" type="number" name="nulos" id="nulos"
                                            onchange="parseFields(processTextarea)" required/>
                                 </div>
                                 <div class="col-xs-4 form-group">
                                     <label for="author">
-                                        <span class="fa fa-user-circle-o"></span> Your name
+                                        <span class="fa fa-user-circle-o"></span> Author: <%= (typeof user !== 'undefined') ? user.name : 'anonymous' %>
                                     </label>
-                                    <input class="form-control" value="<%= user.name || 'anonymous' %>" type="text" name="author" id="author" disabled/>
+                                    <input class="form-control" value="<%= (typeof user !== 'undefined') ? user.name : 'anonymous' %>" type="hidden" name="author" id="author" />
 
                                 </div>
                             </div>
@@ -143,8 +143,9 @@
                                     </label>
                                     <textarea class="form-control" id="votes" name="votes" rows="8"
                                               onchange="parseFields(processTextarea)">
-PP - 123
-PSOE - 123</textarea>
+A - 60
+B - 45
+C - 15</textarea>
                                 </div>
                             </div>
                             <hr>

@@ -6,8 +6,10 @@ const ciudades = ['es-vi', 'es-ab', 'es-a', 'es-al', 'es-av', 'es-ba', 'es-pm',
     'es-or', 'es-o', 'es-p', 'es-gc', 'es-po', 'es-sa', 'es-tf', 'es-s',
     'es-sg', 'es-se', 'es-so', 'es-t', 'es-te', 'es-to', 'es-v', 'es-va',
     'es-bi', 'es-za', 'es-z', 'es-ce', 'es-ml'];
+
 let data = [];
-for (c of ciudades) {
+
+for (let c of ciudades) {
     data.push({
         'hc-key': c,
         value: 0,
@@ -15,6 +17,7 @@ for (c of ciudades) {
         color: getColor(getParties(c, false))
     });
 }
+
 let options = {
     chart: {
         borderWidth: 1

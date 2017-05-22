@@ -4,7 +4,6 @@ module.exports = {
         type: 'column',
         backgroundColor: null,
         style: {
-            fontFamily: 'Signika, serif',
             background: 'url(/images/sand.png)'
         }
     },

@@ -1,6 +1,6 @@
 function fillContent(id) {
     console.log(id);
-    var content = '<ul class="list-group"> ';
+    let content = '<ul class="list-group"> ';
     $.get('/resultados/' + id, function (data, status) {
 
         content += '<li class="list-group-item"><span class="fa fa-user"></span> ' + data.data.eleccion.autor + '</li>';
