@@ -72,11 +72,11 @@ const express = require('express'),
     router.post('/add-data', (req, res) => {
         console.info('POST '.green + ' /add-data');
 
-
         let province = 'Not found';
         let comunidad = 'Not found';
         let cod_province = 0;
         let keys = Object.keys(Codigos);
+
         for(let key of keys){
             let subKeys = Object.keys(Codigos[key]);
             for(let subKey of subKeys){

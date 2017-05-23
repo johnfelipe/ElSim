@@ -20,22 +20,32 @@ function fixDate(date) {
     }
 }
 
-function calculateCandidatureVotes(){
+function calculateCandidatureVotes() {
     return +$('#votos_validosSpan').text() - +$('#votos_blancoSpan').text();
 }
 
 function processTextarea() {
+    let partidosSpan = $('#partidosSpan');
+
     let lines = $('#votes').val().split('\n');
-    $('#partidosSpan').text('[');
+
+    partidosSpan.text('[');
+
     let total = 0;
-    for (let i = 0; i < lines.length; i++) {
-        if(i > 0)  $('#partidosSpan').text($('#partidosSpan').text() + ', ' + lines[i]);
-        else $('#partidosSpan').text($('#partidosSpan').text() + ' ' + lines[i]);
+
+    for (let i = 0, len = lines.length; i < len; i++) {
+        if (i > 0) partidosSpan.text(partidosSpan.text() + ', ' + lines[i]);
+        else partidosSpan.text(partidosSpan.text() + ' ' + lines[i]);
         total += +lines[i].split(' ')[2];
     }
-    $('#partidosSpan').text($('#partidosSpan').text() + ']');
-    let n = +$('#votos_blancoSpan').text() + +$('#votos_nuloSpan').text();
+
+    partidosSpan.text(partidosSpan.text() + ']');
+
+    let n = (+$('#votos_blancoSpan').text()) + (+$('#votos_nuloSpan').text());
+
     n = n + total;
+
     $('#votos_validosSpan').text(n);
+
     $('#votos_candidaturasSpan').text(calculateCandidatureVotes());
 }

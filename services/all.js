@@ -16,19 +16,26 @@ class AllService {
 
         const reject = (err) => promise.reject(err);
 
+        const handleResults = (data) => {
+            results = [...data];
+            promise.resolve({logs, results, users});
+        };
+
+        const handleLogs = (data) => {
+            logs = [...data];
+            return Results.find();
+        };
+
+        const handleUsers = (data) => {
+            users = [...data];
+            return Logs.find();
+        };
+
         Users.find()
-            .then((data) => {
-                users = [...data];
-                Logs.find()
-                    .then((data) => {
-                        logs = [...data];
-                        Results.find()
-                            .then((data) => {
-                                results = [...data];
-                                promise.resolve({logs, results, users});
-                            }).catch(reject);
-                    }).catch(reject);
-            }).catch(reject);
+            .then(handleUsers)
+            .then(handleLogs)
+            .then(handleResults)
+            .catch(reject);
 
         return promise.promise;
     }

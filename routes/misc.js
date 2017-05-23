@@ -50,7 +50,7 @@ try {
 
     router.get('/admin', (req, res) => {
         console.info('GET '.green + ' /admin');
-        if (!req.user || req.user.email !== credentials.user) {
+        if (!req.user || req.user.email !== credentials.adminUser) {
             sendError(req,res,{
                 result: 'fail',
                 message: 'You are not the admin, sorry!',

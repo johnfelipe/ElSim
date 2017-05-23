@@ -9,15 +9,6 @@ const ciudades = ['es-vi', 'es-ab', 'es-a', 'es-al', 'es-av', 'es-ba', 'es-pm',
 
 let data = [];
 
-for (let c of ciudades) {
-    data.push({
-        'hc-key': c,
-        value: 0,
-        parties: getParties(c, true),
-        color: getColor(getParties(c, false))
-    });
-}
-
 let options = {
     chart: {
         borderWidth: 1
@@ -54,21 +45,50 @@ let options = {
         }
     }]
 };
-function getParties(chartCode, isFormat) {
+
+const sortByPartyValue = (a, b) => {
+    let tmpKeysA = Object.keys(a);
+    let tmpKeysB = Object.keys(b);
+    if (a[tmpKeysA[0]] > b[tmpKeysB[0]]) {
+        return -1;
+    } else if (a[tmpKeysA[0]] < b[tmpKeysB[0]]) {
+        return 1;
+    } else {
+        return 0;
+    }
+};
+
+const objectToArray = (array) => {
+    let aux = [];
+    let gKeys = Object.keys(array);
+    for (let gKey of gKeys) {
+        let tmpObject = {};
+        tmpObject[gKey] = array[gKey];
+        aux.push(tmpObject);
+    }
+    return aux;
+};
+
+const getParties = (chartCode, isFormat) => {
     for (let g of global) {
         if (g.cc === chartCode) {
             if (isFormat) {
                 let string = '';
-                for (let key in g.parties) {
-                    string = string.concat(key + ': ' + g.parties[key] + '<br>');
+
+                let aux = objectToArray(g.parties).sort(sortByPartyValue);
+
+                for (let a of aux) {
+                    let subKeys = Object.keys(a);
+                    string = string.concat(subKeys[0] + ': ' + a[subKeys[0]] + '<br>');
                 }
                 return string;
             }
             return JSON.stringify(g.parties, null, 2);
         }
     }
-}
-function getColor(parties) {
+};
+
+const getColor = (parties) => {
     let mayor = {
         party: '',
         mandates: 0
@@ -76,26 +96,41 @@ function getColor(parties) {
 
     if (parties !== undefined) {
         let ps = JSON.parse(parties);
-        for (let key in ps) {
+
+        let keys = Object.keys(ps);
+
+        for (let key of keys) {
             if (parseInt(ps[key]) >= mayor.mandates) {
                 mayor.party = key;
                 mayor.mandates = ps[key];
             }
         }
+
         return variosMaximos(ps, mayor) || colors[mayor.party];
     } else {
         return 'UNDEFINED';
     }
 
-}
-function variosMaximos(ps, mayor) {
+};
+
+const variosMaximos = (ps, mayor) => {
     let cont = 0;
     for (let key in ps)
         if (parseInt(ps[key]) === mayor.mandates)
             cont++;
     if (cont > 1) return '#cbff75';
     return false;
+};
+
+for (let c of ciudades) {
+    data.push({
+        'hc-key': c,
+        value: 0,
+        parties: getParties(c, true),
+        color: getColor(getParties(c, false))
+    });
 }
+
 (function ($) {
     $(function () {
         $('#container').highcharts('Map', options);
