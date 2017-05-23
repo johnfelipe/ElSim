@@ -46,9 +46,9 @@ const express = require('express'),
 
         comparator.fillSets();
 
-        Chart.calculateCountry(resultSelected, percentage1, user, comparator.getSet1())
+        Chart.calculateCountry(resultSelected, percentage1, user, comparator.set1)
             .then((options1) => {
-                Chart.calculateCountry(resultSelected, percentage2, user, comparator.getSet2())
+                Chart.calculateCountry(resultSelected, percentage2, user, comparator.set2)
                     .then((options2) => {
 
                         comparator.fillDifferences(
@@ -58,7 +58,7 @@ const express = require('express'),
                             percentage2
                         );
 
-                        let differences = comparator.getDifferences();
+                        let differences = comparator.differences;
 
                         let options = {
                             options1: options1,
@@ -73,6 +73,8 @@ const express = require('express'),
                         if (typeof options.differences.results === 'undefined') {
                             return sendError(req, res, 'Both results are the same');
                         }
+
+                        console.log(options);
 
                         res.render('pages/simulator/compare-country-chart', options);
                     })

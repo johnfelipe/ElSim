@@ -1,5 +1,3 @@
-
-
 const highcharts = require('node-highcharts'),
     Color = require('./../misc/colors'),
     BarChart = require('./column-chart'),
@@ -102,7 +100,7 @@ class Chart {
                     names.push(key);
                 }
 
-                let d = new District(votes,names,districtOptions,true);
+                let d = new District(votes, names, districtOptions, true);
 
                 result = d.compute();
 
@@ -139,6 +137,9 @@ class Chart {
             fecha: resultSelected.split(',')[0]
         };
 
+        console.info(body);
+
+
         let config = {
             mandates: 2,
             percentage: parseFloat(percentage),
@@ -153,6 +154,9 @@ class Chart {
                     global = {
                         agrupado: CountryChart.calculateGlobalWholeCountry(data, body).parties
                     };
+                } else if (body.aggregateCommunities) {
+                    console.info('Not yet implemented calculate by communities.');
+                    promise.reject('Not yet implemented');
                 } else {
                     global = CountryChart.calculateGlobal(data, config, body);
                 }

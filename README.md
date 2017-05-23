@@ -76,3 +76,10 @@ Fork it and pull request for contribute. If error is detected, please open an is
 
 * Twitter: [@jesusgon90](https://twitter.com/jesusgon90)
 * Linkedin: [@jesusgonzaleznovez](https://www.linkedin.com/in/jesusgonzaleznovez)
+
+# TO-DO
+
+- Arreglar registro usuarios.
+- Implementar comunidades agrupadas.
+- Mandar correos cuando te des de alta y cuando te suscribas.
+- Revisar resultados almacenados por el usuario. (add and delete)

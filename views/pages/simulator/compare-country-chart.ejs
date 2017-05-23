@@ -17,16 +17,15 @@
                             <% for(let i = 0, len = differences.results.length; i < len; i++) { %>
                             <li>
                                 <% if(differences.results[i].kind === 'E') { %>
-                                <%= differences.results[i].path %> has <%= differences.results[i].lhs %>
-                                mandates in Country #1, but has <b>changed</b>
-                                to <%= differences.results[i].rhs %> mandates in Country #2.
+                                <b><%= differences.results[i].path %></b> has <b>changed</b> from <b><%= differences.results[i].lhs %></b>
+                                mandates to <b><%= differences.results[i].rhs %></b> mandates.
                                 <% } %>
                                 <% if(differences.results[i].kind === 'D') { %>
-                                <%= differences.results[i].path %> has <b>disappeared</b> in Country #2.
+                                <b><%= differences.results[i].path %></b> has <b>disappeared</b>.
                                 <% } %>
                                 <% if(differences.results[i].kind === 'N') { %>
-                                <%= differences.results[i].path %> has been <b>added</b> in Country #2 with
-                                <%= differences.results[i].rhs %> mandates.
+                                <b><%= differences.results[i].path %></b> has been <b>added</b> with
+                                <b><%= differences.results[i].rhs %></b> mandates.
                                 <% } %>
                                 <% if(differences.results[i].kind === 'A') { %>
                                 Array Change.
@@ -42,25 +41,27 @@
                     <h4 class="card-title"><span class="fa fa-info-circle"></span> Differences Between Parameters</h4>
                     <div class="card-text">
                         <ul>
-                            <% for(let i = 0, len = differences.parameters.length; i < len; i++) { %>
+                            <% if(typeof differences.parameters !== 'undefined'){ for(let i = 0, len = differences.parameters.length; i < len; i++) { %>
                             <li>
                                 <% if(differences.parameters[i].kind === 'E') { %>
-                                The value of <%= differences.parameters[i].path %> has <b>changed</b> from
-                                <%= parseFloat(differences.parameters[i].lhs) %>% to <%= parseFloat(differences.parameters[i].rhs) %>%.
+                                The <b><%= differences.parameters[i].path %></b> value has <b>changed</b> from
+                                <b><%= parseFloat(differences.parameters[i].lhs) %>%</b> to <b><%= parseFloat(differences.parameters[i].rhs) %>%</b>.
                                 <% } %>
 
                                 <% if(differences.parameters[i].kind === 'D') { %>
-                                The value of <%= differences.parameters[i].path %> has been <b>disabled</b> in Country #2.
+                                The <b><%= differences.parameters[i].path %></b> value has been <b>disabled</b>.
                                 <% } %>
 
                                 <% if(differences.parameters[i].kind === 'N') { %>
-                                The value of <%= differences.parameters[i].path %> has been <b>enabled</b> in Country #2.
+                                The <b><%= differences.parameters[i].path %></b> value has been <b>enabled</b>.
                                 <% } %>
 
                                 <% if(differences.parameters[i].kind === 'A') { %>
                                 Array Change.
                                 <% } %>
                             </li>
+                            <% } } else { %>
+                            <li> The parameters are the same, only change the district mandates distribution.</li>
                             <% } %>
                         </ul>
                     </div>
