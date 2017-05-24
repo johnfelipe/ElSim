@@ -13,9 +13,44 @@ const express = require('express'),
             title: 'Profile',
             user: req.user,
             advice: false,
-            err: false
+            err: false,
+            moment: Moment
         };
         res.render('pages/auth/profile', options);
+    });
+
+    router.get('/profile/remove-result/:index', Auth.isProfileAuthenticated, (req, res) => {
+        let options = {
+            title: 'Profile',
+            user: req.user,
+            advice: false,
+            err: false,
+            moment: Moment
+        };
+        let index = parseInt(req.params.index);
+
+        if (typeof req.user.resultados !== 'undefined') {
+            if (typeof req.user.resultados[index] !== 'undefined') {
+                let aux = [];
+                for (let i = 0, len = req.user.resultados.length; i < len; i++) {
+                    if (i !== index) {
+                        aux.push(req.user.resultados[i]);
+                    }
+                }
+                console.warn(req.user.resultados.length);
+                req.user.resultados = [...aux];
+                req.user.save()
+                    .then(() => {
+                        res.render('pages/auth/profile', options);
+
+                    })
+                    .catch((err) => sendError(req, res, err));
+            } else {
+                res.render('pages/auth/profile', options);
+            }
+        } else {
+            res.render('pages/auth/profile', options);
+        }
     });
 
     router.post('/addSubscriber', (req, res) => {
@@ -72,7 +107,7 @@ const express = require('express'),
                                         Results: resultado.results.length,
                                         Users: resultado.users,
                                         mailResult: 'Mail sent to ' + subscribers.length + ' users.',
-                                        moment:Moment
+                                        moment: Moment
                                     });
                                 }).catch(errorHandler);
 
@@ -88,7 +123,7 @@ const express = require('express'),
                                 Results: resultado.results.length,
                                 Users: resultado.users,
                                 mailResult: 'Mail sent to 0 users, because there are 0 subscribers.',
-                                moment:Moment
+                                moment: Moment
                             });
                         }).catch(errorHandler);
                 }

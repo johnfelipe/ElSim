@@ -23,14 +23,20 @@ class SingUp {
                         let newUser = new User();
                         newUser.email = username;
                         newUser.password = SingUp.createHash(password);
-                        newUser.name = req.params.name;
+                        newUser.name = req.body.name;
                         newUser.admin = false;
-                        newUser.apiUsage = {};
+                        newUser.resultados = [];
+                        if(typeof req.body.born !== 'undefined'){
+                            newUser.born = req.body.born;
+                        }
+                        if(typeof req.body.phone !== 'undefined'){
+                            newUser.phone = req.body.phone;
+                        }
                         newUser.save()
                             .then(() => done(null, newUser))
                             .catch((err) => {
                                 console.error(err);
-                                throw err;
+                                done(err,null);
                             });
                     }
                 })

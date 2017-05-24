@@ -79,7 +79,6 @@ Fork it and pull request for contribute. If error is detected, please open an is
 
 # TO-DO
 
-- Arreglar registro usuarios.
 - Implementar comunidades agrupadas.
 - Mandar correos cuando te des de alta y cuando te suscribas.
-- Revisar resultados almacenados por el usuario. (add and delete)
+- Revisar resultados almacenados por el usuario. (add)

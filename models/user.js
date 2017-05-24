@@ -11,6 +11,7 @@ let UserSchema = new Schema({
     name: {type: String, required: true},
     email: {type: String, required: true, index: {unique: true}},
     password: {type: String, required: true},
+    phone: {type: String, required: false},
     born: {type: Date, required: false},
     admin: {type: Boolean, required: true},
     resultados: {type: [], required: false}
