@@ -67,14 +67,33 @@ const express = require('express'),
 
         s.save()
             .then((data) => {
-                console.info(data);
-                res.render('pages/misc/help', {
-                    title: 'Help',
-                    user: req.user,
-                    err: null
-                });
+                let mailer = new Mailer(email, 'Thanks to subscribe to EllSim NewsLetter!');
+
+                mailer.sendMail()
+                    .then((result) => {
+                        console.log(result);
+                        res.render('pages/misc/help', {
+                            title: 'Help',
+                            user: req.user,
+                            err: null
+                        });
+                    })
+                    .catch((err) => sendError(req, res, err));
             })
             .catch((err) => {
+
+                if (typeof err.code !== 'undefined') {
+                    if (err.code === 11000) {
+                        res.render('pages/misc/help', {
+                            title: 'Help',
+                            user: req.user,
+                            err: null,
+                            already: true
+                        });
+                        return;
+                    }
+
+                }
                 sendError(req, res, err);
             });
     });

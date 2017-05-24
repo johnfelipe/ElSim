@@ -47,6 +47,9 @@
                                     <div class="form-group">
                                         <label for="subscriber">
                                             <span class="fa fa-envelope-o"></span> Receive updates
+                                            <% if(typeof already !== 'undefined') { %>
+                                            <b>You are already subscribed!</b>
+                                            <% } %>
                                         </label>
                                         <input type="email" class="form-control" id="subscriber" name="subscriber"
                                                placeholder="e-mail" required>

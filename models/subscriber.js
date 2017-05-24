@@ -9,7 +9,8 @@ mongoose.Promise = Q.Promise;
 let SubscriberSchema = new Schema({
     email: {
         type: String,
-        required: true
+        required: true,
+        index: {unique: true}
     },
     options: {
         type: Object,

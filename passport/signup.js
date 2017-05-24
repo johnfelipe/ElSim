@@ -4,6 +4,8 @@ let LocalStrategy = require('passport-local').Strategy,
     User = require('../models/user'),
     bCrypt = require('bcrypt-nodejs');
 
+const Mailer = require('../utilities/mailer');
+
 class SingUp {
     constructor(passport) {
         this.passReq = {
@@ -33,14 +35,25 @@ class SingUp {
                             newUser.phone = req.body.phone;
                         }
                         newUser.save()
-                            .then(() => done(null, newUser))
+                            .then(() => {
+                                let mailer = new Mailer(username,'Hi ' + req.body.name +', you are wellcome. Thank you very much, keep in touch!');
+                                mailer.sendMail()
+                                    .then((result) => {
+                                        console.log(result);
+                                        done(null, newUser);
+                                    })
+                                    .catch((err) => {
+                                        console.error(err);
+                                        done(null, newUser);
+                                    });
+                            })
                             .catch((err) => {
                                 console.error(err);
                                 done(err,null);
                             });
                     }
                 })
-                .catch((err) => done(err));
+                .catch((err) => done(err,null));
         });
     }
 

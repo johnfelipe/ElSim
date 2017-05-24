@@ -43,35 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-deck">
-            <div class="card">
-                <div class="card-block">
-                    <h4 class="card-title">
-                        <span class="fa fa-file-text"></span> Logs
-                    </h4>
-                    <% if(Logs.length) { %>
-                    <table>
-                        <tr>
-                            <th>Message</th>
-                            <th>Date</th>
-                        </tr>
-                        <% for(i = 0, len = Logs.length; i < len; i++) { %>
-                        <tr>
-                            <td><%= Logs[i].message %></td>
-                            <td><%= moment(Logs[i].date).format('hh:mm DD/MM/YYYY') %></td>
-                        </tr>
-                        <% } %>
-                    </table>
-                    <% } else { %>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <span class="fa fa-smile-o"></span> Nice, there are no logs!
-                        </li>
-                    </ul>
-                    <% } %>
-                </div>
-            </div>
-        </div>
+
         <div class="card-deck">
 
             <div class="card">
@@ -111,6 +83,35 @@
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">
+                        <span class="fa fa-file-text"></span> Logs
+                    </h4>
+                    <% if(Logs.length) { %>
+                    <table>
+                        <tr>
+                            <th>Message</th>
+                            <th>Date</th>
+                        </tr>
+                        <% for(i = 0, len = Logs.length; i < len; i++) { %>
+                        <tr>
+                            <td><%= Logs[i].message %></td>
+                            <td><%= moment(Logs[i].date).format('hh:mm DD/MM/YYYY') %></td>
+                        </tr>
+                        <% } %>
+                    </table>
+                    <% } else { %>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="fa fa-smile-o"></span> Nice, there are no logs!
+                        </li>
+                    </ul>
+                    <% } %>
                 </div>
             </div>
         </div>
