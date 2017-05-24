@@ -1,4 +1,3 @@
-
 const District = require('../modules/district'),
     console = require('better-console'),
     Latinize = require('../misc/latinize'),
@@ -84,7 +83,7 @@ class MapChart {
         return global;
     }
 
-    static calculateGlobalWithCommunities(data, conjunto) {
+    static calculateGlobalWithCommunities(data, conjunto,needFinal) {
         let groupedByCommunity = {};
 
         for (let i = 0, len = data.length; i < len; i++) {
@@ -129,11 +128,84 @@ class MapChart {
                 }
             }
         }
+
+        const calculateProvinces = (community) => {
+            let provinces;
+            if(community === 'Andalucía'){
+                provinces = ['es-co','es-h','es-ma','es-al','es-ca','es-j','es-gr','es-se'];
+            }else if(community === 'Aragón'){
+                provinces = ['es-te','es-z','es-hu'];
+            }else if(community === 'Canarias'){
+                provinces = ['es-tf','es-gc'];
+            }else if(community === 'Cantabria'){
+                provinces = ['es-s'];
+            }else if(community === 'Castilla - La Mancha'){
+                provinces = ['es-cu','es-gu','es-ab','es-to','es-cr'];
+            }else if(community === 'Castilla y León'){
+                provinces = ['es-bu','es-sa','es-za','es-sg','es-av','es-so','es-va','es-le','es-p'];
+            }else if(community === 'Cataluña'){
+                provinces = ['es-t','es-l','es-gi','es-b'];
+            }else if(community === 'Ciudad de Ceuta'){
+                provinces = ['es-ce'];
+            }else if(community === 'Ciudad de Melilla'){
+                provinces = ['es-me'];
+            }else if(community === 'Comunidad de Madrid'){
+                provinces = ['es-m'];
+            }else if(community === 'Comunidad Foral de Navarra'){
+                provinces = ['es-na'];
+            }else if(community === 'Comunitat Valenciana'){
+                provinces = ['es-v','es-a','es-cs'];
+            }else if(community === 'Extremadura'){
+                provinces = ['es-cc','es-ba'];
+            }else if(community === 'Galicia'){
+                provinces = ['es-c','es-po','es-lu','es-or'];
+            }else if(community === 'Illes Balears'){
+                provinces = ['es-pm'];
+            }else if(community === 'La Rioja'){
+                provinces = ['es-lo'];
+            }else if(community === 'País Vasco'){
+                provinces = ['es-vi','es-ss','es-bi'];
+            }else if(community === 'Principado de Asturias'){
+                provinces = ['es-o'];
+            }else if(community === 'Región de Murcia'){
+                provinces = ['es-mu'];
+            }else {
+                console.error('Error con ' + community);
+            }
+            return provinces;
+
+        };
+
+        if(needFinal) {
+            for (let community in groupedByCommunity) {
+                groupedByCommunity[community].provincias = calculateProvinces(community);
+                let dhondtConfig = {
+                    mandates: groupedByCommunity[community].mandates,
+                    percentage: 3.0,
+                    blankVotes: groupedByCommunity[community].votos_blanco
+                };
+                let votes = [];
+                let names = [];
+                for (let party in groupedByCommunity[community].partidos) {
+                    votes.push(groupedByCommunity[community].partidos[party]);
+                    names.push(party);
+                }
+                let d = new District(votes, names, dhondtConfig, false);
+                groupedByCommunity[community].resultadoFinal = d.compute();
+                for(let party in groupedByCommunity[community].resultadoFinal.parties){
+                    if(groupedByCommunity[community].resultadoFinal.parties[party] === 0){
+                        delete groupedByCommunity[community].resultadoFinal.parties[party];
+                    }
+                }
+            }
+        }
+
+
         return groupedByCommunity;
     }
 
     static calculateGlobalWholeCountry(data, conjunto) {
-        let groupedByCommunity = MapChart.calculateGlobalWithCommunities(data, conjunto);
+        let groupedByCommunity = MapChart.calculateGlobalWithCommunities(data, conjunto,false);
         let partidos = {}, votes = [], names = [];
         let blankVotes = 0;
 

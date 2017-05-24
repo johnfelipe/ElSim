@@ -155,8 +155,11 @@ class Chart {
                         agrupado: CountryChart.calculateGlobalWholeCountry(data, body).parties
                     };
                 } else if (body.aggregateCommunities) {
-                    console.info('Not yet implemented calculate by communities.');
-                    promise.reject('Not yet implemented');
+                    global = {
+                        isAggregateCommunities: true,
+                        agrupado: CountryChart.calculateGlobalWithCommunities(data, body,true)
+                    };
+                    console.info(global.agrupado);
                 } else {
                     global = CountryChart.calculateGlobal(data, config, body);
                 }

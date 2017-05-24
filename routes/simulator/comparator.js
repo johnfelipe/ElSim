@@ -46,10 +46,32 @@ const express = require('express'),
 
         comparator.fillSets();
 
+
+        const agrupaGlobal = (conjunto) => {
+            let parties = {};
+            for(let community in conjunto){
+                for(let party in conjunto[community].resultadoFinal.parties){
+                    if(typeof parties[party] === 'undefined'){
+                        parties[party] = conjunto[community].resultadoFinal.parties[party];
+                    }else {
+                        parties[party] += conjunto[community].resultadoFinal.parties[party];
+                    }
+                }
+            }
+            return parties;
+        };
+
+
         Chart.calculateCountry(resultSelected, percentage1, user, comparator.set1)
             .then((options1) => {
                 Chart.calculateCountry(resultSelected, percentage2, user, comparator.set2)
                     .then((options2) => {
+                        if(typeof comparator.set1.communities !== 'undefined'){
+                            options1.global.agrupado = agrupaGlobal(options1.global.agrupado);
+                        }
+                        if(typeof comparator.set2.communities !== 'undefined'){
+                            options2.global.agrupado = agrupaGlobal(options2.global.agrupado);
+                        }
 
                         comparator.fillDifferences(
                             options1.global.agrupado,
@@ -74,7 +96,6 @@ const express = require('express'),
                             return sendError(req, res, 'Both results are the same');
                         }
 
-                        console.log(options);
 
                         res.render('pages/simulator/compare-country-chart', options);
                     })

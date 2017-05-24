@@ -12,6 +12,7 @@
             <div class="card">
                 <div class="card-block">
                     <table id="tabla" class="display card-text" cellspacing="0" width="100%">
+                        <% if(typeof global.isAggregateCommunities === 'undefined') { %>
                         <thead>
                         <tr>
                             <th>Party</th>
@@ -21,11 +22,41 @@
                         <tbody>
                         <% for(let party in global.agrupado) { %>
                         <tr>
-                            <td><img src="<%= Object.prototype.hasOwnProperty.call(icons,party) ? icons[party] : 'images/ico/no-ico.png'%>" width="18" height="18"/> <%= party %></td>
-                            <td><%= global.agrupado[party] %></td>
+                            <td>
+                                <img src="<%= Object.prototype.hasOwnProperty.call(icons, party) ? icons[party] : 'images/ico/no-ico.png' %>"
+                                     width="18" height="18"/> <%= party %>
+                            </td>
+                            <td>
+                                <%= global.agrupado[party] %>
+                            </td>
                         </tr>
                         <% } %>
                         </tbody>
+                        <% } else { %>
+                        <thead>
+                        <tr>
+                            <th>Community</th>
+                            <th>Party</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% for(let community in global.agrupado) { %>
+
+                        <tr>
+                            <td>
+                                <%= community %>
+                            </td>
+                            <td>
+                                <% for(let party in global.agrupado[community].resultadoFinal.parties){ %>
+                                <img src="<%= Object.prototype.hasOwnProperty.call(icons, party) ? icons[party] : 'images/ico/no-ico.png' %>"
+                                     width="18" height="18"/> <%= party %>: <%= global.agrupado[community].resultadoFinal.parties[party] %><hr>
+                                <% } %>
+                            </td>
+                        </tr>
+
+                        <% } %>
+                        </tbody>
+                        <% } %>
                     </table>
                 </div>
             </div>
@@ -35,24 +66,26 @@
             <% if(!wholeCountry) { %>
             <div class="card myCard">
                 <div id="container" class="card-img-top"></div>
+                <% if(user && global.isAggregateCommunities === 'undefined' ) { %>
                 <div class="card-footer text-xs-right">
                     <span class="fa fa-database"></span> This result is now stored in your own results!<br>
                     <small><a href="/users/profile">See my own results</a></small>
                 </div>
+                <% } %>
             </div>
-            <% } else {%>
+            <% } else { %>
             <div class="card">
                 <div class="card-block">
-                    <h4 class="card-title">No map for whole country mode</h4>
+                    <h4 class="card-title">No map</h4>
                     <p class="card-text">
-                        <img src="/images/spain.gif" width="100%" height="auto"/>
+                        Sorry, but when whole country is selected there is no map because it is unuseful.
                     </p>
                 </div>
             </div>
             <% } %>
             <div class="card">
                 <div class="card-block">
-                    <h4 class="card-title">RAW</h4>
+                    <h4 class="card-title">RAW OUTPUT FROM SERVER</h4>
                     <pre><code class="json"><%= JSON.stringify(global, undefined, 4) %></code></pre>
                 </div>
             </div>
@@ -63,15 +96,27 @@
     var global = <%- JSON.stringify(global) %>;
     var colors = <%- JSON.stringify(colors) %>;
 
+    <% if(typeof global.isAggregateCommunities === 'undefined') { %>
     $('#tabla').DataTable({
-        "order": [[ 1, "desc" ]],
-        "paging":   false,
+        "order": [[1, "desc"]],
+        "paging": false,
         "search": false
-    } );
+    });
+    <% } else { %>
+    $('#tabla').DataTable({
+        "order": [[0, "asc"]],
+        "paging": false,
+        "search": false
+    });
+    <% } %>
 
 </script>
 
+<% if(typeof global.isAggregateCommunities === 'undefined') { %>
 <script type="text/javascript" src="/js/country-chart.js"></script>
+<% } else { %>
+<script type="text/javascript" src="/js/country-communities-chart.js"></script>
+<% } %>
 <% include ../../partials/footer.ejs %>
 </body>
 </html>
