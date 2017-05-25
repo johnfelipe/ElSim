@@ -42,8 +42,7 @@ let initPassport = new InitPassport(passport);
 /** Flash messages */
 app.use(flash());
 
-let miniGame = require('./routes/games/minigame'),
-    quiz = require('./routes/games/quiz');
+let quiz = require('./routes/games/quiz');
 
 let comparator = require('./routes/simulator/comparator'),
     country = require('./routes/simulator/country'),
@@ -61,7 +60,6 @@ let apiLogs = require('./routes/api/logs'),
     apiResults = require('./routes/api/results'),
     apiUsers = require('./routes/api/users');
 
-app.use('/', miniGame);
 app.use('/', quiz);
 
 app.use('/', comparator);

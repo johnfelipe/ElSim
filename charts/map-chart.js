@@ -83,7 +83,7 @@ class MapChart {
         return global;
     }
 
-    static calculateGlobalWithCommunities(data, conjunto,needFinal) {
+    static calculateGlobalWithCommunities(data, conjunto,needFinal,communityPercentage) {
         let groupedByCommunity = {};
 
         for (let i = 0, len = data.length; i < len; i++) {
@@ -181,7 +181,7 @@ class MapChart {
                 groupedByCommunity[community].provincias = calculateProvinces(community);
                 let dhondtConfig = {
                     mandates: groupedByCommunity[community].mandates,
-                    percentage: 3.0,
+                    percentage: (typeof communityPercentage !== 'undefined') ? parseFloat(communityPercentage) : 3.0,
                     blankVotes: groupedByCommunity[community].votos_blanco
                 };
                 let votes = [];
@@ -204,8 +204,8 @@ class MapChart {
         return groupedByCommunity;
     }
 
-    static calculateGlobalWholeCountry(data, conjunto) {
-        let groupedByCommunity = MapChart.calculateGlobalWithCommunities(data, conjunto,false);
+    static calculateGlobalWholeCountry(data, conjunto, p) {
+        let groupedByCommunity = MapChart.calculateGlobalWithCommunities(data, conjunto,false,p);
         let partidos = {}, votes = [], names = [];
         let blankVotes = 0;
 
@@ -226,7 +226,7 @@ class MapChart {
 
         let dhondtConfig = {
             mandates: 350,
-            percentage: 3.0,
+            percentage: p,
             blankVotes: blankVotes
         };
 

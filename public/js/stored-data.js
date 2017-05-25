@@ -12,9 +12,15 @@ function fillContent(id) {
         content += '<li class="list-group-item"><span class="fa fa-envelope"></span> ' + data.data.votos_candidaturas + ' parties votes</li>';
         content += '<li class="list-group-item"><span class="fa fa-envelope-o"></span> ' + data.data.votos_blanco + ' blank votes</li>';
         content += '<li class="list-group-item"><span class="fa fa-times-circle-o"></span> ' + data.data.votos_nulos + ' null votes</li>';
-        content += '</ul>'
-        content += '<br><h4><span class="fa fa-envelope-open-o"></span> votes:</h4><hr>';
-        content += '<ul class="list-group"><li class="list-group-item"><pre>' + JSON.stringify(data.data.partidos, undefined, 4) + '</pre></li></ul>';
+        content += '</ul>';
+        content += '<br><h4><span class="fa fa-envelope-open-o"></span> Votes:</h4><hr>';
+        content += '<ul class="list-group">';
+
+        let keys = Object.keys(data.data.partidos);
+        for(let key of keys){
+            content += '<li class="list-group-item">' + key +': ' +data.data.partidos[key] + '</li>';
+        }
+        content += '</ul>';
 
         $('#content').empty().append(content + '');
         $("html, body").animate({scrollTop: 0}, "slow");

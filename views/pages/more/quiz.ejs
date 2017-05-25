@@ -27,6 +27,7 @@
                 </div>
             </div>
             <div class="card">
+                <% if(question) { %>
                 <div class="card-block  ">
                     <h4 class="card-title">
                         <span class="fa fa-question-circle-o"></span> <%= question.title %>
@@ -47,6 +48,16 @@
                         </form>
                     </div>
                 </div>
+                <% } else { %>
+                <div class="card-block  ">
+                    <h4 class="card-title">
+                        <span class="fa fa-question-circle-o"></span> There are no questions in database.
+                    </h4>
+                    <div class="card-text">
+                        <span class="fa fa-smile-o"></span> Sorry about this, but you must to wait admin put some questions.
+                    </div>
+                </div>
+                <% } %>
             </div>
         </div>
     </div>

@@ -1,5 +1,3 @@
-
-
 const express = require('express'),
     router = express.Router(),
     Questions = require('../../services/quiz'),
@@ -14,9 +12,14 @@ const express = require('express'),
 
         Questions.find({})
             .then((questions) => {
-                let max = questions.length;
-                let index = parseInt(Math.random() * max);
-                indexResponse(req, res, 'pages/more/quiz', 'Quiz', {question: questions[index]});
+                if (questions.length > 0) {
+                    let max = questions.length;
+                    let index = parseInt(Math.random() * max);
+                    indexResponse(req, res, 'pages/more/quiz', 'Quiz', {question: questions[index]});
+                }else {
+                    indexResponse(req, res, 'pages/more/quiz', 'Quiz', {question: false});
+                }
+
             })
             .catch((err) => sendError(req, res, err));
 
@@ -31,7 +34,7 @@ const express = require('express'),
             .then((question) => {
                 let acierto = false;
 
-                if(question.correct === req.body.answer){
+                if (question.correct === req.body.answer) {
                     acierto = true;
                 }
 

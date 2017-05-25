@@ -47,7 +47,6 @@ const express = require('express'),
                 options.colors = Colors;
                 options.icons = Icons;
                 options.user = user;
-                console.warn('Post request processed successfull.');
                 res.render('pages/simulator/country-chart', options);
             })
             .catch((err) => {

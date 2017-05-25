@@ -1,4 +1,3 @@
-
 const express = require('express'),
     router = express.Router(),
     response = require('../../modules/response').response,
@@ -48,11 +47,11 @@ const express = require('express'),
 
         const agrupaGlobal = (conjunto) => {
             let parties = {};
-            for(let community in conjunto){
-                for(let party in conjunto[community].resultadoFinal.parties){
-                    if(typeof parties[party] === 'undefined'){
+            for (let community in conjunto) {
+                for (let party in conjunto[community].resultadoFinal.parties) {
+                    if (typeof parties[party] === 'undefined') {
                         parties[party] = conjunto[community].resultadoFinal.parties[party];
-                    }else {
+                    } else {
                         parties[party] += conjunto[community].resultadoFinal.parties[party];
                     }
                 }
@@ -65,10 +64,10 @@ const express = require('express'),
             .then((options1) => {
                 Chart.calculateCountry(resultSelected, percentage2, user, comparator.set2)
                     .then((options2) => {
-                        if(typeof comparator.set1.communities !== 'undefined'){
+                        if (typeof comparator.set1.communities !== 'undefined') {
                             options1.global.agrupado = agrupaGlobal(options1.global.agrupado);
                         }
-                        if(typeof comparator.set2.communities !== 'undefined'){
+                        if (typeof comparator.set2.communities !== 'undefined') {
                             options2.global.agrupado = agrupaGlobal(options2.global.agrupado);
                         }
 

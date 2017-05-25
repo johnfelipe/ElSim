@@ -149,14 +149,13 @@ class Chart {
 
                 if (body.wholeCountry) {
                     global = {
-                        agrupado: CountryChart.calculateGlobalWholeCountry(data, body).parties
+                        agrupado: CountryChart.calculateGlobalWholeCountry(data, body,config.percentage).parties
                     };
                 } else if (body.aggregateCommunities) {
                     global = {
                         isAggregateCommunities: true,
-                        agrupado: CountryChart.calculateGlobalWithCommunities(data, body,true)
+                        agrupado: CountryChart.calculateGlobalWithCommunities(data, body,true,config.percentage)
                     };
-                    console.info(global.agrupado);
                 } else {
                     global = CountryChart.calculateGlobal(data, config, body);
                 }
