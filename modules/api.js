@@ -25,39 +25,6 @@ class ApiHandler {
         }
     }
 
-    static setup(req, res) {
-
-        const errorHandler = (err) => ApiHandler.resError(req, res, err);
-
-        const userSaved = (user) => {
-            console.log('User saved: ', user);
-
-            errorHandler(null);
-
-            Logs.remove()
-                .then(() => apiResponse(req, res, null, 'System initialized correctly', null))
-                .catch((err) => apiResponse(req, res, err, 'System initialized correctly', null));
-        };
-
-        const userRemoved = () => {
-            let nick = {
-                name: 'demo',
-                email: 'demo@demo.com',
-                password: 'password',
-                admin: true,
-                resultados: []
-            };
-
-            Users.saveOne(nick)
-                .then(userSaved)
-                .catch(errorHandler);
-        };
-
-        Users.remove()
-            .then(userRemoved)
-            .catch(errorHandler);
-    }
-
     static findOneLog(req, res) {
         Logs.findOne(req.params.id)
             .then((data) => apiResponse(req, res, null, 'Result', data))
@@ -132,12 +99,6 @@ class ApiHandler {
             .catch((err) => apiResponse(req, res, err, 'Result', null));
     }
 
-    static loadCsv(req, res) {
-        Util.loadCsv()
-            .then(() => apiResponse(req, res, null, 'CSVs loaded', null))
-            .catch((err) => apiResponse(req, res, err, 'Result', null));
-    }
-
     static findLogs(req, res) {
         Logs.find()
             .then((data) => apiResponse(req, res, null, 'All Logs', data))
@@ -148,24 +109,6 @@ class ApiHandler {
         Logs.remove()
             .then(() => apiResponse(req, res, null, 'great', null))
             .catch((err) => apiResponse(req, res, err, 'great', null));
-    }
-
-    static hardReset(req, res) {
-        let promises = [];
-
-        promises.push(Users.remove());
-        promises.push(Logs.remove());
-        promises.push(Results.remove());
-        promises.push(Subscribers.remove());
-        promises.push(Questions.remove());
-
-        Promise.all(promises)
-            .then(() => res.send({
-                result: 'Successful',
-                status: 200,
-                err: null
-            }))
-            .catch((err) => ApiHandler.resError(req, res, err));
     }
 
     static saveOneQuestion(req, res) {

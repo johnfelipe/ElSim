@@ -1,9 +1,27 @@
-/* jshint esversion: 6 */
+const Q = require('q');
+const LogService = require('../services/logs');
+const QuizService = require('../services/quiz');
+const ResultService = require('../services/results');
+const SubscriberService = require('../services/subscribers');
+const UserService = require('../services/users');
 
-const console = require('better-console');
+class HardReset{
+    constructor(){
 
-{
+    }
 
-    module.exports = {};
+    static hardReset() {
+        let promise = Q.defer();
 
+        LogService.remove()
+            .then(QuizService.remove)
+            .then(ResultService.remove)
+            .then(SubscriberService.remove)
+            .then(UserService.remove)
+            .then(() => promise.resolve())
+            .catch((err) => promise.reject(err));
+
+        return promise.promise;
+    }
 }
+module.exports = HardReset;

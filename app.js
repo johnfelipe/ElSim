@@ -55,8 +55,7 @@ let users = require('./routes/users/users'),
 let data = require('./routes/data'),
     misc = require('./routes/misc');
 
-let apiCsv = require('./routes/api/csv'),
-    apiLogs = require('./routes/api/logs'),
+let apiLogs = require('./routes/api/logs'),
     apiMisc = require('./routes/api/misc'),
     apiQuestions = require('./routes/api/questions'),
     apiResults = require('./routes/api/results'),
@@ -74,7 +73,6 @@ app.use('/', misc);
 
 app.use('/', auth);
 app.use('/Users', users);
-app.use('/api/v1/csv', apiCsv);
 app.use('/api/v1/Logs', apiLogs);
 app.use('/api/v1', apiMisc);
 app.use('/api/v1/Questions', apiQuestions);
