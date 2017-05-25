@@ -9,7 +9,7 @@ class ProgressBarUtil {
             complete: '#',
             incomplete: ' ',
             total: length,
-            clear: true
+            clear: false
         });
     }
 

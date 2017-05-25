@@ -39,7 +39,6 @@ class SingUp {
                                 let mailer = new Mailer(username,'Hi ' + req.body.name +', you are wellcome. Thank you very much, keep in touch!');
                                 mailer.sendMail()
                                     .then((result) => {
-                                        console.log(result);
                                         done(null, newUser);
                                     })
                                     .catch((err) => {

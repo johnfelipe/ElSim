@@ -32,7 +32,6 @@ const express = require('express'),
     router.post('/graphic-form', (req, res) => {
 
         console.info('POST '.green + '/graphic-form');
-        console.warn(req.body);
 
         let mode = req.body.mode,
             mandates = req.body.mandates,
@@ -48,7 +47,6 @@ const express = require('express'),
     router.post('/save-single-chart', (req, res) => {
 
         console.info('POST '.green + '/save-single-chart');
-        console.warn(req.body);
 
         res.send({
             result: req.body.result

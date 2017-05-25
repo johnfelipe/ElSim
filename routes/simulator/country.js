@@ -36,7 +36,6 @@ const express = require('express'),
     router.post('/country-form', (req, res) => {
 
         console.info('POST '.green + '/country-form');
-        console.warn(req.body);
 
         let resultSelected = req.body.resultSelected,
             percentage = req.body.percentage,

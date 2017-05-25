@@ -28,7 +28,6 @@ const express = require('express'),
         console.info('GET '.green + ' /stored-data');
         Results.find()
             .then((data) => {
-                console.info('Results found: '.green + data.length);
                 data.sort(Util.sortByDate);
                 response(req, res, 'pages/data/stored-data', 'Stored Data', {
                     data: data,

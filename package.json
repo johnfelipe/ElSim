@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
+    "setup": "node ./scripts/init-system.js",
+    "reset": "node ./scripts/hard-reset.js",
     "test": "./node_modules/.bin/mocha --reporter spec test/**/*.js test/*.js",
     "generate-doc": "./node_modules/.bin/jsdoc -c conf.json -d doc"
   },

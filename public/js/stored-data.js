@@ -1,5 +1,4 @@
 function fillContent(id) {
-    console.log(id);
     let content = '<ul class="list-group"> ';
     $.get('/resultados/' + id, function (data, status) {
 

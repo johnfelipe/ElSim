@@ -35,7 +35,6 @@ const express = require('express'),
     router.post('/compare-country-form', (req, res) => {
 
         console.info('GET '.green + '/compare-country-form');
-        console.warn(req.body);
 
         let resultSelected = req.body.resultSelected,
             percentage1 = req.body.percentage1,

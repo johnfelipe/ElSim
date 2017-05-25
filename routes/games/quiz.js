@@ -31,7 +31,6 @@ const express = require('express'),
             .then((question) => {
                 let acierto = false;
 
-                console.log(question,req.body);
                 if(question.correct === req.body.answer){
                     acierto = true;
                 }

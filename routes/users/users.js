@@ -37,7 +37,6 @@ const express = require('express'),
                         aux.push(req.user.resultados[i]);
                     }
                 }
-                console.warn(req.user.resultados.length);
                 req.user.resultados = [...aux];
                 req.user.save()
                     .then(() => {
@@ -66,12 +65,11 @@ const express = require('express'),
 
 
         s.save()
-            .then((data) => {
+            .then(() => {
                 let mailer = new Mailer(email, 'Thanks to subscribe to EllSim NewsLetter!');
 
                 mailer.sendMail()
                     .then((result) => {
-                        console.log(result);
                         res.render('pages/misc/help', {
                             title: 'Help',
                             user: req.user,
@@ -116,7 +114,6 @@ const express = require('express'),
 
                     mailer.sendMail()
                         .then((result) => {
-                            console.log('Mail sent result:', result);
                             loadAll()
                                 .then((resultado) => {
                                     res.render('pages/auth/admin', {

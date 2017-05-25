@@ -9,8 +9,15 @@ class ResultService {
         return Result.find({});
     }
 
-    static saveOne(done) {
-        return done(new Error('not yet implemented', null));
+    static saveOne(result) {
+        let r = new Result(result);
+
+        r.eleccion = {
+            fecha: result.fecha,
+            autor: 'sistema'
+        };
+
+        return r.save();
     }
 
     static updateOne(done) {

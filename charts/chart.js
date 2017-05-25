@@ -137,9 +137,6 @@ class Chart {
             fecha: resultSelected.split(',')[0]
         };
 
-        console.info(body);
-
-
         let config = {
             mandates: 2,
             percentage: parseFloat(percentage),
