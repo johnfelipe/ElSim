@@ -1,11 +1,10 @@
-
-
 const fs = require('fs'),
     csv = require('fast-csv'),
     Result = require('../models/result'),
     moment = require('moment'),
     Q = require('q');
 
+const async = require('async');
 const console = require('better-console');
 
 class Util {
@@ -27,31 +26,27 @@ class Util {
         let stream = fs.createReadStream(path), resultados = [];
 
         csv.fromStream(stream, {headers: true})
-            .on('data-invalid', (data) => {
-                promise.reject('Data invalid exception, one or more rows are invalid' + data);
-            })
-            .on('data', (data) => {
-                resultados.push(data);
-            })
-            .on('end', () => {
-                promise.resolve(resultados);
-            });
+            .on('data-invalid', (data) => promise.reject('Data invalid exception, one or more rows are invalid' + data))
+            .on('data', (data) => resultados.push(data))
+            .on('end', () => promise.resolve(resultados));
+
         return promise.promise;
     }
 
     static readParties(path, resultados) {
         let promise = Q.defer();
+
         let i = 0, stream = fs.createReadStream(path);
+
         csv.fromStream(stream, {headers: true})
             .on('data-invalid', (data) => {
                 promise.reject('Data invalid exception, one or more rows are invalid' + data);
             })
             .on('data', (data) => {
-                for (let key in data) {
-                    if (data.hasOwnProperty(key)) {
-                        if (data[key] === '0') {
-                            delete data[key];
-                        }
+                let keys = Object.keys(data);
+                for (let key of keys) {
+                    if (data[key] === '0') {
+                        delete data[key];
                     }
                 }
                 resultados[i].partidos = data;
@@ -65,14 +60,12 @@ class Util {
     static readCsv(path1, path2) {
         let promise = Q.defer();
 
-        const reject = (err) => promise.reject(err);
+        const resultsLoaded = (data) => Util.readParties(path2, data);
 
         Util.readResultados(path1)
-            .then((data) => {
-                Util.readParties(path2, data)
-                    .then((data) => promise.resolve(data))
-                    .catch(reject);
-            }).catch(reject);
+            .then(resultsLoaded)
+            .then((data) => promise.resolve(data))
+            .catch((err) => promise.reject(err));
 
         return promise.promise;
     }
@@ -95,58 +88,59 @@ class Util {
         return promise.promise;
     }
 
+    static saveResultado(result) {
+        let r = new Result(result);
+
+        r.eleccion = {
+            fecha: result.fecha,
+            autor: 'sistema'
+        };
+
+        return r.save();
+    }
+
     static loadCsv() {
         let promise = Q.defer();
         const years = ['1977', '1979', '1982', '1986', '1989', '1993', '1996'];
 
-        let path1, path2, promises = [];
+        let path1, path2;
 
-        const loopF = (data) => {
-            for (let dato of data) {
-                if (dato.partidos !== undefined) {
-                    promises.push(saveResultado(dato));
-                } else {
-                    console.error('Error guardando datos: ', dato);
-                }
-            }
-        };
-
-        const loopE = (err) => promise.reject(err);
-
-        for (let year of years) {
+        async.eachSeries(years, (year, callback) => {
             path1 = './csv/' + year + '.csv';
             path2 = './csv/' + year + '_PARTIDOS.csv';
 
             Util.readCsv(path1, path2)
-                .then(loopF)
-                .catch(loopE);
-        }
-
-        const saveResultado = (result) => {
-            let promiseSave = Q.defer();
-            let r = new Result(result);
-
-            r.eleccion = {
-                fecha: result.fecha,
-                autor: 'sistema'
-            };
-
-            r.save()
-                .then(() => promiseSave.resolve())
-                .catch((err) => promiseSave.reject(err));
-
-            return promiseSave.promise;
-        };
-
-        Q.all(promises)
-            .then(() => promise.resolve())
-            .catch((err) => promise.reject(err));
+                .then((data) => {
+                    async.eachSeries(data, (dato, callbackData) => {
+                        if (typeof dato.partidos !== 'undefined') {
+                            Util.saveResultado(dato)
+                                .then(() => callbackData())
+                                .catch(callbackData);
+                        } else {
+                            callbackData('Error guardando datos.');
+                        }
+                    }, (err) => {
+                        if (err) {
+                            callback(err);
+                        } else {
+                            callback();
+                        }
+                    });
+                })
+                .catch(callback);
+        }, (err) => {
+            if (err) {
+                promise.reject(err);
+            } else {
+                promise.resolve();
+            }
+        });
 
         return promise.promise;
     }
 
     static sortByDate(a, b) {
-        let f1,f2;
+        let f1, f2;
         if (typeof a.eleccion !== 'undefined') {
             f1 = new moment(a.eleccion.fecha);
             f2 = new moment(b.eleccion.fecha);
@@ -155,11 +149,11 @@ class Util {
             f2 = new moment(b.fecha);
         }
 
-        if(f1 > f2){
+        if (f1 > f2) {
             return 1;
-        }else if(f1 < f2){
+        } else if (f1 < f2) {
             return -1;
-        }else{
+        } else {
             return 0;
         }
     }
