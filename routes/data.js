@@ -71,15 +71,29 @@ const express = require('express'),
     router.post('/add-data', (req, res) => {
         console.info('POST '.green + ' /add-data');
 
+        if (typeof req.body.votes === 'undefined' ||
+            typeof req.body.population === 'undefined' ||
+            typeof req.body.census === 'undefined' ||
+            typeof req.body.voters === 'undefined' ||
+            typeof req.body.nulos === 'undefined' ||
+            typeof req.body.blancos === 'undefined' ||
+            typeof req.body.author === 'undefined' ||
+            typeof req.body.date === 'undefined') {
+            sendError(req,res,'Parameters error');
+            return;
+        }
+
+
         let province = 'Not found';
         let comunidad = 'Not found';
         let cod_province = 0;
+
         let keys = Object.keys(Codigos);
 
-        for(let key of keys){
+        for (let key of keys) {
             let subKeys = Object.keys(Codigos[key]);
-            for(let subKey of subKeys){
-                if(Codigos[key][subKey] === parseInt(req.body.province)){
+            for (let subKey of subKeys) {
+                if (Codigos[key][subKey] === parseInt(req.body.province)) {
                     province = subKey.toLowerCase();
                     cod_province = Codigos[key][subKey];
                     comunidad = key;
@@ -103,7 +117,8 @@ const express = require('express'),
 
         let resultEntity = District.createResultEntity(result);
 
-        resultEntity.save()
+        resultEntity
+            .save()
             .then(() => {
                 response(req, res, 'pages/data/add-data', 'Add data', {
                     err: null,
@@ -119,35 +134,38 @@ const express = require('express'),
     router.post('/delete-data', (req, res) => {
         console.info('POST '.green + ' /delete-data');
 
+        if(typeof req.body.results === 'undefined'){
+            sendError(req,res,'Parameters error');
+            return;
+        }
+
         let promises = [],
             results = req.body.results;
 
-        if(results instanceof Array) {
+        if (results instanceof Array) {
             console.info('Es un array: ' + results);
             for (let result of results) {
                 promises.push(Results.removeOne(result));
             }
-        } else{
+        } else {
             console.info('Es una string: ' + results);
             promises.push(Results.removeOne(results));
         }
 
-        const promisesFinish = () => {
-            Results.find()
-                .then((data) => {
-
-                    response(req, res, 'pages/data/delete-data', 'Delete data', {
-                        err: null,
-                        moment: Moment,
-                        data: data
-                    });
-                })
-                .catch((err) => {
-                    sendError(req, res, err);
-                });
+        const handleResults = (data) => {
+            response(req, res, 'pages/data/delete-data', 'Delete data', {
+                err: null,
+                moment: Moment,
+                data: data
+            });
         };
 
-        Q.all(promises).then(promisesFinish);
+        Q.all(promises)
+            .then(Results.find)
+            .then(handleResults)
+            .catch((err) => {
+                sendError(req,res,err);
+            });
     });
 
     module.exports = router;

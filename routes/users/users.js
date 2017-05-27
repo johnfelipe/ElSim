@@ -39,10 +39,7 @@ const express = require('express'),
                 }
                 req.user.resultados = [...aux];
                 req.user.save()
-                    .then(() => {
-                        res.render('pages/auth/profile', options);
-
-                    })
+                    .then(() => res.render('pages/auth/profile', options))
                     .catch((err) => sendError(req, res, err));
             } else {
                 res.render('pages/auth/profile', options);
@@ -56,6 +53,11 @@ const express = require('express'),
 
         console.info('POST '.green + '/addSubscriber');
 
+        if (typeof req.body.subscriber === 'undefined') {
+            sendError(req, res, 'Parameters error');
+            return;
+        }
+
         let email = req.body.subscriber;
 
         let s = new Subscribers({
@@ -64,20 +66,22 @@ const express = require('express'),
         });
 
 
-        s.save()
-            .then(() => {
-                let mailer = new Mailer(email, 'Thanks to subscribe to EllSim NewsLetter!');
+        const mailSent = (result) => {
+            res.render('pages/misc/help', {
+                title: 'Help',
+                user: req.user,
+                err: null
+            });
+        };
 
-                mailer.sendMail()
-                    .then((result) => {
-                        res.render('pages/misc/help', {
-                            title: 'Help',
-                            user: req.user,
-                            err: null
-                        });
-                    })
-                    .catch((err) => sendError(req, res, err));
-            })
+        const sendMail = () => {
+            let mailer = new Mailer(email, 'Thanks to subscribe to EllSim NewsLetter!');
+            return mailer.sendMail();
+        };
+
+        s.save()
+            .then(sendMail)
+            .then(mailSent)
             .catch((err) => {
 
                 if (typeof err.code !== 'undefined') {
@@ -99,52 +103,49 @@ const express = require('express'),
     router.post('/sendNews', (req, res) => {
         console.info('POST '.green + '/sendNews');
 
+        if (typeof req.body.notice === 'undefined') {
+            sendError(req, res, 'Parameters error');
+            return;
+        }
+
+        let subscribers = [];
+
         const errorHandler = (err) => sendError(req, res, err);
 
+        const finalResponse = (resultado) => {
+            res.render('pages/auth/admin', {
+                user: req.user,
+                title: 'Administration',
+                Logs: resultado.logs,
+                Results: resultado.results.length,
+                Users: resultado.users,
+                mailResult: 'Mail sent to ' + subscribers.length + ' users.',
+                moment: Moment
+            });
+        };
+
+        const mailSent = (result) => {
+            console.log(result);
+            return loadAll();
+        };
+
+        const handleSubscribers = (s) => {
+            subscribers = s;
+            let mails = [];
+
+            for (let s of subscribers) {
+                mails.push(s.email);
+            }
+
+            let mailer = new Mailer(mails, req.body.notice);
+            return mailer.sendMail();
+        };
+
         Subscribers.find()
-            .then((subscribers) => {
-
-                if (subscribers.length !== 0) {
-                    let mails = [];
-                    for (let s of subscribers) {
-                        mails.push(s.email);
-                    }
-
-                    let mailer = new Mailer(mails, req.body.notice);
-
-                    mailer.sendMail()
-                        .then((result) => {
-                            loadAll()
-                                .then((resultado) => {
-                                    res.render('pages/auth/admin', {
-                                        user: req.user,
-                                        title: 'Administration',
-                                        Logs: resultado.logs,
-                                        Results: resultado.results.length,
-                                        Users: resultado.users,
-                                        mailResult: 'Mail sent to ' + subscribers.length + ' users.',
-                                        moment: Moment
-                                    });
-                                }).catch(errorHandler);
-
-                        }).catch(errorHandler);
-                } else {
-                    console.log('Mail sent to 0 users, because there are 0 subscribers.');
-                    loadAll()
-                        .then((resultado) => {
-                            res.render('pages/auth/admin', {
-                                user: req.user,
-                                title: 'Administration',
-                                Logs: resultado.logs,
-                                Results: resultado.results.length,
-                                Users: resultado.users,
-                                mailResult: 'Mail sent to 0 users, because there are 0 subscribers.',
-                                moment: Moment
-                            });
-                        }).catch(errorHandler);
-                }
-
-            }).catch(errorHandler);
+            .then(handleSubscribers)
+            .then(mailSent)
+            .then(finalResponse)
+            .catch(errorHandler);
     });
 
     /** Rutas de la interfaz web relativas a usuarios */

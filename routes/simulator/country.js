@@ -37,6 +37,12 @@ const express = require('express'),
 
         console.info('POST '.green + '/country-form');
 
+        if (typeof req.body.resultSelected === 'undefined' ||
+            typeof req.body.percentage === 'undefined') {
+            sendError(req, res, 'Parameters error');
+            return;
+        }
+
         let resultSelected = req.body.resultSelected,
             percentage = req.body.percentage,
             user = req.user,

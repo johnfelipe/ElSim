@@ -61,8 +61,13 @@ module.exports = {
     'UCD': 'images/ico/ucd-ico.jpg',
     'PP': 'images/ico/pp-ico.jpg',
     'ERC': 'images/ico/erc-ico.png',
+    'ERC-CATSÍ': 'images/ico/erc-ico.png',
     'IU': 'images/ico/iu-ico.jpg',
     'CC': 'images/ico/cc-ico.png',
     'PODEMOS': 'images/ico/podemos-ico.png',
+    'ECP': 'images/ico/podemos-ico.png',
+    'PODEMOS-IU-EQUO': 'images/ico/podemos-ico.png',
+    'PODEMOS-COMPROMÍS-EUPV': 'images/ico/podemos-ico.png',
+    'PODEMOS-EN MAREA-ANOVA-EU': 'images/ico/podemos-ico.png',
     'CIUDADANOS': 'images/ico/ciudadanos-ico.jpg'
 };

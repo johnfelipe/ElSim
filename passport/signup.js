@@ -16,44 +16,46 @@ class SingUp {
     }
 
     strategyCallback(req, username, password, done) {
-        process.nextTick(() => {
+
+        const handleUser = (user) => {
+            if (user) {
+                return done(null, false, req.flash('message', 'User Already Exists'));
+            } else {
+                let newUser = new User();
+                newUser.email = username;
+                newUser.password = SingUp.createHash(password);
+                newUser.name = req.body.name;
+                newUser.admin = false;
+                newUser.resultados = [];
+                if(typeof req.body.born !== 'undefined'){
+                    newUser.born = req.body.born;
+                }
+                if(typeof req.body.phone !== 'undefined'){
+                    newUser.phone = req.body.phone;
+                }
+
+                const mailSent = (result) => done(null, newUser);
+
+                const userSaved = () => {
+                    let mailer = new Mailer(username,'Hi ' + req.body.name +', you are wellcome. Thank you very much, keep in touch!');
+                    return mailer.sendMail();
+                };
+
+                newUser.save()
+                    .then(userSaved)
+                    .then(mailSent)
+                    .catch(done);
+            }
+        };
+
+        const handleNextTick = () => {
+
             User.findOne({email: username})
-                .then((user) => {
-                    if (user) {
-                        return done(null, false, req.flash('message', 'User Already Exists'));
-                    } else {
-                        let newUser = new User();
-                        newUser.email = username;
-                        newUser.password = SingUp.createHash(password);
-                        newUser.name = req.body.name;
-                        newUser.admin = false;
-                        newUser.resultados = [];
-                        if(typeof req.body.born !== 'undefined'){
-                            newUser.born = req.body.born;
-                        }
-                        if(typeof req.body.phone !== 'undefined'){
-                            newUser.phone = req.body.phone;
-                        }
-                        newUser.save()
-                            .then(() => {
-                                let mailer = new Mailer(username,'Hi ' + req.body.name +', you are wellcome. Thank you very much, keep in touch!');
-                                mailer.sendMail()
-                                    .then((result) => {
-                                        done(null, newUser);
-                                    })
-                                    .catch((err) => {
-                                        console.error(err);
-                                        done(null, newUser);
-                                    });
-                            })
-                            .catch((err) => {
-                                console.error(err);
-                                done(err,null);
-                            });
-                    }
-                })
-                .catch((err) => done(err,null));
-        });
+                .then(handleUser)
+                .catch(done);
+        };
+
+        process.nextTick(handleNextTick);
     }
 
     static createHash(password) {

@@ -59,28 +59,30 @@ class Auth {
     }
 
     static authenticate(req, res) {
-        User.findOne({email: req.body.email})
-            .then((user) => {
-                let object = {
-                    success: false,
-                    message: 'Authentication failed',
-                    token: null
-                };
-                if (user) {
-                    if (Auth.isValidPassword(user, req.body.password)) {
-                        let token = jwt.sign(user, config.secret, {
-                            expiresIn: 3600 // expires in 1 hours
-                        });
-                        object.success = true;
-                        object.message = 'Enjoy your token!';
-                        object.token = token;
-                    }
+        const handleUser = (user) => {
+            let object = {
+                success: false,
+                message: 'Authentication failed',
+                token: null
+            };
+            if (user) {
+                if (Auth.isValidPassword(user, req.body.password)) {
+                    let token = jwt.sign(user, config.secret, {
+                        expiresIn: 3600 // expires in 1 hours
+                    });
+                    object.success = true;
+                    object.message = 'Enjoy your token!';
+                    object.token = token;
                 }
-                res.json(object);
-            })
+            }
+            res.status(200).json(object);
+        };
+
+        User.findOne({email: req.body.email})
+            .then(handleUser)
             .catch((err) => {
                 console.error(err);
-                throw err;
+                res.status(400).json(err);
             });
     }
 }

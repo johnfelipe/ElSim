@@ -26,7 +26,7 @@ class Mailer {
         let promise = Q.defer();
 
         if (this.destination.length === 0) {
-            promise.reject('No destination to send mail');
+            promise.resolve();
             return promise.promise;
         } else {
             let transporter = nodemailer.createTransport(this.transportConfig);

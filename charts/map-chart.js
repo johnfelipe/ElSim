@@ -137,43 +137,43 @@ class MapChart {
 
         const calculateProvinces = (community) => {
             let provinces;
-            if (community === 'Andalucía') {
+            if (community.includes('Andalucía')) {
                 provinces = ['es-co', 'es-h', 'es-ma', 'es-al', 'es-ca', 'es-j', 'es-gr', 'es-se'];
-            } else if (community === 'Aragón') {
+            } else if (community.includes('Aragón')) {
                 provinces = ['es-te', 'es-z', 'es-hu'];
-            } else if (community === 'Canarias') {
+            } else if (community.includes('Canarias')) {
                 provinces = ['es-tf', 'es-gc'];
-            } else if (community === 'Cantabria') {
+            } else if (community.includes('Cantabria')) {
                 provinces = ['es-s'];
-            } else if (community === 'Castilla - La Mancha') {
+            } else if (community.includes('Castilla - La Mancha')) {
                 provinces = ['es-cu', 'es-gu', 'es-ab', 'es-to', 'es-cr'];
-            } else if (community === 'Castilla y León') {
+            } else if (community.includes('Castilla y León')) {
                 provinces = ['es-bu', 'es-sa', 'es-za', 'es-sg', 'es-av', 'es-so', 'es-va', 'es-le', 'es-p'];
-            } else if (community === 'Cataluña') {
+            } else if (community.includes('Cataluña')) {
                 provinces = ['es-t', 'es-l', 'es-gi', 'es-b'];
-            } else if (community === 'Ciudad de Ceuta') {
+            } else if (community.includes('Ciudad de Ceuta')) {
                 provinces = ['es-ce'];
-            } else if (community === 'Ciudad de Melilla') {
+            } else if (community.includes('Ciudad de Melilla')) {
                 provinces = ['es-me'];
-            } else if (community === 'Comunidad de Madrid') {
+            } else if (community.includes('Comunidad de Madrid')) {
                 provinces = ['es-m'];
-            } else if (community === 'Comunidad Foral de Navarra') {
+            } else if (community.includes('Comunidad Foral de Navarra')) {
                 provinces = ['es-na'];
-            } else if (community === 'Comunitat Valenciana') {
+            } else if (community.includes('Comunitat Valenciana')) {
                 provinces = ['es-v', 'es-a', 'es-cs'];
-            } else if (community === 'Extremadura') {
+            } else if (community.includes('Extremadura')) {
                 provinces = ['es-cc', 'es-ba'];
-            } else if (community === 'Galicia') {
+            } else if (community.includes('Galicia')) {
                 provinces = ['es-c', 'es-po', 'es-lu', 'es-or'];
-            } else if (community === 'Illes Balears') {
+            } else if (community.includes('Illes Balears')) {
                 provinces = ['es-pm'];
-            } else if (community === 'La Rioja') {
+            } else if (community.includes('La Rioja')) {
                 provinces = ['es-lo'];
-            } else if (community === 'País Vasco') {
+            } else if (community.includes('País Vasco')) {
                 provinces = ['es-vi', 'es-ss', 'es-bi'];
-            } else if (community === 'Principado de Asturias') {
+            } else if (community.includes('Principado de Asturias')) {
                 provinces = ['es-o'];
-            } else if (community === 'Región de Murcia') {
+            } else if (community.includes('Región de Murcia')) {
                 provinces = ['es-mu'];
             } else {
                 console.error('Error con ' + community);

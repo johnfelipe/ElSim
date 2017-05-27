@@ -59,5 +59,6 @@ module.exports = {
     UCD: '#177D34',
     PP: '#0067C3',
     PODEMOS: '#6B1F5F',
+    'PODEMOS-IU-EQUO': '#6B1F5F',
     CIUDADANOS: '#F58424'
 };

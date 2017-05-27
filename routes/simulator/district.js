@@ -1,5 +1,3 @@
-
-
 const express = require('express'),
     router = express.Router(),
     response = require('../../modules/response').response,
@@ -32,6 +30,14 @@ const express = require('express'),
     router.post('/graphic-form', (req, res) => {
 
         console.info('POST '.green + '/graphic-form');
+
+        if (typeof req.body.mode === 'undefined' ||
+            typeof req.body.mandates === 'undefined' ||
+            typeof req.body.percentage === 'undefined' ||
+            typeof req.body.resultSelected === 'undefined') {
+            sendError(req, res, 'Parameters error');
+            return;
+        }
 
         let mode = req.body.mode,
             mandates = req.body.mandates,

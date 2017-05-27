@@ -23,7 +23,7 @@ class InitAuth {
     deserializeUser(id, done) {
         User.findById(id)
             .then((user) => done(null, user))
-            .catch((err) => done(err, null));
+            .catch(done);
     }
 }
 module.exports = InitAuth;

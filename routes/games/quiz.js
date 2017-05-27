@@ -33,26 +33,36 @@ const express = require('express'),
             sendError(req, res, 'Parameters error');
             return;
         }
+        let question,acierto;
+
+        const handleWholeQuestions = (questions) => {
+            let max = questions.length;
+
+            let index = parseInt(Math.random() * max);
+
+            indexResponse(req, res, 'pages/more/quiz', 'Quiz', {
+                question: questions[index],
+                acierto: acierto
+            });
+        };
+
+        const handleQuestion = (q) => {
+
+            question = q;
+
+            if(!question){
+                sendError(req,res,'Question not found');
+                return;
+            }
+
+            acierto = (question.correct === req.body.answer);
+
+            return Questions.find({});
+        };
 
         Questions.findById(req.body.question_id)
-            .then((question) => {
-                let acierto = false;
-
-                if (question.correct === req.body.answer) {
-                    acierto = true;
-                }
-
-                Questions.find({})
-                    .then((questions) => {
-                        let max = questions.length;
-                        let index = parseInt(Math.random() * max);
-                        indexResponse(req, res, 'pages/more/quiz', 'Quiz', {
-                            question: questions[index],
-                            acierto: acierto
-                        });
-                    })
-                    .catch((err) => sendError(req, res, err));
-            })
+            .then(handleQuestion)
+            .then(handleWholeQuestions)
             .catch((err) => sendError(req, res, err));
 
     });

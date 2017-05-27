@@ -58,8 +58,13 @@ class InitSystem {
                 .then((data) => {
                     async.eachSeries(data, (dato, callbackData) => {
                         if(typeof dato.comunidad !== 'undefined'){
-                            if(dato.comunidad.charAt(dato.comunidad.length -1) === ' '){
+                            while(dato.comunidad.charAt(dato.comunidad.length -1) === ' '){
                                 dato.comunidad = dato.comunidad.slice(0,-1);
+                            }
+                        }
+                        if(typeof dato.provincia !== 'undefined'){
+                            while(dato.provincia.charAt(dato.provincia.length -1) === ' '){
+                                dato.provincia = dato.provincia.slice(0,-1);
                             }
                         }
                         if (typeof dato.partidos !== 'undefined') {
