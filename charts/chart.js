@@ -8,7 +8,8 @@ const highcharts = require('node-highcharts'),
     Icons = require('./../misc/icons'),
     District = require('../modules/district'),
     Moment = require('moment'),
-    Q = require('q');
+    Q = require('q'),
+    Timer = require('../misc/timer');
 
 /**
  * @class Chart
@@ -19,7 +20,7 @@ class Chart {
     }
 
     static chooseColor(party) {
-        if (Color[party] === undefined) {
+        if (typeof Color[party] === 'undefined') {
             return 'blue';
         }
         return Color[party];
@@ -33,13 +34,13 @@ class Chart {
         return PieChart.fillOptions(result);
     }
 
-    static fillCalculateDistrictOptions(ellection, graph_options, result, user) {
+    static fillCalculateDistrictOptions(election, graphOptions, result, user) {
         return {
             title: 'Chart',
-            autor: ellection.eleccion.autor,
-            fecha: ellection.eleccion.fecha,
-            provincia: ellection.cod_provincia,
-            options: graph_options,
+            autor: election.eleccion.autor,
+            fecha: election.eleccion.fecha,
+            provincia: election.cod_provincia,
+            options: graphOptions,
             result: result,
             icons: Icons,
             user: user,
@@ -47,24 +48,28 @@ class Chart {
         };
     }
 
-    static addResultToUser(user, ellection, result, mandates, percentage) {
+    static addResultToUser(user, election, result, mandates, percentage) {
         let promise = Q.defer();
 
         const reject = (err) => promise.reject(err);
 
         User.findOne({_id: user._id})
             .then((user) => {
+                if (!user) {
+                    reject('User not found');
+                    return;
+                }
                 user.resultados.push({
-                    fecha: ellection.eleccion.fecha,
-                    provincia: ellection.cod_provincia,
+                    fecha: election.eleccion.fecha,
+                    provincia: election.cod_provincia,
                     result: result,
                     mandates: mandates,
                     percentage: percentage,
-                    blank: ellection.votos_blanco
+                    blank: election.votos_blanco
                 });
 
                 user.save()
-                    .then(() => promise.resolve())
+                    .then(promise.resolve)
                     .catch(reject);
             })
             .catch(reject);
@@ -75,6 +80,9 @@ class Chart {
     static calculateDistrict(mode, mandates, percentage, resultSelected, user) {
         let promise = Q.defer();
 
+        let timer = new Timer('Distric processing time');
+        timer.start();
+
         let votes = [],
             names = [],
             districtOptions = {
@@ -84,14 +92,18 @@ class Chart {
             };
 
         let result = null,
-            ellection = null;
+            election = null;
 
         const reject = (err) => promise.reject(err);
 
         Result.findOne({_id: resultSelected})
             .then((data) => {
+                if (!data) {
+                    reject('Result not found');
+                    return;
+                }
 
-                ellection = data;
+                election = data;
                 districtOptions.blankVotes = data.votos_blanco;
 
                 let keys = Object.keys(data.partidos);
@@ -104,6 +116,9 @@ class Chart {
 
                 result = d.compute();
 
+                timer.end();
+                console.info((timer.name).green + ': '.green + timer.finishSeconds() + 's'.green);
+
                 if (mode === 'column') {
                     chartDone(Chart.createColumn(result.parties));
                 } else {
@@ -114,12 +129,12 @@ class Chart {
             .catch(reject);
 
         const chartDone = (graph_options) => {
-            let options = Chart.fillCalculateDistrictOptions(ellection, graph_options, result, user);
+            let options = Chart.fillCalculateDistrictOptions(election, graph_options, result, user);
 
             if (!user) {
                 promise.resolve(options);
             } else {
-                Chart.addResultToUser(user, ellection, result, mandates, percentage)
+                Chart.addResultToUser(user, election, result, mandates, percentage)
                     .then(() => promise.resolve(options))
                     .catch(reject);
             }
@@ -132,7 +147,7 @@ class Chart {
 
         let promise = Q.defer();
 
-        let ellection = {
+        let election = {
             autor: resultSelected.split(',')[1],
             fecha: resultSelected.split(',')[0]
         };
@@ -143,18 +158,23 @@ class Chart {
             blankVotes: 0
         };
 
-        Result.find({eleccion: ellection})
+        Result.find({eleccion: election})
             .then((data) => {
+                if (!data) {
+                    promise.reject('Election not found');
+                    return;
+                }
+
                 let global;
 
                 if (body.wholeCountry) {
                     global = {
-                        agrupado: CountryChart.calculateGlobalWholeCountry(data, body,config.percentage).parties
+                        agrupado: CountryChart.calculateGlobalWholeCountry(data, body, config.percentage).parties
                     };
                 } else if (body.aggregateCommunities) {
                     global = {
                         isAggregateCommunities: true,
-                        agrupado: CountryChart.calculateGlobalWithCommunities(data, body,true,config.percentage)
+                        agrupado: CountryChart.calculateGlobalWithCommunities(data, body, true, config.percentage)
                     };
                 } else {
                     global = CountryChart.calculateGlobal(data, config, body);
@@ -168,7 +188,8 @@ class Chart {
                     title: 'Country Chart'
                 });
             })
-            .catch((err) => promise.reject(err));
+            .catch(promise.reject);
+
         return promise.promise;
     }
 }

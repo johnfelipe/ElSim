@@ -45,7 +45,7 @@ class InitSystem {
     static loadCsv() {
         let promise = Q.defer();
 
-        const years = ['1977', '1979', '1982', '1986', '1989', '1993', '1996'];
+        const years = ['1977', '1979', '1982', '1986', '1989', '1993', '1996','2016'];
 
         let path1, path2;
         let barYears = new PB('Loading csv files', years.length);
@@ -73,6 +73,7 @@ class InitSystem {
                         }
                     }, (err) => {
                         if (err) {
+                            console.warn(data);
                             callback(err);
                         } else {
                             barYears.addTick();
@@ -99,8 +100,8 @@ class InitSystem {
 
         InitSystem.readResultados(path1)
             .then(resultsLoaded)
-            .then((data) => promise.resolve(data))
-            .catch((err) => promise.reject(err));
+            .then(promise.resolve)
+            .catch(promise.reject);
 
         return promise.promise;
     }

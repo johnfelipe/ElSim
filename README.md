@@ -2,17 +2,28 @@
 
 # EllSim 
 
-This is an ellectoral simulator, it's based on Spanish system. You can generate charts, reports, make changes on many params, learn, download some resources, connect an external client to the api, play with the minigames, and few more things!
+This is an electoral simulator, it's based on Spanish system. You can generate charts, reports, make changes on many params, learn, download some resources, connect an external client to the api, play with the minigames, and few more things!
 
 # Setup
 
-The basic setup is:
+Install modules:
 
     $ sudo npm i -g nodemon
     $ git clone https://github.com/jesusgn90/TFG && cd TFG
     $ npm i
+
+Run setup:
+
+    $ npm setup
+
+Run the project:
+
     $ npm start
-    
+
+To clear database:
+
+    $ npm reset
+
 ## Technologies
 
 The backend uses:

@@ -20,7 +20,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <% for(let party in global.agrupado) { %>
+                        <% let parties = Object.keys(global.agrupado); %>
+                        <% for(let party of parties) { %>
                         <tr>
                             <td>
                                 <img src="<%= Object.prototype.hasOwnProperty.call(icons, party) ? icons[party] : 'images/ico/no-ico.png' %>"

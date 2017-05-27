@@ -5,7 +5,7 @@
 <body>
 
 <div class="container">
-    <% if(!results.length || !ellections.length)  { %>
+    <% if(!results.length || !elections.length)  { %>
     <% include ../../partials/no-data.ejs %>
     <% } else { %>
     <div class="card-deck-wrapper">
@@ -18,20 +18,20 @@
                     </h4>
                     <div class="form-group col-xs-6">
                         <label for="resultSelected">
-                            <span class="fa fa-database"></span> Select a stored ellection
+                            <span class="fa fa-database"></span> Select a stored election
                         </label>
                         <select class="form-control" name="resultSelected" id="resultSelected">
-                            <% for(i = 0, len = ellections.length; i < len; i++){ %>
-                            <option value="<%= ellections[i].fecha %>,<%= ellections[i].autor %>">
-                                <%= moment(ellections[i].fecha).format('DD/MM/YYYY') %> |
-                                <%= ellections[i].autor.toUpperCase() %>
+                            <% for(i = 0, len = elections.length; i < len; i++){ %>
+                            <option value="<%= elections[i].fecha %>,<%= elections[i].autor %>">
+                                <%= moment(elections[i].fecha).format('DD/MM/YYYY') %> |
+                                <%= elections[i].autor.toUpperCase() %>
                             </option>
                             <% } %>
                         </select>
                     </div>
                     <div class="form-group col-xs-6">
                         <p>
-                            <span class="fa fa-info"></span> Please select an ellection, and click on "Let's do it",
+                            <span class="fa fa-info"></span> Please select an election, and click on "Let's do it",
                             to calculate both configurations and then you will see results.
                         </p>
                     </div>
@@ -425,7 +425,7 @@
                             </div>
                         </div>
                         <div class="row col-xs-12 text-danger">
-                            <span class="fa fa-info-circle"></span> If your ellection doesn't appear, you should review
+                            <span class="fa fa-info-circle"></span> If your election doesn't appear, you should review
                             if
                             all districts matched.
                         </div>
@@ -825,7 +825,7 @@
                             </div>
                         </div>
                         <div class="row col-xs-12 text-danger">
-                            <span class="fa fa-info-circle"></span> If your ellection doesn't appear, you should review
+                            <span class="fa fa-info-circle"></span> If your election doesn't appear, you should review
                             if
                             all districts matched.
                         </div>

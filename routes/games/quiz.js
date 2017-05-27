@@ -16,10 +16,9 @@ const express = require('express'),
                     let max = questions.length;
                     let index = parseInt(Math.random() * max);
                     indexResponse(req, res, 'pages/more/quiz', 'Quiz', {question: questions[index]});
-                }else {
+                } else {
                     indexResponse(req, res, 'pages/more/quiz', 'Quiz', {question: false});
                 }
-
             })
             .catch((err) => sendError(req, res, err));
 
@@ -29,6 +28,11 @@ const express = require('express'),
 
         console.info('POST '.green + '/quiz');
 
+        if (typeof req.body.question_id === 'undefined' ||
+            typeof req.body.answer === 'undefined') {
+            sendError(req, res, 'Parameters error');
+            return;
+        }
 
         Questions.findById(req.body.question_id)
             .then((question) => {

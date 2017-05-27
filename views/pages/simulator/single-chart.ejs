@@ -20,9 +20,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <% for(let key in result.parties) { if(parseInt(result.parties[key]) > 0) { %>
+                        <% const F = new Intl.NumberFormat('es-ES'); %>
+                        <% let keys = Object.keys(result.parties); %>
+                        <% for(let key of keys) { %>
+                        <% if(parseInt(result.parties[key]) > 0) { %>
                         <tr>
-                            <td><img src="<%= Object.prototype.hasOwnProperty.call(icons,key) ? icons[key] : 'images/no-ico.png'%>" width="18" height="18"/> <%= key %></td>
+                            <td>
+                                <img src="<%= Object.prototype.hasOwnProperty.call(icons, key) ? icons[key] : 'images/no-ico.png' %>"
+                                     width="18" height="18"/> <%= key %></td>
                             <td><%= result.parties[key] %></td>
                         </tr>
                         <% } %>
@@ -33,7 +38,7 @@
             </div>
             <div class="card">
                 <div class="card-block">
-                    <h4 class="card-title">Ellection </h4>
+                    <h4 class="card-title">Election </h4>
                     <table id="tabla2" class="display" cellspacing="0" width="100%">
                         <thead>
                         <tr>
@@ -44,7 +49,7 @@
                         <tbody>
                         <tr>
                             <td>Number of votes</td>
-                            <td><%= result.numberOfVotes %></td>
+                            <td><%= F.format(result.numberOfVotes) %></td>
                         </tr>
                         <tr>
                             <td>Author</td>

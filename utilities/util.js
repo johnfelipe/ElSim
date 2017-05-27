@@ -8,7 +8,7 @@ class Util {
 
     }
 
-    static ellectionIsInArray(obj, array) {
+    static electionIsInArray(obj, array) {
         for (let i = 0, len = array.length; i < len; i++) {
             if (array[i].autor === obj.autor && array[i].fecha === obj.fecha) {
                 return true;
@@ -17,18 +17,18 @@ class Util {
         return false;
     }
 
-    static calculateEllections() {
+    static calculateElections() {
         let promise = Q.defer();
 
         Result.find({})
             .then((data) => {
-                let ellections = [];
+                let elections = [];
                 for (let i = 0, len = data.length; i < len; i++) {
-                    if (!Util.ellectionIsInArray(data[i].eleccion, ellections)) {
-                        ellections.push(data[i].eleccion);
+                    if (!Util.electionIsInArray(data[i].eleccion, elections)) {
+                        elections.push(data[i].eleccion);
                     }
                 }
-                promise.resolve({data, ellections});
+                promise.resolve({data, elections});
             })
             .catch((err) => promise.reject(err));
 

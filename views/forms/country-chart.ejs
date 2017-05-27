@@ -2,13 +2,13 @@
     <div class="row">
         <div class="form-group col-xs-6">
             <label for="resultSelected">
-                <span class="fa fa-database"></span> Select a stored ellection
+                <span class="fa fa-database"></span> Select a stored election
             </label>
             <select class="form-control" name="resultSelected" id="resultSelected">
-                <% for(i = 0, len = ellections.length; i < len; i++){ %>
-                <option value="<%= ellections[i].fecha %>,<%= ellections[i].autor %>">
-                    <%= moment(ellections[i].fecha).format('DD/MM/YYYY') %> |
-                    <%= ellections[i].autor.toUpperCase() %>
+                <% for(i = 0, len = elections.length; i < len; i++){ %>
+                <option value="<%= elections[i].fecha %>,<%= elections[i].autor %>">
+                    <%= moment(elections[i].fecha).format('DD/MM/YYYY') %> |
+                    <%= elections[i].autor.toUpperCase() %>
                 </option>
                 <% } %>
             </select>
@@ -60,7 +60,7 @@
         <div class="row">
             <div class="form-group col-xs-4">
                 <label for="almeria">Almería</label>
-                <input class="form-control " type="number" value="5" min="2" max="30" name="almeria">
+                <input class="form-control " type="number" value="6" min="2" max="30" name="almeria">
             </div>
             <div class="form-group col-xs-4">
                 <label for="cadiz">Cádiz</label>
@@ -68,7 +68,7 @@
             </div>
             <div class="form-group col-xs-4">
                 <label for="cordoba">Córdoba</label>
-                <input class="form-control " type="number" value="7" min="2" max="30" name="cordoba">
+                <input class="form-control " type="number" value="6" min="2" max="30" name="cordoba">
             </div>
         </div>
         <div class="row">
@@ -82,17 +82,17 @@
             </div>
             <div class="form-group col-xs-4">
                 <label for="jaen">Jaén</label>
-                <input class="form-control " type="number" value="6" min="2" max="30" name="jaen">
+                <input class="form-control " type="number" value="5" min="2" max="30" name="jaen">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-xs-4">
                 <label for="malaga">Málaga</label>
-                <input class="form-control " type="number" value="10" min="2" max="30" name="malaga">
+                <input class="form-control " type="number" value="11" min="2" max="30" name="malaga">
             </div>
             <div class="form-group col-xs-4">
                 <label for="sevilla">Sevilla</label>
-                <input class="form-control " type="number" value="13" min="2" max="30" name="sevilla">
+                <input class="form-control " type="number" value="12" min="2" max="30" name="sevilla">
             </div>
         </div>
 
@@ -116,7 +116,7 @@
         <div class="row">
             <div class="form-group col-xs-4">
                 <label for="">Asturias</label>
-                <input class="form-control " type="number" value="9" min="2" max="30" name="asturias">
+                <input class="form-control " type="number" value="8" min="2" max="30" name="asturias">
             </div>
         </div>
 
@@ -142,7 +142,7 @@
             </div>
             <div class="form-group col-xs-4">
                 <label for="">Toledo</label>
-                <input class="form-control " type="number" value="5" min="2" max="30" name="toledo">
+                <input class="form-control " type="number" value="6" min="2" max="30" name="toledo">
             </div>
         </div>
 
@@ -150,7 +150,7 @@
         <div class="row">
             <div class="form-group col-xs-4">
                 <label for="">Illes-Balears</label>
-                <input class="form-control " type="number" value="7" min="2" max="30" name="illesbalears">
+                <input class="form-control " type="number" value="8" min="2" max="30" name="illesbalears">
             </div>
         </div>
 
@@ -166,7 +166,7 @@
             </div>
             <div class="form-group col-xs-4">
                 <label for="">León</label>
-                <input class="form-control " type="number" value="5" min="2" max="30" name="leon">
+                <input class="form-control " type="number" value="4" min="2" max="30" name="leon">
             </div>
         </div>
         <div class="row">
@@ -202,7 +202,7 @@
         <div class="row">
             <div class="form-group col-xs-4">
                 <label for="">Las Palmas</label>
-                <input class="form-control " type="number" value="7" min="2" max="30" name="laspalmas">
+                <input class="form-control " type="number" value="8" min="2" max="30" name="laspalmas">
             </div>
             <div class="form-group col-xs-4">
                 <label for="">Canarias</label>
@@ -226,7 +226,7 @@
             </div>
             <div class="form-group col-xs-4">
                 <label for="">Girona</label>
-                <input class="form-control " type="number" value="5" min="2" max="30" name="girona">
+                <input class="form-control " type="number" value="6" min="2" max="30" name="girona">
             </div>
             <div class="form-group col-xs-4">
                 <label for="">Lleida</label>
@@ -256,7 +256,7 @@
         <div class="row">
             <div class="form-group col-xs-4">
                 <label for="">A Corunia</label>
-                <input class="form-control " type="number" value="9" min="2" max="30" name="acoruña">
+                <input class="form-control " type="number" value="8" min="2" max="30" name="acoruña">
             </div>
             <div class="form-group col-xs-4">
                 <label for="">Lugo</label>
@@ -270,7 +270,7 @@
         <div class="row">
             <div class="form-group col-xs-4">
                 <label for="">Pontevedra</label>
-                <input class="form-control " type="number" value="8" min="2" max="30" name="pontevedra">
+                <input class="form-control " type="number" value="7" min="2" max="30" name="pontevedra">
             </div>
         </div>
 
@@ -278,7 +278,7 @@
         <div class="row">
             <div class="form-group col-xs-4">
                 <label for="">Madrid</label>
-                <input class="form-control " type="number" value="34" min="2" max="50" name="madrid">
+                <input class="form-control " type="number" value="36" min="2" max="50" name="madrid">
             </div>
         </div>
 
@@ -302,7 +302,7 @@
             </div>
             <div class="form-group col-xs-4">
                 <label for="">Bizkaia</label>
-                <input class="form-control " type="number" value="9" min="2" max="30" name="bizkaia">
+                <input class="form-control " type="number" value="8" min="2" max="30" name="bizkaia">
             </div>
         </div>
 
@@ -310,7 +310,7 @@
         <div class="row">
             <div class="form-group col-xs-4">
                 <label for="">Murcia</label>
-                <input class="form-control " type="number" value="9" min="2" max="30" name="murcia">
+                <input class="form-control " type="number" value="10" min="2" max="30" name="murcia">
             </div>
         </div>
         <h4>La Rioja</h4>
@@ -325,7 +325,7 @@
         <div class="row">
             <div class="form-group col-xs-4">
                 <label for="">Alicante</label>
-                <input class="form-control " type="number" value="11" min="2" max="30" name="alicante">
+                <input class="form-control " type="number" value="12" min="2" max="30" name="alicante">
             </div>
             <div class="form-group col-xs-4">
                 <label for="">Castellón</label>
@@ -350,7 +350,7 @@
         </div>
     </div>
     <div class="row col-xs-12 text-danger">
-        <span class="fa fa-info-circle"></span> If your ellection doesn't appear, you should review if all districts matched.
+        <span class="fa fa-info-circle"></span> If your election doesn't appear, you should review if all districts matched.
     </div>
 </form>
 <script>

@@ -17,13 +17,13 @@ const express = require('express'),
 
         console.info('GET '.green + '/country-graphic-form');
 
-        Util.calculateEllections()
+        Util.calculateElections()
             .then((result) => {
-                result.ellections.sort(Util.sortByDate);
+                result.elections.sort(Util.sortByDate);
 
                 response(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
                     results: result.data,
-                    ellections: result.ellections,
+                    elections: result.elections,
                     moment: Moment,
                     err: null
                 });
