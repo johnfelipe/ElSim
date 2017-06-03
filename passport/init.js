@@ -1,11 +1,13 @@
+const Login = require('./login');
+const SingUp = require('./signup');
+const User = require('../models/user');
 
-
-const Login = require('./login'),
-    SingUp = require('./signup'),
-    User = require('../models/user');
-
+/** Class to initialize auth system. */
 class InitAuth {
-
+    /**
+     *
+     * @param passport
+     */
     constructor(passport) {
         this.passport = passport;
         this.passport.serializeUser(InitAuth.serializeUser);
@@ -14,12 +16,21 @@ class InitAuth {
         this.singnup = new SingUp(passport);
     }
 
-    /** Serialize an user */
+    /**
+     * Serialize an user.
+     * @param user
+     * @param done
+     * @return {*}
+     */
     static serializeUser(user, done) {
         return done(null, user._id);
     }
 
-    /** Deserialize an user */
+    /**
+     * Deserialize an user.
+     * @param id
+     * @param done
+     */
     deserializeUser(id, done) {
         User.findById(id)
             .then((user) => done(null, user))

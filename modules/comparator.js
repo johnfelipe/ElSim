@@ -1,8 +1,12 @@
-
-let diff = require('deep-diff').diff;
+const diff = require('deep-diff').diff;
 const console = require('better-console');
 
+/** Class to compare two simulations */
 class Comparator {
+    /**
+     *
+     * @param wholeSet
+     */
     constructor(wholeSet) {
         this._set1 = {};
         this._set2 = {};
@@ -21,6 +25,13 @@ class Comparator {
         return this._differences;
     }
 
+    /**
+     *
+     * @param result1
+     * @param result2
+     * @param perc1
+     * @param perc2
+     */
     fillDifferences(result1, result2, perc1, perc2) {
 
         this._differences.results = diff(result1, result2);
@@ -36,6 +47,9 @@ class Comparator {
         });
     }
 
+    /**
+     *
+     */
     fillSets() {
 
         this._set1.wholeCountry = this.wholeSet.wholeCountry1;

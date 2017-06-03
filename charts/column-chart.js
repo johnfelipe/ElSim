@@ -1,13 +1,14 @@
-
 const Icons = require('./../misc/icons');
 const clone = require('clone-any').cloneAny;
 let columnOptions = require('./options/column-options');
 
-
+/** Handles Column like charts */
 class ColumnChart{
-    constructor(){
-
-    }
+    /**
+     *
+     * @param result
+     * @return {Error}
+     */
     static fillOptions(result) {
         if (typeof result === 'undefined' || result === null) {
             return new Error('invalid param type');

@@ -1,10 +1,14 @@
 const ProgressBar = require('progress');
 
+/** Utility to create a console progress bar */
 class ProgressBarUtil {
+
+    /**
+     *
+     * @param title
+     * @param length
+     */
     constructor(title, length) {
-        /**
-         * Para la barra de progresos.
-         */
         this.bar = new ProgressBar(title + ' [:percent] '.blue + ' [:bar] '.yellow, {
             complete: '#',
             incomplete: ' ',
@@ -13,8 +17,11 @@ class ProgressBarUtil {
         });
     }
 
+    /**
+     * Increments one tick to the bar.
+     */
     addTick(){
-        this.bar.tick();
+        this.bar.tick(undefined,undefined);
     }
 }
 module.exports = ProgressBarUtil;

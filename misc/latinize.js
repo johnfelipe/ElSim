@@ -1,11 +1,11 @@
-
 const latinMap = require('./../misc/latinize-map');
 
+/** Utility to handle with typical spanish grammar problems. */
 class Latinize {
-    constructor() {
-
-    }
-
+    /**
+     *
+     * @return {Array}
+     */
     static getProvincias(){
         return [
             'es-NULL', 'es-vi', 'es-ab', 'es-a', 'es-al', 'es-av', 'es-ba', 'es-pm',
@@ -18,6 +18,11 @@ class Latinize {
         ];
     }
 
+    /**
+     *
+     * @param s
+     * @return {string|*|void|ILocationService|XML}
+     */
     static latinize(s) {
         let latinise = {};
         latinise.latin_map = latinMap;

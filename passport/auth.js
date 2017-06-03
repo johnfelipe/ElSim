@@ -1,16 +1,18 @@
+const config = require('../config');
+const jwt = require('jsonwebtoken');
+const User = require('../models/user');
+const bCrypt = require('bcrypt-nodejs');
+const console = require('better-console');
 
-const config = require('../config'),
-    jwt = require('jsonwebtoken'),
-    User = require('../models/user'),
-    bCrypt = require('bcrypt-nodejs'),
-    console = require('better-console');
-
+/** Class to handle passport auth methods. */
 class Auth {
-
-    constructor() {
-
-    }
-
+    /**
+     *
+     * @param req
+     * @param res
+     * @param next
+     * @return {*}
+     */
     static isAuthenticated(req, res, next) {
         if (req.isAuthenticated()) {
             return next();
@@ -22,6 +24,13 @@ class Auth {
         });
     }
 
+    /**
+     *
+     * @param req
+     * @param res
+     * @param next
+     * @return {*}
+     */
     static isProfileAuthenticated(req, res, next) {
         if (req.isAuthenticated()) {
             return next();
@@ -33,6 +42,12 @@ class Auth {
         });
     }
 
+    /**
+     *
+     * @param req
+     * @param res
+     * @param next
+     */
     static isApiAuthenticated(req, res, next) {
         let token = req.body.token || req.params.token || req.headers['x-access-token'];
         if (token) {
@@ -54,10 +69,21 @@ class Auth {
         }
     }
 
+    /**
+     *
+     * @param user
+     * @param password
+     * @return {*}
+     */
     static isValidPassword(user, password) {
         return bCrypt.compareSync(password, user.password);
     }
 
+    /**
+     *
+     * @param req
+     * @param res
+     */
     static authenticate(req, res) {
         const handleUser = (user) => {
             let object = {
@@ -80,10 +106,7 @@ class Auth {
 
         User.findOne({email: req.body.email})
             .then(handleUser)
-            .catch((err) => {
-                console.error(err);
-                res.status(400).json(err);
-            });
+            .catch((err) => res.status(400).json(err));
     }
 }
 

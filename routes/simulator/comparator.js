@@ -66,6 +66,15 @@ const express = require('express'),
 
         let options1, options2;
 
+        const cleanSet = (set) => {
+            let keys = Object.keys(set);
+            for(let key of keys){
+                if(set[key] === 0){
+                    delete set[key];
+                }
+            }
+        };
+
         const handleSecondResult = (o) => {
             options2 = o;
             if (typeof comparator.set1.communities !== 'undefined') {
@@ -74,6 +83,9 @@ const express = require('express'),
             if (typeof comparator.set2.communities !== 'undefined') {
                 options2.global.agrupado = agrupaGlobal(options2.global.agrupado);
             }
+
+            cleanSet(options1.global.agrupado);
+            cleanSet(options2.global.agrupado);
 
             comparator.fillDifferences(
                 options1.global.agrupado,

@@ -1,20 +1,13 @@
-/* jshint esversion: 6*/
-const Users = require('../models/user'),
-    Logs = require('../models/log'),
-    Results = require('../models/result'),
-    Q = require('q');
+const Users = require('../models/user');
+const Logs = require('../models/log');
+const Results = require('../models/result');
+const Q = require('q');
 
 class AllService {
-    constructor() {
-
-    }
-
     static loadAll() {
         let promise = Q.defer();
 
         let users, logs, results;
-
-        const reject = (err) => promise.reject(err);
 
         const handleResults = (data) => {
             results = [...data];
@@ -35,7 +28,7 @@ class AllService {
             .then(handleUsers)
             .then(handleLogs)
             .then(handleResults)
-            .catch(reject);
+            .catch(promise.reject);
 
         return promise.promise;
     }

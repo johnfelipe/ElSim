@@ -1,5 +1,4 @@
-
-module.exports = {
+let columnChartOptions = {
     chart: {
         type: 'column',
         backgroundColor: null,
@@ -77,3 +76,5 @@ module.exports = {
     }],
     background2: '#E0E0E8'
 };
+
+module.exports = columnChartOptions;

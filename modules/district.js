@@ -1,10 +1,15 @@
+const Result = require('../models/result');
+const console = require('better-console');
 
-
-const Result = require('../models/result'),
-    console = require('better-console');
-
+/** Class to handle a district simulation. */
 class District {
-
+    /**
+     *
+     * @param votes
+     * @param names
+     * @param options
+     * @param withTable
+     */
     constructor(votes, names, options, withTable) {
         this.votes = votes;
         this.names = names;
@@ -12,6 +17,12 @@ class District {
         this.withTable = withTable;
     }
 
+    /**
+     *
+     * @param votes
+     * @param blankVotes
+     * @return {Number}
+     */
     calculateTotalVotes(votes, blankVotes) {
         let total = parseInt(blankVotes);
 
@@ -22,6 +33,16 @@ class District {
         return total;
     }
 
+    /**
+     *
+     * @param numberOfParties
+     * @param minNumberOfVotes
+     * @param votes
+     * @param names
+     * @param validatedVotes
+     * @param validatedNames
+     * @return {number}
+     */
     validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames) {
         let numberOfPartiesValidated = 0;
         for (let i = 0; i < numberOfParties; ++i) {
@@ -34,6 +55,13 @@ class District {
         return numberOfPartiesValidated;
     }
 
+    /**
+     *
+     * @param votos
+     * @param esc
+     * @param num_par
+     * @return {number}
+     */
     newSeat(votos, esc, num_par) {
         let imax = 0, ct, max = 0;
         for (ct = 0; ct < num_par; ++ct) {
@@ -45,6 +73,14 @@ class District {
         return imax;
     }
 
+    /**
+     *
+     * @param mandates
+     * @param seats
+     * @param validatedVotes
+     * @param numberOfPartiesValidated
+     * @return {Array}
+     */
     fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated) {
         let table = [];
         for (let i = 0; i < mandates; ++i) {
@@ -54,12 +90,25 @@ class District {
         return table;
     }
 
+    /**
+     *
+     * @param numberOfPartiesValidated
+     * @param result
+     * @param validatedNames
+     * @param seats
+     */
     fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats) {
         for (let i = 0; i < numberOfPartiesValidated; i++) {
             result.parties[validatedNames[i]] = seats[i];
         }
     }
 
+    /**
+     *
+     * @param numberOfVotes
+     * @param minNumberOfVotes
+     * @return {{numberOfVotes: *, minNumberOfVotes: *, parties: {}}}
+     */
     fillResultVar(numberOfVotes, minNumberOfVotes) {
         return {
             numberOfVotes: numberOfVotes,
@@ -68,6 +117,12 @@ class District {
         };
     }
 
+    /**
+     *
+     * @param table
+     * @param validatedNames
+     * @return {*}
+     */
     fillTable(table, validatedNames) {
         let aux;
 
@@ -82,12 +137,22 @@ class District {
         return table;
     }
 
+    /**
+     *
+     * @param votes
+     * @param names
+     * @param mandates
+     * @param blankVotes
+     * @param percentage
+     * @param withTable
+     * @return {{numberOfVotes: *, minNumberOfVotes: *, parties: {}}}
+     */
     calculateSeats(votes, names, mandates, blankVotes, percentage, withTable) {
-        let numberOfParties = votes.length,
-            numberOfVotes = this.calculateTotalVotes(votes, blankVotes),
-            minNumberOfVotes = Math.floor(numberOfVotes * percentage / 100),
-            result = this.fillResultVar(numberOfVotes, minNumberOfVotes),
-            seats, numberOfPartiesValidated, validatedVotes = [], validatedNames = [];
+        let numberOfParties = votes.length;
+        let numberOfVotes = this.calculateTotalVotes(votes, blankVotes);
+        let minNumberOfVotes = Math.floor(numberOfVotes * percentage / 100);
+        let result = this.fillResultVar(numberOfVotes, minNumberOfVotes);
+        let seats, numberOfPartiesValidated, validatedVotes = [], validatedNames = [];
 
         numberOfPartiesValidated = this.validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
 
@@ -104,6 +169,11 @@ class District {
         return result;
     }
 
+    /**
+     *
+     * @param result
+     * @return {*}
+     */
     static createResultEntity(result) {
         let lines = result.votes.split('\n'),
             partidos = {}, aux;
@@ -138,6 +208,10 @@ class District {
         return new Result(sObject);
     }
 
+    /**
+     *
+     * @return {{numberOfVotes: *, minNumberOfVotes: *, parties: {}}}
+     */
     compute() {
         return this.calculateSeats(
             this.votes,

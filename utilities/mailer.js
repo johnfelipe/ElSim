@@ -51,9 +51,9 @@ class Mailer {
             const done = (err, result) => {
                 if (err) {
                     promise.reject(err);
-                } else {
-                    promise.resolve(result);
+                    return;
                 }
+                promise.resolve(result);
             };
 
             transporter.sendMail(mailOptions, done);

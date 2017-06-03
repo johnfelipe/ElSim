@@ -1,18 +1,16 @@
-
-
-module.exports = {
+let pieChartOptions = {
     chart: {
         type: 'pie',
-            style: {
+        style: {
             fontFamily: 'Signika, serif',
-                background: 'url(/images/sand.png)'
+            background: 'url(/images/sand.png)'
         }
     },
     title: {
         text: 'Results',
-            align: 'center',
-            verticalAlign: 'top',
-            y: 20
+        align: 'center',
+        verticalAlign: 'top',
+        y: 20
     },
     tooltip: {
         pointFormat: '{series.name}: <b>{point.y}</b>'
@@ -20,14 +18,14 @@ module.exports = {
     plotOptions: {
         pie: {
             allowPointSelect: true,
-                depth: 35,
-                dataLabels: {
+            depth: 35,
+            dataLabels: {
                 enabled: true,
-                    connectorColor: 'silver'
+                connectorColor: 'silver'
             },
             startAngle: -90,
-                endAngle: 90,
-                center: ['50%', '75%']
+            endAngle: 90,
+            center: ['50%', '75%']
         }
     },
     series: [{
@@ -36,3 +34,5 @@ module.exports = {
         data: null
     }]
 };
+
+module.exports = pieChartOptions;

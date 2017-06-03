@@ -20,17 +20,19 @@ class Util {
     static calculateElections() {
         let promise = Q.defer();
 
-        Result.find({})
-            .then((data) => {
-                let elections = [];
-                for (let i = 0, len = data.length; i < len; i++) {
-                    if (!Util.electionIsInArray(data[i].eleccion, elections)) {
-                        elections.push(data[i].eleccion);
-                    }
+        const handleData = (data) => {
+            let elections = [];
+            for (let i = 0, len = data.length; i < len; i++) {
+                if (!Util.electionIsInArray(data[i].eleccion, elections)) {
+                    elections.push(data[i].eleccion);
                 }
-                promise.resolve({data, elections});
-            })
-            .catch((err) => promise.reject(err));
+            }
+            promise.resolve({data, elections});
+        };
+
+        Result.find({})
+            .then(handleData)
+            .catch(promise.reject);
 
         return promise.promise;
     }

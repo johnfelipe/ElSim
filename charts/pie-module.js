@@ -1,11 +1,12 @@
-let clone = require('clone-any').cloneAny;
 let pieOptions = require('./options/pie-options');
 
+/** Handles Pie like charts */
 class PieChart {
-    constructor() {
-
-    }
-
+    /**
+     *
+     * @param result
+     * @return {Object}
+     */
     static fillOptions(result) {
         let options = pieOptions,
             resultsArray = [];

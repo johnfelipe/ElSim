@@ -5,20 +5,22 @@ const ResultService = require('../services/results');
 const SubscriberService = require('../services/subscribers');
 const UserService = require('../services/users');
 
+/** Utility to hard reset the system. */
 class HardReset {
-    constructor() {
-
-    }
-
+    /**
+     *
+     * @return {*}
+     */
     static hardReset() {
         let promise = Q.defer();
+
         Log.remove()
             .then(QuizService.remove)
             .then(ResultService.remove)
             .then(SubscriberService.remove)
             .then(UserService.remove)
-            .then(() => promise.resolve())
-            .catch((err) => promise.reject(err));
+            .then(promise.resolve)
+            .catch(promise.reject);
 
         return promise.promise;
     }

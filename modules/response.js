@@ -1,10 +1,13 @@
-
-
+/** Manages typical responses situations. */
 class Response {
-    constructor() {
-
-    }
-
+    /**
+     *
+     * @param req
+     * @param res
+     * @param page
+     * @param title
+     * @param other
+     */
     static response(req, res, page, title, other) {
         let options = {
             title: title,
@@ -21,6 +24,14 @@ class Response {
         res.render(page, merged);
     }
 
+    /**
+     *
+     * @param req
+     * @param res
+     * @param err
+     * @param message
+     * @param data
+     */
     static apiResponse(req, res, err, message, data) {
         res.send({
             success: !err,

@@ -1,11 +1,13 @@
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('../models/user');
+const bCrypt = require('bcrypt-nodejs');
 
-
-let LocalStrategy = require('passport-local').Strategy,
-    User = require('../models/user'),
-    bCrypt = require('bcrypt-nodejs');
-
+/** Class to manage login actions. */
 class Login {
-
+    /**
+     *
+     * @param passport
+     */
     constructor(passport) {
         this.passReq = {
             passReqToCallback: true
@@ -14,21 +16,29 @@ class Login {
         this.passport.use('login', new LocalStrategy(this.passReq, this.strategyCallback));
     }
 
+    /**
+     *
+     * @param req
+     * @param username
+     * @param password
+     * @param done
+     */
     strategyCallback(req, username, password, done) {
+        const handleUser = (user) => {
+            if (!user) {
+                done(null, false, req.flash('message', 'User Not found.'));
+                return;
+            }
+            if (!Login.isValidPassword(user, password)) {
+                done(null, false, req.flash('message', 'Invalid Password'));
+                return;
+            }
+            done(null, user);
+        };
+
         User.findOne({email: username})
-            .then((user) => {
-                if (!user) {
-                    return done(null, false, req.flash('message', 'User Not found.'));
-                }
-                if (!Login.isValidPassword(user, password)) {
-                    return done(null, false, req.flash('message', 'Invalid Password'));
-                }
-                return done(null, user);
-            })
-            .catch((err) => {
-                console.error(err);
-                return done(err);
-            });
+            .then(handleUser)
+            .catch(done);
     }
 
     static isValidPassword(user, password) {

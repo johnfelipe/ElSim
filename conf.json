@@ -8,23 +8,22 @@
   },
   "source": {
     "include": [
-      "./bin/",
-      "./charts/",
-      "./charts/options/",
-      "./misc/",
-      "./models/",
-      "./modules/",
-      "./passport/",
-      "./quiz/",
-      "./routes/",
-      "./services/",
-      "./utilities/",
       "./"
     ],
     "exclude": [
+      "./node_modules",
+      "./csv",
+      "./doc",
+      "./bin",
+      "./test",
+      "./views",
+      "./public"
     ],
     "includePattern": ".+\\.js(doc|x)?$",
     "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "opts":{
+    "recurse": true
   },
   "templates": {
     "cleverLinks": false,
