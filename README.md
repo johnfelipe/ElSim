@@ -12,6 +12,22 @@ Install modules:
     $ git clone https://github.com/jesusgn90/TFG && cd TFG
     $ npm i
 
+Edit `credentials.js`:
+
+    module.exports = {
+        user: process.env.MAIL || 'ellsim.project@gmail.com',
+        adminUser: 'jesusgonzaleznovez@gmail.com',
+        adminName: 'Jesús Ángel González Novez',
+        password: process.env.MAIL_PASSWORD || 'abcdefg'
+    };
+
+Ok, in the above example we have 4 fields:
+
+- user: this field must to be a valid Gmail account that you own.
+- adminUser: this field will be the admin user.
+- adminName: this field will be the admin name.
+- password: this field will be the `user` Gmail account password and the `adminUser` web account password.
+
 Run setup:
 
     $ npm setup

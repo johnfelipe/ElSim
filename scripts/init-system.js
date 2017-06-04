@@ -31,7 +31,7 @@ class InitSystem {
         let nick = {
             name: credentials.adminName,
             email: credentials.adminUser,
-            password: createHash('password'),
+            password: createHash(credentials.password),
             admin: true,
             resultados: []
         };
