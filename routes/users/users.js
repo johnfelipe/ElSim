@@ -51,7 +51,7 @@ const express = require('express'),
 
     router.post('/addSubscriber', (req, res) => {
 
-        console.info('POST '.green + '/addSubscriber');
+        console.info('POST '.yellow + '/addSubscriber');
 
         if (typeof req.body.subscriber === 'undefined') {
             sendError(req, res, 'Parameters error');
@@ -101,7 +101,7 @@ const express = require('express'),
     });
 
     router.post('/sendNews', (req, res) => {
-        console.info('POST '.green + '/sendNews');
+        console.info('POST '.yellow + '/sendNews');
 
         if (typeof req.body.notice === 'undefined') {
             sendError(req, res, 'Parameters error');

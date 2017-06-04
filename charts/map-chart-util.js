@@ -3,8 +3,7 @@ const Latinize = require('../misc/latinize');
 const latinize = Latinize.latinize;
 const provincias = Latinize.getProvincias();
 
-
-/** Handles a Map like chart */
+/** Map charts utilities. */
 class MapChartUtil {
     /**
      *

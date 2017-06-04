@@ -3,7 +3,7 @@ const console = require('better-console');
 const Timer = require('../misc/timer');
 const MapChartUtil = require('./map-chart-util');
 
-/** Handles a Map like chart */
+/** Handles Map charts */
 class MapChart {
 
     /**
@@ -47,12 +47,12 @@ class MapChart {
      * @return {Array}
      */
     static calculateGlobal(data, config, conjunto) {
-        let timer = new Timer('Map processing time');
+        let timer = new Timer('Execution time');
         timer.start();
         let global = MapChart.globalLoop(data, config, conjunto);
         global.agrupado = MapChartUtil.groupParties(global);
         timer.end();
-        console.info((timer.name).green + ': '.green + timer.finishSeconds() + 's'.green);
+        console.info((timer.name).yellow + ': '.yellow + timer.finishSeconds() + '(s)'.yellow);
         return global;
     }
 }

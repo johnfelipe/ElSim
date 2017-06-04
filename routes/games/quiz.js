@@ -8,7 +8,7 @@ const express = require('express'),
 
     router.get('/quiz', (req, res) => {
 
-        console.info('GET '.green + '/quiz');
+        console.info('GET '.yellow + '/quiz');
 
         Questions.find({})
             .then((questions) => {
@@ -26,7 +26,7 @@ const express = require('express'),
 
     router.post('/quiz', (req, res) => {
 
-        console.info('POST '.green + '/quiz');
+        console.info('POST '.yellow + '/quiz');
 
         if (typeof req.body.question_id === 'undefined' ||
             typeof req.body.answer === 'undefined') {

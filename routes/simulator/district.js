@@ -11,7 +11,7 @@ const express = require('express'),
 {
 
     router.get('/single-graphic-form', (req, res) => {
-        console.info('GET '.green + '/single-graphic-form');
+        console.info('GET '.yellow + '/single-graphic-form');
 
         Results.find()
             .then((data) => {
@@ -29,7 +29,7 @@ const express = require('express'),
 
     router.post('/graphic-form', (req, res) => {
 
-        console.info('POST '.green + '/graphic-form');
+        console.info('POST '.yellow + '/graphic-form');
 
         if (typeof req.body.mode === 'undefined' ||
             typeof req.body.mandates === 'undefined' ||
@@ -52,7 +52,7 @@ const express = require('express'),
 
     router.post('/save-single-chart', (req, res) => {
 
-        console.info('POST '.green + '/save-single-chart');
+        console.info('POST '.yellow + '/save-single-chart');
 
         res.send({
             result: req.body.result

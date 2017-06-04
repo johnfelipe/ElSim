@@ -22,34 +22,34 @@ try {
 
 {
     router.get('/', (req, res) => {
-        console.info('GET '.green + ' /');
+        console.info('GET '.yellow + ' /');
         response(req, res, 'pages/index', 'EllSim', {moment: Moment, err: null});
     });
 
     router.get('/help', (req, res) => {
-        console.info('GET '.green + ' /help');
+        console.info('GET '.yellow + ' /help');
         response(req, res, 'pages/misc/help', 'Help', false);
     });
 
     router.get('/learn', (req, res) => {
-        console.info('GET '.green + ' /learn');
+        console.info('GET '.yellow + ' /learn');
         response(req, res, 'pages/more/learn', 'Learn', false);
     });
 
     router.get('/resources', (req, res) => {
-        console.info('GET '.green + ' /resources');
+        console.info('GET '.yellow + ' /resources');
         response(req, res, 'pages/more/resources', 'Resources', false);
     });
 
     router.get('/parties', (req, res) => {
-        console.info('GET '.green + ' parties');
+        console.info('GET '.yellow + ' parties');
         response(req, res, 'pages/more/parties', 'Parties', {
             parties: parties
         });
     });
 
     router.get('/admin', (req, res) => {
-        console.info('GET '.green + ' /admin');
+        console.info('GET '.yellow + ' /admin');
         if (!req.user || req.user.email !== credentials.adminUser) {
             sendError(req,res,{
                 result: 'fail',

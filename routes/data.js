@@ -16,7 +16,7 @@ const express = require('express'),
 
 {
     router.get('/add-data', isAuthenticated, (req, res) => {
-        console.info('GET '.green + ' /add-data');
+        console.info('GET '.yellow + ' /add-data');
         response(req, res, 'pages/data/add-data', 'Add data', {
             err: null,
             codigos: codigos,
@@ -25,7 +25,7 @@ const express = require('express'),
     });
 
     router.get('/stored-data', (req, res) => {
-        console.info('GET '.green + ' /stored-data');
+        console.info('GET '.yellow + ' /stored-data');
         Results.find()
             .then((data) => {
                 data.sort(Util.sortByDate);
@@ -41,7 +41,7 @@ const express = require('express'),
     });
 
     router.get('/resultados/:id', (req, res) => {
-        console.info('GET '.green + ' /resultados/' + req.params.id);
+        console.info('GET '.yellow + ' /resultados/' + req.params.id);
 
         Results.findOne(req.params.id)
             .then((data) => {
@@ -53,7 +53,7 @@ const express = require('express'),
     });
 
     router.get('/delete-data', isAuthenticated, (req, res) => {
-        console.info('GET '.green + ' /delete-data');
+        console.info('GET '.yellow + ' /delete-data');
         Results.find()
             .then((data) => {
                 data.sort(Util.sortByDate);
@@ -69,7 +69,7 @@ const express = require('express'),
     });
 
     router.post('/add-data', (req, res) => {
-        console.info('POST '.green + ' /add-data');
+        console.info('POST '.yellow + ' /add-data');
 
         if (typeof req.body.votes === 'undefined' ||
             typeof req.body.population === 'undefined' ||
@@ -122,17 +122,26 @@ const express = require('express'),
             .then(() => {
                 response(req, res, 'pages/data/add-data', 'Add data', {
                     err: null,
-                    codigos: Codigos
+                    codigos: Codigos,
+                    moment: Moment
                 });
             })
             .catch((err) => {
+                if(err.message.includes('duplicate key')){
+                    response(req, res, 'pages/data/add-data', 'Add data', {
+                        err: 'Result has already been added!',
+                        codigos: Codigos,
+                        moment: Moment
+                    });
+                    return;
+                }
                 sendError(req, res, err);
             });
     });
 
 
     router.post('/delete-data', (req, res) => {
-        console.info('POST '.green + ' /delete-data');
+        console.info('POST '.yellow + ' /delete-data');
 
         if(typeof req.body.results === 'undefined'){
             sendError(req,res,'Parameters error');

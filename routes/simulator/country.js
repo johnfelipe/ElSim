@@ -15,7 +15,7 @@ const express = require('express'),
 {
     router.get('/country-graphic-form', (req, res) => {
 
-        console.info('GET '.green + '/country-graphic-form');
+        console.info('GET '.yellow + '/country-graphic-form');
 
         Util.calculateElections()
             .then((result) => {
@@ -35,7 +35,7 @@ const express = require('express'),
 
     router.post('/country-form', (req, res) => {
 
-        console.info('POST '.green + '/country-form');
+        console.info('POST '.yellow + '/country-form');
 
         if (typeof req.body.resultSelected === 'undefined' ||
             typeof req.body.percentage === 'undefined') {

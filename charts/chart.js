@@ -79,25 +79,28 @@ class Chart {
     static addResultToUser(user, election, result, mandates, percentage) {
         let promise = Q.defer();
 
-        User.findOne({_id: user._id})
-            .then((user) => {
-                if (!user) {
-                    promise.reject('User not found');
-                    return;
-                }
-                user.resultados.push({
-                    fecha: election.eleccion.fecha,
-                    provincia: election.cod_provincia,
-                    result: result,
-                    mandates: mandates,
-                    percentage: percentage,
-                    blank: election.votos_blanco
-                });
+        const handleUser = (user) => {
+            if (!user) {
+                let p = Q.defer();
+                p.reject('User not found');
+                return p.promise;
+            }
 
-                user.save()
-                    .then(promise.resolve)
-                    .catch(promise.reject);
-            })
+            user.resultados.push({
+                fecha: election.eleccion.fecha,
+                provincia: election.cod_provincia,
+                result: result,
+                mandates: mandates,
+                percentage: percentage,
+                blank: election.votos_blanco
+            });
+
+            return user.save();
+        };
+
+        User.findOne({_id: user._id})
+            .then(handleUser)
+            .then(promise.resolve)
             .catch(promise.reject);
 
         return promise.promise;
@@ -115,7 +118,7 @@ class Chart {
     static calculateDistrict(mode, mandates, percentage, resultSelected, user) {
         let promise = Q.defer();
 
-        let timer = new Timer('Distric processing time');
+        let timer = new Timer('Execution time');
         timer.start();
 
         let votes = [],
@@ -149,7 +152,7 @@ class Chart {
             result = d.compute();
 
             timer.end();
-            console.info((timer.name).green + ': '.green + timer.finishSeconds() + 's'.green);
+            console.info((timer.name).yellow + ': '.yellow + timer.finishSeconds() + '(s)'.yellow);
 
             if (mode === 'column') {
                 chartDone(Chart.createColumn(result.parties));

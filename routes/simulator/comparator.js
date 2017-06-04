@@ -11,7 +11,7 @@ const express = require('express'),
     sendError = require('../error').sendError;
 {
     router.get('/compare-country-graphic-form', (req, res) => {
-        console.info('GET '.green + '/compare-country-graphic-form');
+        console.info('GET '.yellow + '/compare-country-graphic-form');
 
         Util.calculateElections()
             .then((result) => {
@@ -30,7 +30,7 @@ const express = require('express'),
 
     router.post('/compare-country-form', (req, res) => {
 
-        console.info('GET '.green + '/compare-country-form');
+        console.info('GET '.yellow + '/compare-country-form');
 
         if (typeof req.body.resultSelected === 'undefined' ||
             typeof req.body.percentage === 'undefined' ||

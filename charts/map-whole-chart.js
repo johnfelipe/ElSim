@@ -2,7 +2,7 @@ const District = require('../modules/district');
 const has = Object.prototype.hasOwnProperty;
 const MapCommunitiesChart = require('./map-communities-chart');
 
-/** Handles a Map like chart */
+/** Handles a Map Whole Country charts */
 class MapWholeChart {
 
     /**
