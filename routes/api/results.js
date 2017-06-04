@@ -10,8 +10,8 @@ const express = require('express'),
     router.get('/', API.findAllResultados);
     router.post('/', API.saveOneResultado);
     router.put('/:id', API.updateOneResultado);
-    router.delete('/:id', API.deleteOneResultado);
-    router.delete('/', API.deleteAllResultados);
+    router.delete('/', API.deleteOneResultado);
+    router.delete('/all', API.deleteAllResultados);
 
     module.exports = router;
 }

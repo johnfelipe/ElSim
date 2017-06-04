@@ -32,7 +32,7 @@ class ApiHandler {
     static findOneLog(req, res) {
         Logs.findOne(req.params.id)
             .then((data) => apiResponse(req, res, null, 'Result', data))
-            .catch((err) => apiResponse(req, res, err, 'Result', null));
+            .catch((err) => ApiHandler.resError(req, res, err));
     }
 
     /**
@@ -43,7 +43,7 @@ class ApiHandler {
     static findOneUser(req, res) {
         Users.findOne(req.params.id)
             .then((data) => apiResponse(req, res, null, 'Result', data))
-            .catch((err) => apiResponse(req, res, err, 'Result', null));
+            .catch((err) => ApiHandler.resError(req, res, err));
     }
 
     /**
@@ -54,7 +54,7 @@ class ApiHandler {
     static findAllUsers(req, res) {
         Users.find()
             .then((data) => apiResponse(req, res, null, 'All Users', data))
-            .catch((err) => apiResponse(req, res, err, 'All Users', null));
+            .catch((err) => ApiHandler.resError(req, res, err));
     }
 
     /**
@@ -72,9 +72,9 @@ class ApiHandler {
      * @param res
      */
     static deleteOneUser(req, res) {
-        Users.removeOne(req.params.id)
+        Users.removeOne(req.body.id)
             .then((data) => apiResponse(req, res, null, 'great', null))
-            .catch((err) => apiResponse(req, res, err, 'great', null));
+            .catch((err) => ApiHandler.resError(req, res, err));
     }
 
     /**
@@ -107,7 +107,7 @@ class ApiHandler {
     static findAllResultados(req, res) {
         Results.find()
             .then((data) => apiResponse(req, res, null, 'All Results', data))
-            .catch((err) => apiResponse(req, res, err, 'All Results', null));
+            .catch((err) => ApiHandler.resError(req, res, err));
     }
 
     /**
@@ -116,9 +116,22 @@ class ApiHandler {
      * @param res
      */
     static saveOneResultado(req, res) {
-        Results.saveOne()
-            .then((data) => apiResponse(req, res, null, 'All Results', data))
-            .catch((err) => apiResponse(req, res, err, 'All Results', null));
+        let r = {
+            "eleccion" : JSON.parse(req.body.eleccion),
+            "comunidad" : req.body.comunidad,
+            "cod_provincia" : req.body.cod_provincia,
+            "provincia" : req.body.provincia,
+            "poblacion" : req.body.poblacion,
+            "total_votantes" : req.body.total_votantes,
+            "votos_validos" : req.body.votos_validos,
+            "votos_candidaturas" : req.body.votos_candidaturas,
+            "votos_blanco" : req.body.votos_blanco,
+            "votos_nulos" : req.body.votos_nulos,
+            "partidos" : JSON.parse(req.body.partidos)
+        };
+        Results.saveOne(r)
+            .then((data) => apiResponse(req, res, null, 'result saved', data))
+            .catch((err) => ApiHandler.resError(req, res, err));
     }
 
     /**
@@ -136,9 +149,9 @@ class ApiHandler {
      * @param res
      */
     static deleteOneResultado(req, res) {
-        Results.removeOne(req.params.id)
+        Results.removeOne(req.body.id)
             .then((data) => apiResponse(req, res, null, 'great', null))
-            .catch((err) => apiResponse(req, res, err, 'great', null));
+            .catch((err) => ApiHandler.resError(req, res, err));
     }
 
     /**
@@ -147,9 +160,11 @@ class ApiHandler {
      * @param res
      */
     static deleteAllResultados(req, res) {
-        Results.remove()
+        ApiHandler.resError(req, res, 'Only admin can do this');
+        return;
+        /*Results.remove()
             .then(() => apiResponse(req, res, null, 'great', null))
-            .catch((err) => apiResponse(req, res, err, 'great', null));
+            .catch((err) => ApiHandler.resError(req, res, err));*/
     }
 
     /**
@@ -160,7 +175,7 @@ class ApiHandler {
     static findOneResultado(req, res) {
         Results.findOne(req.params.id)
             .then((data) => apiResponse(req, res, null, 'Result', data))
-            .catch((err) => apiResponse(req, res, err, 'Result', null));
+            .catch((err) => ApiHandler.resError(req, res, err));
     }
 
     /**
@@ -171,7 +186,7 @@ class ApiHandler {
     static findLogs(req, res) {
         Logs.find()
             .then((data) => apiResponse(req, res, null, 'All Logs', data))
-            .catch((err) => apiResponse(req, res, err, 'All Logs', null));
+            .catch((err) => ApiHandler.resError(req, res, err));
     }
 
     /**
@@ -182,7 +197,7 @@ class ApiHandler {
     static deleteAllLogs(req, res) {
         Logs.remove()
             .then(() => apiResponse(req, res, null, 'great', null))
-            .catch((err) => apiResponse(req, res, err, 'great', null));
+            .catch((err) => ApiHandler.resError(req, res, err));
     }
 
     /**
@@ -198,7 +213,7 @@ class ApiHandler {
         };
 
         Questions.saveOne(q)
-            .then((data) => ApiHandler.resError(req, res, true))
+            .then((data) => apiResponse(req, res,null,'question saved',null))
             .catch((err) => ApiHandler.resError(req, res, err));
     }
 
@@ -228,9 +243,9 @@ class ApiHandler {
      * @param res
      */
     static deleteOneQuestion(req, res) {
-        Questions.removeOne(req.params.id)
+        Questions.removeOne(req.body.id)
             .then((data) => apiResponse(req, res, null, 'great', null))
-            .catch((err) => apiResponse(req, res, err, 'fail', null));
+            .catch((err) => ApiHandler.resError(req, res, err));
     }
 }
 module.exports = ApiHandler;

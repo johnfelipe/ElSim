@@ -7,7 +7,7 @@ const express = require('express'),
     router.get('/', API.findAllUsers);
     router.post('/', API.saveOneUser);
     router.put('/:id', API.updateOneUser);
-    router.delete('/:id', API.deleteOneUser);
+    router.delete('/', API.deleteOneUser);
 
     module.exports = router;
 }

@@ -12,10 +12,12 @@ class ResultService {
     static saveOne(result) {
         let r = new Result(result);
 
-        r.eleccion = {
-            fecha: result.fecha,
-            autor: 'sistema'
-        };
+        if(typeof result.fecha !== 'undefined') {
+            r.eleccion = {
+                fecha: result.fecha,
+                autor: 'sistema'
+            };
+        }
 
         return r.save();
     }
