@@ -23,7 +23,7 @@ try {
 {
     router.get('/', (req, res) => {
         console.info('GET '.yellow + ' /');
-        response(req, res, 'pages/index', 'EllSim', {moment: Moment, err: null});
+        response(req, res, 'pages/index', 'ElSim', {moment: Moment, err: null});
     });
 
     router.get('/help', (req, res) => {

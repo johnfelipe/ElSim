@@ -75,7 +75,7 @@ const express = require('express'),
         };
 
         const sendMail = () => {
-            let mailer = new Mailer(email, 'Thanks to subscribe to EllSim NewsLetter!');
+            let mailer = new Mailer(email, 'Thanks to subscribe to ElSim NewsLetter!');
             return mailer.sendMail();
         };
 

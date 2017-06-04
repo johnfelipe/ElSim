@@ -31,19 +31,19 @@ class Mailer {
         } else {
             let transporter = nodemailer.createTransport(this.transportConfig);
 
-            let htmlContent = '<h2>EllSim NewsLetter</h2> ' +
+            let htmlContent = '<h2>ElSim NewsLetter</h2> ' +
                 'Thanks for be a member of our community.<hr>' +
                 '<h2>I want to tell you something:</h2>' +
                 '<p><b>' + this.text + '</b></p>' +
                 '<p><i>Please do not reply this message, it is auto generated.</i><br>' +
                 'Want to unsubscribe? <br>' +
-                'Send me an email to <a href="mailto:ellsim.project@gmail.com">ellsim.project@gmail.com</a></p>';
+                'Send me an email to <a href="mailto:' + config.user + '">' + config.user + '</a></p>';
 
             let mailOptions = {
-                from: '"EllSim News" ' + config.user,
+                from: '"ElSim News" ' + config.user,
                 //to: this.destination,
                 bcc: this.destination,
-                subject: 'EllSim NewsLetter',
+                subject: 'ElSim NewsLetter',
                 text: this.text,
                 html: htmlContent
             };
