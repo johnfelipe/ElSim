@@ -107,7 +107,7 @@ const express = require('express'),
             };
 
             if (typeof options.differences.results === 'undefined') {
-                return sendError(req, res, 'Both results are the same');
+                options.differences.results = [];
             }
 
             res.render('pages/simulator/compare-country-chart', options);

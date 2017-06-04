@@ -14,6 +14,9 @@
                     <h4 class="card-title"><span class="fa fa-info-circle"></span> Differences Between Parties</h4>
                     <div class="card-text">
                         <ul>
+                            <% if(differences.results.length === 0) {%>
+                            <li>Both results are the same.</li>
+                            <% } %>
                             <% for(let i = 0, len = differences.results.length; i < len; i++) { %>
                             <li>
                                 <% if(differences.results[i].kind === 'E') { %>
@@ -61,7 +64,7 @@
                                 <% } %>
                             </li>
                             <% } } else { %>
-                            <li> The parameters are the same, only change the district mandates distribution.</li>
+                            <li> The parameters are the same.</li>
                             <% } %>
                         </ul>
                     </div>

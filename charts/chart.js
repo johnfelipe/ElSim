@@ -2,7 +2,9 @@ const highcharts = require('node-highcharts');
 const Color = require('./../misc/colors');
 const BarChart = require('./column-chart');
 const PieChart = require('./pie-module');
-const CountryChart = require('./map-chart');
+const MapChart = require('./map-chart');
+const MapCommunitiesChart = require('./map-communities-chart');
+const MapWholeChart = require('./map-whole-chart');
 const User = require('../models/user');
 const Result = require('../models/result');
 const Icons = require('./../misc/icons');
@@ -13,10 +15,6 @@ const Timer = require('../misc/timer');
 
 /** Class to manage charts. */
 class Chart {
-    constructor() {
-
-    }
-
     /**
      * Give you the string color of a party.
      * @param {String} party - The party name.
@@ -220,15 +218,15 @@ class Chart {
 
             if (datos.wholeCountry) {
                 global = {
-                    agrupado: CountryChart.calculateGlobalWholeCountry(data, datos, config.percentage).parties
+                    agrupado: MapWholeChart.calculateGlobalWholeCountry(data, datos, config.percentage).parties
                 };
             } else if (datos.aggregateCommunities) {
                 global = {
                     isAggregateCommunities: true,
-                    agrupado: CountryChart.calculateGlobalWithCommunities(data, datos, true, config.percentage)
+                    agrupado: MapCommunitiesChart.calculateGlobalWithCommunities(data, datos, true, config.percentage)
                 };
             } else {
-                global = CountryChart.calculateGlobal(data, config, datos);
+                global = MapChart.calculateGlobal(data, config, datos);
             }
 
             promise.resolve({
