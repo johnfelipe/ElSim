@@ -1,7 +1,18 @@
 {
-  "name": "Backend",
-  "version": "0.0.0",
-  "private": true,
+  "name": "ElSim",
+  "version": "1.0.0",
+  "description": "Complete Spanish Election Simulator",
+  "author": "Jesús Ángel González Novez",
+  "homepage": "http://www.appgranada.com",
+  "keywords": [
+    "es6",
+    "dhondt",
+    "nodejs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jesusgn90/TFG"
+  },
   "scripts": {
     "start": "nodemon ./bin/www",
     "setup": "node ./scripts/init-system.js",
@@ -42,13 +53,8 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "grunt": "^1.0.1",
-    "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-nodeunit": "^1.0.0",
-    "grunt-contrib-uglify": "^2.0.0",
-    "grunt-mocha-test": "^0.13.2",
-    "grunt-run": "^0.6.0",
     "jsdoc": "^3.4.3",
     "mocha": "^3.2.0"
-  }
+  },
+  "license": "GPL-3.0"
 }

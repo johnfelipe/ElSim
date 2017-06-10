@@ -74,7 +74,7 @@ class Chart {
      * @param result
      * @param mandates
      * @param percentage
-     * @return {*}
+     * @return {Q.Promise}
      */
     static addResultToUser(user, election, result, mandates, percentage) {
         let promise = Q.defer();

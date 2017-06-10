@@ -8,8 +8,8 @@ class PieChart {
      * @return {Object}
      */
     static fillOptions(result) {
-        let options = pieOptions,
-            resultsArray = [];
+        let options = pieOptions;
+        let resultsArray = [];
 
         let keys = Object.keys(result);
 

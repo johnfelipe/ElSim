@@ -1,7 +1,8 @@
 /** Api routes under authentication */
-const express = require('express'),
-    router = express.Router(),
-    API = require('../../modules/api');
+const express = require('express');
+const router = express.Router();
+const API = require('../../modules/api');
+
 {
     router.get('/:id', API.findOneUser);
     router.get('/', API.findAllUsers);
