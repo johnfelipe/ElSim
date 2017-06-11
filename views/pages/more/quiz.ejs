@@ -12,8 +12,8 @@
                     <h4 class="card-title">
                         <span class="fa fa-info-circle"></span> Welcome to the Quiz
                     </h4>
-                    <% if(typeof acierto !== 'undefined') { %>
-                    <% if(acierto){ %>
+                    <% if(typeof isCorrect !== 'undefined') { %>
+                    <% if(isCorrect){ %>
                     <p class="alert-info"><span class="fa fa-info-circle"></span> OK, you answered correctly, let's answer the next question.</p>
                     <% }else { %>
                     <p class="alert-danger"><span class="fa fa-info-circle"></span> Ouch, you fail last question, don't worry try with this question.</p>

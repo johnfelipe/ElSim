@@ -410,6 +410,46 @@ class ApiHandler {
             })
             .catch((err) => ApiHandler.resError(req, res, err));
     }
+
+    static answer(req, res) {
+        if (typeof req.body.question_id === 'undefined' ||
+            typeof req.body.answer === 'undefined') {
+            ApiHandler.resError(req, res, 'Parameters error');
+            return;
+        }
+        let question, isCorrect;
+
+        const handleWholeQuestions = (questions) => {
+            let max = questions.length;
+
+            let index = parseInt(Math.random() * max);
+
+            apiResponse(req, res, null, 'Quiz', {
+                question: questions[index],
+                isCorrect: isCorrect
+            });
+        };
+
+        const handleQuestion = (q) => {
+
+            question = q;
+
+            if (!question) {
+                ApiHandler.resError(req, res, 'Question not found');
+                return;
+            }
+
+            isCorrect = (question.correct === req.body.answer);
+
+            return Questions.find({});
+        };
+
+        Questions.findById(req.body.question_id)
+            .then(handleQuestion)
+            .then(handleWholeQuestions)
+            .catch((err) => ApiHandler.resError(req, res, err));
+
+    }
 }
 module.exports = ApiHandler;
 

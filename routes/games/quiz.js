@@ -27,13 +27,12 @@ const express = require('express'),
     router.post('/quiz', (req, res) => {
 
         console.info('POST '.yellow + '/quiz');
-
         if (typeof req.body.question_id === 'undefined' ||
             typeof req.body.answer === 'undefined') {
             sendError(req, res, 'Parameters error');
             return;
         }
-        let question,acierto;
+        let question,isCorrect;
 
         const handleWholeQuestions = (questions) => {
             let max = questions.length;
@@ -42,7 +41,7 @@ const express = require('express'),
 
             indexResponse(req, res, 'pages/more/quiz', 'Quiz', {
                 question: questions[index],
-                acierto: acierto
+                isCorrect: isCorrect
             });
         };
 
@@ -55,7 +54,7 @@ const express = require('express'),
                 return;
             }
 
-            acierto = (question.correct === req.body.answer);
+            isCorrect = (question.correct === req.body.answer);
 
             return Questions.find({});
         };
