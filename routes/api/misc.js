@@ -1,10 +1,7 @@
-
-
-/** Api routes under authentication */
-const express = require('express'),
-    router = express.Router(),
-    API = require('../../modules/api'),
-    Auth = require('../../passport/auth');
+const express = require('express');
+const router = express.Router();
+const API = require('../../modules/api');
+const Auth = require('../../passport/auth');
 
 {
     router.post('/authenticate', Auth.authenticate);

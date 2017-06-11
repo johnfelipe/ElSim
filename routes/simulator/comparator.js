@@ -1,14 +1,15 @@
-const express = require('express'),
-    router = express.Router(),
-    response = require('../../modules/response').response,
-    Util = require('../../utilities/util'),
-    moment = require('moment'),
-    Chart = require('../../charts/chart'),
-    Colors = require('../../misc/colors'),
-    Icons = require('../../misc/icons'),
-    console = require('better-console'),
-    Comparator = require('../../modules/comparator'),
-    sendError = require('../error').sendError;
+const express = require('express');
+const router = express.Router();
+const response = require('../../modules/response').response;
+const Util = require('../../utilities/util');
+const moment = require('moment');
+const Chart = require('../../charts/chart');
+const Colors = require('../../misc/colors');
+const Icons = require('../../misc/icons');
+const console = require('better-console');
+const Comparator = require('../../modules/comparator');
+const sendError = require('../error').sendError;
+
 {
     router.get('/compare-country-graphic-form', (req, res) => {
         console.info('GET '.yellow + '/compare-country-graphic-form');

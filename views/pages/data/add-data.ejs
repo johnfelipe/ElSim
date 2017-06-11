@@ -99,10 +99,10 @@
                                 <div class="col-xs-4 form-group">
                                     <label for="author">
                                         <span class="fa fa-user-circle-o"></span>
-                                        Author: <%= (typeof user !== 'undefined') ? user.name : 'anonymous' %>
+                                        Author: <%= (typeof user !== 'undefined') ? user.email : 'anonymous' %>
                                     </label>
                                     <input class="form-control"
-                                           value="<%= (typeof user !== 'undefined') ? user.name : 'anonymous' %>"
+                                           value="<%= (typeof user !== 'undefined') ? user.email : 'anonymous' %>"
                                            type="hidden" name="author" id="author"/>
 
                                 </div>

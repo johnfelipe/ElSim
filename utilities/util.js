@@ -1,13 +1,8 @@
-const fs = require('fs'),
-    Result = require('../models/result'),
-    moment = require('moment'),
-    Q = require('q');
+const Result = require('../models/result');
+const moment = require('moment');
+const Q = require('q');
 
 class Util {
-    constructor() {
-
-    }
-
     static electionIsInArray(obj, array) {
         for (let i = 0, len = array.length; i < len; i++) {
             if (array[i].author === obj.author && array[i].fecha === obj.fecha) {

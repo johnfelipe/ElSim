@@ -1,11 +1,11 @@
-const express = require('express'),
-    router = express.Router(),
-    Auth = require('../../passport/auth'),
-    Subscribers = require('../../models/subscriber'),
-    Mailer = require('../../utilities/mailer'),
-    loadAll = require('../../services/all').loadAll,
-    sendError = require('../error').sendError,
-    moment = require('moment');
+const express = require('express');
+const router = express.Router();
+const Auth = require('../../passport/auth');
+const Subscribers = require('../../models/subscriber');
+const Mailer = require('../../utilities/mailer');
+const loadAll = require('../../services/all').loadAll;
+const sendError = require('../error').sendError;
+const moment = require('moment');
 
 {
     router.get('/profile', Auth.isProfileAuthenticated, (req, res) => {

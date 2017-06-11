@@ -1,9 +1,5 @@
-
-
-/** Log mongoose model */
-const mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
-
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const Q = require('q');
 mongoose.Promise = Q.Promise;
 
@@ -18,4 +14,4 @@ let LogSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Log',LogSchema);
+module.exports = mongoose.model('Log', LogSchema);

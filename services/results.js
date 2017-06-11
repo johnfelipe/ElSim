@@ -1,10 +1,6 @@
-
 const Result = require('../models/result');
 
 class ResultService {
-    constructor() {
-
-    }
     static find() {
         return Result.find({});
     }

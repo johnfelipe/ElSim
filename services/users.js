@@ -1,11 +1,6 @@
-
 const User = require('../models/user');
 
 class UserService {
-    constructor() {
-
-    }
-
     static findOne(id) {
         return User.findOne({_id: id});
     }

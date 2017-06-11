@@ -1,8 +1,8 @@
-const express = require('express'),
-    router = express.Router(),
-    Questions = require('../../services/quiz'),
-    indexResponse = require('../../modules/response').response,
-    sendError = require('../error').sendError;
+const express = require('express');
+const router = express.Router();
+const Questions = require('../../services/quiz');
+const indexResponse = require('../../modules/response').response;
+const sendError = require('../error').sendError;
 
 {
 
@@ -32,7 +32,7 @@ const express = require('express'),
             sendError(req, res, 'Parameters error');
             return;
         }
-        let question,isCorrect;
+        let question, isCorrect;
 
         const handleWholeQuestions = (questions) => {
             let max = questions.length;
@@ -49,8 +49,8 @@ const express = require('express'),
 
             question = q;
 
-            if(!question){
-                sendError(req,res,'Question not found');
+            if (!question) {
+                sendError(req, res, 'Question not found');
                 return;
             }
 

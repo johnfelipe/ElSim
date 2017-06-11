@@ -1,10 +1,4 @@
-
-
 class ErrorHandler {
-    constructor() {
-
-    }
-
     static catchNotFound(req, res, next) {
         let err = new Error('Not Found');
         err.status = 404;

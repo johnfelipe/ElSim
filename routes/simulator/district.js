@@ -1,12 +1,12 @@
-const express = require('express'),
-    router = express.Router(),
-    response = require('../../modules/response').response,
-    Chart = require('../../charts/chart'),
-    Results = require('../../services/results'),
-    console = require('better-console'),
-    Util = require('../../utilities/util'),
-    moment = require('moment'),
-    sendError = require('../error').sendError;
+const express = require('express');
+const router = express.Router();
+const response = require('../../modules/response').response;
+const Chart = require('../../charts/chart');
+const Results = require('../../services/results');
+const console = require('better-console');
+const Util = require('../../utilities/util');
+const moment = require('moment');
+const sendError = require('../error').sendError;
 
 {
 
@@ -22,9 +22,7 @@ const express = require('express'),
                     err: null
                 });
             })
-            .catch((err) => {
-                sendError(req, res, err);
-            });
+            .catch((err) => sendError(req, res, err));
     });
 
     router.post('/graphic-form', (req, res) => {

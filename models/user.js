@@ -1,12 +1,9 @@
-
-
-/** User mongoose model */
-const mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    bcrypt = require('bcrypt-nodejs');
-
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const bcrypt = require('bcrypt-nodejs');
 const Q = require('q');
 mongoose.Promise = Q.Promise;
+
 let UserSchema = new Schema({
     name: {type: String, required: true},
     email: {type: String, required: true, index: {unique: true}},
@@ -21,17 +18,13 @@ let UserSchema = new Schema({
  * Generates the hash for bcrypt
  * @memberOf User
  */
-UserSchema.methods.generateHash = (password) => {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
+UserSchema.methods.generateHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 
 /**
  * Checks password
  * @memberOf User
  */
-UserSchema.methods.validPassword = (password) => {
-    return bcrypt.compareSync(password, this.password);
-};
+UserSchema.methods.validPassword = (password) => bcrypt.compareSync(password, this.password);
 
 module.exports = mongoose.model('User', UserSchema);
 

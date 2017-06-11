@@ -1,10 +1,6 @@
-
 const Question = require('../models/question');
 
 class QuizService {
-    constructor() {
-
-    }
     static saveOne(question) {
         let q = new Question(question);
         return q.save();

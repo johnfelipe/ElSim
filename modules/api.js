@@ -357,10 +357,7 @@ class ApiHandler {
                 delete options.title;
                 apiResponse(req, res, null, 'Country Simulation', options);
             })
-            .catch((err) => {
-                console.error(err);
-                ApiHandler.resError(req, res, err);
-            });
+            .catch((err) => ApiHandler.resError(req, res, err));
     }
 
     static district(req, res) {

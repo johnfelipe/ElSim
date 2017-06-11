@@ -1,11 +1,7 @@
 const LogService = require('../services/logs');
 class ErrorSender {
-
-    constructor() {
-
-    }
-
     static sendError(req, res, err) {
+        console.error(err);
         LogService.save({
             message: (typeof err === 'string') ? err : JSON.stringify(err, null, 2),
             date: new Date()

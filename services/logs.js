@@ -1,11 +1,6 @@
-
 const Log = require('../models/log');
 
 class LogService {
-    constructor() {
-
-    }
-
     static findOne(id) {
         return Log.findOne({_id: id});
     }

@@ -1,16 +1,14 @@
-
-
-const express = require('express'),
-    router = express.Router(),
-    response = require('../../modules/response').response,
-    Chart = require('../../charts/chart'),
-    Colors = require('../../misc/colors'),
-    Icons = require('../../misc/icons'),
-    Util = require('../../utilities/util'),
-    moment = require('moment'),
-    sendError = require('../error').sendError,
-    console = require('better-console'),
-    colors = require('colors');
+const express = require('express');
+const router = express.Router();
+const response = require('../../modules/response').response;
+const Chart = require('../../charts/chart');
+const Colors = require('../../misc/colors');
+const Icons = require('../../misc/icons');
+const Util = require('../../utilities/util');
+const moment = require('moment');
+const sendError = require('../error').sendError;
+const console = require('better-console');
+const colors = require('colors');
 
 {
     router.get('/country-graphic-form', (req, res) => {
@@ -28,9 +26,7 @@ const express = require('express'),
                     err: null
                 });
             })
-            .catch((err) => {
-                sendError(req, res, err);
-            });
+            .catch((err) => sendError(req, res, err));
     });
 
     router.post('/country-form', (req, res) => {
@@ -55,10 +51,7 @@ const express = require('express'),
                 options.user = user;
                 res.render('pages/simulator/country-chart', options);
             })
-            .catch((err) => {
-                console.error(err);
-                sendError(req, res, err);
-            });
+            .catch((err) => sendError(req, res, err));
     });
 
     module.exports = router;
