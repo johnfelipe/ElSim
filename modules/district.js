@@ -176,30 +176,30 @@ class District {
      */
     static createResultEntity(result) {
         let lines = result.votes.split('\n'),
-            partidos = {}, aux;
+            parties = {}, aux;
 
         const regEx = new RegExp(/(\r\n|\n|\r)/gm);
 
         for (let line of lines) {
             aux = line.split(' ');
-            partidos[aux[0].replace(regEx, "")] = aux[2].replace(regEx, "");
+            parties[aux[0].replace(regEx, "")] = aux[2].replace(regEx, "");
         }
 
         let sObject = {
-            comunidad: result.comunidad,
-            cod_provincia: result.cod_province,
-            provincia: result.province,
-            poblacion: result.population,
-            total_votantes: result.census,
-            votos_validos: result.census - result.nulos,
-            votos_candidaturas: (result.census - result.nulos) - result.blancos,
-            votos_blanco: result.blancos,
-            votos_nulos: result.nulos,
-            eleccion: {
-                autor: result.author,
+            community: result.community,
+            cod_province: result.cod_province,
+            province: result.province,
+            population: result.population,
+            total_voters: result.census,
+            valid_votes: result.census - result.nulos,
+            votes_to_parties: (result.census - result.nulos) - result.blancos,
+            blank_votes: result.blancos,
+            null_votes: result.nulos,
+            election: {
+                author: result.author,
                 fecha: result.date
             },
-            partidos: partidos
+            parties: parties
         };
 
         console.warn('Intentando crear:');

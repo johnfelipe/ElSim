@@ -11,7 +11,11 @@
         <div class="card-deck">
             <div class="card">
                 <div class="card-block">
-                    <h4 class="card-title"><span class="fa fa-info-circle"></span> Differences Between Parties</h4>
+                    <h4 class="card-title">
+                        <span class="fa fa-info-circle"></span> Differences Between Parties<br>
+                        <small>(From simulation #1 to simulation #2)</small>
+                    </h4>
+
                     <div class="card-text">
                         <ul>
                             <% if(differences.results.length === 0) {%>
@@ -41,7 +45,10 @@
             </div>
             <div class="card">
                 <div class="card-block">
-                    <h4 class="card-title"><span class="fa fa-info-circle"></span> Differences Between Parameters</h4>
+                    <h4 class="card-title">
+                        <span class="fa fa-info-circle"></span> Differences Between Parameters<br>
+                        <small>(From simulation #1 to simulation #2)</small>
+                    </h4>
                     <div class="card-text">
                         <ul>
                             <% if(typeof differences.parameters !== 'undefined'){ for(let i = 0, len = differences.parameters.length; i < len; i++) { %>

@@ -1,26 +1,26 @@
-const express = require('express'),
-    router = express.Router(),
-    Response = require('../modules/response'),
-    response = Response.response,
-    apiResponse = Response.apiResponse,
-    codigos = require('../misc/codigos'),
-    Util = require('../utilities/util'),
-    Moment = require('moment'),
-    District = require('../modules/district'),
-    Results = require('../services/results'),
-    Result = require('../models/result'),
-    Codigos = require('../misc/codigos'),
-    isAuthenticated = require('../passport/auth').isAuthenticated,
-    Q = require('q'),
-    sendError = require('./error').sendError;
+const express = require('express');
+const router = express.Router();
+const Response = require('../modules/response');
+const response = Response.response;
+const apiResponse = Response.apiResponse;
+const codigos = require('../misc/codigos');
+const Util = require('../utilities/util');
+const moment = require('moment');
+const District = require('../modules/district');
+const Results = require('../services/results');
+const Result = require('../models/result');
+const Codigos = require('../misc/codigos');
+const isAuthenticated = require('../passport/auth').isAuthenticated;
+const Q = require('q');
+const sendError = require('./error').sendError;
 
 {
     router.get('/add-data', isAuthenticated, (req, res) => {
         console.info('GET '.yellow + ' /add-data');
         response(req, res, 'pages/data/add-data', 'Add data', {
             err: null,
-            codigos: codigos,
-            moment: Moment
+            codigos,
+            moment
         });
     });
 
@@ -31,7 +31,7 @@ const express = require('express'),
                 data.sort(Util.sortByDate);
                 response(req, res, 'pages/data/stored-data', 'Stored Data', {
                     data: data,
-                    moment: Moment,
+                    moment,
                     err: null
                 });
             })
@@ -40,8 +40,8 @@ const express = require('express'),
             });
     });
 
-    router.get('/resultados/:id', (req, res) => {
-        console.info('GET '.yellow + ' /resultados/' + req.params.id);
+    router.get('/results/:id', (req, res) => {
+        console.info('GET '.yellow + ' /results/' + req.params.id);
 
         Results.findOne(req.params.id)
             .then((data) => {
@@ -59,7 +59,7 @@ const express = require('express'),
                 data.sort(Util.sortByDate);
                 response(req, res, 'pages/data/delete-data', 'Delete data', {
                     data: data,
-                    moment: Moment,
+                    moment,
                     err: null
                 });
             })
@@ -79,13 +79,13 @@ const express = require('express'),
             typeof req.body.blancos === 'undefined' ||
             typeof req.body.author === 'undefined' ||
             typeof req.body.date === 'undefined') {
-            sendError(req,res,'Parameters error');
+            sendError(req, res, 'Parameters error');
             return;
         }
 
 
         let province = 'Not found';
-        let comunidad = 'Not found';
+        let community = 'Not found';
         let cod_province = 0;
 
         let keys = Object.keys(Codigos);
@@ -96,7 +96,7 @@ const express = require('express'),
                 if (Codigos[key][subKey] === parseInt(req.body.province)) {
                     province = subKey.toLowerCase();
                     cod_province = Codigos[key][subKey];
-                    comunidad = key;
+                    community = key;
                 }
             }
         }
@@ -105,7 +105,7 @@ const express = require('express'),
             votes: req.body.votes,
             province: province,
             cod_province: cod_province,
-            comunidad: comunidad,
+            community: community,
             population: parseInt(req.body.population),
             census: parseInt(req.body.census),
             voters: parseInt(req.body.voters),
@@ -123,15 +123,15 @@ const express = require('express'),
                 response(req, res, 'pages/data/add-data', 'Add data', {
                     err: null,
                     codigos: Codigos,
-                    moment: Moment
+                    moment
                 });
             })
             .catch((err) => {
-                if(err.message.includes('duplicate key')){
+                if (err.message.includes('duplicate key')) {
                     response(req, res, 'pages/data/add-data', 'Add data', {
                         err: 'Result has already been added!',
                         codigos: Codigos,
-                        moment: Moment
+                        moment
                     });
                     return;
                 }
@@ -143,8 +143,8 @@ const express = require('express'),
     router.post('/delete-data', (req, res) => {
         console.info('POST '.yellow + ' /delete-data');
 
-        if(typeof req.body.results === 'undefined'){
-            sendError(req,res,'Parameters error');
+        if (typeof req.body.results === 'undefined') {
+            sendError(req, res, 'Parameters error');
             return;
         }
 
@@ -164,7 +164,7 @@ const express = require('express'),
         const handleResults = (data) => {
             response(req, res, 'pages/data/delete-data', 'Delete data', {
                 err: null,
-                moment: Moment,
+                moment,
                 data: data
             });
         };
@@ -173,7 +173,7 @@ const express = require('express'),
             .then(Results.find)
             .then(handleResults)
             .catch((err) => {
-                sendError(req,res,err);
+                sendError(req, res, err);
             });
     });
 

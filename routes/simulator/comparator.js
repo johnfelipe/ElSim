@@ -2,7 +2,7 @@ const express = require('express'),
     router = express.Router(),
     response = require('../../modules/response').response,
     Util = require('../../utilities/util'),
-    Moment = require('moment'),
+    moment = require('moment'),
     Chart = require('../../charts/chart'),
     Colors = require('../../misc/colors'),
     Icons = require('../../misc/icons'),
@@ -21,7 +21,7 @@ const express = require('express'),
                 response(req, res, 'pages/simulator/compare-country-graphic-form', 'Compare Country Chart', {
                     results: result.data,
                     elections: result.elections,
-                    moment: Moment,
+                    moment,
                     err: null
                 });
             })

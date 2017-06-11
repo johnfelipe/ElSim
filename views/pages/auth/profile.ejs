@@ -35,7 +35,7 @@
                                 <b><%= user.admin ? 'admin' : 'standard' %> </b>user.
                             </li>
                             <li class="list-group-item">
-                                <span class="fa fa-star-o"></span> <%= user.resultados.length %>
+                                <span class="fa fa-star-o"></span> <%= user.results.length %>
                             </li>
                         </ul>
                     </div>
@@ -44,18 +44,18 @@
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title"><span class="fa fa-database"></span> Your results</h4>
-                    <% if(typeof user.resultados !== 'undefined' && user.resultados.length > 0 ) { %>
+                    <% if(typeof user.results !== 'undefined' && user.results.length > 0 ) { %>
                     <small>Click each result to see full result.</small>
                     <% } else { %>
                     <small>You have 0 results stored.</small>
                     <% } %>
                     <div class="card-text">
                         <ul class="list-group">
-                            <% for(var i = 0, len = user.resultados.length; i < len; i++) { %>
+                            <% for(var i = 0, len = user.results.length; i < len; i++) { %>
                             <li class="list-group-item">
                                 <div class="row">
                                     <div class="col-xs-4"> Result #
-                                        <%= i %><!--<%= JSON.stringify(user.resultados[i], undefined, 2) %> -->
+                                        <%= i %><!--<%= JSON.stringify(user.results[i], undefined, 2) %> -->
                                     </div>
                                     <div class="col-xs-4"><a href="#" onclick="showResult(<%= i %>)">
                                             <span class="fa fa-eye"></span> see
@@ -82,11 +82,11 @@
     <script>
 
         function showResult(index) {
-            let results = <%- JSON.stringify(user.resultados) %>;
+            let results = <%- JSON.stringify(user.results) %>;
             let modalBody = $('#modal-body');
             modalBody.empty();
             modalBody.append(
-                '<b>District: </b>' + results[index].provincia + '<br>' +
+                '<b>District: </b>' + results[index].province + '<br>' +
                 '<b>Minimum votes: </b>' + results[index].result.minNumberOfVotes + '<br>' +
                 '<b>Barrier percentage: </b>' + results[index].percentage + '%<br>' +
                 '<b>Blank votes: </b>' + results[index].blank + '<br>' +

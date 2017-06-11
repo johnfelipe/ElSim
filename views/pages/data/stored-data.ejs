@@ -16,22 +16,22 @@
                     </h4>
                     <hr>
 
-                    <% let fechaActual; for(let i = 0, len = data.length; i < len; ++i) { %>
+                    <% let todayDate; for(let i = 0, len = data.length; i < len; ++i) { %>
 
-                    <% if(typeof fechaActual === 'undefined' || fechaActual !== moment(data[i].eleccion.fecha).format('DD/MM/YYYY')) {
-                        fechaActual = moment(data[i].eleccion.fecha).format('DD/MM/YYYY'); %>
+                    <% if(typeof todayDate === 'undefined' || todayDate !== moment(data[i].election.fecha).format('DD/MM/YYYY')) {
+                        todayDate = moment(data[i].election.fecha).format('DD/MM/YYYY'); %>
                     <% if(i > 0) { %>
                     </ul>
                 </div>
                 <br>
                     <% } %>
                 <div class="dropdown">
-                <button class="btn btn-stored dropdown-toggle" type="button" data-toggle="dropdown"><%= moment(data[i].eleccion.fecha).format('DD/MM/YYYY') %> Elections
+                <button class="btn btn-stored dropdown-toggle" type="button" data-toggle="dropdown"><%= moment(data[i].election.fecha).format('DD/MM/YYYY') %> Elections
                         <span class="caret"></span></button>
                     <ul class="dropdown-menu">
                     <% } %>
                     <li class="list-group-item"><a href="#" id="<%= data[i]._id %>" onclick="fillContent('<%= data[i]._id %>')">
-                        <%= data[i].provincia %> (<%= data[i].eleccion.autor %>)
+                        <%= data[i].province %> (<%= data[i].election.author %>)
                         <span class="fa fa-chevron-circle-right pull-right"></span>
                     </a></li>
                     <% } %>

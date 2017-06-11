@@ -5,7 +5,7 @@ const express = require('express'),
     Results = require('../../services/results'),
     console = require('better-console'),
     Util = require('../../utilities/util'),
-    Moment = require('moment'),
+    moment = require('moment'),
     sendError = require('../error').sendError;
 
 {
@@ -18,7 +18,7 @@ const express = require('express'),
                 data.sort(Util.sortByDate);
                 response(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
                     results: data,
-                    moment: Moment,
+                    moment,
                     err: null
                 });
             })

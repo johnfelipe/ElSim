@@ -14,20 +14,20 @@ class MapWholeChart {
      */
     static calculateGlobalWholeCountry(data, conjunto, p) {
         let groupedByCommunity = MapCommunitiesChart.calculateGlobalWithCommunities(data, conjunto, false, p);
-        let partidos = {}, votes = [], names = [];
+        let parties = {}, votes = [], names = [];
         let blankVotes = 0;
 
         let communityKeys = Object.keys(groupedByCommunity);
         for (let key of communityKeys) {
-            blankVotes += parseInt(groupedByCommunity[key].votos_blanco);
+            blankVotes += parseInt(groupedByCommunity[key].blank_votes);
 
-            let partidosKeys = Object.keys(groupedByCommunity[key].partidos);
+            let partiesKeys = Object.keys(groupedByCommunity[key].parties);
 
-            for (let partido of partidosKeys) {
-                if (has.call(partidos, partido)) {
-                    partidos[partido] += parseInt(groupedByCommunity[key].partidos[partido]);
+            for (let partido of partiesKeys) {
+                if (has.call(parties, partido)) {
+                    parties[partido] += parseInt(groupedByCommunity[key].parties[partido]);
                 } else {
-                    partidos[partido] = parseInt(groupedByCommunity[key].partidos[partido]);
+                    parties[partido] = parseInt(groupedByCommunity[key].parties[partido]);
                 }
             }
         }
@@ -38,9 +38,9 @@ class MapWholeChart {
             blankVotes: blankVotes
         };
 
-        let keys = Object.keys(partidos);
+        let keys = Object.keys(parties);
         for (let partido of keys) {
-            votes.push(partidos[partido]);
+            votes.push(parties[partido]);
             names.push(partido);
         }
 

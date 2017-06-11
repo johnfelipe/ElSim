@@ -1,35 +1,35 @@
 const console = require('better-console');
 const Latinize = require('../misc/latinize');
 const latinize = Latinize.latinize;
-const provincias = Latinize.getProvincias();
+const provinces = Latinize.getProvincias();
 
 /** Map charts utilities. */
 class MapChartUtil {
     /**
      *
-     * @param cod_provincia
+     * @param cod_province
      * @return {*}
      */
-    static calculateCode(cod_provincia) {
-        return provincias[cod_provincia];
+    static calculateCode(cod_province) {
+        return provinces[cod_province];
     }
 
     /**
      *
-     * @param provincia
+     * @param province
      * @param conjunto
      * @return {*}
      */
-    static calculateMandates(provincia, conjunto) {
+    static calculateMandates(province, conjunto) {
         let regEx = new RegExp("\\s", 'g');
 
-        if (latinize(provincia.split('/')[0].toLowerCase().replace(regEx, "")) === 'araba-alava') {
+        if (latinize(province.split('/')[0].toLowerCase().replace(regEx, "")) === 'araba-alava') {
             return parseInt(conjunto.alava);
         }
 
         let keys = Object.keys(conjunto);
         for (let c of keys) {
-            if (latinize(provincia.split('/')[0].toLowerCase().replace(regEx, "")) === latinize(c.toLowerCase().replace(regEx, ""))) {
+            if (latinize(province.split('/')[0].toLowerCase().replace(regEx, "")) === latinize(c.toLowerCase().replace(regEx, ""))) {
                 return parseInt(conjunto[c]);
             }
         }

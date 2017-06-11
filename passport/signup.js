@@ -41,7 +41,7 @@ class SingUp {
             newUser.password = SingUp.createHash(password);
             newUser.name = req.body.name;
             newUser.admin = false;
-            newUser.resultados = [];
+            newUser.results = [];
 
             if (typeof req.body.born !== 'undefined') {
                 newUser.born = req.body.born;

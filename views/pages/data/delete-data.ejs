@@ -30,11 +30,11 @@
                                 </label>
                                 <select class="form-control" name="results" id="results" multiple size="12">
                                     <% for(var i = 0, len = data.length; i < len; i++){ %>
-                                    <% if(data[i].eleccion.autor === user._id || user.email === 'jesusgonzaleznovez@gmail.com') { %>
+                                    <% if(data[i].election.author === user._id || user.email === 'jesusgonzaleznovez@gmail.com') { %>
                                     <option value="<%= data[i]._id %>">
-                                        <%= moment(data[i].eleccion.fecha).format('DD/MM/YYYY') %>,
-                                        <%= data[i].provincia %>,
-                                        by <%= data[i].eleccion.autor %>
+                                        <%= moment(data[i].election.fecha).format('DD/MM/YYYY') %>,
+                                        <%= data[i].province %>,
+                                        by <%= data[i].election.author %>
                                     </option>
                                     <% } %>
                                     <% } %>

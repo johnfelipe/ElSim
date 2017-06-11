@@ -14,7 +14,7 @@ let UserSchema = new Schema({
     phone: {type: String, required: false},
     born: {type: Date, required: false},
     admin: {type: Boolean, required: true},
-    resultados: {type: [], required: false}
+    results: {type: [], required: false}
 });
 
 /**

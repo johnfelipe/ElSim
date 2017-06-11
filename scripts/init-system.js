@@ -33,7 +33,7 @@ class InitSystem {
             email: credentials.adminUser,
             password: createHash(credentials.password),
             admin: true,
-            resultados: []
+            results: []
         };
 
         UserService.saveOne(nick)
@@ -66,19 +66,19 @@ class InitSystem {
             const readCsvCallback = (data) => {
 
                 const eachDatoCallback = (dato, callbackData) => {
-                    if (typeof dato.comunidad !== 'undefined') {
-                        while (dato.comunidad.charAt(dato.comunidad.length - 1) === ' ') {
-                            dato.comunidad = dato.comunidad.slice(0, -1);
+                    if (typeof dato.community !== 'undefined') {
+                        while (dato.community.charAt(dato.community.length - 1) === ' ') {
+                            dato.community = dato.community.slice(0, -1);
                         }
                     }
 
-                    if (typeof dato.provincia !== 'undefined') {
-                        while (dato.provincia.charAt(dato.provincia.length - 1) === ' ') {
-                            dato.provincia = dato.provincia.slice(0, -1);
+                    if (typeof dato.province !== 'undefined') {
+                        while (dato.province.charAt(dato.province.length - 1) === ' ') {
+                            dato.province = dato.province.slice(0, -1);
                         }
                     }
 
-                    if (typeof dato.partidos !== 'undefined') {
+                    if (typeof dato.parties !== 'undefined') {
                         ResultService.saveOne(dato)
                             .then(() => callbackData())
                             .catch(callbackData);
@@ -141,10 +141,10 @@ class InitSystem {
     /**
      *
      * @param path
-     * @param resultados
+     * @param results
      * @return {*}
      */
-    static readParties(path, resultados) {
+    static readParties(path, results) {
         let promise = Q.defer();
 
         let i = 0, stream = fs.createReadStream(path);
@@ -158,10 +158,10 @@ class InitSystem {
                         delete data[key];
                     }
                 }
-                resultados[i].partidos = data;
+                results[i].parties = data;
                 i++;
             })
-            .on('end', () => promise.resolve(resultados));
+            .on('end', () => promise.resolve(results));
 
         return promise.promise;
     }
@@ -173,12 +173,12 @@ class InitSystem {
      */
     static readResultados(path) {
         let promise = Q.defer();
-        let stream = fs.createReadStream(path), resultados = [];
+        let stream = fs.createReadStream(path), results = [];
 
         csv.fromStream(stream, {headers: true})
             .on('data-invalid', (data) => promise.reject('Data invalid exception, one or more rows are invalid' + data))
-            .on('data', (data) => resultados.push(data))
-            .on('end', () => promise.resolve(resultados));
+            .on('data', (data) => results.push(data))
+            .on('end', () => promise.resolve(results));
 
         return promise.promise;
     }

@@ -9,7 +9,7 @@ const User = require('../models/user');
 const Result = require('../models/result');
 const Icons = require('./../misc/icons');
 const District = require('../modules/district');
-const Moment = require('moment');
+const moment = require('moment');
 const Q = require('q');
 const Timer = require('../misc/timer');
 
@@ -60,14 +60,14 @@ class Chart {
     static fillCalculateDistrictOptions(election, graphOptions, result, user) {
         return {
             title: 'Chart',
-            autor: election.eleccion.autor,
-            fecha: election.eleccion.fecha,
-            provincia: election.cod_provincia,
+            author: election.election.author,
+            fecha: election.election.fecha,
+            province: election.cod_province,
             options: graphOptions,
-            result: result,
+            result,
             icons: Icons,
             user: user,
-            moment: Moment
+            moment
         };
     }
 
@@ -90,13 +90,13 @@ class Chart {
                 return p.promise;
             }
 
-            user.resultados.push({
-                fecha: election.eleccion.fecha,
-                provincia: election.cod_provincia,
-                result: result,
+            user.results.push({
+                fecha: election.election.fecha,
+                province: election.cod_province,
+                result,
                 mandates: mandates,
                 percentage: percentage,
-                blank: election.votos_blanco
+                blank: election.blank_votes
             });
 
             return user.save();
@@ -143,11 +143,11 @@ class Chart {
             }
 
             election = data;
-            districtOptions.blankVotes = data.votos_blanco;
+            districtOptions.blankVotes = data.blank_votes;
 
-            let keys = Object.keys(data.partidos);
+            let keys = Object.keys(data.parties);
             for (let key of keys) {
-                votes.push(data.partidos[key]);
+                votes.push(data.parties[key]);
                 names.push(key);
             }
 
@@ -199,7 +199,7 @@ class Chart {
         let promise = Q.defer();
 
         let election = {
-            autor: resultSelected.split(',')[1],
+            author: resultSelected.split(',')[1],
             fecha: resultSelected.split(',')[0]
         };
 
@@ -246,7 +246,7 @@ class Chart {
             });
         };
 
-        Result.find({eleccion: election})
+        Result.find({election: election})
             .then(handleData)
             .catch(promise.reject);
 

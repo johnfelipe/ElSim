@@ -71,7 +71,7 @@ const objectToArray = (array) => {
 
 const getParties = (chartCode, isFormat) => {
     for (let community in global.agrupado) {
-        if (global.agrupado[community].provincias.includes(chartCode)) {
+        if (global.agrupado[community].provinces.includes(chartCode)) {
             if (isFormat) {
                 let string = '';
 

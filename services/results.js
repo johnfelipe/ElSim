@@ -13,9 +13,9 @@ class ResultService {
         let r = new Result(result);
 
         if(typeof result.fecha !== 'undefined') {
-            r.eleccion = {
+            r.election = {
                 fecha: result.fecha,
-                autor: 'sistema'
+                author: 'sistema'
             };
         }
 

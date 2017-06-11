@@ -7,7 +7,7 @@ const express = require('express'),
     Colors = require('../../misc/colors'),
     Icons = require('../../misc/icons'),
     Util = require('../../utilities/util'),
-    Moment = require('moment'),
+    moment = require('moment'),
     sendError = require('../error').sendError,
     console = require('better-console'),
     colors = require('colors');
@@ -24,7 +24,7 @@ const express = require('express'),
                 response(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
                     results: result.data,
                     elections: result.elections,
-                    moment: Moment,
+                    moment,
                     err: null
                 });
             })

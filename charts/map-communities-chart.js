@@ -18,47 +18,47 @@ class MapCommunitiesChart {
 
         for (let i = 0, len = data.length; i < len; i++) {
 
-            if (!has.call(groupedByCommunity, data[i].comunidad)) {
-                groupedByCommunity[data[i].comunidad] = {
-                    eleccion: data[i].eleccion,
-                    comunidad: data[i].comunidad,
-                    poblacion: parseInt(data[i].poblacion),
-                    total_votantes: parseInt(data[i].total_votantes),
-                    votos_validos: parseInt(data[i].votos_validos),
-                    votos_candidaturas: parseInt(data[i].votos_candidaturas),
-                    votos_blanco: parseInt(data[i].votos_blanco),
-                    votos_nulos: parseInt(data[i].votos_nulos),
-                    partidos: data[i].partidos,
-                    mandates: parseInt(MapChartUtil.calculateMandates(data[i].provincia, conjunto))
+            if (!has.call(groupedByCommunity, data[i].community)) {
+                groupedByCommunity[data[i].community] = {
+                    election: data[i].election,
+                    community: data[i].community,
+                    population: parseInt(data[i].population),
+                    total_voters: parseInt(data[i].total_voters),
+                    valid_votes: parseInt(data[i].valid_votes),
+                    votes_to_parties: parseInt(data[i].votes_to_parties),
+                    blank_votes: parseInt(data[i].blank_votes),
+                    null_votes: parseInt(data[i].null_votes),
+                    parties: data[i].parties,
+                    mandates: parseInt(MapChartUtil.calculateMandates(data[i].province, conjunto))
                 };
 
-                for (let key in groupedByCommunity[data[i].comunidad].partidos) {
-                    if (has.call(groupedByCommunity[data[i].comunidad].partidos, key)) {
-                        groupedByCommunity[data[i].comunidad].partidos[key] = parseInt(groupedByCommunity[data[i].comunidad].partidos[key]);
+                for (let key in groupedByCommunity[data[i].community].parties) {
+                    if (has.call(groupedByCommunity[data[i].community].parties, key)) {
+                        groupedByCommunity[data[i].community].parties[key] = parseInt(groupedByCommunity[data[i].community].parties[key]);
                     }
                 }
 
             } else {
 
-                groupedByCommunity[data[i].comunidad].mandates += parseInt(MapChartUtil.calculateMandates(data[i].provincia, conjunto));
-                groupedByCommunity[data[i].comunidad].poblacion += data[i].poblacion;
-                groupedByCommunity[data[i].comunidad].total_votantes += data[i].total_votantes;
-                groupedByCommunity[data[i].comunidad].votos_validos += data[i].votos_validos;
-                groupedByCommunity[data[i].comunidad].votos_candidaturas += data[i].votos_candidaturas;
-                groupedByCommunity[data[i].comunidad].votos_blanco += data[i].votos_blanco;
-                groupedByCommunity[data[i].comunidad].votos_nulos += data[i].votos_nulos;
+                groupedByCommunity[data[i].community].mandates += parseInt(MapChartUtil.calculateMandates(data[i].province, conjunto));
+                groupedByCommunity[data[i].community].population += data[i].population;
+                groupedByCommunity[data[i].community].total_voters += data[i].total_voters;
+                groupedByCommunity[data[i].community].valid_votes += data[i].valid_votes;
+                groupedByCommunity[data[i].community].votes_to_parties += data[i].votes_to_parties;
+                groupedByCommunity[data[i].community].blank_votes += data[i].blank_votes;
+                groupedByCommunity[data[i].community].null_votes += data[i].null_votes;
 
-                let keys = Object.keys(data[i].partidos);
+                let keys = Object.keys(data[i].parties);
                 for (let key of keys) {
-                    if (has.call(groupedByCommunity[data[i].comunidad].partidos, key)) {
-                        groupedByCommunity[data[i].comunidad].partidos[key] += parseInt(data[i].partidos[key]);
+                    if (has.call(groupedByCommunity[data[i].community].parties, key)) {
+                        groupedByCommunity[data[i].community].parties[key] += parseInt(data[i].parties[key]);
                     } else {
-                        groupedByCommunity[data[i].comunidad].partidos[key] = parseInt(data[i].partidos[key]);
+                        groupedByCommunity[data[i].community].parties[key] = parseInt(data[i].parties[key]);
                     }
                 }
                 for (let key of keys) {
-                    if (groupedByCommunity[data[i].comunidad].partidos[key] === 0) {
-                        delete groupedByCommunity[data[i].comunidad].partidos[key];
+                    if (groupedByCommunity[data[i].community].parties[key] === 0) {
+                        delete groupedByCommunity[data[i].community].parties[key];
                     }
                 }
             }
@@ -66,21 +66,21 @@ class MapCommunitiesChart {
 
         if (needFinal) {
             for (let community in groupedByCommunity) {
-                groupedByCommunity[community].provincias = MapChartUtil.calculateProvinces(community);
+                groupedByCommunity[community].provinces = MapChartUtil.calculateProvinces(community);
 
                 let dhondtConfig = {
                     mandates: groupedByCommunity[community].mandates,
                     percentage: (typeof communityPercentage !== 'undefined') ? parseFloat(communityPercentage) : 3.0,
-                    blankVotes: groupedByCommunity[community].votos_blanco
+                    blankVotes: groupedByCommunity[community].blank_votes
                 };
 
                 let votes = [];
                 let names = [];
 
-                let parties = Object.keys(groupedByCommunity[community].partidos);
+                let parties = Object.keys(groupedByCommunity[community].parties);
 
                 for (let party of parties) {
-                    votes.push(groupedByCommunity[community].partidos[party]);
+                    votes.push(groupedByCommunity[community].parties[party]);
                     names.push(party);
                 }
 

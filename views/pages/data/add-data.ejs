@@ -37,9 +37,9 @@
                                     <select class="form-control" name="province" id="province" required
                                             onchange="parseFields(processTextarea)">
                                         <% for(let ccaa in codigos) { %>
-                                        <% for(let provincia in codigos[ccaa]) { %>
-                                        <option value="<%- codigos[ccaa][provincia] %>"><%= ccaa %>
-                                            - <%= provincia %> </option>
+                                        <% for(let province in codigos[ccaa]) { %>
+                                        <option value="<%- codigos[ccaa][province] %>"><%= ccaa %>
+                                            - <%= province %> </option>
 
                                         <% } %>
                                         <% } %>

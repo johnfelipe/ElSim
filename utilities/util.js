@@ -10,7 +10,7 @@ class Util {
 
     static electionIsInArray(obj, array) {
         for (let i = 0, len = array.length; i < len; i++) {
-            if (array[i].autor === obj.autor && array[i].fecha === obj.fecha) {
+            if (array[i].author === obj.author && array[i].fecha === obj.fecha) {
                 return true;
             }
         }
@@ -23,8 +23,8 @@ class Util {
         const handleData = (data) => {
             let elections = [];
             for (let i = 0, len = data.length; i < len; i++) {
-                if (!Util.electionIsInArray(data[i].eleccion, elections)) {
-                    elections.push(data[i].eleccion);
+                if (!Util.electionIsInArray(data[i].election, elections)) {
+                    elections.push(data[i].election);
                 }
             }
             promise.resolve({data, elections});
@@ -39,9 +39,9 @@ class Util {
 
     static sortByDate(a, b) {
         let f1, f2;
-        if (typeof a.eleccion !== 'undefined') {
-            f1 = new moment(a.eleccion.fecha);
-            f2 = new moment(b.eleccion.fecha);
+        if (typeof a.election !== 'undefined') {
+            f1 = new moment(a.election.fecha);
+            f2 = new moment(b.election.fecha);
         } else {
             f1 = new moment(a.fecha);
             f2 = new moment(b.fecha);

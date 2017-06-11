@@ -5,7 +5,7 @@ const express = require('express'),
     Mailer = require('../../utilities/mailer'),
     loadAll = require('../../services/all').loadAll,
     sendError = require('../error').sendError,
-    Moment = require('moment');
+    moment = require('moment');
 
 {
     router.get('/profile', Auth.isProfileAuthenticated, (req, res) => {
@@ -14,7 +14,7 @@ const express = require('express'),
             user: req.user,
             advice: false,
             err: false,
-            moment: Moment
+            moment
         };
         res.render('pages/auth/profile', options);
     });
@@ -25,19 +25,19 @@ const express = require('express'),
             user: req.user,
             advice: false,
             err: false,
-            moment: Moment
+            moment
         };
         let index = parseInt(req.params.index);
 
-        if (typeof req.user.resultados !== 'undefined') {
-            if (typeof req.user.resultados[index] !== 'undefined') {
+        if (typeof req.user.results !== 'undefined') {
+            if (typeof req.user.results[index] !== 'undefined') {
                 let aux = [];
-                for (let i = 0, len = req.user.resultados.length; i < len; i++) {
+                for (let i = 0, len = req.user.results.length; i < len; i++) {
                     if (i !== index) {
-                        aux.push(req.user.resultados[i]);
+                        aux.push(req.user.results[i]);
                     }
                 }
-                req.user.resultados = [...aux];
+                req.user.results = [...aux];
                 req.user.save()
                     .then(() => res.render('pages/auth/profile', options))
                     .catch((err) => sendError(req, res, err));
@@ -120,7 +120,7 @@ const express = require('express'),
                 Results: resultado.results.length,
                 Users: resultado.users,
                 mailResult: 'Mail sent to ' + subscribers.length + ' users.',
-                moment: Moment
+                moment
             });
         };
 

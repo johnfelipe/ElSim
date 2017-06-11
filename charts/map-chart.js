@@ -17,13 +17,13 @@ class MapChart {
         let votes = [], names = [], result, global = [];
 
         for (let i = 0, len = data.length; i < len; ++i) {
-            config.blankVotes = data[i].votos_blanco;
-            config.mandates = MapChartUtil.calculateMandates(data[i].provincia, conjunto);
+            config.blankVotes = data[i].blank_votes;
+            config.mandates = MapChartUtil.calculateMandates(data[i].province, conjunto);
 
-            let keys = Object.keys(data[i].partidos);
+            let keys = Object.keys(data[i].parties);
 
             for (let key of keys) {
-                votes.push(data[i].partidos[key]);
+                votes.push(data[i].parties[key]);
                 names.push(key);
             }
 
@@ -31,7 +31,7 @@ class MapChart {
 
             result = d.compute();
 
-            result.cc = MapChartUtil.calculateCode(data[i].cod_provincia);
+            result.cc = MapChartUtil.calculateCode(data[i].cod_province);
             global.push(result);
             votes = [];
             names = [];

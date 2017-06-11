@@ -118,17 +118,17 @@ class ApiHandler {
      */
     static saveOneResultado(req, res) {
         let r = {
-            "eleccion": JSON.parse(req.body.eleccion),
-            "comunidad": req.body.comunidad,
-            "cod_provincia": req.body.cod_provincia,
-            "provincia": req.body.provincia,
-            "poblacion": req.body.poblacion,
-            "total_votantes": req.body.total_votantes,
-            "votos_validos": req.body.votos_validos,
-            "votos_candidaturas": req.body.votos_candidaturas,
-            "votos_blanco": req.body.votos_blanco,
-            "votos_nulos": req.body.votos_nulos,
-            "partidos": JSON.parse(req.body.partidos)
+            "election": JSON.parse(req.body.election),
+            "community": req.body.community,
+            "cod_province": req.body.cod_province,
+            "province": req.body.province,
+            "population": req.body.population,
+            "total_voters": req.body.total_voters,
+            "valid_votes": req.body.valid_votes,
+            "votes_to_parties": req.body.votes_to_parties,
+            "blank_votes": req.body.blank_votes,
+            "null_votes": req.body.null_votes,
+            "parties": JSON.parse(req.body.parties)
         };
         Results.saveOne(r)
             .then((data) => apiResponse(req, res, null, 'result saved', data))

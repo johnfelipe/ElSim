@@ -1,4 +1,4 @@
-comunidad,cod_provincia,provincia,poblacion,total_votantes,votos_validos,votos_candidaturas,votos_blanco,votos_nulos,fecha
+community,cod_province,province,population,total_voters,valid_votes,votes_to_parties,blank_votes,null_votes,fecha
 Andalucía ,4,Almería ,455539,264543,263376,262223,1153,1167,1993-06-01
 Andalucía ,11,Cádiz ,1078404,565214,561799,558745,3054,3415,1993-06-01
 Andalucía ,14,Córdoba ,754452,469223,467598,465297,2301,1625,1993-06-01

@@ -22,9 +22,9 @@
                         </label>
                         <select class="form-control" name="resultSelected" id="resultSelected">
                             <% for(i = 0, len = elections.length; i < len; i++){ %>
-                            <option value="<%= elections[i].fecha %>,<%= elections[i].autor %>">
+                            <option value="<%= elections[i].fecha %>,<%= elections[i].author %>">
                                 <%= moment(elections[i].fecha).format('DD/MM/YYYY') %> |
-                                <%= elections[i].autor.toUpperCase() %>
+                                <%= elections[i].author.toUpperCase() %>
                             </option>
                             <% } %>
                         </select>
@@ -96,7 +96,7 @@
 
 
                         </div>
-                        <div id="comunidades1" style="display: none;">
+                        <div id="communityes1" style="display: none;">
                             <h4 class="row col-xs-12">Andalucía</h4>
                             <div class="row">
                                 <div class="form-group col-xs-4">
@@ -431,14 +431,14 @@
                         </div>
                     </div>
                     <script>
-                        let comunidadesHide1 = false;
+                        let communityesHide1 = false;
                         function switchComunidades1() {
-                            if (comunidadesHide1) {
-                                $('#comunidades1').hide();
-                                comunidadesHide1 = false;
+                            if (communityesHide1) {
+                                $('#communityes1').hide();
+                                communityesHide1 = false;
                             } else {
-                                $('#comunidades1').show();
-                                comunidadesHide1 = true;
+                                $('#communityes1').show();
+                                communityesHide1 = true;
                             }
 
                         }
@@ -496,7 +496,7 @@
 
 
                         </div>
-                        <div id="comunidades2" style="display: none;">
+                        <div id="communityes2" style="display: none;">
                             <h4 class="row col-xs-12">Andalucía</h4>
                             <div class="row">
                                 <div class="form-group col-xs-4">
@@ -831,14 +831,14 @@
                         </div>
                     </div>
                     <script>
-                        let comunidadesHide2 = false;
+                        let communityesHide2 = false;
                         function switchComunidades2() {
-                            if (comunidadesHide2) {
-                                $('#comunidades2').hide();
-                                comunidadesHide2 = false;
+                            if (communityesHide2) {
+                                $('#communityes2').hide();
+                                communityesHide2 = false;
                             } else {
-                                $('#comunidades2').show();
-                                comunidadesHide2 = true;
+                                $('#communityes2').show();
+                                communityesHide2 = true;
                             }
 
                         }

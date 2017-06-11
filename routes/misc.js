@@ -3,7 +3,7 @@
 const express = require('express'),
     router = express.Router(),
     response = require('../modules/response').response,
-    Moment = require('moment'),
+    moment = require('moment'),
     codigos = require('../misc/codigos'),
     parties = require('../misc/parties'),
     console = require('better-console'),
@@ -23,7 +23,7 @@ try {
 {
     router.get('/', (req, res) => {
         console.info('GET '.yellow + ' /');
-        response(req, res, 'pages/index', 'ElSim', {moment: Moment, err: null});
+        response(req, res, 'pages/index', 'ElSim', {moment, err: null});
     });
 
     router.get('/help', (req, res) => {
