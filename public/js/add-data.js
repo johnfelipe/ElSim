@@ -3,8 +3,8 @@ function parseFields(done) {
     $('#populationSpan').text($('#population').val());
     $('#total_votersSpan').text($('#voters').val());
     $('#valid_votesSpan').text();
-    $('#blank_votesSpan').text($('#blancos').val());
-    $('#votos_nuloSpan').text($('#nulos').val());
+    $('#blank_votesSpan').text($('#blanks').val());
+    $('#votos_nuloSpan').text($('#nulls').val());
     $('#electionSpan1').text('author: ' + $('#author').val());
     $('#electionSpan2').text('date: ' + fixDate($('#date').val()));
     done();

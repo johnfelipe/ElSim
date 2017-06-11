@@ -6,8 +6,8 @@
             </label>
             <select class="form-control" name="resultSelected" id="resultSelected">
                 <% for(i = 0, len = elections.length; i < len; i++){ %>
-                <option value="<%= elections[i].fecha %>,<%= elections[i].author %>">
-                    <%= moment(elections[i].fecha).format('DD/MM/YYYY') %> |
+                <option value="<%= elections[i].date %>,<%= elections[i].author %>">
+                    <%= moment(elections[i].date).format('DD/MM/YYYY') %> |
                     <%= elections[i].author.toUpperCase() %>
                 </option>
                 <% } %>

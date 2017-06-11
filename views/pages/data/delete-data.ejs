@@ -32,7 +32,7 @@
                                     <% for(var i = 0, len = data.length; i < len; i++){ %>
                                     <% if(data[i].election.author === user.email || user.email === 'jesusgonzaleznovez@gmail.com') { %>
                                     <option value="<%= data[i]._id %>">
-                                        <%= moment(data[i].election.fecha).format('DD/MM/YYYY') %>,
+                                        <%= moment(data[i].election.date).format('DD/MM/YYYY') %>,
                                         <%= data[i].province %>,
                                         by <%= data[i].election.author %>
                                     </option>

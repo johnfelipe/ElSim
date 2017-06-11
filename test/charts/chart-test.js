@@ -20,24 +20,6 @@ describe('Chart Main Module', () => {
             unknownColor.should.equal('blue');
         });
 
-        it('calculateDistrict', () => {
-            return Chart.calculateDistrict('column',
-                '2',
-                '2',
-                '593c37b3097ada4142033c75',
-                undefined
-            )
-                .then((result) => {
-                    expect(result.result).to.eql({
-                        numberOfVotes: 85555,
-                        minNumberOfVotes: 1711,
-                        parties: {'PSP-US': 0, AP: 0, PCE: 0, PSOE: 0, UCD: 2},
-                        table: [[{'PSP-US': 0}, {AP: 0}, {PCE: 0}, {PSOE: 0}, {UCD: 1}],
-                            [{'PSP-US': 0}, {AP: 0}, {PCE: 0}, {PSOE: 0}, {UCD: 2}]]
-                    });
-                });
-        });
-
         const someElection = {
             resultSelected: '1977-06-01,sistema',
             percentage: '0',

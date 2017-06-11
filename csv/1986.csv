@@ -1,4 +1,4 @@
-community,cod_province,province,population,num_mesas,censo_sin_cera,censo_cera,total_censo_electoral,total_cer,total_cera,total_voters,valid_votes,votes_to_parties,blank_votes,null_votes,fecha
+community,cod_province,province,population,num_mesas,censo_sin_cera,censo_cera,total_censo_electoral,total_cer,total_cera,total_voters,valid_votes,votes_to_parties,blank_votes,null_votes,date
 Andalucía,4,Almería ,442324,419,309513,4131,313644,211787,850,212637,210067,209333,734,2570,1986-06-01
 Andalucía,11,Cádiz,1044493,939,717942,4804,722746,478650,814,479464,471174,468758,2416,8290,1986-06-01
 Andalucía,14,Córdoba ,747505,691,549413,4279,553692,421803,971,422774,417887,415504,2383,4887,1986-06-01

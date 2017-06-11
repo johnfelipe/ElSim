@@ -27,8 +27,10 @@ const sendError = require('../error').sendError;
     router.post('/quiz', (req, res) => {
 
         console.info('POST '.yellow + '/quiz');
-        if (typeof req.body.question_id === 'undefined' ||
-            typeof req.body.answer === 'undefined') {
+        if ([
+                req.body.question_id,
+                req.body.answer
+            ].includes(undefined)) {
             sendError(req, res, 'Parameters error');
             return;
         }
@@ -41,7 +43,7 @@ const sendError = require('../error').sendError;
 
             indexResponse(req, res, 'pages/more/quiz', 'Quiz', {
                 question: questions[index],
-                isCorrect: isCorrect
+                isCorrect
             });
         };
 

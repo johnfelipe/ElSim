@@ -18,15 +18,15 @@
 
                     <% let todayDate; for(let i = 0, len = data.length; i < len; ++i) { %>
 
-                    <% if(typeof todayDate === 'undefined' || todayDate !== moment(data[i].election.fecha).format('DD/MM/YYYY')) {
-                        todayDate = moment(data[i].election.fecha).format('DD/MM/YYYY'); %>
+                    <% if(typeof todayDate === 'undefined' || todayDate !== moment(data[i].election.date).format('DD/MM/YYYY')) {
+                        todayDate = moment(data[i].election.date).format('DD/MM/YYYY'); %>
                     <% if(i > 0) { %>
                     </ul>
                 </div>
                 <br>
                     <% } %>
                 <div class="dropdown">
-                <button class="btn btn-stored dropdown-toggle" type="button" data-toggle="dropdown"><%= moment(data[i].election.fecha).format('DD/MM/YYYY') %> Elections
+                <button class="btn btn-stored dropdown-toggle" type="button" data-toggle="dropdown"><%= moment(data[i].election.date).format('DD/MM/YYYY') %> Elections
                         <span class="caret"></span></button>
                     <ul class="dropdown-menu">
                     <% } %>

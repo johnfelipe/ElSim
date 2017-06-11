@@ -76,8 +76,8 @@ const sendError = require('./error').sendError;
                 req.body.population,
                 req.body.census,
                 req.body.voters,
-                req.body.nulos,
-                req.body.blancos,
+                req.body.nulls,
+                req.body.blanks,
                 req.body.author,
                 req.body.date
             ].includes(undefined)) {
@@ -111,8 +111,8 @@ const sendError = require('./error').sendError;
             population: parseInt(req.body.population),
             census: parseInt(req.body.census),
             voters: parseInt(req.body.voters),
-            nulos: parseInt(req.body.nulos),
-            blancos: parseInt(req.body.blancos),
+            nulls: parseInt(req.body.nulls),
+            blanks: parseInt(req.body.blanks),
             author: req.body.author,
             date: req.body.date
         };

@@ -5,7 +5,7 @@ const Q = require('q');
 class Util {
     static electionIsInArray(obj, array) {
         for (let i = 0, len = array.length; i < len; i++) {
-            if (array[i].author === obj.author && array[i].fecha === obj.fecha) {
+            if (array[i].author === obj.author && array[i].date === obj.date) {
                 return true;
             }
         }
@@ -35,11 +35,11 @@ class Util {
     static sortByDate(a, b) {
         let f1, f2;
         if (typeof a.election !== 'undefined') {
-            f1 = new moment(a.election.fecha);
-            f2 = new moment(b.election.fecha);
+            f1 = new moment(a.election.date);
+            f2 = new moment(b.election.date);
         } else {
-            f1 = new moment(a.fecha);
-            f2 = new moment(b.fecha);
+            f1 = new moment(a.date);
+            f2 = new moment(b.date);
         }
 
         if (f1 > f2) {

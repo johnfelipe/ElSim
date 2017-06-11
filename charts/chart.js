@@ -61,7 +61,7 @@ class Chart {
         return {
             title: 'Chart',
             author: election.election.author,
-            fecha: election.election.fecha,
+            date: election.election.date,
             province: election.cod_province,
             options: graphOptions,
             result,
@@ -91,7 +91,7 @@ class Chart {
             }
 
             user.results.push({
-                fecha: election.election.fecha,
+                date: election.election.date,
                 province: election.cod_province,
                 result,
                 mandates: mandates,
@@ -200,7 +200,7 @@ class Chart {
 
         let election = {
             author: resultSelected.split(',')[1],
-            fecha: resultSelected.split(',')[0]
+            date: resultSelected.split(',')[0]
         };
 
         let p = parseFloat(percentage);

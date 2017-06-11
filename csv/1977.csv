@@ -1,4 +1,4 @@
-community,cod_province,province,population,total_voters,valid_votes,votes_to_parties,blank_votes,null_votes,fecha
+community,cod_province,province,population,total_voters,valid_votes,votes_to_parties,blank_votes,null_votes,date
 Andalucía ,4,Almería ,388437,186342,185182,184822,360,1160,1977-06-01
 Andalucía,11,Cádiz,952328,421330,413337,411950,1387,7993,1977-06-01
 Andalucía,14,Córdoba ,717005,365308,361661,361256,405,3647,1977-06-01

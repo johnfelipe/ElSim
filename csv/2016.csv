@@ -1,4 +1,4 @@
-community,cod_province,province,population,total_voters,valid_votes,votes_to_parties,blank_votes,null_votes,fecha
+community,cod_province,province,population,total_voters,valid_votes,votes_to_parties,blank_votes,null_votes,date
 Andalucía,4, Almería ,701211,308989,306674,304461,2213,2315, 2016-06-26
 Andalucía,11, Cádiz,1240284,622252,615755,608817,6938,6497, 2016-06-26
 Andalucía,14, Córdoba ,795611,452038,446818,442329,4489,5220, 2016-06-26

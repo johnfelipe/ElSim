@@ -191,15 +191,15 @@ class District {
             province: result.province,
             population: result.population,
             total_voters: result.census,
-            valid_votes: result.census - result.nulos,
-            votes_to_parties: (result.census - result.nulos) - result.blancos,
-            blank_votes: result.blancos,
-            null_votes: result.nulos,
+            valid_votes: result.census - result.nulls,
+            votes_to_parties: (result.census - result.nulls) - result.blanks,
+            blank_votes: result.blanks,
+            null_votes: result.nulls,
             election: {
                 author: result.author,
-                fecha: result.date
+                date: result.date
             },
-            parties: parties
+            parties
         };
 
         console.warn('Intentando crear:');

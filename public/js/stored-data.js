@@ -4,7 +4,7 @@ function fillContent(id) {
     $.get('/results/' + id, function (data, status) {
 
         content += '<li class="list-group-item"><span class="fa fa-user"></span> ' + data.data.election.author + '</li>';
-        content += '<li class="list-group-item"><span class="fa fa-calendar"></span> ' + moment(data.data.election.fecha).format('DD/MM/YYYY') + '</li>';
+        content += '<li class="list-group-item"><span class="fa fa-calendar"></span> ' + moment(data.data.election.date).format('DD/MM/YYYY') + '</li>';
         content += '<li class="list-group-item"><span class="fa fa-map-o"></span> ' + data.data.community + '</li>';
         content += '<li class="list-group-item"><span class="fa fa-map-marker"></span> ' + data.data.province + '(' + data.data.cod_province + ')</li>';
         content += '<li class="list-group-item"><span class="fa fa-group"></span> ' + F.format(data.data.population) + ' total population </li>';
