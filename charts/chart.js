@@ -15,6 +15,10 @@ const Timer = require('../misc/timer');
 
 /** Class to manage charts. */
 class Chart {
+    constructor() {
+
+    }
+
     /**
      * Give you the string color of a party.
      * @param {String} party - The party name.
@@ -152,7 +156,7 @@ class Chart {
             result = d.compute();
 
             timer.end();
-            console.info((timer.name).yellow + ': '.yellow + timer.finishSeconds() + '(s)'.yellow);
+            //console.info((timer.name).yellow + ': '.yellow + timer.finishSeconds() + '(s)'.yellow);
 
             if (mode === 'column') {
                 chartDone(Chart.createColumn(result.parties));
@@ -169,8 +173,7 @@ class Chart {
 
         const chartDone = (graph_options) => {
             let options = Chart.fillCalculateDistrictOptions(election, graph_options, result, user);
-
-            if (!user) {
+            if (typeof user === 'undefined' || !user) {
                 promise.resolve(options);
                 return;
             }
@@ -193,7 +196,6 @@ class Chart {
      * @return {*}
      */
     static calculateCountry(resultSelected, percentage, user, datos) {
-
         let promise = Q.defer();
 
         let election = {
@@ -201,11 +203,14 @@ class Chart {
             fecha: resultSelected.split(',')[0]
         };
 
+        let p = parseFloat(percentage);
+        if(isNaN(p)) p = 0;
         let config = {
             mandates: 2,
-            percentage: parseFloat(percentage),
+            percentage: (p >= 0) ? p : (p * -1),
             blankVotes: 0
         };
+
 
         /**
          * The callback that handles the Result.find() operation.
@@ -219,11 +224,11 @@ class Chart {
 
             let global;
 
-            if (datos.wholeCountry) {
+            if (datos && typeof datos.wholeCountry !== 'undefined') {
                 global = {
                     agrupado: MapWholeChart.calculateGlobalWholeCountry(data, datos, config.percentage).parties
                 };
-            } else if (datos.aggregateCommunities) {
+            } else if (datos && typeof datos.aggregateCommunities !== 'undefined') {
                 global = {
                     isAggregateCommunities: true,
                     agrupado: MapCommunitiesChart.calculateGlobalWithCommunities(data, datos, true, config.percentage)
@@ -235,8 +240,8 @@ class Chart {
             promise.resolve({
                 user: user,
                 global: global,
-                wholeCountry: datos.wholeCountry,
-                communities: datos.aggregateCommunities,
+                wholeCountry: (datos && typeof datos.wholeCountry !== 'undefined') ? datos.wholeCountry : false,
+                communities: (datos && typeof datos.aggregateCommunities !== 'undefined') ? datos.aggregateCommunities : false,
                 title: 'Country Chart'
             });
         };

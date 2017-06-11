@@ -47,12 +47,8 @@ class MapChart {
      * @return {Array}
      */
     static calculateGlobal(data, config, conjunto) {
-        let timer = new Timer('Execution time');
-        timer.start();
         let global = MapChart.globalLoop(data, config, conjunto);
         global.agrupado = MapChartUtil.groupParties(global);
-        timer.end();
-        console.info((timer.name).yellow + ': '.yellow + timer.finishSeconds() + '(s)'.yellow);
         return global;
     }
 }

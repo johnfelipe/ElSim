@@ -39,10 +39,10 @@ const express = require('express'),
             return;
         }
 
-        let resultSelected = req.body.resultSelected,
-            percentage1 = req.body.percentage1,
-            percentage2 = req.body.percentage,
-            user = req.user;
+        let resultSelected = req.body.resultSelected;
+        let percentage1 = req.body.percentage1;
+        let percentage2 = req.body.percentage;
+        let user = req.user;
 
         let comparator = new Comparator(req.body);
 
@@ -68,8 +68,8 @@ const express = require('express'),
 
         const cleanSet = (set) => {
             let keys = Object.keys(set);
-            for(let key of keys){
-                if(set[key] === 0){
+            for (let key of keys) {
+                if (set[key] === 0) {
                     delete set[key];
                 }
             }
