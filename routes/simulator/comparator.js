@@ -100,13 +100,13 @@ const sendError = require('../error').sendError;
             let differences = comparator.differences;
 
             let options = {
-                options1: options1,
-                options2: options2,
+                options1,
+                options2,
                 colors: Colors,
                 icons: Icons,
-                user: user,
+                user,
                 title: 'Compare Country',
-                differences: differences
+                differences
             };
 
             if (typeof options.differences.results === 'undefined') {

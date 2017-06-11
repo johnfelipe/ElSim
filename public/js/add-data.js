@@ -4,7 +4,7 @@ function parseFields(done) {
     $('#total_votersSpan').text($('#voters').val());
     $('#valid_votesSpan').text();
     $('#blank_votesSpan').text($('#blanks').val());
-    $('#votos_nuloSpan').text($('#nulls').val());
+    $('#votes_nuloSpan').text($('#nulls').val());
     $('#electionSpan1').text('author: ' + $('#author').val());
     $('#electionSpan2').text('date: ' + fixDate($('#date').val()));
     done();
@@ -41,7 +41,7 @@ function processTextarea() {
 
     partiesSpan.text(partiesSpan.text() + ']');
 
-    let n = (+$('#blank_votesSpan').text()) + (+$('#votos_nuloSpan').text());
+    let n = (+$('#blank_votesSpan').text()) + (+$('#votes_nuloSpan').text());
 
     n = n + total;
 

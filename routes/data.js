@@ -30,7 +30,7 @@ const sendError = require('./error').sendError;
             .then((data) => {
                 data.sort(Util.sortByDate);
                 response(req, res, 'pages/data/stored-data', 'Stored Data', {
-                    data: data,
+                    data,
                     moment,
                     err: null
                 });
@@ -58,7 +58,7 @@ const sendError = require('./error').sendError;
             .then((data) => {
                 data.sort(Util.sortByDate);
                 response(req, res, 'pages/data/delete-data', 'Delete data', {
-                    data: data,
+                    data,
                     moment,
                     err: null
                 });
@@ -105,9 +105,9 @@ const sendError = require('./error').sendError;
 
         let result = {
             votes: req.body.votes,
-            province: province,
+            province,
             cod_province: cod_province,
-            community: community,
+            community,
             population: parseInt(req.body.population),
             census: parseInt(req.body.census),
             voters: parseInt(req.body.voters),
@@ -167,7 +167,7 @@ const sendError = require('./error').sendError;
             response(req, res, 'pages/data/delete-data', 'Delete data', {
                 err: null,
                 moment,
-                data: data
+                data
             });
         };
 

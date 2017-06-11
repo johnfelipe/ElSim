@@ -28,7 +28,7 @@ let options = {
     series: [{
         name: 'Country',
         mapData: Highcharts.maps['countries/es/es-all'],
-        data: data,
+        data,
         dataLabels: {
             enabled: true,
             color: '#FFFFFF',

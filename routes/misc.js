@@ -42,7 +42,7 @@ try {
     router.get('/parties', (req, res) => {
         console.info('GET '.yellow + ' parties');
         response(req, res, 'pages/more/parties', 'Parties', {
-            parties: parties
+            parties
         });
     });
 
@@ -66,7 +66,7 @@ try {
                         Logs: resultado.logs,
                         Results: resultado.results.length,
                         Users: resultado.users,
-                        moment: moment
+                        moment
                     });
                 })
                 .catch((err) => sendError(req, res, err));

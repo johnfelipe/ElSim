@@ -39,11 +39,11 @@ const sendError = require('../error').sendError;
             return;
         }
 
-        let mode = req.body.mode,
-            mandates = req.body.mandates,
-            percentage = req.body.percentage,
-            resultSelected = req.body.resultSelected,
-            user = req.user;
+        let mode = req.body.mode;
+        let mandates = req.body.mandates;
+        let percentage = req.body.percentage;
+        let resultSelected = req.body.resultSelected;
+        let user = req.user;
 
         Chart.calculateDistrict(mode, mandates, percentage, resultSelected, user)
             .then((options) => res.render('pages/simulator/single-chart', options))

@@ -66,7 +66,7 @@ class Chart {
             options: graphOptions,
             result,
             icons: Icons,
-            user: user,
+            user,
             moment
         };
     }
@@ -94,8 +94,8 @@ class Chart {
                 date: election.election.date,
                 province: election.cod_province,
                 result,
-                mandates: mandates,
-                percentage: percentage,
+                mandates,
+                percentage,
                 blank: election.blank_votes
             });
 
@@ -125,16 +125,15 @@ class Chart {
         let timer = new Timer('Execution time');
         timer.start();
 
-        let votes = [],
-            names = [],
-            districtOptions = {
-                mandates: mandates,
-                percentage: percentage,
-                blankVotes: 0
-            };
+        let votes = [];
+        let names = [];
+        let districtOptions = {
+            mandates,
+            percentage,
+            blankVotes: 0
+        };
 
-        let result = null,
-            election = null;
+        let result = null, election = null;
 
         const handleData = (data) => {
             if (!data) {
@@ -204,7 +203,7 @@ class Chart {
         };
 
         let p = parseFloat(percentage);
-        if(isNaN(p)) p = 0;
+        if (isNaN(p)) p = 0;
         let config = {
             mandates: 2,
             percentage: (p >= 0) ? p : (p * -1),
@@ -238,15 +237,15 @@ class Chart {
             }
 
             promise.resolve({
-                user: user,
-                global: global,
+                user,
+                global,
                 wholeCountry: (datos && typeof datos.wholeCountry !== 'undefined') ? datos.wholeCountry : false,
                 communities: (datos && typeof datos.aggregateCommunities !== 'undefined') ? datos.aggregateCommunities : false,
                 title: 'Country Chart'
             });
         };
 
-        Result.find({election: election})
+        Result.find({election})
             .then(handleData)
             .catch(promise.reject);
 

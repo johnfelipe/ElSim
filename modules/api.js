@@ -19,7 +19,7 @@ class ApiHandler {
                 result: 'fail',
                 success: false,
                 message: 'Something went wrong.',
-                err: err,
+                err,
                 data: null
             });
         }
@@ -118,18 +118,19 @@ class ApiHandler {
      */
     static saveOneResultado(req, res) {
         let r = {
-            "election": JSON.parse(req.body.election),
-            "community": req.body.community,
-            "cod_province": req.body.cod_province,
-            "province": req.body.province,
-            "population": req.body.population,
-            "total_voters": req.body.total_voters,
-            "valid_votes": req.body.valid_votes,
-            "votes_to_parties": req.body.votes_to_parties,
-            "blank_votes": req.body.blank_votes,
-            "null_votes": req.body.null_votes,
-            "parties": JSON.parse(req.body.parties)
+            election: JSON.parse(req.body.election),
+            community: req.body.community,
+            cod_province: req.body.cod_province,
+            province: req.body.province,
+            population: req.body.population,
+            total_voters: req.body.total_voters,
+            valid_votes: req.body.valid_votes,
+            votes_to_parties: req.body.votes_to_parties,
+            blank_votes: req.body.blank_votes,
+            null_votes: req.body.null_votes,
+            parties: JSON.parse(req.body.parties)
         };
+
         Results.saveOne(r)
             .then((data) => apiResponse(req, res, null, 'result saved', data))
             .catch((err) => ApiHandler.resError(req, res, err));
@@ -252,9 +253,11 @@ class ApiHandler {
 
         console.info('GET '.yellow + '/compare-country-form');
 
-        if (typeof req.body.resultSelected === 'undefined' ||
-            typeof req.body.percentage === 'undefined' ||
-            typeof req.body.percentage1 === 'undefined') {
+        if ([
+                req.body.resultSelected,
+                req.body.percentage,
+                req.body.percentage1
+            ].includes(undefined)) {
             ApiHandler.resError(req, res, 'Parameters error');
             return;
         }
@@ -361,19 +364,21 @@ class ApiHandler {
     }
 
     static district(req, res) {
-        if (typeof req.body.mode === 'undefined' ||
-            typeof req.body.mandates === 'undefined' ||
-            typeof req.body.percentage === 'undefined' ||
-            typeof req.body.resultSelected === 'undefined') {
+        if ([
+                req.body.mode,
+                req.body.mandates,
+                req.body.percentage,
+                req.body.resultSelected
+            ].includes(undefined)) {
             ApiHandler.resError(req, res, 'Parameters error');
             return;
         }
 
-        let mode = req.body.mode,
-            mandates = req.body.mandates,
-            percentage = req.body.percentage,
-            resultSelected = req.body.resultSelected,
-            user = req.user;
+        let mode = req.body.mode;
+        let mandates = req.body.mandates;
+        let percentage = req.body.percentage;
+        let resultSelected = req.body.resultSelected;
+        let user = req.user;
 
         Chart.calculateDistrict(mode, mandates, percentage, resultSelected, user)
             .then((options) => {
@@ -423,7 +428,7 @@ class ApiHandler {
 
             apiResponse(req, res, null, 'Quiz', {
                 question: questions[index],
-                isCorrect: isCorrect
+                isCorrect
             });
         };
 

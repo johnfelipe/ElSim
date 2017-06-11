@@ -35,7 +35,7 @@ class MapWholeChart {
         let dhondtConfig = {
             mandates: 350,
             percentage: p,
-            blankVotes: blankVotes
+            blankVotes
         };
 
         let keys = Object.keys(parties);

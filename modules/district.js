@@ -57,16 +57,16 @@ class District {
 
     /**
      *
-     * @param votos
+     * @param votes
      * @param esc
      * @param num_par
      * @return {number}
      */
-    newSeat(votos, esc, num_par) {
+    newSeat(votes, esc, num_par) {
         let imax = 0, ct, max = 0;
         for (ct = 0; ct < num_par; ++ct) {
-            if (max < (parseInt(votos[ct]) / (esc[ct] + 1))) {
-                max = parseInt(votos[ct]) / (esc[ct] + 1);
+            if (max < (parseInt(votes[ct]) / (esc[ct] + 1))) {
+                max = parseInt(votes[ct]) / (esc[ct] + 1);
                 imax = ct;
             }
         }
@@ -111,8 +111,8 @@ class District {
      */
     fillResultVar(numberOfVotes, minNumberOfVotes) {
         return {
-            numberOfVotes: numberOfVotes,
-            minNumberOfVotes: minNumberOfVotes,
+            numberOfVotes,
+            minNumberOfVotes,
             parties: {}
         };
     }

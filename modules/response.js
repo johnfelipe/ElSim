@@ -10,7 +10,7 @@ class Response {
      */
     static response(req, res, page, title, other) {
         let options = {
-            title: title,
+            title,
             user: req.user
         };
         let merged;

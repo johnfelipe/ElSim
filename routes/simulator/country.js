@@ -41,10 +41,10 @@ const colors = require('colors');
             return;
         }
 
-        let resultSelected = req.body.resultSelected,
-            percentage = req.body.percentage,
-            user = req.user,
-            body = req.body;
+        let resultSelected = req.body.resultSelected;
+        let percentage = req.body.percentage;
+        let user = req.user;
+        let body = req.body;
 
         Chart.calculateCountry(resultSelected, percentage, user, body)
             .then((options) => {

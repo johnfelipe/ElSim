@@ -61,7 +61,7 @@ const moment = require('moment');
         let email = req.body.subscriber;
 
         let s = new Subscribers({
-            email: email,
+            email,
             options: {}
         });
 
