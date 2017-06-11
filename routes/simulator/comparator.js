@@ -33,9 +33,11 @@ const sendError = require('../error').sendError;
 
         console.info('GET '.yellow + '/compare-country-form');
 
-        if (typeof req.body.resultSelected === 'undefined' ||
-            typeof req.body.percentage === 'undefined' ||
-            typeof req.body.percentage1 === 'undefined') {
+        if ([
+                req.body.resultSelected,
+                req.body.percentage,
+                req.body.percentage1
+            ].includes(undefined)) {
             sendError(req, res, 'Parameters error');
             return;
         }

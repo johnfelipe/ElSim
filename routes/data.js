@@ -71,14 +71,16 @@ const sendError = require('./error').sendError;
     router.post('/add-data', (req, res) => {
         console.info('POST '.yellow + ' /add-data');
 
-        if (typeof req.body.votes === 'undefined' ||
-            typeof req.body.population === 'undefined' ||
-            typeof req.body.census === 'undefined' ||
-            typeof req.body.voters === 'undefined' ||
-            typeof req.body.nulos === 'undefined' ||
-            typeof req.body.blancos === 'undefined' ||
-            typeof req.body.author === 'undefined' ||
-            typeof req.body.date === 'undefined') {
+        if ([
+                req.body.votes,
+                req.body.population,
+                req.body.census,
+                req.body.voters,
+                req.body.nulos,
+                req.body.blancos,
+                req.body.author,
+                req.body.date
+            ].includes(undefined)) {
             sendError(req, res, 'Parameters error');
             return;
         }

@@ -33,8 +33,10 @@ const colors = require('colors');
 
         console.info('POST '.yellow + '/country-form');
 
-        if (typeof req.body.resultSelected === 'undefined' ||
-            typeof req.body.percentage === 'undefined') {
+        if ([
+                req.body.resultSelected,
+                req.body.percentage
+            ].includes(undefined)) {
             sendError(req, res, 'Parameters error');
             return;
         }

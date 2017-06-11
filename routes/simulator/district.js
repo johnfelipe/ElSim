@@ -29,10 +29,12 @@ const sendError = require('../error').sendError;
 
         console.info('POST '.yellow + '/graphic-form');
 
-        if (typeof req.body.mode === 'undefined' ||
-            typeof req.body.mandates === 'undefined' ||
-            typeof req.body.percentage === 'undefined' ||
-            typeof req.body.resultSelected === 'undefined') {
+        if ([
+                req.body.mode,
+                req.body.mandates,
+                req.body.percentage,
+                req.body.resultSelected
+            ].includes(undefined)) {
             sendError(req, res, 'Parameters error');
             return;
         }
