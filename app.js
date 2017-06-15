@@ -1,22 +1,20 @@
-
-
 /** Main module of the server side */
-let express = require('express'),
-    path = require('path'),
-    favicon = require('serve-favicon'),
-    cookieParser = require('cookie-parser'),
-    bodyParser = require('body-parser'),
-    app = express(),
-    mongoose = require('mongoose'),
-    config = require('./config'),
-    passport = require('passport'),
-    flash = require('connect-flash'),
-    expressSession = require('express-session'),
-    InitPassport = require('./passport/init'),
-    errorHandler = require('./utilities/errorHandler'),
-    Q = require('q'),
-    colors = require('colors'),
-    console = require('better-console');
+let express = require('express');
+let path = require('path');
+let favicon = require('serve-favicon');
+let cookieParser = require('cookie-parser');
+let bodyParser = require('body-parser');
+let app = express();
+let mongoose = require('mongoose');
+let config = require('./config');
+let passport = require('passport');
+let flash = require('connect-flash');
+let expressSession = require('express-session');
+let InitPassport = require('./passport/init');
+let errorHandler = require('./misc/errorHandler');
+let Q = require('q');
+let colors = require('colors');
+let console = require('better-console');
 
 /** Common configuration for the server side. */
 app.set('views', path.join(__dirname, 'views'));
@@ -44,21 +42,21 @@ app.use(flash());
 
 let quiz = require('./routes/games/quiz');
 
-let comparator = require('./routes/simulator/comparator'),
-    country = require('./routes/simulator/country'),
-    district = require('./routes/simulator/district');
+let comparator = require('./routes/simulator/comparator');
+let country = require('./routes/simulator/country');
+let district = require('./routes/simulator/district');
 
-let users = require('./routes/users/users'),
-    auth = require('./routes/users/auth')(passport);
+let users = require('./routes/users/users');
+let auth = require('./routes/users/auth')(passport);
 
-let data = require('./routes/data'),
-    misc = require('./routes/misc');
+let data = require('./routes/data');
+let misc = require('./routes/misc');
 
-let apiLogs = require('./routes/api/logs'),
-    apiMisc = require('./routes/api/misc'),
-    apiQuestions = require('./routes/api/questions'),
-    apiResults = require('./routes/api/results'),
-    apiUsers = require('./routes/api/users');
+let apiLogs = require('./routes/api/logs');
+let apiMisc = require('./routes/api/misc');
+let apiQuestions = require('./routes/api/questions');
+let apiResults = require('./routes/api/results');
+let apiUsers = require('./routes/api/users');
 
 app.use('/', quiz);
 
@@ -70,12 +68,12 @@ app.use('/', data);
 app.use('/', misc);
 
 app.use('/', auth);
-app.use('/Users', users);
-app.use('/api/v1/Logs', apiLogs);
+app.use('/users', users);
+app.use('/api/v1/logs', apiLogs);
 app.use('/api/v1', apiMisc);
-app.use('/api/v1/Questions', apiQuestions);
-app.use('/api/v1/Results', apiResults);
-app.use('/api/v1/Users', apiUsers);
+app.use('/api/v1/questions', apiQuestions);
+app.use('/api/v1/results', apiResults);
+app.use('/api/v1/users', apiUsers);
 
 /** Catch 404 and forward to error handler */
 app.use(errorHandler.catchNotFound);

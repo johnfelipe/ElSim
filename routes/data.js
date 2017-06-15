@@ -4,7 +4,7 @@ const Response = require('../modules/response');
 const response = Response.response;
 const apiResponse = Response.apiResponse;
 const codigos = require('../misc/codigos');
-const Util = require('../utilities/util');
+const Util = require('../misc/util');
 const moment = require('moment');
 const District = require('../modules/district');
 const Results = require('../services/results');
@@ -35,9 +35,7 @@ const sendError = require('./error').sendError;
                     err: null
                 });
             })
-            .catch((err) => {
-                sendError(req, res, err);
-            });
+            .catch((err) => sendError(req, res, err));
     });
 
     router.get('/results/:id', (req, res) => {
@@ -47,9 +45,7 @@ const sendError = require('./error').sendError;
             .then((data) => {
                 apiResponse(req, res, null, 'Result', data);
             })
-            .catch((err) => {
-                apiResponse(req, res, err, 'Result', null);
-            });
+            .catch((err) => apiResponse(req, res, err, 'Result', null));
     });
 
     router.get('/delete-data', isAuthenticated, (req, res) => {

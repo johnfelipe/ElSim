@@ -19,9 +19,9 @@ class District {
 
     /**
      *
-     * @param votes
-     * @param blankVotes
-     * @return {Number}
+     * @param {Array} votes
+     * @param {number} blankVotes
+     * @return {number}
      */
     calculateTotalVotes(votes, blankVotes) {
         let total = parseInt(blankVotes);
@@ -201,9 +201,6 @@ class District {
             },
             parties
         };
-
-        console.warn('Intentando crear:');
-        console.warn(sObject);
 
         return new Result(sObject);
     }

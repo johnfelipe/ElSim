@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const response = require('../../modules/response').response;
-const Util = require('../../utilities/util');
+const Util = require('../../misc/util');
 const moment = require('moment');
 const Chart = require('../../charts/chart');
 const Colors = require('../../misc/colors');
@@ -46,6 +46,8 @@ const sendError = require('../error').sendError;
         let percentage1 = req.body.percentage1;
         let percentage2 = req.body.percentage;
         let user = req.user;
+
+        console.log(percentage1,percentage2)
 
         let comparator = new Comparator(req.body);
 
@@ -121,6 +123,8 @@ const sendError = require('../error').sendError;
             return Chart.calculateCountry(resultSelected, percentage2, user, comparator.set2);
         };
 
+        console.log(comparator.set1);
+
         Chart.calculateCountry(resultSelected, percentage1, user, comparator.set1)
             .then(handleFirstResult)
             .then(handleSecondResult)
@@ -129,5 +133,4 @@ const sendError = require('../error').sendError;
 
     /** Handle all web routes */
     module.exports = router;
-
 }

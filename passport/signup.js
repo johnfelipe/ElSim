@@ -1,7 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 const bCrypt = require('bcrypt-nodejs');
-const Mailer = require('../utilities/mailer');
+const Mailer = require('../mailer/mailer');
 
 /** Class to manage singup actions. */
 class SingUp {

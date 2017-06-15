@@ -38,6 +38,9 @@ class InitSystem {
 
         UserService.saveOne(nick)
             .then(() => {
+                console.log('USER: ' + nick.email);
+                console.log('PASSWORD: ' + credentials.password);
+                console.log('Please write the user and password show above.');
                 createUser.addTick();
                 return InitSystem.loadCsv();
             })

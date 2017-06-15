@@ -49,7 +49,7 @@ class Auth {
      * @param next
      */
     static isApiAuthenticated(req, res, next) {
-        let token = req.body.token || req.params.token || req.headers['x-access-token'];
+        let token = req.body.token || req.query.token || req.headers['x-access-token'];
         if (token) {
             jwt.verify(token, config.secret, (err, decoded) => {
                 if (err) {

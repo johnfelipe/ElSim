@@ -4,7 +4,7 @@ const response = require('../../modules/response').response;
 const Chart = require('../../charts/chart');
 const Results = require('../../services/results');
 const console = require('better-console');
-const Util = require('../../utilities/util');
+const Util = require('../../misc/util');
 const moment = require('moment');
 const sendError = require('../error').sendError;
 
