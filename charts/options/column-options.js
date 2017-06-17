@@ -1,4 +1,16 @@
 let columnChartOptions = {
+    exporting: {
+        chartOptions: { // specific options for the exported image
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            }
+        },
+        fallbackToExportServer: false
+    },
     chart: {
         type: 'column',
         backgroundColor: null,

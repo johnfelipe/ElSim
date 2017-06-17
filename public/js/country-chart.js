@@ -10,6 +10,19 @@ const ciudades = ['es-vi', 'es-ab', 'es-a', 'es-al', 'es-av', 'es-ba', 'es-pm',
 let data = [];
 
 let options = {
+    exporting: {
+        chartOptions: { 
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            }
+        },
+        fallbackToExportServer: false
+    },
+
     chart: {
         borderWidth: 1
     },

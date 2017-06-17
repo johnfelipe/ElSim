@@ -1,4 +1,16 @@
 let pieChartOptions = {
+    exporting: {
+        chartOptions: { // specific options for the exported image
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            }
+        },
+        fallbackToExportServer: false
+    },
     chart: {
         type: 'pie',
         style: {
