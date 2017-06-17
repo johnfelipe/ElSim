@@ -1,15 +1,13 @@
 let columnChartOptions = {
     exporting: {
-        chartOptions: {
-            plotOptions: {
-                series: {
-                    dataLabels: {
-                        enabled: true
-                    }
+        buttons: {
+            contextButton: {
+                menuItems: null,
+                onclick: function () {
+                    this.exportChart();
                 }
             }
-        },
-        fallbackToExportServer: false
+        }
     },
     chart: {
         type: 'column',
