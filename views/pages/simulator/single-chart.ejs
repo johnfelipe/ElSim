@@ -2,9 +2,9 @@
 <html>
 <% include ../../partials/head.ejs %>
 <% include ../../partials/menu.ejs %>
-<script src="http://code.highcharts.com/5.0.6/highcharts.js"></script>
-<script src="http://code.highcharts.com/5.0.6/modules/exporting.js"></script>
-<script src="http://code.highcharts.com/modules/offline-exporting.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/offline-exporting.js"></script>
 <script src="http://code.highcharts.com/5.0.6/highcharts-3d.js"></script>
 <body>
 <div class="container">
@@ -135,7 +135,6 @@
 <script type="text/javascript">
     jQuery.noConflict();
     let options = <%- JSON.stringify(options) %>;
-    console.log(options);
     (function ($) {
         $(function () {
             $('#container').highcharts(options);
