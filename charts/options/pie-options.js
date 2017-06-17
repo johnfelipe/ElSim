@@ -1,5 +1,15 @@
 let pieChartOptions = {
     exporting: {
+                        chartOptions: { 
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            }
+        },
+        fallbackToExportServer: false,
         buttons: {
             contextButton: {
                 enabled: false
