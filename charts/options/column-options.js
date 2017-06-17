@@ -9,7 +9,7 @@ let columnChartOptions = {
                 }
             }
         },
-        fallbackToExportServer: true
+        fallbackToExportServer: false
     },
     chart: {
         type: 'column',

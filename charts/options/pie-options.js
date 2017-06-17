@@ -9,7 +9,7 @@ let pieChartOptions = {
                 }
             }
         },
-        fallbackToExportServer: true
+        fallbackToExportServer: false
     },
     chart: {
         type: 'pie',
