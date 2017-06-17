@@ -1,6 +1,6 @@
 let columnChartOptions = {
     exporting: {
-        chartOptions: { // specific options for the exported image
+        chartOptions: {
             plotOptions: {
                 series: {
                     dataLabels: {
@@ -9,7 +9,7 @@ let columnChartOptions = {
                 }
             }
         },
-        fallbackToExportServer: false
+        fallbackToExportServer: true
     },
     chart: {
         type: 'column',
