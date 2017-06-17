@@ -1,26 +1,6 @@
 let columnChartOptions = {
     exporting: {
-                chartOptions: { 
-            plotOptions: {
-                series: {
-                    dataLabels: {
-                        enabled: true
-                    }
-                }
-            }
-        },
-        fallbackToExportServer: false,
-        buttons: {
-            contextButton: {
-                enabled: false
-            },
-            printButton: {
-                text: '<b>Print</b>',
-                onclick: function () {
-                    this.print();
-                }
-            }
-        }
+        enabled: false
     },
     chart: {
         type: 'column',
