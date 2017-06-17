@@ -2,9 +2,12 @@ let columnChartOptions = {
     exporting: {
         buttons: {
             contextButton: {
-                menuItems: null,
+                enabled: false
+            },
+            printButton: {
+                text: '<b>Print</b>',
                 onclick: function () {
-                    this.exportChart();
+                    this.print();
                 }
             }
         }
