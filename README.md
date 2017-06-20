@@ -23,14 +23,14 @@ Edit `credentials.js`:
 
 Ok, in the above example we have 4 fields:
 
-- user: this field must to be a valid Gmail account that you own.
-- adminUser: this field will be the admin user.
-- adminName: this field will be the admin name.
-- password: this field will be the `user` Gmail account password and the `adminUser` web account password.
+- `user`: this field must to be a valid Gmail account that you own.
+- `adminUser`: this field will be the admin user.
+- `adminName`: this field will be the admin name.
+- `password`: this field will be the `user` Gmail account password and the `adminUser` web account password.
 
 Run setup:
 
-    $ npm setup
+    $ npm run setup
 
 Run the project:
 
@@ -38,16 +38,16 @@ Run the project:
 
 To clear database:
 
-    $ npm reset
+    $ npm run reset
 
 ## Technologies
 
 The backend uses:
 
-    * NodeJS + Express
+    * Node.js + Express
     * MongoDB
 
-The frontend is not Angular, it's simple set of views that uses:
+The frontend is not Angular, it's a simple set of views that uses:
 
     * Bootstrap 4
 
@@ -61,7 +61,7 @@ The web is at `/` and the API is at `/api/v1/`.
 
 ## Test
 
-The project uses Mocha for the unit tests, to run all of them:
+The project uses `Istanbul & Mocha` for the unit tests, to run all of them:
 
     $ npm test
 
@@ -82,10 +82,6 @@ You can use your user to login on the web or to make requests to the api.
 Web:
 
     Click login button
-    
-        OR
-    
-    Go /login
 
 API:
 

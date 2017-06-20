@@ -18,7 +18,7 @@
     "setup": "node ./scripts/init-system.js",
     "reset": "node ./scripts/hard-reset.js",
     "generate-doc": "./node_modules/.bin/jsdoc -c conf.json -t ./node_modules/ink-docstrap/template -d doc",
-    "test": "./node_modules/.bin/mocha --reporter spec --recursive"
+    "test": "istanbul cover _mocha"
   },
   "dependencies": {
     "assert": "^1.4.1",
@@ -39,6 +39,7 @@
     "fast-csv": "^2.3.0",
     "highcharts": "^5.0.2",
     "ink-docstrap": "^1.3.0",
+    "istanbul": "^0.4.5",
     "jsdoc": "^3.4.3",
     "jsonwebtoken": "^7.1.9",
     "mocha": "^3.4.2",
