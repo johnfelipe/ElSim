@@ -21,11 +21,10 @@ class InitSystem {
      *
      * @return {*}
      */
-    static setup() {
+    static async setup() {
         console.info('- System is ' + 'setting up'.green);
         console.warn('---- Start date: '.green + new Date().toLocaleString());
 
-        let promise = Q.defer();
         let createUser = new PB('Creating user', 1);
 
         let nick = {
@@ -36,18 +35,14 @@ class InitSystem {
             results: []
         };
 
-        UserService.saveOne(nick)
-            .then(() => {
-                console.log('USER: ' + nick.email);
-                console.log('PASSWORD: ' + credentials.password);
-                console.log('Please write the user and password show above.');
-                createUser.addTick();
-                return InitSystem.loadCsv();
-            })
-            .then(promise.resolve)
-            .catch(promise.reject);
+        await UserService.saveOne(nick)
 
-        return promise.promise;
+        console.log('USER: ' + nick.email);
+        console.log('PASSWORD: ' + credentials.password);
+        console.log('Please write the user and password show above.');
+        createUser.addTick();
+
+        return InitSystem.loadCsv();
     }
 
     /**
@@ -128,17 +123,9 @@ class InitSystem {
      * @param path2
      * @return {*}
      */
-    static readCsv(path1, path2) {
-        let promise = Q.defer();
-
-        const resultsLoaded = (data) => InitSystem.readParties(path2, data);
-
-        InitSystem.readResultados(path1)
-            .then(resultsLoaded)
-            .then(promise.resolve)
-            .catch(promise.reject);
-
-        return promise.promise;
+    static async readCsv(path1, path2) {
+        let data = await InitSystem.readResultados(path1);
+        return InitSystem.readParties(path2,data);
     }
 
     /**
@@ -187,23 +174,23 @@ class InitSystem {
     }
 }
 
-const badEnd = (err) => {
+const badEnd = async (err) => {
     console.error(err);
     console.error('An error occurred, now system is cleaning up...');
     console.error('Please run ' + 'npm setup'.blue + ' again');
     console.error('If error again, then stop and send mail to:' + 'jesusgonzaleznovez@gmail.com'.blue);
 
     const HardReset = require('./hard-reset-class');
-    HardReset.hardReset()
-        .then(() => {
-            console.warn('---- End date: '.green + new Date().toLocaleString());
-            process.exit(0);
-        })
-        .catch((err) => {
-            console.error(err);
-            console.warn('---- End date: '.green + new Date().toLocaleString());
-            process.exit(1);
-        });
+
+    try{
+        await HardReset.hardReset();
+        console.warn('---- End date: '.green + new Date().toLocaleString());
+        process.exit(0);
+    } catch (err) {
+        console.error(err);
+        console.warn('---- End date: '.green + new Date().toLocaleString());
+        process.exit(1);   
+    }
 };
 
 const goodEnd = () => {
