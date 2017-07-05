@@ -65,54 +65,55 @@ const someElection = {
 };
 
 describe('Country', () => {
-    it(
-        'calculateCountry',
-        () => Chart
-            .calculateCountry(
+    it('calculateCountry', async () => {
+        let result = await Chart.calculateCountry(
                 '1977-06-01,sistema',
                 '0',
                 undefined,
                 someElection
-            )
-            .then((result) => expect(result.global).to.be.an('Array').that.is.not.empty)
-    );
+        );
 
-    it('calculateCountry (With Communities)', () => {
+        expect(result.global).to.be.an('Array').that.is.not.empty;
+
+    });
+
+    it('calculateCountry (With Communities)', async () => {
         someElection.aggregateCommunities = 'on';
-        return Chart
-            .calculateCountry(
+
+        let result = await Chart.calculateCountry(
                 '1977-06-01,sistema',
                 '0',
                 undefined,
                 someElection
-            )
-            .then((result) => expect(result.global).to.be.an('Object'));
+        );
+
+        expect(result.global).to.be.an('Object');
     });
 
-    it('calculateCountry (Whole Country)', () => {
+    it('calculateCountry (Whole Country)', async () => {
         someElection.wholeCountry = 'on';
-        return Chart
-            .calculateCountry(
+        
+        let result = await Chart.calculateCountry(
                 '1977-06-01,sistema',
                 '0',
                 undefined,
                 someElection
-            )
-            .then((result) => expect(result.global).to.be.an('Object'));
+        );
+
+        expect(result.global).to.be.an('Object');
     });
 
-    it(
-        'calculateCountry (Bad Input)',
-        () => Chart
-            .calculateCountry('FAKE INPUT')
-            .then((result) => expect(result).to.eql({
+    it('calculateCountry (Bad Input)', async () => {
+
+        let result = await Chart.calculateCountry('FAKE INPUT');
+         
+        expect(result).to.eql({
                     user: undefined,
                     global: [],
                     wholeCountry: false,
                     communities: false,
                     title: 'Country Chart'
-                })
-            )
-    );
+        });    
+    });
 });
 

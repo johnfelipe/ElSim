@@ -18,7 +18,8 @@
     "setup": "node ./scripts/init-system.js",
     "reset": "node ./scripts/hard-reset.js",
     "generate-doc": "./node_modules/.bin/jsdoc -c conf.json -t ./node_modules/ink-docstrap/template -d doc",
-    "test": "istanbul cover _mocha"
+    "test-coverage": "istanbul cover _mocha --recursive --timeout=3000",
+    "test": "./node_modules/.bin/_mocha --recursive --timeout=3000"
   },
   "dependencies": {
     "assert": "^1.4.1",
