@@ -1,31 +1,33 @@
-const express = require('express');
-const router = express.Router();
-const response = require('../../modules/response').response;
-const Chart = require('../../charts/chart');
-const Results = require('../../services/results');
-const console = require('better-console');
-const Util = require('../../misc/util');
-const moment = require('moment');
+const express   = require('express');
+const router    = express.Router();
+const response  = require('../../modules/response').response;
+const Chart     = require('../../charts/chart');
+const Results   = require('../../services/results');
+const console   = require('better-console');
+const Util      = require('../../misc/util');
+const moment    = require('moment');
 const sendError = require('../error').sendError;
 
 {
 
-    router.get('/single-graphic-form', (req, res) => {
+    router.get('/single-graphic-form', async (req, res) => {
         console.info('GET '.yellow + '/single-graphic-form');
 
-        Results.find()
-            .then((data) => {
-                data.sort(Util.sortByDate);
-                response(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
-                    results: data,
-                    moment,
-                    err: null
-                });
-            })
-            .catch((err) => sendError(req, res, err));
+        try {
+            let data = await Results.find();
+            data.sort(Util.sortByDate);
+            response(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
+                results: data,
+                moment : moment,
+                err    : null
+            });
+
+        } catch (err) {
+            sendError(req, res, err);
+        }
     });
 
-    router.post('/graphic-form', (req, res) => {
+    router.post('/graphic-form', async (req, res) => {
 
         console.info('POST '.yellow + '/graphic-form');
 
@@ -39,15 +41,18 @@ const sendError = require('../error').sendError;
             return;
         }
 
-        let mode = req.body.mode;
-        let mandates = req.body.mandates;
-        let percentage = req.body.percentage;
+        let mode           = req.body.mode;
+        let mandates       = req.body.mandates;
+        let percentage     = req.body.percentage;
         let resultSelected = req.body.resultSelected;
-        let user = req.user;
+        let user           = req.user;
 
-        Chart.calculateDistrict(mode, mandates, percentage, resultSelected, user)
-            .then((options) => res.render('pages/simulator/single-chart', options))
-            .catch((err) => sendError(req, res, err));
+        try {
+            let options = await Chart.calculateDistrict(mode, mandates, percentage, resultSelected, user);
+            res.render('pages/simulator/single-chart', options);
+        } catch (err) {
+            sendError(req, res, err);
+        }
     });
 
     router.post('/save-single-chart', (req, res) => {

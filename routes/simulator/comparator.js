@@ -1,32 +1,34 @@
-const express = require('express');
-const router = express.Router();
-const response = require('../../modules/response').response;
-const Util = require('../../misc/util');
-const moment = require('moment');
-const Chart = require('../../charts/chart');
-const Colors = require('../../misc/colors');
-const Icons = require('../../misc/icons');
-const console = require('better-console');
+const express    = require('express');
+const router     = express.Router();
+const response   = require('../../modules/response').response;
+const Util       = require('../../misc/util');
+const moment     = require('moment');
+const Chart      = require('../../charts/chart');
+const Colors     = require('../../misc/colors');
+const Icons      = require('../../misc/icons');
+const console    = require('better-console');
 const Comparator = require('../../modules/comparator');
-const sendError = require('../error').sendError;
+const sendError  = require('../error').sendError;
 
 {
-    router.get('/compare-country-graphic-form', (req, res) => {
+    router.get('/compare-country-graphic-form', async (req, res) => {
         console.info('GET '.yellow + '/compare-country-graphic-form');
 
-        Util.calculateElections()
-            .then((result) => {
+        try {
+            let result = await Util.calculateElections();
 
-                result.elections.sort(Util.sortByDate);
+            result.elections.sort(Util.sortByDate);
 
-                response(req, res, 'pages/simulator/compare-country-graphic-form', 'Compare Country Chart', {
-                    results: result.data,
-                    elections: result.elections,
-                    moment,
-                    err: null
-                });
-            })
-            .catch((err) => sendError(req, res, err));
+            response(req, res, 'pages/simulator/compare-country-graphic-form', 'Compare Country Chart', {
+                results  : result.data,
+                elections: result.elections,
+                moment   : moment,
+                err      : null
+            });
+
+        } catch (err) {
+            sendError(req, res, err);
+        }
     });
 
     router.post('/compare-country-form', (req, res) => {
@@ -43,18 +45,18 @@ const sendError = require('../error').sendError;
         }
 
         let resultSelected = req.body.resultSelected;
-        let percentage1 = req.body.percentage1;
-        let percentage2 = req.body.percentage;
-        let user = req.user;
+        let percentage1    = req.body.percentage1;
+        let percentage2    = req.body.percentage;
+        let user           = req.user;
 
-        console.log(percentage1,percentage2)
+        console.log(percentage1, percentage2)
 
         let comparator = new Comparator(req.body);
 
         comparator.fillSets();
 
         const agrupaGlobal = (conjunto) => {
-            let parties = {};
+            let parties     = {};
             let communities = Object.keys(conjunto);
             for (let community of communities) {
                 let partiesKeys = Object.keys(conjunto[community].resultadoFinal.parties);
@@ -80,54 +82,48 @@ const sendError = require('../error').sendError;
             }
         };
 
-        const handleSecondResult = (o) => {
-            options2 = o;
-            if (typeof comparator.set1.communities !== 'undefined') {
-                options1.global.agrupado = agrupaGlobal(options1.global.agrupado);
-            }
-            if (typeof comparator.set2.communities !== 'undefined') {
-                options2.global.agrupado = agrupaGlobal(options2.global.agrupado);
-            }
-
-            cleanSet(options1.global.agrupado);
-            cleanSet(options2.global.agrupado);
-
-            comparator.fillDifferences(
-                options1.global.agrupado,
-                options2.global.agrupado,
-                percentage1,
-                percentage2
-            );
-
-            let differences = comparator.differences;
-
-            let options = {
-                options1,
-                options2,
-                colors: Colors,
-                icons: Icons,
-                user,
-                title: 'Compare Country',
-                differences
-            };
-
-            if (typeof options.differences.results === 'undefined') {
-                options.differences.results = [];
-            }
-
-            res.render('pages/simulator/compare-country-chart', options);
-        };
-
-        const handleFirstResult = (o) => {
-            options1 = o;
-            return Chart.calculateCountry(resultSelected, percentage2, user, comparator.set2);
-        };
-
-        console.log(comparator.set1);
-
         Chart.calculateCountry(resultSelected, percentage1, user, comparator.set1)
-            .then(handleFirstResult)
-            .then(handleSecondResult)
+            .then((o) => {
+                options1 = o;
+                return Chart.calculateCountry(resultSelected, percentage2, user, comparator.set2);
+            })
+            .then((o) => {
+                options2 = o;
+                if (typeof comparator.set1.communities !== 'undefined') {
+                    options1.global.agrupado = agrupaGlobal(options1.global.agrupado);
+                }
+                if (typeof comparator.set2.communities !== 'undefined') {
+                    options2.global.agrupado = agrupaGlobal(options2.global.agrupado);
+                }
+
+                cleanSet(options1.global.agrupado);
+                cleanSet(options2.global.agrupado);
+
+                comparator.fillDifferences(
+                    options1.global.agrupado,
+                    options2.global.agrupado,
+                    percentage1,
+                    percentage2
+                );
+
+                let differences = comparator.differences;
+
+                let options = {
+                    options1   : options1,
+                    options2   : options2,
+                    colors     : Colors,
+                    icons      : Icons,
+                    user       : user,
+                    title      : 'Compare Country',
+                    differences: differences
+                };
+
+                if (typeof options.differences.results === 'undefined') {
+                    options.differences.results = [];
+                }
+
+                res.render('pages/simulator/compare-country-chart', options);
+            })
             .catch((err) => sendError(req, res, err));
     });
 

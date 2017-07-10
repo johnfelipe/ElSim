@@ -1,5 +1,5 @@
-const express = require('express');
-const router = express.Router();
+const express  = require('express');
+const router   = express.Router();
 const response = require('../../modules/response').response;
 
 module.exports = (passport) => {
@@ -23,13 +23,13 @@ module.exports = (passport) => {
     router.post('/login', passport.authenticate('login', {
         successRedirect: '/',
         failureRedirect: '/login',
-        failureFlash: true
+        failureFlash   : true
     }));
 
     router.post('/signup', passport.authenticate('signup', {
         successRedirect: '/',
         failureRedirect: '/signup',
-        failureFlash: true
+        failureFlash   : true
     }));
 
     return router;

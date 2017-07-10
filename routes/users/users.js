@@ -1,33 +1,33 @@
-const express = require('express');
-const router = express.Router();
-const Auth = require('../../passport/auth');
+const express     = require('express');
+const router      = express.Router();
+const Auth        = require('../../passport/auth');
 const Subscribers = require('../../models/subscriber');
-const Mailer = require('../../mailer/mailer');
-const loadAll = require('../../services/all').loadAll;
-const sendError = require('../error').sendError;
-const moment = require('moment');
+const Mailer      = require('../../mailer/mailer');
+const loadAll     = require('../../services/all').loadAll;
+const sendError   = require('../error').sendError;
+const moment      = require('moment');
 
 {
     router.get('/profile', Auth.isProfileAuthenticated, (req, res) => {
         let options = {
-            title: 'Profile',
-            user: req.user,
+            title : 'Profile',
+            user  : req.user,
             advice: false,
-            err: false,
-            moment
+            err   : false,
+            moment: moment
         };
         res.render('pages/auth/profile', options);
     });
 
     router.get('/profile/remove-result/:index', Auth.isProfileAuthenticated, (req, res) => {
         let options = {
-            title: 'Profile',
-            user: req.user,
+            title : 'Profile',
+            user  : req.user,
             advice: false,
-            err: false,
-            moment
+            err   : false,
+            moment: moment
         };
-        let index = parseInt(req.params.index);
+        let index   = parseInt(req.params.index);
 
         if (typeof req.user.results !== 'undefined') {
             if (typeof req.user.results[index] !== 'undefined') {
@@ -61,7 +61,7 @@ const moment = require('moment');
         let email = req.body.subscriber;
 
         let s = new Subscribers({
-            email,
+            email  : email,
             options: {}
         });
 
@@ -69,8 +69,8 @@ const moment = require('moment');
         const mailSent = (result) => {
             res.render('pages/misc/help', {
                 title: 'Help',
-                user: req.user,
-                err: null
+                user : req.user,
+                err  : null
             });
         };
 
@@ -87,9 +87,9 @@ const moment = require('moment');
                 if (typeof err.code !== 'undefined') {
                     if (err.code === 11000) {
                         res.render('pages/misc/help', {
-                            title: 'Help',
-                            user: req.user,
-                            err: null,
+                            title  : 'Help',
+                            user   : req.user,
+                            err    : null,
                             already: true
                         });
                         return;
@@ -114,11 +114,11 @@ const moment = require('moment');
 
         const finalResponse = (resultado) => {
             res.render('pages/auth/admin', {
-                user: req.user,
-                title: 'Administration',
-                Logs: resultado.logs,
-                Results: resultado.results.length,
-                Users: resultado.users,
+                user      : req.user,
+                title     : 'Administration',
+                Logs      : resultado.logs,
+                Results   : resultado.results.length,
+                Users     : resultado.users,
                 mailResult: 'Mail sent to ' + subscribers.length + ' users.',
                 moment
             });
@@ -131,7 +131,7 @@ const moment = require('moment');
 
         const handleSubscribers = (s) => {
             subscribers = s;
-            let mails = [];
+            let mails   = [];
 
             for (let s of subscribers) {
                 mails.push(s.email);
