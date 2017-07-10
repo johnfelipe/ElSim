@@ -1,7 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../models/user');
-const bCrypt = require('bcrypt-nodejs');
-const Mailer = require('../mailer/mailer');
+const User          = require('../models/user');
+const bCrypt        = require('bcrypt-nodejs');
+const Mailer        = require('../mailer/mailer');
 
 /** Class to manage singup actions. */
 class SingUp {
@@ -10,7 +10,7 @@ class SingUp {
      * @param passport
      */
     constructor(passport) {
-        this.passReq = {
+        this.passReq  = {
             passReqToCallback: true
         };
         this.passport = passport;
@@ -36,12 +36,12 @@ class SingUp {
                 done(null, false, req.flash('message', 'User Already Exists'));
                 return;
             }
-            let newUser = new User();
-            newUser.email = username;
+            let newUser      = new User();
+            newUser.email    = username;
             newUser.password = SingUp.createHash(password);
-            newUser.name = req.body.name;
-            newUser.admin = false;
-            newUser.results = [];
+            newUser.name     = req.body.name;
+            newUser.admin    = false;
+            newUser.results  = [];
 
             if (typeof req.body.born !== 'undefined') {
                 newUser.born = req.body.born;

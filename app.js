@@ -1,20 +1,20 @@
 /** Main module of the server side */
-let express = require('express');
-let path = require('path');
-let favicon = require('serve-favicon');
-let cookieParser = require('cookie-parser');
-let bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 let app = express();
-let mongoose = require('mongoose');
-let config = require('./config');
-let passport = require('passport');
-let flash = require('connect-flash');
-let expressSession = require('express-session');
-let InitPassport = require('./passport/init');
-let errorHandler = require('./misc/errorHandler');
-let Q = require('q');
-let colors = require('colors');
-let console = require('better-console');
+const mongoose = require('mongoose');
+const config = require('./config');
+const passport = require('passport');
+const flash = require('connect-flash');
+const expressSession = require('express-session');
+const InitPassport = require('./passport/init');
+const errorHandler = require('./misc/errorHandler');
+const Q = require('q');
+const colors = require('colors');
+const console = require('better-console');
 
 /** Common configuration for the server side. */
 app.set('views', path.join(__dirname, 'views'));
@@ -40,23 +40,23 @@ let initPassport = new InitPassport(passport);
 /** Flash messages */
 app.use(flash());
 
-let quiz = require('./routes/games/quiz');
+const quiz = require('./routes/games/quiz');
 
-let comparator = require('./routes/simulator/comparator');
-let country = require('./routes/simulator/country');
-let district = require('./routes/simulator/district');
+const comparator = require('./routes/simulator/comparator');
+const country = require('./routes/simulator/country');
+const district = require('./routes/simulator/district');
 
-let users = require('./routes/users/users');
-let auth = require('./routes/users/auth')(passport);
+const users = require('./routes/users/users');
+const auth = require('./routes/users/auth')(passport);
 
-let data = require('./routes/data');
-let misc = require('./routes/misc');
+const data = require('./routes/data');
+const misc = require('./routes/misc');
 
-let apiLogs = require('./routes/api/logs');
-let apiMisc = require('./routes/api/misc');
-let apiQuestions = require('./routes/api/questions');
-let apiResults = require('./routes/api/results');
-let apiUsers = require('./routes/api/users');
+const apiLogs = require('./routes/api/logs');
+const apiMisc = require('./routes/api/misc');
+const apiQuestions = require('./routes/api/questions');
+const apiResults = require('./routes/api/results');
+const apiUsers = require('./routes/api/users');
 
 app.use('/', quiz);
 

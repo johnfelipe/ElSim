@@ -1,4 +1,4 @@
-const Result = require('../models/result');
+const Result  = require('../models/result');
 const console = require('better-console');
 
 /** Class to handle a district simulation. */
@@ -11,9 +11,9 @@ class District {
      * @param withTable
      */
     constructor(votes, names, options, withTable) {
-        this.votes = votes;
-        this.names = names;
-        this.options = options;
+        this.votes     = votes;
+        this.names     = names;
+        this.options   = options;
         this.withTable = withTable;
     }
 
@@ -63,13 +63,16 @@ class District {
      * @return {number}
      */
     newSeat(votes, esc, num_par) {
-        let imax = 0, ct, max = 0;
-        for (ct = 0; ct < num_par; ++ct) {
+        let imax = 0;
+        let max  = 0;
+
+        for (let ct = 0; ct < num_par; ++ct) {
             if (max < (parseInt(votes[ct]) / (esc[ct] + 1))) {
-                max = parseInt(votes[ct]) / (esc[ct] + 1);
+                max  = parseInt(votes[ct]) / (esc[ct] + 1);
                 imax = ct;
             }
         }
+
         return imax;
     }
 
@@ -128,8 +131,9 @@ class District {
 
         for (let i = 0, len = table.length; i < len; i++) {
             for (let j = 0, fil_len = table[i].length; j < fil_len; j++) {
-                aux = table[i][j];
+                aux         = table[i][j];
                 table[i][j] = {};
+
                 table[i][j][validatedNames[j]] = aux;
             }
         }
@@ -148,16 +152,16 @@ class District {
      * @return {{numberOfVotes: *, minNumberOfVotes: *, parties: {}}}
      */
     calculateSeats(votes, names, mandates, blankVotes, percentage, withTable) {
-        let numberOfParties = votes.length;
-        let numberOfVotes = this.calculateTotalVotes(votes, blankVotes);
+        let numberOfParties  = votes.length;
+        let numberOfVotes    = this.calculateTotalVotes(votes, blankVotes);
         let minNumberOfVotes = Math.floor(numberOfVotes * percentage / 100);
-        let result = this.fillResultVar(numberOfVotes, minNumberOfVotes);
-        let seats, numberOfPartiesValidated, validatedVotes = [], validatedNames = [];
+        let result           = this.fillResultVar(numberOfVotes, minNumberOfVotes);
+        let validatedVotes   = [];
+        let validatedNames   = [];
 
-        numberOfPartiesValidated = this.validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
+        let numberOfPartiesValidated = this.validateParties(numberOfParties, minNumberOfVotes, votes, names, validatedVotes, validatedNames);
 
-        seats = new Array(numberOfPartiesValidated).fill(0);
-
+        let seats = new Array(numberOfPartiesValidated).fill(0);
         let table = this.fillSeats(mandates, seats, validatedVotes, numberOfPartiesValidated);
 
         this.fillPartiesResult(numberOfPartiesValidated, result, validatedNames, seats);
@@ -175,29 +179,29 @@ class District {
      * @return {*}
      */
     static createResultEntity(result) {
-        let lines = result.votes.split('\n'),
+        let lines   = result.votes.split('\n'),
             parties = {}, aux;
 
         const regEx = new RegExp(/(\r\n|\n|\r)/gm);
 
         for (let line of lines) {
-            aux = line.split(' ');
+            aux                                = line.split(' ');
             parties[aux[0].replace(regEx, "")] = aux[2].replace(regEx, "");
         }
 
         let sObject = {
-            community: result.community,
-            cod_province: result.cod_province,
-            province: result.province,
-            population: result.population,
-            total_voters: result.census,
-            valid_votes: result.census - result.nulls,
+            community       : result.community,
+            cod_province    : result.cod_province,
+            province        : result.province,
+            population      : result.population,
+            total_voters    : result.census,
+            valid_votes     : result.census - result.nulls,
             votes_to_parties: (result.census - result.nulls) - result.blanks,
-            blank_votes: result.blanks,
-            null_votes: result.nulls,
-            election: {
+            blank_votes     : result.blanks,
+            null_votes      : result.nulls,
+            election        : {
                 author: result.author,
-                date: result.date
+                date  : result.date
             },
             parties
         };

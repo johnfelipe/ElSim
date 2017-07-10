@@ -1,5 +1,5 @@
-const District = require('../modules/district');
-const has = Object.prototype.hasOwnProperty;
+const District            = require('../modules/district');
+const has                 = Object.prototype.hasOwnProperty;
 const MapCommunitiesChart = require('./map-communities-chart');
 
 /** Handles a Map Whole Country charts */
@@ -14,7 +14,10 @@ class MapWholeChart {
      */
     static calculateGlobalWholeCountry(data, conjunto, p) {
         let groupedByCommunity = MapCommunitiesChart.calculateGlobalWithCommunities(data, conjunto, false, p);
-        let parties = {}, votes = [], names = [];
+
+        let parties    = {};
+        let votes      = [];
+        let names      = [];
         let blankVotes = 0;
 
         let communityKeys = Object.keys(groupedByCommunity);
@@ -33,12 +36,13 @@ class MapWholeChart {
         }
 
         let dhondtConfig = {
-            mandates: 350,
+            mandates  : 350,
             percentage: p,
             blankVotes
         };
 
         let keys = Object.keys(parties);
+
         for (let partido of keys) {
             votes.push(parties[partido]);
             names.push(partido);
@@ -47,9 +51,11 @@ class MapWholeChart {
         let d = new District(votes, names, dhondtConfig, false);
 
         let result = d.compute();
+
         keys = Object.keys(result.parties);
-        for(let key of keys){
-            if(result.parties[key] === 0){
+
+        for (let key of keys) {
+            if (result.parties[key] === 0) {
                 delete result.parties[key];
             }
         }

@@ -4,31 +4,16 @@ const Results = require('../models/result');
 const Q = require('q');
 
 class AllService {
-    static loadAll() {
+    static async loadAll() {
         let promise = Q.defer();
+    
+        let users = await Users.find();
 
-        let users, logs, results;
+        let logs = await Logs.find();
 
-        const handleResults = (data) => {
-            results = [...data];
-            promise.resolve({logs, results, users});
-        };
+        let results = await Results.find();
 
-        const handleLogs = (data) => {
-            logs = [...data];
-            return Results.find();
-        };
-
-        const handleUsers = (data) => {
-            users = [...data];
-            return Logs.find();
-        };
-
-        Users.find()
-            .then(handleUsers)
-            .then(handleLogs)
-            .then(handleResults)
-            .catch(promise.reject);
+        promise.resolve({logs, results, users});
 
         return promise.promise;
     }

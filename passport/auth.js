@@ -1,7 +1,7 @@
-const config = require('../config');
-const jwt = require('jsonwebtoken');
-const User = require('../models/user');
-const bCrypt = require('bcrypt-nodejs');
+const config  = require('../config');
+const jwt     = require('jsonwebtoken');
+const User    = require('../models/user');
+const bCrypt  = require('bcrypt-nodejs');
 const console = require('better-console');
 
 /** Class to handle passport auth methods. */
@@ -19,8 +19,8 @@ class Auth {
         }
         res.render('pages/index', {
             title: 'Welcome Page',
-            user: req.user,
-            err: 'Sorry, but you must to login to use the simulator or manage data.'
+            user : req.user,
+            err  : 'Sorry, but you must to login to use the simulator or manage data.'
         });
     }
 
@@ -37,8 +37,8 @@ class Auth {
         }
         res.render('pages/auth/profile', {
             title: 'Profile',
-            user: req.user,
-            err: 'Sorry, but you must to login to see your profile!'
+            user : req.user,
+            err  : 'Sorry, but you must to login to see your profile!'
         });
     }
 
@@ -89,16 +89,16 @@ class Auth {
             let object = {
                 success: false,
                 message: 'Authentication failed',
-                token: null
+                token  : null
             };
             if (user) {
                 if (Auth.isValidPassword(user, req.body.password)) {
-                    let token = jwt.sign(user, config.secret, {
+                    let token      = jwt.sign(user, config.secret, {
                         expiresIn: 3600 // expires in 1 hours
                     });
                     object.success = true;
                     object.message = 'Enjoy your token!';
-                    object.token = token;
+                    object.token   = token;
                 }
             }
             res.status(200).json(object);

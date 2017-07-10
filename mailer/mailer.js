@@ -1,21 +1,25 @@
 const nodemailer = require('nodemailer');
-const Q = require('q');
+const Q          = require('q');
+
 let config;
 
 try {
     config = require('../credentials');
 } catch (e) {
     console.log('credentials.js not found, using jesusgonzaleznovez@gmail.com as user');
-    config = {user: 'foo@foo.com', password: 'foo'};
+    config = {
+        user    : 'foo@foo.com',
+        password: 'foo'
+    };
 }
 
 class Mailer {
     constructor(destination, text) {
-        this.destination = destination;
-        this.text = text;
+        this.destination     = destination;
+        this.text            = text;
         this.transportConfig = {
             service: 'Gmail',
-            auth: {
+            auth   : {
                 user: config.user,
                 pass: config.password
             }
@@ -40,23 +44,20 @@ class Mailer {
                 'Send me an email to <a href="mailto:' + config.user + '">' + config.user + '</a></p>';
 
             let mailOptions = {
-                from: '"ElSim News" ' + config.user,
-                //to: this.destination,
-                bcc: this.destination,
+                from   : '"ElSim News" ' + config.user,
+                bcc    : this.destination,
                 subject: 'ElSim NewsLetter',
-                text: this.text,
-                html: htmlContent
+                text   : this.text,
+                html   : htmlContent
             };
 
-            const done = (err, result) => {
+            transporter.sendMail(mailOptions, (err, result) => {
                 if (err) {
                     promise.reject(err);
                     return;
                 }
                 promise.resolve(result);
-            };
-
-            transporter.sendMail(mailOptions, done);
+            });
         }
 
         return promise.promise;

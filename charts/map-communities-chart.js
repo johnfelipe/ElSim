@@ -1,6 +1,6 @@
-const District = require('../modules/district');
-const has = Object.prototype.hasOwnProperty;
+const District     = require('../modules/district');
 const MapChartUtil = require('./map-chart-util');
+const has          = Object.prototype.hasOwnProperty;
 
 /** Handles a Map Community Grouped charts. */
 class MapCommunitiesChart {
@@ -20,16 +20,16 @@ class MapCommunitiesChart {
 
             if (!has.call(groupedByCommunity, data[i].community)) {
                 groupedByCommunity[data[i].community] = {
-                    election: data[i].election,
-                    community: data[i].community,
-                    population: parseInt(data[i].population),
-                    total_voters: parseInt(data[i].total_voters),
-                    valid_votes: parseInt(data[i].valid_votes),
+                    election        : data[i].election,
+                    community       : data[i].community,
+                    population      : parseInt(data[i].population),
+                    total_voters    : parseInt(data[i].total_voters),
+                    valid_votes     : parseInt(data[i].valid_votes),
                     votes_to_parties: parseInt(data[i].votes_to_parties),
-                    blank_votes: parseInt(data[i].blank_votes),
-                    null_votes: parseInt(data[i].null_votes),
-                    parties: data[i].parties,
-                    mandates: parseInt(MapChartUtil.calculateMandates(data[i].province, conjunto))
+                    blank_votes     : parseInt(data[i].blank_votes),
+                    null_votes      : parseInt(data[i].null_votes),
+                    parties         : data[i].parties,
+                    mandates        : parseInt(MapChartUtil.calculateMandates(data[i].province, conjunto))
                 };
 
                 for (let key in groupedByCommunity[data[i].community].parties) {
@@ -69,14 +69,13 @@ class MapCommunitiesChart {
                 groupedByCommunity[community].provinces = MapChartUtil.calculateProvinces(community);
 
                 let dhondtConfig = {
-                    mandates: groupedByCommunity[community].mandates,
+                    mandates  : groupedByCommunity[community].mandates,
                     percentage: (typeof communityPercentage !== 'undefined') ? parseFloat(communityPercentage) : 3.0,
                     blankVotes: groupedByCommunity[community].blank_votes
                 };
 
-                let votes = [];
-                let names = [];
-
+                let votes   = [];
+                let names   = [];
                 let parties = Object.keys(groupedByCommunity[community].parties);
 
                 for (let party of parties) {

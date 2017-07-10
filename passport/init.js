@@ -1,6 +1,6 @@
-const Login = require('./login');
+const Login  = require('./login');
 const SingUp = require('./signup');
-const User = require('../models/user');
+const User   = require('../models/user');
 
 /** Class to initialize auth system. */
 class InitAuth {
@@ -12,7 +12,7 @@ class InitAuth {
         this.passport = passport;
         this.passport.serializeUser(InitAuth.serializeUser);
         this.passport.deserializeUser(this.deserializeUser);
-        this.login = new Login(passport);
+        this.login   = new Login(passport);
         this.singnup = new SingUp(passport);
     }
 

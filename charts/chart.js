@@ -1,17 +1,17 @@
-const highcharts = require('node-highcharts');
-const Color = require('./../misc/colors');
-const BarChart = require('./column-chart');
-const PieChart = require('./pie-module');
-const MapChart = require('./map-chart');
+const highcharts          = require('node-highcharts');
+const Color               = require('./../misc/colors');
+const BarChart            = require('./column-chart');
+const PieChart            = require('./pie-module');
+const MapChart            = require('./map-chart');
 const MapCommunitiesChart = require('./map-communities-chart');
-const MapWholeChart = require('./map-whole-chart');
-const User = require('../models/user');
-const Result = require('../models/result');
-const Icons = require('./../misc/icons');
-const District = require('../modules/district');
-const moment = require('moment');
-const Q = require('q');
-const Timer = require('../misc/timer');
+const MapWholeChart       = require('./map-whole-chart');
+const User                = require('../models/user');
+const Result              = require('../models/result');
+const Icons               = require('./../misc/icons');
+const District            = require('../modules/district');
+const moment              = require('moment');
+const Q                   = require('q');
+const Timer               = require('../misc/timer');
 
 /** Class to manage charts. */
 class Chart {
@@ -59,13 +59,13 @@ class Chart {
      */
     static fillCalculateDistrictOptions(election, graphOptions, result, user) {
         return {
-            title: 'Chart',
-            author: election.election.author,
-            date: election.election.date,
+            title   : 'Chart',
+            author  : election.election.author,
+            date    : election.election.date,
             province: election.cod_province,
-            options: graphOptions,
+            options : graphOptions,
             result,
-            icons: Icons,
+            icons   : Icons,
             user,
             moment
         };
@@ -91,12 +91,12 @@ class Chart {
             }
 
             user.results.push({
-                date: election.election.date,
+                date    : election.election.date,
                 province: election.cod_province,
                 result,
                 mandates,
                 percentage,
-                blank: election.blank_votes
+                blank   : election.blank_votes
             });
 
             return user.save();
@@ -119,14 +119,14 @@ class Chart {
      * @param user
      * @return {*}
      */
-    static calculateDistrict(mode, mandates, percentage, resultSelected, user) {
+    static async calculateDistrict(mode, mandates, percentage, resultSelected, user) {
         let promise = Q.defer();
 
         let timer = new Timer('Execution time');
         timer.start();
 
-        let votes = [];
-        let names = [];
+        let votes           = [];
+        let names           = [];
         let districtOptions = {
             mandates,
             percentage,
@@ -135,52 +135,46 @@ class Chart {
 
         let result = null, election = null;
 
-        const handleData = (data) => {
-            if (!data) {
-                promise.reject('Result not found');
-                return;
-            }
 
-            election = data;
-            districtOptions.blankVotes = data.blank_votes;
+        let data = await Result.findOne({_id: resultSelected});
 
-            let keys = Object.keys(data.parties);
-            for (let key of keys) {
-                votes.push(data.parties[key]);
-                names.push(key);
-            }
+        if (!data) {
+            promise.reject('Result not found');
+            return;
+        }
 
-            let d = new District(votes, names, districtOptions, true);
+        election                   = data;
+        districtOptions.blankVotes = data.blank_votes;
 
-            result = d.compute();
+        let keys = Object.keys(data.parties);
+        for (let key of keys) {
+            votes.push(data.parties[key]);
+            names.push(key);
+        }
 
-            timer.end();
-            //console.info((timer.name).yellow + ': '.yellow + timer.finishSeconds() + '(s)'.yellow);
+        let d = new District(votes, names, districtOptions, true);
 
-            if (mode === 'column') {
-                chartDone(Chart.createColumn(result.parties));
-            } else {
-                chartDone(Chart.createPie(result.parties));
-            }
+        result = d.compute();
 
-        };
+        timer.end();
+        //console.info((timer.name).yellow + ': '.yellow + timer.finishSeconds() + '(s)'.yellow);
 
+        if (mode === 'column') {
+            await chartDone(Chart.createColumn(result.parties));
+        } else {
+            await chartDone(Chart.createPie(result.parties));
+        }
 
-        Result.findOne({_id: resultSelected})
-            .then(handleData)
-            .catch(promise.reject);
-
-        const chartDone = (graph_options) => {
+        const chartDone = async (graph_options) => {
             let options = Chart.fillCalculateDistrictOptions(election, graph_options, result, user);
             if (typeof user === 'undefined' || !user) {
                 promise.resolve(options);
                 return;
             }
 
-            Chart
-                .addResultToUser(user, election, result, mandates, percentage)
-                .then(() => promise.resolve(options))
-                .catch(promise.reject);
+            let added = await Chart
+                .addResultToUser(user, election, result, mandates, percentage);
+            promise.resolve(options);
         };
 
         return promise.promise;
@@ -199,13 +193,13 @@ class Chart {
 
         let election = {
             author: resultSelected.split(',')[1],
-            date: resultSelected.split(',')[0]
+            date  : resultSelected.split(',')[0]
         };
 
         let p = parseFloat(percentage);
         if (isNaN(p)) p = 0;
         let config = {
-            mandates: 2,
+            mandates  : 2,
             percentage: (p >= 0) ? p : (p * -1),
             blankVotes: 0
         };
@@ -230,7 +224,7 @@ class Chart {
             } else if (datos && typeof datos.aggregateCommunities !== 'undefined') {
                 global = {
                     isAggregateCommunities: true,
-                    agrupado: MapCommunitiesChart.calculateGlobalWithCommunities(data, datos, true, config.percentage)
+                    agrupado              : MapCommunitiesChart.calculateGlobalWithCommunities(data, datos, true, config.percentage)
                 };
             } else {
                 global = MapChart.calculateGlobal(data, config, datos);
@@ -240,8 +234,8 @@ class Chart {
                 user,
                 global,
                 wholeCountry: (datos && typeof datos.wholeCountry !== 'undefined') ? datos.wholeCountry : false,
-                communities: (datos && typeof datos.aggregateCommunities !== 'undefined') ? datos.aggregateCommunities : false,
-                title: 'Country Chart'
+                communities : (datos && typeof datos.aggregateCommunities !== 'undefined') ? datos.aggregateCommunities : false,
+                title       : 'Country Chart'
             });
         };
 

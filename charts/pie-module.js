@@ -8,16 +8,15 @@ class PieChart {
      * @return {Object}
      */
     static fillOptions(result) {
-        let options = pieOptions;
+        let options      = pieOptions;
         let resultsArray = [];
-
-        let keys = Object.keys(result);
+        let keys         = Object.keys(result);
 
         for (let key of keys) {
             if (result[key] > 0) {
                 resultsArray.push({
-                    name: key,
-                    y: result[key],
+                    name : key,
+                    y    : result[key],
                     color: require('./chart').chooseColor(key)
                 });
             }

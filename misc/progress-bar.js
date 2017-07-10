@@ -10,18 +10,18 @@ class ProgressBarUtil {
      */
     constructor(title, length) {
         this.bar = new ProgressBar(title + ' [:percent] '.blue + ' [:bar] '.yellow, {
-            complete: '#',
+            complete  : '#',
             incomplete: ' ',
-            total: length,
-            clear: false
+            total     : length,
+            clear     : false
         });
     }
 
     /**
      * Increments one tick to the bar.
      */
-    addTick(){
-        this.bar.tick(undefined,undefined);
+    addTick() {
+        this.bar.tick(undefined, undefined);
     }
 }
 module.exports = ProgressBarUtil;

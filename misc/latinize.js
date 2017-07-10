@@ -6,7 +6,7 @@ class Latinize {
      *
      * @return {Array}
      */
-    static getProvincias(){
+    static getProvincias() {
         return [
             'es-NULL', 'es-vi', 'es-ab', 'es-a', 'es-al', 'es-av', 'es-ba', 'es-pm',
             'es-b', 'es-bu', 'es-cc', 'es-ca', 'es-cs', 'es-cr', 'es-co', 'es-c',
@@ -24,9 +24,10 @@ class Latinize {
      * @return {string|*|void|ILocationService|XML}
      */
     static latinize(s) {
-        let latinise = {};
+        let latinise       = {};
         latinise.latin_map = latinMap;
-        let regEx = new RegExp(/[^A-Za-z0-9\[\] ]/g);
+        let regEx          = new RegExp(/[^A-Za-z0-9\[\] ]/g);
+
         return s.replace(regEx, (a) => latinise.latin_map[a] || a);
     }
 

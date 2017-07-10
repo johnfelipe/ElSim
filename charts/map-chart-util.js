@@ -1,6 +1,6 @@
-const console = require('better-console');
-const Latinize = require('../misc/latinize');
-const latinize = Latinize.latinize;
+const console   = require('better-console');
+const Latinize  = require('../misc/latinize');
+const latinize  = Latinize.latinize;
 const provinces = Latinize.getProvincias();
 
 /** Map charts utilities. */

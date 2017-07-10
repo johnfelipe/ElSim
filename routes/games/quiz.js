@@ -1,8 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const Questions = require('../../services/quiz');
+const express       = require('express');
+const router        = express.Router();
+const Questions     = require('../../services/quiz');
 const indexResponse = require('../../modules/response').response;
-const sendError = require('../error').sendError;
+const sendError     = require('../error').sendError;
 
 {
 
@@ -13,7 +13,7 @@ const sendError = require('../error').sendError;
         Questions.find({})
             .then((questions) => {
                 if (questions.length > 0) {
-                    let max = questions.length;
+                    let max   = questions.length;
                     let index = parseInt(Math.random() * max);
                     indexResponse(req, res, 'pages/more/quiz', 'Quiz', {question: questions[index]});
                 } else {

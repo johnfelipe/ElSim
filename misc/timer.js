@@ -1,31 +1,31 @@
 /** Utility to size execution times. */
-class Timer{
+class Timer {
 
     /**
      *
      * @param name
      */
     constructor(name) {
-        this._name = name;
+        this._name     = name;
         this.startTime = 0;
-        this.endTime = 0;
+        this.endTime   = 0;
     }
 
     /**
      * Starts to count time.
      */
-    start(){
+    start() {
         this.startTime = new Date();
     }
 
     /**
      * Ends to count time.
      */
-    end(){
+    end() {
         this.endTime = new Date();
     }
 
-    get name(){
+    get name() {
         return this._name;
     }
 
@@ -33,7 +33,7 @@ class Timer{
      * Result in milliseconds.
      * @return {number}
      */
-    finishMilliseconds(){
+    finishMilliseconds() {
         return this.endTime - this.startTime;
     }
 
@@ -41,7 +41,7 @@ class Timer{
      * Result in seconds.
      * @return {number}
      */
-    finishSeconds(){
+    finishSeconds() {
         return (this.endTime - this.startTime) / 1000;
     }
 }

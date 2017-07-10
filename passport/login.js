@@ -1,6 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../models/user');
-const bCrypt = require('bcrypt-nodejs');
+const User          = require('../models/user');
+const bCrypt        = require('bcrypt-nodejs');
 
 /** Class to manage login actions. */
 class Login {
@@ -9,7 +9,7 @@ class Login {
      * @param passport
      */
     constructor(passport) {
-        this.passReq = {
+        this.passReq  = {
             passReqToCallback: true
         };
         this.passport = passport;

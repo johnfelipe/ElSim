@@ -1,10 +1,10 @@
-const Logs = require('../services/logs');
-const Results = require('../services/results');
-const Users = require('../services/users');
-const Questions = require('../services/quiz');
+const Logs        = require('../services/logs');
+const Results     = require('../services/results');
+const Users       = require('../services/users');
+const Questions   = require('../services/quiz');
 const apiResponse = require('./response').apiResponse;
-const Chart = require('../charts/chart');
-const Comparator = require('../modules/comparator');
+const Chart       = require('../charts/chart');
+const Comparator  = require('../modules/comparator');
 /** Handle all API's requests. */
 class ApiHandler {
     /**
@@ -16,11 +16,11 @@ class ApiHandler {
     static resError(req, res, err) {
         if (err) {
             res.send({
-                result: 'fail',
+                result : 'fail',
                 success: false,
                 message: 'Something went wrong.',
                 err,
-                data: null
+                data   : null
             });
         }
     }
@@ -118,17 +118,17 @@ class ApiHandler {
      */
     static saveOneResultado(req, res) {
         let r = {
-            election: JSON.parse(req.body.election),
-            community: req.body.community,
-            cod_province: req.body.cod_province,
-            province: req.body.province,
-            population: req.body.population,
-            total_voters: req.body.total_voters,
-            valid_votes: req.body.valid_votes,
+            election        : JSON.parse(req.body.election),
+            community       : req.body.community,
+            cod_province    : req.body.cod_province,
+            province        : req.body.province,
+            population      : req.body.population,
+            total_voters    : req.body.total_voters,
+            valid_votes     : req.body.valid_votes,
             votes_to_parties: req.body.votes_to_parties,
-            blank_votes: req.body.blank_votes,
-            null_votes: req.body.null_votes,
-            parties: JSON.parse(req.body.parties)
+            blank_votes     : req.body.blank_votes,
+            null_votes      : req.body.null_votes,
+            parties         : JSON.parse(req.body.parties)
         };
 
         Results.saveOne(r)
@@ -208,7 +208,7 @@ class ApiHandler {
      */
     static saveOneQuestion(req, res) {
         let q = {
-            title: req.body.title,
+            title  : req.body.title,
             correct: req.body.correct,
             answers: JSON.parse(req.body.answers)
         };
@@ -263,17 +263,18 @@ class ApiHandler {
         }
 
         let resultSelected = req.body.resultSelected;
-        let percentage1 = req.body.percentage1;
-        let percentage2 = req.body.percentage;
-        let user = req.user;
+        let percentage1    = req.body.percentage1;
+        let percentage2    = req.body.percentage;
+        let user           = req.user;
 
         let comparator = new Comparator(req.body);
 
         comparator.fillSets();
 
         const agrupaGlobal = (conjunto) => {
-            let parties = {};
+            let parties     = {};
             let communities = Object.keys(conjunto);
+
             for (let community of communities) {
                 let partiesKeys = Object.keys(conjunto[community].resultadoFinal.parties);
                 for (let party of partiesKeys) {
@@ -321,7 +322,7 @@ class ApiHandler {
 
             let options = {
                 differences,
-                firstResult: options1.global,
+                firstResult : options1.global,
                 secondResult: options2.global
             };
 
@@ -351,9 +352,9 @@ class ApiHandler {
         }
 
         let resultSelected = req.body.resultSelected;
-        let percentage = req.body.percentage;
-        let user = req.user;
-        let body = req.body;
+        let percentage     = req.body.percentage;
+        let user           = req.user;
+        let body           = req.body;
 
         Chart.calculateCountry(resultSelected, percentage, user, body)
             .then((options) => {
@@ -374,11 +375,11 @@ class ApiHandler {
             return;
         }
 
-        let mode = req.body.mode;
-        let mandates = req.body.mandates;
-        let percentage = req.body.percentage;
+        let mode           = req.body.mode;
+        let mandates       = req.body.mandates;
+        let percentage     = req.body.percentage;
         let resultSelected = req.body.resultSelected;
-        let user = req.user;
+        let user           = req.user;
 
         Chart.calculateDistrict(mode, mandates, percentage, resultSelected, user)
             .then((options) => {
@@ -400,11 +401,11 @@ class ApiHandler {
             return;
         }
 
-        let mode = req.body.mode;
-        let mandates = req.body.mandates;
-        let percentage = req.body.percentage;
+        let mode           = req.body.mode;
+        let mandates       = req.body.mandates;
+        let percentage     = req.body.percentage;
         let resultSelected = req.body.resultSelected;
-        let user = req.user;
+        let user           = req.user;
 
         Chart.calculateDistrict(mode, mandates, percentage, resultSelected, user)
             .then((options) => {

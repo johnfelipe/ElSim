@@ -1,6 +1,6 @@
 const Result = require('../models/result');
 const moment = require('moment');
-const Q = require('q');
+const Q      = require('q');
 
 class Util {
     static electionIsInArray(obj, array) {
@@ -12,10 +12,12 @@ class Util {
         return false;
     }
 
-    static calculateElections() {
+    static async calculateElections() {
         let promise = Q.defer();
 
-        const handleData = (data) => {
+        try {
+            let data = await Result.find({});
+
             let elections = [];
             for (let i = 0, len = data.length; i < len; i++) {
                 if (!Util.electionIsInArray(data[i].election, elections)) {
@@ -23,11 +25,10 @@ class Util {
                 }
             }
             promise.resolve({data, elections});
-        };
 
-        Result.find({})
-            .then(handleData)
-            .catch(promise.reject);
+        } catch (err) {
+            promise.reject(err);
+        }
 
         return promise.promise;
     }

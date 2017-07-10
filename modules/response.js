@@ -10,9 +10,10 @@ class Response {
      */
     static response(req, res, page, title, other) {
         let options = {
-            title,
-            user: req.user
+            title: title,
+            user : req.user
         };
+
         let merged;
 
         if (other) {
@@ -36,8 +37,8 @@ class Response {
         res.send({
             success: !err,
             message: (err) ? null : message,
-            err: (err) ? err : null,
-            data: (err) ? null : data
+            err    : (err) ? err : null,
+            data   : (err) ? null : data
         });
     }
 }

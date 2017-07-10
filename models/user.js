@@ -1,17 +1,17 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt-nodejs');
-const Q = require('q');
+const mongoose   = require('mongoose');
+const Schema     = mongoose.Schema;
+const bcrypt     = require('bcrypt-nodejs');
+const Q          = require('q');
 mongoose.Promise = Q.Promise;
 
 let UserSchema = new Schema({
-    name: {type: String, required: true},
-    email: {type: String, required: true, index: {unique: true}},
+    name    : {type: String, required: true},
+    email   : {type: String, required: true, index: {unique: true}},
     password: {type: String, required: true},
-    phone: {type: String, required: false},
-    born: {type: Date, required: false},
-    admin: {type: Boolean, required: true},
-    results: {type: [], required: false}
+    phone   : {type: String, required: false},
+    born    : {type: Date, required: false},
+    admin   : {type: Boolean, required: true},
+    results : {type: [], required: false}
 });
 
 /**
