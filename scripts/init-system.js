@@ -51,9 +51,9 @@ class InitSystem {
      */
     static loadCsv() {
         let promise  = Q.defer();
-        let barYears = new PB('Loading csv files', years.length);
-        const years  = ['1977', '1979', '1982', '1986', '1989', '1993', '1996', '2016'];
 
+        const years  = ['1977', '1979', '1982', '1986', '1989', '1993', '1996', '2016'];
+        let barYears = new PB('Loading csv files', years.length);
         let path1;
         let path2;
 
