@@ -1,79 +1,79 @@
 let columnChartOptions = {
-    exporting: {
+    exporting  : {
         enabled: false
     },
-    chart: {
-        type: 'column',
+    chart      : {
+        type           : 'column',
         backgroundColor: null,
-        style: {
+        style          : {
             background: 'url(/images/sand.png)'
         }
     },
-    title: {
-        text: 'District result',
+    title      : {
+        text : 'District result',
         style: {
-            color: 'black',
-            fontSize: '16px',
+            color     : 'black',
+            fontSize  : '16px',
             fontWeight: 'bold'
         }
     },
-    subtitle: {
-        text: 'Mandates by parties',
+    subtitle   : {
+        text : 'Mandates by parties',
         style: {
             color: 'black'
         }
     },
-    xAxis: {
-        categories: null,
+    xAxis      : {
+        categories   : null,
         allowDecimals: false,
-        crosshair: true,
-        labels: {
+        crosshair    : true,
+        labels       : {
             style: {
                 color: '#6e6e70'
             }
         }
 
     },
-    yAxis: {
-        min: 0,
-        title: {
+    yAxis      : {
+        min          : 0,
+        title        : {
             text: 'Mandates'
         },
         allowDecimals: false,
-        labels: {
+        labels       : {
             style: {
                 color: '#6e6e70'
             }
         }
     },
-    tooltip: {
+    tooltip    : {
         valueSuffix: ' mandates',
         pointFormat: '{point.y}',
-        shared: true
+        shared     : true
     },
     plotOptions: {
-        series: {
+        series     : {
             shadow: true
         },
         candlestick: {
             lineColor: '#404048'
         },
-        map: {
+        map        : {
             shadow: false
         },
-        column: {
+        column     : {
             pointPadding: 0.2,
-            borderWidth: 0
+            borderWidth : 0
         }
 
     },
-    legend: {
+    legend     : {
         enabled: false
     },
-    credits: {
+    credits    : {
         enabled: false
     },
-    series: [{
+    series     : [{
         name: 'Mandates',
         data: null
     }],

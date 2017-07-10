@@ -1,20 +1,20 @@
 /** Main module of the server side */
-const express = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-let app = express();
-const mongoose = require('mongoose');
-const config = require('./config');
-const passport = require('passport');
-const flash = require('connect-flash');
+const express        = require('express');
+const path           = require('path');
+const favicon        = require('serve-favicon');
+const cookieParser   = require('cookie-parser');
+const bodyParser     = require('body-parser');
+const mongoose       = require('mongoose');
+const config         = require('./config');
+const passport       = require('passport');
+const flash          = require('connect-flash');
 const expressSession = require('express-session');
-const InitPassport = require('./passport/init');
-const errorHandler = require('./misc/errorHandler');
-const Q = require('q');
-const colors = require('colors');
-const console = require('better-console');
+const InitPassport   = require('./passport/init');
+const errorHandler   = require('./misc/errorHandler');
+const Q              = require('q');
+const colors         = require('colors');
+const console        = require('better-console');
+let app              = express();
 
 /** Common configuration for the server side. */
 app.set('views', path.join(__dirname, 'views'));
@@ -43,20 +43,20 @@ app.use(flash());
 const quiz = require('./routes/games/quiz');
 
 const comparator = require('./routes/simulator/comparator');
-const country = require('./routes/simulator/country');
-const district = require('./routes/simulator/district');
+const country    = require('./routes/simulator/country');
+const district   = require('./routes/simulator/district');
 
 const users = require('./routes/users/users');
-const auth = require('./routes/users/auth')(passport);
+const auth  = require('./routes/users/auth')(passport);
 
 const data = require('./routes/data');
 const misc = require('./routes/misc');
 
-const apiLogs = require('./routes/api/logs');
-const apiMisc = require('./routes/api/misc');
+const apiLogs      = require('./routes/api/logs');
+const apiMisc      = require('./routes/api/misc');
 const apiQuestions = require('./routes/api/questions');
-const apiResults = require('./routes/api/results');
-const apiUsers = require('./routes/api/users');
+const apiResults   = require('./routes/api/results');
+const apiUsers     = require('./routes/api/users');
 
 app.use('/', quiz);
 

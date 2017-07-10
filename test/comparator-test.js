@@ -1,4 +1,4 @@
-const chai = require('chai');
+const chai       = require('chai');
 const Comparator = require('../modules/comparator');
 chai.should();
 
@@ -7,8 +7,8 @@ describe('Comparator', () => {
         let c = new Comparator(null);
 
         c.fillDifferences(
-            { A: 2, B: 4 },
-            { A: 1, B: 3 },
+            {A: 2, B: 4},
+            {A: 1, B: 3},
             3.0,
             4.0
         );

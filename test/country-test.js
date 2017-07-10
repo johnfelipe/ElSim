@@ -125,8 +125,8 @@ describe('Country', () => {
 
     it('calculateCountry (Bad Input)', (done) => {
 
-        (async ()=> {
-            try{
+        (async () => {
+            try {
                 let result = await Chart.calculateCountry('FAKE INPUT');
 
                 expect(result).to.eql({
@@ -137,7 +137,7 @@ describe('Country', () => {
                     title       : 'Country Chart'
                 });
                 done();
-            } catch (err){
+            } catch (err) {
                 done(err);
             }
         })();

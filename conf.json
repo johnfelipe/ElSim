@@ -22,7 +22,7 @@
     "includePattern": ".+\\.js(doc|x)?$",
     "excludePattern": "(^|\\/|\\\\)_"
   },
-  "opts":{
+  "opts": {
     "recurse": true
   },
   "templates": {

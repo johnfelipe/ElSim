@@ -1,6 +1,4 @@
-
-
 module.exports = {
-    secret: 'tfgsecret',
+    secret  : 'tfgsecret',
     database: 'mongodb://localhost/tfg'
 };
