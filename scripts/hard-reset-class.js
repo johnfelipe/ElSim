@@ -14,7 +14,7 @@ class HardReset {
             await Log.remove();
             await QuizService.remove();
             await ResultService.remove();
-            await SubscriberService.remove();
+            await SubscriberService();
             await UserService.remove();
 
             promise.resolve();

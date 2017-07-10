@@ -3,7 +3,7 @@ const router      = express.Router();
 const Auth        = require('../../passport/auth');
 const Subscribers = require('../../models/subscriber');
 const Mailer      = require('../../mailer/mailer');
-const loadAll     = require('../../services/all').loadAll;
+const loadAll     = require('../../services/all');
 const sendError   = require('../error').sendError;
 const moment      = require('moment');
 

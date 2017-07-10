@@ -15,9 +15,6 @@ const Timer               = require('../misc/timer');
 
 /** Class to manage charts. */
 class Chart {
-    constructor() {
-
-    }
 
     /**
      * Give you the string color of a party.
@@ -37,7 +34,7 @@ class Chart {
      * @return {*}
      */
     static createColumn(result) {
-        return BarChart.fillOptions(result);
+        return BarChart(result);
     }
 
     /**
@@ -46,7 +43,7 @@ class Chart {
      * @return {*}
      */
     static createPie(result) {
-        return PieChart.fillOptions(result);
+        return PieChart(result);
     }
 
     /**
@@ -159,12 +156,6 @@ class Chart {
         timer.end();
         //console.info((timer.name).yellow + ': '.yellow + timer.finishSeconds() + '(s)'.yellow);
 
-        if (mode === 'column') {
-            await chartDone(Chart.createColumn(result.parties));
-        } else {
-            await chartDone(Chart.createPie(result.parties));
-        }
-
         const chartDone = async (graph_options) => {
             let options = Chart.fillCalculateDistrictOptions(election, graph_options, result, user);
             if (typeof user === 'undefined' || !user) {
@@ -172,10 +163,15 @@ class Chart {
                 return;
             }
 
-            let added = await Chart
-                .addResultToUser(user, election, result, mandates, percentage);
+            let added = await Chart.addResultToUser(user, election, result, mandates, percentage);
             promise.resolve(options);
         };
+
+        if (mode === 'column') {
+            await chartDone(Chart.createColumn(result.parties));
+        } else {
+            await chartDone(Chart.createPie(result.parties));
+        }
 
         return promise.promise;
     }
@@ -219,12 +215,12 @@ class Chart {
 
             if (datos && typeof datos.wholeCountry !== 'undefined') {
                 global = {
-                    agrupado: MapWholeChart.calculateGlobalWholeCountry(data, datos, config.percentage).parties
+                    agrupado: MapWholeChart(data, datos, config.percentage).parties
                 };
             } else if (datos && typeof datos.aggregateCommunities !== 'undefined') {
                 global = {
                     isAggregateCommunities: true,
-                    agrupado              : MapCommunitiesChart.calculateGlobalWithCommunities(data, datos, true, config.percentage)
+                    agrupado              : MapCommunitiesChart(data, datos, true, config.percentage)
                 };
             } else {
                 global = MapChart.calculateGlobal(data, config, datos);

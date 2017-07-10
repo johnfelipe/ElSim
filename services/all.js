@@ -3,10 +3,10 @@ const Logs    = require('../models/log');
 const Results = require('../models/result');
 const Q       = require('q');
 
-class AllService {
-    static async loadAll() {
-        let promise = Q.defer();
+module.exports = () => {
+    let promise = Q.defer();
 
+    (async () => {
         try {
             let users   = await Users.find();
             let logs    = await Logs.find();
@@ -16,8 +16,7 @@ class AllService {
         } catch (err) {
             promise.reject(err);
         }
+    })();
 
-        return promise.promise;
-    }
-}
-module.exports = AllService;
+    return promise.promise;
+};

@@ -6,7 +6,7 @@ const codigos   = require('../misc/codigos');
 const parties   = require('../misc/parties');
 const console   = require('better-console');
 const colors    = require('colors');
-const loadAll   = require('../services/all').loadAll;
+const loadAll   = require('../services/all');
 const sendError = require('./error').sendError;
 
 let credentials;
