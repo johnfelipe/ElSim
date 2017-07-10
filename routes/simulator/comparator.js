@@ -11,24 +11,26 @@ const Comparator = require('../../modules/comparator');
 const sendError  = require('../error').sendError;
 
 {
-    router.get('/compare-country-graphic-form', async (req, res) => {
+    router.get('/compare-country-graphic-form', (req, res) => {
         console.info('GET '.yellow + '/compare-country-graphic-form');
 
-        try {
-            let result = await Util.calculateElections();
+        (async () => {
+            try {
+                let result = await Util.calculateElections();
 
-            result.elections.sort(Util.sortByDate);
+                result.elections.sort(Util.sortByDate);
 
-            response(req, res, 'pages/simulator/compare-country-graphic-form', 'Compare Country Chart', {
-                results  : result.data,
-                elections: result.elections,
-                moment   : moment,
-                err      : null
-            });
+                response(req, res, 'pages/simulator/compare-country-graphic-form', 'Compare Country Chart', {
+                    results  : result.data,
+                    elections: result.elections,
+                    moment   : moment,
+                    err      : null
+                });
 
-        } catch (err) {
-            sendError(req, res, err);
-        }
+            } catch (err) {
+                sendError(req, res, err);
+            }
+        })();
     });
 
     router.post('/compare-country-form', (req, res) => {

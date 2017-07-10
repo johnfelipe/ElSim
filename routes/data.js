@@ -24,54 +24,59 @@ const sendError       = require('./error').sendError;
         });
     });
 
-    router.get('/stored-data', async (req, res) => {
-        try {
-            console.info('GET '.yellow + ' /stored-data');
+    router.get('/stored-data', (req, res) => {
+        (async () => {
+            try {
+                console.info('GET '.yellow + ' /stored-data');
 
-            let data = await Results.find();
+                let data = await Results.find();
 
-            data.sort(Util.sortByDate);
-            response(req, res, 'pages/data/stored-data', 'Stored Data', {
-                data,
-                moment,
-                err: null
-            });
-        } catch (err) {
-            sendError(req, res, err);
-        }
-
+                data.sort(Util.sortByDate);
+                response(req, res, 'pages/data/stored-data', 'Stored Data', {
+                    data,
+                    moment,
+                    err: null
+                });
+            } catch (err) {
+                sendError(req, res, err);
+            }
+        })();
     });
 
-    router.get('/results/:id', async (req, res) => {
-        try {
-            console.info('GET '.yellow + ' /results/' + req.params.id);
+    router.get('/results/:id', (req, res) => {
+        (async () => {
+            try {
+                console.info('GET '.yellow + ' /results/' + req.params.id);
 
-            let data = await Results.findOne(req.params.id);
+                let data = await Results.findOne(req.params.id);
 
-            apiResponse(req, res, null, 'Result', data);
+                apiResponse(req, res, null, 'Result', data);
 
-        } catch (err) {
-            apiResponse(req, res, err, 'Result', null);
-        }
+            } catch (err) {
+                apiResponse(req, res, err, 'Result', null);
+            }
+        })();
     });
 
-    router.get('/delete-data', isAuthenticated, async (req, res) => {
+    router.get('/delete-data', isAuthenticated, (req, res) => {
         console.info('GET '.yellow + ' /delete-data');
+        (async () => {
+            try {
+                let data = await Results.find();
+                data.sort(Util.sortByDate);
+                response(req, res, 'pages/data/delete-data', 'Delete data', {
+                    data,
+                    moment,
+                    err: null
+                });
+            } catch (err) {
+                sendError(req, res, err);
+            }
+        })();
 
-        try {
-            let data = await Results.find();
-            data.sort(Util.sortByDate);
-            response(req, res, 'pages/data/delete-data', 'Delete data', {
-                data,
-                moment,
-                err: null
-            });
-        } catch (err) {
-            sendError(req, res, err);
-        }
     });
 
-    router.post('/add-data', async (req, res) => {
+    router.post('/add-data', (req, res) => {
         console.info('POST '.yellow + ' /add-data');
 
         if ([
@@ -122,29 +127,31 @@ const sendError       = require('./error').sendError;
 
         let resultEntity = District.createResultEntity(result);
 
-        try {
-            await resultEntity.save();
+        (async () => {
+            try {
+                await resultEntity.save();
 
-            response(req, res, 'pages/data/add-data', 'Add data', {
-                err    : null,
-                codigos: Codigos,
-                moment
-            });
-        } catch (err) {
-            if (err.message.includes('duplicate key')) {
                 response(req, res, 'pages/data/add-data', 'Add data', {
-                    err    : 'Result has already been added!',
+                    err    : null,
                     codigos: Codigos,
                     moment
                 });
-                return;
+            } catch (err) {
+                if (err.message.includes('duplicate key')) {
+                    response(req, res, 'pages/data/add-data', 'Add data', {
+                        err    : 'Result has already been added!',
+                        codigos: Codigos,
+                        moment
+                    });
+                    return;
+                }
+                sendError(req, res, err);
             }
-            sendError(req, res, err);
-        }
+        })();
     });
 
 
-    router.post('/delete-data', async (req, res) => {
+    router.post('/delete-data', (req, res) => {
         console.info('POST '.yellow + ' /delete-data');
 
         if (typeof req.body.results === 'undefined') {
@@ -155,26 +162,28 @@ const sendError       = require('./error').sendError;
         let promises = [];
         let results  = req.body.results;
 
-        try {
-            if (results instanceof Array) {
-                for (let result of results) {
-                    await Results.removeOne(result);
+        (async () => {
+            try {
+                if (results instanceof Array) {
+                    for (let result of results) {
+                        await Results.removeOne(result);
+                    }
+                } else {
+                    console.info('Es una string: ' + results);
+                    await Results.removeOne(results);
                 }
-            } else {
-                console.info('Es una string: ' + results);
-                await Results.removeOne(results);
+
+                let data = await Results.find();
+
+                response(req, res, 'pages/data/delete-data', 'Delete data', {
+                    err: null,
+                    moment,
+                    data
+                });
+            } catch (err) {
+                sendError(req, res, err);
             }
-
-            let data = await Results.find();
-
-            response(req, res, 'pages/data/delete-data', 'Delete data', {
-                err: null,
-                moment,
-                data
-            });
-        } catch (err) {
-            sendError(req, res, err);
-        }
+        })();
     });
 
     module.exports = router;

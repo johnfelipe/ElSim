@@ -10,24 +10,26 @@ const sendError = require('../error').sendError;
 
 {
 
-    router.get('/single-graphic-form', async (req, res) => {
+    router.get('/single-graphic-form', (req, res) => {
         console.info('GET '.yellow + '/single-graphic-form');
 
-        try {
-            let data = await Results.find();
-            data.sort(Util.sortByDate);
-            response(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
-                results: data,
-                moment : moment,
-                err    : null
-            });
+        (async () => {
+            try {
+                let data = await Results.find();
+                data.sort(Util.sortByDate);
+                response(req, res, 'pages/simulator/single-graphic-form', 'Single Chart', {
+                    results: data,
+                    moment : moment,
+                    err    : null
+                });
 
-        } catch (err) {
-            sendError(req, res, err);
-        }
+            } catch (err) {
+                sendError(req, res, err);
+            }
+        })();
     });
 
-    router.post('/graphic-form', async (req, res) => {
+    router.post('/graphic-form', (req, res) => {
 
         console.info('POST '.yellow + '/graphic-form');
 
@@ -47,12 +49,14 @@ const sendError = require('../error').sendError;
         let resultSelected = req.body.resultSelected;
         let user           = req.user;
 
-        try {
-            let options = await Chart.calculateDistrict(mode, mandates, percentage, resultSelected, user);
-            res.render('pages/simulator/single-chart', options);
-        } catch (err) {
-            sendError(req, res, err);
-        }
+        (async () => {
+            try {
+                let options = await Chart.calculateDistrict(mode, mandates, percentage, resultSelected, user);
+                res.render('pages/simulator/single-chart', options);
+            } catch (err) {
+                sendError(req, res, err);
+            }
+        })();
     });
 
     router.post('/save-single-chart', (req, res) => {

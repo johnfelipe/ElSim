@@ -11,26 +11,28 @@ const console   = require('better-console');
 const colors    = require('colors');
 
 {
-    router.get('/country-graphic-form', async (req, res) => {
+    router.get('/country-graphic-form', (req, res) => {
         console.info('GET '.yellow + '/country-graphic-form');
 
-        try {
-            let result = await Util.calculateElections();
+        (async () => {
+            try {
+                let result = await Util.calculateElections();
 
-            result.elections.sort(Util.sortByDate);
+                result.elections.sort(Util.sortByDate);
 
-            response(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
-                results  : result.data,
-                elections: result.elections,
-                moment   : moment,
-                err      : null
-            });
-        } catch (err) {
-            sendError(req, res, err);
-        }
+                response(req, res, 'pages/simulator/country-graphic-form', 'Country Chart', {
+                    results  : result.data,
+                    elections: result.elections,
+                    moment   : moment,
+                    err      : null
+                });
+            } catch (err) {
+                sendError(req, res, err);
+            }
+        })();
     });
 
-    router.post('/country-form', async (req, res) => {
+    router.post('/country-form', (req, res) => {
 
         console.info('POST '.yellow + '/country-form');
 
@@ -48,15 +50,17 @@ const colors    = require('colors');
         let user           = req.user;
         let body           = req.body;
 
-        try {
-            let options    = await Chart.calculateCountry(resultSelected, percentage, user, body)
-            options.colors = Colors;
-            options.icons  = Icons;
-            options.user   = user;
-            res.render('pages/simulator/country-chart', options);
-        } catch (err) {
-            sendError(req, res, err);
-        }
+        (async () => {
+            try {
+                let options    = await Chart.calculateCountry(resultSelected, percentage, user, body)
+                options.colors = Colors;
+                options.icons  = Icons;
+                options.user   = user;
+                res.render('pages/simulator/country-chart', options);
+            } catch (err) {
+                sendError(req, res, err);
+            }
+        })();
     });
 
     module.exports = router;
