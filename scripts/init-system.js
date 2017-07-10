@@ -1,16 +1,16 @@
-const Q = require('q');
-const config = require('../config');
-const mongoose = require('mongoose');
-const async = require('async');
-const UserService = require('../services/users');
-const fs = require('fs');
-const csv = require('fast-csv');
-const credentials = require('../credentials');
-const colors = require('colors');
-const console = require('better-console');
+const Q             = require('q');
+const config        = require('../config');
+const mongoose      = require('mongoose');
+const async         = require('async');
+const UserService   = require('../services/users');
+const fs            = require('fs');
+const csv           = require('fast-csv');
+const credentials   = require('../credentials');
+const colors        = require('colors');
+const console       = require('better-console');
 const ResultService = require('../services/results');
-const createHash = require('../passport/signup').createHash;
-const PB = require('../misc/progress-bar');
+const createHash    = require('../passport/signup').createHash;
+const PB            = require('../misc/progress-bar');
 mongoose.connect(config.database);
 mongoose.Promise = Q.Promise;
 
@@ -28,14 +28,14 @@ class InitSystem {
         let createUser = new PB('Creating user', 1);
 
         let nick = {
-            name: credentials.adminName,
-            email: credentials.adminUser,
+            name    : credentials.adminName,
+            email   : credentials.adminUser,
             password: createHash(credentials.password),
-            admin: true,
-            results: []
+            admin   : true,
+            results : []
         };
 
-        await UserService.saveOne(nick)
+        await UserService.saveOne(nick);
 
         console.log('USER: ' + nick.email);
         console.log('PASSWORD: ' + credentials.password);
@@ -50,12 +50,12 @@ class InitSystem {
      * @return {*}
      */
     static loadCsv() {
-        let promise = Q.defer();
-
-        const years = ['1977', '1979', '1982', '1986', '1989', '1993', '1996', '2016'];
-
-        let path1, path2;
+        let promise  = Q.defer();
         let barYears = new PB('Loading csv files', years.length);
+        const years  = ['1977', '1979', '1982', '1986', '1989', '1993', '1996', '2016'];
+
+        let path1;
+        let path2;
 
         const eachYearCallback = (year, callback) => {
             path1 = './csv/' + year + '.csv';
@@ -125,7 +125,7 @@ class InitSystem {
      */
     static async readCsv(path1, path2) {
         let data = await InitSystem.readResultados(path1);
-        return InitSystem.readParties(path2,data);
+        return InitSystem.readParties(path2, data);
     }
 
     /**
@@ -163,7 +163,7 @@ class InitSystem {
      */
     static readResultados(path) {
         let promise = Q.defer();
-        let stream = fs.createReadStream(path), results = [];
+        let stream  = fs.createReadStream(path), results = [];
 
         csv.fromStream(stream, {headers: true})
             .on('data-invalid', (data) => promise.reject('Data invalid exception, one or more rows are invalid' + data))
@@ -182,14 +182,14 @@ const badEnd = async (err) => {
 
     const HardReset = require('./hard-reset-class');
 
-    try{
+    try {
         await HardReset.hardReset();
         console.warn('---- End date: '.green + new Date().toLocaleString());
         process.exit(0);
     } catch (err) {
         console.error(err);
         console.warn('---- End date: '.green + new Date().toLocaleString());
-        process.exit(1);   
+        process.exit(1);
     }
 };
 

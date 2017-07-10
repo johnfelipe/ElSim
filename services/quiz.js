@@ -6,7 +6,7 @@ class QuizService {
         return q.save();
     }
 
-    static checkQuestion(question,answer) {
+    static checkQuestion(question, answer) {
         return question.correct === answer;
     }
 
@@ -15,7 +15,7 @@ class QuizService {
     }
 
     static findById(id) {
-        return Question.findOne({_id:id});
+        return Question.findOne({_id: id});
     }
 
     static removeOne(id) {

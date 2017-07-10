@@ -8,9 +8,9 @@ class ResultService {
     static saveOne(result) {
         let r = new Result(result);
 
-        if(typeof result.date !== 'undefined') {
+        if (typeof result.date !== 'undefined') {
             r.election = {
-                date: result.date,
+                date  : result.date,
                 author: 'sistema'
             };
         }
