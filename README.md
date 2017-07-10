@@ -1,5 +1,7 @@
 ![https://travis-ci.org/jesusgn90/TFG.svg?branch=master](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)
 
+__Required Node.js >= 8.0.0__
+
 # EllSim 
 
 This is an electoral simulator, it's based on Spanish system. You can generate charts, reports, make changes on many params, learn, download some resources, connect an external client to the api, play with the minigames, and few more things!
