@@ -1,17 +1,17 @@
-![https://travis-ci.org/jesusgn90/TFG.svg?branch=master](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)
+# ElSim Project
+
+[![https://travis-ci.org/jesusgn90/TFG.svg?branch=master](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)
+
+[![Coverage Status](https://coveralls.io/repos/github/jesusgn90/TFG/badge.svg?branch=master)](https://coveralls.io/github/jesusgn90/TFG?branch=master)
 
 __Required Node.js >= 8.0.0__
-
-# EllSim 
 
 This is an electoral simulator, it's based on Spanish system. You can generate charts, reports, make changes on many params, learn, download some resources, connect an external client to the api, play with the minigames, and few more things!
 
 # Setup
 
-Install modules:
-
-    $ sudo npm i -g nodemon
-    $ git clone https://github.com/jesusgn90/TFG && cd TFG
+    $ git clone https://github.com/jesusgn90/TFG 
+    $ cd TFG
     $ npm i
 
 Edit `credentials.js`:
