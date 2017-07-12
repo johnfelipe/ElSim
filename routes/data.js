@@ -159,8 +159,7 @@ const sendError       = require('./error').sendError;
             return;
         }
 
-        let promises = [];
-        let results  = req.body.results;
+        let results = req.body.results;
 
         (async () => {
             try {

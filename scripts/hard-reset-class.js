@@ -1,4 +1,3 @@
-const Q                 = require('q');
 const Log               = require('../services/logs');
 const QuizService       = require('../services/quiz');
 const ResultService     = require('../services/results');
@@ -8,8 +7,6 @@ const UserService       = require('../services/users');
 /** Utility to hard reset the system. */
 class HardReset {
     static async hardReset() {
-        let promise = Q.defer();
-
         try {
             await Log.remove();
             await QuizService.remove();
@@ -17,12 +14,10 @@ class HardReset {
             await SubscriberService();
             await UserService.remove();
 
-            promise.resolve();
+            return 0;
         } catch (err) {
-            promise.reject(err);
+            throw err;
         }
-
-        return promise.promise;
     }
 }
 module.exports = HardReset;

@@ -117,63 +117,59 @@ class Chart {
      * @return {*}
      */
     static async calculateDistrict(mode, mandates, percentage, resultSelected, user) {
-        let promise = Q.defer();
+        try {
+            let timer = new Timer('Execution time');
+            timer.start();
 
-        let timer = new Timer('Execution time');
-        timer.start();
+            let votes           = [];
+            let names           = [];
+            let districtOptions = {
+                mandates,
+                percentage,
+                blankVotes: 0
+            };
 
-        let votes           = [];
-        let names           = [];
-        let districtOptions = {
-            mandates,
-            percentage,
-            blankVotes: 0
-        };
+            let result;
+            let election;
 
-        let result = null, election = null;
+            let data = await Result.findOne({_id: resultSelected});
 
-
-        let data = await Result.findOne({_id: resultSelected});
-
-        if (!data) {
-            promise.reject('Result not found');
-            return;
-        }
-
-        election                   = data;
-        districtOptions.blankVotes = data.blank_votes;
-
-        let keys = Object.keys(data.parties);
-        for (let key of keys) {
-            votes.push(data.parties[key]);
-            names.push(key);
-        }
-
-        let d = new District(votes, names, districtOptions, true);
-
-        result = d.compute();
-
-        timer.end();
-        //console.info((timer.name).yellow + ': '.yellow + timer.finishSeconds() + '(s)'.yellow);
-
-        const chartDone = async (graph_options) => {
-            let options = Chart.fillCalculateDistrictOptions(election, graph_options, result, user);
-            if (typeof user === 'undefined' || !user) {
-                promise.resolve(options);
-                return;
+            if (!data) {
+                throw Error('Result not found');
             }
 
-            let added = await Chart.addResultToUser(user, election, result, mandates, percentage);
-            promise.resolve(options);
-        };
+            election                   = data;
+            districtOptions.blankVotes = data.blank_votes;
 
-        if (mode === 'column') {
-            await chartDone(Chart.createColumn(result.parties));
-        } else {
-            await chartDone(Chart.createPie(result.parties));
+            let keys = Object.keys(data.parties);
+            for (let key of keys) {
+                votes.push(data.parties[key]);
+                names.push(key);
+            }
+
+            let d  = new District(votes, names, districtOptions, true);
+            result = d.compute();
+
+            timer.end();
+
+            let graph_options;
+            if (mode === 'column') {
+                graph_options = await chartDone(Chart.createColumn(result.parties));
+            } else {
+                graph_options = await chartDone(Chart.createPie(result.parties));
+            }
+
+            let options = Chart.fillCalculateDistrictOptions(election, graph_options, result, user);
+            if (typeof user === 'undefined' || !user) {
+                return options;
+            }
+
+            await Chart.addResultToUser(user, election, result, mandates, percentage);
+            return options;
+        } catch (err) {
+            throw err;
         }
 
-        return promise.promise;
     }
 
     /**

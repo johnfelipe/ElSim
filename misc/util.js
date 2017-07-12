@@ -13,24 +13,19 @@ class Util {
     }
 
     static async calculateElections() {
-        let promise = Q.defer();
-
         try {
-            let data = await Result.find({});
-
+            let data      = await Result.find({});
             let elections = [];
+
             for (let i = 0, len = data.length; i < len; i++) {
                 if (!Util.electionIsInArray(data[i].election, elections)) {
                     elections.push(data[i].election);
                 }
             }
-            promise.resolve({data, elections});
-
+            return {data, elections};
         } catch (err) {
-            promise.reject(err);
+            throw err;
         }
-
-        return promise.promise;
     }
 
     static sortByDate(a, b) {
