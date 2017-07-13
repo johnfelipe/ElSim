@@ -1,8 +1,9 @@
 # ElSim Project
 
 [![https://travis-ci.org/jesusgn90/TFG.svg?branch=master](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)
-
 [![Coverage Status](https://coveralls.io/repos/github/jesusgn90/TFG/badge.svg?branch=master)](https://coveralls.io/github/jesusgn90/TFG?branch=master)
+
+Live demo: [https://elsimproject.com/](https://elsimproject.com/) or [http://elsimproject.com/](http://elsimproject.com/)
 
 __Required Node.js >= 8.0.0__
 
@@ -42,31 +43,11 @@ To clear database:
 
     $ npm run reset
 
-## Technologies
-
-The backend uses:
-
-    * Node.js + Express
-    * MongoDB
-
-The frontend is not Angular, it's a simple set of views that uses:
-
-    * Bootstrap 4
-
-## Run Project
-
-Open a shell:
-
-    $ npm start
-
-The web is at `/` and the API is at `/api/v1/`.
-
 ## Test
 
 The project uses `Istanbul & Mocha` for the unit tests, to run all of them:
 
     $ npm test
-
 
 ## Docs
 
