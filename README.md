@@ -7,6 +7,14 @@ Live demo: [https://elsimproject.com/](https://elsimproject.com/) or [http://els
 
 __Required Node.js >= 8.0.0__
 
+__Status:__ 
+
+- This project was a University project. 
+- The project received a grade of 9.2 out of 10.
+- This project is no longer maintained but issues and pull requests are welcome any way.  
+
+# Description
+
 This is an electoral simulator, it's based on Spanish system. You can generate charts, reports, make changes on many params, learn, download some resources, connect an external client to the api, play with the minigames, and few more things!
 
 # Setup
@@ -73,6 +81,11 @@ API:
         'email': youremail,
         'password': yourpassword
     }
+    
+# TO-DO
+
+- Finish the API 100%.
+- Implement all unit tests remaining.
 
 # Contribute? Error detected? 
 
