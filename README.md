@@ -1,7 +1,6 @@
 # ElSim Project
 
 [![https://travis-ci.org/jesusgn90/TFG.svg?branch=master](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/jesusgn90/TFG/badge.svg?branch=master)](https://coveralls.io/github/jesusgn90/TFG?branch=master)
 
 Live demo: [https://elsimproject.com/](https://elsimproject.com/) or [http://elsimproject.com/](http://elsimproject.com/)
 
