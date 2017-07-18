@@ -66,81 +66,77 @@ const someElection = {
 
 describe('Country', () => {
     it('calculateCountry', (done) => {
-        (async () => {
-            try {
-                let result = await Chart.calculateCountry(
-                    '1977-06-01,sistema',
-                    '0',
-                    undefined,
-                    someElection
-                );
-                expect(result.global).to.be.an('Array').that.is.not.empty;
+
+        Chart.calculateCountry(
+            '1977-06-01,sistema',
+            '0',
+            undefined,
+            someElection
+        )
+            .then((result) => {
+                expect(result.global)
+                    .to
+                    .be
+                    .an('Array').that.is.not.empty;
                 done();
-            } catch (err) {
-                done(err);
-            }
-        })();
+            });
+
     });
 
     it('calculateCountry (With Communities)', (done) => {
 
-        (async () => {
-            try {
-                someElection.aggregateCommunities = 'on';
+        someElection.aggregateCommunities = 'on';
 
-                let result = await Chart.calculateCountry(
-                    '1977-06-01,sistema',
-                    '0',
-                    undefined,
-                    someElection
-                );
-                expect(result.global).to.be.an('Object');
+        Chart.calculateCountry(
+            '1977-06-01,sistema',
+            '0',
+            undefined,
+            someElection
+        )
+            .then((result) => {
+                expect(result.global)
+                    .to
+                    .be
+                    .an('Object');
                 done();
-            } catch (err) {
-                done(err);
-            }
-        })();
+            });
+
     });
 
     it('calculateCountry (Whole Country)', (done) => {
 
-        (async () => {
-            try {
-                someElection.wholeCountry = 'on';
+        someElection.wholeCountry = 'on';
 
-                let result = await Chart.calculateCountry(
-                    '1977-06-01,sistema',
-                    '0',
-                    undefined,
-                    someElection
-                );
-
-                expect(result.global).to.be.an('Object');
+        Chart.calculateCountry(
+            '1977-06-01,sistema',
+            '0',
+            undefined,
+            someElection
+        )
+            .then((result) => {
+                expect(result.global)
+                    .to
+                    .be
+                    .an('Object');
                 done();
-            } catch (err) {
-                done(err);
-            }
-        })();
+            });
     });
 
     it('calculateCountry (Bad Input)', (done) => {
 
-        (async () => {
-            try {
-                let result = await Chart.calculateCountry('FAKE INPUT');
-
-                expect(result).to.eql({
-                    user        : undefined,
-                    global      : [],
-                    wholeCountry: false,
-                    communities : false,
-                    title       : 'Country Chart'
-                });
+        Chart.calculateCountry('FAKE INPUT')
+            .then((result) => {
+                expect(result)
+                    .to
+                    .eql({
+                        user        : undefined,
+                        global      : [],
+                        wholeCountry: false,
+                        communities : false,
+                        title       : 'Country Chart'
+                    });
                 done();
-            } catch (err) {
-                done(err);
-            }
-        })();
+            })
 
     });
 });

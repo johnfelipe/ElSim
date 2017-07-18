@@ -1,7 +1,8 @@
 const District     = require('../modules/district');
 const MapChartUtil = require('./map-chart-util');
 const has          = Object.prototype.hasOwnProperty;
-module.exports     = (data, conjunto, needFinal, communityPercentage) => {
+
+module.exports = (data, conjunto, needFinal, communityPercentage) => {
     let groupedByCommunity = {};
 
     for (let i = 0, len = data.length; i < len; i++) {

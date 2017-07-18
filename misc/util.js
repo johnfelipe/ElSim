@@ -1,6 +1,5 @@
 const Result = require('../models/result');
 const moment = require('moment');
-const Q      = require('q');
 
 class Util {
     static electionIsInArray(obj, array) {

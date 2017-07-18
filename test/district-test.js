@@ -1,8 +1,6 @@
 const chai     = require('chai');
-const expect   = chai.expect;
 const District = require('../modules/district');
 chai.should();
-
 
 describe('Single district', () => {
     it('compute', () => {

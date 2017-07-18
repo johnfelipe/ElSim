@@ -1,5 +1,5 @@
 const Icons       = require('./../misc/icons');
-const clone       = require('clone-any').cloneAny;
+const clone       = require('clone-any');
 let columnOptions = require('./options/column-options');
 
 module.exports = (result) => {

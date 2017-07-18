@@ -10,7 +10,6 @@ const Result              = require('../models/result');
 const Icons               = require('./../misc/icons');
 const District            = require('../modules/district');
 const moment              = require('moment');
-const Q                   = require('q');
 const Timer               = require('../misc/timer');
 
 /** Class to manage charts. */
@@ -77,14 +76,11 @@ class Chart {
      * @param percentage
      * @return {Q.Promise}
      */
-    static addResultToUser(user, election, result, mandates, percentage) {
-        let promise = Q.defer();
-
-        const handleUser = (user) => {
+    static async addResultToUser(user, election, result, mandates, percentage) {
+        try {
+            let user = await User.findOne({_id: user._id});
             if (!user) {
-                let p = Q.defer();
-                p.reject('User not found');
-                return p.promise;
+                throw Error('User not found');
             }
 
             user.results.push({
@@ -96,15 +92,10 @@ class Chart {
                 blank   : election.blank_votes
             });
 
-            return user.save();
-        };
-
-        User.findOne({_id: user._id})
-            .then(handleUser)
-            .then(promise.resolve)
-            .catch(promise.reject);
-
-        return promise.promise;
+            return await user.save();
+        } catch (err) {
+            throw err;
+        }
     }
 
     /**
@@ -154,9 +145,9 @@ class Chart {
 
             let graph_options;
             if (mode === 'column') {
-                graph_options = await chartDone(Chart.createColumn(result.parties));
+                graph_options = await Chart.createColumn(result.parties);
             } else {
-                graph_options = await chartDone(Chart.createPie(result.parties));
+                graph_options = await Chart.createPie(result.parties);
             }
 
             let options = Chart.fillCalculateDistrictOptions(election, graph_options, result, user);
@@ -180,31 +171,25 @@ class Chart {
      * @param datos
      * @return {*}
      */
-    static calculateCountry(resultSelected, percentage, user, datos) {
-        let promise = Q.defer();
+    static async calculateCountry(resultSelected, percentage, user, datos) {
+        try {
+            let election = {
+                author: resultSelected.split(',')[1],
+                date  : resultSelected.split(',')[0]
+            };
 
-        let election = {
-            author: resultSelected.split(',')[1],
-            date  : resultSelected.split(',')[0]
-        };
+            let p = parseFloat(percentage);
+            if (isNaN(p)) p = 0;
+            let config = {
+                mandates  : 2,
+                percentage: (p >= 0) ? p : (p * -1),
+                blankVotes: 0
+            };
 
-        let p = parseFloat(percentage);
-        if (isNaN(p)) p = 0;
-        let config = {
-            mandates  : 2,
-            percentage: (p >= 0) ? p : (p * -1),
-            blankVotes: 0
-        };
+            let data = await Result.find({election});
 
-
-        /**
-         * The callback that handles the Result.find() operation.
-         * @param data
-         */
-        const handleData = (data) => {
             if (!data) {
-                promise.reject('Election not found');
-                return;
+                throw Error('Election not found');
             }
 
             let global;
@@ -222,20 +207,16 @@ class Chart {
                 global = MapChart.calculateGlobal(data, config, datos);
             }
 
-            promise.resolve({
+            return {
                 user,
                 global,
                 wholeCountry: (datos && typeof datos.wholeCountry !== 'undefined') ? datos.wholeCountry : false,
                 communities : (datos && typeof datos.aggregateCommunities !== 'undefined') ? datos.aggregateCommunities : false,
                 title       : 'Country Chart'
-            });
-        };
-
-        Result.find({election})
-            .then(handleData)
-            .catch(promise.reject);
-
-        return promise.promise;
+            };
+        } catch (err) {
+            throw err;
+        }
     }
 }
 module.exports = Chart;

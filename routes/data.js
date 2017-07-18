@@ -11,7 +11,6 @@ const Results         = require('../services/results');
 const Result          = require('../models/result');
 const Codigos         = require('../misc/codigos');
 const isAuthenticated = require('../passport/auth').isAuthenticated;
-const Q               = require('q');
 const sendError       = require('./error').sendError;
 
 {
@@ -25,22 +24,19 @@ const sendError       = require('./error').sendError;
     });
 
     router.get('/stored-data', (req, res) => {
-        (async () => {
-            try {
-                console.info('GET '.yellow + ' /stored-data');
 
-                let data = await Results.find();
+        console.info('GET '.yellow + ' /stored-data');
 
+        Results.find()
+            .then((data) => {
                 data.sort(Util.sortByDate);
                 response(req, res, 'pages/data/stored-data', 'Stored Data', {
                     data,
                     moment,
                     err: null
                 });
-            } catch (err) {
-                sendError(req, res, err);
-            }
-        })();
+            })
+            .catch((err) => sendError(req, res, err));
     });
 
     router.get('/results/:id', (req, res) => {
@@ -60,19 +56,17 @@ const sendError       = require('./error').sendError;
 
     router.get('/delete-data', isAuthenticated, (req, res) => {
         console.info('GET '.yellow + ' /delete-data');
-        (async () => {
-            try {
-                let data = await Results.find();
+
+        Results.find()
+            .then((data) => {
                 data.sort(Util.sortByDate);
                 response(req, res, 'pages/data/delete-data', 'Delete data', {
                     data,
                     moment,
                     err: null
                 });
-            } catch (err) {
-                sendError(req, res, err);
-            }
-        })();
+            })
+            .catch((err) => sendError(req, res, err));
 
     });
 
@@ -92,7 +86,6 @@ const sendError       = require('./error').sendError;
             sendError(req, res, 'Parameters error');
             return;
         }
-
 
         let province     = 'Not found';
         let community    = 'Not found';
@@ -127,16 +120,13 @@ const sendError       = require('./error').sendError;
 
         let resultEntity = District.createResultEntity(result);
 
-        (async () => {
-            try {
-                await resultEntity.save();
-
-                response(req, res, 'pages/data/add-data', 'Add data', {
-                    err    : null,
-                    codigos: Codigos,
-                    moment
-                });
-            } catch (err) {
+        resultEntity.save()
+            .then(() => response(req, res, 'pages/data/add-data', 'Add data', {
+                err    : null,
+                codigos: Codigos,
+                moment
+            }))
+            .catch((err) => {
                 if (err.message.includes('duplicate key')) {
                     response(req, res, 'pages/data/add-data', 'Add data', {
                         err    : 'Result has already been added!',
@@ -146,10 +136,8 @@ const sendError       = require('./error').sendError;
                     return;
                 }
                 sendError(req, res, err);
-            }
-        })();
+            });
     });
-
 
     router.post('/delete-data', (req, res) => {
         console.info('POST '.yellow + ' /delete-data');

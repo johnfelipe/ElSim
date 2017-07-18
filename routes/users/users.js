@@ -27,26 +27,25 @@ const moment      = require('moment');
             err   : false,
             moment: moment
         };
+
         let index   = parseInt(req.params.index);
 
-        if (typeof req.user.results !== 'undefined') {
-            if (typeof req.user.results[index] !== 'undefined') {
-                let aux = [];
-                for (let i = 0, len = req.user.results.length; i < len; i++) {
-                    if (i !== index) {
-                        aux.push(req.user.results[i]);
-                    }
+        if (typeof req.user.results !== 'undefined' && typeof req.user.results[index] !== 'undefined') {
+            let aux = [];
+            for (let i = 0, len = req.user.results.length; i < len; i++) {
+                if (i !== index) {
+                    aux.push(req.user.results[i]);
                 }
-                req.user.results = [...aux];
-                req.user.save()
-                    .then(() => res.render('pages/auth/profile', options))
-                    .catch((err) => sendError(req, res, err));
-            } else {
-                res.render('pages/auth/profile', options);
             }
-        } else {
-            res.render('pages/auth/profile', options);
+            req.user.results = [...aux];
+            req.user.save()
+                .then(() => res.render('pages/auth/profile', options))
+                .catch((err) => sendError(req, res, err));
+            return;
+
         }
+        res.render('pages/auth/profile', options);
+
     });
 
     router.post('/addSubscriber', (req, res) => {
@@ -64,7 +63,6 @@ const moment      = require('moment');
             email  : email,
             options: {}
         });
-
 
         const mailSent = (result) => {
             res.render('pages/misc/help', {

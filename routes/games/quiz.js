@@ -37,8 +37,7 @@ const sendError     = require('../error').sendError;
         let question, isCorrect;
 
         const handleWholeQuestions = (questions) => {
-            let max = questions.length;
-
+            let max   = questions.length;
             let index = parseInt(Math.random() * max);
 
             indexResponse(req, res, 'pages/more/quiz', 'Quiz', {
@@ -48,12 +47,10 @@ const sendError     = require('../error').sendError;
         };
 
         const handleQuestion = (q) => {
-
             question = q;
 
             if (!question) {
-                sendError(req, res, 'Question not found');
-                return;
+                throw Error('Question not found');
             }
 
             isCorrect = (question.correct === req.body.answer);

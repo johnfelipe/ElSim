@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const API = require('../../modules/api');
+const express            = require('express');
+const router             = express.Router();
+const API                = require('../../modules/api');
 const isApiAuthenticated = require('../../passport/auth').isApiAuthenticated;
 
 {

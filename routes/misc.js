@@ -49,34 +49,27 @@ try {
     router.get('/admin', (req, res) => {
         console.info('GET '.yellow + ' /admin');
 
-        (async () => {
-            try {
-                if (!req.user || req.user.email !== credentials.adminUser) {
-                    sendError(req, res, {
-                        result : 'fail',
-                        message: 'You are not the admin, sorry!',
-                        err    : {
-                            message: 'You are not the admin, sorry!',
-                            status : 401
-                        }
-                    });
-                } else {
-                    let resultado = await loadAll();
-
-                    res.render('pages/auth/admin', {
-                        user   : req.user,
-                        title  : 'Administration',
-                        Logs   : resultado.logs,
-                        Results: resultado.results.length,
-                        Users  : resultado.users,
-                        moment
-                    });
-
+        if (!req.user || req.user.email !== credentials.adminUser) {
+            sendError(req, res, {
+                result : 'fail',
+                message: 'You are not the admin, sorry!',
+                err    : {
+                    message: 'You are not the admin, sorry!',
+                    status : 401
                 }
-            } catch (err) {
-                sendError(req, res, err);
-            }
-        })();
+            });
+        } else {
+            loadAll()
+                .then((resultado) => res.render('pages/auth/admin', {
+                    user   : req.user,
+                    title  : 'Administration',
+                    Logs   : resultado.logs,
+                    Results: resultado.results.length,
+                    Users  : resultado.users,
+                    moment
+                }))
+                .catch((err) => sendError(req, res, err));
+        }
     });
 
     module.exports = router;
