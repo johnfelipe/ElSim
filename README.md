@@ -1,6 +1,6 @@
 # ElSim Project
 
-[![https://travis-ci.org/jesusgn90/TFG.svg?branch=master](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)
+[![https://travis-ci.org/jesusgn90/ElSim.svg?branch=master](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)](https://travis-ci.org/jesusgn90/ElSim.svg?branch=master)
 
 Live demo: [https://elsimproject.com/](https://elsimproject.com/) or [http://elsimproject.com/](http://elsimproject.com/)
 
@@ -18,8 +18,8 @@ This is an electoral simulator, it's based on Spanish system. You can generate c
 
 # Setup
 
-    $ git clone https://github.com/jesusgn90/TFG 
-    $ cd TFG
+    $ git clone https://github.com/jesusgn90/ElSim 
+    $ cd ElSim
     $ npm i
 
 Edit `credentials.js`:
@@ -33,10 +33,10 @@ Edit `credentials.js`:
 
 Ok, in the above example we have 4 fields:
 
-- `user`: this field must to be a valid Gmail account that you own.
+- `user`:      this field must to be a valid Gmail account that you own.
 - `adminUser`: this field will be the admin user.
 - `adminName`: this field will be the admin name.
-- `password`: this field will be the `user` Gmail account password and the `adminUser` web account password.
+- `password`:  this field will be the `user` Gmail account password and the `adminUser` web account password.
 
 Run setup:
 
