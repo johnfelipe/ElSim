@@ -1,6 +1,6 @@
 # ElSim Project
 
-[![https://travis-ci.org/jesusgn90/ElSim.svg?branch=master](https://travis-ci.org/jesusgn90/TFG.svg?branch=master)](https://travis-ci.org/jesusgn90/ElSim.svg?branch=master)
+[![https://travis-ci.org/jesusgn90/ElSim.svg?branch=master](https://travis-ci.org/jesusgn90/ElSim.svg?branch=master)](https://travis-ci.org/jesusgn90/ElSim.svg?branch=master)
 
 Live demo: [https://elsimproject.com/](https://elsimproject.com/) or [http://elsimproject.com/](http://elsimproject.com/)
 
@@ -24,12 +24,14 @@ This is an electoral simulator, it's based on Spanish system. You can generate c
 
 Edit `credentials.js`:
 
-    module.exports = {
-        user: process.env.MAIL || 'ellsim.project@gmail.com',
-        adminUser: 'jesusgonzaleznovez@gmail.com',
-        adminName: 'Jesús Ángel González Novez',
-        password: process.env.MAIL_PASSWORD || 'abcdefg'
-    };
+```js
+module.exports = {
+    user:      process.env.MAIL || 'ellsim.project@gmail.com',
+    adminUser: 'jesusgonzaleznovez@gmail.com',
+    adminName: 'Jesús Ángel González Novez',
+    password:  process.env.MAIL_PASSWORD || 'abcdefg'
+};
+```
 
 Ok, in the above example we have 4 fields:
 
