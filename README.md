@@ -2,8 +2,6 @@
 
 [![https://travis-ci.org/jesusgn90/ElSim.svg?branch=master](https://travis-ci.org/jesusgn90/ElSim.svg?branch=master)](https://travis-ci.org/jesusgn90/ElSim.svg?branch=master)
 
-Live demo: [https://elsimproject.com/](https://elsimproject.com/) or [http://elsimproject.com/](http://elsimproject.com/)
-
 __Required Node.js >= 8.0.0__
 
 __Status:__ 
